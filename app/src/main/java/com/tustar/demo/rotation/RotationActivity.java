@@ -10,6 +10,7 @@ import android.os.Handler;
 import android.os.Message;
 import android.provider.Settings;
 import android.support.v7.app.AppCompatActivity;
+import android.view.MenuItem;
 import android.view.OrientationEventListener;
 import android.view.View;
 import android.view.WindowManager;
@@ -48,6 +49,26 @@ public class RotationActivity extends AppCompatActivity {
 
         init(savedInstanceState);
     }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        // Handle action bar item clicks here. The action bar will
+        // automatically handle clicks on the Home/Up button, so long
+        // as you specify a parent activity in AndroidManifest.xml.
+        int id = item.getItemId();
+        Logger.d(TAG, "onOptionsItemSelected :: id = " + id);
+        //noinspection SimplifiableIfStatement
+        switch (id) {
+            case android.R.id.home:
+                finish();
+                break;
+            default:
+                break;
+        }
+
+        return super.onOptionsItemSelected(item);
+    }
+
 
     @Override
     protected void onResume() {
@@ -101,6 +122,7 @@ public class RotationActivity extends AppCompatActivity {
         }
 
         setContentView(R.layout.activity_rotation);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
 
         // Init OrientationEventListener

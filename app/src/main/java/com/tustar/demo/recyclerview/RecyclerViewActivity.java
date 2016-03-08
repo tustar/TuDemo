@@ -3,10 +3,9 @@ package com.tustar.demo.recyclerview;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.GridLayoutManager;
-import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.view.MenuItem;
 import android.view.View;
-import android.widget.LinearLayout;
 import android.widget.Toast;
 
 import com.tustar.demo.R;
@@ -14,8 +13,11 @@ import com.tustar.demo.adapter.ReRecyclerViewAdapter;
 
 import java.util.ArrayList;
 import java.util.List;
+import com.tustar.demo.utils.Logger;
 
 public class RecyclerViewActivity extends AppCompatActivity implements ReRecyclerViewAdapter.OnItemClickLitener {
+
+    private static final String TAG = RecyclerViewActivity.class.getSimpleName();
 
     private RecyclerView mRecyclerView;
     private ReRecyclerViewAdapter mAdapter;
@@ -25,6 +27,7 @@ public class RecyclerViewActivity extends AppCompatActivity implements ReRecycle
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_recycler_view);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         mRecyclerView = (RecyclerView) findViewById(R.id.re_recyclerview);
         // Layout Manager
@@ -39,6 +42,25 @@ public class RecyclerViewActivity extends AppCompatActivity implements ReRecycle
         }
         mAdapter = new ReRecyclerViewAdapter(this, mData);
         mRecyclerView.setAdapter(mAdapter);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        // Handle action bar item clicks here. The action bar will
+        // automatically handle clicks on the Home/Up button, so long
+        // as you specify a parent activity in AndroidManifest.xml.
+        int id = item.getItemId();
+        Logger.d(TAG, "onOptionsItemSelected :: id = " + id);
+        //noinspection SimplifiableIfStatement
+        switch (id) {
+            case android.R.id.home:
+                finish();
+                break;
+            default:
+                break;
+        }
+
+        return super.onOptionsItemSelected(item);
     }
 
     @Override
