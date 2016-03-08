@@ -11,6 +11,7 @@ import android.os.Message;
 import android.provider.Settings;
 import android.support.v7.app.AppCompatActivity;
 import android.view.OrientationEventListener;
+import android.view.View;
 import android.view.WindowManager;
 
 import com.tustar.demo.R;
@@ -104,18 +105,15 @@ public class RotationActivity extends AppCompatActivity {
 
         // Init OrientationEventListener
         initOrientationEventListener();
-
-        // Init Switch
-        initSwitch();
     }
 
-    private void initSwitch() {
-
+    public void rotationScreen(View view) {
+        Logger.i(TAG, "rotationScreen :: view = " + view);
+        isChecked = !isChecked;
         if (isChecked) {
             // Analytic data
             mSwitchOrientation = Configuration.ORIENTATION_LANDSCAPE;
             setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
-
         } else {
             // Analytic data
             mSwitchOrientation = Configuration.ORIENTATION_PORTRAIT;

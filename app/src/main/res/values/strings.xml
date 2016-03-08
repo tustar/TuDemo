@@ -1,8 +1,12 @@
 <resources>
-    <string name="app_name">TuDemo</string>
+    <string name="app_name">范例大全</string>
 
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
 
     <string name="action_settings">Settings</string>
+
+    <!--Rotation-->
+    <string name="rotation_port">竖屏->横屏</string>
+    <string name="rotation_land">横屏->竖屏</string>
 </resources>

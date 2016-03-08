@@ -18,6 +18,7 @@ import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
 import com.tustar.demo.recyclerview.RecyclerViewActivity;
+import com.tustar.demo.rotation.RotationActivity;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener, AdapterView.OnItemClickListener {
@@ -28,6 +29,7 @@ public class MainActivity extends AppCompatActivity
 
     // List
     private static final int INDEX_RECYCLER_VIEW = 0;
+    private static final int INDEX_ROTATION_SCREEN = 1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -130,9 +132,14 @@ public class MainActivity extends AppCompatActivity
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
         switch (position) {
             case INDEX_RECYCLER_VIEW:
-                Intent intent = new Intent();
-                intent.setClass(this, RecyclerViewActivity.class);
-                startActivity(intent);
+                Intent recycleIntent = new Intent();
+                recycleIntent.setClass(this, RecyclerViewActivity.class);
+                startActivity(recycleIntent);
+                break;
+            case INDEX_ROTATION_SCREEN:
+                Intent rotationIntent = new Intent();
+                rotationIntent.setClass(this, RotationActivity.class);
+                startActivity(rotationIntent);
                 break;
             default:
                 break;
