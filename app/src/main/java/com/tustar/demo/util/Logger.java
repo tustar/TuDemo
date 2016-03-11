@@ -1,4 +1,4 @@
-package com.tustar.demo.utils;
+package com.tustar.demo.util;
 
 import android.os.Build;
 import android.util.Log;

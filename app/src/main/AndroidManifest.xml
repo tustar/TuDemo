@@ -1,6 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.tustar.demo">
+    package="com.tustar.demo"
+    android:versionCode="0006"
+    android:versionName="1.0.0006">
+
+
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+    <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" />
 
     <application
         android:allowBackup="true"
@@ -18,12 +24,18 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <!--RecyclerView-->
         <activity android:name=".recyclerview.RecyclerViewActivity" />
+        <!--Rotation-->
         <activity
             android:name=".rotation.RotationActivity"
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:screenOrientation="user"
-            android:windowSoftInputMode="stateAlwaysHidden"/>
+            android:windowSoftInputMode="stateAlwaysHidden" />
+        <!--FloatControllerActivity-->
+        <activity android:name=".floatwindow.FloatWindowActivity" />
+
+        <service android:name=".service.PhoneStateService" />
     </application>
 
 </manifest>

@@ -16,7 +16,7 @@ import android.view.View;
 import android.view.WindowManager;
 
 import com.tustar.demo.R;
-import com.tustar.demo.utils.Logger;
+import com.tustar.demo.util.Logger;
 
 import java.lang.ref.WeakReference;
 

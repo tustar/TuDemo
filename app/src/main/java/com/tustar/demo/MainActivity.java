@@ -17,6 +17,7 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
+import com.tustar.demo.floatwindow.FloatWindowActivity;
 import com.tustar.demo.recyclerview.RecyclerViewActivity;
 import com.tustar.demo.rotation.RotationActivity;
 
@@ -30,6 +31,7 @@ public class MainActivity extends AppCompatActivity
     // List
     private static final int INDEX_RECYCLER_VIEW = 0;
     private static final int INDEX_ROTATION_SCREEN = 1;
+    private static final int INDEX_FLOAT_WINDOW = 2;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -140,6 +142,11 @@ public class MainActivity extends AppCompatActivity
                 Intent rotationIntent = new Intent();
                 rotationIntent.setClass(this, RotationActivity.class);
                 startActivity(rotationIntent);
+                break;
+            case INDEX_FLOAT_WINDOW:
+                Intent floatIntent = new Intent();
+                floatIntent.setClass(this, FloatWindowActivity.class);
+                startActivity(floatIntent);
                 break;
             default:
                 break;

@@ -13,7 +13,7 @@ import com.tustar.demo.adapter.ReRecyclerViewAdapter;
 
 import java.util.ArrayList;
 import java.util.List;
-import com.tustar.demo.utils.Logger;
+import com.tustar.demo.util.Logger;
 
 public class RecyclerViewActivity extends AppCompatActivity implements ReRecyclerViewAdapter.OnItemClickLitener {
 
