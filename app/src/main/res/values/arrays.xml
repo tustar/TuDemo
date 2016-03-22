@@ -4,5 +4,7 @@
         <item>RecyclerView</item>
         <item>Screen Rotation</item>
         <item>Float Window</item>
+        <item>Drag Sort ListView</item>
+        <item>Custom SurfaceView</item>
     </string-array>
 </resources>

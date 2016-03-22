@@ -32,6 +32,8 @@ public class MainActivity extends AppCompatActivity
     private static final int INDEX_RECYCLER_VIEW = 0;
     private static final int INDEX_ROTATION_SCREEN = 1;
     private static final int INDEX_FLOAT_WINDOW = 2;
+    private static final int INDEX_DSLV = 3;
+    private static final int INDEX_CUSTOM_SURFACEVIEW = 4;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -148,6 +150,15 @@ public class MainActivity extends AppCompatActivity
                 floatIntent.setClass(this, FloatWindowActivity.class);
                 startActivity(floatIntent);
                 break;
+            case INDEX_DSLV:
+                Intent dslvIntent = new Intent();
+                dslvIntent.setClass(this, DragSortListViewActivity.class);
+                startActivity(dslvIntent);
+                break;
+            case INDEX_CUSTOM_SURFACEVIEW:
+                Intent surfaceIntent = new Intent();
+                surfaceIntent.setClass(this, SurfaceViewActivity.class);
+                startActivity(surfaceIntent);
             default:
                 break;
         }
