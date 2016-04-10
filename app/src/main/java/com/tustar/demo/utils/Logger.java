@@ -8,13 +8,11 @@ import android.util.Log;
  */
 public class Logger {
 
-    public static final String APP_TAG = "ZuiCalculator";
-
     private static final String VERSION_ENG = "eng";
     private static final String VERSION_USER = "user";
     private static final String VERSION_USER_DEBUG = "userdebug";
 
-    public static boolean debug = false;
+    public static boolean debug = true;
 
     static {
         switch (Build.TYPE) {
@@ -26,44 +24,44 @@ public class Logger {
                 debug = true;
                 break;
             default:
-                Log.e(APP_TAG, "unknown build type, type = " + Build.TYPE);
+                Log.e("Logger", "unknown build type, type = " + Build.TYPE);
                 break;
         }
     }
 
     public static void v(String tag, String msg) {
         if (debug) {
-            Log.v(APP_TAG, tag + ": " + msg);
+            Log.v(tag, tag + ": " + msg);
         }
     }
 
     public static void d(String tag, String msg) {
         if (debug) {
-            Log.d(APP_TAG, tag + ": " + msg);
+            Log.d(tag, tag + ": " + msg);
         }
     }
 
     public static void i(String tag, String msg) {
         if (debug) {
-            Log.i(APP_TAG, tag + ": " + msg);
+            Log.i(tag, tag + ": " + msg);
         }
     }
 
     public static void w(String tag, String msg) {
         if (debug) {
-            Log.w(APP_TAG, tag + ": " + msg);
+            Log.w(tag, tag + ": " + msg);
         }
     }
 
     public static void e(String tag, String msg) {
         if (debug) {
-            Log.e(APP_TAG, tag + ": " + msg);
+            Log.e(tag, tag + ": " + msg);
         }
     }
 
     public static void e(String tag, String msg, Throwable tr) {
         if (debug) {
-            Log.e(APP_TAG, tag + ": " + msg, tr);
+            Log.e(tag, tag + ": " + msg, tr);
         }
     }
 }

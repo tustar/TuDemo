@@ -18,12 +18,18 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".recyclerview.RecyclerViewActivity" />
+        <activity android:name=".RecyclerViewActivity" />
         <activity
             android:name=".rotation.RotationActivity"
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:screenOrientation="user"
-            android:windowSoftInputMode="stateAlwaysHidden"/>
+            android:windowSoftInputMode="stateAlwaysHidden" />
+        <activity
+            android:name=".PaletteActivity"
+            android:label="@string/title_activity_palette" />
+        <activity android:name=".TintingActivity" />
+        <activity android:name=".ClippingActivity" />
+        <activity android:name=".ElevationActivity"></activity>
     </application>
 
 </manifest>

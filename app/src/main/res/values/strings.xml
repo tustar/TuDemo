@@ -14,4 +14,5 @@
     <!--Rotation-->
     <string name="rotation_port">竖屏->横屏</string>
     <string name="rotation_land">横屏->竖屏</string>
+    <string name="title_activity_palette">PaletteActivity</string>
 </resources>

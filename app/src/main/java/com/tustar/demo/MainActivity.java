@@ -3,9 +3,8 @@ package com.tustar.demo;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
-import android.view.View;
 import android.support.design.widget.NavigationView;
+import android.support.design.widget.Snackbar;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
@@ -13,11 +12,11 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
-import com.tustar.demo.recyclerview.RecyclerViewActivity;
 import com.tustar.demo.rotation.RotationActivity;
 
 public class MainActivity extends AppCompatActivity
@@ -30,6 +29,10 @@ public class MainActivity extends AppCompatActivity
     // List
     private static final int INDEX_RECYCLER_VIEW = 0;
     private static final int INDEX_ROTATION_SCREEN = 1;
+    private static final int INDEX_PALETTE = 2;
+    private static final int INDEX_TINTING = 3;
+    private static final int INDEX_ELEVATION = 4;
+    private static final int INDEX_CLIPPING = 5;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -62,13 +65,12 @@ public class MainActivity extends AppCompatActivity
 
     private void initView() {
 
-        mContentMainListView = (ListView)findViewById(R.id.content_main_listview);
+        mContentMainListView = (ListView) findViewById(R.id.content_main_listview);
         mAdatpter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1,
                 getResources().getStringArray(R.array.content_data));
         mContentMainListView.setAdapter(mAdatpter);
         mContentMainListView.setOnItemClickListener(this);
     }
-
 
 
     @Override
@@ -130,19 +132,33 @@ public class MainActivity extends AppCompatActivity
 
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+        Intent intent = new Intent();
+        Class<?> clazz = null;
         switch (position) {
             case INDEX_RECYCLER_VIEW:
-                Intent recycleIntent = new Intent();
-                recycleIntent.setClass(this, RecyclerViewActivity.class);
-                startActivity(recycleIntent);
+                clazz = RecyclerViewActivity.class;
                 break;
             case INDEX_ROTATION_SCREEN:
-                Intent rotationIntent = new Intent();
-                rotationIntent.setClass(this, RotationActivity.class);
-                startActivity(rotationIntent);
+                clazz = RotationActivity.class;
+                break;
+            case INDEX_PALETTE:
+                clazz = PaletteActivity.class;
+                break;
+            case INDEX_TINTING:
+                clazz = TintingActivity.class;
+                break;
+            case INDEX_ELEVATION:
+                clazz = ElevationActivity.class;
+                break;
+            case INDEX_CLIPPING:
+                clazz = ClippingActivity.class;
                 break;
             default:
                 break;
+        }
+        if (null != clazz) {
+            intent.setClass(this, clazz);
+            startActivity(intent);
         }
     }
 }

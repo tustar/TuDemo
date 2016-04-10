@@ -1,33 +1,35 @@
-package com.tustar.demo.recyclerview;
+package com.tustar.demo;
 
+import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
+import android.annotation.TargetApi;
+import android.os.Build;
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Toast;
 
-import com.tustar.demo.R;
-import com.tustar.demo.adapter.ReRecyclerViewAdapter;
-
-import java.util.ArrayList;
-import java.util.List;
+import com.tustar.demo.adapter.RcViewAdapter;
 import com.tustar.demo.utils.Logger;
 
-public class RecyclerViewActivity extends AppCompatActivity implements ReRecyclerViewAdapter.OnItemClickLitener {
+import java.util.Arrays;
+
+import static com.tustar.demo.adapter.RcViewAdapter.*;
+
+public class RecyclerViewActivity extends BaseActivity implements OnItemClickListener {
 
     private static final String TAG = RecyclerViewActivity.class.getSimpleName();
 
     private RecyclerView mRecyclerView;
-    private ReRecyclerViewAdapter mAdapter;
-    private List<String> mData = new ArrayList<>();
+    private RcViewAdapter mAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        Logger.i(TAG, "onCreate ::");
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_recycler_view);
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         mRecyclerView = (RecyclerView) findViewById(R.id.re_recyclerview);
         // Layout Manager
@@ -37,11 +39,31 @@ public class RecyclerViewActivity extends AppCompatActivity implements ReRecycle
         GridLayoutManager mLayoutManager = new GridLayoutManager(this, 3);
         mRecyclerView.setLayoutManager(mLayoutManager);
         // Adapter
-        for (int i = 0; i < 100; i++) {
-            mData.add(i + "");
-        }
-        mAdapter = new ReRecyclerViewAdapter(this, mData);
+
+        mAdapter = new RcViewAdapter(Arrays.asList(getResources().getStringArray(
+                R.array.content_data)));
         mRecyclerView.setAdapter(mAdapter);
+        mAdapter.setOnItemClickListener(new OnItemClickListener() {
+            @TargetApi(Build.VERSION_CODES.LOLLIPOP)
+            @Override
+            public void onItemClick(final View view, int position) {
+                Logger.i(TAG, "onItemClick :: view = " + view + ", position = " + position);
+                view.animate()
+                        .translationZ(15.0f)
+                        .setDuration(200)
+                        .setListener(new AnimatorListenerAdapter() {
+                            @Override
+                            public void onAnimationEnd(Animator animation) {
+                                super.onAnimationEnd(animation);
+                                view.animate()
+                                        .translationZ(1.0f)
+                                        .setDuration(500)
+                                        .start();
+                            }
+                        })
+                        .start();
+            }
+        });
     }
 
     @Override

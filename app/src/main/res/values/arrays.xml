@@ -3,5 +3,9 @@
     <string-array name="content_data">
         <item>RecyclerView</item>
         <item>Screen Rotation</item>
+        <item>Palette</item>
+        <item>Tinting</item>
+        <item>Elevation</item>
+        <item>Clipping</item>
     </string-array>
 </resources>
