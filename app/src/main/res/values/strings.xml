@@ -15,4 +15,6 @@
     <string name="rotation_port">竖屏->横屏</string>
     <string name="rotation_land">横屏->竖屏</string>
     <string name="title_activity_palette">PaletteActivity</string>
+    <string name="transition_name_share">share</string>
+    <string name="transition_name_fab">fab</string>
 </resources>

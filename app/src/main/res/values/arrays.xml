@@ -7,5 +7,6 @@
         <item>Tinting</item>
         <item>Elevation</item>
         <item>Clipping</item>
+        <item>Activity Translation</item>
     </string-array>
 </resources>

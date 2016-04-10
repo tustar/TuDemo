@@ -1,6 +1,8 @@
-package com.tustar.demo;
+package com.tustar.demo.activity;
 
 import android.os.Bundle;
+
+import com.tustar.demo.R;
 
 public class ElevationActivity extends BaseActivity {
 

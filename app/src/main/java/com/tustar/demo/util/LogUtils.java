@@ -1,4 +1,4 @@
-package com.tustar.demo.utils;
+package com.tustar.demo.util;
 
 import android.os.Build;
 import android.util.Log;
@@ -6,7 +6,7 @@ import android.util.Log;
 /**
  * Created by tustar on 15-10-14.
  */
-public class Logger {
+public class LogUtils {
 
     private static final String VERSION_ENG = "eng";
     private static final String VERSION_USER = "user";
@@ -24,7 +24,7 @@ public class Logger {
                 debug = true;
                 break;
             default:
-                Log.e("Logger", "unknown build type, type = " + Build.TYPE);
+                Log.e("LogUtils", "unknown build type, type = " + Build.TYPE);
                 break;
         }
     }

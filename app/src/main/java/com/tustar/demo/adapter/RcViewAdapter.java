@@ -7,7 +7,6 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.tustar.demo.R;
-import com.tustar.demo.utils.Logger;
 
 import java.util.ArrayList;
 import java.util.List;

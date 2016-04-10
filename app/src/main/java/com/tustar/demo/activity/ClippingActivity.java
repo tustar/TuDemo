@@ -1,4 +1,4 @@
-package com.tustar.demo;
+package com.tustar.demo.activity;
 
 import android.annotation.TargetApi;
 import android.graphics.Outline;
@@ -7,6 +7,8 @@ import android.os.Bundle;
 import android.view.View;
 import android.view.ViewOutlineProvider;
 import android.widget.TextView;
+
+import com.tustar.demo.R;
 
 public class ClippingActivity extends BaseActivity {
 

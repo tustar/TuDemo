@@ -1,4 +1,4 @@
-package com.tustar.demo.rotation;
+package com.tustar.demo.activity;
 
 import android.app.Activity;
 import android.content.Context;
@@ -9,18 +9,16 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.provider.Settings;
-import android.support.v7.app.AppCompatActivity;
-import android.view.MenuItem;
 import android.view.OrientationEventListener;
 import android.view.View;
 import android.view.WindowManager;
 
 import com.tustar.demo.R;
-import com.tustar.demo.utils.Logger;
+import com.tustar.demo.util.LogUtils;
 
 import java.lang.ref.WeakReference;
 
-public class RotationActivity extends AppCompatActivity {
+public class RotationActivity extends BaseActivity {
     /**
      * Constant for an invalid resource id.
      */
@@ -40,7 +38,7 @@ public class RotationActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        Logger.v(TAG, "onCreate :: savedInstanceState = " + savedInstanceState);
+        LogUtils.v(TAG, "onCreate :: savedInstanceState = " + savedInstanceState);
         super.onCreate(savedInstanceState);
         mContext = this;
 
@@ -50,47 +48,28 @@ public class RotationActivity extends AppCompatActivity {
         init(savedInstanceState);
     }
 
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
-        Logger.d(TAG, "onOptionsItemSelected :: id = " + id);
-        //noinspection SimplifiableIfStatement
-        switch (id) {
-            case android.R.id.home:
-                finish();
-                break;
-            default:
-                break;
-        }
-
-        return super.onOptionsItemSelected(item);
-    }
-
 
     @Override
     protected void onResume() {
-        Logger.i(TAG, "onResume ::");
+        LogUtils.i(TAG, "onResume ::");
         super.onResume();
     }
 
     @Override
     protected void onPause() {
-        Logger.i(TAG, "onPause ::");
+        LogUtils.i(TAG, "onPause ::");
         super.onPause();
     }
 
     @Override
     protected void onStop() {
-        Logger.i(TAG, "onStop ::");
+        LogUtils.i(TAG, "onStop ::");
         super.onStop();
     }
 
     @Override
     protected void onDestroy() {
-        Logger.i(TAG, "onDestroy ::");
+        LogUtils.i(TAG, "onDestroy ::");
         super.onDestroy();
 
         // Unregister rotation observer
@@ -130,7 +109,7 @@ public class RotationActivity extends AppCompatActivity {
     }
 
     public void rotationScreen(View view) {
-        Logger.i(TAG, "rotationScreen :: view = " + view);
+        LogUtils.i(TAG, "rotationScreen :: view = " + view);
         isChecked = !isChecked;
         if (isChecked) {
             // Analytic data
@@ -164,7 +143,7 @@ public class RotationActivity extends AppCompatActivity {
                     mBtnRotationLock = false;
                     if (isSystemRotationUnlock()
                             && getRequestedOrientation() != ActivityInfo.SCREEN_ORIENTATION_USER) {
-                        Logger.d(TAG, "onOrientationChanged :: Reopen system rotation!!!");
+                        LogUtils.d(TAG, "onOrientationChanged :: Reopen system rotation!!!");
                         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_USER);
                     }
                 }
@@ -191,21 +170,21 @@ public class RotationActivity extends AppCompatActivity {
 
     @Override
     public void onConfigurationChanged(Configuration newConfig) {
-        Logger.v(TAG, "onConfigurationChanged :: newConfig = " + newConfig);
+        LogUtils.v(TAG, "onConfigurationChanged :: newConfig = " + newConfig);
         super.onConfigurationChanged(newConfig);
-        Logger.v(TAG, "onConfigurationChanged :: newConfig.orientation = " + newConfig.orientation);
-        Logger.v(TAG, "onConfigurationChanged :: mSwitchOrientation = " + mSwitchOrientation);
-        Logger.v(TAG, "onConfigurationChanged :: mBtnRotationLock = " + mBtnRotationLock);
+        LogUtils.v(TAG, "onConfigurationChanged :: newConfig.orientation = " + newConfig.orientation);
+        LogUtils.v(TAG, "onConfigurationChanged :: mSwitchOrientation = " + mSwitchOrientation);
+        LogUtils.v(TAG, "onConfigurationChanged :: mBtnRotationLock = " + mBtnRotationLock);
         // Rotation lock state
         if (mBtnRotationLock) {
             // Unlock orientation
             if (mSwitchOrientation == newConfig.orientation) {
-                Logger.d(TAG, "onConfigurationChanged :: Unlock rotation will orientation " +
+                LogUtils.d(TAG, "onConfigurationChanged :: Unlock rotation will orientation " +
                         "is really same!!!!");
                 mBtnRotationLock = false;
                 mSwitchOrientation = newConfig.orientation;
             } else {
-                Logger.d(TAG, "onConfigurationChanged :: Can't unlock rotation, " +
+                LogUtils.d(TAG, "onConfigurationChanged :: Can't unlock rotation, " +
                         "reset to old orientation!!!");
             }
 
@@ -265,7 +244,7 @@ public class RotationActivity extends AppCompatActivity {
 
             switch (msg.what) {
                 case MSG_SYSTEM_ROTATION_CHANGED:
-                    Logger.i(TAG, "handleMessage :: MSG_SYSTEM_ROTATION_CHANGED");
+                    LogUtils.i(TAG, "handleMessage :: MSG_SYSTEM_ROTATION_CHANGED");
                     // Reset button rotation lock to unlock.
                     mBtnRotationLock = false;
                     if (isSystemRotationUnlock()) {
@@ -292,7 +271,7 @@ public class RotationActivity extends AppCompatActivity {
 
         @Override
         public void onChange(boolean selfChange) {
-            Logger.i(TAG, "onChange :: selfChange = " + selfChange);
+            LogUtils.i(TAG, "onChange :: selfChange = " + selfChange);
             super.onChange(selfChange);
             mHandler.sendEmptyMessage(MSG_SYSTEM_ROTATION_CHANGED);
         }

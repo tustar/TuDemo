@@ -1,9 +1,9 @@
-package com.tustar.demo.utils;
+package com.tustar.demo.util;
 
 /**
  * Created by tustar on 4/9/16.
  */
-public class ColorUtil {
+public class ColorUtils {
 
     public static String rgbToHex(int color) {
         return "#" + Integer.toHexString(color).toUpperCase();

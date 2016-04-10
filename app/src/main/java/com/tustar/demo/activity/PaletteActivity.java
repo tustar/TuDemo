@@ -1,4 +1,4 @@
-package com.tustar.demo;
+package com.tustar.demo.activity;
 
 import android.annotation.TargetApi;
 import android.graphics.Bitmap;
@@ -10,8 +10,9 @@ import android.support.v7.graphics.Palette;
 import android.view.View;
 import android.widget.TextView;
 
-import com.tustar.demo.utils.ColorUtil;
-import com.tustar.demo.utils.Logger;
+import com.tustar.demo.R;
+import com.tustar.demo.util.ColorUtils;
+import com.tustar.demo.util.LogUtils;
 
 
 public class PaletteActivity extends BaseActivity {
@@ -41,7 +42,7 @@ public class PaletteActivity extends BaseActivity {
                 final Palette.Swatch vibrant = palette.getVibrantSwatch();
                 if (null != vibrant) {
                     mRow0Col0.setBackgroundColor(vibrant.getRgb());
-                    mRow0Col0.setText("Vibrant\n" + ColorUtil.rgbToHex(vibrant.getRgb()));
+                    mRow0Col0.setText("Vibrant\n" + ColorUtils.rgbToHex(vibrant.getRgb()));
                     mRow0Col0.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View v) {
@@ -49,13 +50,13 @@ public class PaletteActivity extends BaseActivity {
                         }
                     });
                 } else {
-                    Logger.w(TAG, "onGenerated :: vibrant is null");
+                    LogUtils.w(TAG, "onGenerated :: vibrant is null");
                 }
                 // Dark Vibrant
                 final Palette.Swatch darkVibrant = palette.getDarkVibrantSwatch();
                 if (null != darkVibrant) {
                     mRow0Col1.setBackgroundColor(darkVibrant.getRgb());
-                    mRow0Col1.setText("Dark Vibrant\n" + ColorUtil.rgbToHex(darkVibrant.getRgb()));
+                    mRow0Col1.setText("Dark Vibrant\n" + ColorUtils.rgbToHex(darkVibrant.getRgb()));
                     mRow0Col1.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View v) {
@@ -63,13 +64,13 @@ public class PaletteActivity extends BaseActivity {
                         }
                     });
                 } else {
-                    Logger.w(TAG, "onGenerated :: darkVibrant is null");
+                    LogUtils.w(TAG, "onGenerated :: darkVibrant is null");
                 }
                 // Light Vibrant
                 final Palette.Swatch lightVibrant = palette.getLightVibrantSwatch();
                 if (null != lightVibrant) {
                     mRow0Col2.setBackgroundColor(lightVibrant.getRgb());
-                    mRow0Col2.setText("Light Vibrant\n" + ColorUtil.rgbToHex(lightVibrant.getRgb()));
+                    mRow0Col2.setText("Light Vibrant\n" + ColorUtils.rgbToHex(lightVibrant.getRgb()));
                     mRow0Col2.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View v) {
@@ -77,13 +78,13 @@ public class PaletteActivity extends BaseActivity {
                         }
                     });
                 } else {
-                    Logger.w(TAG, "onGenerated  :: lightVibrant is null");
+                    LogUtils.w(TAG, "onGenerated  :: lightVibrant is null");
                 }
                 // Muted
                 final Palette.Swatch muted = palette.getMutedSwatch();
                 if (null != muted) {
                     mRow1Col0.setBackgroundColor(muted.getRgb());
-                    mRow1Col0.setText("Muted\n" + ColorUtil.rgbToHex(muted.getRgb()));
+                    mRow1Col0.setText("Muted\n" + ColorUtils.rgbToHex(muted.getRgb()));
                     mRow1Col0.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View v) {
@@ -91,13 +92,13 @@ public class PaletteActivity extends BaseActivity {
                         }
                     });
                 } else {
-                    Logger.w(TAG, "onGenerated :: muted is null");
+                    LogUtils.w(TAG, "onGenerated :: muted is null");
                 }
                 // Dark Muted
                 final Palette.Swatch darkMuted = palette.getDarkMutedSwatch();
                 if (null != darkMuted) {
                     mRow1Col1.setBackgroundColor(darkMuted.getRgb());
-                    mRow1Col1.setText("Dark Muted\n" + ColorUtil.rgbToHex(darkMuted.getRgb()));
+                    mRow1Col1.setText("Dark Muted\n" + ColorUtils.rgbToHex(darkMuted.getRgb()));
                     mRow1Col1.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View v) {
@@ -105,13 +106,13 @@ public class PaletteActivity extends BaseActivity {
                         }
                     });
                 } else {
-                    Logger.w(TAG, "onGenerated :: darkMuted is null");
+                    LogUtils.w(TAG, "onGenerated :: darkMuted is null");
                 }
                 // Light Muted
                 final Palette.Swatch lightMuted = palette.getLightMutedSwatch();
                 if (null != lightMuted) {
                     mRow1Col2.setBackgroundColor(lightMuted.getRgb());
-                    mRow1Col2.setText("Light Muted\n" + ColorUtil.rgbToHex(lightMuted.getRgb()));
+                    mRow1Col2.setText("Light Muted\n" + ColorUtils.rgbToHex(lightMuted.getRgb()));
                     mRow1Col2.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View v) {
@@ -119,7 +120,7 @@ public class PaletteActivity extends BaseActivity {
                         }
                     });
                 } else {
-                    Logger.w(TAG, "onGenerated :: lightMuted is null");
+                    LogUtils.w(TAG, "onGenerated :: lightMuted is null");
                 }
             }
         });

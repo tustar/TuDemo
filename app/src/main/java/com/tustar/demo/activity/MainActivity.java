@@ -1,5 +1,6 @@
-package com.tustar.demo;
+package com.tustar.demo.activity;
 
+import android.app.ActivityOptions;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
@@ -17,7 +18,7 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
-import com.tustar.demo.rotation.RotationActivity;
+import com.tustar.demo.R;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener, AdapterView.OnItemClickListener {
@@ -33,6 +34,7 @@ public class MainActivity extends AppCompatActivity
     private static final int INDEX_TINTING = 3;
     private static final int INDEX_ELEVATION = 4;
     private static final int INDEX_CLIPPING = 5;
+    private static final int INDEX_ANIM = 6;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -152,6 +154,9 @@ public class MainActivity extends AppCompatActivity
                 break;
             case INDEX_CLIPPING:
                 clazz = ClippingActivity.class;
+                break;
+            case INDEX_ANIM:
+                clazz = AnimMainActivity.class;
                 break;
             default:
                 break;
