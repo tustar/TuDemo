@@ -9,6 +9,10 @@ import com.tustar.demo.common.IntentExtraKey;
 
 public class CustomWidgetActivity extends BaseActivity {
 
+    public enum CustomType {
+        MEASURE, ACTIONBAR, TEXTVIEW
+    }
+
     private Intent intent;
 
     @Override
@@ -18,8 +22,20 @@ public class CustomWidgetActivity extends BaseActivity {
         intent = new Intent(this, CustomWidgetShowActivity.class);
     }
 
-    public void teaching(View view) {
-        intent.putExtra(IntentExtraKey.FLAG, 0);
+    public void customMeasure(View view) {
+        startActivityByType(CustomType.MEASURE);
+    }
+
+    public void customActionBar(View view) {
+        startActivityByType(CustomType.ACTIONBAR);
+    }
+
+    public void customTextView(View view) {
+        startActivityByType(CustomType.TEXTVIEW);
+    }
+
+    private void startActivityByType(CustomType type) {
+        intent.putExtra(IntentExtraKey.FLAG, type);
         startActivity(intent);
     }
 }

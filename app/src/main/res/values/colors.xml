@@ -3,4 +3,8 @@
     <color name="colorPrimary">@android:color/holo_blue_light</color>
     <color name="colorPrimaryDark">@android:color/holo_blue_dark</color>
     <color name="colorAccent">@android:color/holo_blue_dark</color>
+    <color name="shape_ripple_round_solid_color">@android:color/holo_orange_dark</color>
+    <color name="side_nav_bar_centerColor">@android:color/holo_blue_light</color>
+    <color name="side_nav_bar_endColor">@android:color/holo_blue_dark</color>
+    <color name="side_nav_bar_startColor">@android:color/holo_blue_bright</color>
 </resources>
