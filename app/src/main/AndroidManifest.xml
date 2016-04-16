@@ -1,6 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.tustar.demo">
+    package="com.tustar.demo"
+    android:versionCode="0006"
+    android:versionName="1.0.0006">
+
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+    <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" />
 
     <application
         android:allowBackup="true"
@@ -34,6 +39,10 @@
         <activity android:name=".activity.AnimTransitionsActivity" />
         <activity android:name=".activity.CustomWidgetActivity" />
         <activity android:name=".activity.CustomWidgetShowActivity"></activity>
+        <activity android:name=".activity.FloatWindowActivity" />
+        <service android:name=".service.PhoneStateService" />
+        <activity android:name=".activity.SurfaceViewActivity" />
+        <activity android:name=".activity.DragSortListViewActivity"></activity>
     </application>
 
 </manifest>

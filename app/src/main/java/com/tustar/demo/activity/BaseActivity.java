@@ -6,7 +6,7 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.MenuItem;
 
-import com.tustar.demo.util.LogUtils;
+import com.tustar.demo.util.Logger;
 
 /**
  * Created by tustar on 4/10/16.
@@ -28,7 +28,7 @@ public class BaseActivity extends AppCompatActivity {
         // automatically handle clicks on the Home/Up button, so long
         // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
-        LogUtils.d(TAG, "onOptionsItemSelected :: id = " + id);
+        Logger.d(TAG, "onOptionsItemSelected :: id = " + id);
         //noinspection SimplifiableIfStatement
         switch (id) {
             case android.R.id.home:

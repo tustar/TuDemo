@@ -1,6 +1,5 @@
 package com.tustar.demo.activity;
 
-import android.app.ActivityOptions;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
@@ -36,6 +35,9 @@ public class MainActivity extends AppCompatActivity
     private static final int INDEX_CLIPPING = 5;
     private static final int INDEX_ANIM = 6;
     private static final int INDEX_CUSTOM_WIDGET = 7;
+    private static final int INDEX_FLOAT_WINDOW = 8;
+    private static final int INDEX_DSLV = 9;
+    private static final int INDEX_CUSTOM_SURFACEVIEW = 10;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -162,9 +164,19 @@ public class MainActivity extends AppCompatActivity
             case INDEX_CUSTOM_WIDGET:
                 clazz = CustomWidgetActivity.class;
                 break;
+            case INDEX_FLOAT_WINDOW:
+                clazz = FloatWindowActivity.class;
+                break;
+            case INDEX_DSLV:
+                clazz = DragSortListViewActivity.class;
+                break;
+            case INDEX_CUSTOM_SURFACEVIEW:
+                clazz = SurfaceViewActivity.class;
+                break;
             default:
                 break;
         }
+
         if (null != clazz) {
             intent.setClass(this, clazz);
             startActivity(intent);

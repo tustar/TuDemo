@@ -14,7 +14,7 @@ import android.view.View;
 import android.view.WindowManager;
 
 import com.tustar.demo.R;
-import com.tustar.demo.util.LogUtils;
+import com.tustar.demo.util.Logger;
 
 import java.lang.ref.WeakReference;
 
@@ -38,7 +38,7 @@ public class RotationActivity extends BaseActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        LogUtils.v(TAG, "onCreate :: savedInstanceState = " + savedInstanceState);
+        Logger.v(TAG, "onCreate :: savedInstanceState = " + savedInstanceState);
         super.onCreate(savedInstanceState);
         mContext = this;
 
@@ -51,25 +51,25 @@ public class RotationActivity extends BaseActivity {
 
     @Override
     protected void onResume() {
-        LogUtils.i(TAG, "onResume ::");
+        Logger.i(TAG, "onResume ::");
         super.onResume();
     }
 
     @Override
     protected void onPause() {
-        LogUtils.i(TAG, "onPause ::");
+        Logger.i(TAG, "onPause ::");
         super.onPause();
     }
 
     @Override
     protected void onStop() {
-        LogUtils.i(TAG, "onStop ::");
+        Logger.i(TAG, "onStop ::");
         super.onStop();
     }
 
     @Override
     protected void onDestroy() {
-        LogUtils.i(TAG, "onDestroy ::");
+        Logger.i(TAG, "onDestroy ::");
         super.onDestroy();
 
         // Unregister rotation observer
@@ -109,7 +109,7 @@ public class RotationActivity extends BaseActivity {
     }
 
     public void rotationScreen(View view) {
-        LogUtils.i(TAG, "rotationScreen :: view = " + view);
+        Logger.i(TAG, "rotationScreen :: view = " + view);
         isChecked = !isChecked;
         if (isChecked) {
             // Analytic data
@@ -143,7 +143,7 @@ public class RotationActivity extends BaseActivity {
                     mBtnRotationLock = false;
                     if (isSystemRotationUnlock()
                             && getRequestedOrientation() != ActivityInfo.SCREEN_ORIENTATION_USER) {
-                        LogUtils.d(TAG, "onOrientationChanged :: Reopen system rotation!!!");
+                        Logger.d(TAG, "onOrientationChanged :: Reopen system rotation!!!");
                         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_USER);
                     }
                 }
@@ -170,21 +170,21 @@ public class RotationActivity extends BaseActivity {
 
     @Override
     public void onConfigurationChanged(Configuration newConfig) {
-        LogUtils.v(TAG, "onConfigurationChanged :: newConfig = " + newConfig);
+        Logger.v(TAG, "onConfigurationChanged :: newConfig = " + newConfig);
         super.onConfigurationChanged(newConfig);
-        LogUtils.v(TAG, "onConfigurationChanged :: newConfig.orientation = " + newConfig.orientation);
-        LogUtils.v(TAG, "onConfigurationChanged :: mSwitchOrientation = " + mSwitchOrientation);
-        LogUtils.v(TAG, "onConfigurationChanged :: mBtnRotationLock = " + mBtnRotationLock);
+        Logger.v(TAG, "onConfigurationChanged :: newConfig.orientation = " + newConfig.orientation);
+        Logger.v(TAG, "onConfigurationChanged :: mSwitchOrientation = " + mSwitchOrientation);
+        Logger.v(TAG, "onConfigurationChanged :: mBtnRotationLock = " + mBtnRotationLock);
         // Rotation lock state
         if (mBtnRotationLock) {
             // Unlock orientation
             if (mSwitchOrientation == newConfig.orientation) {
-                LogUtils.d(TAG, "onConfigurationChanged :: Unlock rotation will orientation " +
+                Logger.d(TAG, "onConfigurationChanged :: Unlock rotation will orientation " +
                         "is really same!!!!");
                 mBtnRotationLock = false;
                 mSwitchOrientation = newConfig.orientation;
             } else {
-                LogUtils.d(TAG, "onConfigurationChanged :: Can't unlock rotation, " +
+                Logger.d(TAG, "onConfigurationChanged :: Can't unlock rotation, " +
                         "reset to old orientation!!!");
             }
 
@@ -244,7 +244,7 @@ public class RotationActivity extends BaseActivity {
 
             switch (msg.what) {
                 case MSG_SYSTEM_ROTATION_CHANGED:
-                    LogUtils.i(TAG, "handleMessage :: MSG_SYSTEM_ROTATION_CHANGED");
+                    Logger.i(TAG, "handleMessage :: MSG_SYSTEM_ROTATION_CHANGED");
                     // Reset button rotation lock to unlock.
                     mBtnRotationLock = false;
                     if (isSystemRotationUnlock()) {
@@ -271,7 +271,7 @@ public class RotationActivity extends BaseActivity {
 
         @Override
         public void onChange(boolean selfChange) {
-            LogUtils.i(TAG, "onChange :: selfChange = " + selfChange);
+            Logger.i(TAG, "onChange :: selfChange = " + selfChange);
             super.onChange(selfChange);
             mHandler.sendEmptyMessage(MSG_SYSTEM_ROTATION_CHANGED);
         }

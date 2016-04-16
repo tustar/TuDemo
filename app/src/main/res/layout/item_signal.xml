@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/rf_root_layout"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    tools:context="com.zui.rf.MainActivity">
+
+    <!--CDMA-->
+    <TextView
+        android:id="@+id/rf_signal_sim"
+        style="@style/FloatText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/rf_signal_sim" />
+
+
+    <TextView
+        android:id="@+id/rf_signal_network"
+        style="@style/FloatText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/rf_signal_network" />
+
+
+    <TextView
+        android:id="@+id/rf_signal_prop1"
+        style="@style/FloatText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/rf_cdma_rssi" />
+
+
+    <TextView
+        android:id="@+id/rf_signal_prop2"
+        style="@style/FloatText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/rf_cdma_ecio" />
+
+
+</LinearLayout>

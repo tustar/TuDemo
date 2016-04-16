@@ -9,5 +9,8 @@
         <item>Clipping</item>
         <item>Activity Translation</item>
         <item>Custom Widget</item>
+        <item>Float Window</item>
+        <item>Drag Sort ListView</item>
+        <item>Custom SurfaceView</item>
     </string-array>
 </resources>

@@ -17,4 +17,14 @@
     <string name="title_activity_palette">PaletteActivity</string>
     <string name="transition_name_share">share</string>
     <string name="transition_name_fab">fab</string>
+
+    <!--Float Windows-->
+    <string name="rf_signal_title">显示信号强度情况</string>
+    <string name="rf_signal_sub">屏幕叠加层显示当前信号强度情况</string>
+    <string name="rf_gsm_signal_strength">gsm signal strength/%1$d</string>
+    <string name="rf_gsm_bit_error_rate">gsm bit error rate/%1$d</string>
+    <string name="rf_cdma_rssi">cdma rssi/%1$d dBm</string>
+    <string name="rf_cdma_ecio">cdma ecio/%1$d dB*10</string>
+    <string name="rf_signal_sim">sim/%1$s</string>
+    <string name="rf_signal_network">network/%1$s</string>
 </resources>

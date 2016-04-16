@@ -12,7 +12,7 @@ import android.widget.Toast;
 
 import com.tustar.demo.R;
 import com.tustar.demo.adapter.RcViewAdapter;
-import com.tustar.demo.util.LogUtils;
+import com.tustar.demo.util.Logger;
 
 import java.util.Arrays;
 
@@ -28,7 +28,7 @@ public class RecyclerViewActivity extends BaseActivity implements OnItemClickLis
     @TargetApi(Build.VERSION_CODES.LOLLIPOP)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        LogUtils.i(TAG, "onCreate ::");
+        Logger.i(TAG, "onCreate ::");
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_recycler_view);
 
@@ -48,7 +48,7 @@ public class RecyclerViewActivity extends BaseActivity implements OnItemClickLis
             @TargetApi(Build.VERSION_CODES.LOLLIPOP)
             @Override
             public void onItemClick(final View view, int position) {
-                LogUtils.i(TAG, "onItemClick :: view = " + view + ", position = " + position);
+                Logger.i(TAG, "onItemClick :: view = " + view + ", position = " + position);
                 view.animate()
                         .translationZ(15.0f)
                         .setDuration(200)

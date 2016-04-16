@@ -12,7 +12,7 @@ import android.widget.TextView;
 
 import com.tustar.demo.R;
 import com.tustar.demo.util.ColorUtils;
-import com.tustar.demo.util.LogUtils;
+import com.tustar.demo.util.Logger;
 
 
 public class PaletteActivity extends BaseActivity {
@@ -50,7 +50,7 @@ public class PaletteActivity extends BaseActivity {
                         }
                     });
                 } else {
-                    LogUtils.w(TAG, "onGenerated :: vibrant is null");
+                    Logger.w(TAG, "onGenerated :: vibrant is null");
                 }
                 // Dark Vibrant
                 final Palette.Swatch darkVibrant = palette.getDarkVibrantSwatch();
@@ -64,7 +64,7 @@ public class PaletteActivity extends BaseActivity {
                         }
                     });
                 } else {
-                    LogUtils.w(TAG, "onGenerated :: darkVibrant is null");
+                    Logger.w(TAG, "onGenerated :: darkVibrant is null");
                 }
                 // Light Vibrant
                 final Palette.Swatch lightVibrant = palette.getLightVibrantSwatch();
@@ -78,7 +78,7 @@ public class PaletteActivity extends BaseActivity {
                         }
                     });
                 } else {
-                    LogUtils.w(TAG, "onGenerated  :: lightVibrant is null");
+                    Logger.w(TAG, "onGenerated  :: lightVibrant is null");
                 }
                 // Muted
                 final Palette.Swatch muted = palette.getMutedSwatch();
@@ -92,7 +92,7 @@ public class PaletteActivity extends BaseActivity {
                         }
                     });
                 } else {
-                    LogUtils.w(TAG, "onGenerated :: muted is null");
+                    Logger.w(TAG, "onGenerated :: muted is null");
                 }
                 // Dark Muted
                 final Palette.Swatch darkMuted = palette.getDarkMutedSwatch();
@@ -106,7 +106,7 @@ public class PaletteActivity extends BaseActivity {
                         }
                     });
                 } else {
-                    LogUtils.w(TAG, "onGenerated :: darkMuted is null");
+                    Logger.w(TAG, "onGenerated :: darkMuted is null");
                 }
                 // Light Muted
                 final Palette.Swatch lightMuted = palette.getLightMutedSwatch();
@@ -120,7 +120,7 @@ public class PaletteActivity extends BaseActivity {
                         }
                     });
                 } else {
-                    LogUtils.w(TAG, "onGenerated :: lightMuted is null");
+                    Logger.w(TAG, "onGenerated :: lightMuted is null");
                 }
             }
         });
