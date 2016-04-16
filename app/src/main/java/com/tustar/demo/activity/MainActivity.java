@@ -35,6 +35,7 @@ public class MainActivity extends AppCompatActivity
     private static final int INDEX_ELEVATION = 4;
     private static final int INDEX_CLIPPING = 5;
     private static final int INDEX_ANIM = 6;
+    private static final int INDEX_CUSTOM_WIDGET = 7;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -157,6 +158,9 @@ public class MainActivity extends AppCompatActivity
                 break;
             case INDEX_ANIM:
                 clazz = AnimMainActivity.class;
+                break;
+            case INDEX_CUSTOM_WIDGET:
+                clazz = CustomWidgetActivity.class;
                 break;
             default:
                 break;

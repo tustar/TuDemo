@@ -8,5 +8,6 @@
         <item>Elevation</item>
         <item>Clipping</item>
         <item>Activity Translation</item>
+        <item>Custom Widget</item>
     </string-array>
 </resources>

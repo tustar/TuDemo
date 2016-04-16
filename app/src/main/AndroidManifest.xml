@@ -31,7 +31,9 @@
         <activity android:name=".activity.ClippingActivity" />
         <activity android:name=".activity.ElevationActivity" />
         <activity android:name=".activity.AnimMainActivity" />
-        <activity android:name=".activity.AnimTransitionsActivity"></activity>
+        <activity android:name=".activity.AnimTransitionsActivity" />
+        <activity android:name=".activity.CustomWidgetActivity" />
+        <activity android:name=".activity.CustomWidgetShowActivity"></activity>
     </application>
 
 </manifest>
