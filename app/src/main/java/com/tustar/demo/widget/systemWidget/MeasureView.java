@@ -1,4 +1,4 @@
-package com.tustar.demo.widget;
+package com.tustar.demo.widget.systemWidget;
 
 import android.annotation.TargetApi;
 import android.content.Context;
@@ -12,24 +12,24 @@ import android.view.View;
 /**
  * Created by tustar on 4/13/16.
  */
-public class TeachingView extends View {
+public class MeasureView extends View {
 
     private static final String TAG = "TeachingView";
 
-    public TeachingView(Context context) {
+    public MeasureView(Context context) {
         super(context);
     }
 
-    public TeachingView(Context context, AttributeSet attrs) {
+    public MeasureView(Context context, AttributeSet attrs) {
         super(context, attrs);
     }
 
-    public TeachingView(Context context, AttributeSet attrs, int defStyleAttr) {
+    public MeasureView(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
     }
 
     @TargetApi(Build.VERSION_CODES.LOLLIPOP)
-    public TeachingView(Context context, AttributeSet attrs, int defStyleAttr, int defStyleRes) {
+    public MeasureView(Context context, AttributeSet attrs, int defStyleAttr, int defStyleRes) {
         super(context, attrs, defStyleAttr, defStyleRes);
     }
 

@@ -6,7 +6,7 @@ import android.widget.Toast;
 
 import com.tustar.demo.R;
 import com.tustar.demo.common.IntentExtraKey;
-import com.tustar.demo.widget.CustomActionBar;
+import com.tustar.demo.widget.systemWidget.CustomActionBar;
 
 import static com.tustar.demo.activity.CustomWidgetActivity.CustomType;
 
@@ -30,6 +30,18 @@ public class CustomWidgetShowActivity extends BaseActivity {
                 break;
             case TEXTVIEW:
                 setContentView(R.layout.activity_custom_widget_textview);
+                break;
+            case CIRCLEPROGRESS:
+                setContentView(R.layout.activity_custom_widget_circleprogress);
+                break;
+            case VOLUME:
+                setContentView(R.layout.activity_custom_widget_volume);
+                break;
+            case SCROLLVIEW:
+                setContentView(R.layout.activity_custom_widget_scrollview);
+                break;
+            case VIEWLAYOUT:
+                setContentView(R.layout.activity_custom_widget_viewlayout);
         }
     }
 

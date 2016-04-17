@@ -9,13 +9,13 @@
     tools:context="com.tustar.demo.activity.CustomWidgetShowActivity">
 
 
-    <com.tustar.demo.widget.BorderTextView
+    <com.tustar.demo.widget.systemWidget.BorderTextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:padding="10dp"
         android:text="Android Studio"/>
 
-    <com.tustar.demo.widget.ShineTextView
+    <com.tustar.demo.widget.systemWidget.ShineTextView
         android:layout_marginTop="10dp"
         android:layout_width="300dp"
         android:layout_height="50dp"

@@ -10,7 +10,7 @@ import com.tustar.demo.common.IntentExtraKey;
 public class CustomWidgetActivity extends BaseActivity {
 
     public enum CustomType {
-        MEASURE, ACTIONBAR, TEXTVIEW
+        MEASURE, ACTIONBAR, TEXTVIEW, CIRCLEPROGRESS, VOLUME, SCROLLVIEW, VIEWLAYOUT
     }
 
     private Intent intent;
@@ -32,6 +32,22 @@ public class CustomWidgetActivity extends BaseActivity {
 
     public void customTextView(View view) {
         startActivityByType(CustomType.TEXTVIEW);
+    }
+
+    public void customCircleProgress(View view) {
+        startActivityByType(CustomType.CIRCLEPROGRESS);
+    }
+
+    public void customVolume(View view) {
+        startActivityByType(CustomType.VOLUME);
+    }
+
+    public void customScrollView(View view) {
+        startActivityByType(CustomType.SCROLLVIEW);
+    }
+
+    public void customViewLayout(View view) {
+        startActivityByType(CustomType.VIEWLAYOUT);
     }
 
     private void startActivityByType(CustomType type) {

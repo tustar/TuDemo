@@ -1,4 +1,4 @@
-package com.tustar.demo.widget;
+package com.tustar.demo.widget.systemWidget;
 
 import android.annotation.TargetApi;
 import android.content.Context;
