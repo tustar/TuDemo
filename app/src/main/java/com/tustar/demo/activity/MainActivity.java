@@ -18,6 +18,8 @@ import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
 import com.tustar.demo.R;
+import com.tustar.demo.activity.customwidget.CustomWidgetActivity;
+import com.tustar.demo.activity.dragview.DragViewActivity;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener, AdapterView.OnItemClickListener {
@@ -38,6 +40,7 @@ public class MainActivity extends AppCompatActivity
     private static final int INDEX_FLOAT_WINDOW = 8;
     private static final int INDEX_DSLV = 9;
     private static final int INDEX_CUSTOM_SURFACEVIEW = 10;
+    private static final int INDEX_DRAG_VIEW= 11;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -172,6 +175,9 @@ public class MainActivity extends AppCompatActivity
                 break;
             case INDEX_CUSTOM_SURFACEVIEW:
                 clazz = SurfaceViewActivity.class;
+                break;
+            case INDEX_DRAG_VIEW:
+                clazz = DragViewActivity.class;
                 break;
             default:
                 break;

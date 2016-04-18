@@ -1,10 +1,11 @@
-package com.tustar.demo.activity;
+package com.tustar.demo.activity.customwidget;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 
 import com.tustar.demo.R;
+import com.tustar.demo.activity.BaseActivity;
 import com.tustar.demo.common.IntentExtraKey;
 
 public class CustomWidgetActivity extends BaseActivity {

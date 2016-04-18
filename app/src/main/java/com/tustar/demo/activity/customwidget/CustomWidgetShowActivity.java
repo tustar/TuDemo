@@ -1,14 +1,15 @@
-package com.tustar.demo.activity;
+package com.tustar.demo.activity.customwidget;
 
 import android.content.Context;
 import android.os.Bundle;
 import android.widget.Toast;
 
 import com.tustar.demo.R;
+import com.tustar.demo.activity.BaseActivity;
 import com.tustar.demo.common.IntentExtraKey;
 import com.tustar.demo.widget.systemWidget.CustomActionBar;
 
-import static com.tustar.demo.activity.CustomWidgetActivity.CustomType;
+import static com.tustar.demo.activity.customwidget.CustomWidgetActivity.CustomType;
 
 public class CustomWidgetShowActivity extends BaseActivity {
 

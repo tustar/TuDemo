@@ -12,5 +12,6 @@
         <item>Float Window</item>
         <item>Drag Sort ListView</item>
         <item>Custom SurfaceView</item>
+        <item>Drag View</item>
     </string-array>
 </resources>

@@ -37,12 +37,17 @@
         <activity android:name=".activity.ElevationActivity" />
         <activity android:name=".activity.AnimMainActivity" />
         <activity android:name=".activity.AnimTransitionsActivity" />
-        <activity android:name=".activity.CustomWidgetActivity" />
-        <activity android:name=".activity.CustomWidgetShowActivity"></activity>
+        <activity android:name=".activity.customwidget.CustomWidgetActivity" />
+        <activity android:name=".activity.customwidget.CustomWidgetShowActivity" />
         <activity android:name=".activity.FloatWindowActivity" />
+
         <service android:name=".service.PhoneStateService" />
+
         <activity android:name=".activity.SurfaceViewActivity" />
-        <activity android:name=".activity.DragSortListViewActivity"></activity>
+        <activity android:name=".activity.DragSortListViewActivity" />
+        <activity android:name=".activity.dragview.DragViewActivity" />
+        <activity android:name=".activity.dragview.DragViewShowActivity" />
+        <activity android:name=".activity.dragview.DragViewGroupActivity"></activity>
     </application>
 
 </manifest>
