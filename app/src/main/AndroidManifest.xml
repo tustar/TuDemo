@@ -47,7 +47,8 @@
         <activity android:name=".activity.DragSortListViewActivity" />
         <activity android:name=".activity.dragview.DragViewActivity" />
         <activity android:name=".activity.dragview.DragViewShowActivity" />
-        <activity android:name=".activity.dragview.DragViewGroupActivity"></activity>
+        <activity android:name=".activity.dragview.DragViewGroupActivity" />
+        <activity android:name=".activity.anim.viewanim.ViewAnimActivity"></activity>
     </application>
 
 </manifest>
