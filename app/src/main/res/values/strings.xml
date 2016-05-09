@@ -27,4 +27,7 @@
     <string name="rf_cdma_ecio">cdma ecio/%1$d dB*10</string>
     <string name="rf_signal_sim">sim/%1$s</string>
     <string name="rf_signal_network">network/%1$s</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

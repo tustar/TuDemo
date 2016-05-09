@@ -21,6 +21,7 @@ import com.tustar.demo.R;
 import com.tustar.demo.activity.anim.viewanim.ViewAnimActivity;
 import com.tustar.demo.activity.customwidget.CustomWidgetActivity;
 import com.tustar.demo.activity.dragview.DragViewActivity;
+import com.tustar.demo.activity.loader.LoaderActivity;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener, AdapterView.OnItemClickListener {
@@ -43,6 +44,7 @@ public class MainActivity extends AppCompatActivity
     private static final int INDEX_CUSTOM_SURFACEVIEW = 10;
     private static final int INDEX_DRAG_VIEW= 11;
     private static final int INDEX_VIEW_ANIM = 12;
+    private static final int INDEX_LOADER = 13;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -183,6 +185,9 @@ public class MainActivity extends AppCompatActivity
                 break;
             case INDEX_VIEW_ANIM:
                 clazz = ViewAnimActivity.class;
+                break;
+            case INDEX_LOADER:
+                clazz = LoaderActivity.class;
                 break;
             default:
                 break;

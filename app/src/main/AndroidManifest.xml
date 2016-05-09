@@ -48,7 +48,8 @@
         <activity android:name=".activity.dragview.DragViewActivity" />
         <activity android:name=".activity.dragview.DragViewShowActivity" />
         <activity android:name=".activity.dragview.DragViewGroupActivity" />
-        <activity android:name=".activity.anim.viewanim.ViewAnimActivity"></activity>
+        <activity android:name=".activity.anim.viewanim.ViewAnimActivity" />
+        <activity android:name=".activity.loader.LoaderActivity"></activity>
     </application>
 
 </manifest>
