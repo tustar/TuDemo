@@ -11,6 +11,9 @@
     <string name="nav_header_email">tustar1030@gmail.com</string>
     <string name="nav_header_motto">天行健,君子以自强不息;\n地势坤,君子以厚德载物.</string>
 
+    <!--Menu-->
+    <string name="menu_configure_locale">Change language</string>
+
     <!--Rotation-->
     <string name="rotation_port">竖屏->横屏</string>
     <string name="rotation_land">横屏->竖屏</string>

@@ -1,0 +1,42 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+
+    <ImageView
+        android:id="@+id/item_loader_app_icon"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="8dp"
+        android:src="@mipmap/ic_launcher" />
+
+    <TextView
+        android:id="@+id/item_loader_app_label"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_vertical"
+        android:layout_toRightOf="@id/item_loader_app_icon"
+        android:paddingTop="8dp"
+        android:text="Code"
+        android:textColor="@android:color/black" />
+
+    <TextView
+        android:id="@+id/item_loader_app_size"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/item_loader_app_label"
+        android:layout_below="@id/item_loader_app_label"
+        android:layout_marginTop="8dp"
+        android:text="10.1M"
+        android:textSize="10sp" />
+
+    <TextView
+        android:id="@+id/item_loader_app_last_updatetime"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@id/item_loader_app_icon"
+        android:layout_alignLeft="@+id/item_loader_app_label"
+        android:paddingBottom="8dp"
+        android:text="04-09 16:46"
+        android:textSize="10sp" />
+</RelativeLayout>
