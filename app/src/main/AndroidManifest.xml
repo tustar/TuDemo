@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.tustar.demo"
-    android:versionCode="0006"
-    android:versionName="1.0.0006">
+          package="com.tustar.demo"
+          android:versionCode="0006"
+          android:versionName="1.0.0006">
 
-    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
-    <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" />
+    <uses-permission android:name="android.permission.READ_PHONE_STATE"/>
+    <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW"/>
 
     <application
         android:allowBackup="true"
@@ -18,38 +18,40 @@
             android:label="@string/app_name"
             android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
+                <action android:name="android.intent.action.MAIN"/>
 
-                <category android:name="android.intent.category.LAUNCHER" />
+                <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
-        <activity android:name=".activity.RecyclerViewActivity" />
+        <activity android:name=".activity.RecyclerViewActivity"/>
         <activity
             android:name=".activity.RotationActivity"
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:screenOrientation="user"
-            android:windowSoftInputMode="stateAlwaysHidden" />
+            android:windowSoftInputMode="stateAlwaysHidden"/>
         <activity
             android:name=".activity.PaletteActivity"
-            android:label="@string/title_activity_palette" />
-        <activity android:name=".activity.TintingActivity" />
-        <activity android:name=".activity.ClippingActivity" />
-        <activity android:name=".activity.ElevationActivity" />
-        <activity android:name=".activity.AnimMainActivity" />
-        <activity android:name=".activity.AnimTransitionsActivity" />
-        <activity android:name=".activity.customwidget.CustomWidgetActivity" />
-        <activity android:name=".activity.customwidget.CustomWidgetShowActivity" />
-        <activity android:name=".activity.FloatWindowActivity" />
+            android:label="@string/title_activity_palette"/>
+        <activity android:name=".activity.TintingActivity"/>
+        <activity android:name=".activity.ClippingActivity"/>
+        <activity android:name=".activity.ElevationActivity"/>
+        <activity android:name=".activity.AnimMainActivity"/>
+        <activity android:name=".activity.AnimTransitionsActivity"/>
+        <activity android:name=".activity.customwidget.CustomWidgetActivity"/>
+        <activity android:name=".activity.customwidget.CustomWidgetShowActivity"/>
+        <activity android:name=".activity.FloatWindowActivity"/>
 
-        <service android:name=".service.PhoneStateService" />
+        <service android:name=".service.PhoneStateService"/>
 
-        <activity android:name=".activity.SurfaceViewActivity" />
-        <activity android:name=".activity.DragSortListViewActivity" />
-        <activity android:name=".activity.dragview.DragViewActivity" />
-        <activity android:name=".activity.dragview.DragViewShowActivity" />
-        <activity android:name=".activity.dragview.DragViewGroupActivity" />
-        <activity android:name=".activity.anim.viewanim.ViewAnimActivity" />
-        <activity android:name=".activity.loader.LoaderActivity"></activity>
+        <activity android:name=".activity.SurfaceViewActivity"/>
+        <activity android:name=".activity.DragSortListViewActivity"/>
+        <activity android:name=".activity.dragview.DragViewActivity"/>
+        <activity android:name=".activity.dragview.DragViewShowActivity"/>
+        <activity android:name=".activity.dragview.DragViewGroupActivity"/>
+        <activity android:name=".activity.anim.viewanim.ViewAnimActivity"/>
+        <activity android:name=".activity.loader.LoaderActivity"/>
+        <activity android:name=".activity.SvgActivity">
+        </activity>
     </application>
 
 </manifest>

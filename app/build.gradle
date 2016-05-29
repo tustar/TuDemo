@@ -1,12 +1,12 @@
 apply plugin: 'com.android.application'
 
 android {
-    compileSdkVersion 22
-    buildToolsVersion '22.0.1'
+    compileSdkVersion 23
+    buildToolsVersion '23.0.2'
 
     defaultConfig {
         applicationId "com.tustar.demo"
-        minSdkVersion 15
+        minSdkVersion 22
         targetSdkVersion 22
         versionCode 1
         versionName "1.0"
@@ -19,6 +19,8 @@ android {
     }
 }
 
+apply plugin: 'com.neenbedankt.android-apt'
+
 dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
     testCompile 'junit:junit:4.12'
@@ -28,4 +30,6 @@ dependencies {
     compile 'com.android.support:design:22.2.1'
     compile 'com.android.support:palette-v7:22.2.1'
     compile 'com.android.support:support-v4:22.2.1'
+    compile 'com.jakewharton:butterknife:8.0.1'
+    apt 'com.jakewharton:butterknife-compiler:8.0.1'
 }

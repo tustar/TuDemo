@@ -15,5 +15,6 @@
         <item>Drag View</item>
         <item>View Animator</item>
         <item>Loader</item>
+        <item>SVG</item>
     </string-array>
 </resources>
