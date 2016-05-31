@@ -3,6 +3,7 @@ package com.tustar.demo.activity;
 import android.graphics.drawable.Animatable;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.ImageView;
 
 import com.tustar.demo.R;
@@ -16,6 +17,8 @@ public class SvgActivity extends BaseActivity {
 
     @BindView(R.id.svg_image)
     ImageView mSvgImage;
+    @BindView(R.id.svg_face)
+    ImageView mSvgFace;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -24,12 +27,29 @@ public class SvgActivity extends BaseActivity {
         ButterKnife.bind(this);
     }
 
-    @OnClick(R.id.svg_image)
-    public void onClick() {
-        Drawable drawable = mSvgImage.getDrawable();
+    private void doAnimate(Drawable drawable) {
         if (drawable instanceof Animatable) {
             Animatable animatable = (Animatable) drawable;
             animatable.start();
+        }
+    }
+
+    @OnClick({R.id.svg_image, R.id.svg_face})
+    public void onClick(View view) {
+        Drawable drawable = null;
+        switch (view.getId()) {
+            case R.id.svg_image:
+                drawable = mSvgImage.getDrawable();
+                break;
+            case R.id.svg_face:
+                drawable = mSvgFace.getDrawable();
+                break;
+            default:
+                break;
+        }
+
+        if (null != drawable) {
+            doAnimate(drawable);
         }
     }
 }

@@ -7,4 +7,6 @@
     <color name="side_nav_bar_centerColor">@android:color/holo_blue_light</color>
     <color name="side_nav_bar_endColor">@android:color/holo_blue_dark</color>
     <color name="side_nav_bar_startColor">@android:color/holo_blue_bright</color>
+    <color name="yellow">#FF0</color>
+    <color name="black">#000</color>
 </resources>
