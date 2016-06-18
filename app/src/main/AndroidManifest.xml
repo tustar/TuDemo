@@ -52,6 +52,18 @@
         <activity android:name=".activity.loader.LoaderActivity"/>
         <activity android:name=".activity.SvgActivity">
         </activity>
+        <activity android:name=".activity.ServiceActivity">
+        </activity>
+
+        <service
+            android:name=".service.DemoService"
+            android:enabled="true"
+            android:exported="true"
+            android:process=":remote">
+            <intent-filter>
+                <action android:name="com.tustar.demo.AIDL"/>
+            </intent-filter>
+        </service>
     </application>
 
 </manifest>

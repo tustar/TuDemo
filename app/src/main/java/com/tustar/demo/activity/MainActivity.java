@@ -46,6 +46,7 @@ public class MainActivity extends AppCompatActivity
     private static final int INDEX_VIEW_ANIM = 12;
     private static final int INDEX_LOADER = 13;
     private static final int INDEX_SVG = 14;
+    private static final int INDEX_SERVICE = 15;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -192,6 +193,9 @@ public class MainActivity extends AppCompatActivity
                 break;
             case INDEX_SVG:
                 clazz = SvgActivity.class;
+                break;
+            case INDEX_SERVICE:
+                clazz = ServiceActivity.class;
                 break;
             default:
                 break;
