@@ -11,6 +11,7 @@ import android.view.View;
 import android.widget.Button;
 
 import com.tustar.demo.R;
+import com.tustar.demo.service.DemoIntentService;
 import com.tustar.demo.service.DemoService;
 import com.tustar.demo.service.IDemoAidlService;
 import com.tustar.demo.util.Logger;
@@ -31,6 +32,8 @@ public class ServiceActivity extends BaseActivity {
     Button mBindService;
     @BindView(R.id.unbind_service)
     Button mUnbindService;
+    @BindView(R.id.start_intent_service)
+    Button mStartIntentService;
 
     private DemoServiceConnection mConnection = new DemoServiceConnection();
 //    private DemoBinder mBinder;
@@ -50,7 +53,8 @@ public class ServiceActivity extends BaseActivity {
             R.id.start_service,
             R.id.stop_service,
             R.id.bind_service,
-            R.id.unbind_service})
+            R.id.unbind_service,
+            R.id.start_intent_service})
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.start_service:
@@ -68,6 +72,10 @@ public class ServiceActivity extends BaseActivity {
             case R.id.unbind_service:
                 Logger.i(TAG, "onClick :: unbind_service");
                 unbindService(mConnection);
+                break;
+            case R.id.start_intent_service:
+                Logger.i(TAG, "onClick :: start_intent_service");
+                DemoIntentService.startActionDemo(this, "Param1", "Param2");
                 break;
             default:
                 break;

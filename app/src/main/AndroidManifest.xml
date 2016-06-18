@@ -64,6 +64,10 @@
                 <action android:name="com.tustar.demo.AIDL"/>
             </intent-filter>
         </service>
+        <service
+            android:name=".service.DemoIntentService"
+            android:exported="false">
+        </service>
     </application>
 
 </manifest>

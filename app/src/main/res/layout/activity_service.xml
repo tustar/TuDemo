@@ -44,4 +44,13 @@
         android:background="@android:color/holo_blue_dark"
         android:text="Unbind Service"/>
 
+    <Button
+        android:id="@+id/start_intent_service"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/unbind_service"
+        android:layout_marginTop="8dp"
+        android:background="@android:color/holo_green_dark"
+        android:text="Start Intent Service"/>
+
 </RelativeLayout>
