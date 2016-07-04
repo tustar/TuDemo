@@ -68,6 +68,9 @@
             android:name=".service.DemoIntentService"
             android:exported="false">
         </service>
+
+        <activity android:name=".activity.anim.viewanim.HideActionBarActivity">
+        </activity>
     </application>
 
 </manifest>

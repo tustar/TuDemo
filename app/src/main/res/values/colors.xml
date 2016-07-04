@@ -9,4 +9,6 @@
     <color name="side_nav_bar_startColor">@android:color/holo_blue_bright</color>
     <color name="yellow">#FF0</color>
     <color name="black">#000</color>
+    <color name="hide_actionbar_bg">#808080</color>
+    <color name="hide_listview_color">#4699cc00</color>
 </resources>

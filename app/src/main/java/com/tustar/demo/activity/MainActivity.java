@@ -18,6 +18,7 @@ import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
 import com.tustar.demo.R;
+import com.tustar.demo.activity.anim.viewanim.HideActionBarActivity;
 import com.tustar.demo.activity.anim.viewanim.ViewAnimActivity;
 import com.tustar.demo.activity.customwidget.CustomWidgetActivity;
 import com.tustar.demo.activity.dragview.DragViewActivity;
@@ -42,11 +43,12 @@ public class MainActivity extends AppCompatActivity
     private static final int INDEX_FLOAT_WINDOW = 8;
     private static final int INDEX_DSLV = 9;
     private static final int INDEX_CUSTOM_SURFACEVIEW = 10;
-    private static final int INDEX_DRAG_VIEW= 11;
+    private static final int INDEX_DRAG_VIEW = 11;
     private static final int INDEX_VIEW_ANIM = 12;
     private static final int INDEX_LOADER = 13;
     private static final int INDEX_SVG = 14;
     private static final int INDEX_SERVICE = 15;
+    private static final int INDEX_HIDE_ACTIONBAR = 16;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -196,6 +198,9 @@ public class MainActivity extends AppCompatActivity
                 break;
             case INDEX_SERVICE:
                 clazz = ServiceActivity.class;
+                break;
+            case INDEX_HIDE_ACTIONBAR:
+                clazz = HideActionBarActivity.class;
                 break;
             default:
                 break;

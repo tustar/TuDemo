@@ -17,5 +17,6 @@
         <item>Loader</item>
         <item>SVG</item>
         <item>Services Demo</item>
+        <item>Hide ActionBar</item>
     </string-array>
 </resources>
