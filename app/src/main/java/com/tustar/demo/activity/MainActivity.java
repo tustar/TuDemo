@@ -23,32 +23,41 @@ import com.tustar.demo.activity.anim.viewanim.ViewAnimActivity;
 import com.tustar.demo.activity.customwidget.CustomWidgetActivity;
 import com.tustar.demo.activity.dragview.DragViewActivity;
 import com.tustar.demo.activity.loader.LoaderActivity;
+import com.tustar.demo.util.ArrayUtils;
+
+import java.util.ArrayList;
+import java.util.Collections;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener, AdapterView.OnItemClickListener {
 
+    private static ArrayList<Class> sClassList = new ArrayList<>();
+
+    // List
+    static {
+        sClassList.add(RecyclerViewActivity.class);
+        sClassList.add(RotationActivity.class);
+        sClassList.add(PaletteActivity.class);
+        sClassList.add(TintingActivity.class);
+        sClassList.add(ElevationActivity.class);
+        sClassList.add(ClippingActivity.class);
+        sClassList.add(AnimMainActivity.class);
+        sClassList.add(CustomWidgetActivity.class);
+        sClassList.add(FloatWindowActivity.class);
+        sClassList.add(DragSortListViewActivity.class);
+        sClassList.add(SurfaceViewActivity.class);
+        sClassList.add(DragViewActivity.class);
+        sClassList.add(ViewAnimActivity.class);
+        sClassList.add(LoaderActivity.class);
+        sClassList.add(SvgActivity.class);
+        sClassList.add(ServiceActivity.class);
+        sClassList.add(HideActionBarActivity.class);
+        Collections.reverse(sClassList);
+    }
+
     // Listview
     private ListView mContentMainListView;
     private ArrayAdapter<String> mAdatpter;
-
-    // List
-    private static final int INDEX_RECYCLER_VIEW = 0;
-    private static final int INDEX_ROTATION_SCREEN = 1;
-    private static final int INDEX_PALETTE = 2;
-    private static final int INDEX_TINTING = 3;
-    private static final int INDEX_ELEVATION = 4;
-    private static final int INDEX_CLIPPING = 5;
-    private static final int INDEX_ANIM = 6;
-    private static final int INDEX_CUSTOM_WIDGET = 7;
-    private static final int INDEX_FLOAT_WINDOW = 8;
-    private static final int INDEX_DSLV = 9;
-    private static final int INDEX_CUSTOM_SURFACEVIEW = 10;
-    private static final int INDEX_DRAG_VIEW = 11;
-    private static final int INDEX_VIEW_ANIM = 12;
-    private static final int INDEX_LOADER = 13;
-    private static final int INDEX_SVG = 14;
-    private static final int INDEX_SERVICE = 15;
-    private static final int INDEX_HIDE_ACTIONBAR = 16;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -82,8 +91,9 @@ public class MainActivity extends AppCompatActivity
     private void initView() {
 
         mContentMainListView = (ListView) findViewById(R.id.content_main_listview);
-        mAdatpter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1,
-                getResources().getStringArray(R.array.content_data));
+        String[] contents = getResources().getStringArray(R.array.content_data);
+        ArrayUtils.reverse(contents);
+        mAdatpter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, contents);
         mContentMainListView.setAdapter(mAdatpter);
         mContentMainListView.setOnItemClickListener(this);
     }
@@ -149,63 +159,7 @@ public class MainActivity extends AppCompatActivity
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
         Intent intent = new Intent();
-        Class<?> clazz = null;
-        switch (position) {
-            case INDEX_RECYCLER_VIEW:
-                clazz = RecyclerViewActivity.class;
-                break;
-            case INDEX_ROTATION_SCREEN:
-                clazz = RotationActivity.class;
-                break;
-            case INDEX_PALETTE:
-                clazz = PaletteActivity.class;
-                break;
-            case INDEX_TINTING:
-                clazz = TintingActivity.class;
-                break;
-            case INDEX_ELEVATION:
-                clazz = ElevationActivity.class;
-                break;
-            case INDEX_CLIPPING:
-                clazz = ClippingActivity.class;
-                break;
-            case INDEX_ANIM:
-                clazz = AnimMainActivity.class;
-                break;
-            case INDEX_CUSTOM_WIDGET:
-                clazz = CustomWidgetActivity.class;
-                break;
-            case INDEX_FLOAT_WINDOW:
-                clazz = FloatWindowActivity.class;
-                break;
-            case INDEX_DSLV:
-                clazz = DragSortListViewActivity.class;
-                break;
-            case INDEX_CUSTOM_SURFACEVIEW:
-                clazz = SurfaceViewActivity.class;
-                break;
-            case INDEX_DRAG_VIEW:
-                clazz = DragViewActivity.class;
-                break;
-            case INDEX_VIEW_ANIM:
-                clazz = ViewAnimActivity.class;
-                break;
-            case INDEX_LOADER:
-                clazz = LoaderActivity.class;
-                break;
-            case INDEX_SVG:
-                clazz = SvgActivity.class;
-                break;
-            case INDEX_SERVICE:
-                clazz = ServiceActivity.class;
-                break;
-            case INDEX_HIDE_ACTIONBAR:
-                clazz = HideActionBarActivity.class;
-                break;
-            default:
-                break;
-        }
-
+        Class<?> clazz = sClassList.get(position);
         if (null != clazz) {
             intent.setClass(this, clazz);
             startActivity(intent);

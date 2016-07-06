@@ -7,20 +7,24 @@
     android:background="@color/hide_listview_color"
     tools:context="com.tustar.demo.activity.anim.viewanim.HideActionBarActivity">
 
-    <RelativeLayout
+    <TextView
         android:id="@+id/hide_action_bar"
         android:layout_width="match_parent"
+        android:layout_height="46dp"
         android:background="@android:color/holo_red_dark"
-        android:layout_height="46dp">
-    </RelativeLayout>
+        android:gravity="center"
+        android:text="Action Bar">
+    </TextView>
 
-    <RelativeLayout
-        android:layout_below="@id/hide_action_bar"
+    <TextView
         android:id="@+id/hide_search_layout"
         android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:layout_below="@id/hide_action_bar"
         android:background="@android:color/holo_orange_light"
-        android:layout_height="40dp">
-    </RelativeLayout>
+        android:gravity="center"
+        android:text="Search Bar, You can click me!!">
+    </TextView>
 
     <ListView
         android:id="@+id/hide_list_view"

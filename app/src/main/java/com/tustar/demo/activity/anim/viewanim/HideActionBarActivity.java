@@ -10,7 +10,7 @@ import android.view.Window;
 import android.view.animation.DecelerateInterpolator;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
-import android.widget.RelativeLayout;
+import android.widget.TextView;
 
 import com.tustar.demo.R;
 import com.tustar.demo.activity.BaseActivity;
@@ -18,8 +18,8 @@ import com.tustar.demo.activity.BaseActivity;
 public class HideActionBarActivity extends BaseActivity implements View.OnClickListener {
 
     private static final String TAG = "HideActionBarActivity";
-    private RelativeLayout mHideActionBar;
-    private RelativeLayout mHideSearchLayout;
+    private TextView mHideActionBar;
+    private TextView mHideSearchLayout;
     private ListView mHideListView;
 
     private ArrayAdapter<String> mAdatpter;
@@ -38,11 +38,11 @@ public class HideActionBarActivity extends BaseActivity implements View.OnClickL
     }
 
     private void initActionBar() {
-        mHideActionBar = (RelativeLayout)findViewById(R.id.hide_action_bar);
+        mHideActionBar = (TextView) findViewById(R.id.hide_action_bar);
     }
 
     private void initSearchView() {
-        mHideSearchLayout = (RelativeLayout) findViewById(R.id.hide_search_layout);
+        mHideSearchLayout = (TextView) findViewById(R.id.hide_search_layout);
         mHideSearchLayout.setOnClickListener(this);
     }
 
@@ -55,13 +55,17 @@ public class HideActionBarActivity extends BaseActivity implements View.OnClickL
 
     @Override
     public void onBackPressed() {
+        super.onBackPressed();
+    }
+
+    @Override
+    public void finish() {
         if (mSearching) {
             showActionBar();
             return;
         }
 
-        super.onBackPressed();
-
+        super.finish();
     }
 
     public View getActionBarView() {
