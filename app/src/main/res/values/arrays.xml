@@ -18,5 +18,6 @@
         <item>SVG</item>
         <item>Services Demo</item>
         <item>Hide ActionBar</item>
+        <item>Account Manager</item>
     </string-array>
 </resources>

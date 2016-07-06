@@ -1,5 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+
+    <!--Backgroud-->
+    <color name="list_view_bg">#4699cc00</color>
+
+
     <color name="colorPrimary">@android:color/holo_blue_light</color>
     <color name="colorPrimaryDark">@android:color/holo_blue_dark</color>
     <color name="colorAccent">@android:color/holo_blue_dark</color>
@@ -10,5 +15,4 @@
     <color name="yellow">#FF0</color>
     <color name="black">#000</color>
     <color name="hide_actionbar_bg">#808080</color>
-    <color name="hide_listview_color">#4699cc00</color>
 </resources>

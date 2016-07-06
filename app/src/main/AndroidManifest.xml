@@ -1,11 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
-<manifest xmlns:android="http://schemas.android.com/apk/res/android"
-          package="com.tustar.demo"
+<manifest package="com.tustar.demo"
+          xmlns:android="http://schemas.android.com/apk/res/android"
           android:versionCode="0006"
           android:versionName="1.0.0006">
 
     <uses-permission android:name="android.permission.READ_PHONE_STATE"/>
     <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW"/>
+    <uses-permission android:name="android.permission.GET_ACCOUNTS"/>
 
     <application
         android:allowBackup="true"
@@ -70,6 +71,8 @@
         </service>
 
         <activity android:name=".activity.anim.viewanim.HideActionBarActivity">
+        </activity>
+        <activity android:name=".activity.AccountActivity">
         </activity>
     </application>
 

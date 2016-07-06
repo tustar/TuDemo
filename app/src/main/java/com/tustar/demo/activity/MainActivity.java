@@ -52,6 +52,7 @@ public class MainActivity extends AppCompatActivity
         sClassList.add(SvgActivity.class);
         sClassList.add(ServiceActivity.class);
         sClassList.add(HideActionBarActivity.class);
+        sClassList.add(AccountActivity.class);
         Collections.reverse(sClassList);
     }
 

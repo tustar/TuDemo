@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/hide_listview_color"
+    android:background="@color/list_view_bg"
     tools:context="com.tustar.demo.activity.anim.viewanim.HideActionBarActivity">
 
     <TextView
