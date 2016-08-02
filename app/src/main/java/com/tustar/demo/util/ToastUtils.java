@@ -1,6 +1,4 @@
-import android.widget.Toast;
-
-gstpackage com.tustar.demo.util;
+package com.tustar.demo.util;
 
 import android.content.Context;
 import android.widget.Toast;
