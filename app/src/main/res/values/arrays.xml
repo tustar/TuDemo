@@ -19,5 +19,6 @@
         <item>Services Demo</item>
         <item>Hide ActionBar</item>
         <item>Account Manager</item>
+        <item>Provider</item>
     </string-array>
 </resources>
