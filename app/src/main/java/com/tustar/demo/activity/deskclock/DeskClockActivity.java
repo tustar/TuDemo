@@ -6,7 +6,7 @@ import android.support.v4.view.ViewPager;
 
 import com.tustar.demo.R;
 import com.tustar.demo.activity.BaseActivity;
-import com.tustar.demo.activity.deskclock.dummy.DummyContent;
+import com.tustar.demo.provider.History;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -38,7 +38,7 @@ public class DeskClockActivity extends BaseActivity implements AlarmClockFragmen
     }
 
     @Override
-    public void onListFragmentInteraction(DummyContent.DummyItem item) {
+    public void onListFragmentInteraction(History item) {
 
     }
 }

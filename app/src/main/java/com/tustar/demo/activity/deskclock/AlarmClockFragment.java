@@ -11,8 +11,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.tustar.demo.R;
-import com.tustar.demo.activity.deskclock.dummy.DummyContent;
-import com.tustar.demo.activity.deskclock.dummy.DummyContent.DummyItem;
+import com.tustar.demo.provider.History;
 
 /**
  * A fragment representing a list of Items.
@@ -68,7 +67,9 @@ public class AlarmClockFragment extends Fragment {
             } else {
                 recyclerView.setLayoutManager(new GridLayoutManager(context, mColumnCount));
             }
-            recyclerView.setAdapter(new AlarmClockRecyclerViewAdapter(DummyContent.ITEMS, mListener));
+            recyclerView.setAdapter(new AlarmClockRecyclerViewAdapter(
+                    History.getHistories(getContext().getContentResolver(), null, null),
+                    mListener));
         }
         return view;
     }
@@ -103,6 +104,6 @@ public class AlarmClockFragment extends Fragment {
      */
     public interface OnListFragmentInteractionListener {
         // TODO: Update argument type and name
-        void onListFragmentInteraction(DummyItem item);
+        void onListFragmentInteraction(History item);
     }
 }
