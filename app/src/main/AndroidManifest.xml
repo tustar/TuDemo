@@ -75,6 +75,8 @@
 
         <activity android:name=".activity.ProviderActivity">
         </activity>
+        <activity android:name=".activity.deskclock.DeskClockActivity">
+        </activity>
     </application>
 
 </manifest>

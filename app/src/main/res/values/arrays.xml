@@ -20,5 +20,6 @@
         <item>Hide ActionBar</item>
         <item>Account Manager</item>
         <item>Provider</item>
+        <item>DeskClock</item>
     </string-array>
 </resources>

@@ -15,4 +15,7 @@
     <color name="yellow">#FF0</color>
     <color name="black">#000</color>
     <color name="hide_actionbar_bg">#808080</color>
+
+    <color name="color_path_63p">#A0FFFFFF</color>
+    <color name="clock_path">#FFFFFF</color>
 </resources>
