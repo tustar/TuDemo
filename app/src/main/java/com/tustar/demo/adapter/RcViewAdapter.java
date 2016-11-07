@@ -50,7 +50,7 @@ public class RcViewAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>
         void onItemClick(View view, int position);
     }
 
-    // ViewHolder
+    // BindingHolder
     class RcViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
         public TextView mRcTextView;
