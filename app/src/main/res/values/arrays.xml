@@ -21,5 +21,6 @@
         <item>Account Manager</item>
         <item>Provider</item>
         <item>DeskClock+Tabs+Svg+Databinding+RecyclerView</item>
+        <item>History</item>
     </string-array>
 </resources>

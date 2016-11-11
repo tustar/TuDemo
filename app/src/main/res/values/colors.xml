@@ -18,4 +18,7 @@
 
     <color name="color_path_63p">#A0FFFFFF</color>
     <color name="clock_path">#FFFFFF</color>
+
+    <color name="deskclock_item_delete_n">#FF0000</color>
+    <color name="deskclock_item_delete_p">#FF6666</color>
 </resources>

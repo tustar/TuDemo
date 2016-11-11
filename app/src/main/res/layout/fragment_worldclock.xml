@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.yanzhenjie.recyclerview.swipe.SwipeMenuRecyclerView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/deskclock_worldclock_recycler_view"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content" />
+
