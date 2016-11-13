@@ -74,7 +74,7 @@
 
         <activity android:name=".activity.ProviderActivity"></activity>
         <activity android:name=".activity.deskclock.DeskClockActivity"></activity>
-        <activity android:name=".activity.customwidget.HistoryActivity"></activity>
+        <activity android:name=".activity.dragview.HistoryActivity"></activity>
     </application>
 
 </manifest>

@@ -11,6 +11,7 @@ import com.tustar.demo.util.Logger;
  */
 public class TuDatabaseHelper extends SQLiteOpenHelper {
 
+    private static final String TAG = "TuDatabaseHelper";
     /**
      * Original Tu Database.
      **/
@@ -26,7 +27,7 @@ public class TuDatabaseHelper extends SQLiteOpenHelper {
                 TuContract.HistoriesColumns.FORMULA + " TEXT NOT NULL, " +
                 TuContract.HistoriesColumns.RESULT + " TEXT NOT NULL, " +
                 TuContract.HistoriesColumns.CREATED_AT + " TEXT NOT NULL);");
-        Logger.i("Histories Table created");
+        Logger.i(TAG, "Histories Table created");
     }
 
     public TuDatabaseHelper(Context context) {
@@ -41,7 +42,7 @@ public class TuDatabaseHelper extends SQLiteOpenHelper {
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
-        Logger.v("onUpgrade :: alarms database from version %d to %d", oldVersion, newVersion);
+        Logger.v(TAG, "onUpgrade :: oldVersion = " + oldVersion + ", newVersion = " + newVersion);
         if (oldVersion <= VERSION_1) {
             // This was not used in VERSION_7 or prior, so we can just drop it.
             db.execSQL("DROP TABLE IF EXISTS " + HISTORIES_TABLE_NAME + ";");

@@ -21,7 +21,7 @@ import com.tustar.demo.R;
 import com.tustar.demo.activity.anim.viewanim.HideActionBarActivity;
 import com.tustar.demo.activity.anim.viewanim.ViewAnimActivity;
 import com.tustar.demo.activity.customwidget.CustomWidgetActivity;
-import com.tustar.demo.activity.customwidget.HistoryActivity;
+import com.tustar.demo.activity.dragview.HistoryActivity;
 import com.tustar.demo.activity.deskclock.DeskClockActivity;
 import com.tustar.demo.activity.dragview.DragViewActivity;
 import com.tustar.demo.activity.loader.LoaderActivity;

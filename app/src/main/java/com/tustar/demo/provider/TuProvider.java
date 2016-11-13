@@ -25,7 +25,7 @@ import static com.tustar.demo.provider.TuDatabaseHelper.HISTORIES_TABLE_NAME;
  * Created by tustar on 11/5/16.
  */
 public class TuProvider extends ContentProvider {
-
+    private static final String TAG = "TuProvider";
     private TuDatabaseHelper mOpenHelper;
 
     private static final int HISTORIES = 1;
@@ -99,7 +99,7 @@ public class TuProvider extends ContentProvider {
 
         Cursor cursor = qb.query(db, projection, selection, selectionArgs, null, null, sortOrder);
         if (cursor == null) {
-            Logger.e("Histories.query: failed");
+            Logger.e(TAG, "Histories.query: failed");
         } else {
             cursor.setNotificationUri(getContext().getContentResolver(), uri);
         }
