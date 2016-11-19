@@ -3,12 +3,19 @@ package com.tustar.demo.module.dragview.widget;
 import android.content.Context;
 import android.content.res.TypedArray;
 import android.support.v4.view.ViewCompat;
+import android.support.v4.view.ViewConfigurationCompat;
 import android.support.v4.widget.ViewDragHelper;
 import android.util.AttributeSet;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.MotionEvent;
 import android.view.View;
+import android.view.ViewConfiguration;
+import android.view.ViewGroup;
 import android.widget.FrameLayout;
+import android.widget.OverScroller;
+import android.widget.ScrollView;
+import android.widget.Scroller;
 import android.widget.TextView;
 
 import com.tustar.demo.R;
@@ -21,60 +28,35 @@ import com.tustar.demo.util.Logger;
 public class HistoryLayout extends FrameLayout {
 
     private static final String TAG = "HistoryLayout";
-    public static final int DEFAULT_SCROLLER_DURATION = 200;
 
     private int mWidth;
     private int mHeight;
+
+    private int mLastX;
+    private int mLastY;
+    private int mDownX;
+    private int mDownY;
 
     private int mTopViewId = 0;
     private int mContentViewId = 0;
     private View mTopView;
     private View mContentView;
-    private int mTopViewHeight;
-    private int mContentViewHeight;
     private int mContentViewTop = 0;
 
+    private OverScroller mScroller;
+    private int mTouchSlop;
+    private int mMaxVelocity;
+    private int mMinVelocity;
+
+    // flag
     private boolean mScrollable = true;
-    private ViewDragHelper mViewDragHelper;
-    private ViewDragHelper.Callback mCallback = new ViewDragHelper.Callback() {
-        @Override
-        public boolean tryCaptureView(View child, int pointerId) {
-            return child == mContentView;
-        }
+    private boolean mDragging;
 
-        @Override
-        public int clampViewPositionHorizontal(View child, int left, int dx) {
-            return 0;
-        }
+    // Callback
+    private OnTopStateListener mTopStateListener;
 
-        @Override
-        public int clampViewPositionVertical(View child, int top, int dy) {
-            Logger.i(TAG, "clampViewPositionVertical :: top = " + top
-                    + ", dy = " + dy);
-            if (!mScrollable) {
-                return 0;
-            }
-            return top;
-        }
-
-        @Override
-        public void onViewReleased(View releasedChild, float xvel, float yvel) {
-            Logger.i(TAG, "onViewReleased :: xvel = " +
-                    xvel + ", yvel = " + yvel);
-            super.onViewReleased(releasedChild, xvel, yvel);
-            int top = mContentView.getTop();
-            Logger.d(TAG, "onViewReleased :: top = " + top);
-//            if (top < mContentViewHeight / 2) {
-//                mViewDragHelper.smoothSlideViewTo(mTopView, 0, mContentViewTop - mTopViewHeight);
-//                mViewDragHelper.smoothSlideViewTo(mContentView, 0, mContentViewTop);
-//                ViewCompat.postInvalidateOnAnimation(HistoryLayout.this);
-//            } else {
-//                mViewDragHelper.smoothSlideViewTo(mTopView, 0, 0);
-//                mViewDragHelper.smoothSlideViewTo(mContentView, 0, mHeight);
-//                ViewCompat.postInvalidateOnAnimation(HistoryLayout.this);
-//            }
-        }
-    };
+    //
+    private int mMaxOffsetY;
 
     public HistoryLayout(Context context) {
         this(context, null);
@@ -101,7 +83,14 @@ public class HistoryLayout extends FrameLayout {
         mContentViewId = ta.getResourceId(R.styleable.HistoryLayout_content, mContentViewId);
         ta.recycle();
 
-        mViewDragHelper = ViewDragHelper.create(this, mCallback);
+        mScroller = new OverScroller(context);
+        ViewConfiguration config = ViewConfiguration.get(context);
+        mTouchSlop = config.getScaledTouchSlop();
+        mMaxVelocity = config.getScaledMaximumFlingVelocity();
+        mMinVelocity = config.getScaledMinimumFlingVelocity();
+        Logger.d(TAG, "init :: mTouchSlop = " + mTouchSlop);
+        Logger.d(TAG, "init :: mMaxVelocity = " + mMaxVelocity);
+        Logger.d(TAG, "init :: mMinVelocity = " + mMinVelocity);
     }
 
     @Override
@@ -167,25 +156,120 @@ public class HistoryLayout extends FrameLayout {
     @Override
     protected void onSizeChanged(int w, int h, int oldw, int oldh) {
         super.onSizeChanged(w, h, oldw, oldh);
-        mTopViewHeight = mTopView.getHeight();
-        mContentViewHeight = mContentView.getHeight();
     }
 
     @Override
     public boolean onInterceptTouchEvent(MotionEvent event) {
-        return mViewDragHelper.shouldInterceptTouchEvent(event);
+        return super.onInterceptTouchEvent(event);
     }
 
     @Override
     public boolean onTouchEvent(MotionEvent event) {
-        mViewDragHelper.processTouchEvent(event);
+        int action = event.getAction();
+        switch (action) {
+            case MotionEvent.ACTION_DOWN:
+                Logger.d(TAG, "onTouchEvent :: ACTION_DOWN");
+                mDownX = mLastX = (int) event.getX();
+                mDownY = mLastY = (int) event.getY();
+                Logger.d(TAG, "onTouchEvent :: ACTION_DOWN :: mDownY = " + mDownY);
+                break;
+            case MotionEvent.ACTION_MOVE:
+                Logger.d(TAG, "onTouchEvent :: ACTION_MOVE");
+                if (!mScrollable) {
+                    break;
+                }
+                int x = (int) event.getX();
+                int y = (int) event.getY();
+                int dx = mLastX - x;
+                int dy = mLastY - y;
+                Logger.d(TAG, "onTouchEvent :: ACTION_MOVE :: dy = " + dy);
+                int scrollY = getScrollY();
+                Logger.d(TAG, "onTouchEvent :: ACTION_MOVE :: scrollY = " + scrollY);
+                mMaxOffsetY = mTopView.getMeasuredHeightAndState() - mContentView.getTop();
+                Logger.d(TAG, "onTouchEvent :: ACTION_MOVE :: mMaxOffsetY = " + mMaxOffsetY);
+
+                // 当topView到达顶部，不能向上滑动
+                if (dy < 0 && -scrollY >= mMaxOffsetY) {
+                    Logger.w(TAG, "onTouchEvent :: ACTION_MOVE :: Top view is on the top.");
+                    mDragging = false;
+                    break;
+                }
+                // 当contentView到达底部时，不能向下滑动
+                else if (dy > 0 && scrollY >= 0) {
+                    Logger.w(TAG, "onTouchEvent: ACTION_MOVE :: Content view is on the bottom.");
+                    mDragging = false;
+                    break;
+                }
+                if (!mDragging && Math.abs(dy) > mTouchSlop && Math.abs(dy) > Math.abs(dx)) {
+                    mDragging = true;
+                }
+                if (mDragging) {
+                    if (autoScroll(dy)) {
+                        break;
+                    }
+
+                    scrollBy(0, dy);
+                    mLastX = x;
+                    mLastY = y;
+                }
+                break;
+            case MotionEvent.ACTION_UP:
+                mDragging = false;
+                Logger.d(TAG, "onTouchEvent :: ACTION_UP");
+                int disY = (int) (mDownY - event.getY());
+                scrollY = getScrollY();
+                Logger.d(TAG, "onTouchEvent :: ACTION_UP :: disY = " + disY);
+                Logger.d(TAG, "onTouchEvent :: ACTION_UP :: scrollY = " + scrollY);
+                if (autoScroll(disY)) {
+                    break;
+                }
+                break;
+            case MotionEvent.ACTION_CANCEL:
+                mDragging = false;
+                Logger.d(TAG, "onTouchEvent :: ACTION_CANCEL");
+                break;
+        }
         return true;
+    }
+
+    private boolean autoScroll(int dy) {
+        // 向上滑动超过mMaxOffsetY的1/3时，直接滑上，mContentView
+        int scrollY = getScrollY();
+        Logger.d(TAG, "autoScroll :: scrollY = " + scrollY);
+        if (dy > 0 && scrollY <= mMaxOffsetY / 1) {
+            Logger.d(TAG, "autoScroll :: Full up.");
+            mTopView.setEnabled(false);
+            mContentView.setEnabled(true);
+            mScroller.startScroll(0, scrollY, 0, -scrollY);
+            mDragging = false;
+            invalidate();
+            if (mTopStateListener != null) {
+                mTopStateListener.onTopViewClose();
+            }
+            return true;
+        }
+        // 向下滑动超过mMaxOffsetY的2/3时，直接滑下，显示整个mTopView
+        else if (dy < 0 && -scrollY <= mMaxOffsetY * 2 / 3) {
+            Logger.d(TAG, "autoScroll :: Full down.");
+            mTopView.setEnabled(true);
+            mContentView.setEnabled(false);
+            mScroller.startScroll(0, scrollY, 0, -mMaxOffsetY-scrollY);
+            mDragging = false;
+            invalidate();
+            if (mTopStateListener != null) {
+                mTopStateListener.onTopViewOpen();
+            }
+            return true;
+        }
+        return false;
     }
 
     @Override
     public void computeScroll() {
-        if (mViewDragHelper.continueSettling(true)) {
-            ViewCompat.postInvalidateOnAnimation(this);
+        if (mScroller.computeScrollOffset()) {
+            scrollTo(0, mScroller.getCurrY());
+            // 通过重绘来不断调用computeScroll
+            invalidate();
         }
     }
 
@@ -196,5 +280,14 @@ public class HistoryLayout extends FrameLayout {
 
     public void setScrollable(boolean scrollable) {
         this.mScrollable = scrollable;
+    }
+
+    public void setOnTopStateListener(OnTopStateListener mTopStateListener) {
+        this.mTopStateListener = mTopStateListener;
+    }
+
+    public interface OnTopStateListener {
+        void onTopViewOpen();
+        void onTopViewClose();
     }
 }
