@@ -15,7 +15,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
-            android:name=".activity.MainActivity"
+            android:name=".MainActivity"
             android:label="@string/app_name"
             android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
@@ -24,38 +24,38 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".activity.RecyclerViewActivity" />
+        <activity android:name=".module.recyclerviewdemo.RecyclerViewActivity" />
         <activity
-            android:name=".activity.RotationActivity"
+            android:name=".module.qyz.RotationActivity"
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:screenOrientation="user"
             android:windowSoftInputMode="stateAlwaysHidden" />
         <activity
-            android:name=".activity.PaletteActivity"
+            android:name=".module.qyz.PaletteActivity"
             android:label="@string/title_activity_palette" />
-        <activity android:name=".activity.TintingActivity" />
-        <activity android:name=".activity.ClippingActivity" />
-        <activity android:name=".activity.ElevationActivity" />
-        <activity android:name=".activity.AnimMainActivity" />
-        <activity android:name=".activity.AnimTransitionsActivity" />
-        <activity android:name=".activity.customwidget.CustomWidgetActivity" />
-        <activity android:name=".activity.customwidget.CustomWidgetShowActivity" />
-        <activity android:name=".activity.FloatWindowActivity" />
-        <activity android:name=".activity.SurfaceViewActivity" />
-        <activity android:name=".activity.DragSortListViewActivity" />
-        <activity android:name=".activity.dragview.DragViewActivity" />
-        <activity android:name=".activity.dragview.DragViewShowActivity" />
-        <activity android:name=".activity.dragview.DragViewGroupActivity" />
-        <activity android:name=".activity.anim.viewanim.ViewAnimActivity" />
-        <activity android:name=".activity.loader.LoaderActivity" />
-        <activity android:name=".activity.SvgActivity" />
-        <activity android:name=".activity.ServiceActivity" />
-        <activity android:name=".activity.anim.viewanim.HideActionBarActivity" />
-        <activity android:name=".activity.AccountActivity" />
+        <activity android:name=".module.qyz.TintingActivity" />
+        <activity android:name=".module.qyz.ClippingActivity" />
+        <activity android:name=".module.qyz.ElevationActivity" />
+        <activity android:name=".module.qyz.AnimMainActivity" />
+        <activity android:name=".module.qyz.AnimTransitionsActivity" />
+        <activity android:name=".module.customwidget.CustomWidgetActivity" />
+        <activity android:name=".module.customwidget.CustomWidgetShowActivity" />
+        <activity android:name=".module.signal.FloatWindowActivity" />
+        <activity android:name=".module.qyz.SurfaceViewActivity" />
+        <activity android:name=".module.dragsortlistview.DragSortListViewActivity" />
+        <activity android:name=".module.dragview.DragViewActivity" />
+        <activity android:name=".module.dragview.DragViewShowActivity" />
+        <activity android:name=".module.dragview.DragViewGroupActivity" />
+        <activity android:name=".module.anim.viewanim.ViewAnimActivity" />
+        <activity android:name=".module.loaderdemo.LoaderActivity" />
+        <activity android:name=".module.qyz.SvgActivity" />
+        <activity android:name=".module.servicedemo.ServiceActivity" />
+        <activity android:name=".module.anim.viewanim.HideActionBarActivity" />
+        <activity android:name=".module.account.AccountActivity" />
 
-        <service android:name=".service.PhoneStateService" />
+        <service android:name=".module.signal.PhoneStateService" />
         <service
-            android:name=".service.DemoService"
+            android:name=".module.servicedemo.DemoService"
             android:enabled="true"
             android:exported="true"
             android:process=":remote">
@@ -64,7 +64,7 @@
             </intent-filter>
         </service>
         <service
-            android:name=".service.DemoIntentService"
+            android:name=".module.servicedemo.DemoIntentService"
             android:exported="false"></service>
 
         <provider
@@ -72,9 +72,9 @@
             android:authorities="com.tustar.demo"
             android:exported="false" />
 
-        <activity android:name=".activity.ProviderActivity"></activity>
-        <activity android:name=".activity.deskclock.DeskClockActivity"></activity>
-        <activity android:name=".activity.customwidget.HistoryActivity"></activity>
+        <activity android:name=".module.providerdemo.ProviderActivity"></activity>
+        <activity android:name=".module.deskclock.DeskClockActivity"></activity>
+        <activity android:name=".module.customwidget.HistoryActivity"></activity>
     </application>
 
 </manifest>

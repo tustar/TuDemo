@@ -4,9 +4,9 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
 
-    tools:context=".activity.customwidget.CustomWidgetShowActivity">
+    tools:context=".module.customwidget.CustomWidgetShowActivity">
 
-    <com.tustar.demo.widget.systemWidget.CircleProgress
+    <com.tustar.demo.module.qyz.systemWidget.CircleProgress
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
 

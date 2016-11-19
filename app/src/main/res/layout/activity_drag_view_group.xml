@@ -3,9 +3,9 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.tustar.demo.activity.dragview.DragViewGroupActivity">
+    tools:context="com.tustar.demo.module.dragview.DragViewGroupActivity">
 
-    <com.tustar.demo.widget.dragview.DragViewGroup
+    <com.tustar.demo.module.dragview.widget.DragViewGroup
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
@@ -30,5 +30,5 @@
                 android:layout_height="wrap_content"
                 android:text="Main" />
         </FrameLayout>
-    </com.tustar.demo.widget.dragview.DragViewGroup>
+    </com.tustar.demo.module.dragview.widget.DragViewGroup>
 </RelativeLayout>

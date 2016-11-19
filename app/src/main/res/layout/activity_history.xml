@@ -4,13 +4,13 @@
     android:id="@+id/activity_history"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.tustar.demo.activity.customwidget.HistoryActivity">
+    tools:context="com.tustar.demo.module.customwidget.HistoryActivity">
 
-    <com.tustar.demo.widget.dragview.HistoryLayout xmlns:app="http://schemas.android.com/apk/res-auto"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        app:content="@+id/content_view"
-        app:top="@+id/top_view">
+    <com.tustar.demo.module.dragview.widget.HistoryLayout xmlns:app="http://schemas.android.com/apk/res-auto"
+                                                          android:layout_width="match_parent"
+                                                          android:layout_height="match_parent"
+                                                          app:content="@+id/content_view"
+                                                          app:top="@+id/top_view">
 
         <LinearLayout
             android:id="@+id/top_view"
@@ -29,6 +29,6 @@
             android:orientation="vertical"></LinearLayout>
 
 
-    </com.tustar.demo.widget.dragview.HistoryLayout>
+    </com.tustar.demo.module.dragview.widget.HistoryLayout>
 
 </RelativeLayout>

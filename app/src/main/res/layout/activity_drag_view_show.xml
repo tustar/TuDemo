@@ -8,39 +8,39 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context=".activity.dragview.DragViewShowActivity">
+    tools:context=".module.dragview.DragViewShowActivity">
 
-    <com.tustar.demo.widget.dragview.DragView1
+    <com.tustar.demo.module.dragview.widget.DragView1
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:layout_gravity="center"
         android:layout_margin="10dp" />
 
-    <com.tustar.demo.widget.dragview.DragView2
+    <com.tustar.demo.module.dragview.widget.DragView2
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:layout_gravity="center"
         android:layout_margin="10dp" />
 
-    <com.tustar.demo.widget.dragview.DragView3
+    <com.tustar.demo.module.dragview.widget.DragView3
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:layout_gravity="center"
         android:layout_margin="10dp" />
 
-    <com.tustar.demo.widget.dragview.DragView4
+    <com.tustar.demo.module.dragview.widget.DragView4
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:layout_gravity="center"
         android:layout_margin="10dp" />
 
-    <com.tustar.demo.widget.dragview.DragView5
+    <com.tustar.demo.module.dragview.widget.DragView5
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:layout_gravity="center"
         android:layout_margin="10dp" />
 
-    <com.tustar.demo.widget.dragview.DragView6
+    <com.tustar.demo.module.dragview.widget.DragView6
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:layout_gravity="center"
