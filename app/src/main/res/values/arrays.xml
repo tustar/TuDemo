@@ -22,5 +22,6 @@
         <item>Provider</item>
         <item>DeskClock+Tabs+Svg+Databinding+RecyclerView</item>
         <item>History</item>
+        <item>Scroller</item>
     </string-array>
 </resources>

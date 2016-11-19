@@ -19,6 +19,7 @@ import android.widget.ListView;
 
 import com.tustar.demo.module.providerdemo.ProviderActivity;
 import com.tustar.demo.module.recyclerviewdemo.RecyclerViewActivity;
+import com.tustar.demo.module.scrollerdemo.ScrollerActivity;
 import com.tustar.demo.module.servicedemo.ServiceActivity;
 import com.tustar.demo.module.account.AccountActivity;
 import com.tustar.demo.module.anim.viewanim.HideActionBarActivity;
@@ -71,6 +72,7 @@ public class MainActivity extends AppCompatActivity
         sClassList.add(ProviderActivity.class);
         sClassList.add(DeskClockActivity.class);
         sClassList.add(HistoryActivity.class);
+        sClassList.add(ScrollerActivity.class);
         Collections.reverse(sClassList);
     }
 

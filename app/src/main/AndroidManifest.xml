@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.tustar.demo"
-    android:versionCode="0006"
-    android:versionName="1.0.0006">
+          package="com.tustar.demo"
+          android:versionCode="0006"
+          android:versionName="1.0.0006">
 
-    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
-    <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" />
-    <uses-permission android:name="android.permission.GET_ACCOUNTS" />
+    <uses-permission android:name="android.permission.READ_PHONE_STATE"/>
+    <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW"/>
+    <uses-permission android:name="android.permission.GET_ACCOUNTS"/>
 
     <application
         android:allowBackup="true"
@@ -19,62 +19,83 @@
             android:label="@string/app_name"
             android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
+                <action android:name="android.intent.action.MAIN"/>
 
-                <category android:name="android.intent.category.LAUNCHER" />
+                <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
-        <activity android:name=".module.recyclerviewdemo.RecyclerViewActivity" />
+        <activity android:name=".module.recyclerviewdemo.RecyclerViewActivity"/>
         <activity
             android:name=".module.qyz.RotationActivity"
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:screenOrientation="user"
-            android:windowSoftInputMode="stateAlwaysHidden" />
+            android:windowSoftInputMode="stateAlwaysHidden"/>
         <activity
             android:name=".module.qyz.PaletteActivity"
-            android:label="@string/title_activity_palette" />
-        <activity android:name=".module.qyz.TintingActivity" />
-        <activity android:name=".module.qyz.ClippingActivity" />
-        <activity android:name=".module.qyz.ElevationActivity" />
-        <activity android:name=".module.qyz.AnimMainActivity" />
-        <activity android:name=".module.qyz.AnimTransitionsActivity" />
-        <activity android:name=".module.customwidget.CustomWidgetActivity" />
-        <activity android:name=".module.customwidget.CustomWidgetShowActivity" />
-        <activity android:name=".module.signal.FloatWindowActivity" />
-        <activity android:name=".module.qyz.SurfaceViewActivity" />
-        <activity android:name=".module.dragsortlistview.DragSortListViewActivity" />
-        <activity android:name=".module.dragview.DragViewActivity" />
-        <activity android:name=".module.dragview.DragViewShowActivity" />
-        <activity android:name=".module.dragview.DragViewGroupActivity" />
-        <activity android:name=".module.anim.viewanim.ViewAnimActivity" />
-        <activity android:name=".module.loaderdemo.LoaderActivity" />
-        <activity android:name=".module.qyz.SvgActivity" />
-        <activity android:name=".module.servicedemo.ServiceActivity" />
-        <activity android:name=".module.anim.viewanim.HideActionBarActivity" />
-        <activity android:name=".module.account.AccountActivity" />
+            android:label="@string/title_activity_palette"/>
+        <activity android:name=".module.qyz.TintingActivity"/>
+        <activity android:name=".module.qyz.ClippingActivity"/>
+        <activity android:name=".module.qyz.ElevationActivity"/>
+        <activity android:name=".module.qyz.AnimMainActivity"/>
+        <activity android:name=".module.qyz.AnimTransitionsActivity"/>
+        <activity android:name=".module.customwidget.CustomWidgetActivity"/>
+        <activity android:name=".module.customwidget.CustomWidgetShowActivity"/>
+        <activity android:name=".module.signal.FloatWindowActivity"/>
+        <activity android:name=".module.qyz.SurfaceViewActivity"/>
+        <activity android:name=".module.dragsortlistview.DragSortListViewActivity"/>
+        <activity android:name=".module.dragview.DragViewActivity"/>
+        <activity android:name=".module.dragview.DragViewShowActivity"/>
+        <activity android:name=".module.dragview.DragViewGroupActivity"/>
+        <activity android:name=".module.anim.viewanim.ViewAnimActivity"/>
+        <activity android:name=".module.loaderdemo.LoaderActivity"/>
+        <activity android:name=".module.qyz.SvgActivity"/>
+        <activity android:name=".module.servicedemo.ServiceActivity"/>
+        <activity android:name=".module.anim.viewanim.HideActionBarActivity"/>
+        <activity android:name=".module.account.AccountActivity"/>
 
-        <service android:name=".module.signal.PhoneStateService" />
+        <service android:name=".module.signal.PhoneStateService"/>
         <service
             android:name=".module.servicedemo.DemoService"
             android:enabled="true"
             android:exported="true"
             android:process=":remote">
             <intent-filter>
-                <action android:name="com.tustar.demo.AIDL" />
+                <action android:name="com.tustar.demo.AIDL"/>
             </intent-filter>
         </service>
         <service
             android:name=".module.servicedemo.DemoIntentService"
-            android:exported="false"></service>
+            android:exported="false"/>
 
         <provider
             android:name=".provider.TuProvider"
             android:authorities="com.tustar.demo"
-            android:exported="false" />
+            android:exported="false"/>
 
-        <activity android:name=".module.providerdemo.ProviderActivity"></activity>
-        <activity android:name=".module.deskclock.DeskClockActivity"></activity>
-        <activity android:name=".module.customwidget.HistoryActivity"></activity>
+        <activity android:name=".module.providerdemo.ProviderActivity"/>
+        <activity android:name=".module.deskclock.DeskClockActivity"/>
+        <activity android:name=".module.customwidget.HistoryActivity"/>
+
+        //
+        <activity android:name=".module.scrollerdemo.ScrollerActivity">
+        </activity>
+        <activity android:name=".module.scrollerdemo.OnePointerDrawViewActivity">
+        </activity>
+        <activity android:name=".module.scrollerdemo.TwoPointerDrawViewActivity">
+        </activity>
+        <activity android:name=".module.scrollerdemo.HOverScrollViewActivity">
+        </activity>
+        <activity android:name=".module.scrollerdemo.HScrollViewActivity">
+        </activity>
+        //
+        <activity android:name=".module.scrollerdemo.other.OtherOnePointerDrawViewActivity">
+        </activity>
+        <activity android:name=".module.scrollerdemo.other.OtherTwoPointerDrawViewActivity">
+        </activity>
+        <activity android:name=".module.scrollerdemo.other.OtherHScrollViewActivity">
+        </activity>
+        <activity android:name=".module.scrollerdemo.other.OtherHOverScrollViewActivity">
+        </activity>
     </application>
 
 </manifest>

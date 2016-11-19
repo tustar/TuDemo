@@ -28,6 +28,7 @@ import android.view.ViewGroup;
 import android.widget.Toast;
 
 import com.tustar.demo.R;
+import com.tustar.demo.common.ListViewDecoration;
 import com.yanzhenjie.recyclerview.swipe.Closeable;
 import com.yanzhenjie.recyclerview.swipe.OnSwipeMenuItemClickListener;
 import com.yanzhenjie.recyclerview.swipe.SwipeMenu;
