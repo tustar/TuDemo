@@ -9,7 +9,8 @@ import android.graphics.PathEffect;
 import android.util.AttributeSet;
 import android.view.View;
 
-import com.zui.calculator.R;
+import com.tustar.demo.R;
+
 
 /**
  * Created by tustar on 16-11-9.
