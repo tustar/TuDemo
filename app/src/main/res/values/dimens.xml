@@ -9,4 +9,9 @@
     <dimen name="text_margin">16dp</dimen>
 
     <dimen name="deskclock_item_width">60dp</dimen>
+
+    <!--Dash Line-->
+    <dimen name="dash_divider_height">2px</dimen>
+    <dimen name="dash_divider_dash_width">4dp</dimen>
+    <dimen name="dash_divider_dash_gap">4dp</dimen>
 </resources>

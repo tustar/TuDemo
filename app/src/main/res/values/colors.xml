@@ -21,4 +21,7 @@
 
     <color name="deskclock_item_delete_n">#FF0000</color>
     <color name="deskclock_item_delete_p">#FF6666</color>
+
+    <!--Dash Line-->
+    <color name="dash_divider_dash_color">#ffffff</color>
 </resources>
