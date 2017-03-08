@@ -18,6 +18,7 @@ import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
 import com.tustar.demo.module.providerdemo.ProviderActivity;
+import com.tustar.demo.module.qyz.FlexibleListViewActivity;
 import com.tustar.demo.module.recyclerviewdemo.RecyclerViewActivity;
 import com.tustar.demo.module.scrollerdemo.ScrollerActivity;
 import com.tustar.demo.module.servicedemo.ServiceActivity;
@@ -73,6 +74,7 @@ public class MainActivity extends AppCompatActivity
         sClassList.add(DeskClockActivity.class);
         sClassList.add(HistoryActivity.class);
         sClassList.add(ScrollerActivity.class);
+        sClassList.add(FlexibleListViewActivity.class);
         Collections.reverse(sClassList);
     }
 

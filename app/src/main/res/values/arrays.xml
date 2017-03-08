@@ -23,5 +23,6 @@
         <item>DeskClock+Tabs+Svg+Databinding+RecyclerView</item>
         <item>History</item>
         <item>Scroller</item>
+        <item>FlexibleListView</item>
     </string-array>
 </resources>

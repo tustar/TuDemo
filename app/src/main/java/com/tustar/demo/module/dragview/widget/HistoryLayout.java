@@ -96,11 +96,11 @@ public class HistoryLayout extends FrameLayout {
     @Override
     protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
         Logger.d(TAG, "onMeasure :: ");
-        int childCount = getChildCount();
-        for (int i = 0; i < childCount; i++) {
-            View child = getChildAt(i);
-            measureChild(child, widthMeasureSpec, heightMeasureSpec);
-        }
+//        int childCount = getChildCount();
+//        for (int i = 0; i < childCount; i++) {
+//            View child = getChildAt(i);
+//            measureChild(child, widthMeasureSpec, heightMeasureSpec);
+//        }
         super.onMeasure(widthMeasureSpec, heightMeasureSpec);
         mWidth = getMeasuredWidth();
         mHeight = getMeasuredHeight();
