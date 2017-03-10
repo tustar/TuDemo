@@ -1,5 +1,6 @@
 package com.tustar.demo.provider;
 
+import android.app.AlarmManager;
 import android.content.ContentResolver;
 import android.content.ContentUris;
 import android.content.ContentValues;
@@ -10,6 +11,7 @@ import android.database.Cursor;
 import android.net.Uri;
 import android.os.Parcel;
 import android.os.Parcelable;
+import android.provider.AlarmClock;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;

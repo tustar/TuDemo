@@ -24,5 +24,6 @@
         <item>History</item>
         <item>Scroller</item>
         <item>FlexibleListView</item>
+        <item>OverScroll GridView</item>
     </string-array>
 </resources>

@@ -58,4 +58,7 @@
         M 30, 65
         Q 50, 85 70, 65
     </string>
+
+    <string name="horiz_drag_label">⇔ Drag Horizontally</string>
+    <string name="vert_drag_label">⇳ Drag Vertically</string>
 </resources>

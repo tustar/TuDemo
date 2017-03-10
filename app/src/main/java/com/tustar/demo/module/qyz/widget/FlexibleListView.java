@@ -12,7 +12,9 @@ import android.widget.ListView;
  */
 public class FlexibleListView extends ListView {
 
-    private static int mMaxOverDistance = 50;
+    private static final int MAX_Y_OVERSCROLL_DISTANCE = 200;
+    private static final float SCROLL_RATIO = 0.5f;// 阻尼系数
+    private int mMaxYOverscrollDistance;
     private Context mContext;
 
     public FlexibleListView(Context context) {
@@ -45,7 +47,7 @@ public class FlexibleListView extends ListView {
     private void init() {
         DisplayMetrics metrics = mContext.getResources().getDisplayMetrics();
         float density = metrics.density;
-        mMaxOverDistance = (int) (density * mMaxOverDistance);
+        mMaxYOverscrollDistance = (int) (density * MAX_Y_OVERSCROLL_DISTANCE);
     }
 
     @Override
@@ -54,10 +56,10 @@ public class FlexibleListView extends ListView {
                                    int scrollRangeX, int scrollRangeY,
                                    int maxOverScrollX, int maxOverScrollY,
                                    boolean isTouchEvent) {
-        return super.overScrollBy(deltaX, deltaY,
-                scrollX, scrollY,
-                scrollRangeX, scrollRangeY,
-                maxOverScrollX, mMaxOverDistance,
-                isTouchEvent);
+        int newDeltaY = deltaY;
+        int delta = (int) (deltaY * SCROLL_RATIO);
+        if (delta != 0) newDeltaY = delta;
+        return super.overScrollBy(deltaX, deltaY, scrollX, scrollY, scrollRangeX, scrollRangeY,
+                maxOverScrollX, mMaxYOverscrollDistance, isTouchEvent);
     }
 }

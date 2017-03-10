@@ -79,17 +79,18 @@
             android:name=".module.customwidget.HistoryActivity"
             android:theme="@android:style/Theme.DeviceDefault.Light.NoActionBar" />
         //
-        <activity android:name=".module.scrollerdemo.ScrollerActivity"></activity>
-        <activity android:name=".module.scrollerdemo.OnePointerDrawViewActivity"></activity>
-        <activity android:name=".module.scrollerdemo.TwoPointerDrawViewActivity"></activity>
-        <activity android:name=".module.scrollerdemo.HOverScrollViewActivity"></activity>
-        <activity android:name=".module.scrollerdemo.HScrollViewActivity"></activity>
+        <activity android:name=".module.scrollerdemo.ScrollerActivity" />
+        <activity android:name=".module.scrollerdemo.OnePointerDrawViewActivity" />
+        <activity android:name=".module.scrollerdemo.TwoPointerDrawViewActivity" />
+        <activity android:name=".module.scrollerdemo.HOverScrollViewActivity" />
+        <activity android:name=".module.scrollerdemo.HScrollViewActivity" />
         //
-        <activity android:name=".module.scrollerdemo.other.OtherOnePointerDrawViewActivity"></activity>
-        <activity android:name=".module.scrollerdemo.other.OtherTwoPointerDrawViewActivity"></activity>
-        <activity android:name=".module.scrollerdemo.other.OtherHScrollViewActivity"></activity>
-        <activity android:name=".module.scrollerdemo.other.OtherHOverScrollViewActivity"></activity>
-        <activity android:name=".module.qyz.FlexibleListViewActivity"></activity>
+        <activity android:name=".module.scrollerdemo.other.OtherOnePointerDrawViewActivity" />
+        <activity android:name=".module.scrollerdemo.other.OtherTwoPointerDrawViewActivity" />
+        <activity android:name=".module.scrollerdemo.other.OtherHScrollViewActivity" />
+        <activity android:name=".module.scrollerdemo.other.OtherHOverScrollViewActivity" />
+        <activity android:name=".module.qyz.FlexibleListViewActivity" />
+        <activity android:name=".module.qyz.OverScrollGridViewActivity"></activity>
     </application>
 
 </manifest>

@@ -17,11 +17,6 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
-import com.tustar.demo.module.providerdemo.ProviderActivity;
-import com.tustar.demo.module.qyz.FlexibleListViewActivity;
-import com.tustar.demo.module.recyclerviewdemo.RecyclerViewActivity;
-import com.tustar.demo.module.scrollerdemo.ScrollerActivity;
-import com.tustar.demo.module.servicedemo.ServiceActivity;
 import com.tustar.demo.module.account.AccountActivity;
 import com.tustar.demo.module.anim.viewanim.HideActionBarActivity;
 import com.tustar.demo.module.anim.viewanim.ViewAnimActivity;
@@ -30,16 +25,22 @@ import com.tustar.demo.module.customwidget.HistoryActivity;
 import com.tustar.demo.module.deskclock.DeskClockActivity;
 import com.tustar.demo.module.dragsortlistview.DragSortListViewActivity;
 import com.tustar.demo.module.dragview.DragViewActivity;
-import com.tustar.demo.module.signal.FloatWindowActivity;
 import com.tustar.demo.module.loaderdemo.LoaderActivity;
+import com.tustar.demo.module.providerdemo.ProviderActivity;
 import com.tustar.demo.module.qyz.AnimMainActivity;
 import com.tustar.demo.module.qyz.ClippingActivity;
 import com.tustar.demo.module.qyz.ElevationActivity;
+import com.tustar.demo.module.qyz.FlexibleListViewActivity;
+import com.tustar.demo.module.qyz.OverScrollGridViewActivity;
 import com.tustar.demo.module.qyz.PaletteActivity;
 import com.tustar.demo.module.qyz.RotationActivity;
 import com.tustar.demo.module.qyz.SurfaceViewActivity;
 import com.tustar.demo.module.qyz.SvgActivity;
 import com.tustar.demo.module.qyz.TintingActivity;
+import com.tustar.demo.module.recyclerviewdemo.RecyclerViewActivity;
+import com.tustar.demo.module.scrollerdemo.ScrollerActivity;
+import com.tustar.demo.module.servicedemo.ServiceActivity;
+import com.tustar.demo.module.signal.FloatWindowActivity;
 import com.tustar.demo.util.ArrayUtils;
 
 import java.util.ArrayList;
@@ -75,6 +76,7 @@ public class MainActivity extends AppCompatActivity
         sClassList.add(HistoryActivity.class);
         sClassList.add(ScrollerActivity.class);
         sClassList.add(FlexibleListViewActivity.class);
+        sClassList.add(OverScrollGridViewActivity.class);
         Collections.reverse(sClassList);
     }
 
