@@ -8,14 +8,13 @@ import com.tustar.demo.adapter.DemoGridAdapter;
 import com.tustar.demo.base.BaseActivity;
 import com.tustar.demo.db.test.DemoContentHelper;
 import com.tustar.demo.db.test.DemoItem;
-import com.tustar.demo.module.qyz.overscroll.AbsListViewOverScrollDecorAdapter;
-import com.tustar.demo.module.qyz.overscroll.OverScrollBounceEffectDecorator;
+import com.tustar.demo.module.qyz.overscroll.OverScrollDecoratorHelper;
 
 import java.util.List;
 
 public class OverScrollGridViewActivity extends BaseActivity {
 
-    private static final String TAG = "OverScrollGridViewActiv";
+    private static final String TAG = "OverScrollGridViewActivity";
     private GridView mGridView;
 
     @Override
@@ -28,6 +27,6 @@ public class OverScrollGridViewActivity extends BaseActivity {
         DemoGridAdapter adapter = new DemoGridAdapter(this, items);
         mGridView.setAdapter(adapter);
 
-        new OverScrollBounceEffectDecorator(new AbsListViewOverScrollDecorAdapter(mGridView));
+        OverScrollDecoratorHelper.setUpOverScroll(mGridView);
     }
 }

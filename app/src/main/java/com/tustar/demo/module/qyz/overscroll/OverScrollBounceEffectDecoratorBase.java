@@ -11,14 +11,56 @@ import android.view.View;
 import android.view.animation.DecelerateInterpolator;
 import android.view.animation.Interpolator;
 
+import com.tustar.demo.module.qyz.overscroll.adapters.IOverScrollDecoratorAdapter;
+import com.tustar.demo.module.qyz.overscroll.adapters.RecyclerViewOverScrollDecorAdapter;
 
 import static com.tustar.demo.module.qyz.overscroll.IOverScrollState.STATE_BOUNCE_BACK;
 import static com.tustar.demo.module.qyz.overscroll.IOverScrollState.STATE_DRAG_END_SIDE;
 import static com.tustar.demo.module.qyz.overscroll.IOverScrollState.STATE_DRAG_START_SIDE;
 import static com.tustar.demo.module.qyz.overscroll.IOverScrollState.STATE_IDLE;
+import static com.tustar.demo.module.qyz.overscroll.ListenerStubs.OverScrollStateListenerStub;
+import static com.tustar.demo.module.qyz.overscroll.ListenerStubs.OverScrollUpdateListenerStub;
 
+/**
+ * A standalone view decorator adding over-scroll with a smooth bounce-back effect to (potentially) any view -
+ * provided that an appropriate {@link IOverScrollDecoratorAdapter} implementation exists / can be written
+ * for that view type (e.g. {@link RecyclerViewOverScrollDecorAdapter}).
+ * <p>
+ * <p>Design-wise, being a standalone class, this decorator powerfully provides the ability to add
+ * the over-scroll effect over any view without adjusting the view's implementation. In essence, this
+ * eliminates the need to repeatedly implement the effect per each view type (list-view,
+ * recycler-view, image-view, etc.). Therefore, using it is highly recommended compared to other
+ * more intrusive solutions.</p>
+ * <p>
+ * <p>Note that this class is abstract, having {@link HorizontalOverScrollBounceEffectDecorator} and
+ * {@link VerticalOverScrollBounceEffectDecorator} providing concrete implementations that are
+ * view-orientation specific.</p>
+ * <p>
+ * <hr width="97%"/>
+ * <h2>Implementation Notes</h2>
+ * <p>
+ * <p>At it's core, the class simply registers itself as a touch-listener over the decorated view and
+ * intercepts touch events as needed.</p>
+ * <p>
+ * <p>Internally, it delegates the over-scrolling calculations onto 3 state-based classes:
+ * <ol>
+ * <li><b>Idle state</b> - monitors view state and touch events to intercept over-scrolling initiation
+ * (in which case it hands control over to the Over-scrolling state).</li>
+ * <li><b>Over-scrolling state</b> - handles motion events to apply the over-scroll effect as users
+ * interact with the view.</li>
+ * <li><b>Bounce-back state</b> - runs the bounce-back animation, all-the-while blocking all
+ * touch events till the animation completes (in which case it hands control back to the idle
+ * state).</li>
+ * </ol>
+ * </p>
+ *
+ * @author amit
+ * @see RecyclerViewOverScrollDecorAdapter
+ * @see IOverScrollDecoratorAdapter
+ */
 
-public class OverScrollBounceEffectDecorator implements View.OnTouchListener {
+public abstract class OverScrollBounceEffectDecoratorBase implements IOverScrollDecor,
+        View.OnTouchListener {
 
     public static final String TAG = "OverScrollDecor";
 
@@ -30,12 +72,15 @@ public class OverScrollBounceEffectDecorator implements View.OnTouchListener {
     protected static final int MIN_BOUNCE_BACK_DURATION_MS = 200;
 
     protected final OverScrollStartAttributes mStartAttr = new OverScrollStartAttributes();
-    protected final AbsListViewOverScrollDecorAdapter mViewAdapter;
+    protected final IOverScrollDecoratorAdapter mViewAdapter;
 
     protected final IdleState mIdleState;
     protected final OverScrollingState mOverScrollingState;
     protected final BounceBackState mBounceBackState;
     protected IDecoratorState mCurrentState;
+
+    protected IOverScrollStateListener mStateListener = new OverScrollStateListenerStub();
+    protected IOverScrollUpdateListener mUpdateListener = new OverScrollUpdateListenerStub();
 
     /**
      * When in over-scroll mode, keep track of dragging velocity to provide a smooth slow-down
@@ -101,9 +146,9 @@ public class OverScrollBounceEffectDecorator implements View.OnTouchListener {
 
         /**
          * The client-perspective ID of the state associated with this (internal) one. ID's
-         * are as specified in {@link IOverScrollState}.
+         * are as specified in {@link IOverScrollState}
          *
-         * @return The ID, e.g. {@link IOverScrollState#STATE_IDLE}.
+         * @return The ID, e.g. {@link IOverScrollState#STATE_IDLE}
          */
         int getStateId();
     }
@@ -111,7 +156,7 @@ public class OverScrollBounceEffectDecorator implements View.OnTouchListener {
     /**
      * Idle state: monitors move events, trying to figure out whether over-scrolling should be
      * initiated (i.e. when scrolled further when the view is at one of its displayable ends).
-     * <br/>When such is the case, it hands over control to the over-scrolling state.
+     * <br/> When such is the case, it hands over control to the over-scrolling state/
      */
     protected class IdleState implements IDecoratorState {
 
@@ -122,21 +167,15 @@ public class OverScrollBounceEffectDecorator implements View.OnTouchListener {
         }
 
         @Override
-        public int getStateId() {
-            return STATE_IDLE;
-        }
-
-        @Override
         public boolean handleMoveTouchEvent(MotionEvent event) {
-
             final View view = mViewAdapter.getView();
             if (!mMoveAttr.init(view, event)) {
                 return false;
             }
 
-            // Has over-scrolling officially started?
-            if ((mViewAdapter.isInAbsoluteStart() && mMoveAttr.mDir) ||
-                    (mViewAdapter.isInAbsoluteEnd() && !mMoveAttr.mDir)) {
+            // Has over-scrolling officially stated?
+            if ((mViewAdapter.isInAbsoluteStart() && mMoveAttr.mDir)
+                    || (mViewAdapter.isInAbsoluteEnd() && !mMoveAttr.mDir)) {
 
                 // Save initial over-scroll attributes for future reference.
                 mStartAttr.mPointerId = event.getPointerId(0);
@@ -157,7 +196,13 @@ public class OverScrollBounceEffectDecorator implements View.OnTouchListener {
 
         @Override
         public void handleEntryTransition(IDecoratorState fromState) {
+            mStateListener.onOverScrollStateChange(OverScrollBounceEffectDecoratorBase.this,
+                    fromState.getStateId(), this.getStateId());
+        }
 
+        @Override
+        public int getStateId() {
+            return STATE_IDLE;
         }
     }
 
@@ -165,7 +210,7 @@ public class OverScrollBounceEffectDecorator implements View.OnTouchListener {
      * Handles the actual over-scrolling: thus translating the view according to configuration
      * and user interactions, dynamically.
      * <p>
-     * <br/><br/>The state is exited - thus completing over-scroll handling, in one of two cases:
+     * <br/><br/>The state is exited - thus completing over-scroll handling, in one of two case:
      * <br/>When user lets go of the view, it transitions control to the bounce-back state.
      * <br/>When user moves the view back onto a potential 'under-scroll' state, it abruptly
      * transitions control to the idle-state, so as to return touch-events management to the
@@ -180,17 +225,11 @@ public class OverScrollBounceEffectDecorator implements View.OnTouchListener {
         final MotionAttributes mMoveAttr;
         int mCurrDragState;
 
+
         public OverScrollingState(float touchDragRatioFwd, float touchDragRatioBck) {
             mMoveAttr = createMotionAttributes();
             mTouchDragRatioFwd = touchDragRatioFwd;
             mTouchDragRatioBck = touchDragRatioBck;
-        }
-
-        @Override
-        public int getStateId() {
-            // This is really a single class that implements 2 states, so our ID depends on what
-            // it was during the last invocation.
-            return mCurrDragState;
         }
 
         @Override
@@ -205,19 +244,22 @@ public class OverScrollBounceEffectDecorator implements View.OnTouchListener {
 
             final View view = mViewAdapter.getView();
             if (!mMoveAttr.init(view, event)) {
-                // Keep intercepting the touch event as long as we're still over-scrolling...
+                // Keep intercepting the touch event as long as we're still over-scrolling
                 return true;
             }
 
-            float deltaOffset = mMoveAttr.mDeltaOffset / (mMoveAttr.mDir == mStartAttr.mDir ? mTouchDragRatioFwd : mTouchDragRatioBck);
+            float deltaOffset = mMoveAttr.mDeltaOffset / (
+                    mMoveAttr.mDir == mStartAttr.mDir ? mTouchDragRatioFwd : mTouchDragRatioBck);
             float newOffset = mMoveAttr.mAbsOffset + deltaOffset;
 
-            // If moved in counter direction onto a potential under-scroll state -- don't. Instead, abort
+            // If moved in counter direction onto a potential state -- don't. Instead, abort
             // over-scrolling abruptly, thus returning control to which-ever touch handlers there
             // are waiting (e.g. regular scroller handlers).
             if ((mStartAttr.mDir && !mMoveAttr.mDir && (newOffset <= mStartAttr.mAbsOffset)) ||
                     (!mStartAttr.mDir && mMoveAttr.mDir && (newOffset >= mStartAttr.mAbsOffset))) {
                 translateViewAndEvent(view, mStartAttr.mAbsOffset, event);
+                mUpdateListener.onOverScrollUpdate(OverScrollBounceEffectDecoratorBase.this,
+                        mCurrDragState, 0);
 
                 issueStateTransition(mIdleState);
                 return true;
@@ -228,11 +270,15 @@ public class OverScrollBounceEffectDecorator implements View.OnTouchListener {
             }
 
             long dt = event.getEventTime() - event.getHistoricalEventTime(0);
-            if (dt > 0) { // Sometimes (though rarely) dt==0 cause originally timing is in nanos, but is presented in millis.
+            if (dt > 0) {
+                // Sometimes (though rarely) dt==0 cause originally timing is in nanos,
+                // but is presented in millis.
                 mVelocity = deltaOffset / dt;
             }
 
             translateView(view, newOffset);
+            mUpdateListener.onOverScrollUpdate(OverScrollBounceEffectDecoratorBase.this,
+                    mCurrDragState, newOffset);
 
             return true;
         }
@@ -246,43 +292,37 @@ public class OverScrollBounceEffectDecorator implements View.OnTouchListener {
         @Override
         public void handleEntryTransition(IDecoratorState fromState) {
             mCurrDragState = (mStartAttr.mDir ? STATE_DRAG_START_SIDE : STATE_DRAG_END_SIDE);
-            }
+            mStateListener.onOverScrollStateChange(OverScrollBounceEffectDecoratorBase.this,
+                    fromState.getStateId(), this.getStateId());
+        }
+
+        @Override
+        public int getStateId() {
+            // This is really a single class that implements 2 states, so our ID depends on what
+            // it was during the last invocation.
+            return mCurrDragState;
+        }
     }
 
     /**
      * When entered, starts the bounce-back animation.
+     * <p>
      * <br/>Upon animation completion, transitions control onto the idle state; Does so by
      * registering itself as an animation listener.
      * <br/>In the meantime, blocks (intercepts) all touch events.
      */
-    protected class BounceBackState implements IDecoratorState, Animator.AnimatorListener, ValueAnimator.AnimatorUpdateListener {
+    protected class BounceBackState implements IDecoratorState, Animator.AnimatorListener,
+            ValueAnimator.AnimatorUpdateListener {
 
         protected final Interpolator mBounceBackInterpolator = new DecelerateInterpolator();
         protected final float mDecelerateFactor;
         protected final float mDoubleDecelerateFactor;
-
         protected final AnimationAttributes mAnimAttributes;
 
         public BounceBackState(float decelerateFactor) {
             mDecelerateFactor = decelerateFactor;
             mDoubleDecelerateFactor = 2f * decelerateFactor;
-
             mAnimAttributes = createAnimationAttributes();
-        }
-
-        @Override
-        public int getStateId() {
-            return STATE_BOUNCE_BACK;
-        }
-
-        @Override
-        public void handleEntryTransition(IDecoratorState fromState) {
-
-
-            Animator bounceBackAnim = createAnimator();
-            bounceBackAnim.addListener(this);
-
-            bounceBackAnim.start();
         }
 
         @Override
@@ -298,52 +338,72 @@ public class OverScrollBounceEffectDecorator implements View.OnTouchListener {
         }
 
         @Override
+        public void handleEntryTransition(IDecoratorState fromState) {
+            mStateListener.onOverScrollStateChange(OverScrollBounceEffectDecoratorBase.this,
+                    fromState.getStateId(), this.getStateId());
+
+            Animator bounceBackAnim = createAnimator();
+            bounceBackAnim.addListener(this);
+            bounceBackAnim.start();
+        }
+
+        @Override
+        public int getStateId() {
+            return STATE_BOUNCE_BACK;
+        }
+
+        @Override
+        public void onAnimationStart(Animator animation) {
+
+        }
+
+        @Override
         public void onAnimationEnd(Animator animation) {
             issueStateTransition(mIdleState);
         }
 
         @Override
-        public void onAnimationUpdate(ValueAnimator animation) {
-            }
-
-        @Override
-        public void onAnimationStart(Animator animation) {
-        }
-
-        @Override
         public void onAnimationCancel(Animator animation) {
+
         }
 
         @Override
         public void onAnimationRepeat(Animator animation) {
+
+        }
+
+        @Override
+        public void onAnimationUpdate(ValueAnimator animation) {
+            mUpdateListener.onOverScrollUpdate(OverScrollBounceEffectDecoratorBase.this,
+                    STATE_BOUNCE_BACK, (Float) animation.getAnimatedValue());
         }
 
         protected Animator createAnimator() {
-
             final View view = mViewAdapter.getView();
-
             mAnimAttributes.init(view);
 
-            // Set up a low-duration slow-down animation IN the drag direction.
+            // Set up a low-duration slow-down animation in the drag direction.
 
             // Exception: If wasn't dragging in 'forward' direction (or velocity=0 -- i.e. not dragging at all),
             // skip slow-down anim directly to the bounce-back.
-            if (mVelocity == 0f || (mVelocity < 0 && mStartAttr.mDir) || (mVelocity > 0 && !mStartAttr.mDir)) {
+            if (mVelocity == 0f || (mVelocity < 0 && mStartAttr.mDir)
+                    || (mVelocity > 0 && !mStartAttr.mDir)) {
                 return createBounceBackAnimator(mAnimAttributes.mAbsOffset);
             }
 
-            // dt = (Vt - Vo) / a; Vt=0 ==> dt = -Vo / a
+            // dt = (Vt - Vo) / a; Vt = 0 ==> dt = -Vo / a
             float slowdownDuration = -mVelocity / mDecelerateFactor;
-            slowdownDuration = (slowdownDuration < 0 ? 0 : slowdownDuration); // Happens in counter-direction dragging
+            // Happens in counter-direction dragging
+            slowdownDuration = (slowdownDuration < 0 ? 0 : slowdownDuration);
 
-            // dx = (Vt^2 - Vo^2) / 2a; Vt=0 ==> dx = -Vo^2 / 2a
+            // dx = (Vt^2 - Vo^2) / 2a; Vt = 0 ==> dx = -V0^2 / 2a
             float slowdownDistance = -mVelocity * mVelocity / mDoubleDecelerateFactor;
             float slowdownEndOffset = mAnimAttributes.mAbsOffset + slowdownDistance;
 
-            ObjectAnimator slowdownAnim = createSlowdownAnimator(view, (int) slowdownDuration, slowdownEndOffset);
-
-            // Set up the bounce back animation, bringing the view back into the original, pre-overscroll position (translation=0).
-
+            ObjectAnimator slowdownAnim = createSlowdownAnimator(view,
+                    (int) slowdownDuration, slowdownEndOffset);
+            // Set up the bounce back animation, bringing the view back into the original,
+            // pre-overscroll position (translation=0).
             ObjectAnimator bounceBackAnim = createBounceBackAnimator(slowdownEndOffset);
 
             // Play the 2 animations as a sequence.
@@ -352,8 +412,10 @@ public class OverScrollBounceEffectDecorator implements View.OnTouchListener {
             return wholeAnim;
         }
 
-        protected ObjectAnimator createSlowdownAnimator(View view, int slowdownDuration, float slowdownEndOffset) {
-            ObjectAnimator slowdownAnim = ObjectAnimator.ofFloat(view, mAnimAttributes.mProperty, slowdownEndOffset);
+        protected ObjectAnimator createSlowdownAnimator(View view, int slowdownDuration,
+                                                        float slowdownEndOffset) {
+            ObjectAnimator slowdownAnim = ObjectAnimator.ofFloat(view, mAnimAttributes.mProperty,
+                    slowdownEndOffset);
             slowdownAnim.setDuration(slowdownDuration);
             slowdownAnim.setInterpolator(mBounceBackInterpolator);
             slowdownAnim.addUpdateListener(this);
@@ -365,26 +427,29 @@ public class OverScrollBounceEffectDecorator implements View.OnTouchListener {
             final View view = mViewAdapter.getView();
 
             // Duration is proportional to the view's size.
-            float bounceBackDuration = (Math.abs(startOffset) / mAnimAttributes.mMaxOffset) * MAX_BOUNCE_BACK_DURATION_MS;
-            ObjectAnimator bounceBackAnim = ObjectAnimator.ofFloat(view, mAnimAttributes.mProperty, mStartAttr.mAbsOffset);
-            bounceBackAnim.setDuration(Math.max((int) bounceBackDuration, MIN_BOUNCE_BACK_DURATION_MS));
+            float bounceBackDuration = (Math.abs(startOffset) / mAnimAttributes.mMaxOffset)
+                    * MAX_BOUNCE_BACK_DURATION_MS;
+            ObjectAnimator bounceBackAnim = ObjectAnimator.ofFloat(view, mAnimAttributes.mProperty,
+                    mStartAttr.mAbsOffset);
+            bounceBackAnim.setDuration(Math.max((int)bounceBackDuration,
+                    MIN_BOUNCE_BACK_DURATION_MS));
             bounceBackAnim.setInterpolator(mBounceBackInterpolator);
             bounceBackAnim.addUpdateListener(this);
             return bounceBackAnim;
+
         }
+
+
     }
 
-    public OverScrollBounceEffectDecorator(AbsListViewOverScrollDecorAdapter viewAdapter) {
-        this(viewAdapter, DEFAULT_TOUCH_DRAG_MOVE_RATIO_FWD, DEFAULT_TOUCH_DRAG_MOVE_RATIO_BCK, DEFAULT_DECELERATE_FACTOR);
-    }
-
-    public OverScrollBounceEffectDecorator(AbsListViewOverScrollDecorAdapter viewAdapter, float decelerateFactor, float touchDragRatioFwd, float touchDragRatioBck) {
-        mViewAdapter = viewAdapter;
-
-        mBounceBackState = new BounceBackState(decelerateFactor);
-        mOverScrollingState = new OverScrollingState(touchDragRatioFwd, touchDragRatioBck);
+    public OverScrollBounceEffectDecoratorBase(IOverScrollDecoratorAdapter viewAdatper,
+                                               float decelerateFactor,
+                                               float touchDragRatioFwd,
+                                               float touchDragRatioBck) {
+        mViewAdapter = viewAdatper;
         mIdleState = new IdleState();
-
+        mOverScrollingState = new OverScrollingState(touchDragRatioFwd, touchDragRatioBck);
+        mBounceBackState = new BounceBackState(decelerateFactor);
         mCurrentState = mIdleState;
 
         attach();
@@ -395,13 +460,32 @@ public class OverScrollBounceEffectDecorator implements View.OnTouchListener {
         switch (event.getAction()) {
             case MotionEvent.ACTION_MOVE:
                 return mCurrentState.handleMoveTouchEvent(event);
-
             case MotionEvent.ACTION_CANCEL:
             case MotionEvent.ACTION_UP:
                 return mCurrentState.handleUpOrCancelTouchEvent(event);
         }
 
         return false;
+    }
+
+    @Override
+    public void setOverScrollStateListener(IOverScrollStateListener listener) {
+        mStateListener = (listener != null ? listener : new OverScrollStateListenerStub());
+    }
+
+    @Override
+    public void setOverScrollUpdateListener(IOverScrollUpdateListener listener) {
+        mUpdateListener = (listener != null ? listener : new OverScrollUpdateListenerStub());
+    }
+
+    @Override
+    public View getView() {
+        return mViewAdapter.getView();
+    }
+
+    @Override
+    public int getCurrentState() {
+        return mCurrentState.getStateId();
     }
 
     protected void issueStateTransition(IDecoratorState state) {
@@ -411,71 +495,26 @@ public class OverScrollBounceEffectDecorator implements View.OnTouchListener {
     }
 
     protected void attach() {
-        mViewAdapter.getView().setOnTouchListener(this);
-        mViewAdapter.getView().setOverScrollMode(View.OVER_SCROLL_NEVER);
+        getView().setOnTouchListener(this);
+        getView().setOverScrollMode(View.OVER_SCROLL_NEVER);
     }
 
+    @Override
     public void detach() {
         if (mCurrentState != mIdleState) {
-            Log.w(TAG, "Decorator detached while over-scroll is in effect. You might want to add a precondition of that getCurrentState()==STATE_IDLE, first.");
-        }
-        mViewAdapter.getView().setOnTouchListener(null);
-        mViewAdapter.getView().setOverScrollMode(View.OVER_SCROLL_ALWAYS);
-    }
-
-    protected MotionAttributes createMotionAttributes() {
-        return new MotionAttributesVertical();
-    }
-
-    protected AnimationAttributes createAnimationAttributes() {
-        return new AnimationAttributesVertical();
-    }
-
-    protected void translateView(View view, float offset) {
-        view.setTranslationY(offset);
-    }
-
-    protected void translateViewAndEvent(View view, float offset, MotionEvent event) {
-        view.setTranslationY(offset);
-        event.offsetLocation(offset - event.getY(0), 0f);
-    }
-
-    public static class AnimationAttributesVertical extends AnimationAttributes {
-
-        public AnimationAttributesVertical() {
-            mProperty = View.TRANSLATION_Y;
+            Log.w(TAG, "Decorator detached while over-scroll is in effect. You might want to add " +
+                    "a precondition of that getCurrentState()==STATE_IDLE, first.");
         }
 
-        protected void init(View view) {
-            mAbsOffset = view.getTranslationY();
-            mMaxOffset = view.getHeight();
-        }
+        getView().setOnTouchListener(null);
+        getView().setOverScrollMode(View.OVER_SCROLL_ALWAYS);
     }
 
-    public static class MotionAttributesVertical extends MotionAttributes {
+    protected abstract MotionAttributes createMotionAttributes();
 
-        public boolean init(View view, MotionEvent event) {
+    protected abstract AnimationAttributes createAnimationAttributes();
 
-            // We must have history available to calc the dx. Normally it's there - if it isn't temporarily,
-            // we declare the event 'invalid' and expect it in consequent events.
-            if (event.getHistorySize() == 0) {
-                return false;
-            }
+    protected abstract void translateView(View view, float offset);
 
-            // Allow for counter-orientation-direction operations (e.g. item swiping) to run fluently.
-            final float dy = event.getY(0) - event.getHistoricalY(0, 0);
-            final float dx = event.getX(0) - event.getHistoricalX(0, 0);
-            if (Math.abs(dx) > Math.abs(dy)) {
-                return false;
-            }
-
-            mAbsOffset = view.getTranslationY();
-            mDeltaOffset = dy;
-            mDir = mDeltaOffset > 0;
-
-            return true;
-        }
-    }
-
-
+    protected abstract void translateViewAndEvent(View view, float offset, MotionEvent event);
 }

@@ -1,19 +1,28 @@
 package com.tustar.demo.module.qyz.overscroll;
 
 /**
- * @author amit
+ * Created by tustar on 17-3-14.
  */
+
 public interface IOverScrollState {
 
-    /** No over-scroll is in-effect. */
+    /**
+     * No over-scroll is in-effect.
+     */
     int STATE_IDLE = 0;
 
-    /** User is actively touch-dragging, thus enabling over-scroll at the view's <i>start</i> side. */
+    /**
+     * User is actively touch-dragging, thus enabling over-scroll at the view's <i>start</i> sid
+     */
     int STATE_DRAG_START_SIDE = 1;
 
-    /** User is actively touch-dragging, thus enabling over-scroll at the view's <i>end</i> side. */
+    /**
+     * User is actively touch-dragging, thus enabling over-scroll at the view's <i>end</i> side.
+     */
     int STATE_DRAG_END_SIDE = 2;
 
-    /** User has released their touch, thus throwing the view back into place via bounce-back animation. */
+    /**
+     * User has released their touch, thus throwing the view back into place via bounce-back animation.
+     */
     int STATE_BOUNCE_BACK = 3;
 }

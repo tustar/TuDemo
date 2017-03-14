@@ -24,7 +24,7 @@
         android:layout_weight="1"
         android:paddingTop="@dimen/activity_vertical_margin">
 
-        <com.tustar.demo.module.qyz.widget.OverScrollGridView
+        <GridView
             android:id="@+id/over_scroll_grid_view"
             android:layout_width="match_parent"
             android:layout_height="match_parent"

@@ -12,10 +12,12 @@ import android.widget.Toast;
 
 import com.tustar.demo.R;
 import com.tustar.demo.base.BaseActivity;
+import com.tustar.demo.module.qyz.overscroll.OverScrollDecoratorHelper;
 import com.tustar.demo.util.Logger;
 
 import java.util.Arrays;
 
+import static com.tustar.demo.module.qyz.overscroll.OverScrollDecoratorHelper.ORIENTATION_VERTICAL;
 import static com.tustar.demo.module.recyclerviewdemo.RcViewAdapter.*;
 
 public class RecyclerViewActivity extends BaseActivity implements OnItemClickListener {
@@ -65,6 +67,7 @@ public class RecyclerViewActivity extends BaseActivity implements OnItemClickLis
                         .start();
             }
         });
+        OverScrollDecoratorHelper.setUpOverScroll(mRecyclerView, ORIENTATION_VERTICAL);
     }
 
     @Override
