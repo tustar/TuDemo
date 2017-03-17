@@ -6,11 +6,34 @@
     android:layout_height="match_parent"
     tools:context="com.tustar.demo.module.qyz.FlexibleListViewActivity">
 
-    <ListView
+    <TextView
+        android:id="@+id/flex_title_top"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@android:color/holo_orange_dark"
+        android:gravity="center_horizontal"
+        android:lines="1"
+        android:text="@string/vert_drag_label"
+        android:textSize="26sp" />
+
+    <ListViewX
         android:id="@+id/flex_list_view"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:layout_above="@+id/flex_title_bottom"
+        android:layout_below="@+id/flex_title_top">
 
-    </ListView>
+    </ListViewX>
+
+    <TextView
+        android:id="@+id/flex_title_bottom"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:background="@android:color/holo_orange_dark"
+        android:gravity="center_horizontal"
+        android:lines="1"
+        android:text="@string/vert_drag_label"
+        android:textSize="26sp" />
 
 </RelativeLayout>
