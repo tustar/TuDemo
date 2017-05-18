@@ -37,7 +37,6 @@ import com.tustar.demo.module.qyz.RotationActivity;
 import com.tustar.demo.module.qyz.SurfaceViewActivity;
 import com.tustar.demo.module.qyz.SvgActivity;
 import com.tustar.demo.module.qyz.TintingActivity;
-import com.tustar.demo.module.qyz.overscroll.OverScrollDecoratorHelper;
 import com.tustar.demo.module.recyclerviewdemo.RecyclerViewActivity;
 import com.tustar.demo.module.scrollerdemo.ScrollerActivity;
 import com.tustar.demo.module.servicedemo.ServiceActivity;
@@ -46,8 +45,6 @@ import com.tustar.demo.util.ArrayUtils;
 
 import java.util.ArrayList;
 import java.util.Collections;
-
-import static com.tustar.demo.module.qyz.overscroll.OverScrollDecoratorHelper.ORIENTATION_VERTICAL;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener, AdapterView.OnItemClickListener {
