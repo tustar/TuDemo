@@ -25,5 +25,6 @@
         <item>Scroller</item>
         <item>FlexibleListView</item>
         <item>OverScroll GridView</item>
+        <item>SubScaleView</item>
     </string-array>
 </resources>
