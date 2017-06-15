@@ -39,10 +39,12 @@ import com.tustar.demo.module.qyz.SurfaceViewActivity;
 import com.tustar.demo.module.qyz.SvgActivity;
 import com.tustar.demo.module.qyz.TintingActivity;
 import com.tustar.demo.module.recyclerviewdemo.RecyclerViewActivity;
+import com.tustar.demo.module.ryg.ch2.RygMainActivity;
 import com.tustar.demo.module.scrollerdemo.ScrollerActivity;
 import com.tustar.demo.module.servicedemo.ServiceActivity;
 import com.tustar.demo.module.signal.FloatWindowActivity;
 import com.tustar.demo.util.ArrayUtils;
+import com.tustar.demo.util.Logger;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -50,6 +52,7 @@ import java.util.Collections;
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener, AdapterView.OnItemClickListener {
 
+    private static final String TAG = MainActivity.class.getSimpleName();
     private static ArrayList<Class> sClassList = new ArrayList<>();
 
     // List
@@ -79,6 +82,7 @@ public class MainActivity extends AppCompatActivity
         sClassList.add(FlexibleListViewActivity.class);
         sClassList.add(OverScrollGridViewActivity.class);
         sClassList.add(SubScaleViewActivity.class);
+        sClassList.add(RygMainActivity.class);
         Collections.reverse(sClassList);
     }
 
@@ -88,6 +92,7 @@ public class MainActivity extends AppCompatActivity
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        Logger.i(TAG, "onCreate :: ");
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
@@ -113,6 +118,18 @@ public class MainActivity extends AppCompatActivity
 
         // Init view
         initView();
+    }
+
+    @Override
+    protected void onPause() {
+        Logger.i(TAG, "onPause :: ");
+        super.onPause();
+    }
+
+    @Override
+    protected void onStop() {
+        Logger.i(TAG, "onStop :: ");
+        super.onStop();
     }
 
     private void initView() {

@@ -93,7 +93,14 @@ public class SubScaleViewActivity extends BaseActivity {
     }
 
     @Override
+    protected void onStart() {
+        Logger.i(TAG, "onStart :: ");
+        super.onStart();
+    }
+
+    @Override
     protected void onResume() {
+        Logger.i(TAG, "onResume :: ");
         super.onResume();
         imageLoader.resume();
     }

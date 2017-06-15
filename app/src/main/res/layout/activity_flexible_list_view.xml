@@ -16,14 +16,14 @@
         android:text="@string/vert_drag_label"
         android:textSize="26sp" />
 
-    <ListViewX
+    <ListView
         android:id="@+id/flex_list_view"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_above="@+id/flex_title_bottom"
         android:layout_below="@+id/flex_title_top">
 
-    </ListViewX>
+    </ListView>
 
     <TextView
         android:id="@+id/flex_title_bottom"

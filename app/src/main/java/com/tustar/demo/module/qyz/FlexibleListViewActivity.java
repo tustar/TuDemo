@@ -4,7 +4,6 @@ package com.tustar.demo.module.qyz;
 import android.os.Bundle;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
-import android.widget.ListViewX;
 
 import com.tustar.demo.R;
 import com.tustar.demo.base.BaseActivity;
@@ -22,7 +21,7 @@ public class FlexibleListViewActivity extends BaseActivity {
 
     private void initView() {
 
-        ListViewX listview = (ListViewX) findViewById(R.id.flex_list_view);
+        ListView listview = (ListView) findViewById(R.id.flex_list_view);
         String[] contents = getResources().getStringArray(R.array.content_data);
         ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, contents);
         listview.setAdapter(adapter);
