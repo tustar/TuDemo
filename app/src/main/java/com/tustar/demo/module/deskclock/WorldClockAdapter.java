@@ -24,7 +24,6 @@ import android.widget.TextView;
 import com.tustar.demo.R;
 import com.yanzhenjie.recyclerview.swipe.SwipeMenuAdapter;
 
-
 import java.util.List;
 
 /**

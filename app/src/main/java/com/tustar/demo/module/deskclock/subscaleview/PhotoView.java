@@ -30,8 +30,6 @@ import android.graphics.Point;
 import android.graphics.PointF;
 import android.graphics.Rect;
 import android.graphics.RectF;
-import android.graphics.drawable.BitmapDrawable;
-import android.graphics.drawable.Drawable;
 import android.media.ExifInterface;
 import android.net.Uri;
 import android.os.AsyncTask;
@@ -50,8 +48,6 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewParent;
 
-import com.nostra13.universalimageloader.core.assist.ViewScaleType;
-import com.nostra13.universalimageloader.core.imageaware.ImageAware;
 import com.tustar.demo.R.styleable;
 import com.tustar.demo.module.deskclock.subscaleview.decoder.CompatDecoderFactory;
 import com.tustar.demo.module.deskclock.subscaleview.decoder.DecoderFactory;

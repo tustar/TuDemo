@@ -18,7 +18,7 @@ import com.tustar.demo.util.Logger;
 import java.util.Arrays;
 
 import static com.tustar.demo.module.qyz.overscroll.OverScrollDecoratorHelper.ORIENTATION_VERTICAL;
-import static com.tustar.demo.module.recyclerviewdemo.RcViewAdapter.*;
+import static com.tustar.demo.module.recyclerviewdemo.RcViewAdapter.OnItemClickListener;
 
 public class RecyclerViewActivity extends BaseActivity implements OnItemClickListener {
 

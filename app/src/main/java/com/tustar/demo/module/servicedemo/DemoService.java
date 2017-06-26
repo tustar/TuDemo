@@ -10,8 +10,8 @@ import android.os.Process;
 import android.os.RemoteException;
 import android.support.v4.app.NotificationCompat;
 
-import com.tustar.demo.R;
 import com.tustar.demo.MainActivity;
+import com.tustar.demo.R;
 import com.tustar.demo.service.IDemoAidlService;
 import com.tustar.demo.util.Logger;
 

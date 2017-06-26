@@ -4,7 +4,6 @@ import android.os.Bundle;
 
 import com.tustar.demo.R;
 import com.tustar.demo.base.BaseActivity;
-import com.tustar.demo.module.scrollerdemo.OnePointerDrawView;
 
 public class OtherOnePointerDrawViewActivity extends BaseActivity {
 
