@@ -25,13 +25,13 @@ class RygMainActivity : com.tustar.demo.base.BaseActivity() {
 
         ryg_second_btn.setOnClickListener {
             var intent = Intent()
-            intent.setClass(this, RygSecondActivity.javaClass)
+            intent.setClass(this, RygSecondActivity::class.java)
             startActivity(intent)
         }
 
         ryg_provider_btn.setOnClickListener {
             var intent = Intent()
-            intent.setClass(this, RygProviderActivity.javaClass)
+            intent.setClass(this, RygProviderActivity::class.java)
             startActivity(intent)
         }
 
