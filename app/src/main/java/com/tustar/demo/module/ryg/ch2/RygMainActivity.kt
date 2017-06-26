@@ -14,7 +14,7 @@ import java.io.*
 class RygMainActivity : com.tustar.demo.base.BaseActivity() {
 
     companion object {
-        private val TAG = RygMainActivity::class.java.simpleName
+        private val TAG = RygMainActivity::class.simpleName
         private val FILE_NAME_1 = "cache1.txt"
         private val FILE_NAME_2 = "cache2.txt"
     }
@@ -25,13 +25,13 @@ class RygMainActivity : com.tustar.demo.base.BaseActivity() {
 
         ryg_second_btn.setOnClickListener {
             var intent = Intent()
-            intent.setClass(this, RygSecondActivity::class.java)
+            intent.setClass(this, RygSecondActivity.javaClass)
             startActivity(intent)
         }
 
         ryg_provider_btn.setOnClickListener {
             var intent = Intent()
-            intent.setClass(this, RygProviderActivity::class.java)
+            intent.setClass(this, RygProviderActivity.javaClass)
             startActivity(intent)
         }
 

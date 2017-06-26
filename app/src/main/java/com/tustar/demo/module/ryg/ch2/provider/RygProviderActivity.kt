@@ -12,7 +12,7 @@ import com.tustar.demo.util.Logger
 class RygProviderActivity : BaseActivity() {
 
     companion object {
-        private var TAG = RygProviderActivity::class.java.simpleName
+        private var TAG = RygProviderActivity::class.simpleName
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {

@@ -15,13 +15,13 @@ import com.tustar.demo.util.Logger
 class BookProvider : ContentProvider() {
 
     companion object {
-        private var TAG = BookProvider::class.java.simpleName
-        var AUTHORITY = "com.tustar.demo.module.ryg.ch2.provider"
-        var BOOK_CONTENT_URI = Uri.parse("content://" + AUTHORITY + "/book")
-        var USER_CONTENT_URI = Uri.parse("content://" + AUTHORITY + "/user")
-        var BOOK_URI_CODE = 0
-        var USER_URI_CODE = 1
-        private var sUriMatcher = UriMatcher(UriMatcher.NO_MATCH)
+        private val TAG = BookProvider::class.simpleName
+        val AUTHORITY = "com.tustar.demo.module.ryg.ch2.provider"
+        val BOOK_CONTENT_URI = Uri.parse("content://" + AUTHORITY + "/book")
+        val USER_CONTENT_URI = Uri.parse("content://" + AUTHORITY + "/user")
+        val BOOK_URI_CODE = 0
+        val USER_URI_CODE = 1
+        private val sUriMatcher = UriMatcher(UriMatcher.NO_MATCH)
 
         init {
             sUriMatcher.addURI(AUTHORITY, "book", BOOK_URI_CODE)
@@ -40,7 +40,7 @@ class BookProvider : ContentProvider() {
         mWdb = helper.writableDatabase
         mRdb = helper.readableDatabase
         mWdb!!.execSQL("delete from " + DbOpenHelper.BOOK_TABLE_NAME)
-        mWdb!!.execSQL("delete from " + DbOpenHelper.USER_TALBE_NAME)
+        mWdb!!.execSQL("delete from " + DbOpenHelper.USER_TABLE_NAME)
         initData()
         return true
     }
@@ -98,7 +98,7 @@ class BookProvider : ContentProvider() {
         var tableName: String? = null
         when (sUriMatcher.match(uri)) {
             BOOK_URI_CODE -> tableName = DbOpenHelper.BOOK_TABLE_NAME
-            USER_URI_CODE -> tableName = DbOpenHelper.USER_TALBE_NAME
+            USER_URI_CODE -> tableName = DbOpenHelper.USER_TABLE_NAME
             else -> {
             }
         }

@@ -15,18 +15,19 @@ class DbOpenHelper(context: Context?, name: String?, factory: SQLiteDatabase.Cur
     constructor(context: Context?) : this(context, DB_NAME, null, DB_VERSION, null)
 
     companion object {
-        private var DB_NAME = "book_provider.db"
-        private var DB_VERSION = 1
-        var BOOK_TABLE_NAME = "book"
-        var USER_TALBE_NAME = "user"
+        private val DB_NAME = "book_provider.db"
+        private val DB_VERSION = 1
+
+        val BOOK_TABLE_NAME = "book"
+        val USER_TABLE_NAME = "user"
+
+        private val CREATE_BOOK_TABLE = "CREATE TABLE IF NOT EXISTS " +
+                BOOK_TABLE_NAME + "(_id INTEGER PRIMARY KEY," + "name TEXT)"
+
+        private val CREATE_USER_TABLE = "CREATE TABLE IF NOT EXISTS " +
+                USER_TABLE_NAME + "(_id INTEGER PRIMARY KEY," + "name TEXT," + "sex INT)"
     }
 
-
-    private val CREATE_BOOK_TABLE = "CREATE TABLE IF NOT EXISTS " +
-            BOOK_TABLE_NAME + "(_id INTEGER PRIMARY KEY," + "name TEXT)"
-
-    private val CREATE_USER_TABLE = "CREATE TABLE IF NOT EXISTS " +
-            USER_TALBE_NAME + "(_id INTEGER PRIMARY KEY," + "name TEXT," + "sex INT)"
 
     override fun onCreate(db: SQLiteDatabase) {
         db.execSQL(CREATE_BOOK_TABLE)

@@ -99,6 +99,7 @@
         </activity>
 
         <!-- Ren yu gang -->
+        <activity android:name=".module.ryg.RygArtMainActivity"/>
         <activity android:name=".module.ryg.ch2.RygMainActivity">
         </activity>
         <activity
@@ -118,6 +119,7 @@
 
         <activity android:name=".module.ryg.ch2.provider.RygProviderActivity">
         </activity>
+
     </application>
 
 </manifest>

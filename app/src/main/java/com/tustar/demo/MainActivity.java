@@ -39,6 +39,7 @@ import com.tustar.demo.module.qyz.SurfaceViewActivity;
 import com.tustar.demo.module.qyz.SvgActivity;
 import com.tustar.demo.module.qyz.TintingActivity;
 import com.tustar.demo.module.recyclerviewdemo.RecyclerViewActivity;
+import com.tustar.demo.module.ryg.RygArtMainActivity;
 import com.tustar.demo.module.ryg.ch2.RygMainActivity;
 import com.tustar.demo.module.scrollerdemo.ScrollerActivity;
 import com.tustar.demo.module.servicedemo.ServiceActivity;
@@ -82,7 +83,7 @@ public class MainActivity extends AppCompatActivity
         sClassList.add(FlexibleListViewActivity.class);
         sClassList.add(OverScrollGridViewActivity.class);
         sClassList.add(SubScaleViewActivity.class);
-        sClassList.add(RygMainActivity.class);
+        sClassList.add(RygArtMainActivity.class);
         Collections.reverse(sClassList);
     }
 
