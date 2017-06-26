@@ -9,6 +9,7 @@
     <uses-permission android:name="android.permission.GET_ACCOUNTS"/>
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="com.tustar.PROVIDER"/>
 
     <application
         android:name=".TuApplication"
@@ -97,7 +98,7 @@
         <activity android:name=".module.deskclock.SubScaleViewActivity">
         </activity>
 
-        <!--Ren yu gang-->
+        <!-- Ren yu gang -->
         <activity android:name=".module.ryg.ch2.RygMainActivity">
         </activity>
         <activity
@@ -107,6 +108,15 @@
         <activity
             android:name=".module.ryg.ch2.RygThirdActivity"
             android:process="com.tustar.demo.remote">
+        </activity>
+
+        <provider
+            android:name=".module.ryg.ch2.provider.BookProvider"
+            android:authorities="com.tustar.demo.module.ryg.ch2.provider"
+            android:permission="com.tustar.PROVIDER"
+            android:process=":provider"/>
+
+        <activity android:name=".module.ryg.ch2.provider.RygProviderActivity">
         </activity>
     </application>
 

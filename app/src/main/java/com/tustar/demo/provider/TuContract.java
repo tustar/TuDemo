@@ -22,7 +22,7 @@ public final class TuContract {
     private TuContract() {}
 
     /**
-     * Constants for the Histories table, which contains the user created histories.
+     * MyConstants for the Histories table, which contains the user created histories.
      */
     protected interface HistoriesColumns extends BaseColumns {
 

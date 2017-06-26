@@ -1,10 +1,14 @@
 package com.tustar.demo.module.ryg.ch2
 
 import android.content.Context
+import android.content.Intent
+import com.tustar.demo.module.ryg.ch2.manager.UserManager
+import com.tustar.demo.module.ryg.ch2.model.User
+import com.tustar.demo.module.ryg.ch2.provider.RygProviderActivity
+import com.tustar.demo.module.ryg.ch2.utils.MyConstants
 import com.tustar.demo.util.Logger
 import kotlinx.android.synthetic.main.activity_ryg_main.*
-import java.io.ObjectInputStream
-import java.io.ObjectOutputStream
+import java.io.*
 
 
 class RygMainActivity : com.tustar.demo.base.BaseActivity() {
@@ -20,8 +24,14 @@ class RygMainActivity : com.tustar.demo.base.BaseActivity() {
         setContentView(com.tustar.demo.R.layout.activity_ryg_main)
 
         ryg_second_btn.setOnClickListener {
-            var intent = android.content.Intent()
-            intent.setClass(this@RygMainActivity, RygSecondActivity::class.java)
+            var intent = Intent()
+            intent.setClass(this, RygSecondActivity::class.java)
+            startActivity(intent)
+        }
+
+        ryg_provider_btn.setOnClickListener {
+            var intent = Intent()
+            intent.setClass(this, RygProviderActivity::class.java)
             startActivity(intent)
         }
 
@@ -51,5 +61,30 @@ class RygMainActivity : com.tustar.demo.base.BaseActivity() {
 //        var newUser2 = input2.readObject()
 //        input2.close()
 //        Logger.d(TAG, "newUser2 = " + newUser2)
+    }
+
+    override fun onResume() {
+        super.onResume()
+
+        persistToFile()
+    }
+
+    private fun persistToFile() {
+        Thread(Runnable {
+            var user = User(1, "hello world", false)
+            var dir = File(MyConstants.CHAPTER_2_PATH)
+            if (!dir.exists()) {
+                dir.mkdirs()
+            }
+            var cachedFile = File(MyConstants.CACHE_FILE_PATH)
+            try {
+                ObjectOutputStream(FileOutputStream(cachedFile)).use { oos ->
+                        oos.writeObject(user)
+                        Logger.d(TAG, "persistToFile :: user = " + user)
+                }
+            } catch (e: FileNotFoundException) {
+                e.printStackTrace()
+            }
+        }).start()
     }
 }

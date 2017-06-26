@@ -1,4 +1,4 @@
-package com.tustar.demo.module.ryg.ch2
+package com.tustar.demo.module.ryg.ch2.model
 
 import android.os.Parcel
 import android.os.Parcelable
@@ -6,7 +6,18 @@ import android.os.Parcelable
 /**
  * Created by tustar on 17-6-15.
  */
-class Book(var id: Int, var name: String) : Parcelable {
+class Book : Parcelable {
+
+    var id: Int = 0
+    var name: String? = null
+
+    constructor()
+
+    constructor(id: Int, name: String) : this() {
+        this.id = id
+        this.name = name
+    }
+
     companion object {
         @JvmField val CREATOR: Parcelable.Creator<Book> = object : Parcelable.Creator<Book> {
             override fun createFromParcel(source: Parcel): Book = Book(source)
@@ -15,8 +26,8 @@ class Book(var id: Int, var name: String) : Parcelable {
     }
 
     constructor(source: Parcel) : this(
-    source.readInt(),
-    source.readString()
+            source.readInt(),
+            source.readString()
     )
 
     override fun describeContents() = 0
@@ -29,6 +40,4 @@ class Book(var id: Int, var name: String) : Parcelable {
     override fun toString(): String {
         return "Book(id=$id, name='$name')"
     }
-
-
 }
