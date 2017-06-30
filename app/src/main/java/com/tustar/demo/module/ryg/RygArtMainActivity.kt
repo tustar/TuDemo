@@ -16,19 +16,17 @@ import kotlin.collections.ArrayList
 
 class RygArtMainActivity : BaseActivity(), SimpleListItem1Adapter.OnItemClickListener {
 
-    companion object {
-        private val TAG = RygArtMainActivity::class.simpleName
-        private val sClassList = ArrayList<Class<*>>()
-        private val sDescList = ArrayList<String>()
+    private val TAG = RygArtMainActivity::class.simpleName
+    private val sClassList = ArrayList<Class<*>>()
+    private val sDescList = ArrayList<String>()
 
-        // List
-        init {
-            sClassList.add(RygMainActivity::class.java)
-            sDescList.add("Chapter02")
-            //
-            Collections.reverse(sClassList)
-            Collections.reverse(sDescList)
-        }
+    // List
+    init {
+        sClassList.add(RygMainActivity::class.java)
+        sDescList.add("Chapter02")
+        //
+        Collections.reverse(sClassList)
+        Collections.reverse(sDescList)
     }
 
 
@@ -42,7 +40,7 @@ class RygArtMainActivity : BaseActivity(), SimpleListItem1Adapter.OnItemClickLis
         Logger.d(TAG, "onCreate :: " + sDescList)
         ryg_art_main.adapter = adapter
         adapter!!.setOnItemClickListener(this)
-        ryg_art_main.addItemDecoration(Decoration(this, Decoration.VERTICAL ))
+        ryg_art_main.addItemDecoration(Decoration(this, Decoration.VERTICAL))
 
         title = getString(R.string.ryg_main_title)
     }

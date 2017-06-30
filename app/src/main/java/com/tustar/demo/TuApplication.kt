@@ -9,9 +9,7 @@ import com.tustar.demo.util.Logger
  */
 class TuApplication : Application() {
 
-    companion object {
-        private var TAG = TuApplication::class.simpleName
-    }
+    private var TAG = TuApplication::class.simpleName
 
     override fun onCreate() {
         super.onCreate()

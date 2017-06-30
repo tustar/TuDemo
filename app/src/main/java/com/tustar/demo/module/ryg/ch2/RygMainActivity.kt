@@ -13,11 +13,9 @@ import java.io.*
 
 class RygMainActivity : com.tustar.demo.base.BaseActivity() {
 
-    companion object {
-        private val TAG = RygMainActivity::class.simpleName
-        private val FILE_NAME_1 = "cache1.txt"
-        private val FILE_NAME_2 = "cache2.txt"
-    }
+    private val TAG = RygMainActivity::class.simpleName
+    private val FILE_NAME_1 = "cache1.txt"
+    private val FILE_NAME_2 = "cache2.txt"
 
     override fun onCreate(savedInstanceState: android.os.Bundle?) {
         super.onCreate(savedInstanceState)
@@ -79,8 +77,8 @@ class RygMainActivity : com.tustar.demo.base.BaseActivity() {
             var cachedFile = File(MyConstants.CACHE_FILE_PATH)
             try {
                 ObjectOutputStream(FileOutputStream(cachedFile)).use { oos ->
-                        oos.writeObject(user)
-                        Logger.d(TAG, "persistToFile :: user = " + user)
+                    oos.writeObject(user)
+                    Logger.d(TAG, "persistToFile :: user = " + user)
                 }
             } catch (e: FileNotFoundException) {
                 e.printStackTrace()

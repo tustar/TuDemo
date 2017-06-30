@@ -112,6 +112,16 @@
             android:name=".module.ryg.ch2.RygThirdActivity"
             android:process="com.tustar.demo.remote">
         </activity>
+        <activity android:name=".module.ryg.ch2.provider.RygProviderActivity">
+        </activity>
+
+        <service
+            android:name=".module.ryg.ch2.messenger.MessengerService"
+            android:process=":remote">
+            <intent-filter>
+                <action android:name="com.tustar.MessengerService.launch"/>
+            </intent-filter>
+        </service>
 
         <provider
             android:name=".module.ryg.ch2.provider.BookProvider"
@@ -119,8 +129,6 @@
             android:permission="com.tustar.PROVIDER"
             android:process=":provider"/>
 
-        <activity android:name=".module.ryg.ch2.provider.RygProviderActivity">
-        </activity>
 
         <!-- FileManager demo -->
         <activity
