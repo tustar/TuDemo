@@ -1,4 +1,4 @@
-package com.tustar.demo.adapter;
+package com.tustar.demo.module.recyclerviewdemo;
 
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
