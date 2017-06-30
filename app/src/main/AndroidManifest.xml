@@ -14,8 +14,10 @@
     <application
         android:name=".TuApplication"
         android:allowBackup="true"
+        android:hardwareAccelerated="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
+        android:largeHeap="true"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
@@ -120,6 +122,12 @@
         <activity android:name=".module.ryg.ch2.provider.RygProviderActivity">
         </activity>
 
+        <!-- FileManager demo -->
+        <activity
+            android:name=".module.filemanager.GifPlayerActivity"
+            android:hardwareAccelerated="false"/>
+        <activity android:name=".module.filemanager.AndroidGifDrawableActivity">
+        </activity>
     </application>
 
 </manifest>

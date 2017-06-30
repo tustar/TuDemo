@@ -27,5 +27,7 @@
         <item>OverScroll GridView</item>
         <item>SubScaleView</item>
         <item>Android Art</item>
+        <item>GifPlayer</item>
+        <item>Android Gif Drawable</item>
     </string-array>
 </resources>

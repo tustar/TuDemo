@@ -6,6 +6,9 @@
 
     <string name="action_settings">Settings</string>
 
+    <!--Custom-->
+    <string name="image_no_exist">图片不存在</string>
+
     <!--Nav header-->
     <string name="nav_header_name">Tustar</string>
     <string name="nav_header_email">tustar1030@gmail.com</string>
@@ -59,6 +62,7 @@
         Q 50, 85 70, 65
     </string>
 
+    <!--Drag-->
     <string name="horiz_drag_label">⇔ Drag Horizontally</string>
     <string name="vert_drag_label">⇳ Drag Vertically</string>
 </resources>

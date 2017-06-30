@@ -16,6 +16,9 @@ import com.tustar.demo.base.BaseActivity;
 import com.tustar.demo.module.deskclock.subscaleview.ImageSource;
 import com.tustar.demo.module.deskclock.subscaleview.PhotoView;
 import com.tustar.demo.util.Logger;
+import com.tustar.demo.util.ToastUtils;
+
+import java.io.File;
 
 public class SubScaleViewActivity extends BaseActivity {
 
@@ -55,10 +58,19 @@ public class SubScaleViewActivity extends BaseActivity {
                 .build();
 //        String uri = "assets://weibo_long_image.png";
         String uri = "file:///storage/emulated/0/Screenshot_2017-05-24-15-13-56-1692626583.png";
+        if (!new File(uri).exists()) {
+            ToastUtils.showLong(this, R.string.image_no_exist);
+            return;
+        }
         ImageSize targetSize = null;
         BitmapFactory.Options opts = new BitmapFactory.Options();
         opts.inJustDecodeBounds = true;
-        BitmapFactory.decodeFile("/storage/emulated/0/Screenshot_2017-05-24-15-13-56-1692626583.png", opts);
+        String pathName = "/storage/emulated/0/Screenshot_2017-05-24-15-13-56-1692626583.png";
+        if (!new File(pathName).exists()) {
+            ToastUtils.showLong(this, R.string.image_no_exist);
+            return;
+        }
+        BitmapFactory.decodeFile(pathName, opts);
         int imageWidth = opts.outWidth;
         int imageHeight = opts.outHeight;
         Logger.d(TAG, "onCreate :: (" + imageWidth + ", " + imageHeight + ")");

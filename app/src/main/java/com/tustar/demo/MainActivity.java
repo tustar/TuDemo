@@ -17,6 +17,7 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
+import com.tustar.demo.common.CommonDefine;
 import com.tustar.demo.module.account.AccountActivity;
 import com.tustar.demo.module.anim.viewanim.HideActionBarActivity;
 import com.tustar.demo.module.anim.viewanim.ViewAnimActivity;
@@ -26,6 +27,8 @@ import com.tustar.demo.module.deskclock.DeskClockActivity;
 import com.tustar.demo.module.deskclock.SubScaleViewActivity;
 import com.tustar.demo.module.dragsortlistview.DragSortListViewActivity;
 import com.tustar.demo.module.dragview.DragViewActivity;
+import com.tustar.demo.module.filemanager.AndroidGifDrawableActivity;
+import com.tustar.demo.module.filemanager.GifPlayerActivity;
 import com.tustar.demo.module.loaderdemo.LoaderActivity;
 import com.tustar.demo.module.providerdemo.ProviderActivity;
 import com.tustar.demo.module.qyz.AnimMainActivity;
@@ -54,6 +57,7 @@ public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener, AdapterView.OnItemClickListener {
 
     private static final String TAG = MainActivity.class.getSimpleName();
+
     private static ArrayList<Class> sClassList = new ArrayList<>();
 
     // List
@@ -84,6 +88,8 @@ public class MainActivity extends AppCompatActivity
         sClassList.add(OverScrollGridViewActivity.class);
         sClassList.add(SubScaleViewActivity.class);
         sClassList.add(RygArtMainActivity.class);
+        sClassList.add(GifPlayerActivity.class);
+        sClassList.add(AndroidGifDrawableActivity.class);
         Collections.reverse(sClassList);
     }
 
@@ -207,6 +213,10 @@ public class MainActivity extends AppCompatActivity
         Class<?> clazz = sClassList.get(position);
         if (null != clazz) {
             intent.setClass(this, clazz);
+            if (clazz == GifPlayerActivity.class) {
+                intent.putExtra(GifPlayerActivity.GIF_FILE_PATH,
+                        CommonDefine.TEST_GIF);
+            }
             startActivity(intent);
         }
     }

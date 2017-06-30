@@ -51,6 +51,7 @@ dependencies {
     compile 'com.yanzhenjie:recyclerview-swipe:1.0.2'
     compile 'com.android.support.constraint:constraint-layout:1.0.0-alpha8'
     compile 'com.android.support:support-v4:26.0.0-alpha1'
+    compile 'pl.droidsonroids.gif:android-gif-drawable:1.2.7'
     testCompile 'junit:junit:4.12'
     annotationProcessor 'com.jakewharton:butterknife-compiler:8.6.0'
     apt 'com.android.databinding:compiler:2.3.0'

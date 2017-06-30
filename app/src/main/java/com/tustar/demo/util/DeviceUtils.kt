@@ -13,12 +13,6 @@ object DeviceUtils {
     fun getProcessName(context: Context): String? {
         var pid = Process.myPid()
         var am = context.getSystemService(Context.ACTIVITY_SERVICE) as ActivityManager
-        am.runningAppProcesses.forEach {
-            if (it.pid == pid) {
-                return it.processName
-            }
-        }
-
-        return null
+        return  am.runningAppProcesses.firstOrNull { it.pid == pid }?.processName
     }
 }
