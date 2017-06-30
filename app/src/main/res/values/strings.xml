@@ -65,4 +65,7 @@
     <!--Drag-->
     <string name="horiz_drag_label">⇔ Drag Horizontally</string>
     <string name="vert_drag_label">⇳ Drag Vertically</string>
+
+    <!--Ryg-->
+    <string name="ryg_main_title">Android开发艺术探索</string>
 </resources>

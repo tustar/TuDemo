@@ -43,6 +43,8 @@ class RygArtMainActivity : BaseActivity(), SimpleListItem1Adapter.OnItemClickLis
         ryg_art_main.adapter = adapter
         adapter!!.setOnItemClickListener(this)
         ryg_art_main.addItemDecoration(Decoration(this, Decoration.VERTICAL ))
+
+        title = getString(R.string.ryg_main_title)
     }
 
     override fun onItemClick(view: View, position: Int) {
