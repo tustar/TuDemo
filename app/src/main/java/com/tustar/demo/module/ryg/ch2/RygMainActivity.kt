@@ -2,7 +2,9 @@ package com.tustar.demo.module.ryg.ch2
 
 import android.content.Context
 import android.content.Intent
+import android.os.Messenger
 import com.tustar.demo.module.ryg.ch2.manager.UserManager
+import com.tustar.demo.module.ryg.ch2.messenger.MessengerActivity
 import com.tustar.demo.module.ryg.ch2.model.User
 import com.tustar.demo.module.ryg.ch2.provider.RygProviderActivity
 import com.tustar.demo.module.ryg.ch2.utils.MyConstants
@@ -13,9 +15,11 @@ import java.io.*
 
 class RygMainActivity : com.tustar.demo.base.BaseActivity() {
 
-    private val TAG = RygMainActivity::class.simpleName
-    private val FILE_NAME_1 = "cache1.txt"
-    private val FILE_NAME_2 = "cache2.txt"
+    companion object {
+        private val TAG = RygMainActivity::class.simpleName
+        private val FILE_NAME_1 = "cache1.txt"
+        private val FILE_NAME_2 = "cache2.txt"
+    }
 
     override fun onCreate(savedInstanceState: android.os.Bundle?) {
         super.onCreate(savedInstanceState)
@@ -24,12 +28,6 @@ class RygMainActivity : com.tustar.demo.base.BaseActivity() {
         ryg_second_btn.setOnClickListener {
             var intent = Intent()
             intent.setClass(this, RygSecondActivity::class.java)
-            startActivity(intent)
-        }
-
-        ryg_provider_btn.setOnClickListener {
-            var intent = Intent()
-            intent.setClass(this, RygProviderActivity::class.java)
             startActivity(intent)
         }
 
@@ -77,8 +75,8 @@ class RygMainActivity : com.tustar.demo.base.BaseActivity() {
             var cachedFile = File(MyConstants.CACHE_FILE_PATH)
             try {
                 ObjectOutputStream(FileOutputStream(cachedFile)).use { oos ->
-                    oos.writeObject(user)
-                    Logger.d(TAG, "persistToFile :: user = " + user)
+                        oos.writeObject(user)
+                        Logger.d(TAG, "persistToFile :: user = " + user)
                 }
             } catch (e: FileNotFoundException) {
                 e.printStackTrace()

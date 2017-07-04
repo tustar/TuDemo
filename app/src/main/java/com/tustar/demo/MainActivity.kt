@@ -42,40 +42,43 @@ import java.util.*
 class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener,
         SimpleListItem1Adapter.OnItemClickListener {
 
-    private val TAG = MainActivity::class.java.simpleName
-    private val sClassList = ArrayList<Class<*>>()
+    companion object {
 
-    // List
-    init {
-        sClassList.add(RecyclerViewActivity::class.java)
-        sClassList.add(RotationActivity::class.java)
-        sClassList.add(PaletteActivity::class.java)
-        sClassList.add(TintingActivity::class.java)
-        sClassList.add(ElevationActivity::class.java)
-        sClassList.add(ClippingActivity::class.java)
-        sClassList.add(AnimMainActivity::class.java)
-        sClassList.add(CustomWidgetActivity::class.java)
-        sClassList.add(FloatWindowActivity::class.java)
-        sClassList.add(DragSortListViewActivity::class.java)
-        sClassList.add(SurfaceViewActivity::class.java)
-        sClassList.add(DragViewActivity::class.java)
-        sClassList.add(ViewAnimActivity::class.java)
-        sClassList.add(LoaderActivity::class.java)
-        sClassList.add(SvgActivity::class.java)
-        sClassList.add(ServiceActivity::class.java)
-        sClassList.add(HideActionBarActivity::class.java)
-        sClassList.add(AccountActivity::class.java)
-        sClassList.add(ProviderActivity::class.java)
-        sClassList.add(DeskClockActivity::class.java)
-        sClassList.add(HistoryActivity::class.java)
-        sClassList.add(ScrollerActivity::class.java)
-        sClassList.add(FlexibleListViewActivity::class.java)
-        sClassList.add(OverScrollGridViewActivity::class.java)
-        sClassList.add(SubScaleViewActivity::class.java)
-        sClassList.add(RygArtMainActivity::class.java)
-        sClassList.add(GifPlayerActivity::class.java)
-        sClassList.add(AndroidGifDrawableActivity::class.java)
-        Collections.reverse(sClassList)
+        private val TAG = MainActivity::class.java.simpleName
+        private val sClassList = ArrayList<Class<*>>()
+
+        // List
+        init {
+            sClassList.add(RecyclerViewActivity::class.java)
+            sClassList.add(RotationActivity::class.java)
+            sClassList.add(PaletteActivity::class.java)
+            sClassList.add(TintingActivity::class.java)
+            sClassList.add(ElevationActivity::class.java)
+            sClassList.add(ClippingActivity::class.java)
+            sClassList.add(AnimMainActivity::class.java)
+            sClassList.add(CustomWidgetActivity::class.java)
+            sClassList.add(FloatWindowActivity::class.java)
+            sClassList.add(DragSortListViewActivity::class.java)
+            sClassList.add(SurfaceViewActivity::class.java)
+            sClassList.add(DragViewActivity::class.java)
+            sClassList.add(ViewAnimActivity::class.java)
+            sClassList.add(LoaderActivity::class.java)
+            sClassList.add(SvgActivity::class.java)
+            sClassList.add(ServiceActivity::class.java)
+            sClassList.add(HideActionBarActivity::class.java)
+            sClassList.add(AccountActivity::class.java)
+            sClassList.add(ProviderActivity::class.java)
+            sClassList.add(DeskClockActivity::class.java)
+            sClassList.add(HistoryActivity::class.java)
+            sClassList.add(ScrollerActivity::class.java)
+            sClassList.add(FlexibleListViewActivity::class.java)
+            sClassList.add(OverScrollGridViewActivity::class.java)
+            sClassList.add(SubScaleViewActivity::class.java)
+            sClassList.add(RygArtMainActivity::class.java)
+            sClassList.add(GifPlayerActivity::class.java)
+            sClassList.add(AndroidGifDrawableActivity::class.java)
+            sClassList.reverse()
+        }
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -91,7 +94,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 
         val toggle = ActionBarDrawerToggle(
                 this, drawer_layout, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close)
-        drawer_layout.setDrawerListener(toggle)
+        drawer_layout.addDrawerListener(toggle)
         toggle.syncState()
 
         nav_view.setNavigationItemSelectedListener(this)
@@ -170,13 +173,11 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
     override fun onItemClick(view: View, position: Int) {
         val intent = Intent()
         val clazz = sClassList[position]
-        if (null != clazz) {
-            intent.setClass(this, clazz)
-            if (clazz == GifPlayerActivity::class.java) {
-                intent.putExtra(GifPlayerActivity.GIF_FILE_PATH,
-                        CommonDefine.TEST_GIF)
-            }
-            startActivity(intent)
+        intent.setClass(this, clazz)
+        if (clazz == GifPlayerActivity::class.java) {
+            intent.putExtra(GifPlayerActivity.GIF_FILE_PATH,
+                    CommonDefine.TEST_GIF)
         }
+        startActivity(intent)
     }
 }

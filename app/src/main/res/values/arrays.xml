@@ -26,8 +26,26 @@
         <item>FlexibleListView</item>
         <item>OverScroll GridView</item>
         <item>SubScaleView</item>
-        <item>Android Art</item>
+        <item>@string/ryg_main_title</item>
         <item>GifPlayer</item>
         <item>Android Gif Drawable</item>
+    </string-array>
+
+    <string-array name="ryg_art_chapters">
+        <item>@string/ryg_ch1_title</item>
+        <item>@string/ryg_ch2_title</item>
+        <item>@string/ryg_ch3_title</item>
+        <item>@string/ryg_ch4_title</item>
+        <item>@string/ryg_ch5_title</item>
+        <item>@string/ryg_ch6_title</item>
+        <item>@string/ryg_ch7_title</item>
+        <item>@string/ryg_ch8_title</item>
+        <item>@string/ryg_ch9_title</item>
+        <item>@string/ryg_ch10_title</item>
+        <item>@string/ryg_ch11_title</item>
+        <item>@string/ryg_ch12_title</item>
+        <item>@string/ryg_ch13_title</item>
+        <item>@string/ryg_ch14_title</item>
+        <item>@string/ryg_ch15_title</item>
     </string-array>
 </resources>

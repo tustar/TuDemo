@@ -18,15 +18,4 @@
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintTop_toTopOf="parent"/>
 
-    <Button
-        android:id="@+id/ryg_provider_btn"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="20dp"
-        android:layout_marginTop="69dp"
-        android:text="Provider"
-        app:layout_constraintLeft_toLeftOf="@id/ryg_second_btn"
-        app:layout_constraintTop_toBottomOf="@+id/ryg_second_btn"/>
-
-
 </android.support.constraint.ConstraintLayout>

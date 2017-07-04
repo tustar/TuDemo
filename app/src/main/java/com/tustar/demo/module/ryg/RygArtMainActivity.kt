@@ -7,26 +7,51 @@ import android.view.View
 import com.tustar.demo.R
 import com.tustar.demo.adapter.SimpleListItem1Adapter
 import com.tustar.demo.base.BaseActivity
-import com.tustar.demo.module.ryg.ch2.RygMainActivity
+import com.tustar.demo.module.ryg.ch1.RygCh1Activity
+import com.tustar.demo.module.ryg.ch10.RygCh10Activity
+import com.tustar.demo.module.ryg.ch11.RygCh11Activity
+import com.tustar.demo.module.ryg.ch12.RygCh12Activity
+import com.tustar.demo.module.ryg.ch13.RygCh13Activity
+import com.tustar.demo.module.ryg.ch14.RygCh14Activity
+import com.tustar.demo.module.ryg.ch15.RygCh15Activity
+import com.tustar.demo.module.ryg.ch2.RygCh2Activity
+import com.tustar.demo.module.ryg.ch3.RygCh3Activity
+import com.tustar.demo.module.ryg.ch4.RygCh4Activity
+import com.tustar.demo.module.ryg.ch5.RygCh5Activity
+import com.tustar.demo.module.ryg.ch6.RygCh6Activity
+import com.tustar.demo.module.ryg.ch7.RygCh7Activity
+import com.tustar.demo.module.ryg.ch8.RygCh8Activity
+import com.tustar.demo.module.ryg.ch9.RygCh9Activity
 import com.tustar.demo.util.Logger
 import com.tustar.demo.widget.Decoration
 import kotlinx.android.synthetic.main.activity_ryg_art_main.*
-import java.util.*
-import kotlin.collections.ArrayList
 
 class RygArtMainActivity : BaseActivity(), SimpleListItem1Adapter.OnItemClickListener {
 
-    private val TAG = RygArtMainActivity::class.simpleName
-    private val sClassList = ArrayList<Class<*>>()
-    private val sDescList = ArrayList<String>()
+    companion object {
+        private val TAG = RygArtMainActivity::class.simpleName
+        private val sClassList = ArrayList<Class<*>>()
 
-    // List
-    init {
-        sClassList.add(RygMainActivity::class.java)
-        sDescList.add("Chapter02")
-        //
-        Collections.reverse(sClassList)
-        Collections.reverse(sDescList)
+        // List
+        init {
+            sClassList.run {
+                add(RygCh1Activity::class.java)
+                add(RygCh2Activity::class.java)
+                add(RygCh3Activity::class.java)
+                add(RygCh4Activity::class.java)
+                add(RygCh5Activity::class.java)
+                add(RygCh6Activity::class.java)
+                add(RygCh7Activity::class.java)
+                add(RygCh8Activity::class.java)
+                add(RygCh9Activity::class.java)
+                add(RygCh10Activity::class.java)
+                add(RygCh11Activity::class.java)
+                add(RygCh12Activity::class.java)
+                add(RygCh13Activity::class.java)
+                add(RygCh14Activity::class.java)
+                add(RygCh15Activity::class.java)
+            }
+        }
     }
 
 
@@ -34,24 +59,21 @@ class RygArtMainActivity : BaseActivity(), SimpleListItem1Adapter.OnItemClickLis
         Logger.i(TAG, "onCreate ::")
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_ryg_art_main)
+        title = getString(R.string.ryg_main_title)
 
         ryg_art_main.layoutManager = LinearLayoutManager(this)
-        var adapter = SimpleListItem1Adapter(sDescList)
-        Logger.d(TAG, "onCreate :: " + sDescList)
+        var desc = resources.getStringArray(R.array.ryg_art_chapters).toList()
+        var adapter = SimpleListItem1Adapter(desc)
         ryg_art_main.adapter = adapter
-        adapter!!.setOnItemClickListener(this)
+        adapter.setOnItemClickListener(this)
         ryg_art_main.addItemDecoration(Decoration(this, Decoration.VERTICAL))
-
-        title = getString(R.string.ryg_main_title)
     }
 
     override fun onItemClick(view: View, position: Int) {
         Logger.i(TAG, "onItemClick :: view = $view, position = $position")
         val intent = Intent()
         val clazz = sClassList[position]
-        if (null != clazz) {
-            intent.setClass(this, clazz)
-            startActivity(intent)
-        }
+        intent.setClass(this, clazz)
+        startActivity(intent)
     }
 }

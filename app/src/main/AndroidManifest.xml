@@ -102,6 +102,10 @@
 
         <!-- Ren yu gang -->
         <activity android:name=".module.ryg.RygArtMainActivity"/>
+        <!--Ryg.ch1-->
+        <activity android:name=".module.ryg.ch1.RygCh1Activity">
+        </activity>
+        <!--Ryg.ch2-->
         <activity android:name=".module.ryg.ch2.RygMainActivity">
         </activity>
         <activity
@@ -122,6 +126,10 @@
                 <action android:name="com.tustar.MessengerService.launch"/>
             </intent-filter>
         </service>
+        <service
+            android:name=".module.ryg.ch2.aidl.BookManagerService"
+            android:process=":remote">
+        </service>
 
         <provider
             android:name=".module.ryg.ch2.provider.BookProvider"
@@ -129,6 +137,38 @@
             android:permission="com.tustar.PROVIDER"
             android:process=":provider"/>
 
+        <activity android:name=".module.ryg.ch2.messenger.MessengerActivity">
+        </activity>
+        <activity android:name=".module.ryg.ch2.aidl.BookManagerActivity">
+        </activity>
+        <activity android:name=".module.ryg.ch2.RygCh2Activity">
+        </activity>
+        <activity android:name=".module.ryg.ch3.RygCh3Activity">
+        </activity>
+        <activity android:name=".module.ryg.ch4.RygCh4Activity">
+        </activity>
+        <activity android:name=".module.ryg.ch5.RygCh5Activity">
+        </activity>
+        <activity android:name=".module.ryg.ch6.RygCh6Activity">
+        </activity>
+        <activity android:name=".module.ryg.ch7.RygCh7Activity">
+        </activity>
+        <activity android:name=".module.ryg.ch8.RygCh8Activity">
+        </activity>
+        <activity android:name=".module.ryg.ch9.RygCh9Activity">
+        </activity>
+        <activity android:name=".module.ryg.ch10.RygCh10Activity">
+        </activity>
+        <activity android:name=".module.ryg.ch11.RygCh11Activity">
+        </activity>
+        <activity android:name=".module.ryg.ch12.RygCh12Activity">
+        </activity>
+        <activity android:name=".module.ryg.ch13.RygCh13Activity">
+        </activity>
+        <activity android:name=".module.ryg.ch14.RygCh14Activity">
+        </activity>
+        <activity android:name=".module.ryg.ch15.RygCh15Activity">
+        </activity>
 
         <!-- FileManager demo -->
         <activity
@@ -136,6 +176,7 @@
             android:hardwareAccelerated="false"/>
         <activity android:name=".module.filemanager.AndroidGifDrawableActivity">
         </activity>
+
     </application>
 
 </manifest>

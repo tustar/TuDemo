@@ -16,7 +16,9 @@ import java.io.ObjectInputStream
 
 class RygSecondActivity : BaseActivity() {
 
-    private val TAG = RygSecondActivity::class.simpleName
+    companion object {
+        private val TAG = RygSecondActivity::class.simpleName
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         Logger.i(TAG, "onCreate :: ")

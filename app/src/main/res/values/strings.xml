@@ -68,4 +68,19 @@
 
     <!--Ryg-->
     <string name="ryg_main_title">Android开发艺术探索</string>
+    <string name="ryg_ch1_title">第1章 Activity的生命周期和启动模式</string>
+    <string name="ryg_ch2_title">第2章 IPC机制</string>
+    <string name="ryg_ch3_title">第3章 View的事件体系</string>
+    <string name="ryg_ch4_title">第4章 View的工作原理</string>
+    <string name="ryg_ch5_title">第5章 理解RemoteViews</string>
+    <string name="ryg_ch6_title">第6章 Android的Drawable</string>
+    <string name="ryg_ch7_title">第7章 Android动画深入分析</string>
+    <string name="ryg_ch8_title">第8章 理解Window和WindowManager</string>
+    <string name="ryg_ch9_title">第9章 四大组件的工作过程</string>
+    <string name="ryg_ch10_title">第10章 Android的消息机制</string>
+    <string name="ryg_ch11_title">第11章 Android的线程和线程池</string>
+    <string name="ryg_ch12_title">第12章 Bitmap的加载和Cache</string>
+    <string name="ryg_ch13_title">第13章 综合技术</string>
+    <string name="ryg_ch14_title">第14章 JNI和NDK编程</string>
+    <string name="ryg_ch15_title">第15章 Android性能优化</string>
 </resources>
