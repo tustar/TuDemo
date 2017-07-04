@@ -54,7 +54,7 @@ public class SqliteSpecialCharUtils {
         if (keyWord.contains(")")) {
             return true;
         }
-        
+
         return false;
     }
 }

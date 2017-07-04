@@ -4,7 +4,7 @@ import android.os.Bundle
 import com.tustar.demo.R
 import com.tustar.demo.base.BaseActivity
 
-class RygCh13Activity : BaseActivity() {
+class RygCh13Activity : BaseActivity    () {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

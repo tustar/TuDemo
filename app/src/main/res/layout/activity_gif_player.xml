@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <com.tustar.demo.module.filemanager.GifView
+    <com.tustar.demo.module.gif.GifView
         android:id="@+id/gif_view"
         android:layout_width="match_parent"
         android:layout_height="match_parent"

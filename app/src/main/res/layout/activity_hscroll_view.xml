@@ -5,9 +5,9 @@
     android:id="@+id/activity_hscroll_view"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.tustar.demo.module.scrollerdemo.HScrollViewActivity">
+    tools:context="com.tustar.demo.module.scroller.HScrollViewActivity">
 
-    <com.tustar.demo.module.scrollerdemo.HScrollView
+    <com.tustar.demo.module.scroller.HScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical">
@@ -40,6 +40,6 @@
             android:layout_width="500dp"
             android:layout_height="500dp"
             android:background="#00ff00"/>
-    </com.tustar.demo.module.scrollerdemo.HScrollView>
+    </com.tustar.demo.module.scroller.HScrollView>
 
 </RelativeLayout>

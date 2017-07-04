@@ -35,7 +35,6 @@ public class SpanUtils {
     }
 
     /**
-     *
      * @param sb
      * @param start
      * @param end
@@ -49,7 +48,6 @@ public class SpanUtils {
     }
 
     /**
-     *
      * @param sb
      * @param start
      * @param end

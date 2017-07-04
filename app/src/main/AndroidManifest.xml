@@ -20,6 +20,8 @@
         android:largeHeap="true"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+
+        <!-- 主页 -->
         <activity
             android:name=".MainActivity"
             android:label="@string/app_name"
@@ -31,38 +33,45 @@
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
-        <activity android:name=".module.recyclerviewdemo.RecyclerViewActivity"/>
-        <activity
-            android:name=".module.qyz.RotationActivity"
-            android:configChanges="orientation|keyboardHidden|screenSize"
-            android:screenOrientation="user"
-            android:windowSoftInputMode="stateAlwaysHidden"/>
-        <activity
-            android:name=".module.qyz.PaletteActivity"
-            android:label="@string/title_activity_palette"/>
-        <activity android:name=".module.qyz.TintingActivity"/>
-        <activity android:name=".module.qyz.ClippingActivity"/>
-        <activity android:name=".module.qyz.ElevationActivity"/>
-        <activity android:name=".module.qyz.AnimMainActivity"/>
-        <activity android:name=".module.qyz.AnimTransitionsActivity"/>
-        <activity android:name=".module.customwidget.CustomWidgetActivity"/>
-        <activity android:name=".module.customwidget.CustomWidgetShowActivity"/>
-        <activity android:name=".module.signal.FloatWindowActivity"/>
-        <activity android:name=".module.qyz.SurfaceViewActivity"/>
+
+        <!-- RecyclerView实例 -->
+        <activity android:name=".module.recycler.RecyclerViewActivity"/>
+
+        <!-- 可拖动ListView实例 -->
         <activity android:name=".module.dragsortlistview.DragSortListViewActivity"/>
+
+        <!-- Loader实例 -->
+        <activity android:name=".module.loader.LoaderActivity"/>
+
+        <!-- 账号管理 -->
+        <activity android:name=".module.account.AccountActivity"/>
+
+        <!-- 动画模块 -->
+        <activity android:name=".module.anim.viewanim.ViewAnimActivity"/>
+        <activity android:name=".module.anim.viewanim.HideActionBarActivity"/>
+
+        <!-- 拖动View -->
         <activity android:name=".module.dragview.DragViewActivity"/>
         <activity android:name=".module.dragview.DragViewShowActivity"/>
         <activity android:name=".module.dragview.DragViewGroupActivity"/>
-        <activity android:name=".module.anim.viewanim.ViewAnimActivity"/>
-        <activity android:name=".module.loaderdemo.LoaderActivity"/>
-        <activity android:name=".module.qyz.SvgActivity"/>
-        <activity android:name=".module.servicedemo.ServiceActivity"/>
-        <activity android:name=".module.anim.viewanim.HideActionBarActivity"/>
-        <activity android:name=".module.account.AccountActivity"/>
+
+        <!-- 信号监听 -->
+        <activity android:name=".module.signal.FloatWindowActivity"/>
 
         <service android:name=".module.signal.PhoneStateService"/>
+
+        <!-- 控件实例 -->
+        <activity android:name=".module.customwidget.CustomWidgetActivity"/>
+        <activity android:name=".module.customwidget.CustomWidgetShowActivity"/>
+        <activity
+            android:name=".module.customwidget.HistoryActivity"
+            android:theme="@android:style/Theme.DeviceDefault.Light.NoActionBar"/>
+
+        <!-- Service实例 -->
+        <activity android:name=".module.service.ServiceActivity"/>
+
         <service
-            android:name=".module.servicedemo.DemoService"
+            android:name=".module.service.DemoService"
             android:enabled="true"
             android:exported="true"
             android:process=":remote">
@@ -71,42 +80,59 @@
             </intent-filter>
         </service>
         <service
-            android:name=".module.servicedemo.DemoIntentService"
+            android:name=".module.service.DemoIntentService"
             android:exported="false"/>
 
+        <!-- Provider实例 -->
         <provider
-            android:name=".provider.TuProvider"
+            android:name=".module.deskclock.provider.HistoryProvider"
             android:authorities="com.tustar.demo"
             android:exported="false"/>
 
-        <activity android:name=".module.providerdemo.ProviderActivity"/>
+        <activity android:name=".module.provider.ProviderActivity"/>
+
+        <!-- Scroller实例 -->
+        <activity android:name=".module.scroller.ScrollerActivity"/>
+        <activity android:name=".module.scroller.OnePointerDrawViewActivity"/>
+        <activity android:name=".module.scroller.TwoPointerDrawViewActivity"/>
+        <activity android:name=".module.scroller.HOverScrollViewActivity"/>
+        <activity android:name=".module.scroller.HScrollViewActivity"/>
+        <activity android:name=".module.scroller.other.OtherOnePointerDrawViewActivity"/>
+        <activity android:name=".module.scroller.other.OtherTwoPointerDrawViewActivity"/>
+        <activity android:name=".module.scroller.other.OtherHScrollViewActivity"/>
+        <activity android:name=".module.scroller.other.OtherHOverScrollViewActivity"/>
+
+        <!-- 时钟实例 -->
         <activity android:name=".module.deskclock.DeskClockActivity"/>
-        <activity
-            android:name=".module.customwidget.HistoryActivity"
-            android:theme="@android:style/Theme.DeviceDefault.Light.NoActionBar"/>
-        //
-        <activity android:name=".module.scrollerdemo.ScrollerActivity"/>
-        <activity android:name=".module.scrollerdemo.OnePointerDrawViewActivity"/>
-        <activity android:name=".module.scrollerdemo.TwoPointerDrawViewActivity"/>
-        <activity android:name=".module.scrollerdemo.HOverScrollViewActivity"/>
-        <activity android:name=".module.scrollerdemo.HScrollViewActivity"/>
-        //
-        <activity android:name=".module.scrollerdemo.other.OtherOnePointerDrawViewActivity"/>
-        <activity android:name=".module.scrollerdemo.other.OtherTwoPointerDrawViewActivity"/>
-        <activity android:name=".module.scrollerdemo.other.OtherHScrollViewActivity"/>
-        <activity android:name=".module.scrollerdemo.other.OtherHOverScrollViewActivity"/>
-        <activity android:name=".module.qyz.FlexibleListViewActivity"/>
-        <activity android:name=".module.qyz.OverScrollGridViewActivity"/>
         <activity android:name=".module.deskclock.SubScaleViewActivity">
         </activity>
 
-        <!-- Ren yu gang -->
-        <activity android:name=".module.ryg.RygArtMainActivity"/>
-        <!--Ryg.ch1-->
+        <!-- 三国群英传 -->
+        <activity
+            android:name=".module.qyz.QyzPaletteActivity"
+            android:label="@string/title_activity_palette"/>
+        <activity android:name=".module.qyz.QyzTintingActivity"/>
+        <activity android:name=".module.qyz.QyzClippingActivity"/>
+        <activity android:name=".module.qyz.QyzElevationActivity"/>
+        <activity android:name=".module.qyz.QyzAnimMainActivity"/>
+        <activity android:name=".module.qyz.QyzAnimTransitionsActivity"/>
+        <activity android:name=".module.qyz.QyzFlexibleListViewActivity"/>
+        <activity android:name=".module.qyz.QyzOverScrollGridViewActivity"/>
+        <activity
+            android:name=".module.qyz.QyzRotationActivity"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:screenOrientation="user"
+            android:windowSoftInputMode="stateAlwaysHidden"/>
+        <activity android:name=".module.qyz.QyzSurfaceViewActivity"/>
+        <activity android:name=".module.qyz.QyzSvgActivity"/>
+
+        <!-- Android开发艺术探索 -->
+        <activity android:name=".module.ryg.RygMainActivity"/>
+        <!-- Ryg.ch1 -->
         <activity android:name=".module.ryg.ch1.RygCh1Activity">
         </activity>
-        <!--Ryg.ch2-->
-        <activity android:name=".module.ryg.ch2.RygMainActivity">
+        <!-- Ryg.ch2 -->
+        <activity android:name=".module.ryg.ch2.RygOneActivity">
         </activity>
         <activity
             android:name=".module.ryg.ch2.RygSecondActivity"
@@ -170,13 +196,16 @@
         <activity android:name=".module.ryg.ch15.RygCh15Activity">
         </activity>
 
-        <!-- FileManager demo -->
-        <activity
-            android:name=".module.filemanager.GifPlayerActivity"
-            android:hardwareAccelerated="false"/>
-        <activity android:name=".module.filemanager.AndroidGifDrawableActivity">
+        <!-- Gif实例 -->
+        <activity android:name=".module.gif.GifMainActivity">
         </activity>
-
+        <activity
+            android:name=".module.gif.GifPlayerActivity"
+            android:hardwareAccelerated="false"/>
+        <activity android:name=".module.gif.GifDrawableActivity">
+        </activity>
+        <activity android:name=".module.qyz.QyzMainActivity">
+        </activity>
     </application>
 
 </manifest>

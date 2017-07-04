@@ -6,7 +6,7 @@ import android.support.v4.view.ViewPager;
 
 import com.tustar.demo.R;
 import com.tustar.demo.base.BaseActivity;
-import com.tustar.demo.provider.History;
+import com.tustar.demo.module.deskclock.provider.History;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;

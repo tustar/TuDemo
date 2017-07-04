@@ -12,7 +12,6 @@ import android.view.Menu
 import android.view.MenuItem
 import android.view.View
 import com.tustar.demo.adapter.SimpleListItem1Adapter
-import com.tustar.demo.common.CommonDefine
 import com.tustar.demo.module.account.AccountActivity
 import com.tustar.demo.module.anim.viewanim.HideActionBarActivity
 import com.tustar.demo.module.anim.viewanim.ViewAnimActivity
@@ -22,15 +21,14 @@ import com.tustar.demo.module.deskclock.DeskClockActivity
 import com.tustar.demo.module.deskclock.SubScaleViewActivity
 import com.tustar.demo.module.dragsortlistview.DragSortListViewActivity
 import com.tustar.demo.module.dragview.DragViewActivity
-import com.tustar.demo.module.filemanager.AndroidGifDrawableActivity
-import com.tustar.demo.module.filemanager.GifPlayerActivity
-import com.tustar.demo.module.loaderdemo.LoaderActivity
-import com.tustar.demo.module.providerdemo.ProviderActivity
-import com.tustar.demo.module.qyz.*
-import com.tustar.demo.module.recyclerviewdemo.RecyclerViewActivity
-import com.tustar.demo.module.ryg.RygArtMainActivity
-import com.tustar.demo.module.scrollerdemo.ScrollerActivity
-import com.tustar.demo.module.servicedemo.ServiceActivity
+import com.tustar.demo.module.gif.GifMainActivity
+import com.tustar.demo.module.loader.LoaderActivity
+import com.tustar.demo.module.provider.ProviderActivity
+import com.tustar.demo.module.qyz.QyzMainActivity
+import com.tustar.demo.module.recycler.RecyclerViewActivity
+import com.tustar.demo.module.ryg.RygMainActivity
+import com.tustar.demo.module.scroller.ScrollerActivity
+import com.tustar.demo.module.service.ServiceActivity
 import com.tustar.demo.module.signal.FloatWindowActivity
 import com.tustar.demo.util.Logger
 import com.tustar.demo.widget.Decoration
@@ -50,33 +48,24 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         // List
         init {
             sClassList.add(RecyclerViewActivity::class.java)
-            sClassList.add(RotationActivity::class.java)
-            sClassList.add(PaletteActivity::class.java)
-            sClassList.add(TintingActivity::class.java)
-            sClassList.add(ElevationActivity::class.java)
-            sClassList.add(ClippingActivity::class.java)
-            sClassList.add(AnimMainActivity::class.java)
             sClassList.add(CustomWidgetActivity::class.java)
             sClassList.add(FloatWindowActivity::class.java)
             sClassList.add(DragSortListViewActivity::class.java)
-            sClassList.add(SurfaceViewActivity::class.java)
             sClassList.add(DragViewActivity::class.java)
             sClassList.add(ViewAnimActivity::class.java)
             sClassList.add(LoaderActivity::class.java)
-            sClassList.add(SvgActivity::class.java)
             sClassList.add(ServiceActivity::class.java)
             sClassList.add(HideActionBarActivity::class.java)
             sClassList.add(AccountActivity::class.java)
             sClassList.add(ProviderActivity::class.java)
             sClassList.add(DeskClockActivity::class.java)
-            sClassList.add(HistoryActivity::class.java)
             sClassList.add(ScrollerActivity::class.java)
-            sClassList.add(FlexibleListViewActivity::class.java)
-            sClassList.add(OverScrollGridViewActivity::class.java)
+            sClassList.add(HistoryActivity::class.java)
             sClassList.add(SubScaleViewActivity::class.java)
-            sClassList.add(RygArtMainActivity::class.java)
-            sClassList.add(GifPlayerActivity::class.java)
-            sClassList.add(AndroidGifDrawableActivity::class.java)
+            //
+            sClassList.add(GifMainActivity::class.java)
+            sClassList.add(QyzMainActivity::class.java)
+            sClassList.add(RygMainActivity::class.java)
             sClassList.reverse()
         }
     }
@@ -174,10 +163,6 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         val intent = Intent()
         val clazz = sClassList[position]
         intent.setClass(this, clazz)
-        if (clazz == GifPlayerActivity::class.java) {
-            intent.putExtra(GifPlayerActivity.GIF_FILE_PATH,
-                    CommonDefine.TEST_GIF)
-        }
         startActivity(intent)
     }
 }

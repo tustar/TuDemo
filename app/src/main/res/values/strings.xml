@@ -66,7 +66,12 @@
     <string name="horiz_drag_label">⇔ Drag Horizontally</string>
     <string name="vert_drag_label">⇳ Drag Vertically</string>
 
-    <!--Ryg-->
+    <!--Gif-->
+    <string name="gif_main_title">Gif实例</string>
+    <string name="gif_player">GifPlayer</string>
+    <string name="gif_android_gif_drawable">Android Gif Drawable</string>
+
+    <!--Android开发艺术探索-->
     <string name="ryg_main_title">Android开发艺术探索</string>
     <string name="ryg_ch1_title">第1章 Activity的生命周期和启动模式</string>
     <string name="ryg_ch2_title">第2章 IPC机制</string>
@@ -83,4 +88,17 @@
     <string name="ryg_ch13_title">第13章 综合技术</string>
     <string name="ryg_ch14_title">第14章 JNI和NDK编程</string>
     <string name="ryg_ch15_title">第15章 Android性能优化</string>
+
+    <!--三国群英传-->
+    <string name="qyz_main_title">三国群英传</string>
+    <string name="qyz_rotation_title">Rotation</string>
+    <string name="qyz_palette_title">Palette</string>
+    <string name="qyz_tinting_title">Tinting</string>
+    <string name="qyz_elevation_title">Elevation</string>
+    <string name="qyz_clipping_title">Clipping</string>
+    <string name="qyz_translation_title">Activity Translation</string>
+    <string name="qyz_surface_title">Surface</string>
+    <string name="qyz_svg_title">SVG</string>
+    <string name="qyz_flex_title">FlexibleListView</string>
+    <string name="qyz_over_scroll_title">OverScroll GridView</string>
 </resources>

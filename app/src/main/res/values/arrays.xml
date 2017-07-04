@@ -2,36 +2,32 @@
 <resources>
     <string-array name="content_data">
         <item>RecyclerView</item>
-        <item>Screen Rotation</item>
-        <item>Palette</item>
-        <item>Tinting</item>
-        <item>Elevation</item>
-        <item>Clipping</item>
-        <item>Activity Translation</item>
         <item>Custom Widget</item>
         <item>Float Window</item>
         <item>Drag Sort ListView</item>
-        <item>Custom SurfaceView</item>
         <item>Drag View</item>
         <item>View Animator</item>
         <item>Loader</item>
-        <item>SVG</item>
         <item>Services Demo</item>
         <item>Hide ActionBar</item>
         <item>Account Manager</item>
         <item>Provider</item>
         <item>DeskClock+Tabs+Svg+Databinding+RecyclerView</item>
-        <item>History</item>
         <item>Scroller</item>
-        <item>FlexibleListView</item>
-        <item>OverScroll GridView</item>
+        <item>History</item>
         <item>SubScaleView</item>
+        //
+        <item>@string/gif_main_title</item>
+        <item>@string/qyz_main_title</item>
         <item>@string/ryg_main_title</item>
-        <item>GifPlayer</item>
-        <item>Android Gif Drawable</item>
     </string-array>
 
-    <string-array name="ryg_art_chapters">
+    <string-array name="gif_list">
+        <item>@string/gif_player</item>
+        <item>@string/gif_android_gif_drawable</item>
+    </string-array>
+
+    <string-array name="ryg_chapters">
         <item>@string/ryg_ch1_title</item>
         <item>@string/ryg_ch2_title</item>
         <item>@string/ryg_ch3_title</item>
@@ -47,5 +43,18 @@
         <item>@string/ryg_ch13_title</item>
         <item>@string/ryg_ch14_title</item>
         <item>@string/ryg_ch15_title</item>
+    </string-array>
+
+    <string-array name="qyz_list">
+        <item>@string/qyz_rotation_title</item>
+        <item>@string/qyz_palette_title</item>
+        <item>@string/qyz_tinting_title</item>
+        <item>@string/qyz_elevation_title</item>
+        <item>@string/qyz_clipping_title</item>
+        <item>@string/qyz_translation_title</item>
+        <item>@string/qyz_surface_title</item>
+        <item>@string/qyz_svg_title</item>
+        <item>@string/qyz_flex_title</item>
+        <item>@string/qyz_over_scroll_title</item>
     </string-array>
 </resources>

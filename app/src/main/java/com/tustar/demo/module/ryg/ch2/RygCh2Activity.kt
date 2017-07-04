@@ -22,7 +22,7 @@ class RygCh2Activity : BaseActivity(), SimpleListItem1Adapter.OnItemClickListene
 
         init {
             //
-            sClassList.add(RygMainActivity::class.java)
+            sClassList.add(RygOneActivity::class.java)
             sDescList.add("Android IPC")
             //
             sClassList.add(RygProviderActivity::class.java)

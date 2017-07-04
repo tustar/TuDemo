@@ -11,7 +11,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.tustar.demo.R;
-import com.tustar.demo.provider.History;
+import com.tustar.demo.module.deskclock.provider.History;
 
 /**
  * A fragment representing a list of Items.

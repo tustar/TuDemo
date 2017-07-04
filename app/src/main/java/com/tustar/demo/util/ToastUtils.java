@@ -3,8 +3,6 @@ package com.tustar.demo.util;
 import android.content.Context;
 import android.widget.Toast;
 
-import com.tustar.demo.module.filemanager.GifPlayerActivity;
-
 /**
  * Created by tustar on 16-8-2.
  */

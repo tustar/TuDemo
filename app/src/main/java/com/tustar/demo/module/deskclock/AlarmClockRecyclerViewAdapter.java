@@ -10,7 +10,7 @@ import android.view.ViewGroup;
 import com.tustar.demo.BR;
 import com.tustar.demo.R;
 import com.tustar.demo.module.deskclock.AlarmClockFragment.OnListFragmentInteractionListener;
-import com.tustar.demo.provider.History;
+import com.tustar.demo.module.deskclock.provider.History;
 
 import java.util.List;
 
