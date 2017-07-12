@@ -1,4 +1,4 @@
-package com.tustar.demo.module.gif;
+package com.tustar.demo.module.fm;
 
 import android.content.Context;
 import android.database.Cursor;
@@ -24,7 +24,7 @@ import java.io.InputStream;
  * Created by tustar on 17-6-28.
  */
 
-public class GifView extends View {
+public class FmGifView extends View {
 
     private static final String TAG = "GifView";
     private static final int DEFAULT_MOVIE_VIEW_DURATION = 1000;
@@ -43,22 +43,22 @@ public class GifView extends View {
     // Listener
     private DecodeListener mDecodeListener;
 
-    public GifView(Context context) {
+    public FmGifView(Context context) {
         super(context);
         init();
     }
 
-    public GifView(Context context, AttributeSet attrs) {
+    public FmGifView(Context context, AttributeSet attrs) {
         super(context, attrs);
         init();
     }
 
-    public GifView(Context context, AttributeSet attrs, int defStyleAttr) {
+    public FmGifView(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
         init();
     }
 
-    public GifView(Context context, AttributeSet attrs, int defStyleAttr, int defStyleRes) {
+    public FmGifView(Context context, AttributeSet attrs, int defStyleAttr, int defStyleRes) {
         super(context, attrs, defStyleAttr, defStyleRes);
         init();
     }

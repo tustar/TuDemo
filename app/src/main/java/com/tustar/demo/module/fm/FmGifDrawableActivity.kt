@@ -1,21 +1,21 @@
-package com.tustar.demo.module.gif
+package com.tustar.demo.module.fm
 
 import android.os.Bundle
 import com.tustar.demo.R
 import com.tustar.demo.base.BaseActivity
 import com.tustar.demo.common.CommonDefine
 import com.tustar.demo.util.ToastUtils
-import kotlinx.android.synthetic.main.activity_gif_drawable.*
+import kotlinx.android.synthetic.main.activity_fm_gif_drawable.*
 import pl.droidsonroids.gif.GifDrawable
 import java.io.File
 import java.io.IOException
 
-class GifDrawableActivity : BaseActivity() {
+class FmGifDrawableActivity : BaseActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_gif_drawable)
-        title = getString(R.string.gif_android_gif_drawable)
+        setContentView(R.layout.activity_fm_gif_drawable)
+        title = getString(R.string.fm_android_gif_drawable)
 
         var drawable: GifDrawable? = null
         try {

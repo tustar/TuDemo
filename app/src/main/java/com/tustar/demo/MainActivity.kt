@@ -18,10 +18,11 @@ import com.tustar.demo.module.anim.viewanim.ViewAnimActivity
 import com.tustar.demo.module.customwidget.CustomWidgetActivity
 import com.tustar.demo.module.customwidget.HistoryActivity
 import com.tustar.demo.module.deskclock.DeskClockActivity
+import com.tustar.demo.module.fm.FmRenameActivity
 import com.tustar.demo.module.deskclock.SubScaleViewActivity
 import com.tustar.demo.module.dragsortlistview.DragSortListViewActivity
 import com.tustar.demo.module.dragview.DragViewActivity
-import com.tustar.demo.module.gif.GifMainActivity
+import com.tustar.demo.module.fm.FmMainActivity
 import com.tustar.demo.module.loader.LoaderActivity
 import com.tustar.demo.module.provider.ProviderActivity
 import com.tustar.demo.module.qyz.QyzMainActivity
@@ -63,7 +64,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
             sClassList.add(HistoryActivity::class.java)
             sClassList.add(SubScaleViewActivity::class.java)
             //
-            sClassList.add(GifMainActivity::class.java)
+            sClassList.add(FmMainActivity::class.java)
             sClassList.add(QyzMainActivity::class.java)
             sClassList.add(RygMainActivity::class.java)
             sClassList.reverse()

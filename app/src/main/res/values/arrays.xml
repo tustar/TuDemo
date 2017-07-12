@@ -17,14 +17,15 @@
         <item>History</item>
         <item>SubScaleView</item>
         //
-        <item>@string/gif_main_title</item>
+        <item>@string/fm_main_title</item>
         <item>@string/qyz_main_title</item>
         <item>@string/ryg_main_title</item>
     </string-array>
 
-    <string-array name="gif_list">
-        <item>@string/gif_player</item>
-        <item>@string/gif_android_gif_drawable</item>
+    <string-array name="fm_list">
+        <item>@string/fm_gif_player</item>
+        <item>@string/fm_android_gif_drawable</item>
+        <item>@string/fm_rename</item>
     </string-array>
 
     <string-array name="ryg_chapters">

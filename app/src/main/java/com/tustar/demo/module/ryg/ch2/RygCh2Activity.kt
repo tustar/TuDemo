@@ -7,6 +7,7 @@ import android.view.View
 import com.tustar.demo.R
 import com.tustar.demo.adapter.SimpleListItem1Adapter
 import com.tustar.demo.base.BaseActivity
+import com.tustar.demo.module.ryg.ch2.aidl.BookManagerActivity
 import com.tustar.demo.module.ryg.ch2.messenger.MessengerActivity
 import com.tustar.demo.module.ryg.ch2.provider.RygProviderActivity
 import com.tustar.demo.util.Logger
@@ -30,6 +31,9 @@ class RygCh2Activity : BaseActivity(), SimpleListItem1Adapter.OnItemClickListene
             // 
             sClassList.add(MessengerActivity::class.java)
             sDescList.add("Messenger")
+            //
+            sClassList.add(BookManagerActivity::class.java)
+            sDescList.add("BookManager")
             //
             sClassList.reversed()
             sDescList.reversed()

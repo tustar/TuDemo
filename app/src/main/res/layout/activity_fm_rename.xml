@@ -5,10 +5,10 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.tustar.demo.module.ryg.ch2.aidl.BookManagerActivity">
+    tools:context="com.tustar.demo.module.fm.FmRenameActivity">
 
     <android.support.v7.widget.RecyclerView
-        android:id="@+id/ryg_ch2_bm_rv"
+        android:id="@+id/fm_rename_rv"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         app:layout_constraintBottom_toBottomOf="parent"

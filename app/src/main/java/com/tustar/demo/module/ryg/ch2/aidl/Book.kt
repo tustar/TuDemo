@@ -35,4 +35,10 @@ class Book : Parcelable {
         dest.writeInt(bookId)
         dest.writeString(bookName)
     }
+
+    override fun toString(): String {
+        return "Book(bookId=$bookId, bookName=$bookName)"
+    }
+
+
 }

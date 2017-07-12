@@ -5,10 +5,10 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.tustar.demo.module.gif.GifMainActivity">
+    tools:context="com.tustar.demo.module.fm.FmMainActivity">
 
     <android.support.v7.widget.RecyclerView
-        android:id="@+id/qyz_main_rv"
+        android:id="@+id/fm_main_rv"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         app:layout_constraintBottom_toBottomOf="parent"

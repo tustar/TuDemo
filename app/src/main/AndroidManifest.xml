@@ -108,6 +108,8 @@
         </activity>
 
         <!-- 三国群英传 -->
+        <activity android:name=".module.qyz.QyzMainActivity">
+        </activity>
         <activity
             android:name=".module.qyz.QyzPaletteActivity"
             android:label="@string/title_activity_palette"/>
@@ -152,6 +154,9 @@
                 <action android:name="com.tustar.MessengerService.launch"/>
             </intent-filter>
         </service>
+
+        <activity android:name=".module.ryg.ch2.aidl.BookManagerActivity">
+        </activity>
         <service
             android:name=".module.ryg.ch2.aidl.BookManagerService"
             android:process=":remote">
@@ -165,8 +170,7 @@
 
         <activity android:name=".module.ryg.ch2.messenger.MessengerActivity">
         </activity>
-        <activity android:name=".module.ryg.ch2.aidl.BookManagerActivity">
-        </activity>
+
         <activity android:name=".module.ryg.ch2.RygCh2Activity">
         </activity>
         <activity android:name=".module.ryg.ch3.RygCh3Activity">
@@ -196,16 +200,23 @@
         <activity android:name=".module.ryg.ch15.RygCh15Activity">
         </activity>
 
-        <!-- Gif实例 -->
-        <activity android:name=".module.gif.GifMainActivity">
+        <!-- 文件管理器Demo -->
+        <activity android:name=".module.fm.FmMainActivity">
         </activity>
         <activity
-            android:name=".module.gif.GifPlayerActivity"
+            android:name=".module.fm.FmGifPlayerActivity"
             android:hardwareAccelerated="false"/>
-        <activity android:name=".module.gif.GifDrawableActivity">
+        <activity android:name=".module.fm.FmGifDrawableActivity">
         </activity>
-        <activity android:name=".module.qyz.QyzMainActivity">
+        <activity android:name=".module.fm.FmRenameActivity">
         </activity>
+        <activity android:name=".module.fm.FmJavaRenameActivity">
+        </activity>
+
+        <service android:name=".module.fm.service.FileMonitorService"/>
+        <service
+            android:name=".module.fm.service.FileScannerService"
+            android:process=".fm"/>
     </application>
 
 </manifest>
