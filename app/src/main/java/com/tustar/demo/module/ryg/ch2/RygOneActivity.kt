@@ -7,7 +7,6 @@ import com.tustar.demo.module.ryg.ch2.manager.UserManager
 import com.tustar.demo.module.ryg.ch2.model.User
 import com.tustar.demo.module.ryg.ch2.utils.MyConstants
 import com.tustar.demo.util.Logger
-import kotlinx.android.synthetic.main.activity_ryg_main.*
 import kotlinx.android.synthetic.main.activity_ryg_one.*
 import java.io.*
 
@@ -23,6 +22,7 @@ class RygOneActivity : com.tustar.demo.base.BaseActivity() {
     override fun onCreate(savedInstanceState: android.os.Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_ryg_one)
+        title = getString(R.string.ryg_ch2_ipc)
 
         ryg_second_btn.setOnClickListener {
             var intent = Intent()

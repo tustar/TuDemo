@@ -46,6 +46,14 @@
         <item>@string/ryg_ch15_title</item>
     </string-array>
 
+    <string-array name="ryg_ch2_list">
+        <item>@string/ryg_ch2_ipc</item>
+        <item>@string/ryg_ch2_provider</item>
+        <item>@string/ryg_ch2_messenger</item>
+        <item>@string/ryg_ch2_book_manager</item>
+        <item>@string/ryg_ch2_socket</item>
+    </string-array>
+
     <string-array name="qyz_list">
         <item>@string/qyz_rotation_title</item>
         <item>@string/qyz_palette_title</item>
@@ -58,4 +66,5 @@
         <item>@string/qyz_flex_title</item>
         <item>@string/qyz_over_scroll_title</item>
     </string-array>
+
 </resources>

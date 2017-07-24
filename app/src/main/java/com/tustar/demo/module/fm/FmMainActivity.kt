@@ -2,12 +2,14 @@ package com.tustar.demo.module.fm
 
 import android.content.Intent
 import android.os.Bundle
+import android.os.Environment
 import android.support.v7.widget.LinearLayoutManager
 import android.view.View
 import com.tustar.demo.R
 import com.tustar.demo.adapter.SimpleListItem1Adapter
 import com.tustar.demo.base.BaseActivity
 import com.tustar.demo.common.CommonDefine
+import com.tustar.demo.module.fm.service.FileMonitorService
 import com.tustar.demo.util.Logger
 import com.tustar.demo.widget.Decoration
 import kotlinx.android.synthetic.main.activity_fm_main.*
@@ -39,6 +41,9 @@ class FmMainActivity : BaseActivity(), SimpleListItem1Adapter.OnItemClickListene
         fm_main_rv.adapter = adapter
         adapter.setOnItemClickListener(this)
         fm_main_rv.addItemDecoration(Decoration(this, Decoration.VERTICAL))
+
+        // 监听文件变化
+        FileMonitorService.startMonitor(this)
     }
 
     override fun onItemClick(view: View, position: Int) {

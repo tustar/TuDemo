@@ -18,7 +18,6 @@ import com.tustar.demo.module.anim.viewanim.ViewAnimActivity
 import com.tustar.demo.module.customwidget.CustomWidgetActivity
 import com.tustar.demo.module.customwidget.HistoryActivity
 import com.tustar.demo.module.deskclock.DeskClockActivity
-import com.tustar.demo.module.fm.FmRenameActivity
 import com.tustar.demo.module.deskclock.SubScaleViewActivity
 import com.tustar.demo.module.dragsortlistview.DragSortListViewActivity
 import com.tustar.demo.module.dragview.DragViewActivity

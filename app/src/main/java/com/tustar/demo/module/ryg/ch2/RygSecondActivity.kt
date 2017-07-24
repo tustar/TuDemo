@@ -24,6 +24,7 @@ class RygSecondActivity : BaseActivity() {
         Logger.i(TAG, "onCreate :: ")
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_ryg_second)
+        title = getString(R.string.ryg_ch2_second)
 
         ryg_third_btn.setOnClickListener {
             startActivity(Intent(this@RygSecondActivity, RygThirdActivity::class.java))

@@ -53,7 +53,9 @@ class MessengerActivity : BaseActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_messenger)
+        setContentView(R.layout.activity_ryg_messenger)
+        title = getString(R.string.ryg_ch2_messenger)
+
         var intent = Intent(this, MessengerService::class.java)
         intent.action = "com.tustar.MessengerService.launch"
         bindService(intent, mConnection, Context.BIND_AUTO_CREATE)

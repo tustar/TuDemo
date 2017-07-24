@@ -28,13 +28,17 @@ class FmRenameActivity : BaseActivity(), SimpleListItem1Adapter.OnItemClickListe
     private var mAdapter: SimpleListItem1Adapter? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
+        Logger.i(TAG, "onCreate :: ")
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_fm_rename)
 
         fm_rename_rv.layoutManager = LinearLayoutManager(this)
         file = Environment.getExternalStorageDirectory()
+        Logger.d(TAG, "onCreate :: file = $file")
         mFiles = getFiles()
-        mAdapter = SimpleListItem1Adapter(mFiles!!.map { it -> it.name })
+        Logger.d(TAG, "onCreate :: listFiles = ${file!!.listFiles()}")
+        Logger.d(TAG, "onCreate :: mFiles = $mFiles")
+        mAdapter = SimpleListItem1Adapter(mFiles.map { it -> it.name })
         fm_rename_rv.adapter = mAdapter
         mAdapter!!.setOnItemClickListener(this)
         fm_rename_rv.addItemDecoration(Decoration(this, Decoration.VERTICAL))
@@ -43,7 +47,7 @@ class FmRenameActivity : BaseActivity(), SimpleListItem1Adapter.OnItemClickListe
     override fun onItemClick(view: View, position: Int) {
         Logger.i(TAG, "onItemClick :: view = $view, position = $position")
         val editText = EditText(this)
-        var oldFile = mFiles!![position]
+        var oldFile = mFiles[position]
         AlertDialog.Builder(this).setTitle(R.string.rename)
                 .setIcon(android.R.drawable.ic_dialog_alert)
                 .setView(editText)
@@ -51,7 +55,12 @@ class FmRenameActivity : BaseActivity(), SimpleListItem1Adapter.OnItemClickListe
                     var text = editText.text.toString().trim()
                     if (!TextUtils.isEmpty(text)) {
                         var newFile = File(oldFile.parent + File.separator + text)
+                        Logger.d(TAG, "${oldFile.path} => ${newFile.path}")
+                        if (newFile.exists()) {
+                            ToastUtils.showLong(DeskRenameActivity@ this, "${newFile.path} exist")
+                        }
                         if (oldFile.renameTo(newFile)) {
+                            ToastUtils.showLong(DeskRenameActivity@ this, "Rename Success")
                             mFiles = getFiles()
                             mAdapter!!.data = mFiles!!.map { it -> it.name }
                             mAdapter!!.notifyDataSetChanged()
@@ -66,6 +75,6 @@ class FmRenameActivity : BaseActivity(), SimpleListItem1Adapter.OnItemClickListe
         editText.setText(oldFile.name)
     }
 
-    private fun getFiles() = file!!.listFiles({ _, name -> !name.startsWith("") })
+    private fun getFiles() = file!!.listFiles()
             .sortedBy { it -> it.lastModified() }
 }

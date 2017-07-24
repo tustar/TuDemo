@@ -1,6 +1,7 @@
 <resources>
     <string name="app_name">范例大全</string>
     <string name="rename">重命名</string>
+    <string name="send">发送</string>
 
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
@@ -90,6 +91,14 @@
     <string name="ryg_ch13_title">第13章 综合技术</string>
     <string name="ryg_ch14_title">第14章 JNI和NDK编程</string>
     <string name="ryg_ch15_title">第15章 Android性能优化</string>
+    <!--ryg_ch2-->
+    <string name="ryg_ch2_ipc">Android IPC</string>
+    <string name="ryg_ch2_provider">Provider</string>
+    <string name="ryg_ch2_messenger">Messenger</string>
+    <string name="ryg_ch2_book_manager">BookManager</string>
+    <string name="ryg_ch2_second">Second</string>
+    <string name="ryg_ch2_third">Third</string>
+    <string name="ryg_ch2_socket">Socket</string>
 
     <!--三国群英传-->
     <string name="qyz_main_title">三国群英传</string>
