@@ -1,49 +1,20 @@
 package com.tustar.demo.module.ryg.ch3
 
-import android.content.Intent
 import android.os.Bundle
-import android.support.v7.widget.LinearLayoutManager
-import android.view.View
 import com.tustar.demo.R
 import com.tustar.demo.adapter.SimpleListItem1Adapter
-import com.tustar.demo.base.BaseActivity
-import com.tustar.demo.util.Logger
-import com.tustar.demo.widget.Decoration
-import kotlinx.android.synthetic.main.activity_ryg_ch3.*
+import com.tustar.demo.module.ryg.ch5.BaseRygActivity
 
-class RygCh3Activity : BaseActivity(), SimpleListItem1Adapter.OnItemClickListener {
+class RygCh3Activity : BaseRygActivity(), SimpleListItem1Adapter.OnItemClickListener {
 
-    companion object {
-        private val TAG = RygCh3Activity::class.java.simpleName
-        private val sClassList = ArrayList<Class<*>>()
-
-        init {
-            sClassList.add(RygCh3ViewMoveActivity::class.java)
-            sClassList.add(RygCh3OuterActivity::class.java)
-            sClassList.add(RygCh3InnerActivity::class.java)
-        }
+    init {
+        sClassList.add(RygCh3ViewMoveActivity::class.java)
+        sClassList.add(RygCh3OuterActivity::class.java)
+        sClassList.add(RygCh3InnerActivity::class.java)
     }
-
     override fun onCreate(savedInstanceState: Bundle?) {
+        ryg_data_source = R.array.ryg_ch3_list
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_ryg_ch3)
         title = getString(R.string.ryg_ch3_title)
-
-
-
-        ryg_ch3_rv.layoutManager = LinearLayoutManager(this)
-        var desc = resources.getStringArray(R.array.ryg_ch3_list).toList()
-        var adapter = SimpleListItem1Adapter(desc)
-        ryg_ch3_rv.adapter = adapter
-        adapter.setOnItemClickListener(this)
-        ryg_ch3_rv.addItemDecoration(Decoration(this, Decoration.VERTICAL))
-    }
-
-    override fun onItemClick(view: View, position: Int) {
-        Logger.i(TAG, "onItemClick :: view = $view, position = $position")
-        val intent = Intent()
-        val clazz = sClassList[position]
-        intent.setClass(this, clazz)
-        startActivity(intent)
     }
 }

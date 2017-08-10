@@ -5,6 +5,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.tustar.demo.module.ryg.ch15.RygCh15Activity">
+    tools:context="com.tustar.demo.module.ryg.ch5.RygCh5AppWidgetActivity">
 
 </android.support.constraint.ConstraintLayout>

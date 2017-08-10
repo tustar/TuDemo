@@ -2,6 +2,7 @@
     <string name="app_name">范例大全</string>
     <string name="rename">重命名</string>
     <string name="send">发送</string>
+    <string name="no_data">没有数据</string>
 
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
@@ -108,6 +109,10 @@
     <string name="ryg_ch4_width_height">四种方法获取宽高</string>
     <string name="ryg_ch4_circle_view">自定义圆形View</string>
     <string name="ryg_ch4_ex">完善版的外部拦截</string>
+    <!--ryg_ch5-->
+    <string name="ryg_ch5_notification">RemoteViews通知栏</string>
+    <string name="ryg_ch5_app_widget">RemoteViews桌面小控件</string>
+    <string name="ryg_ch5_custom">RemoteViews原理模拟实现</string>
 
     <!--三国群英传-->
     <string name="qyz_main_title">三国群英传</string>
@@ -121,4 +126,5 @@
     <string name="qyz_svg_title">SVG</string>
     <string name="qyz_flex_title">FlexibleListView</string>
     <string name="qyz_over_scroll_title">OverScroll GridView</string>
+
 </resources>

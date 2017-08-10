@@ -67,6 +67,12 @@
         <item>@string/ryg_ch4_ex</item>
     </string-array>
 
+    <string-array name="ryg_ch5_list">
+        <item>@string/ryg_ch5_notification</item>
+        <item>@string/ryg_ch5_app_widget</item>
+        <item>@string/ryg_ch5_custom</item>
+    </string-array>
+
     <string-array name="qyz_list">
         <item>@string/qyz_rotation_title</item>
         <item>@string/qyz_palette_title</item>

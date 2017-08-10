@@ -252,7 +252,12 @@
             android:name=".module.fm.service.FileScannerService"
             android:process=".fm"/>
 
-
+        <activity android:name=".module.ryg.ch5.RygCh5NotificationActivity">
+        </activity>
+        <activity android:name=".module.ryg.ch5.RygCh5AppWidgetActivity">
+        </activity>
+        <activity android:name=".module.ryg.ch5.RygCh5CustomActivity">
+        </activity>
     </application>
 
 </manifest>

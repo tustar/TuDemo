@@ -1,14 +1,14 @@
-package com.tustar.demo.module.ryg.ch14
+package com.tustar.demo.module.ryg.ch5
 
 import android.os.Bundle
 import com.tustar.demo.R
 import com.tustar.demo.base.BaseActivity
-import com.tustar.demo.module.ryg.ch5.BaseRygActivity
 
-class RygCh14Activity : BaseRygActivity() {
+class RygCh5CustomActivity : BaseActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        title = getString(R.string.ryg_ch14_title)
+        setContentView(R.layout.activity_ryg_ch5_custom)
+        title = getString(R.string.ryg_ch5_custom)
     }
 }
