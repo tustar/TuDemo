@@ -52,6 +52,19 @@
         <item>@string/ryg_ch2_messenger</item>
         <item>@string/ryg_ch2_book_manager</item>
         <item>@string/ryg_ch2_socket</item>
+        <item>@string/ryg_ch2_binder_pool</item>
+    </string-array>
+
+    <string-array name="ryg_ch3_list">
+        <item>@string/ryg_ch3_view_move</item>
+        <item>@string/rgy_ch3_outer</item>
+        <item>@string/rgy_ch3_inner</item>
+    </string-array>
+
+    <string-array name="ryg_ch4_list">
+        <item>@string/ryg_ch4_width_height</item>
+        <item>@string/ryg_ch4_circle_view</item>
+        <item>@string/ryg_ch4_ex</item>
     </string-array>
 
     <string-array name="qyz_list">

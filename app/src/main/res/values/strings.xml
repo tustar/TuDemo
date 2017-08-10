@@ -99,6 +99,15 @@
     <string name="ryg_ch2_second">Second</string>
     <string name="ryg_ch2_third">Third</string>
     <string name="ryg_ch2_socket">Socket</string>
+    <string name="ryg_ch2_binder_pool">BinderPool</string>
+    <!--ryg_ch3-->
+    <string name="ryg_ch3_view_move">View滑动</string>
+    <string name="rgy_ch3_outer">外部拦截法</string>
+    <string name="rgy_ch3_inner">内部拦截法</string>
+    <!--ryg_ch4-->
+    <string name="ryg_ch4_width_height">四种方法获取宽高</string>
+    <string name="ryg_ch4_circle_view">自定义圆形View</string>
+    <string name="ryg_ch4_ex">完善版的外部拦截</string>
 
     <!--三国群英传-->
     <string name="qyz_main_title">三国群英传</string>

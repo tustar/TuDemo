@@ -140,7 +140,7 @@
         <!-- Ryg.ch2 -->
         <activity android:name=".module.ryg.ch2.RygCh2Activity">
         </activity>
-        <!--Ryg ch2 IPC-->
+        <!-- Ryg ch2 IPC -->
         <activity android:name=".module.ryg.ch2.RygOneActivity">
         </activity>
         <activity
@@ -151,24 +151,27 @@
             android:name=".module.ryg.ch2.RygThirdActivity"
             android:process="com.tustar.demo.remote">
         </activity>
-        <!--Ryg ch2 BookManager-->
+        <!-- Ryg ch2 BookManager -->
         <activity android:name=".module.ryg.ch2.aidl.BookManagerActivity">
         </activity>
+
         <service
             android:name=".module.ryg.ch2.aidl.BookManagerService"
             android:process=":remote">
         </service>
-        <!--Ryg ch2 BookProvider-->
+        <!-- Ryg ch2 BookProvider -->
         <activity android:name=".module.ryg.ch2.provider.RygProviderActivity">
         </activity>
+
         <provider
             android:name=".module.ryg.ch2.provider.BookProvider"
             android:authorities="com.tustar.demo.module.ryg.ch2.provider"
             android:permission="com.tustar.PROVIDER"
             android:process=":provider"/>
-        <!--Ryg ch2 Messenger-->
+        <!-- Ryg ch2 Messenger -->
         <activity android:name=".module.ryg.ch2.messenger.MessengerActivity">
         </activity>
+
         <service
             android:name=".module.ryg.ch2.messenger.MessengerService"
             android:process=":remote">
@@ -176,14 +179,35 @@
                 <action android:name="com.tustar.MessengerService.launch"/>
             </intent-filter>
         </service>
-        <!--Ryg ch2 Socket-->
+        <!-- Ryg ch2 Socket -->
         <activity android:name=".module.ryg.ch2.socket.TCPClientActivity">
         </activity>
+
         <service
             android:name=".module.ryg.ch2.socket.TCPServerService"
             android:process=":remote"/>
-        <!--Ryg ch2 BinderPool-->
+        <!-- Ryg ch2 `BinderPool.java` -->
+        <service
+            android:name=".module.ryg.ch2.binderpool.BinderPoolService"
+            android:process=":remote"/>
+
+        <activity android:name=".module.ryg.ch2.binderpool.BinderPoolActivity">
+        </activity>
+        <!-- Ryg ch3 -->
         <activity android:name=".module.ryg.ch3.RygCh3Activity">
+        </activity>
+        <activity android:name=".module.ryg.ch3.RygCh3ViewMoveActivity">
+        </activity>
+        <activity android:name=".module.ryg.ch3.RygCh3OuterActivity">
+        </activity>
+        <activity android:name=".module.ryg.ch3.RygCh3InnerActivity">
+        </activity>
+        <!-- Ryg ch4 -->
+        <activity android:name=".module.ryg.ch4.RygCh4WidthHeightActivity">
+        </activity>
+        <activity android:name=".module.ryg.ch4.RygCh4CircleViewActivity">
+        </activity>
+        <activity android:name=".module.ryg.ch4.RygCh4ExActivity">
         </activity>
         <activity android:name=".module.ryg.ch4.RygCh4Activity">
         </activity>
@@ -227,6 +251,7 @@
         <service
             android:name=".module.fm.service.FileScannerService"
             android:process=".fm"/>
+
 
     </application>
 

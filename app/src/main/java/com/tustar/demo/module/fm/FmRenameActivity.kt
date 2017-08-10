@@ -62,7 +62,7 @@ class FmRenameActivity : BaseActivity(), SimpleListItem1Adapter.OnItemClickListe
                         if (oldFile.renameTo(newFile)) {
                             ToastUtils.showLong(DeskRenameActivity@ this, "Rename Success")
                             mFiles = getFiles()
-                            mAdapter!!.data = mFiles!!.map { it -> it.name }
+                            mAdapter!!.data = mFiles.map { it -> it.name }
                             mAdapter!!.notifyDataSetChanged()
                         } else {
                             ToastUtils.showLong(DeskRenameActivity@ this, "Rename failure")

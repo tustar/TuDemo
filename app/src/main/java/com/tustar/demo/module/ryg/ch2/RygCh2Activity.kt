@@ -8,6 +8,7 @@ import com.tustar.demo.R
 import com.tustar.demo.adapter.SimpleListItem1Adapter
 import com.tustar.demo.base.BaseActivity
 import com.tustar.demo.module.ryg.ch2.aidl.BookManagerActivity
+import com.tustar.demo.module.ryg.ch2.binderpool.BinderPoolActivity
 import com.tustar.demo.module.ryg.ch2.messenger.MessengerActivity
 import com.tustar.demo.module.ryg.ch2.provider.RygProviderActivity
 import com.tustar.demo.module.ryg.ch2.socket.TCPClientActivity
@@ -27,6 +28,7 @@ class RygCh2Activity : BaseActivity(), SimpleListItem1Adapter.OnItemClickListene
             sClassList.add(MessengerActivity::class.java)
             sClassList.add(BookManagerActivity::class.java)
             sClassList.add(TCPClientActivity::class.java)
+            sClassList.add(BinderPoolActivity::class.java)
         }
     }
 
