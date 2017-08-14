@@ -211,8 +211,18 @@
         </activity>
         <activity android:name=".module.ryg.ch4.RygCh4Activity">
         </activity>
+        <!-- Ryg ch5 -->
         <activity android:name=".module.ryg.ch5.RygCh5Activity">
         </activity>
+        <activity android:name=".module.ryg.ch5.RygCh5NotificationActivity">
+        </activity>
+        <activity android:name=".module.ryg.ch5.RygCh5AppWidgetActivity">
+        </activity>
+        <activity android:name=".module.ryg.ch5.RygCh5CustomActivity">
+        </activity>
+        <activity android:name=".module.ryg.ch5.RygCh5RemoteViewsActivity">
+        </activity>
+        <!-- Ryg ch6 -->
         <activity android:name=".module.ryg.ch6.RygCh6Activity">
         </activity>
         <activity android:name=".module.ryg.ch7.RygCh7Activity">
@@ -251,12 +261,7 @@
         <service
             android:name=".module.fm.service.FileScannerService"
             android:process=".fm"/>
-
-        <activity android:name=".module.ryg.ch5.RygCh5NotificationActivity">
-        </activity>
-        <activity android:name=".module.ryg.ch5.RygCh5AppWidgetActivity">
-        </activity>
-        <activity android:name=".module.ryg.ch5.RygCh5CustomActivity">
+        <activity android:name=".module.fm.FmListViewXActivity">
         </activity>
     </application>
 

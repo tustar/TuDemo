@@ -26,6 +26,23 @@
         <item>@string/fm_gif_player</item>
         <item>@string/fm_android_gif_drawable</item>
         <item>@string/fm_rename</item>
+        <item>@string/fm_list_view_x</item>
+    </string-array>
+
+    <string-array name="fm_float_list">
+        <item>List item 1</item>
+        <item>List item 2</item>
+        <item>List item 3</item>
+        <item>List item 4</item>
+        <item>List item 5</item>
+        <item>List item 6</item>
+        <item>List item 7</item>
+        <item>List item 8</item>
+        <item>List item 9</item>
+        <item>List item 10</item>
+        <item>List item 11</item>
+        <item>List item 12</item>
+        <item>List item 13</item>
     </string-array>
 
     <string-array name="ryg_chapters">
