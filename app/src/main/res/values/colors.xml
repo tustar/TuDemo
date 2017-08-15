@@ -33,4 +33,5 @@
 
     <color name="spectrum_cyan">#00e0e0</color>
     <color name="spectrum_yellow">#f0e000</color>
+    <color name="reveal_color">#1b000000</color>
 </resources>

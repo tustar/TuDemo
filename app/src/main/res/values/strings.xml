@@ -131,5 +131,7 @@
     <string name="qyz_svg_title">SVG</string>
     <string name="qyz_flex_title">FlexibleListView</string>
     <string name="qyz_over_scroll_title">OverScroll GridView</string>
+    <string name="appwidget_text">EXAMPLE</string>
+    <string name="add_widget">Add widget</string>
 
 </resources>

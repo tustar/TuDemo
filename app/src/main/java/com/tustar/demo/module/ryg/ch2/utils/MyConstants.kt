@@ -13,4 +13,7 @@ object MyConstants {
 
     val MSG_FROM_CLIENT = 0
     val MSG_FROM_SERVICE = 1
+
+    val REMOTE_ACTION = "com.ryg.chapter.action_REMOTE"
+    val EXTRA_REMOTE_VIEWS = "extra_remoteViews"
 }

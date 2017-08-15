@@ -20,12 +20,13 @@ open class BaseRygActivity : BaseActivity(), SimpleListItem1Adapter.OnItemClickL
 
     open val sClassList = ArrayList<Class<*>>()
     open var ryg_data_source: Int = -1
+    open var ryg_layout_id = R.layout.activity_ryg_base
     private var mAdapter: SimpleListItem1Adapter? = null
     private var mDataObserver: RecyclerView.AdapterDataObserver? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_ryg_base)
+        setContentView(ryg_layout_id)
 
         initRecyclerView()
     }
