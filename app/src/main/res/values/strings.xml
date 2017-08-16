@@ -118,6 +118,8 @@
     <string name="ryg_ch5_app_widget">RemoteViews桌面小控件</string>
     <string name="ryg_ch5_custom">RemoteViews原理模拟实现</string>
     <string name="ryg_ch5_remote_views">RemoteViews用于通知打开</string>
+    <!--ryg_ch6-->
+    <string name="ryg_ch6_drawable">各种Drawable</string>
 
     <!--三国群英传-->
     <string name="qyz_main_title">三国群英传</string>

@@ -243,22 +243,33 @@
         <!-- Ryg ch6 -->
         <activity android:name=".module.ryg.ch6.RygCh6Activity">
         </activity>
+        <activity android:name=".module.ryg.ch6.RygCh6DrawableActivity">
+        </activity>
+        <!--Ryg ch7-->
         <activity android:name=".module.ryg.ch7.RygCh7Activity">
         </activity>
+        <!--Ryg ch8-->
         <activity android:name=".module.ryg.ch8.RygCh8Activity">
         </activity>
+        <!--Ryg ch9-->
         <activity android:name=".module.ryg.ch9.RygCh9Activity">
         </activity>
+        <!--Ryg ch10-->
         <activity android:name=".module.ryg.ch10.RygCh10Activity">
         </activity>
+        <!--Ryg ch11-->
         <activity android:name=".module.ryg.ch11.RygCh11Activity">
         </activity>
+        <!--Ryg ch12-->
         <activity android:name=".module.ryg.ch12.RygCh12Activity">
         </activity>
+        <!--Ryg ch13-->
         <activity android:name=".module.ryg.ch13.RygCh13Activity">
         </activity>
+        <!--Ryg ch14-->
         <activity android:name=".module.ryg.ch14.RygCh14Activity">
         </activity>
+        <!--Ryg ch15-->
         <activity android:name=".module.ryg.ch15.RygCh15Activity">
         </activity>
 
@@ -282,8 +293,6 @@
 
         <activity android:name=".module.fm.FmListViewXActivity">
         </activity>
-
-
     </application>
 
 </manifest>

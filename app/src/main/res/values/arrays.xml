@@ -90,6 +90,10 @@
         <item>@string/ryg_ch5_custom</item>
     </string-array>
 
+    <string-array name="ryg_ch6_list">
+        <item>@string/ryg_ch6_drawable</item>
+    </string-array>
+
     <string-array name="qyz_list">
         <item>@string/qyz_rotation_title</item>
         <item>@string/qyz_palette_title</item>

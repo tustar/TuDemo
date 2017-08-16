@@ -1,0 +1,197 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.tustar.demo.module.ryg.ch6.RygCh6DrawableActivity">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:padding="12dp">
+
+        <!--BitmapDrawable-->
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingBottom="10dp"
+            android:text="BitmapDrawable"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:weightSum="3">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="100dp"
+                android:layout_weight="1"
+                android:background="@drawable/bitmap_ryg_ch6"
+                android:gravity="center"/>
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="100dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:layout_weight="1"
+                android:background="@drawable/bitmap_ryg_ch6_mirror"
+                android:gravity="center"/>
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="100dp"
+                android:layout_weight="1"
+                android:background="@drawable/bitmap_ryg_ch6_clamp"
+                android:gravity="center"/>
+
+        </LinearLayout>
+
+        <!--ShapeDrawable-->
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingBottom="10dp"
+            android:paddingTop="10dp"
+            android:text="ShapeDrawable + PercentFrameLayout"/>
+
+        <android.support.percent.PercentFrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="100dp"
+                android:layout_gravity="left|top"
+                android:background="@drawable/shape_ryg_ch6"
+                android:gravity="center"
+                app:layout_widthPercent="32%"/>
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="100dp"
+                android:layout_gravity="center_horizontal|top"
+                android:background="@drawable/shape_ryg_ch6_stroke"
+                android:gravity="center"
+                app:layout_marginLeftPercent="2%"
+                app:layout_marginRightPercent="2%"
+                app:layout_widthPercent="32%"/>
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="100dp"
+                android:layout_gravity="right|top"
+                android:background="@drawable/shape_ryg_ch6_size_padding"
+                android:gravity="center"
+                app:layout_widthPercent="32%"/>
+
+        </android.support.percent.PercentFrameLayout>
+
+        <android.support.percent.PercentFrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="100dp"
+                android:layout_gravity="left|top"
+                android:background="@drawable/shape_ryg_ch6_gradient_linear"
+                android:gravity="center"
+                app:layout_widthPercent="32%"/>
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="100dp"
+                android:layout_gravity="center_horizontal|top"
+                android:background="@drawable/shape_ryg_ch6_gradient_radius"
+                android:gravity="center"
+                app:layout_marginLeftPercent="2%"
+                app:layout_marginRightPercent="2%"
+                app:layout_widthPercent="32%"/>
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="100dp"
+                android:layout_gravity="right|top"
+                android:background="@drawable/shape_ryg_ch6_gradient_sweep"
+                android:gravity="center"
+                app:layout_widthPercent="32%"/>
+
+        </android.support.percent.PercentFrameLayout>
+
+
+        <!--BitmapDrawable-->
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingBottom="10dp"
+            android:paddingTop="10dp"
+            android:text="TransitionDrawable + InsetDrawable + ScaleDrawable"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:weightSum="3">
+
+            <TextView
+                android:id="@+id/ryg_ch6_transition"
+                android:layout_width="0dp"
+                android:layout_height="100dp"
+                android:layout_weight="1"
+                android:background="@drawable/transition_ryg_ch6"
+                android:gravity="center"/>
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="100dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:layout_weight="1"
+                android:background="@drawable/inset_ryg_ch6"
+                android:gravity="center"/>
+
+            <TextView
+                android:id="@+id/ryg_ch6_scale"
+                android:layout_width="0dp"
+                android:layout_height="100dp"
+                android:layout_weight="1"
+                android:background="@drawable/scale_ryg_ch6"
+                android:gravity="center"
+                android:textColor="#ffffff"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="100dp"
+            android:layout_marginTop="10dp"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:id="@+id/ryg_ch6_clip"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:gravity="center"
+                android:src="@drawable/clip_ryg_ch6"/>
+
+            <TextView
+                android:id="@+id/ryg_ch6_custom"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:gravity="center"
+                android:text="custom drawable"
+                android:textColor="#ffffff"/>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</ScrollView>
