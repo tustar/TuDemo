@@ -19,6 +19,7 @@
         android:background="#fff4f7f9"
         android:cacheColorHint="#00000000"
         android:divider="#dddbdb"
+        android:layoutAnimation="@anim/ryg_ch7_layout_anim"
         android:dividerHeight="1.0px"
         android:listSelector="@android:color/transparent" />
 
