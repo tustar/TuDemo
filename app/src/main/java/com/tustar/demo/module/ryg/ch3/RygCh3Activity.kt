@@ -3,7 +3,7 @@ package com.tustar.demo.module.ryg.ch3
 import android.os.Bundle
 import com.tustar.demo.R
 import com.tustar.demo.adapter.SimpleListItem1Adapter
-import com.tustar.demo.module.ryg.ch5.BaseRygActivity
+import com.tustar.demo.module.ryg.base.BaseRygActivity
 
 class RygCh3Activity : BaseRygActivity(), SimpleListItem1Adapter.OnItemClickListener {
 

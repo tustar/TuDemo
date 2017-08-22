@@ -3,12 +3,12 @@ package com.tustar.demo.module.ryg.ch2
 import android.os.Bundle
 import com.tustar.demo.R
 import com.tustar.demo.adapter.SimpleListItem1Adapter
+import com.tustar.demo.module.ryg.base.BaseRygActivity
 import com.tustar.demo.module.ryg.ch2.aidl.BookManagerActivity
 import com.tustar.demo.module.ryg.ch2.binderpool.BinderPoolActivity
 import com.tustar.demo.module.ryg.ch2.messenger.MessengerActivity
 import com.tustar.demo.module.ryg.ch2.provider.RygProviderActivity
 import com.tustar.demo.module.ryg.ch2.socket.TCPClientActivity
-import com.tustar.demo.module.ryg.ch5.BaseRygActivity
 
 class RygCh2Activity : BaseRygActivity(), SimpleListItem1Adapter.OnItemClickListener {
 

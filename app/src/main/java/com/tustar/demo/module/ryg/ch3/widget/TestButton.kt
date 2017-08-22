@@ -1,13 +1,11 @@
 package com.tustar.demo.module.ryg.ch3.widget
 
 import android.content.Context
-import android.support.v4.view.ViewCompat
 import android.util.AttributeSet
 import android.view.MotionEvent
 import android.view.ViewConfiguration
 import android.widget.TextView
 import com.tustar.demo.util.Logger
-
 
 
 /**

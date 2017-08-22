@@ -8,6 +8,7 @@ import android.os.Bundle
 import android.widget.RemoteViews
 import com.tustar.demo.R
 import com.tustar.demo.adapter.SimpleListItem1Adapter
+import com.tustar.demo.module.ryg.base.BaseRygActivity
 import com.tustar.demo.module.ryg.ch2.utils.MyConstants
 import kotlinx.android.synthetic.main.activity_ryg_ch5.*
 

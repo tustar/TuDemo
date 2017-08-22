@@ -1,4 +1,4 @@
-package com.tustar.demo.module.ryg.ch5
+package com.tustar.demo.module.ryg.base
 
 import android.content.Intent
 import android.os.Bundle

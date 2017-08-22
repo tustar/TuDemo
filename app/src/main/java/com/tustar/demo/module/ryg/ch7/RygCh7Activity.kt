@@ -4,8 +4,7 @@ import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import com.tustar.demo.R
-import com.tustar.demo.module.ryg.ch3.RygCh7LayoutAnimationActivity
-import com.tustar.demo.module.ryg.ch5.BaseRygActivity
+import com.tustar.demo.module.ryg.base.BaseRygActivity
 import com.tustar.demo.util.Logger
 
 class RygCh7Activity : BaseRygActivity() {

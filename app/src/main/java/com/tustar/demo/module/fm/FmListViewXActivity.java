@@ -23,7 +23,6 @@ import android.widget.Toast;
 
 import com.tustar.demo.R;
 import com.tustar.demo.module.ryg.ch2.utils.PreferenceHelper;
-import com.tustar.demo.module.ryg.ch2.utils.Utils;
 
 import java.lang.reflect.Method;
 import java.util.ArrayList;

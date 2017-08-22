@@ -2,11 +2,10 @@ package com.tustar.demo.module.ryg.ch4
 
 import android.os.Bundle
 import android.text.method.ScrollingMovementMethod
+import android.view.View.MeasureSpec
 import com.tustar.demo.R
 import com.tustar.demo.base.BaseActivity
 import kotlinx.android.synthetic.main.activity_ryg_ch4_width_height.*
-import android.view.View.MeasureSpec
-
 
 
 class RygCh4WidthHeightActivity : BaseActivity() {

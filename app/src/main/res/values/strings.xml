@@ -124,6 +124,9 @@
     <string name="ryg_ch7_activity_animator">Activity切换动画</string>
     <string name="ryg_ch7_scale_button">Button放大动画</string>
     <string name="ryg_ch7_layout_animation">LayoutAnimation</string>
+    <!--ryg_ch8-->
+    <string name="ryg_ch8_float_button">FloatButton</string>
+    <string name="ryg_ch8_dialog">Dialog</string>
 
     <!--三国群英传-->
     <string name="qyz_main_title">三国群英传</string>

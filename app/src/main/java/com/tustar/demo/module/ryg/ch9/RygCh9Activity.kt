@@ -2,8 +2,7 @@ package com.tustar.demo.module.ryg.ch9
 
 import android.os.Bundle
 import com.tustar.demo.R
-import com.tustar.demo.base.BaseActivity
-import com.tustar.demo.module.ryg.ch5.BaseRygActivity
+import com.tustar.demo.module.ryg.base.BaseRygActivity
 
 class RygCh9Activity : BaseRygActivity() {
 

@@ -14,6 +14,7 @@
     //
     <uses-permission android:name="com.tustar.PROVIDER"/>
     <uses-permission android:name="com.tustar.permission.ACCESS_BOOK_SERVICE"/>
+    <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" />
 
     <application
         android:name=".TuApplication"
@@ -252,10 +253,14 @@
         </activity>
         <activity android:name=".module.ryg.ch7.RygCh7ScaleButtonActivity">
         </activity>
-        <activity android:name=".module.ryg.ch3.RygCh7LayoutAnimationActivity">
+        <activity android:name=".module.ryg.ch7.RygCh7LayoutAnimationActivity">
         </activity>
         <!-- Ryg ch8 -->
         <activity android:name=".module.ryg.ch8.RygCh8Activity">
+        </activity>
+        <activity android:name=".module.ryg.ch8.RygCh8DialogActivity">
+        </activity>
+        <activity android:name=".module.ryg.ch8.RygCh8FloatActivity">
         </activity>
         <!-- Ryg ch9 -->
         <activity android:name=".module.ryg.ch9.RygCh9Activity">
@@ -299,7 +304,6 @@
 
         <activity android:name=".module.fm.FmListViewXActivity">
         </activity>
-
     </application>
 
 </manifest>
