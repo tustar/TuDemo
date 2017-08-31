@@ -43,7 +43,7 @@ class RygCh8FloatActivity : BaseActivity() {
             if (mFloatingButton != null) {
                 return@setOnClickListener
             }
-            
+
             mFloatingButton = Button(RygCh8FloatActivity@ this)
             mFloatingButton!!.text = "click me"
             mLayoutParams = LayoutParams(

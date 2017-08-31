@@ -14,7 +14,7 @@
     //
     <uses-permission android:name="com.tustar.PROVIDER"/>
     <uses-permission android:name="com.tustar.permission.ACCESS_BOOK_SERVICE"/>
-    <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" />
+    <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW"/>
 
     <application
         android:name=".TuApplication"
@@ -271,6 +271,10 @@
         <!-- Ryg ch11 -->
         <activity android:name=".module.ryg.ch11.RygCh11Activity">
         </activity>
+        <service
+            android:name=".module.ryg.ch11.LocalIntentService"
+            android:exported="false">
+        </service>
         <!-- Ryg ch12 -->
         <activity android:name=".module.ryg.ch12.RygCh12Activity">
         </activity>
