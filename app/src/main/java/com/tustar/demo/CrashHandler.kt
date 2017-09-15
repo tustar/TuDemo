@@ -15,10 +15,10 @@ class CrashHandler : Thread.UncaughtExceptionHandler {
 
     companion object {
         private val TAG = "CrashHandler"
-        private val CRASH_FILE_NAME = "crash"
+        private val CRASH_FILE_NAME = "com.tu.demo_crash"
         private val CRASH_FILE_PATH = Environment.getExternalStorageDirectory().path + "/log/"
         //log文件的后缀名
-        private val CRASH_FILE_NAME_SUFFIX = ".txt"
+        private val CRASH_FILE_NAME_SUFFIX = ".log"
     }
 
     //系统默认的异常处理（默认情况下，系统会终止当前的异常程序）
@@ -76,7 +76,7 @@ class CrashHandler : Thread.UncaughtExceptionHandler {
         val current = System.currentTimeMillis()
         val time = SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(Date(current))
         //以当前时间创建log文件
-        val file = File(CRASH_FILE_PATH + CRASH_FILE_NAME + time + CRASH_FILE_NAME_SUFFIX)
+        val file = File(CRASH_FILE_PATH + CRASH_FILE_NAME + "_" + time + CRASH_FILE_NAME_SUFFIX)
 
         try {
             val pw = PrintWriter(BufferedWriter(FileWriter(file)))
@@ -100,9 +100,9 @@ class CrashHandler : Thread.UncaughtExceptionHandler {
     private fun dumpPhoneInfo(pw: PrintWriter) {
         val pm = mContext!!.getPackageManager()
         val pi = pm.getPackageInfo(mContext!!.getPackageName(), PackageManager.GET_ACTIVITIES)
-        pw.print("App Version: ")
-        pw.print(pi.versionName)
-        pw.print('_')
+        pw.print("App VersionName: ")
+        pw.println(pi.versionName)
+        pw.print("App VersionCode: ")
         pw.println(pi.versionCode)
 
         //android版本号
