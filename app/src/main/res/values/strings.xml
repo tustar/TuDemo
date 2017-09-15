@@ -78,6 +78,7 @@
     <string name="fm_text_header_view">Header View</string>
     <string name="fm_list_item_text">List Item </string>
     <string name="fm_changed_list_item_text">Changed List Item </string>
+    <string name="fm_sp_share">SharedPreferences数据共享</string>
 
     <!--Android开发艺术探索-->
     <string name="ryg_main_title">Android开发艺术探索</string>

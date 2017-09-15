@@ -17,5 +17,7 @@ class TuApplication : Application() {
         super.onCreate()
         var processName = DeviceUtils.getProcessName(applicationContext)
         Logger.d(TAG, "processName = " + processName)
+
+        CrashHandler().init(this    )
     }
 }

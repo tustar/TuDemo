@@ -271,6 +271,7 @@
         <!-- Ryg ch11 -->
         <activity android:name=".module.ryg.ch11.RygCh11Activity">
         </activity>
+
         <service
             android:name=".module.ryg.ch11.LocalIntentService"
             android:exported="false">
@@ -307,6 +308,8 @@
             android:process=".fm"/>
 
         <activity android:name=".module.fm.FmListViewXActivity">
+        </activity>
+        <activity android:name=".module.fm.FmSpShareActivity">
         </activity>
     </application>
 
