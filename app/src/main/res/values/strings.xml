@@ -74,7 +74,6 @@
     <string name="fm_gif_player">GifPlayer</string>
     <string name="fm_android_gif_drawable">Android Gif Drawable</string>
     <string name="fm_rename">Rename</string>
-    <string name="fm_list_view_x">ListViewX</string>
     <string name="fm_text_header_view">Header View</string>
     <string name="fm_list_item_text">List Item </string>
     <string name="fm_changed_list_item_text">Changed List Item </string>

@@ -25,7 +25,6 @@ class FmMainActivity : BaseActivity(), SimpleListItem1Adapter.OnItemClickListene
                 add(FmGifPlayerActivity::class.java)
                 add(FmGifDrawableActivity::class.java)
                 add(FmRenameActivity::class.java)
-                add(FmListViewXActivity::class.java)
                 add(FmSpShareActivity::class.java)
             }
         }

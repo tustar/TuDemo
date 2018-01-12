@@ -306,9 +306,6 @@
         <service
             android:name=".module.fm.service.FileScannerService"
             android:process=".fm"/>
-
-        <activity android:name=".module.fm.FmListViewXActivity">
-        </activity>
         <activity android:name=".module.fm.FmSpShareActivity">
         </activity>
     </application>

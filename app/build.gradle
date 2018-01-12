@@ -1,17 +1,16 @@
 apply plugin: 'com.android.application'
-apply plugin: 'com.neenbedankt.android-apt'
 apply plugin: 'com.jakewharton.butterknife'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
 
 android {
-    compileSdkVersion 24
-    buildToolsVersion '25.0.0'
+    compileSdkVersion 27
+    buildToolsVersion '26.0.2'
 
     defaultConfig {
         applicationId "com.tustar.demo"
         minSdkVersion 22
-        targetSdkVersion 24
+        targetSdkVersion 27
         versionCode 2
         versionName "1.0.1"
         externalNativeBuild {
@@ -32,11 +31,12 @@ android {
         enabled = true
     }
     compileOptions {
-        sourceCompatibility JavaVersion.VERSION_1_7
-        targetCompatibility JavaVersion.VERSION_1_7
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
     }
     dexOptions {
         javaMaxHeapSize '4g'
+        incremental true
     }
 
     externalNativeBuild {
@@ -47,24 +47,25 @@ android {
 }
 
 dependencies {
-    compile files('src/main/libs/universal-image-loader-1.9.5.jar')
+    implementation files('src/main/libs/universal-image-loader-1.9.5.jar')
     compile "org.jetbrains.kotlin:kotlin-stdlib-jre7:$kotlin_version"
     compile "org.jetbrains.kotlin:kotlin-reflect:$kotlin_version"
-    provided files('src/main/libs/framework_houdini.jar')
-    compile 'com.android.support:appcompat-v7:23.4.0'
-    compile 'com.android.support:cardview-v7:23.4.0'
-    compile 'com.android.support:recyclerview-v7:23.4.0'
-    compile 'com.android.support:design:23.4.0'
-    compile 'com.android.support:palette-v7:23.4.0'
-    compile 'com.jakewharton:butterknife:8.6.0'
+    compile "com.android.support:appcompat-v7:$sdk_version"
+    compile "com.android.support:cardview-v7:$sdk_version"
+    compile "com.android.support:recyclerview-v7:$sdk_version"
+    compile "com.android.support:design:$sdk_version"
+    compile "com.android.support:palette-v7:$sdk_version"
+    compile "com.android.support:support-v4:$sdk_version"
+    compile "com.android.support:percent:$sdk_version"
     compile 'com.yanzhenjie:recyclerview-swipe:1.0.2'
     compile 'com.android.support.constraint:constraint-layout:1.0.0-alpha8'
-    compile 'com.android.support:support-v4:26.0.0-alpha1'
     compile 'pl.droidsonroids.gif:android-gif-drawable:1.2.7'
-    compile 'com.android.support:percent:26.0.0-alpha1'
+    implementation 'com.jakewharton:butterknife:9.0.0-SNAPSHOT'
+    annotationProcessor 'com.jakewharton:butterknife-compiler:9.0.0-SNAPSHOT'
+    annotationProcessor 'com.android.databinding:compiler:2.3.0'
+    //
     testCompile 'junit:junit:4.12'
-    annotationProcessor 'com.jakewharton:butterknife-compiler:8.6.0'
-    apt 'com.android.databinding:compiler:2.3.0'
+
 }
 repositories {
     mavenCentral()

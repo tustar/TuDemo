@@ -25,8 +25,7 @@
     <string-array name="fm_list">
         <item>@string/fm_gif_player</item>
         <item>@string/fm_android_gif_drawable</item>
-        <item>@string/fm_rename</item>
-        <item>@string/fm_list_view_x</item>
+        <item>@string/fm_rename</item>gst
         <item>@string/fm_sp_share</item>
     </string-array>
 
