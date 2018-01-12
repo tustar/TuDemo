@@ -9,7 +9,7 @@ android {
 
     defaultConfig {
         applicationId "com.tustar.demo"
-        minSdkVersion 22
+        minSdkVersion 24
         targetSdkVersion 27
 
         versionCode 2

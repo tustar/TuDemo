@@ -27,6 +27,7 @@
         <item>@string/fm_android_gif_drawable</item>
         <item>@string/fm_rename</item>gst
         <item>@string/fm_sp_share</item>
+        <item>@string/fm_open_file</item>
     </string-array>
 
     <string-array name="fm_float_list">
@@ -117,5 +118,4 @@
         <item>@string/qyz_flex_title</item>
         <item>@string/qyz_over_scroll_title</item>
     </string-array>
-
 </resources>

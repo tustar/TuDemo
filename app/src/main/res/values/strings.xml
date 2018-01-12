@@ -78,6 +78,8 @@
     <string name="fm_list_item_text">List Item </string>
     <string name="fm_changed_list_item_text">Changed List Item </string>
     <string name="fm_sp_share">SharedPreferences数据共享</string>
+    <string name="fm_open_file">打开文件管理器浏览</string>
+
 
     <!--Android开发艺术探索-->
     <string name="ryg_main_title">Android开发艺术探索</string>
@@ -140,6 +142,8 @@
     <string name="qyz_svg_title">SVG</string>
     <string name="qyz_flex_title">FlexibleListView</string>
     <string name="qyz_over_scroll_title">OverScroll GridView</string>
+
+    <!--Other-->
     <string name="appwidget_text">EXAMPLE</string>
     <string name="add_widget">Add widget</string>
 
