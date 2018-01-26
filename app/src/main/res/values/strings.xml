@@ -79,6 +79,8 @@
     <string name="fm_changed_list_item_text">Changed List Item </string>
     <string name="fm_sp_share">SharedPreferences数据共享</string>
     <string name="fm_open_file">打开文件管理器浏览</string>
+    <string name="fm_section_list_view">Section ListView</string>
+    <string name="fm_section_grid_view">Section GridView</string>
 
 
     <!--Android开发艺术探索-->

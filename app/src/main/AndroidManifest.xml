@@ -311,6 +311,15 @@
         </activity>
         <activity android:name=".module.fm.FmOpenActivity">
         </activity>
+        <activity android:name=".module.fm.FmSectionListViewActivity">
+        </activity>
+        <activity android:name=".module.fm.FmSectionGridViewActivity">
+        </activity>
+        <activity
+            android:name=".module.fm.ItemListActivity">
+        </activity>
+        <activity
+            android:name=".module.fm.ItemDetailActivity">
+        </activity>
     </application>
-
 </manifest>

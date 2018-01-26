@@ -27,6 +27,8 @@ class FmMainActivity : BaseActivity(), SimpleListItem1Adapter.OnItemClickListene
                 add(FmRenameActivity::class.java)
                 add(FmSpShareActivity::class.java)
                 add(FmOpenActivity::class.java)
+                add(FmSectionListViewActivity::class.java)
+                add(ItemListActivity::class.java)
             }
         }
     }

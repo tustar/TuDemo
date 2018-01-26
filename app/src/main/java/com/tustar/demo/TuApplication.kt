@@ -1,6 +1,8 @@
 package com.tustar.demo
 
 import android.app.Application
+import android.content.Context
+import com.tustar.demo.proxy.ProxyUtils
 import com.tustar.demo.util.DeviceUtils
 import com.tustar.demo.util.Logger
 
@@ -11,6 +13,11 @@ class TuApplication : Application() {
 
     companion object {
         private var TAG = TuApplication::class.simpleName
+    }
+
+    override fun attachBaseContext(base: Context?) {
+        super.attachBaseContext(base)
+        ProxyUtils.hookNotificationManager(this)
     }
 
     override fun onCreate() {
