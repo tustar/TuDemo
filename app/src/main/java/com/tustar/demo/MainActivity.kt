@@ -6,6 +6,7 @@ import android.app.PendingIntent
 import android.content.Context
 import android.content.Intent
 import android.graphics.BitmapFactory
+import android.net.Uri
 import android.os.Bundle
 import android.support.design.widget.NavigationView
 import android.support.design.widget.Snackbar
@@ -49,29 +50,32 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
     companion object {
 
         private val TAG = MainActivity::class.java.simpleName
-        private val sClassList = ArrayList<Class<*>>()
+        private val sClassList = ArrayList<Any>()
 
         // List
         init {
-            sClassList.add(RecyclerViewActivity::class.java)
-            sClassList.add(CustomWidgetActivity::class.java)
-            sClassList.add(FloatWindowActivity::class.java)
-            sClassList.add(DragSortListViewActivity::class.java)
-            sClassList.add(DragViewActivity::class.java)
-            sClassList.add(ViewAnimActivity::class.java)
-            sClassList.add(LoaderActivity::class.java)
-            sClassList.add(ServiceActivity::class.java)
-            sClassList.add(HideActionBarActivity::class.java)
-            sClassList.add(AccountActivity::class.java)
-            sClassList.add(ProviderActivity::class.java)
-            sClassList.add(DeskClockActivity::class.java)
-            sClassList.add(ScrollerActivity::class.java)
-            sClassList.add(HistoryActivity::class.java)
-            sClassList.add(SubScaleViewActivity::class.java)
+            sClassList += RecyclerViewActivity::class.java
+            sClassList += CustomWidgetActivity::class.java
+            sClassList += FloatWindowActivity::class.java
+            sClassList += DragSortListViewActivity::class.java
+            sClassList += DragViewActivity::class.java
+            sClassList += ViewAnimActivity::class.java
+            sClassList += LoaderActivity::class.java
+            sClassList += ServiceActivity::class.java
+            sClassList += HideActionBarActivity::class.java
+            sClassList += AccountActivity::class.java
+            sClassList += ProviderActivity::class.java
+            sClassList += DeskClockActivity::class.java
+            sClassList += ScrollerActivity::class.java
+            sClassList += HistoryActivity::class.java
+            sClassList += SubScaleViewActivity::class.java
             //
-            sClassList.add(FmMainActivity::class.java)
-            sClassList.add(QyzMainActivity::class.java)
-            sClassList.add(RygMainActivity::class.java)
+            sClassList += FmMainActivity::class.java
+            sClassList += QyzMainActivity::class.java
+            sClassList += RygMainActivity::class.java
+            //
+            sClassList += ItemClickAction(Intent.ACTION_VIEW, Intent.CATEGORY_APP_BROWSER,
+                    Uri.parse("https://tustar.com/main"))
             sClassList.reverse()
         }
     }
@@ -170,7 +174,18 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
     override fun onItemClick(view: View, position: Int) {
         val intent = Intent()
         val clazz = sClassList[position]
-        intent.setClass(this, clazz)
+        when(clazz) {
+            is Class<*> -> intent.setClass(this, clazz)
+            is ItemClickAction -> {
+                intent.action = clazz.action
+                intent.addCategory(clazz.category)
+                intent.data = clazz.data
+
+            }
+            else -> intent.setClass(this, clazz as Class<*>?)
+
+        }
+
         startActivity(intent)
     }
 
@@ -190,4 +205,8 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         val nm = getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
         nm.notify((System.currentTimeMillis() / 1000L).toInt(), notification)
     }
+
+    data class ItemClickAction(var action: String,
+                               var category: String,
+                               val data: Uri)
 }

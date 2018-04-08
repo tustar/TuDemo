@@ -68,7 +68,7 @@ class ImageLoader {
             if (url.equals(result.url)) {
                 imageView.setImageBitmap(result.bitmap)
             } else {
-                Logger.w(TAG, "set image bitmap,but url has changed, ignored!")
+                Logger.w(TAG, "set image bitmap,but data has changed, ignored!")
             }
         }
     }
@@ -104,7 +104,7 @@ class ImageLoader {
     /**
      * load bitmap from memory cache or disk cache or network async, then bind imageView and bitmap.
      * NOTE THAT: should run in UI Thread
-     * @param url http url
+     * @param url http data
      * @param imageView bitmap's bind object
      */
     fun bindBitmap(url: String, imageView: ImageView) {
@@ -132,7 +132,7 @@ class ImageLoader {
 
     /**
      * load bitmap from memory cache or disk cache or network.
-     * @param url http url
+     * @param url http data
      * @param reqWidth the width ImageView desired
      * @param reqHeight the height ImageView desired
      * @return bitmap, maybe null.

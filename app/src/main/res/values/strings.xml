@@ -145,6 +145,9 @@
     <string name="qyz_flex_title">FlexibleListView</string>
     <string name="qyz_over_scroll_title">OverScroll GridView</string>
 
+    <!--Android Architecture Components-->
+    <string name="aac_main_title">Android Architecture Components</string>
+
     <!--Other-->
     <string name="appwidget_text">EXAMPLE</string>
     <string name="add_widget">Add widget</string>

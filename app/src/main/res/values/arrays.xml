@@ -16,10 +16,13 @@
         <item>Scroller</item>
         <item>History</item>
         <item>SubScaleView</item>
-        //
+        <!---->
         <item>@string/fm_main_title</item>
         <item>@string/qyz_main_title</item>
         <item>@string/ryg_main_title</item>
+        <!---->
+        <item>@string/aac_main_title</item>
+
     </string-array>
 
     <string-array name="fm_list">
