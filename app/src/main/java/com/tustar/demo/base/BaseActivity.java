@@ -8,7 +8,7 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.MenuItem;
 
-import com.tustar.demo.util.Logger;
+import com.tustar.common.util.Logger;
 
 /**
  * Created by tustar on 4/10/16.

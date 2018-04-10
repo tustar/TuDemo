@@ -1,4 +1,4 @@
-package com.tustar.demo.util;
+package com.tustar.common.util;
 
 import android.graphics.Typeface;
 import android.text.Spannable;

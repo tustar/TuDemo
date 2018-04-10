@@ -4,7 +4,7 @@ import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
-import com.tustar.demo.util.Logger;
+import com.tustar.common.util.Logger;
 
 /**
  * Created by tustar on 11/5/16.

@@ -1,4 +1,4 @@
-package com.tustar.demo.util;
+package com.tustar.common.util;
 
 /**
  * Created by tustar on 16-3-11.
@@ -7,9 +7,9 @@ package com.tustar.demo.util;
 import android.content.Context;
 import android.content.SharedPreferences;
 
-import com.tustar.demo.common.Preferences;
-
 public class PreferencesUtils {
+
+    static String PREF_FILE_NAME = "com.tustar.demo";
 
     private PreferencesUtils() {
         throw new AssertionError();
@@ -24,7 +24,7 @@ public class PreferencesUtils {
      * @return True if the new values were successfully written to persistent storage.
      */
     public static boolean putString(Context context, String key, String value) {
-        SharedPreferences settings = context.getSharedPreferences(Preferences.PREF_FILE_NAME,
+        SharedPreferences settings = context.getSharedPreferences(PREF_FILE_NAME,
                 Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = settings.edit();
         editor.putString(key, value);
@@ -54,7 +54,7 @@ public class PreferencesUtils {
      * this name that is not a string
      */
     public static String getString(Context context, String key, String defaultValue) {
-        SharedPreferences settings = context.getSharedPreferences(Preferences.PREF_FILE_NAME, Context.MODE_PRIVATE);
+        SharedPreferences settings = context.getSharedPreferences(PREF_FILE_NAME, Context.MODE_PRIVATE);
         return settings.getString(key, defaultValue);
     }
 
@@ -67,7 +67,7 @@ public class PreferencesUtils {
      * @return True if the new values were successfully written to persistent storage.
      */
     public static boolean putInt(Context context, String key, int value) {
-        SharedPreferences settings = context.getSharedPreferences(Preferences.PREF_FILE_NAME, Context.MODE_PRIVATE);
+        SharedPreferences settings = context.getSharedPreferences(PREF_FILE_NAME, Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = settings.edit();
         editor.putInt(key, value);
         return editor.commit();
@@ -96,7 +96,7 @@ public class PreferencesUtils {
      * this name that is not a int
      */
     public static int getInt(Context context, String key, int defaultValue) {
-        SharedPreferences settings = context.getSharedPreferences(Preferences.PREF_FILE_NAME, Context.MODE_PRIVATE);
+        SharedPreferences settings = context.getSharedPreferences(PREF_FILE_NAME, Context.MODE_PRIVATE);
         return settings.getInt(key, defaultValue);
     }
 
@@ -109,7 +109,7 @@ public class PreferencesUtils {
      * @return True if the new values were successfully written to persistent storage.
      */
     public static boolean putLong(Context context, String key, long value) {
-        SharedPreferences settings = context.getSharedPreferences(Preferences.PREF_FILE_NAME, Context.MODE_PRIVATE);
+        SharedPreferences settings = context.getSharedPreferences(PREF_FILE_NAME, Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = settings.edit();
         editor.putLong(key, value);
         return editor.commit();
@@ -138,7 +138,7 @@ public class PreferencesUtils {
      * this name that is not a long
      */
     public static long getLong(Context context, String key, long defaultValue) {
-        SharedPreferences settings = context.getSharedPreferences(Preferences.PREF_FILE_NAME, Context.MODE_PRIVATE);
+        SharedPreferences settings = context.getSharedPreferences(PREF_FILE_NAME, Context.MODE_PRIVATE);
         return settings.getLong(key, defaultValue);
     }
 
@@ -151,7 +151,7 @@ public class PreferencesUtils {
      * @return True if the new values were successfully written to persistent storage.
      */
     public static boolean putFloat(Context context, String key, float value) {
-        SharedPreferences settings = context.getSharedPreferences(Preferences.PREF_FILE_NAME, Context.MODE_PRIVATE);
+        SharedPreferences settings = context.getSharedPreferences(PREF_FILE_NAME, Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = settings.edit();
         editor.putFloat(key, value);
         return editor.commit();
@@ -180,7 +180,7 @@ public class PreferencesUtils {
      * this name that is not a float
      */
     public static float getFloat(Context context, String key, float defaultValue) {
-        SharedPreferences settings = context.getSharedPreferences(Preferences.PREF_FILE_NAME, Context.MODE_PRIVATE);
+        SharedPreferences settings = context.getSharedPreferences(PREF_FILE_NAME, Context.MODE_PRIVATE);
         return settings.getFloat(key, defaultValue);
     }
 
@@ -193,7 +193,7 @@ public class PreferencesUtils {
      * @return True if the new values were successfully written to persistent storage.
      */
     public static boolean putBoolean(Context context, String key, boolean value) {
-        SharedPreferences settings = context.getSharedPreferences(Preferences.PREF_FILE_NAME, Context.MODE_PRIVATE);
+        SharedPreferences settings = context.getSharedPreferences(PREF_FILE_NAME, Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = settings.edit();
         editor.putBoolean(key, value);
         return editor.commit();
@@ -222,7 +222,7 @@ public class PreferencesUtils {
      * this name that is not a boolean
      */
     public static boolean getBoolean(Context context, String key, boolean defaultValue) {
-        SharedPreferences settings = context.getSharedPreferences(Preferences.PREF_FILE_NAME, Context.MODE_PRIVATE);
+        SharedPreferences settings = context.getSharedPreferences(PREF_FILE_NAME, Context.MODE_PRIVATE);
         return settings.getBoolean(key, defaultValue);
     }
 }

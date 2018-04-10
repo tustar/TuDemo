@@ -1,4 +1,4 @@
-package com.tustar.demo.util;
+package com.tustar.common.util;
 
 /**
  * Created by tustar on 16-7-6.

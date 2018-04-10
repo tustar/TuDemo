@@ -1,4 +1,4 @@
-package com.tustar.demo.util;
+package com.tustar.common.util;
 
 import android.os.Build;
 import android.os.Environment;

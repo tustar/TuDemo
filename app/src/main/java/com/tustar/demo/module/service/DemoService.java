@@ -13,7 +13,7 @@ import android.support.v4.app.NotificationCompat;
 import com.tustar.demo.MainActivity;
 import com.tustar.demo.R;
 import com.tustar.demo.service.IDemoAidlService;
-import com.tustar.demo.util.Logger;
+import com.tustar.common.util.Logger;
 
 public class DemoService extends Service {
 

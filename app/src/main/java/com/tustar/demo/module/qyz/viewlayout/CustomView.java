@@ -7,7 +7,7 @@ import android.util.AttributeSet;
 import android.view.MotionEvent;
 import android.view.View;
 
-import com.tustar.demo.util.Logger;
+import com.tustar.common.util.Logger;
 
 /**
  * Created by tustar on 4/17/16.

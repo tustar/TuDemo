@@ -7,7 +7,7 @@ import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import com.tustar.demo.R
 import com.tustar.demo.base.BaseActivity
-import com.tustar.demo.util.Logger
+import com.tustar.common.util.Logger
 import kotlinx.android.synthetic.main.activity_fm_open.*
 import android.content.Context
 import android.os.Environment

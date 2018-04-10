@@ -2,5 +2,4 @@ apply plugin: 'com.android.instantapp'
 
 dependencies {
     implementation project(':acc')
-    implementation project(':acc')
 }

@@ -14,7 +14,7 @@ import android.support.annotation.Nullable;
 import android.text.TextUtils;
 import android.util.ArrayMap;
 
-import com.tustar.demo.util.Logger;
+import com.tustar.common.util.Logger;
 
 import java.util.Map;
 

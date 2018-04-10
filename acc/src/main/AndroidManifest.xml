@@ -23,7 +23,7 @@
                 <data
                     android:host="tustar.com"
                     android:pathPattern="/.*"
-                    android:scheme="https" />
+                    android:scheme="acc" />
             </intent-filter>
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

@@ -9,9 +9,9 @@ import android.support.v7.widget.LinearLayoutManager
 import com.tustar.demo.R
 import com.tustar.demo.adapter.SimpleListItem1Adapter
 import com.tustar.demo.base.BaseActivity
-import com.tustar.demo.util.Logger
-import com.tustar.demo.util.ToastUtils
-import com.tustar.demo.widget.Decoration
+import com.tustar.common.util.Logger
+import com.tustar.common.util.ToastUtils
+import com.tustar.common.widget.Decoration
 import kotlinx.android.synthetic.main.activity_ryg_book_manager.*
 
 
@@ -106,7 +106,7 @@ class BookManagerActivity : BaseActivity() {
         ryg_ch2_bm_rv.layoutManager = LinearLayoutManager(this)
         mAdapter = SimpleListItem1Adapter(mData)
         ryg_ch2_bm_rv.adapter = mAdapter
-        ryg_ch2_bm_rv.addItemDecoration(Decoration(this, Decoration.VERTICAL))
+        ryg_ch2_bm_rv.addItemDecoration(com.tustar.common.widget.Decoration(this, com.tustar.common.widget.Decoration.VERTICAL))
 
         ryg_ch2_bm_btn.setOnClickListener {
             Logger.d(TAG, "setOnClickListener ::")

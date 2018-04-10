@@ -7,8 +7,8 @@ import android.view.Window
 import android.view.WindowManager
 import com.tustar.demo.R
 import com.tustar.demo.base.BaseActivity
-import com.tustar.demo.util.Logger
-import com.tustar.demo.util.ToastUtils
+import com.tustar.common.util.Logger
+import com.tustar.common.util.ToastUtils
 import kotlinx.android.synthetic.main.activity_fm_gif_player.*
 import java.io.File
 

@@ -11,7 +11,7 @@ import android.view.View;
 import android.view.ViewConfiguration;
 import android.view.ViewParent;
 
-import com.tustar.demo.util.Logger;
+import com.tustar.common.util.Logger;
 
 /**
  * Created by tustar on 11/19/16.

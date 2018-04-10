@@ -4,7 +4,7 @@ import android.app.NotificationManager;
 import android.content.Context;
 import android.util.Log;
 
-import com.tustar.demo.util.Logger;
+import com.tustar.common.util.Logger;
 
 import java.lang.reflect.Field;
 import java.lang.reflect.InvocationHandler;

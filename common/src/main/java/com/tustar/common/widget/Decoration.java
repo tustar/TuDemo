@@ -1,4 +1,4 @@
-package com.tustar.demo.widget;
+package com.tustar.common.widget;
 
 import android.content.Context;
 import android.content.res.TypedArray;

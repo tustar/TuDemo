@@ -13,8 +13,8 @@ import android.os.SystemClock
 import android.text.TextUtils
 import android.widget.RemoteViews
 import com.tustar.demo.R
-import com.tustar.demo.util.Logger
-import com.tustar.demo.util.ToastUtils
+import com.tustar.common.util.Logger
+import com.tustar.common.util.ToastUtils
 
 /**
  * Implementation of App Widget functionality.

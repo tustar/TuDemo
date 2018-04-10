@@ -1,0 +1,7 @@
+<resources>
+    <!--Dash Line-->
+    <dimen name="dash_divider_height">2px</dimen>
+    <dimen name="dash_divider_dash_width">4dp</dimen>
+    <dimen name="dash_divider_dash_gap">4dp</dimen>
+
+</resources>

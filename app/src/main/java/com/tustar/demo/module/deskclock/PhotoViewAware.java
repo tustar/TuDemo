@@ -10,7 +10,7 @@ import com.nostra13.universalimageloader.core.assist.ViewScaleType;
 import com.nostra13.universalimageloader.core.imageaware.ViewAware;
 import com.tustar.demo.module.deskclock.subscaleview.ImageSource;
 import com.tustar.demo.module.deskclock.subscaleview.PhotoView;
-import com.tustar.demo.util.Logger;
+import com.tustar.common.util.Logger;
 
 import java.lang.reflect.Field;
 

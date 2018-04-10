@@ -2,7 +2,7 @@ package com.tustar.demo.module.service;
 
 import android.os.Binder;
 
-import com.tustar.demo.util.Logger;
+import com.tustar.common.util.Logger;
 
 /**
  * Created by tustar on 6/18/16.

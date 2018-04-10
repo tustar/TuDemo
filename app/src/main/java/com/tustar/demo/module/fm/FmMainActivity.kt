@@ -9,8 +9,8 @@ import com.tustar.demo.adapter.SimpleListItem1Adapter
 import com.tustar.demo.base.BaseActivity
 import com.tustar.demo.common.CommonDefine
 import com.tustar.demo.module.fm.service.FileMonitorService
-import com.tustar.demo.util.Logger
-import com.tustar.demo.widget.Decoration
+import com.tustar.common.util.Logger
+import com.tustar.common.widget.Decoration
 import kotlinx.android.synthetic.main.activity_fm_main.*
 
 class FmMainActivity : BaseActivity(), SimpleListItem1Adapter.OnItemClickListener {
@@ -43,7 +43,7 @@ class FmMainActivity : BaseActivity(), SimpleListItem1Adapter.OnItemClickListene
         var adapter = SimpleListItem1Adapter(desc)
         fm_main_rv.adapter = adapter
         adapter.setOnItemClickListener(this)
-        fm_main_rv.addItemDecoration(Decoration(this, Decoration.VERTICAL))
+        fm_main_rv.addItemDecoration(com.tustar.common.widget.Decoration(this, com.tustar.common.widget.Decoration.VERTICAL))
 
         // 监听文件变化
         FileMonitorService.startMonitor(this)

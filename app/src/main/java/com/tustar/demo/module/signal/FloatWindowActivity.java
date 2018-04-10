@@ -9,8 +9,8 @@ import android.widget.Switch;
 import com.tustar.demo.R;
 import com.tustar.demo.base.BaseActivity;
 import com.tustar.demo.common.Preferences;
-import com.tustar.demo.util.Logger;
-import com.tustar.demo.util.PreferencesUtils;
+import com.tustar.common.util.Logger;
+import com.tustar.common.util.PreferencesUtils;
 
 
 public class FloatWindowActivity extends BaseActivity {

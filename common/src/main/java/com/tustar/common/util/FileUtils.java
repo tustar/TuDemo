@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.tustar.demo.util;
+package com.tustar.common.util;
 
 import android.content.ContentResolver;
 import android.net.Uri;

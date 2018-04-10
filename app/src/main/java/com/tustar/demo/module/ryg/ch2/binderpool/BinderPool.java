@@ -8,7 +8,7 @@ import android.os.IBinder;
 import android.os.RemoteException;
 
 import com.tustar.demo.module.ryg.ch2.bindpool.IBinderPool;
-import com.tustar.demo.util.Logger;
+import com.tustar.common.util.Logger;
 
 import java.util.concurrent.CountDownLatch;
 

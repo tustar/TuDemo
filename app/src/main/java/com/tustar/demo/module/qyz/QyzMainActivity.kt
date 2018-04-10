@@ -7,8 +7,8 @@ import android.view.View
 import com.tustar.demo.R
 import com.tustar.demo.adapter.SimpleListItem1Adapter
 import com.tustar.demo.base.BaseActivity
-import com.tustar.demo.util.Logger
-import com.tustar.demo.widget.Decoration
+import com.tustar.common.util.Logger
+import com.tustar.common.widget.Decoration
 import kotlinx.android.synthetic.main.activity_qyz_main.*
 
 class QyzMainActivity : BaseActivity(), SimpleListItem1Adapter.OnItemClickListener {
@@ -44,7 +44,7 @@ class QyzMainActivity : BaseActivity(), SimpleListItem1Adapter.OnItemClickListen
         var adapter = SimpleListItem1Adapter(desc)
         qyz_main_rv.adapter = adapter
         adapter.setOnItemClickListener(this)
-        qyz_main_rv.addItemDecoration(Decoration(this, Decoration.VERTICAL))
+        qyz_main_rv.addItemDecoration(com.tustar.common.widget.Decoration(this, com.tustar.common.widget.Decoration.VERTICAL))
     }
 
     override fun onItemClick(view: View, position: Int) {

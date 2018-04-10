@@ -9,7 +9,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.tustar.demo.db.test.DemoItem;
-import com.tustar.demo.util.ToastUtils;
+import com.tustar.common.util.ToastUtils;
 
 import java.util.List;
 

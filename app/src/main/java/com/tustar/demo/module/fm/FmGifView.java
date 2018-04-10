@@ -13,7 +13,7 @@ import android.util.AttributeSet;
 import android.view.View;
 import android.widget.Toast;
 
-import com.tustar.demo.util.FileUtils;
+import com.tustar.common.util.FileUtils;
 
 import java.io.File;
 import java.io.FileNotFoundException;

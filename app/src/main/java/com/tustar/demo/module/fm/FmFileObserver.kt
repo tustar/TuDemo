@@ -2,7 +2,7 @@ package com.tustar.demo.module.fm
 
 import android.os.FileObserver
 import android.text.TextUtils
-import com.tustar.demo.util.Logger
+import com.tustar.common.util.Logger
 
 /**
  * Created by tustar on 17-7-17.

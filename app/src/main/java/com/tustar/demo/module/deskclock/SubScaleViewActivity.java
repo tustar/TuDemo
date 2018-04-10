@@ -15,8 +15,8 @@ import com.tustar.demo.R;
 import com.tustar.demo.base.BaseActivity;
 import com.tustar.demo.module.deskclock.subscaleview.ImageSource;
 import com.tustar.demo.module.deskclock.subscaleview.PhotoView;
-import com.tustar.demo.util.Logger;
-import com.tustar.demo.util.ToastUtils;
+import com.tustar.common.util.Logger;
+import com.tustar.common.util.ToastUtils;
 
 import java.io.File;
 

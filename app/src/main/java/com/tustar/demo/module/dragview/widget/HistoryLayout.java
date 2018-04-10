@@ -12,7 +12,7 @@ import android.widget.OverScroller;
 import android.widget.TextView;
 
 import com.tustar.demo.R;
-import com.tustar.demo.util.Logger;
+import com.tustar.common.util.Logger;
 
 /**
  * Created by tustar on 16-11-11.

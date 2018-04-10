@@ -4,7 +4,7 @@ import android.app.Service
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.os.*
-import com.tustar.demo.util.Logger
+import com.tustar.common.util.Logger
 import java.util.concurrent.CopyOnWriteArrayList
 import java.util.concurrent.atomic.AtomicBoolean
 

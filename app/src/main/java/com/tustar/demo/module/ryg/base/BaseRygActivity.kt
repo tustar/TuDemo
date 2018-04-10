@@ -8,8 +8,8 @@ import android.view.View
 import com.tustar.demo.R
 import com.tustar.demo.adapter.SimpleListItem1Adapter
 import com.tustar.demo.base.BaseActivity
-import com.tustar.demo.util.Logger
-import com.tustar.demo.widget.Decoration
+import com.tustar.common.util.Logger
+import com.tustar.common.widget.Decoration
 import kotlinx.android.synthetic.main.activity_ryg_base.*
 
 open class BaseRygActivity : BaseActivity(), SimpleListItem1Adapter.OnItemClickListener {
@@ -22,7 +22,7 @@ open class BaseRygActivity : BaseActivity(), SimpleListItem1Adapter.OnItemClickL
     open var ryg_data_source: Int = -1
     open var ryg_layout_id = R.layout.activity_ryg_base
     private var mAdapter: SimpleListItem1Adapter? = null
-    private var mDataObserver: RecyclerView.AdapterDataObserver? = null
+    lateinit var mDataObserver: RecyclerView.AdapterDataObserver
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -51,7 +51,7 @@ open class BaseRygActivity : BaseActivity(), SimpleListItem1Adapter.OnItemClickL
         mAdapter!!.registerAdapterDataObserver(mDataObserver)
         ryg_base_rv.adapter = mAdapter
 
-        ryg_base_rv.addItemDecoration(Decoration(this, Decoration.VERTICAL))
+        ryg_base_rv.addItemDecoration(com.tustar.common.widget.Decoration(this, com.tustar.common.widget.Decoration.VERTICAL))
     }
 
     override fun onItemClick(view: View, position: Int) {

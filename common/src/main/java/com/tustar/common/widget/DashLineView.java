@@ -1,4 +1,4 @@
-package com.tustar.demo.widget;
+package com.tustar.common.widget;
 
 import android.content.Context;
 import android.graphics.Canvas;
@@ -6,10 +6,12 @@ import android.graphics.DashPathEffect;
 import android.graphics.Paint;
 import android.graphics.Path;
 import android.graphics.PathEffect;
+import android.os.Build;
+import android.support.annotation.RequiresApi;
 import android.util.AttributeSet;
 import android.view.View;
 
-import com.tustar.demo.R;
+import com.tustar.common.R;
 
 
 /**
@@ -18,6 +20,7 @@ import com.tustar.demo.R;
 
 public class DashLineView extends View {
 
+    @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     public DashLineView(Context context, AttributeSet attrs, int defStyleAttr, int defStyleRes) {
         super(context, attrs, defStyleAttr, defStyleRes);
     }

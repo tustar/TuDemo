@@ -4,7 +4,7 @@ import android.app.IntentService
 import android.content.BroadcastReceiver
 import android.content.Intent
 import android.os.SystemClock
-import com.tustar.demo.util.Logger
+import com.tustar.common.util.Logger
 
 
 /**

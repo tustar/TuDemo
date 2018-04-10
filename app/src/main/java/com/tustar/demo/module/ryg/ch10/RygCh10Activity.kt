@@ -5,7 +5,7 @@ import android.os.Handler
 import android.os.Looper
 import com.tustar.demo.R
 import com.tustar.demo.module.ryg.base.BaseRygActivity
-import com.tustar.demo.util.Logger
+import com.tustar.common.util.Logger
 
 class RygCh10Activity : BaseRygActivity() {
 

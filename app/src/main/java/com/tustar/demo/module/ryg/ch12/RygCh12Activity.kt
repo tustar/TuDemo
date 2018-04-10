@@ -14,7 +14,7 @@ import com.tustar.demo.R
 import com.tustar.demo.base.BaseActivity
 import com.tustar.demo.module.ryg.ch12.loader.ImageLoader
 import com.tustar.demo.module.ryg.ch12.provider.Images
-import com.tustar.demo.util.DeviceUtils
+import com.tustar.common.util.DeviceUtils
 import kotlinx.android.synthetic.main.activity_ryg_ch12.*
 
 

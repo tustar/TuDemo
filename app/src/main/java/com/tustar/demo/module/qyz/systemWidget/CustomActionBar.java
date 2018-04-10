@@ -13,7 +13,7 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.tustar.demo.R;
-import com.tustar.demo.util.DisplayUtils;
+import com.tustar.common.util.DisplayUtils;
 
 /**
  * Created by tustar on 4/16/16.

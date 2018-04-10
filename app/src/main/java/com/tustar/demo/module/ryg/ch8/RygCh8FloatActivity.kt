@@ -14,7 +14,7 @@ import android.view.WindowManager.LayoutParams
 import android.widget.Button
 import com.tustar.demo.R
 import com.tustar.demo.base.BaseActivity
-import com.tustar.demo.util.Logger
+import com.tustar.common.util.Logger
 import kotlinx.android.synthetic.main.activity_ryg_ch8_float.*
 
 

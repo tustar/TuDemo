@@ -37,8 +37,8 @@ import com.tustar.demo.module.ryg.RygMainActivity
 import com.tustar.demo.module.scroller.ScrollerActivity
 import com.tustar.demo.module.service.ServiceActivity
 import com.tustar.demo.module.signal.FloatWindowActivity
-import com.tustar.demo.util.Logger
-import com.tustar.demo.widget.Decoration
+import com.tustar.common.util.Logger
+import com.tustar.common.widget.Decoration
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.app_bar_main.*
 import kotlinx.android.synthetic.main.content_main.*
@@ -74,8 +74,8 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
             sClassList += QyzMainActivity::class.java
             sClassList += RygMainActivity::class.java
             //
-            sClassList += ItemClickAction(Intent.ACTION_VIEW, Intent.CATEGORY_APP_BROWSER,
-                    Uri.parse("https://tustar.com/main"))
+            sClassList += ItemClickAction(Intent.ACTION_VIEW, Intent.CATEGORY_BROWSABLE,
+                    Uri.parse("acc://tustar.com/main"))
             sClassList.reverse()
         }
     }
@@ -121,7 +121,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         var adapter = SimpleListItem1Adapter(contents.filterNotNull().asReversed())
         content_main_rv.adapter = adapter
         adapter.setOnItemClickListener(this)
-        content_main_rv.addItemDecoration(Decoration(this, Decoration.VERTICAL))
+        content_main_rv.addItemDecoration(com.tustar.common.widget.Decoration(this, com.tustar.common.widget.Decoration.VERTICAL))
     }
 
 

@@ -5,7 +5,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 
-import com.tustar.demo.util.Logger;
+import com.tustar.common.util.Logger;
 
 /**
  * Created by tustar on 5/11/16.

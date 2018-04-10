@@ -12,8 +12,8 @@ import android.widget.TextView;
 
 import com.tustar.demo.R;
 import com.tustar.demo.base.BaseActivity;
-import com.tustar.demo.util.ColorUtils;
-import com.tustar.demo.util.Logger;
+import com.tustar.common.util.ColorUtils;
+import com.tustar.common.util.Logger;
 
 
 public class QyzPaletteActivity extends BaseActivity {

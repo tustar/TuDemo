@@ -28,9 +28,6 @@
     <color name="deskclock_item_delete_n">#FF0000</color>
     <color name="deskclock_item_delete_p">#FF6666</color>
 
-    <!--Dash Line-->
-    <color name="dash_divider_dash_color">#ffffff</color>
-
     <color name="spectrum_cyan">#00e0e0</color>
     <color name="spectrum_yellow">#f0e000</color>
     <color name="reveal_color">#1b000000</color>
