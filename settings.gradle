@@ -1,1 +1,1 @@
-include ':app', ':acc', ':common', ':instantapp'
+include ':app', ':common', ':retrofit2'

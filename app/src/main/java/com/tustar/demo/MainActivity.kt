@@ -38,7 +38,6 @@ import com.tustar.demo.module.scroller.ScrollerActivity
 import com.tustar.demo.module.service.ServiceActivity
 import com.tustar.demo.module.signal.FloatWindowActivity
 import com.tustar.common.util.Logger
-import com.tustar.common.widget.Decoration
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.app_bar_main.*
 import kotlinx.android.synthetic.main.content_main.*
@@ -83,7 +82,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
     override fun onCreate(savedInstanceState: Bundle?) {
         Logger.i(TAG, "onCreate :: ")
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+        setContentView(R.layout.activity_retrofit2_main)
         setSupportActionBar(toolbar)
 
         fab.setOnClickListener { view ->
