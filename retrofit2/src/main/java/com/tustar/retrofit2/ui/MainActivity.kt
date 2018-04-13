@@ -1,10 +1,11 @@
-package com.tustar.retrofit2
+package com.tustar.retrofit2.ui
 
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import com.tustar.common.util.Logger
-import com.tustar.retrofit2.model.Repo
-import com.tustar.retrofit2.net.GitHubService
+import com.tustar.retrofit2.R
+import com.tustar.retrofit2.data.Repo
+import com.tustar.retrofit2.net.NetClient
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -17,7 +18,7 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_retrofit2_main)
 
         // Create a call instance for looking up Retrofit Repos.
-        val call = GitHubService.gitHub.repos("tustar")
+        val call = NetClient.gitHub.repos("tustar")
 
         // Fetch and print a list of the Repos to the library.
         call.enqueue(getRepos())

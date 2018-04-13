@@ -1,4 +1,4 @@
-package com.tustar.retrofit2.model
+package com.tustar.retrofit2.data
 
 data class Repo(
 		val id: Int,
