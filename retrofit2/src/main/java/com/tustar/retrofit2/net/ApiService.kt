@@ -11,11 +11,11 @@ interface ApiService {
 
     // 发送验证码
     @FormUrlEncoded
-    @POST("/user/code")
+    @POST("v1/user/code")
     fun sendCode(@FieldMap params: Map<String, String>): Observable<HttpResult<Any, Any>>
 
     // 登录
     @FormUrlEncoded
-    @POST("/user/login")
+    @POST("v1/user/login")
     fun login(@FieldMap params: Map<String, String>): Observable<HttpResult<Any, Any>>
 }

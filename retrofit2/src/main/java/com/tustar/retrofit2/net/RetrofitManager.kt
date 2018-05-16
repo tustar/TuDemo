@@ -1,6 +1,7 @@
 package com.tustar.retrofit2.net
 
 import com.tustar.retrofit2.BuildConfig
+import okhttp3.HttpUrl
 import okhttp3.Interceptor
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
