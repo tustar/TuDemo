@@ -1,3 +1,34 @@
 <resources>
+    <string name="app_name">粒子钱包</string>
+    <string name="back_again_exit">再按一次退出粒子钱包</string>
+    <string name="unknown">未填</string>
+    <string name="net_error">网络异常，请检查网络</string>
+    <string name="socket_timeout_error">连接超时，请检查网络</string>
+    <string name="connect_error">连接出错，请检查网络</string>
+    <string name="unkown_host_error">DNS解析错误，请检查网络</string>
+    <string name="server_err">服务器异常，请稍后重试</string>
+
+    <!--Login-->
+    <string name="login_title">登录</string>
+    <string name="login_phone_prefix">+86</string>
+    <string name="login_phone_hint">请输入手机号</string>
+    <string name="login_phone_err">请输入正确的手机号</string>
+    <string name="login_code_hint">短信验证码</string>
+    <string name="login_code_get">获取验证码</string>
+    <string name="login_code_timer">重新获取%1$ds</string>
+    <string name="login_code_err">请输入正确的验证码</string>
+    <string name="login_code_get_success">发送成功</string>
+    <string name="login_code_get_err">获取验证码失败，请重试</string>
+    <string name="login_submit">登录</string>
+    <string name="login_submit_err">登录失败，请重试</string>
+    <string name="login_unvalid_msg_code">请输入正确的短信验证码</string>
+    <string name="login_insert_fail">会员信息保存失败，请重试</string>
+    <string name="login_send_msg_overdue">今日短信发送次数超限</string>
+    <string name="login_send_msg_error">发送短信失败，请稍后重试</string>
+    <string name="login_mobile_format_error">手机号码格式不正确</string>
+
+    <!--No network-->
+    <string name="no_net_text">网络不给力</string>
+    <string name="no_net_retry">再试一次</string>
 
 </resources>

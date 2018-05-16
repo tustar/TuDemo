@@ -1,19 +1,53 @@
-// Top-level build file where you can add configuration options common to all sub-projects/modules.
+// Define versions in a single place
+ext {
+
+    // Sdk and tools
+    minSdkVersion = 21
+    targetSdkVersion = 27
+    compileSdkVersion = 27
+    buildToolsVersion = '27.0.3'
+
+    // App dependencies
+    junitVersion = '4.12'
+    runnerVersion = '1.0.1'
+    espressoVersion = '3.0.1'
+    ankoVersion = '0.10.4'
+    retrofitVersion = '2.4.0'
+    roomVersion = '1.0.0'
+    supportLibraryVersion = '27.1.1'
+    constraintLayoutVersion = '1.0.2'
+    loggingInterceptorVersion = '3.10.0'
+
+    // rx
+    rxandroidVersion = '2.0.1'
+    rxjavaVersion = '2.1.5'
+
+    //
+    recyclerviewSwipe = '1.0.2'
+    androidGifDrawable = '1.2.7'
+
+    //
+    databindingVersion = '3.0.0'
+}
+
 buildscript {
+
     ext {
-        kotlin_version = '1.2.31'
-        sdk_version = '27.1.1'
-        retrofit_version = '2.4.0'
+        kotlinVersion = '1.2.31'
+        gradlePluginVersion = '3.1.1'
+        butterknifeVersion = '9.0.0-SNAPSHOT'
     }
+
     repositories {
         jcenter()
         google()
         maven { url "https://oss.sonatype.org/content/repositories/snapshots" }
     }
     dependencies {
-        classpath 'com.android.tools.build:gradle:3.1.1'
-        classpath 'com.jakewharton:butterknife-gradle-plugin:9.0.0-SNAPSHOT'
-        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
+        classpath "com.android.tools.build:gradle:$gradlePluginVersion"
+        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlinVersion"
+
+        classpath "com.jakewharton:butterknife-gradle-plugin:$butterknifeVersion"
         // NOTE: Do not place your application dependencies here; they belong
         // in the individual module build.gradle files
     }

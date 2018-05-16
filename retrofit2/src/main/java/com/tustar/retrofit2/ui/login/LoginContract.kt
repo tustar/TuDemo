@@ -1,18 +1,20 @@
 package com.tustar.retrofit2.ui.login
 
-import com.example.android.architecture.blueprints.todoapp.BaseView
+import android.content.Context
 import com.tustar.retrofit2.base.BasePresenter
+import com.tustar.retrofit2.base.BaseView
 
 interface LoginContract {
 
     interface View : BaseView<Presenter> {
-        var isActive: Boolean
-        fun getName(): String
-        fun getPassword(): String
-        fun setLoadingIndicator(visible: Boolean)
+        fun showToast(resId: Int)
+        fun setSubmitEnable(enable: Boolean)
+        fun setCodeGetEnable(enable: Boolean)
+        fun startCodeTimer()
     }
 
     interface Presenter : BasePresenter {
-        fun login()
+        fun login(mobile: String, code: String)
+        fun sendCode(context: Context, mobile: String)
     }
 }

@@ -1,5 +1,6 @@
 package com.tustar.common.util;
 
+
 import android.content.Context;
 import android.widget.Toast;
 
@@ -46,3 +47,4 @@ public class ToastUtils {
         show(context, text, Toast.LENGTH_LONG);
     }
 }
+

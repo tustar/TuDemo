@@ -16,8 +16,23 @@
 
 package com.tustar.retrofit2.base
 
+import io.reactivex.disposables.CompositeDisposable
+import io.reactivex.disposables.Disposable
+
 interface BasePresenter {
 
-//    fun start()
+    private val compositeDisposable: CompositeDisposable
+        get() = CompositeDisposable()
 
+    fun detachView() {
+
+        //保证activity结束时取消所有正在执行的订阅
+        if (!compositeDisposable.isDisposed) {
+            compositeDisposable.clear()
+        }
+    }
+
+    fun addSubscription(disposable: Disposable) {
+        compositeDisposable.add(disposable)
+    }
 }

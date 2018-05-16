@@ -3,11 +3,15 @@ apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
 
 android {
-    compileSdkVersion 27
+
+    compileSdkVersion rootProject.ext.compileSdkVersion
+    buildToolsVersion rootProject.ext.buildToolsVersion
 
     defaultConfig {
-        minSdkVersion 15
-        targetSdkVersion 27
+
+        minSdkVersion rootProject.ext.minSdkVersion
+        targetSdkVersion rootProject.ext.targetSdkVersion
+
         versionCode 1
         versionName "1.0"
 
@@ -30,9 +34,11 @@ android {
 
 dependencies {
     implementation fileTree(include: ['*.jar'], dir: 'libs')
-    implementation "com.android.support:recyclerview-v7:$sdk_version"
-    implementation "org.jetbrains.kotlin:kotlin-stdlib-jre7:$kotlin_version"
-    testImplementation 'junit:junit:4.12'
-    androidTestImplementation 'com.android.support.test:runner:1.0.1'
-    androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.1'
+    implementation "com.android.support:recyclerview-v7:$rootProject.supportLibraryVersion"
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jre7:$kotlinVersion"
+    //
+    testImplementation "junit:junit:$rootProject.junitVersion"
+    androidTestImplementation "com.android.support.test:runner:$rootProject.runnerVersion"
+    androidTestImplementation "com.android.support.test.espresso:espresso-core:" +
+            "$rootProject.espressoVersion"
 }

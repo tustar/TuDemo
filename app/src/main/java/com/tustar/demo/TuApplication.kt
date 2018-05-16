@@ -11,10 +11,6 @@ import com.tustar.demo.proxy.ProxyUtils
  */
 class TuApplication : Application() {
 
-    companion object {
-        private var TAG = TuApplication::class.simpleName
-    }
-
     override fun attachBaseContext(base: Context?) {
         super.attachBaseContext(base)
         ProxyUtils.hookNotificationManager(this)
@@ -25,6 +21,11 @@ class TuApplication : Application() {
         var processName = DeviceUtils.getProcessName(applicationContext)
         Logger.d(TAG, "processName = $processName")
 
-        CrashHandler().init(this    )
+        CrashHandler().init(this)
+    }
+
+    companion object {
+
+        private var TAG = TuApplication::class.simpleName
     }
 }
