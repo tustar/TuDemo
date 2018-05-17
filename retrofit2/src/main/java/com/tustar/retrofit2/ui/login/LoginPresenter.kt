@@ -20,7 +20,7 @@ class LoginPresenter(var view: LoginContract.View) : LoginContract.Presenter {
         LoginModel()
     }
 
-    override fun login(mobile: String, code: String) {
+    override fun login(context: Context, mobile: String, code: String) {
         Logger.d("mobile = $mobile, code = $code")
         if (!MobileUtils.isMobileOk(mobile)) {
             view.showToast(R.string.login_phone_err)
@@ -33,7 +33,7 @@ class LoginPresenter(var view: LoginContract.View) : LoginContract.Presenter {
         }
 
         view.setSubmitEnable(false)
-        addSubscription(disposable = model.login(mobile, code).subscribe({
+        addSubscription(disposable = model.login(context, mobile, code).subscribe({
             view.setSubmitEnable(true)
             when (it.code) {
                 HttpResult.OK -> {

@@ -14,7 +14,7 @@ interface LoginContract {
     }
 
     interface Presenter : BasePresenter {
-        fun login(mobile: String, code: String)
+        fun login(context: Context, mobile: String, code: String)
         fun sendCode(context: Context, mobile: String)
     }
 }

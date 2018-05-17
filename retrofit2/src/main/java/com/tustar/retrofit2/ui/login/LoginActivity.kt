@@ -84,7 +84,7 @@ class LoginActivity : BaseActivity(), LoginContract.View {
             if (!MobileUtils.isMobileOk(phoneEditText.text.toString().trim())) {
                 showToast(R.string.login_phone_err)
             } else {
-                presenter.login(phoneEditText.text.toString(), codeEditText.text.toString())
+                presenter.login(this, phoneEditText.text.toString(), codeEditText.text.toString())
             }
         }
     }
