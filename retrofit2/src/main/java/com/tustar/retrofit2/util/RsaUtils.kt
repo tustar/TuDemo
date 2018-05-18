@@ -68,9 +68,10 @@ class RsaUtils private constructor() {
          * @return
          */
         fun rsaSign(content: String, privateKey: String, charset: String): String? {
+            Logger.d("content = $content, privateKey = $privateKey")
             try {
                 val priKey = getPrivateKeyFromPKCS8("RSA", ByteArrayInputStream(privateKey.toByteArray()))
-
+                Logger.d("priKey = $priKey")
                 val signature = Signature.getInstance("SHA1WithRSA")
                 signature.initSign(priKey)
                 if (StringUtils.isEmpty(charset)) {

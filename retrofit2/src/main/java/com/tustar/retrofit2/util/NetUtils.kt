@@ -25,6 +25,7 @@ object NetUtils {
         val privateKey = RsaUtils.getPrivateKey(context, BuildConfig.PRIVATE_KEY)
         Logger.d("privateKey = $privateKey")
         val sign = RsaUtils.rsaSign(signStr, privateKey, UTF_8)
+        Logger.d("sign = $sign")
         params[SIGN] = sign ?: ""
         return params
     }
