@@ -12,15 +12,15 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_retrofit2_main)
-    }
-
-
-    override fun onResume() {
-        super.onResume()
 
         val intent = Intent(this, LoginActivity::class.java).apply {
 
         }
         startActivity(intent)
+    }
+
+
+    override fun onResume() {
+        super.onResume()
     }
 }

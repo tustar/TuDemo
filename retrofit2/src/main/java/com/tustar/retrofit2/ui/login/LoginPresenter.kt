@@ -5,7 +5,7 @@ import com.tustar.common.util.Logger
 import com.tustar.common.util.MobileUtils
 import com.tustar.retrofit2.R
 import com.tustar.retrofit2.data.bean.HttpResult
-import com.tustar.retrofit2.data.bean.MsgCode
+import com.tustar.retrofit2.data.bean.Message
 import com.tustar.retrofit2.net.exception.ExceptionHandler
 import com.tustar.retrofit2.net.exception.StatusCode
 import com.tustar.retrofit2.util.CodeUtils
@@ -35,15 +35,14 @@ class LoginPresenter(var view: LoginContract.View) : LoginContract.Presenter {
         view.setSubmitEnable(false)
         addSubscription(disposable = model.login(context, mobile, code).subscribe({
             view.setSubmitEnable(true)
-            when (it.code) {
+            when (it.status) {
                 HttpResult.OK -> {
                     val user = it.data
+                    view.toMainUI()
                 }
                 HttpResult.FAILURE -> {
                     when (it.msg) {
-                        MsgCode.UNVALID_MSG_CODE -> view.showToast(R.string.login_unvalid_msg_code)
-                        MsgCode.INSERT_FAIL -> view.showToast(R.string.login_insert_fail)
-                        MsgCode.MOBILE_FORMAT_ERROR -> view.showToast(R.string.login_mobile_format_error)
+                        Message.Unauthorized -> Logger.d("Sign Error")
                         else -> view.showToast(R.string.login_submit_err)
                     }
                 }
@@ -75,15 +74,14 @@ class LoginPresenter(var view: LoginContract.View) : LoginContract.Presenter {
         view.setCodeGetEnable(false)
         addSubscription(disposable = model.code(context, mobile).subscribe({
             view.startCodeTimer()
-            when (it.code) {
+            when (it.status) {
                 HttpResult.OK -> {
                     view.showToast(R.string.login_code_get_success)
+                    view.showVerificationCode(it.data.v_code)
                 }
                 HttpResult.FAILURE -> {
                     when (it.msg) {
-                        MsgCode.SEND_MSG_OVERDUE -> view.showToast(R.string.login_send_msg_overdue)
-                        MsgCode.SEND_MSG_ERROR -> view.showToast(R.string.login_send_msg_error)
-                        MsgCode.MOBILE_FORMAT_ERROR -> view.showToast(R.string.login_mobile_format_error)
+                        Message.Unauthorized -> Logger.d("Sign Error")
                         else -> {
                         }
                     }

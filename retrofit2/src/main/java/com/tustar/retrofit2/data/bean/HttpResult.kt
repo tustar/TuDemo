@@ -3,7 +3,7 @@ package com.tustar.retrofit2.data.bean
 data class HttpResult<out D, out E>(
         val data: D,
         val msg: String,
-        val code: Int,
+        val status: Int,
         val extra: E
 ) {
     companion object {
@@ -14,4 +14,6 @@ data class HttpResult<out D, out E>(
 
 data class User(var name: String,
                 var password: String)
+
+data class Code(var v_code: String)
 

@@ -24,14 +24,14 @@ android {
             buildConfigField "String", "API_HOST", API_HOST_DEUBG
 
             // 配置私钥
-            buildConfigField "String", "PRIVATE_KEY", PRIVATE_KEY_DEBUG
+            buildConfigField "String", "PRIVATE_KEY", KEY_DEBUG
         }
 
         release {
             // 配置服务器地址
             buildConfigField "String", "BLOCK_CHAIN_HOST", API_HOST_RELEASE
             // 配置私钥
-            buildConfigField "String", "PRIVATE_KEY", PRIVATE_KEY_RELEASE
+            buildConfigField "String", "PRIVATE_KEY", KEY_RELEASE
             //
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'

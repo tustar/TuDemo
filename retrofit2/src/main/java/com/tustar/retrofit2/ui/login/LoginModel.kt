@@ -2,6 +2,7 @@ package com.tustar.retrofit2.ui.login
 
 import android.content.Context
 import com.tustar.common.util.DeviceUtils
+import com.tustar.retrofit2.data.bean.Code
 import com.tustar.retrofit2.data.bean.HttpResult
 import com.tustar.retrofit2.net.RetrofitManager
 import com.tustar.retrofit2.rx.scheduler.SchedulerUtils
@@ -14,7 +15,7 @@ class LoginModel {
     /**
      * 获取验证码
      */
-    fun code(context: Context, mobile: String): Observable<HttpResult<Any, Any>> {
+    fun code(context: Context, mobile: String): Observable<HttpResult<Code, Any>> {
         var params = mutableMapOf<String, String>()
         params["mobile"] = mobile
         params["deviceId"] = DeviceUtils.getDeviceId(context) ?: ""

@@ -8,9 +8,11 @@ interface LoginContract {
 
     interface View : BaseView<Presenter> {
         fun showToast(resId: Int)
+        fun showVerificationCode(vCode: String)
         fun setSubmitEnable(enable: Boolean)
         fun setCodeGetEnable(enable: Boolean)
         fun startCodeTimer()
+        fun toMainUI()
     }
 
     interface Presenter : BasePresenter {
