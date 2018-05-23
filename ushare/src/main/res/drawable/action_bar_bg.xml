@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+    <!-- Bottom Line -->
+    <item>
+        <shape android:shape="rectangle">
+            <solid android:color="@color/action_bar_bg_color" />
+        </shape>
+    </item>
+
+    <!-- Color of your action bar -->
+    <item android:bottom="@dimen/login_divider_height">
+        <shape android:shape="rectangle">
+            <solid android:color="@color/action_bar_bg_color" />
+        </shape>
+    </item>
+</layer-list>

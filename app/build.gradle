@@ -70,7 +70,7 @@ dependencies {
     annotationProcessor "com.android.databinding:compiler:$rootProject.databindingVersion"
 
     implementation project(':common')
-    implementation project(':retrofit2')
+    implementation project(':ushare')
 }
 
 

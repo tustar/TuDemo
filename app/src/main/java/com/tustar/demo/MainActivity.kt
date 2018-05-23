@@ -82,7 +82,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
     override fun onCreate(savedInstanceState: Bundle?) {
         Logger.i(TAG, "onCreate :: ")
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_retrofit2_main)
+        setContentView(R.layout.ushare_activity_main)
         setSupportActionBar(toolbar)
 
         fab.setOnClickListener { view ->

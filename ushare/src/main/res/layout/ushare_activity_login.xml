@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/main_bg_color"
+    tools:context=".ui.login.LoginActivity">
+
+    <include
+        android:id="@+id/action_bar"
+        layout="@layout/ushare_action_bar"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <LinearLayout
+        android:id="@+id/login_phone_layout"
+        android:layout_width="0dp"
+        android:layout_height="@dimen/input_layout_height"
+        android:layout_marginEnd="@dimen/input_margin"
+        android:layout_marginStart="@dimen/input_margin"
+        android:layout_marginTop="126dp"
+        android:background="@drawable/input_bg"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/action_bar">
+
+        <TextView
+            android:layout_width="@dimen/login_phone_prefix_width"
+            android:layout_height="@dimen/login_phone_prefix_height"
+            android:gravity="center_vertical|left"
+            android:text="@string/login_phone_prefix"
+            android:textColor="@color/input_text_color"
+            android:textSize="@dimen/login_label_text_size" />
+
+        <View
+            android:layout_width="@dimen/divider_width"
+            android:layout_height="@dimen/login_phone_prefix_height"
+            android:background="@color/bottom_divider_color" />
+
+        <EditText
+            android:id="@+id/login_phone_editText"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_gravity="center_vertical"
+            android:layout_marginLeft="@dimen/login_phone_text_margin"
+            android:layout_weight="1"
+            android:background="@null"
+            android:gravity="center_vertical|left"
+            android:hint="@string/login_phone_hint"
+            android:inputType="phone"
+            android:maxLength="11"
+            android:textColor="@color/input_text_color"
+            android:textColorHint="@color/hint_color"
+            android:textSize="@dimen/input_text_size" />
+
+        <ImageButton
+            android:id="@+id/login_phone_clear"
+            android:layout_width="@dimen/clear_image_width"
+            android:layout_height="@dimen/clear_image_height"
+            android:layout_gravity="center_vertical|right"
+            android:layout_marginRight="0dp"
+            android:background="@null"
+            android:src="@drawable/ic_clear"
+            android:visibility="invisible" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/login_code_layout"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/input_layout_height"
+        android:layout_marginEnd="@dimen/input_margin"
+        android:layout_marginStart="@dimen/input_margin"
+        android:background="@drawable/input_bg"
+        android:orientation="horizontal"
+        app:layout_constraintEnd_toEndOf="@id/login_phone_layout"
+        app:layout_constraintStart_toStartOf="@id/login_phone_layout"
+        app:layout_constraintTop_toBottomOf="@id/login_phone_layout">
+
+        <EditText
+            android:id="@+id/login_code_editText"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_gravity="center_vertical"
+            android:layout_weight="1"
+            android:background="@null"
+            android:gravity="center_vertical|left"
+            android:hint="@string/login_code_hint"
+            android:inputType="number"
+            android:maxLength="6"
+            android:textColor="@color/input_text_color"
+            android:textColorHint="@color/hint_color"
+            android:textSize="@dimen/input_text_size" />
+
+        <TextView
+            android:id="@+id/login_code_btn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical|right"
+            android:layout_marginRight="0dp"
+            android:paddingBottom="2dp"
+            android:paddingTop="2dp"
+            android:text="@string/login_code_get"
+            android:textColor="@color/selector_code_btn_text_color"
+            android:textSize="@dimen/login_label_text_size" />
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/login_submit"
+        style="@style/Button"
+        android:layout_width="0dp"
+        android:layout_marginTop="@dimen/login_btn_margin_top"
+        android:text="@string/login_submit"
+        app:layout_constraintEnd_toEndOf="@+id/login_code_layout"
+        app:layout_constraintStart_toStartOf="@+id/login_code_layout"
+        app:layout_constraintTop_toBottomOf="@id/login_code_layout" />
+
+
+</android.support.constraint.ConstraintLayout>
