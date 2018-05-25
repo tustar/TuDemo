@@ -41,7 +41,7 @@ class LoginPresenter(var view: LoginContract.View) : LoginContract.Presenter {
                     view.toMainUI()
                 }
                 HttpResult.FAILURE -> {
-                    when (it.msg) {
+                    when (it.message) {
                         Message.Unauthorized -> Logger.d("Sign Error")
                         else -> view.showToast(R.string.login_submit_err)
                     }
@@ -80,7 +80,7 @@ class LoginPresenter(var view: LoginContract.View) : LoginContract.Presenter {
                     view.showVerificationCode(it.data.v_code)
                 }
                 HttpResult.FAILURE -> {
-                    when (it.msg) {
+                    when (it.message) {
                         Message.Unauthorized -> Logger.d("Sign Error")
                         else -> {
                         }

@@ -10,7 +10,7 @@ import com.tustar.ushare.data.bean.User
 import org.jetbrains.anko.find
 
 
-class LotAdapter(private var users: MutableList<User>) : RecyclerView.Adapter<LotAdapter.ViewHolder>() {
+class LotAdapter(var users: MutableList<User>) : RecyclerView.Adapter<LotAdapter.ViewHolder>() {
 
     private var itemClickListener: OnItemClickListener? = null
 

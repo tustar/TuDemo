@@ -13,4 +13,7 @@ object CommonDefine {
     const val USER = "user"
     const val AMDIN = "admin"
     const val SUPER = "super"
+
+    //
+    const val PAGE_SIZE = 10
 }

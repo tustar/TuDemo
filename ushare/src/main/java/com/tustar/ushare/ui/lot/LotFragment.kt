@@ -12,6 +12,8 @@ import com.tustar.common.util.Logger
 import com.tustar.ushare.R
 import com.tustar.ushare.data.bean.User
 import org.jetbrains.anko.find
+import org.jetbrains.anko.support.v4.toast
+import org.jetbrains.anko.toast
 
 class LotFragment : Fragment(), LotContract.View, LotAdapter.OnItemClickListener {
 
@@ -34,15 +36,16 @@ class LotFragment : Fragment(), LotContract.View, LotAdapter.OnItemClickListener
         val view = inflater.inflate(R.layout.ushare_fragment_lot, container,
                 false)
         initRecycleView(view)
+        activity?.let {
+            presenter.getUsers(it)
+        }
+
         return view
     }
 
     private fun initRecycleView(view: View) {
         recyclerView = view.find(R.id.lot_recycle_view)
         recyclerView.layoutManager = LinearLayoutManager(context)
-        users.add(User("大神lz", "13523456386", "token", weight = 4))
-        users.add(User("大神glt", "18123456386", "token", weight = 2))
-        Logger.d("users = $users")
         adapter = LotAdapter(users)
         adapter.setOnItemClickListener(this)
         recyclerView.adapter = adapter
@@ -50,6 +53,18 @@ class LotFragment : Fragment(), LotContract.View, LotAdapter.OnItemClickListener
 
     override fun onItemClick(view: View, position: Int) {
         // TODO
+    }
+
+    override fun showToast(resId: Int) {
+        toast(resId)
+    }
+
+    override fun updateUsers(users: MutableList<User>) {
+        Logger.d("users = $users")
+        this.users.clear()
+        this.users.addAll(users)
+        adapter.users = users
+        adapter.notifyDataSetChanged()
     }
 
     override fun onAttach(context: Context) {

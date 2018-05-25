@@ -26,7 +26,7 @@ class RsaUtils private constructor() {
          */
         private fun parametersFilter(parameters: Map<String, String>?): Map<String, String> {
             val result = HashMap<String, String>()
-            if (parameters == null || parameters.size <= 0) {
+            if (parameters == null || parameters.isEmpty()) {
                 return result
             }
             for ((key, value) in parameters) {
@@ -92,7 +92,7 @@ class RsaUtils private constructor() {
                 return null
             }
 
-            var keyFactory: KeyFactory? = null
+            var keyFactory: KeyFactory?
             var encodedKey: ByteArray?
             try {
                 keyFactory = KeyFactory.getInstance(algorithm)

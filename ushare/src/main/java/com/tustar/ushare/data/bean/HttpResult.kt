@@ -1,10 +1,8 @@
 package com.tustar.ushare.data.bean
 
-import com.tustar.ushare.util.CommonDefine
-
 data class HttpResult<out D, out E>(
         val data: D,
-        val msg: String,
+        val message: String,
         val status: Int,
         val extra: E
 ) {
@@ -14,12 +12,15 @@ data class HttpResult<out D, out E>(
     }
 }
 
-data class User(var nick: String,
-                var mobile: String,
-                var token: String,
-                var shared: Boolean = false,
-                var type: String = CommonDefine.USER,
-                var weight: Int = 0) {
+data class User(val id: Int,
+                val mobile: String,
+                val code: String,
+                val token: String,
+                val weight: Int,
+                val shared: Boolean,
+                val nick: String,
+                val last_at: Int,
+                val next_at: Int) {
 
     companion object {
 
@@ -28,4 +29,3 @@ data class User(var nick: String,
 
 
 data class Code(var v_code: String)
-

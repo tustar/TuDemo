@@ -1,12 +1,16 @@
 package com.tustar.ushare.net
 
+import com.tustar.common.util.Logger
 import com.tustar.ushare.BuildConfig
 import okhttp3.Interceptor
 import okhttp3.OkHttpClient
+import okhttp3.Response
 import okhttp3.logging.HttpLoggingInterceptor
+import okio.Buffer
 import retrofit2.Retrofit
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
 import retrofit2.converter.gson.GsonConverterFactory
+import java.nio.charset.Charset
 import java.security.KeyStore
 import java.security.cert.CertificateException
 import java.security.cert.X509Certificate
@@ -63,9 +67,10 @@ class RetrofitManager {
             if (BuildConfig.DEBUG) {
                 val interceptor = HttpLoggingInterceptor()
                 interceptor.level = HttpLoggingInterceptor.Level.BODY
+                builder.addInterceptor(interceptor)
             }
             builder.addInterceptor(addHeaderInterceptor())
-            
+
             return builder.build()
         }
 
