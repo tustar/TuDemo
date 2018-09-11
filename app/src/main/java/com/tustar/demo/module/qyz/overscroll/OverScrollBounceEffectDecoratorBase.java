@@ -46,7 +46,7 @@ import static com.tustar.demo.module.qyz.overscroll.ListenerStubs.OverScrollUpda
  * <ol>
  * <li><b>Idle state</b> - monitors view state and touch events to intercept over-scrolling initiation
  * (in which case it hands control over to the Over-scrolling state).</li>
- * <li><b>Over-scrolling state</b> - handles motion events to apply the over-scroll effect as users
+ * <li><b>Over-scrolling state</b> - handles motion events to apply the over-scroll effect as topics
  * interact with the view.</li>
  * <li><b>Bounce-back state</b> - runs the bounce-back animation, all-the-while blocking all
  * touch events till the animation completes (in which case it hands control back to the idle

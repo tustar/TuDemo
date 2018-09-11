@@ -40,7 +40,7 @@ public class ItemDetailActivity extends BaseActivity {
         switch (item.getItemId()) {
             case android.R.id.home:
                 // This ID represents the Home or Up button. In the case of this
-                // activity, the Up button is shown. Use NavUtils to allow users
+                // activity, the Up button is shown. Use NavUtils to allow topics
                 // to navigate up one level in the application structure. For
                 // more details, see the Navigation pattern on Android Design:
                 //

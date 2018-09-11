@@ -37,6 +37,7 @@ public class DashLineView extends View {
         super(context, attrs);
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.M)
     @Override
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
@@ -47,7 +48,7 @@ public class DashLineView extends View {
         Paint paint = new Paint();
         paint.setAntiAlias(true);
         paint.setStyle(Paint.Style.STROKE);
-        paint.setColor(getResources().getColor(R.color.dash_divider_dash_color));
+        paint.setColor(getResources().getColor(R.color.dash_divider_dash_color, null));
         paint.setStrokeWidth(height);
         Path path = new Path();
         path.moveTo(left, top);

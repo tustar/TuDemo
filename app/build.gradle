@@ -33,11 +33,11 @@ android {
     dexOptions {
         javaMaxHeapSize '4g'
     }
-    externalNativeBuild {
-        cmake {
-            path "CMakeLists.txt"
-        }
-    }
+//    externalNativeBuild {
+//        cmake {
+//            path "CMakeLists.txt"
+//        }
+//    }
     lintOptions {
         checkReleaseBuilds false
         // Or, if you prefer, you can continue to check for errors in release builds,
@@ -70,7 +70,6 @@ dependencies {
     annotationProcessor "com.android.databinding:compiler:$rootProject.databindingVersion"
 
     implementation project(':common')
-    implementation project(':ushare')
 }
 
 
