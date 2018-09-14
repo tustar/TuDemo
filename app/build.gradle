@@ -17,7 +17,7 @@ android {
         versionName "1.0.1"
         externalNativeBuild {
             cmake {
-                cppFlags ""
+                cppFlags "-frtti -fexceptions"
             }
         }
     }
@@ -66,8 +66,6 @@ dependencies {
 
     implementation "com.yanzhenjie:recyclerview-swipe:$rootProject.recyclerviewSwipe"
     implementation "pl.droidsonroids.gif:android-gif-drawable:$rootProject.androidGifDrawable"
-
-    annotationProcessor "com.android.databinding:compiler:$rootProject.databindingVersion"
 
     implementation project(':common')
 }

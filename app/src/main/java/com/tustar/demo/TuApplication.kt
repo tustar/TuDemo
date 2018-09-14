@@ -12,6 +12,7 @@ import com.tustar.demo.proxy.ProxyUtils
 class TuApplication : Application() {
 
     override fun attachBaseContext(base: Context?) {
+        Logger.d(TAG, "attachBaseContext:7")
         super.attachBaseContext(base)
         ProxyUtils.hookNotificationManager(this)
     }
