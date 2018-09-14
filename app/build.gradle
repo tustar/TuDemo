@@ -72,11 +72,33 @@ dependencies {
 
     // lifecycle
     implementation "android.arch.lifecycle:extensions:$rootProject.archLifecycleVersion"
+    implementation "android.arch.lifecycle:livedata:$rootProject.archLifecycleVersion"
+    implementation "android.arch.lifecycle:runtime:$rootProject.archLifecycleVersion"
+    annotationProcessor "android.arch.lifecycle:compiler:$rootProject.archLifecycleVersion" // use kapt for Kotlin
+    implementation "android.arch.lifecycle:common-java8:$rootProject.archLifecycleVersion"
+    implementation "android.arch.lifecycle:reactivestreams:$rootProject.archLifecycleVersion"
+    testImplementation "android.arch.core:core-testing:$rootProject.archLifecycleVersion"
+
+    // room
+    implementation "android.arch.persistence.room:runtime:$rootProject.roomVersion"
+    annotationProcessor "android.arch.persistence.room:compiler:$rootProject.roomVersion" // use kapt for Kotlin
+    implementation "android.arch.persistence.room:rxjava2:$rootProject.roomVersion"
+    testImplementation "android.arch.persistence.room:testing:$rootProject.roomVersion"
+
+    // Paging
+    implementation "android.arch.paging:runtime:$rootProject.pagingVersion"
+    testImplementation "android.arch.paging:common:$rootProject.pagingVersion"
+    implementation "android.arch.paging:rxjava2:1.0.0-rc1"
 
     // Navigation
     implementation 'android.arch.navigation:navigation-fragment-ktx:' + rootProject.navigationVersion
     implementation 'android.arch.navigation:navigation-ui-ktx:' + rootProject.navigationVersion
     androidTestImplementation 'android.arch.navigation:navigation-testing-ktx:' + rootProject.navigationVersion
+
+    // WorkManager
+    implementation "android.arch.work:work-runtime:$rootProject.workVersion" // use -ktx for Kotlin
+    implementation "android.arch.work:work-firebase:$rootProject.workVersion"
+    androidTestImplementation "android.arch.work:work-testing:$rootProject.workVersion"
 
     implementation project(':common')
 }
