@@ -18,6 +18,7 @@ import android.support.v7.widget.LinearLayoutManager
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
+import com.tustar.common.util.Logger
 import com.tustar.demo.adapter.SimpleListItem1Adapter
 import com.tustar.demo.module.account.AccountActivity
 import com.tustar.demo.module.anim.viewanim.HideActionBarActivity
@@ -29,6 +30,7 @@ import com.tustar.demo.module.deskclock.SubScaleViewActivity
 import com.tustar.demo.module.dragsortlistview.DragSortListViewActivity
 import com.tustar.demo.module.dragview.DragViewActivity
 import com.tustar.demo.module.fm.FmMainActivity
+import com.tustar.demo.module.jet.StartActivity
 import com.tustar.demo.module.loader.LoaderActivity
 import com.tustar.demo.module.provider.ProviderActivity
 import com.tustar.demo.module.qyz.QyzMainActivity
@@ -37,7 +39,6 @@ import com.tustar.demo.module.ryg.RygMainActivity
 import com.tustar.demo.module.scroller.ScrollerActivity
 import com.tustar.demo.module.service.ServiceActivity
 import com.tustar.demo.module.signal.FloatWindowActivity
-import com.tustar.common.util.Logger
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.app_bar_main.*
 import kotlinx.android.synthetic.main.content_main.*
@@ -73,8 +74,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
             sClassList += QyzMainActivity::class.java
             sClassList += RygMainActivity::class.java
             //
-            sClassList += ItemClickAction(Intent.ACTION_VIEW, Intent.CATEGORY_BROWSABLE,
-                    Uri.parse("acc://tustar.com/main"))
+            sClassList += StartActivity::class.java
             sClassList.reverse()
         }
     }
@@ -173,7 +173,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
     override fun onItemClick(view: View, position: Int) {
         val intent = Intent()
         val clazz = sClassList[position]
-        when(clazz) {
+        when (clazz) {
             is Class<*> -> intent.setClass(this, clazz)
             is ItemClickAction -> {
                 intent.action = clazz.action
@@ -190,7 +190,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 
     fun showProxyNotification() {
         val intent = Intent()
-        var notification = NotificationCompat.Builder(MainActivity@this)
+        var notification = NotificationCompat.Builder(MainActivity@ this)
                 .setContentTitle("测试通知")
                 .setContentText("测试通知内容")
                 .setAutoCancel(true)
@@ -199,7 +199,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
                 .setSmallIcon(R.mipmap.ic_launcher)
                 .setWhen(System.currentTimeMillis())
                 .setLargeIcon(BitmapFactory.decodeResource(resources, R.mipmap.ic_launcher))
-                .setContentIntent(PendingIntent.getService(MainActivity@this, 0, intent, PendingIntent.FLAG_UPDATE_CURRENT))
+                .setContentIntent(PendingIntent.getService(MainActivity@ this, 0, intent, PendingIntent.FLAG_UPDATE_CURRENT))
                 .build()
         val nm = getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
         nm.notify((System.currentTimeMillis() / 1000L).toInt(), notification)

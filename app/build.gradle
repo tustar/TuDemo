@@ -62,14 +62,21 @@ dependencies {
 
 
     implementation "com.jakewharton:butterknife:$butterknifeVersion"
+    implementation 'com.android.support:appcompat-v7:27.1.1'
+    implementation 'com.android.support.constraint:constraint-layout:1.1.3'
+    implementation 'com.android.support:support-v4:27.1.1'
     annotationProcessor "com.jakewharton:butterknife-compiler:$butterknifeVersion"
 
     implementation "com.yanzhenjie:recyclerview-swipe:$rootProject.recyclerviewSwipe"
     implementation "pl.droidsonroids.gif:android-gif-drawable:$rootProject.androidGifDrawable"
 
+    // lifecycle
+    implementation "android.arch.lifecycle:extensions:$rootProject.archLifecycleVersion"
+
+    // Navigation
+    implementation 'android.arch.navigation:navigation-fragment-ktx:' + rootProject.navigationVersion
+    implementation 'android.arch.navigation:navigation-ui-ktx:' + rootProject.navigationVersion
+    androidTestImplementation 'android.arch.navigation:navigation-testing-ktx:' + rootProject.navigationVersion
+
     implementation project(':common')
 }
-
-
-
-
