@@ -266,7 +266,7 @@
         <activity android:name=".module.fm.FmSectionGridViewActivity"></activity>
         <activity android:name=".module.fm.ItemListActivity"></activity>
         <activity android:name=".module.fm.ItemDetailActivity"></activity>
-        <activity android:name=".module.jet.StartActivity"></activity>
+        <activity android:name=".module.jet.BookActivity"></activity>
     </application>
 
 </manifest>

@@ -24,4 +24,12 @@
         <item name="android:textSize">10sp</item>
     </style>
 
+    <style name="Tu.Button" parent="">
+        <item name="android:textSize">17sp</item>
+        <item name="android:textColor">#FFF</item>
+        <item name="android:singleLine">true</item>
+        <item name="android:maxLines">1</item>
+        <item name="android:background">@drawable/selector_btn</item>
+    </style>
+
 </resources>

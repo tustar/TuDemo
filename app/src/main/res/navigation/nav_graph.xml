@@ -3,21 +3,21 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph"
-    app:startDestination="@id/launcher_home">
+    app:startDestination="@id/book_home">
 
     <fragment
-        android:id="@+id/launcher_home"
-        android:name="com.tustar.demo.module.jet.ui.StartFragment"
+        android:id="@+id/book_home"
+        android:name="com.tustar.demo.module.jet.BookFragment"
         android:label="Home"
-        tools:layout="@layout/fragment_jet_start">
+        tools:layout="@layout/fragment_jet_book">
         <action
-            android:id="@+id/end_action"
-            app:destination="@id/end_dest" />
+            android:id="@+id/action_add_book"
+            app:destination="@id/add_book" />
     </fragment>
 
     <fragment
-        android:id="@+id/end_dest"
-        android:name="com.tustar.demo.module.jet.ui.EndFragment"
+        android:id="@+id/add_book"
+        android:name="com.tustar.demo.module.jet.AddBookFragment"
         android:label="End"
-        tools:layout="@layout/fragment_jet_end" />
+        tools:layout="@layout/fragment_jet_add_book" />
 </navigation>

@@ -3,6 +3,7 @@
     <string name="rename">重命名</string>
     <string name="send">发送</string>
     <string name="no_data">没有数据</string>
+    <string name="add">添加</string>
 
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
@@ -148,6 +149,7 @@
     <!--JetPack-->
     <string name="jet_start_title">JetPack</string>
     <string name="jet_navigate">Navigate</string>
+    <string name="jet_add_book_hint">请添加书籍</string>
 
     <!--Other-->
     <string name="appwidget_text">EXAMPLE</string>
