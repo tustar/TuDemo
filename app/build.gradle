@@ -75,7 +75,8 @@ dependencies {
     implementation "android.arch.lifecycle:extensions:$rootProject.archLifecycleVersion"
     implementation "android.arch.lifecycle:livedata:$rootProject.archLifecycleVersion"
     implementation "android.arch.lifecycle:runtime:$rootProject.archLifecycleVersion"
-    annotationProcessor "android.arch.lifecycle:compiler:$rootProject.archLifecycleVersion" // use kapt for Kotlin
+    annotationProcessor "android.arch.lifecycle:compiler:$rootProject.archLifecycleVersion"
+    // use kapt for Kotlin
     implementation "android.arch.lifecycle:common-java8:$rootProject.archLifecycleVersion"
     implementation "android.arch.lifecycle:reactivestreams:$rootProject.archLifecycleVersion"
     testImplementation "android.arch.core:core-testing:$rootProject.archLifecycleVersion"

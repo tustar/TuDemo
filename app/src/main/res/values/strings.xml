@@ -147,12 +147,17 @@
     <string name="qyz_over_scroll_title">OverScroll GridView</string>
 
     <!--JetPack-->
-    <string name="jet_start_title">JetPack</string>
+    <string name="jet_main_title">JetPack</string>
+    <string name="jet_book_title">Navigation+Paging+Room</string>
     <string name="jet_navigate">Navigate</string>
     <string name="jet_add_book_hint">请添加书籍</string>
 
     <!--Other-->
     <string name="appwidget_text">EXAMPLE</string>
     <string name="add_widget">Add widget</string>
+    <string name="title_activity_jet_reddit">JetRedditActivity</string>
+    <string name="nav_header_title">Android Studio</string>
+    <string name="nav_header_subtitle">android.studio@android.com</string>
+    <string name="nav_header_desc">Navigation header</string>
 
 </resources>

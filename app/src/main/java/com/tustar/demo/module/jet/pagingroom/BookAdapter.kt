@@ -1,4 +1,4 @@
-package com.tustar.demo.module.jet
+package com.tustar.demo.module.jet.pagingroom
 
 import android.arch.paging.PagedListAdapter
 import android.support.v7.util.DiffUtil
