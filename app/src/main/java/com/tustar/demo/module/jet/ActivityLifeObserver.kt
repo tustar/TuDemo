@@ -1,4 +1,4 @@
-package com.tustar.demo.module.jet.pagingroom
+package com.tustar.demo.module.jet
 
 import android.arch.lifecycle.Lifecycle
 import android.arch.lifecycle.LifecycleObserver
