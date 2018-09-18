@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".module.jet.BookFragment">
+    tools:context=".module.jet.pagingroom.BookFragment">
 
     <android.support.v7.widget.RecyclerView
         android:id="@+id/jet_recycler_view"

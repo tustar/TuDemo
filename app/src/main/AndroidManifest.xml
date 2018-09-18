@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     package="com.tustar.demo"
     android:versionCode="0006"
     android:versionName="1.0.0006">
@@ -18,13 +19,13 @@
 
     <application
         android:name=".TuApplication"
-        android:allowBackup="true"
         android:hardwareAccelerated="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:largeHeap="true"
         android:supportsRtl="true"
-        android:theme="@style/AppTheme">
+        android:theme="@style/AppTheme"
+        tools:ignore="GoogleAppIndexingWarning">
 
         <!-- 主页 -->
         <activity
@@ -109,10 +110,10 @@
 
         <!-- 时钟实例 -->
         <activity android:name=".module.deskclock.DeskClockActivity" />
-        <activity android:name=".module.deskclock.SubScaleViewActivity"></activity>
+        <activity android:name=".module.deskclock.SubScaleViewActivity" />
 
         <!-- 三国群英传 -->
-        <activity android:name=".module.qyz.QyzMainActivity"></activity>
+        <activity android:name=".module.qyz.QyzMainActivity" />
         <activity
             android:name=".module.qyz.QyzPaletteActivity"
             android:label="@string/title_activity_palette" />
@@ -134,25 +135,25 @@
         <!-- Android开发艺术探索 -->
         <activity android:name=".module.ryg.RygMainActivity" />
         <!-- Ryg.ch1 -->
-        <activity android:name=".module.ryg.ch1.RygCh1Activity"></activity>
+        <activity android:name=".module.ryg.ch1.RygCh1Activity" />
         <!-- Ryg.ch2 -->
-        <activity android:name=".module.ryg.ch2.RygCh2Activity"></activity>
+        <activity android:name=".module.ryg.ch2.RygCh2Activity" />
         <!-- Ryg ch2 IPC -->
-        <activity android:name=".module.ryg.ch2.RygOneActivity"></activity>
+        <activity android:name=".module.ryg.ch2.RygOneActivity" />
         <activity
             android:name=".module.ryg.ch2.RygSecondActivity"
-            android:process=":remote"></activity>
+            android:process=":remote" />
         <activity
             android:name=".module.ryg.ch2.RygThirdActivity"
-            android:process="com.tustar.demo.remote"></activity>
+            android:process="com.tustar.demo.remote" />
         <!-- Ryg ch2 BookManager -->
-        <activity android:name=".module.ryg.ch2.aidl.BookManagerActivity"></activity>
+        <activity android:name=".module.ryg.ch2.aidl.BookManagerActivity" />
 
         <service
             android:name=".module.ryg.ch2.aidl.BookManagerService"
-            android:process=":remote"></service>
+            android:process=":remote" />
         <!-- Ryg ch2 BookProvider -->
-        <activity android:name=".module.ryg.ch2.provider.RygProviderActivity"></activity>
+        <activity android:name=".module.ryg.ch2.provider.RygProviderActivity" />
 
         <provider
             android:name=".module.ryg.ch2.provider.BookProvider"
@@ -160,7 +161,7 @@
             android:permission="com.tustar.PROVIDER"
             android:process=":provider" />
         <!-- Ryg ch2 Messenger -->
-        <activity android:name=".module.ryg.ch2.messenger.MessengerActivity"></activity>
+        <activity android:name=".module.ryg.ch2.messenger.MessengerActivity" />
 
         <service
             android:name=".module.ryg.ch2.messenger.MessengerService"
@@ -170,7 +171,7 @@
             </intent-filter>
         </service>
         <!-- Ryg ch2 Socket -->
-        <activity android:name=".module.ryg.ch2.socket.TCPClientActivity"></activity>
+        <activity android:name=".module.ryg.ch2.socket.TCPClientActivity" />
 
         <service
             android:name=".module.ryg.ch2.socket.TCPServerService"
@@ -180,30 +181,30 @@
             android:name=".module.ryg.ch2.binderpool.BinderPoolService"
             android:process=":remote" />
 
-        <activity android:name=".module.ryg.ch2.binderpool.BinderPoolActivity"></activity>
+        <activity android:name=".module.ryg.ch2.binderpool.BinderPoolActivity" />
         <!-- Ryg ch3 -->
-        <activity android:name=".module.ryg.ch3.RygCh3Activity"></activity>
-        <activity android:name=".module.ryg.ch3.RygCh3ViewMoveActivity"></activity>
-        <activity android:name=".module.ryg.ch3.RygCh3OuterActivity"></activity>
-        <activity android:name=".module.ryg.ch3.RygCh3InnerActivity"></activity>
+        <activity android:name=".module.ryg.ch3.RygCh3Activity" />
+        <activity android:name=".module.ryg.ch3.RygCh3ViewMoveActivity" />
+        <activity android:name=".module.ryg.ch3.RygCh3OuterActivity" />
+        <activity android:name=".module.ryg.ch3.RygCh3InnerActivity" />
         <!-- Ryg ch4 -->
-        <activity android:name=".module.ryg.ch4.RygCh4WidthHeightActivity"></activity>
-        <activity android:name=".module.ryg.ch4.RygCh4CircleViewActivity"></activity>
-        <activity android:name=".module.ryg.ch4.RygCh4ExActivity"></activity>
-        <activity android:name=".module.ryg.ch4.RygCh4Activity"></activity>
+        <activity android:name=".module.ryg.ch4.RygCh4WidthHeightActivity" />
+        <activity android:name=".module.ryg.ch4.RygCh4CircleViewActivity" />
+        <activity android:name=".module.ryg.ch4.RygCh4ExActivity" />
+        <activity android:name=".module.ryg.ch4.RygCh4Activity" />
         <!-- Ryg ch5 -->
         <activity
             android:name=".module.ryg.ch5.RygCh5Activity"
-            android:process=":remote"></activity>
-        <activity android:name=".module.ryg.ch5.RygCh5NotificationActivity"></activity>
-        <activity android:name=".module.ryg.ch5.RygCh5AppWidgetActivity"></activity>
+            android:process=":remote" />
+        <activity android:name=".module.ryg.ch5.RygCh5NotificationActivity" />
+        <activity android:name=".module.ryg.ch5.RygCh5AppWidgetActivity" />
         <activity
             android:name=".module.ryg.ch5.RygCh5CustomActivity"
             android:configChanges="screenLayout"
-            android:exported="true"></activity>
+            android:exported="true" />
         <activity
             android:name=".module.ryg.ch5.RygCh5RemoteViewsActivity"
-            android:exported="true"></activity>
+            android:exported="true" />
 
         <receiver android:name=".module.ryg.ch5.RygCh5AppWidget">
             <intent-filter>
@@ -216,57 +217,67 @@
                 android:resource="@xml/ryg_ch5_app_widget_info" />
         </receiver>
         <!-- Ryg ch6 -->
-        <activity android:name=".module.ryg.ch6.RygCh6Activity"></activity>
-        <activity android:name=".module.ryg.ch6.RygCh6DrawableActivity"></activity>
+        <activity android:name=".module.ryg.ch6.RygCh6Activity" />
+        <activity android:name=".module.ryg.ch6.RygCh6DrawableActivity" />
         <!-- Ryg ch7 -->
-        <activity android:name=".module.ryg.ch7.RygCh7Activity"></activity>
-        <activity android:name=".module.ryg.ch7.RygCh7ActivityAnimatorActivity"></activity>
-        <activity android:name=".module.ryg.ch7.RygCh7ScaleButtonActivity"></activity>
-        <activity android:name=".module.ryg.ch7.RygCh7LayoutAnimationActivity"></activity>
+        <activity android:name=".module.ryg.ch7.RygCh7Activity" />
+        <activity android:name=".module.ryg.ch7.RygCh7ActivityAnimatorActivity" />
+        <activity android:name=".module.ryg.ch7.RygCh7ScaleButtonActivity" />
+        <activity android:name=".module.ryg.ch7.RygCh7LayoutAnimationActivity" />
         <!-- Ryg ch8 -->
-        <activity android:name=".module.ryg.ch8.RygCh8Activity"></activity>
-        <activity android:name=".module.ryg.ch8.RygCh8DialogActivity"></activity>
-        <activity android:name=".module.ryg.ch8.RygCh8FloatActivity"></activity>
+        <activity android:name=".module.ryg.ch8.RygCh8Activity" />
+        <activity android:name=".module.ryg.ch8.RygCh8DialogActivity" />
+        <activity android:name=".module.ryg.ch8.RygCh8FloatActivity" />
         <!-- Ryg ch9 -->
-        <activity android:name=".module.ryg.ch9.RygCh9Activity"></activity>
+        <activity android:name=".module.ryg.ch9.RygCh9Activity" />
         <!-- Ryg ch10 -->
-        <activity android:name=".module.ryg.ch10.RygCh10Activity"></activity>
+        <activity android:name=".module.ryg.ch10.RygCh10Activity" />
         <!-- Ryg ch11 -->
-        <activity android:name=".module.ryg.ch11.RygCh11Activity"></activity>
+        <activity android:name=".module.ryg.ch11.RygCh11Activity" />
 
         <service
             android:name=".module.ryg.ch11.LocalIntentService"
-            android:exported="false"></service>
+            android:exported="false" />
         <!-- Ryg ch12 -->
-        <activity android:name=".module.ryg.ch12.RygCh12Activity"></activity>
+        <activity android:name=".module.ryg.ch12.RygCh12Activity" />
         <!-- Ryg ch13 -->
-        <activity android:name=".module.ryg.ch13.RygCh13Activity"></activity>
+        <activity android:name=".module.ryg.ch13.RygCh13Activity" />
         <!-- Ryg ch14 -->
-        <activity android:name=".module.ryg.ch14.RygCh14Activity"></activity>
+        <activity android:name=".module.ryg.ch14.RygCh14Activity" />
         <!-- Ryg ch15 -->
-        <activity android:name=".module.ryg.ch15.RygCh15Activity"></activity>
+        <activity android:name=".module.ryg.ch15.RygCh15Activity" />
 
         <!-- 文件管理器Demo -->
-        <activity android:name=".module.fm.FmMainActivity"></activity>
+        <activity android:name=".module.fm.FmMainActivity" />
         <activity
             android:name=".module.fm.FmGifPlayerActivity"
             android:hardwareAccelerated="false" />
-        <activity android:name=".module.fm.FmGifDrawableActivity"></activity>
-        <activity android:name=".module.fm.FmRenameActivity"></activity>
-        <activity android:name=".module.fm.FmJavaRenameActivity"></activity>
+        <activity android:name=".module.fm.FmGifDrawableActivity" />
+        <activity android:name=".module.fm.FmRenameActivity" />
+        <activity android:name=".module.fm.FmJavaRenameActivity" />
 
         <service android:name=".module.fm.service.FileMonitorService" />
         <service
             android:name=".module.fm.service.FileScannerService"
             android:process=".fm" />
 
-        <activity android:name=".module.fm.FmSpShareActivity"></activity>
-        <activity android:name=".module.fm.FmOpenActivity"></activity>
-        <activity android:name=".module.fm.FmSectionListViewActivity"></activity>
-        <activity android:name=".module.fm.FmSectionGridViewActivity"></activity>
-        <activity android:name=".module.fm.ItemListActivity"></activity>
-        <activity android:name=".module.fm.ItemDetailActivity"></activity>
-        <activity android:name=".module.jet.BookActivity"></activity>
+        <activity android:name=".module.fm.FmSpShareActivity" />
+        <activity android:name=".module.fm.FmOpenActivity" />
+        <activity android:name=".module.fm.FmSectionListViewActivity" />
+        <activity android:name=".module.fm.FmSectionGridViewActivity" />
+        <activity android:name=".module.fm.ItemListActivity" />
+        <activity android:name=".module.fm.ItemDetailActivity" />
+
+        <!-- JetPack -->
+        <activity android:name=".module.jet.JetMainActivity" />
+        <activity android:name=".module.jet.pagingroom.BookActivity" />
+        <activity android:name=".module.fm.FmArcActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
     </application>
 
 </manifest>

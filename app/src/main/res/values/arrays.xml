@@ -21,7 +21,7 @@
         <item>@string/qyz_main_title</item>
         <item>@string/ryg_main_title</item>
         <!---->
-        <item>@string/jet_start_title</item>
+        <item>@string/jet_main_title</item>
 
     </string-array>
 
@@ -33,6 +33,11 @@
         <item>@string/fm_open_file</item>
         <item>@string/fm_section_list_view</item>
         <item>@string/fm_section_grid_view</item>
+        <item>@string/fm_arc</item>
+    </string-array>
+
+    <string-array name="jet_list">
+        <item>@string/jet_book_title</item>
     </string-array>
 
     <string-array name="fm_float_list">

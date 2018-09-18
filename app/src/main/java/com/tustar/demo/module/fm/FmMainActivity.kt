@@ -4,13 +4,12 @@ import android.content.Intent
 import android.os.Bundle
 import android.support.v7.widget.LinearLayoutManager
 import android.view.View
+import com.tustar.common.util.Logger
 import com.tustar.demo.R
 import com.tustar.demo.adapter.SimpleListItem1Adapter
 import com.tustar.demo.base.BaseActivity
 import com.tustar.demo.common.CommonDefine
 import com.tustar.demo.module.fm.service.FileMonitorService
-import com.tustar.common.util.Logger
-import com.tustar.common.widget.Decoration
 import kotlinx.android.synthetic.main.activity_fm_main.*
 
 class FmMainActivity : BaseActivity(), SimpleListItem1Adapter.OnItemClickListener {
@@ -29,6 +28,7 @@ class FmMainActivity : BaseActivity(), SimpleListItem1Adapter.OnItemClickListene
                 add(FmOpenActivity::class.java)
                 add(FmSectionListViewActivity::class.java)
                 add(ItemListActivity::class.java)
+                add(FmArcActivity::class.java)
             }
         }
     }

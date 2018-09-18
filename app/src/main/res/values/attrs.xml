@@ -26,4 +26,8 @@
     <declare-styleable name="CircleView">
         <attr name="circle_color" format="color"/>
     </declare-styleable>
+    <declare-styleable name="ArcView">
+        <attr name="arc_color" format="color" />
+        <attr name="arc_height" format="dimension" />
+    </declare-styleable>
 </resources>

@@ -1,4 +1,4 @@
-package com.tustar.demo.module.jet
+package com.tustar.demo.module.jet.pagingroom
 
 import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater

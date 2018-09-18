@@ -4,35 +4,42 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".module.jet.pagingroom.AddBookFragment">
+    tools:context=".module.fm.FmArcActivity">
 
-    <EditText
-        android:id="@+id/jet_name"
-        android:layout_width="0dp"
-        android:layout_marginTop="24dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginEnd="16dp"
-        android:layout_weight="1"
-        android:hint="@string/jet_add_book_hint"
-        android:imeOptions="actionDone"
-        android:inputType="text"
-        android:maxLines="1"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+    <com.tustar.demo.module.fm.ArcView
+        android:id="@+id/display_arc"
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:layout_marginTop="40dp"
+        app:arc_color="@color/colorPrimary"
+        app:arc_height="17.7dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <Button
-        android:id="@+id/jet_add_btn"
+        android:id="@+id/play_btn"
         style="@style/Tu.Button"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="24dp"
         android:layout_marginEnd="16dp"
-        android:layout_weight="0"
-        android:text="@string/add"
+        android:text="开始动画"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/jet_name" />
+        app:layout_constraintTop_toBottomOf="@+id/display_arc" />
+
+    <Button
+        android:id="@+id/reverse_btn"
+        style="@style/Tu.Button"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="24dp"
+        android:layout_marginEnd="16dp"
+        android:text="反向动画"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/play_btn" />
 
 </android.support.constraint.ConstraintLayout>

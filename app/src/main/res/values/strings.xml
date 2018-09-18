@@ -82,6 +82,7 @@
     <string name="fm_open_file">打开文件管理器浏览</string>
     <string name="fm_section_list_view">Section ListView</string>
     <string name="fm_section_grid_view">Section GridView</string>
+    <string name="fm_arc">ArcView</string>
 
 
     <!--Android开发艺术探索-->
@@ -147,7 +148,8 @@
     <string name="qyz_over_scroll_title">OverScroll GridView</string>
 
     <!--JetPack-->
-    <string name="jet_start_title">JetPack</string>
+    <string name="jet_main_title">JetPack</string>
+    <string name="jet_book_title">Navigation+Room+ViewModel+Paging</string>
     <string name="jet_navigate">Navigate</string>
     <string name="jet_add_book_hint">请添加书籍</string>
 

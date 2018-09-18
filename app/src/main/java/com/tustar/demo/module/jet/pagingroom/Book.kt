@@ -1,4 +1,4 @@
-package com.tustar.demo.module.jet
+package com.tustar.demo.module.jet.pagingroom
 
 import android.arch.persistence.room.Entity
 import android.arch.persistence.room.PrimaryKey

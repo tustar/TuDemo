@@ -30,7 +30,8 @@ import com.tustar.demo.module.deskclock.SubScaleViewActivity
 import com.tustar.demo.module.dragsortlistview.DragSortListViewActivity
 import com.tustar.demo.module.dragview.DragViewActivity
 import com.tustar.demo.module.fm.FmMainActivity
-import com.tustar.demo.module.jet.BookActivity
+import com.tustar.demo.module.jet.JetMainActivity
+import com.tustar.demo.module.jet.pagingroom.BookActivity
 import com.tustar.demo.module.loader.LoaderActivity
 import com.tustar.demo.module.provider.ProviderActivity
 import com.tustar.demo.module.qyz.QyzMainActivity
@@ -74,7 +75,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
             sClassList += QyzMainActivity::class.java
             sClassList += RygMainActivity::class.java
             //
-            sClassList += BookActivity::class.java
+            sClassList += JetMainActivity::class.java
             sClassList.reverse()
         }
     }
