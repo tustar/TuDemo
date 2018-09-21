@@ -1,4 +1,4 @@
-package com.tustar.demo.module.jet.pagingroom
+package com.tustar.demo.module.jet.paging
 
 import android.arch.lifecycle.Observer
 import android.arch.lifecycle.ViewModelProviders

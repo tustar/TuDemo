@@ -9,7 +9,8 @@ import com.tustar.demo.R
 import com.tustar.demo.adapter.SimpleListItem1Adapter
 import com.tustar.demo.base.BaseActivity
 import com.tustar.demo.module.fm.service.FileMonitorService
-import com.tustar.demo.module.jet.pagingroom.BookActivity
+import com.tustar.demo.module.jet.paging.BookActivity
+import com.tustar.demo.module.jet.reddit.RedditMainActivity
 import kotlinx.android.synthetic.main.activity_jet_main.*
 
 class JetMainActivity : BaseActivity(), SimpleListItem1Adapter.OnItemClickListener {
@@ -22,6 +23,7 @@ class JetMainActivity : BaseActivity(), SimpleListItem1Adapter.OnItemClickListen
         init {
             sClassList.run {
                 add(BookActivity::class.java)
+                add(RedditMainActivity::class.java)
             }
         }
     }

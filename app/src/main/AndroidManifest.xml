@@ -267,17 +267,12 @@
         <activity android:name=".module.fm.FmSectionGridViewActivity" />
         <activity android:name=".module.fm.ItemListActivity" />
         <activity android:name=".module.fm.ItemDetailActivity" />
+        <activity android:name=".module.fm.FmArcActivity" />
 
         <!-- JetPack -->
         <activity android:name=".module.jet.JetMainActivity" />
-        <activity android:name=".module.jet.pagingroom.BookActivity" />
-        <activity android:name=".module.fm.FmArcActivity">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
+        <activity android:name=".module.jet.paging.BookActivity" />
+        <activity android:name=".module.jet.reddit.RedditMainActivity"/>
     </application>
 
 </manifest>

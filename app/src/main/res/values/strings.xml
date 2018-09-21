@@ -150,8 +150,10 @@
     <!--JetPack-->
     <string name="jet_main_title">JetPack</string>
     <string name="jet_book_title">Navigation+Room+ViewModel+Paging</string>
+    <string name="jet_reddit_title">Reddit</string>
     <string name="jet_navigate">Navigate</string>
     <string name="jet_add_book_hint">请添加书籍</string>
+
 
     <!--Other-->
     <string name="appwidget_text">EXAMPLE</string>

@@ -31,7 +31,6 @@ import com.tustar.demo.module.dragsortlistview.DragSortListViewActivity
 import com.tustar.demo.module.dragview.DragViewActivity
 import com.tustar.demo.module.fm.FmMainActivity
 import com.tustar.demo.module.jet.JetMainActivity
-import com.tustar.demo.module.jet.pagingroom.BookActivity
 import com.tustar.demo.module.loader.LoaderActivity
 import com.tustar.demo.module.provider.ProviderActivity
 import com.tustar.demo.module.qyz.QyzMainActivity
