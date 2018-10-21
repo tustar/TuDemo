@@ -38,7 +38,6 @@
 
     <string-array name="jet_list">
         <item>@string/jet_book_title</item>
-        <item>@string/jet_reddit_title</item>
     </string-array>
 
     <string-array name="fm_float_list">

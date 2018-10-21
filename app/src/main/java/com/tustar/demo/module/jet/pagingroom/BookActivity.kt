@@ -1,4 +1,4 @@
-package com.tustar.demo.module.jet.paging
+package com.tustar.demo.module.jet.pagingroom
 
 import android.os.Bundle
 import com.tustar.demo.R

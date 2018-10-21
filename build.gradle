@@ -43,21 +43,6 @@ ext {
 
     // WorkManager
     workVersion = "1.0.0-alpha08"
-
-    // Retrofit
-    retrofitVersion = '2.4.0'
-
-    // OkHttp
-    okHttpVersion = '3.5.0'
-
-    // RxJava
-    rxkotlinVersion = '2.3.0'
-
-    // Glide
-    glideVersion = '4.8.0'
-
-    // Gson
-    gsonVersion = '2.8.5'
 }
 
 buildscript {

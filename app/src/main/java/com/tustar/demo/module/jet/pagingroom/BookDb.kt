@@ -1,4 +1,4 @@
-package com.tustar.demo.module.jet.paging
+package com.tustar.demo.module.jet.pagingroom
 
 import android.arch.persistence.db.SupportSQLiteDatabase
 import android.arch.persistence.room.*
