@@ -9,16 +9,9 @@ import android.widget.ImageView;
 import com.tustar.demo.R;
 import com.tustar.demo.base.BaseActivity;
 
-import butterknife.BindView;
-import butterknife.ButterKnife;
-import butterknife.OnClick;
+public class QyzSvgActivity extends BaseActivity implements View.OnClickListener {
 
-public class QyzSvgActivity extends BaseActivity {
-
-
-    @BindView(R.id.svg_image)
     ImageView mSvgImage;
-    @BindView(R.id.svg_face)
     ImageView mSvgFace;
 
     @Override
@@ -26,7 +19,11 @@ public class QyzSvgActivity extends BaseActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_qyz_svg);
         setTitle(R.string.qyz_svg_title);
-        ButterKnife.bind(this);
+
+        mSvgImage = findViewById(R.id.svg_image);
+        mSvgImage.setOnClickListener(this);
+        mSvgFace  = findViewById(R.id.svg_face);
+        mSvgFace.setOnClickListener(this);
     }
 
     private void doAnimate(Drawable drawable) {
@@ -36,10 +33,10 @@ public class QyzSvgActivity extends BaseActivity {
         }
     }
 
-    @OnClick({R.id.svg_image, R.id.svg_face})
-    public void onClick(View view) {
+    @Override
+    public void onClick(View v) {
         Drawable drawable = null;
-        switch (view.getId()) {
+        switch (v.getId()) {
             case R.id.svg_image:
                 drawable = mSvgImage.getDrawable();
                 break;

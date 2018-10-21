@@ -1,9 +1,10 @@
 package com.tustar.demo.module.scroller.other;
 
 import android.os.Bundle;
-import androidx.appcompat.app.AppCompatActivity;
 
 import com.tustar.demo.R;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 public class OtherHOverScrollViewActivity extends AppCompatActivity {
 

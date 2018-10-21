@@ -22,15 +22,11 @@ import java.util.List;
 
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-import butterknife.BindView;
-import butterknife.ButterKnife;
 
 public class ScrollerActivity extends BaseActivity implements ScrollerAdapter.OnItemClickListener {
 
     private Context mContext;
-    @BindView(R.id.scroller_recyclerview)
     RecyclerView mScrollerRecyclerview;
-    @BindView(R.id.activity_scroller)
     RelativeLayout mActivityScroller;
 
     private ScrollerAdapter mAdapter;
@@ -56,7 +52,9 @@ public class ScrollerActivity extends BaseActivity implements ScrollerAdapter.On
         setContentView(R.layout.activity_scroller);
         setTitle(ScrollerActivity.class.getSimpleName());
         mContext = this;
-        ButterKnife.bind(this);
+
+        mScrollerRecyclerview = findViewById(R.id.scroller_recyclerview);
+        mActivityScroller = findViewById(R.id.activity_scroller);
 
         List<String> datas = new ArrayList<>();
         datas.add(OnePointerDrawView.class.getSimpleName());

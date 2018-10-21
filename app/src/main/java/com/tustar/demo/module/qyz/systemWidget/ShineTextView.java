@@ -1,6 +1,5 @@
 package com.tustar.demo.module.qyz.systemWidget;
 
-import android.annotation.TargetApi;
 import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Color;
@@ -8,7 +7,6 @@ import android.graphics.LinearGradient;
 import android.graphics.Matrix;
 import android.graphics.Paint;
 import android.graphics.Shader;
-import android.os.Build;
 import android.util.AttributeSet;
 
 import androidx.appcompat.widget.AppCompatTextView;

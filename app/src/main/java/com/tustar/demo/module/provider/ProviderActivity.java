@@ -12,12 +12,8 @@ import java.util.Date;
 import java.util.List;
 import java.util.Random;
 
-import butterknife.BindView;
-import butterknife.ButterKnife;
-
 public class ProviderActivity extends BaseActivity {
 
-    @BindView(R.id.provider_result)
     TextView mProviderResult;
     private History history;
 
@@ -25,7 +21,7 @@ public class ProviderActivity extends BaseActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_provider);
-        ButterKnife.bind(this);
+        mProviderResult = findViewById(R.id.provider_result);
     }
 
     public void insert(View view) {

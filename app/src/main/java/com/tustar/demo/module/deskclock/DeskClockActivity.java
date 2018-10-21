@@ -8,14 +8,10 @@ import com.tustar.demo.base.BaseActivity;
 import com.tustar.demo.module.deskclock.provider.History;
 
 import androidx.viewpager.widget.ViewPager;
-import butterknife.BindView;
-import butterknife.ButterKnife;
 
 public class DeskClockActivity extends BaseActivity implements AlarmClockFragment.OnListFragmentInteractionListener {
 
-    @BindView(R.id.desk_viewpager)
     ViewPager mDeskViewpager;
-    @BindView(R.id.desk_tabs)
     TabLayout mDeskTabs;
 
     private DeskClockFragmentPagerAdapter mPagerAdapter;
@@ -24,7 +20,8 @@ public class DeskClockActivity extends BaseActivity implements AlarmClockFragmen
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_desk_clock);
-        ButterKnife.bind(this);
+        mDeskViewpager = findViewById(R.id.desk_viewpager);
+        mDeskTabs = findViewById(R.id.desk_tabs);
 
         mPagerAdapter = new DeskClockFragmentPagerAdapter(getSupportFragmentManager(), this);
         mDeskViewpager.setAdapter(mPagerAdapter);

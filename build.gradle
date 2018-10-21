@@ -1,79 +1,17 @@
-// Define versions in a single place
-ext {
-
-    // Sdk and tools
-    minSdkVersion = 26
-    targetSdkVersion = 28
-    compileSdkVersion = 28
-    buildToolsVersion = '27.0.3'
-
-    // App dependencies
-    junitVersion = '4.12'
-    runnerVersion = '1.0.1'
-    espressoVersion = '3.0.1'
-    ankoVersion = '0.10.4'
-    retrofitVersion = '2.4.0'
-    roomVersion = '1.0.0'
-    supportLibraryVersion = '27.1.1'
-    constraintLayoutVersion = '1.0.2'
-    loggingInterceptorVersion = '3.10.0'
-
-    // rx
-    rxandroidVersion = '2.0.1'
-    rxjavaVersion = '2.1.5'
-
-    //
-    recyclerviewSwipe = '1.0.2'
-    androidGifDrawable = '1.2.7'
-
-    //
-    databindingVersion = '3.0.0'
-
-    // lifecycle
-    archLifecycleVersion = '1.1.1'
-
-    // room
-    roomVersion = "1.1.1"
-
-    // paging
-    pagingVersion = "1.0.0"
-
-    // navigation
-    navigationVersion = '1.0.0-alpha05'
-
-    // WorkManager
-    workVersion = "1.0.0-alpha08"
-}
-
 buildscript {
-
-    ext {
-        kotlinVersion = '1.2.51'
-        gradlePluginVersion = '3.1.1'
-        butterknifeVersion = '9.0.0-SNAPSHOT'
-    }
-
-    repositories {
-        jcenter { url "http://jcenter.bintray.com/" }
-        google()
-        maven { url "https://oss.sonatype.org/content/repositories/snapshots" }
-        maven { url 'http://maven.aliyun.com/nexus/content/groups/public/' }
-    }
+    apply from: 'versions.gradle'
+    addRepos(repositories)
     dependencies {
-        classpath 'com.android.tools.build:gradle:3.2.1'
-        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlinVersion"
-        classpath "com.jakewharton:butterknife-gradle-plugin:$butterknifeVersion"
-        classpath "android.arch.navigation:navigation-safe-args-gradle-plugin:1.0.0-alpha05"
+        classpath deps.android_gradle_plugin
+        classpath deps.kotlin.plugin
+        classpath deps.navigation.safe_args_gradle_plugin
+    }
+    repositories {
+        google()
     }
 }
 allprojects {
-    repositories {
-        jcenter { url "http://jcenter.bintray.com/" }
-        google()
-        mavenCentral()
-        maven { url "https://oss.sonatype.org/content/repositories/snapshots" }
-        maven { url 'http://maven.aliyun.com/nexus/content/groups/public/' }
-    }
+    addRepos(repositories)
 }
 task clean(type: Delete) {
     delete rootProject.buildDir

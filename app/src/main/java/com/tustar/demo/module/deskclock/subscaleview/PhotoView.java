@@ -37,8 +37,6 @@ import android.os.Build.VERSION;
 import android.os.Handler;
 import android.os.Message;
 import android.provider.MediaStore;
-import androidx.annotation.AnyThread;
-import androidx.annotation.NonNull;
 import android.util.AttributeSet;
 import android.util.DisplayMetrics;
 import android.util.Log;
@@ -66,6 +64,9 @@ import java.util.List;
 import java.util.Locale;
 import java.util.Map;
 import java.util.concurrent.Executor;
+
+import androidx.annotation.AnyThread;
+import androidx.annotation.NonNull;
 
 /**
  * Displays an image subsampled as necessary to avoid loading too much image data into memory. After a pinch to zoom in,

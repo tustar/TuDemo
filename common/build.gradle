@@ -4,18 +4,18 @@ apply plugin: 'kotlin-android-extensions'
 
 android {
 
-    compileSdkVersion rootProject.ext.compileSdkVersion
-    buildToolsVersion '28.0.3'
+    compileSdkVersion build_versions.compile_sdk
+    buildToolsVersion build_versions.build_tools
 
     defaultConfig {
 
-        minSdkVersion rootProject.ext.minSdkVersion
-        targetSdkVersion rootProject.ext.targetSdkVersion
+        minSdkVersion build_versions.min_sdk
+        targetSdkVersion build_versions.target_sdk
 
         versionCode 1
         versionName "1.0"
 
-        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        testInstrumentationRunner deps.atsl.androidjunitrunner
 
     }
 
@@ -34,12 +34,11 @@ android {
 
 dependencies {
     implementation fileTree(include: ['*.jar'], dir: 'libs')
-    implementation 'androidx.recyclerview:recyclerview:1.0.0'
-    implementation "org.jetbrains.kotlin:kotlin-stdlib-jre7:$kotlinVersion"
+    implementation deps.support.recyclerview
+    implementation deps.kotlin.stdlib
     //
-    testImplementation "junit:junit:$rootProject.junitVersion"
-    androidTestImplementation 'androidx.test:runner:1.1.0-beta02'
-    androidTestImplementation "com.android.support.test.espresso:espresso-core:" +
-            "$rootProject.espressoVersion"
-    implementation 'androidx.appcompat:appcompat:1.0.0'
+    testImplementation deps.junit
+    androidTestImplementation deps.atsl.runner
+    androidTestImplementation deps.espresso.core
+    implementation deps.support.appcompat
 }

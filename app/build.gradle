@@ -1,18 +1,17 @@
 apply plugin: 'com.android.application'
-apply plugin: 'com.jakewharton.butterknife'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
 apply plugin: 'kotlin-kapt'
 
 android {
-    compileSdkVersion rootProject.ext.compileSdkVersion
-    buildToolsVersion '28.0.3'
+    compileSdkVersion build_versions.compile_sdk
+    buildToolsVersion build_versions.build_tools
 
     defaultConfig {
         applicationId "com.tustar.demo"
 
-        minSdkVersion rootProject.ext.minSdkVersion
-        targetSdkVersion rootProject.ext.targetSdkVersion
+        minSdkVersion build_versions.min_sdk
+        targetSdkVersion build_versions.target_sdk
 
         versionCode 3
         versionName "1.0.1"
@@ -21,6 +20,12 @@ android {
 //                cppFlags "-frtti -fexceptions"
 //            }
 //        }
+
+        javaCompileOptions {
+            annotationProcessorOptions {
+                arguments = ["room.schemaLocation": "$projectDir/schemas".toString()]
+            }
+        }
     }
     buildTypes {
         release {
@@ -49,55 +54,57 @@ android {
 
 dependencies {
     implementation fileTree(include: ['*.jar'], dir: 'libs')
-    implementation "com.android.support.constraint:constraint-layout:" +
-            "$rootProject.constraintLayoutVersion"
-    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlinVersion"
-    implementation "org.jetbrains.kotlin:kotlin-reflect:$kotlinVersion"
-    implementation 'androidx.appcompat:appcompat:1.0.0'
-    implementation 'androidx.cardview:cardview:1.0.0'
-    implementation 'androidx.recyclerview:recyclerview:1.0.0'
-    implementation 'com.google.android.material:material:1.0.0'
-    implementation 'androidx.palette:palette:1.0.0'
-    implementation 'androidx.legacy:legacy-support-v4:1.0.0'
-    implementation 'androidx.percentlayout:percentlayout:1.0.0'
 
+    //
+    implementation deps.constraint.layout
 
-    implementation "com.jakewharton:butterknife:$butterknifeVersion"
-    annotationProcessor "com.jakewharton:butterknife-compiler:$butterknifeVersion"
+    //
+    implementation deps.kotlin.stdlib
+    implementation deps.kotlin.reflect
 
-    implementation "com.yanzhenjie:recyclerview-swipe:$rootProject.recyclerviewSwipe"
-    implementation "pl.droidsonroids.gif:android-gif-drawable:$rootProject.androidGifDrawable"
+    //
+    implementation deps.support.appcompat
+    implementation deps.support.cardview
+    implementation deps.support.recyclerview
+    implementation deps.support.palette
+    implementation deps.support.legacy
+    implementation deps.support.percentlayout
+
+    implementation deps.material
+    implementation deps.recyclerview_swipe
+    implementation deps.android_gif_drawable
 
     // lifecycle
-    implementation 'androidx.lifecycle:lifecycle-extensions:2.0.0'
-    implementation 'androidx.lifecycle:lifecycle-livedata:2.0.0'
-    implementation 'androidx.lifecycle:lifecycle-runtime:2.0.0'
-    annotationProcessor 'androidx.lifecycle:lifecycle-compiler:2.0.0'
-    // use kapt for Kotlin
-    implementation 'androidx.lifecycle:lifecycle-common-java8:2.0.0'
-    implementation 'androidx.lifecycle:lifecycle-reactivestreams:2.0.0'
-    testImplementation 'androidx.arch.core:core-testing:2.0.0'
+    implementation deps.lifecycle.extensions
+    implementation deps.lifecycle.livedata
+    implementation deps.lifecycle.runtime
+    kapt deps.lifecycle.compiler
+    implementation deps.lifecycle.java8
+    implementation deps.lifecycle.reactivestreams
+
+    // arch_core
+    testImplementation deps.arch_core.testing
 
     // room
-    implementation 'androidx.room:room-runtime:2.1.0-alpha01'
-    kapt 'androidx.room:room-compiler:2.1.0-alpha01' // use kapt for Kotlin
-    implementation 'androidx.room:room-rxjava2:2.1.0-alpha01'
-    testImplementation 'androidx.room:room-testing:2.1.0-alpha01'
+    implementation deps.room.runtime
+    implementation deps.room.rxjava2
+    implementation deps.room.testing
+    kapt deps.room.compiler
 
     // Paging
-    implementation 'androidx.paging:paging-runtime:2.1.0-alpha01'
-    testImplementation 'androidx.paging:paging-common:2.1.0-alpha01'
-    implementation "android.arch.paging:rxjava2:1.0.0-rc1"
+    implementation deps.paging.runtime
+    testImplementation deps.paging.common
+    implementation deps.paging.rxjava2
 
     // Navigation
-    implementation 'android.arch.navigation:navigation-fragment-ktx:' + rootProject.navigationVersion
-    implementation 'android.arch.navigation:navigation-ui-ktx:' + rootProject.navigationVersion
-    androidTestImplementation 'android.arch.navigation:navigation-testing-ktx:' + rootProject.navigationVersion
+    implementation deps.navigation.fragment_ktx
+    implementation deps.navigation.ui_ktx
+    androidTestImplementation deps.navigation.testing_ktx
 
     // WorkManager
-    implementation "android.arch.work:work-runtime:$rootProject.workVersion" // use -ktx for Kotlin
-    implementation "android.arch.work:work-firebase:$rootProject.workVersion"
-    androidTestImplementation "android.arch.work:work-testing:$rootProject.workVersion"
+    implementation deps.work.runtime
+    implementation deps.work.firebase
+    androidTestImplementation deps.work.testing
 
     implementation project(':common')
 }

@@ -15,27 +15,18 @@ import com.tustar.demo.R;
 import com.tustar.demo.base.BaseActivity;
 import com.tustar.demo.service.IDemoAidlService;
 
-import butterknife.BindView;
-import butterknife.ButterKnife;
-import butterknife.OnClick;
-
-public class ServiceActivity extends BaseActivity {
+public class ServiceActivity extends BaseActivity implements View.OnClickListener {
 
     private static final String TAG = "ServiceActivity";
 
-    @BindView(R.id.start_service)
     Button mStartService;
-    @BindView(R.id.stop_service)
     Button mStopService;
-    @BindView(R.id.bind_service)
     Button mBindService;
-    @BindView(R.id.unbind_service)
     Button mUnbindService;
-    @BindView(R.id.start_intent_service)
     Button mStartIntentService;
 
     private DemoServiceConnection mConnection = new DemoServiceConnection();
-//    private DemoBinder mBinder;
+    //    private DemoBinder mBinder;
     private IDemoAidlService mIDemoAidlService;
 
     @Override
@@ -45,17 +36,22 @@ public class ServiceActivity extends BaseActivity {
         Logger.d(TAG, "onCreate :: ServiceActivity process id = " + Process.myPid());
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_service);
-        ButterKnife.bind(this);
+
+        mStartService = findViewById(R.id.start_service);
+        mStartService.setOnClickListener(this);
+        mStopService = findViewById(R.id.stop_service);
+        mStopService.setOnClickListener(this);
+        mBindService = findViewById(R.id.bind_service);
+        mBindService.setOnClickListener(this);
+        mUnbindService = findViewById(R.id.unbind_service);
+        mUnbindService.setOnClickListener(this);
+        mStartIntentService = findViewById(R.id.start_intent_service);
+        mStartIntentService.setOnClickListener(this);
     }
 
-    @OnClick({
-            R.id.start_service,
-            R.id.stop_service,
-            R.id.bind_service,
-            R.id.unbind_service,
-            R.id.start_intent_service})
-    public void onClick(View view) {
-        switch (view.getId()) {
+    @Override
+    public void onClick(View v) {
+        switch (v.getId()) {
             case R.id.start_service:
                 Logger.i(TAG, "onClick :: start_service");
                 startService(new Intent(this, DemoService.class));

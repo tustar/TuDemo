@@ -10,13 +10,14 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteQueryBuilder;
 import android.net.Uri;
-import androidx.annotation.Nullable;
 import android.text.TextUtils;
 import android.util.ArrayMap;
 
 import com.tustar.common.util.Logger;
 
 import java.util.Map;
+
+import androidx.annotation.Nullable;
 
 import static com.tustar.demo.module.deskclock.provider.HistoryContract.HistoriesColumns;
 import static com.tustar.demo.module.deskclock.provider.HistoryDatabaseHelper.HISTORIES_TABLE_NAME;
