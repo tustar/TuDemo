@@ -2,6 +2,7 @@ package com.tustar.jetpack
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import com.tustar.jetpack.R
 
 class MainActivity : AppCompatActivity() {
 
