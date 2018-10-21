@@ -4,16 +4,6 @@
     <!--Backgroud-->
     <color name="list_view_bg">#4699cc00</color>
 
-
-    <color name="colorPrimary">@android:color/holo_blue_light</color>
-    <color name="colorPrimaryDark">@android:color/holo_blue_dark</color>
-    <color name="colorAccent">@android:color/holo_blue_dark</color>
-
-    <color name="status_bar_bg">#fff0f0f0</color>
-    <color name="status_bar_bg_light">#fff0f0f0</color>
-    <color name="status_bar_icon_color">#ff000000</color>
-    <color name="status_bar_icon_color_light">#ff000000</color>
-
     <color name="shape_ripple_round_solid_color">@android:color/holo_orange_dark</color>
     <color name="side_nav_bar_centerColor">@android:color/holo_blue_light</color>
     <color name="side_nav_bar_endColor">@android:color/holo_blue_dark</color>

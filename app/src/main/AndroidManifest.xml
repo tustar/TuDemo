@@ -33,11 +33,11 @@
             android:label="@string/app_name"
             android:launchMode="singleTask"
             android:theme="@style/AppTheme.NoActionBar">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
+            <!--<intent-filter>-->
+                <!--<action android:name="android.intent.action.MAIN" />-->
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
+                <!--<category android:name="android.intent.category.LAUNCHER" />-->
+            <!--</intent-filter>-->
         </activity>
 
         <!-- RecyclerView实例 -->
@@ -255,6 +255,7 @@
         <activity android:name=".module.fm.FmGifDrawableActivity" />
         <activity android:name=".module.fm.FmRenameActivity" />
         <activity android:name=".module.fm.FmJavaRenameActivity" />
+        <activity android:name=".module.fm.FmArcActivity"/>
 
         <service android:name=".module.fm.service.FileMonitorService" />
         <service
@@ -271,13 +272,7 @@
         <!-- JetPack -->
         <activity android:name=".module.jet.JetMainActivity" />
         <activity android:name=".module.jet.pagingroom.BookActivity" />
-        <activity android:name=".module.fm.FmArcActivity">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
     </application>
 
 </manifest>

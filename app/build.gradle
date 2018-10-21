@@ -106,5 +106,6 @@ dependencies {
     implementation deps.work.firebase
     androidTestImplementation deps.work.testing
 
-    implementation project(':common')
+    implementation project(':lib-common')
+    implementation project(':lib-theme')
 }
