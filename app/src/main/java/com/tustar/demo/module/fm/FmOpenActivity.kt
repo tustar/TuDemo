@@ -1,18 +1,16 @@
 package com.tustar.demo.module.fm
 
+import android.content.Context
 import android.content.Intent
 import android.os.Bundle
+import android.os.Environment
 import android.view.View
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
+import com.tustar.common.util.Logger
 import com.tustar.demo.R
 import com.tustar.demo.base.BaseActivity
-import com.tustar.common.util.Logger
 import kotlinx.android.synthetic.main.activity_fm_open.*
-import android.content.Context
-import android.os.Environment
-import android.os.storage.StorageManager
-import android.os.storage.StorageVolume
 import java.io.File
 import java.lang.reflect.InvocationTargetException
 

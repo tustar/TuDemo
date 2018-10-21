@@ -8,12 +8,13 @@ import android.graphics.BitmapFactory;
 import android.os.IBinder;
 import android.os.Process;
 import android.os.RemoteException;
-import android.support.v4.app.NotificationCompat;
 
+import com.tustar.common.util.Logger;
 import com.tustar.demo.MainActivity;
 import com.tustar.demo.R;
 import com.tustar.demo.service.IDemoAidlService;
-import com.tustar.common.util.Logger;
+
+import androidx.core.app.NotificationCompat;
 
 public class DemoService extends Service {
 

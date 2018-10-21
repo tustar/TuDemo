@@ -1,7 +1,6 @@
 package com.tustar.demo.module.scroller.other;
 
 import android.content.Context;
-import android.support.v4.view.MotionEventCompat;
 import android.util.AttributeSet;
 import android.util.Log;
 import android.view.MotionEvent;
@@ -10,6 +9,8 @@ import android.view.ViewConfiguration;
 import android.view.ViewParent;
 import android.widget.LinearLayout;
 import android.widget.Scroller;
+
+import androidx.core.view.MotionEventCompat;
 
 /**
  * Created by randy on 16-3-29.

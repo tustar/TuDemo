@@ -2,8 +2,8 @@ package com.tustar.demo.module.ryg
 
 import android.content.Intent
 import android.os.Bundle
-import android.support.v7.widget.LinearLayoutManager
 import android.view.View
+import com.tustar.common.util.Logger
 import com.tustar.demo.R
 import com.tustar.demo.adapter.SimpleListItem1Adapter
 import com.tustar.demo.base.BaseActivity
@@ -22,8 +22,6 @@ import com.tustar.demo.module.ryg.ch6.RygCh6Activity
 import com.tustar.demo.module.ryg.ch7.RygCh7Activity
 import com.tustar.demo.module.ryg.ch8.RygCh8Activity
 import com.tustar.demo.module.ryg.ch9.RygCh9Activity
-import com.tustar.common.util.Logger
-import com.tustar.common.widget.Decoration
 import kotlinx.android.synthetic.main.activity_ryg_main.*
 
 class RygMainActivity : BaseActivity(), SimpleListItem1Adapter.OnItemClickListener {
@@ -61,7 +59,7 @@ class RygMainActivity : BaseActivity(), SimpleListItem1Adapter.OnItemClickListen
         setContentView(R.layout.activity_ryg_main)
         title = getString(R.string.ryg_main_title)
 
-        ryg_main_rv.layoutManager = LinearLayoutManager(this)
+        ryg_main_rv.layoutManager = androidx.recyclerview.widget.LinearLayoutManager(this)
         var desc = resources.getStringArray(R.array.ryg_chapters).toList()
         var adapter = SimpleListItem1Adapter(desc)
         ryg_main_rv.adapter = adapter

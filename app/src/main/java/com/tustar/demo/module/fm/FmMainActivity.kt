@@ -2,7 +2,6 @@ package com.tustar.demo.module.fm
 
 import android.content.Intent
 import android.os.Bundle
-import android.support.v7.widget.LinearLayoutManager
 import android.view.View
 import com.tustar.common.util.Logger
 import com.tustar.demo.R
@@ -38,7 +37,7 @@ class FmMainActivity : BaseActivity(), SimpleListItem1Adapter.OnItemClickListene
         setContentView(R.layout.activity_fm_main)
         title = getString(R.string.fm_main_title)
 
-        fm_main_rv.layoutManager = LinearLayoutManager(this)
+        fm_main_rv.layoutManager = androidx.recyclerview.widget.LinearLayoutManager(this)
         var desc = resources.getStringArray(R.array.fm_list).toList()
         var adapter = SimpleListItem1Adapter(desc)
         fm_main_rv.adapter = adapter

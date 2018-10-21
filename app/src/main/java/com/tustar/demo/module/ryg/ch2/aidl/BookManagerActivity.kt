@@ -5,13 +5,11 @@ import android.content.Context
 import android.content.Intent
 import android.content.ServiceConnection
 import android.os.*
-import android.support.v7.widget.LinearLayoutManager
+import com.tustar.common.util.Logger
+import com.tustar.common.util.ToastUtils
 import com.tustar.demo.R
 import com.tustar.demo.adapter.SimpleListItem1Adapter
 import com.tustar.demo.base.BaseActivity
-import com.tustar.common.util.Logger
-import com.tustar.common.util.ToastUtils
-import com.tustar.common.widget.Decoration
 import kotlinx.android.synthetic.main.activity_ryg_book_manager.*
 
 
@@ -103,7 +101,7 @@ class BookManagerActivity : BaseActivity() {
     }
 
     private fun initView() {
-        ryg_ch2_bm_rv.layoutManager = LinearLayoutManager(this)
+        ryg_ch2_bm_rv.layoutManager = androidx.recyclerview.widget.LinearLayoutManager(this)
         mAdapter = SimpleListItem1Adapter(mData)
         ryg_ch2_bm_rv.adapter = mAdapter
         ryg_ch2_bm_rv.addItemDecoration(com.tustar.common.widget.Decoration(this, com.tustar.common.widget.Decoration.VERTICAL))

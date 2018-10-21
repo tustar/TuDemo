@@ -14,7 +14,7 @@
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
         android:layout_margin="5dp"
-        android:src="@mipmap/me" />
+        app:srcCompat="@mipmap/me" />
 
 
     <GridLayout

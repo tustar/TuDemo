@@ -1,8 +1,5 @@
 package com.tustar.demo.module.deskclock;
 
-import android.databinding.DataBindingUtil;
-import android.databinding.ViewDataBinding;
-import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,6 +10,10 @@ import com.tustar.demo.module.deskclock.AlarmClockFragment.OnListFragmentInterac
 import com.tustar.demo.module.deskclock.provider.History;
 
 import java.util.List;
+
+import androidx.databinding.DataBindingUtil;
+import androidx.databinding.ViewDataBinding;
+import androidx.recyclerview.widget.RecyclerView;
 
 /**
  * {@link RecyclerView.Adapter} that can display a {@link History} and makes a call to the

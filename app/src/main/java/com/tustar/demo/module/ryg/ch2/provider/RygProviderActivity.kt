@@ -2,14 +2,12 @@ package com.tustar.demo.module.ryg.ch2.provider
 
 import android.content.ContentValues
 import android.os.Bundle
-import android.support.v7.widget.LinearLayoutManager
+import com.tustar.common.util.Logger
 import com.tustar.demo.R
 import com.tustar.demo.adapter.SimpleListItem1Adapter
 import com.tustar.demo.base.BaseActivity
 import com.tustar.demo.module.ryg.ch2.model.Book
 import com.tustar.demo.module.ryg.ch2.model.User
-import com.tustar.common.util.Logger
-import com.tustar.common.widget.Decoration
 import kotlinx.android.synthetic.main.activity_ryg_provider.*
 
 
@@ -62,7 +60,7 @@ class RygProviderActivity : BaseActivity() {
 
 
     private fun initView() {
-        ryg_ch2_provider_rv.layoutManager = LinearLayoutManager(this)
+        ryg_ch2_provider_rv.layoutManager = androidx.recyclerview.widget.LinearLayoutManager(this)
         mAdapter = SimpleListItem1Adapter(mData)
         ryg_ch2_provider_rv.adapter = mAdapter
         ryg_ch2_provider_rv.addItemDecoration(com.tustar.common.widget.Decoration(this, com.tustar.common.widget.Decoration.VERTICAL))

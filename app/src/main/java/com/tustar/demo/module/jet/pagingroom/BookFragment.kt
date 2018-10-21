@@ -1,16 +1,14 @@
 package com.tustar.demo.module.jet.pagingroom
 
-import android.arch.lifecycle.Observer
-import android.arch.lifecycle.ViewModelProviders
 import android.os.Bundle
-import android.support.v4.app.Fragment
-import android.support.v7.widget.RecyclerView
-import android.support.v7.widget.helper.ItemTouchHelper
 import android.view.*
+import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProviders
 import androidx.navigation.Navigation
+import androidx.recyclerview.widget.ItemTouchHelper
 import com.tustar.demo.R
 
-class BookFragment : Fragment() {
+class BookFragment : androidx.fragment.app.Fragment() {
 
     companion object {
         fun newInstance() = BookFragment()
@@ -19,7 +17,7 @@ class BookFragment : Fragment() {
     private val viewModel by lazy(LazyThreadSafetyMode.NONE) {
         ViewModelProviders.of(this).get(BookViewModel::class.java)
     }
-    private lateinit var recyclerView: RecyclerView
+    private lateinit var recyclerView: androidx.recyclerview.widget.RecyclerView
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -64,15 +62,15 @@ class BookFragment : Fragment() {
 
     private fun initSwipeToDelete() {
         ItemTouchHelper(object : ItemTouchHelper.Callback() {
-            override fun getMovementFlags(recyclerView: RecyclerView,
-                                          viewHolder: RecyclerView.ViewHolder): Int =
+            override fun getMovementFlags(recyclerView: androidx.recyclerview.widget.RecyclerView,
+                                          viewHolder: androidx.recyclerview.widget.RecyclerView.ViewHolder): Int =
                     makeMovementFlags(0, ItemTouchHelper.LEFT
                             or ItemTouchHelper.RIGHT)
 
-            override fun onMove(recyclerView: RecyclerView, viewHolder: RecyclerView.ViewHolder,
-                                target: RecyclerView.ViewHolder): Boolean = false
+            override fun onMove(recyclerView: androidx.recyclerview.widget.RecyclerView, viewHolder: androidx.recyclerview.widget.RecyclerView.ViewHolder,
+                                target: androidx.recyclerview.widget.RecyclerView.ViewHolder): Boolean = false
 
-            override fun onSwiped(viewHolder: RecyclerView.ViewHolder, direction: Int) {
+            override fun onSwiped(viewHolder: androidx.recyclerview.widget.RecyclerView.ViewHolder, direction: Int) {
                 (viewHolder as BookViewHolder)?.book?.let {
                     viewModel.remove(it)
                 }

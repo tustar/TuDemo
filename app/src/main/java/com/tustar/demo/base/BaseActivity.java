@@ -5,10 +5,11 @@ import android.annotation.TargetApi;
 import android.content.pm.PackageManager;
 import android.os.Build;
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
 import android.view.MenuItem;
 
 import com.tustar.common.util.Logger;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 /**
  * Created by tustar on 4/10/16.

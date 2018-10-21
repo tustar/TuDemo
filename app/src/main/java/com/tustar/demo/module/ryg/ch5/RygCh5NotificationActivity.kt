@@ -6,8 +6,8 @@ import android.app.PendingIntent
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
-import android.support.v4.app.NotificationCompat
 import android.widget.RemoteViews
+import androidx.core.app.NotificationCompat
 import com.tustar.demo.R
 import com.tustar.demo.base.BaseActivity
 import kotlinx.android.synthetic.main.activity_ryg_ch5_notification.*

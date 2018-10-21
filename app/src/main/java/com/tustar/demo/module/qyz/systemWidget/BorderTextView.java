@@ -1,18 +1,17 @@
 package com.tustar.demo.module.qyz.systemWidget;
 
-import android.annotation.TargetApi;
 import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
-import android.os.Build;
 import android.util.AttributeSet;
-import android.widget.TextView;
+
+import androidx.appcompat.widget.AppCompatTextView;
 
 /**
  * Created by tustar on 4/16/16.
  */
-public class BorderTextView extends TextView {
+public class BorderTextView extends AppCompatTextView {
 
     private Paint mOuterPaint;
     private Paint mInnerPaint;
@@ -31,13 +30,6 @@ public class BorderTextView extends TextView {
 
     public BorderTextView(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
-
-        init();
-    }
-
-    @TargetApi(Build.VERSION_CODES.LOLLIPOP)
-    public BorderTextView(Context context, AttributeSet attrs, int defStyleAttr, int defStyleRes) {
-        super(context, attrs, defStyleAttr, defStyleRes);
 
         init();
     }

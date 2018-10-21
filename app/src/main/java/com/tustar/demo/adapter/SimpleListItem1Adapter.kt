@@ -1,6 +1,5 @@
 package com.tustar.demo.adapter
 
-import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -10,7 +9,7 @@ import android.widget.TextView
  * Created by tustar on 11/19/16.
  */
 
-class SimpleListItem1Adapter(var data: List<String>?) : RecyclerView.Adapter<SimpleListItem1Adapter.ViewHolder>() {
+class SimpleListItem1Adapter(var data: List<String>?) : androidx.recyclerview.widget.RecyclerView.Adapter<SimpleListItem1Adapter.ViewHolder>() {
 
     private var mItemClickListener: OnItemClickListener? = null
 
@@ -32,7 +31,7 @@ class SimpleListItem1Adapter(var data: List<String>?) : RecyclerView.Adapter<Sim
         mItemClickListener = listener
     }
 
-    inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+    inner class ViewHolder(itemView: View) : androidx.recyclerview.widget.RecyclerView.ViewHolder(itemView) {
 
         var mText: TextView? = null
 

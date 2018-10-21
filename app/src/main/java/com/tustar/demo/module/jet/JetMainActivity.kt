@@ -2,7 +2,6 @@ package com.tustar.demo.module.jet
 
 import android.content.Intent
 import android.os.Bundle
-import android.support.v7.widget.LinearLayoutManager
 import android.view.View
 import com.tustar.common.util.Logger
 import com.tustar.demo.R
@@ -31,7 +30,7 @@ class JetMainActivity : BaseActivity(), SimpleListItem1Adapter.OnItemClickListen
         setContentView(R.layout.activity_jet_main)
         title = getString(R.string.jet_main_title)
 
-        jet_main_rv.layoutManager = LinearLayoutManager(this)
+        jet_main_rv.layoutManager = androidx.recyclerview.widget.LinearLayoutManager(this)
         var desc = resources.getStringArray(R.array.jet_list).toList()
         var adapter = SimpleListItem1Adapter(desc)
         jet_main_rv.adapter = adapter

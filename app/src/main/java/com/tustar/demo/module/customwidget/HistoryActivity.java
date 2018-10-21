@@ -1,6 +1,5 @@
 package com.tustar.demo.module.customwidget;
 
-import android.app.Activity;
 import android.content.res.Configuration;
 import android.os.Bundle;
 import android.view.Window;
@@ -8,7 +7,9 @@ import android.view.WindowManager;
 
 import com.tustar.demo.R;
 
-public class HistoryActivity extends Activity {
+import androidx.appcompat.app.AppCompatActivity;
+
+public class HistoryActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

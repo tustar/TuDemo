@@ -2,14 +2,11 @@ package com.tustar.demo.module.ryg.base
 
 import android.content.Intent
 import android.os.Bundle
-import android.support.v7.widget.LinearLayoutManager
-import android.support.v7.widget.RecyclerView
 import android.view.View
+import com.tustar.common.util.Logger
 import com.tustar.demo.R
 import com.tustar.demo.adapter.SimpleListItem1Adapter
 import com.tustar.demo.base.BaseActivity
-import com.tustar.common.util.Logger
-import com.tustar.common.widget.Decoration
 import kotlinx.android.synthetic.main.activity_ryg_base.*
 
 open class BaseRygActivity : BaseActivity(), SimpleListItem1Adapter.OnItemClickListener {
@@ -22,7 +19,7 @@ open class BaseRygActivity : BaseActivity(), SimpleListItem1Adapter.OnItemClickL
     open var ryg_data_source: Int = -1
     open var ryg_layout_id = R.layout.activity_ryg_base
     private var mAdapter: SimpleListItem1Adapter? = null
-    lateinit var mDataObserver: RecyclerView.AdapterDataObserver
+    lateinit var mDataObserver: androidx.recyclerview.widget.RecyclerView.AdapterDataObserver
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -38,10 +35,10 @@ open class BaseRygActivity : BaseActivity(), SimpleListItem1Adapter.OnItemClickL
         }
         showEmpytView(false)
 
-        ryg_base_rv.layoutManager = LinearLayoutManager(this)
+        ryg_base_rv.layoutManager = androidx.recyclerview.widget.LinearLayoutManager(this)
         var desc = resources.getStringArray(ryg_data_source).toList()
         mAdapter = SimpleListItem1Adapter(desc)
-        mDataObserver = object : RecyclerView.AdapterDataObserver() {
+        mDataObserver = object : androidx.recyclerview.widget.RecyclerView.AdapterDataObserver() {
             override fun onChanged() {
                 super.onChanged()
                 showEmpytView(mAdapter!!.itemCount == 0)

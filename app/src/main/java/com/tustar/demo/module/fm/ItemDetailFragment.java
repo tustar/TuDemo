@@ -17,13 +17,14 @@
 package com.tustar.demo.module.fm;
 
 import android.os.Bundle;
-import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.tustar.demo.R;
+
+import androidx.fragment.app.Fragment;
 
 /**
  * A fragment representing a single Item detail screen. This fragment is either

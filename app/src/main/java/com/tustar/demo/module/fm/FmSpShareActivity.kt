@@ -3,10 +3,9 @@ package com.tustar.demo.module.fm
 import android.content.Context
 import android.os.Bundle
 import android.text.TextUtils
-
+import com.tustar.common.util.ToastUtils
 import com.tustar.demo.R
 import com.tustar.demo.base.BaseActivity
-import com.tustar.common.util.ToastUtils
 import kotlinx.android.synthetic.main.activity_fm_sp_share.*
 
 class FmSpShareActivity : BaseActivity() {

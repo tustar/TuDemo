@@ -11,12 +11,12 @@ import com.nostra13.universalimageloader.core.ImageLoaderConfiguration;
 import com.nostra13.universalimageloader.core.assist.FailReason;
 import com.nostra13.universalimageloader.core.assist.ImageSize;
 import com.nostra13.universalimageloader.core.listener.SimpleImageLoadingListener;
+import com.tustar.common.util.Logger;
+import com.tustar.common.util.ToastUtils;
 import com.tustar.demo.R;
 import com.tustar.demo.base.BaseActivity;
 import com.tustar.demo.module.deskclock.subscaleview.ImageSource;
 import com.tustar.demo.module.deskclock.subscaleview.PhotoView;
-import com.tustar.common.util.Logger;
-import com.tustar.common.util.ToastUtils;
 
 import java.io.File;
 

@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/lockedheader"
     android:layout_width="match_parent"
     android:layout_height="52dip"
@@ -14,7 +15,7 @@
         android:layout_centerVertical="true"
         android:clickable="false"
         android:focusable="false"
-        android:src="@drawable/selector_fm_collect_image"
+        app:srcCompat="@drawable/selector_fm_collect_image"
         android:layout_marginLeft="16dp" />
 
     <CheckBox
@@ -47,7 +48,7 @@
                 android:layout_height="wrap_content"
                 android:layout_centerHorizontal="true"
                 android:layout_centerVertical="true"
-                android:src="@drawable/selector_fm_collect_image" />
+                app:srcCompat="@drawable/selector_fm_collect_image" />
 
             <ImageView
                 android:id="@+id/unread_red"
@@ -57,7 +58,7 @@
                 android:layout_alignParentRight="true"
                 android:paddingTop="4dp"
                 android:paddingRight="4dp"
-                android:src="@drawable/selector_fm_collect_image"
+                app:srcCompat="@drawable/selector_fm_collect_image"
                 android:visibility="gone" />
         </RelativeLayout>
 

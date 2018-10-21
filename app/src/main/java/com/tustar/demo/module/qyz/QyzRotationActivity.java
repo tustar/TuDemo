@@ -1,6 +1,5 @@
 package com.tustar.demo.module.qyz;
 
-import android.app.Activity;
 import android.content.Context;
 import android.content.pm.ActivityInfo;
 import android.content.res.Configuration;
@@ -13,11 +12,13 @@ import android.view.OrientationEventListener;
 import android.view.View;
 import android.view.WindowManager;
 
+import com.tustar.common.util.Logger;
 import com.tustar.demo.R;
 import com.tustar.demo.base.BaseActivity;
-import com.tustar.common.util.Logger;
 
 import java.lang.ref.WeakReference;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 public class QyzRotationActivity extends BaseActivity {
     /**
@@ -232,9 +233,9 @@ public class QyzRotationActivity extends BaseActivity {
 
     class UnleakHandler extends Handler {
 
-        private WeakReference<Activity> activity;
+        private WeakReference<AppCompatActivity> activity;
 
-        public UnleakHandler(Activity activity) {
+        public UnleakHandler(AppCompatActivity activity) {
             this.activity = new WeakReference<>(activity);
         }
 

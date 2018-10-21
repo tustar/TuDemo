@@ -12,8 +12,8 @@ import android.widget.Button;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
-import com.tustar.demo.R;
 import com.tustar.common.util.DisplayUtils;
+import com.tustar.demo.R;
 
 /**
  * Created by tustar on 4/16/16.

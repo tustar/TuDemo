@@ -1,9 +1,10 @@
 package com.tustar.demo.module.fm;
 
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
 
 import com.tustar.demo.R;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 public class FmJavaRenameActivity extends AppCompatActivity {
 

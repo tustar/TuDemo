@@ -3,13 +3,11 @@ package com.tustar.demo.module.ryg.ch11
 import android.content.Intent
 import android.os.AsyncTask
 import android.os.Bundle
+import android.os.SystemClock
 import com.tustar.demo.R
 import com.tustar.demo.module.ryg.base.BaseRygActivity
-import java.net.URL
-import android.os.AsyncTask.execute
 import java.net.MalformedURLException
-import android.os.AsyncTask.execute
-import android.os.SystemClock
+import java.net.URL
 import java.util.concurrent.Executors
 import java.util.concurrent.TimeUnit
 

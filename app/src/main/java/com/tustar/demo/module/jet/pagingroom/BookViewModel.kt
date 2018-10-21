@@ -1,9 +1,9 @@
 package com.tustar.demo.module.jet.pagingroom
 
 import android.app.Application
-import android.arch.lifecycle.AndroidViewModel
-import android.arch.paging.LivePagedListBuilder
-import android.arch.paging.PagedList
+import androidx.lifecycle.AndroidViewModel
+import androidx.paging.LivePagedListBuilder
+import androidx.paging.PagedList
 
 class BookViewModel(app: Application) : AndroidViewModel(app) {
 

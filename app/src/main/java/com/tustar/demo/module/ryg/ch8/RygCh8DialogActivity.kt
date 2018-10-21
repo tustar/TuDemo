@@ -2,12 +2,10 @@ package com.tustar.demo.module.ryg.ch8
 
 import android.app.Dialog
 import android.os.Bundle
-import android.support.v7.app.AppCompatActivity
 import android.view.WindowManager
 import android.widget.TextView
 import com.tustar.demo.R
 import com.tustar.demo.base.BaseActivity
-import kotlinx.android.synthetic.main.activity_history.*
 
 class RygCh8DialogActivity : BaseActivity() {
 

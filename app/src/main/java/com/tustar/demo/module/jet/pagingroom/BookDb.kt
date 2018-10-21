@@ -1,8 +1,10 @@
 package com.tustar.demo.module.jet.pagingroom
 
-import android.arch.persistence.db.SupportSQLiteDatabase
-import android.arch.persistence.room.*
 import android.content.Context
+import androidx.room.Database
+import androidx.room.Room
+import androidx.room.RoomDatabase
+import androidx.sqlite.db.SupportSQLiteDatabase
 
 @Database(entities = [Book::class], version = 1)
 abstract class BookDb : RoomDatabase() {

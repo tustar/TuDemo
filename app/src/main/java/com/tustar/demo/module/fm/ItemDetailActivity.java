@@ -18,11 +18,12 @@ package com.tustar.demo.module.fm;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.v4.app.NavUtils;
 import android.view.MenuItem;
 
 import com.tustar.demo.R;
 import com.tustar.demo.base.BaseActivity;
+
+import androidx.core.app.NavUtils;
 
 /**
  * An activity representing a single Item detail screen. This activity is only

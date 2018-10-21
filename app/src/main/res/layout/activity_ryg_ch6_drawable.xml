@@ -59,7 +59,7 @@
             android:paddingTop="10dp"
             android:text="ShapeDrawable + PercentFrameLayout"/>
 
-        <android.support.percent.PercentFrameLayout
+        <androidx.percentlayout.widget.PercentFrameLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
@@ -89,9 +89,9 @@
                 android:gravity="center"
                 app:layout_widthPercent="32%"/>
 
-        </android.support.percent.PercentFrameLayout>
+        </androidx.percentlayout.widget.PercentFrameLayout>
 
-        <android.support.percent.PercentFrameLayout
+        <androidx.percentlayout.widget.PercentFrameLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp">
@@ -122,7 +122,7 @@
                 android:gravity="center"
                 app:layout_widthPercent="32%"/>
 
-        </android.support.percent.PercentFrameLayout>
+        </androidx.percentlayout.widget.PercentFrameLayout>
 
 
         <!--BitmapDrawable-->
@@ -178,7 +178,7 @@
                 android:layout_width="100dp"
                 android:layout_height="100dp"
                 android:gravity="center"
-                android:src="@drawable/clip_ryg_ch6"/>
+                app:srcCompat="@drawable/clip_ryg_ch6"/>
 
             <TextView
                 android:id="@+id/ryg_ch6_custom"

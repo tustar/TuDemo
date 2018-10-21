@@ -1,8 +1,6 @@
 package com.tustar.demo.module.jet.pagingroom
 
-import android.arch.lifecycle.ViewModelProviders
 import android.os.Bundle
-import android.support.v4.app.Fragment
 import android.view.KeyEvent
 import android.view.LayoutInflater
 import android.view.View
@@ -10,9 +8,10 @@ import android.view.ViewGroup
 import android.view.inputmethod.EditorInfo
 import android.widget.Button
 import android.widget.EditText
+import androidx.lifecycle.ViewModelProviders
 import com.tustar.demo.R
 
-class AddBookFragment : Fragment() {
+class AddBookFragment : androidx.fragment.app.Fragment() {
 
     companion object {
         fun newInstance() = AddBookFragment()

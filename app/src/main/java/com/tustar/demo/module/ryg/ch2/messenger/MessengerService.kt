@@ -3,8 +3,8 @@ package com.tustar.demo.module.ryg.ch2.messenger
 import android.app.Service
 import android.content.Intent
 import android.os.*
-import com.tustar.demo.module.ryg.ch2.utils.MyConstants
 import com.tustar.common.util.Logger
+import com.tustar.demo.module.ryg.ch2.utils.MyConstants
 
 
 /**

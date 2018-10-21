@@ -3,8 +3,6 @@ package com.tustar.demo.module.scroller;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
 import android.widget.RelativeLayout;
 
 import com.tustar.demo.R;
@@ -22,6 +20,8 @@ import com.tustar.demo.module.scroller.other.OtherTwoPointerDrawViewActivity;
 import java.util.ArrayList;
 import java.util.List;
 
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 

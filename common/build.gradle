@@ -5,7 +5,7 @@ apply plugin: 'kotlin-android-extensions'
 android {
 
     compileSdkVersion rootProject.ext.compileSdkVersion
-    buildToolsVersion '28.0.2'
+    buildToolsVersion '28.0.3'
 
     defaultConfig {
 
@@ -15,7 +15,7 @@ android {
         versionCode 1
         versionName "1.0"
 
-        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
 
     }
 
@@ -34,11 +34,12 @@ android {
 
 dependencies {
     implementation fileTree(include: ['*.jar'], dir: 'libs')
-    implementation "com.android.support:recyclerview-v7:$rootProject.supportLibraryVersion"
+    implementation 'androidx.recyclerview:recyclerview:1.0.0'
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jre7:$kotlinVersion"
     //
     testImplementation "junit:junit:$rootProject.junitVersion"
-    androidTestImplementation "com.android.support.test:runner:$rootProject.runnerVersion"
+    androidTestImplementation 'androidx.test:runner:1.1.0-beta02'
     androidTestImplementation "com.android.support.test.espresso:espresso-core:" +
             "$rootProject.espressoVersion"
+    implementation 'androidx.appcompat:appcompat:1.0.0'
 }

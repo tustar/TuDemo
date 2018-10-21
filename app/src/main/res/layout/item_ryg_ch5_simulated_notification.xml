@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/ryg_ch5_sim_item_holder"
     android:layout_width="match_parent"
     android:layout_height="65dp"
@@ -12,7 +13,7 @@
         android:layout_height="40dp"
         android:layout_centerVertical="true"
         android:layout_margin="10dp"
-        android:src="@drawable/ryg_ch5_icon"
+        app:srcCompat="@drawable/ryg_ch5_icon"
         android:background="#000000"
         android:scaleType="centerInside"/>
 

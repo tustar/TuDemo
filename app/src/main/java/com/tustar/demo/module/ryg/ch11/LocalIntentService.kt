@@ -1,7 +1,6 @@
 package com.tustar.demo.module.ryg.ch11
 
 import android.app.IntentService
-import android.content.BroadcastReceiver
 import android.content.Intent
 import android.os.SystemClock
 import com.tustar.common.util.Logger

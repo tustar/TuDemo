@@ -1,8 +1,8 @@
 package com.tustar.demo.module.jet.pagingroom
 
-import android.arch.lifecycle.Lifecycle
-import android.arch.lifecycle.LifecycleObserver
-import android.arch.lifecycle.OnLifecycleEvent
+import androidx.lifecycle.Lifecycle
+import androidx.lifecycle.LifecycleObserver
+import androidx.lifecycle.OnLifecycleEvent
 import com.tustar.common.util.Logger
 
 class ActivityLifeObserver : BaseActivityPresenter, LifecycleObserver {

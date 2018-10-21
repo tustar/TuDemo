@@ -2,8 +2,6 @@ package com.tustar.demo.module.scroller.other;
 
 import android.content.Context;
 import android.graphics.Canvas;
-import android.support.v4.view.MotionEventCompat;
-import android.support.v4.widget.EdgeEffectCompat;
 import android.util.AttributeSet;
 import android.util.Log;
 import android.view.MotionEvent;
@@ -12,6 +10,9 @@ import android.view.ViewConfiguration;
 import android.view.ViewParent;
 import android.widget.LinearLayout;
 import android.widget.OverScroller;
+
+import androidx.core.view.MotionEventCompat;
+import androidx.core.widget.EdgeEffectCompat;
 
 /**
  * Created by randy on 16-4-5.

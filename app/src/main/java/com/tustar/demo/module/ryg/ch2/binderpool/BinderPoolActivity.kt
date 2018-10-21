@@ -2,11 +2,11 @@ package com.tustar.demo.module.ryg.ch2.binderpool
 
 import android.os.Bundle
 import android.os.RemoteException
+import com.tustar.common.util.Logger
 import com.tustar.demo.R
 import com.tustar.demo.base.BaseActivity
 import com.tustar.demo.module.ryg.ch2.bindpool.ICompute
 import com.tustar.demo.module.ryg.ch2.bindpool.ISecurityCenter
-import com.tustar.common.util.Logger
 
 
 class BinderPoolActivity : BaseActivity() {

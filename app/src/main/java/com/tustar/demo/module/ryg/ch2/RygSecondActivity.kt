@@ -2,12 +2,11 @@ package com.tustar.demo.module.ryg.ch2
 
 import android.content.Intent
 import android.os.Bundle
-
+import com.tustar.common.util.Logger
 import com.tustar.demo.R
 import com.tustar.demo.base.BaseActivity
 import com.tustar.demo.module.ryg.ch2.manager.UserManager
 import com.tustar.demo.module.ryg.ch2.utils.MyConstants
-import com.tustar.common.util.Logger
 import kotlinx.android.synthetic.main.activity_ryg_second.*
 import java.io.File
 import java.io.FileInputStream

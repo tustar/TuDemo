@@ -5,17 +5,18 @@ import android.animation.AnimatorListenerAdapter;
 import android.annotation.TargetApi;
 import android.os.Build;
 import android.os.Bundle;
-import android.support.v7.widget.GridLayoutManager;
-import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.Toast;
 
+import com.tustar.common.util.Logger;
 import com.tustar.demo.R;
 import com.tustar.demo.base.BaseActivity;
 import com.tustar.demo.module.qyz.overscroll.OverScrollDecoratorHelper;
-import com.tustar.common.util.Logger;
 
 import java.util.Arrays;
+
+import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import static com.tustar.demo.module.qyz.overscroll.OverScrollDecoratorHelper.ORIENTATION_VERTICAL;
 import static com.tustar.demo.module.recycler.RcViewAdapter.OnItemClickListener;

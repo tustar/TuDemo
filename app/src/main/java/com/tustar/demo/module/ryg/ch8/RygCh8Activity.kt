@@ -3,7 +3,6 @@ package com.tustar.demo.module.ryg.ch8
 import android.os.Bundle
 import com.tustar.demo.R
 import com.tustar.demo.module.ryg.base.BaseRygActivity
-import com.tustar.demo.module.ryg.ch5.RygCh5AppWidget
 
 class RygCh8Activity : BaseRygActivity() {
 

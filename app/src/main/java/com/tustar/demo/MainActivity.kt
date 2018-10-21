@@ -8,16 +8,13 @@ import android.content.Intent
 import android.graphics.BitmapFactory
 import android.net.Uri
 import android.os.Bundle
-import android.support.design.widget.NavigationView
-import android.support.design.widget.Snackbar
-import android.support.v4.app.NotificationCompat
-import android.support.v4.view.GravityCompat
-import android.support.v7.app.ActionBarDrawerToggle
-import android.support.v7.app.AppCompatActivity
-import android.support.v7.widget.LinearLayoutManager
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
+import androidx.appcompat.app.ActionBarDrawerToggle
+import androidx.appcompat.app.AppCompatActivity
+import androidx.core.app.NotificationCompat
+import androidx.core.view.GravityCompat
 import com.tustar.common.util.Logger
 import com.tustar.demo.adapter.SimpleListItem1Adapter
 import com.tustar.demo.module.account.AccountActivity
@@ -31,7 +28,6 @@ import com.tustar.demo.module.dragsortlistview.DragSortListViewActivity
 import com.tustar.demo.module.dragview.DragViewActivity
 import com.tustar.demo.module.fm.FmMainActivity
 import com.tustar.demo.module.jet.JetMainActivity
-import com.tustar.demo.module.jet.pagingroom.BookActivity
 import com.tustar.demo.module.loader.LoaderActivity
 import com.tustar.demo.module.provider.ProviderActivity
 import com.tustar.demo.module.qyz.QyzMainActivity
@@ -45,7 +41,7 @@ import kotlinx.android.synthetic.main.app_bar_main.*
 import kotlinx.android.synthetic.main.content_main.*
 import java.util.*
 
-class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener,
+class MainActivity : AppCompatActivity(), com.google.android.material.navigation.NavigationView.OnNavigationItemSelectedListener,
         SimpleListItem1Adapter.OnItemClickListener {
 
     companion object {
@@ -87,7 +83,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         setSupportActionBar(toolbar)
 
         fab.setOnClickListener { view ->
-            Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
+            com.google.android.material.snackbar.Snackbar.make(view, "Replace with your own action", com.google.android.material.snackbar.Snackbar.LENGTH_LONG)
                     .setAction("Action", null).show()
         }
 
@@ -117,7 +113,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
     private fun initView() {
 
         val contents = resources.getStringArray(R.array.content_data)
-        content_main_rv.layoutManager = LinearLayoutManager(this)
+        content_main_rv.layoutManager = androidx.recyclerview.widget.LinearLayoutManager(this)
         var adapter = SimpleListItem1Adapter(contents.filterNotNull().asReversed())
         content_main_rv.adapter = adapter
         adapter.setOnItemClickListener(this)

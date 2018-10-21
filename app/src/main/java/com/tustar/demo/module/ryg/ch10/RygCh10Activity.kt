@@ -3,9 +3,9 @@ package com.tustar.demo.module.ryg.ch10
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
+import com.tustar.common.util.Logger
 import com.tustar.demo.R
 import com.tustar.demo.module.ryg.base.BaseRygActivity
-import com.tustar.common.util.Logger
 
 class RygCh10Activity : BaseRygActivity() {
 

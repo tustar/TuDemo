@@ -3,7 +3,6 @@ package com.tustar.demo.module.loader;
 import android.content.Context;
 import android.content.pm.ApplicationInfo;
 import android.content.pm.PackageManager;
-import android.support.v4.content.AsyncTaskLoader;
 
 import com.tustar.common.util.Logger;
 
@@ -12,6 +11,8 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
+
+import androidx.loader.content.AsyncTaskLoader;
 
 /**
  * Created by tustar on 5/9/16.

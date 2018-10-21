@@ -11,9 +11,9 @@ import android.view.View;
 import android.widget.ListView;
 import android.widget.RelativeLayout;
 
+import com.tustar.common.util.Logger;
 import com.tustar.demo.R;
 import com.tustar.demo.base.BaseActivity;
-import com.tustar.common.util.Logger;
 
 import java.util.HashMap;
 import java.util.Map;

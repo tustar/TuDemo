@@ -7,12 +7,12 @@ import android.content.pm.PackageManager
 import android.net.ConnectivityManager
 import android.os.Build
 import android.os.Process
-import android.support.v4.app.ActivityCompat
 import android.telephony.TelephonyManager
 import android.text.TextUtils
 import android.util.DisplayMetrics
 import android.util.TypedValue
 import android.view.WindowManager
+import androidx.core.app.ActivityCompat
 
 
 /**

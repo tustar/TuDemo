@@ -8,8 +8,8 @@ import android.widget.BaseAdapter;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.tustar.demo.db.test.DemoItem;
 import com.tustar.common.util.ToastUtils;
+import com.tustar.demo.db.test.DemoItem;
 
 import java.util.List;
 

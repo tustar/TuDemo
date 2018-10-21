@@ -13,7 +13,7 @@
         android:gravity="center_vertical"
         android:minHeight="52dp"
         android:text="内容"
-        android:textAppearance="?android:attr/textAppearanceListItemSmall" />
+        android:textAppearance="?attr/textAppearanceListItemSmall" />
 
 
     <ImageView

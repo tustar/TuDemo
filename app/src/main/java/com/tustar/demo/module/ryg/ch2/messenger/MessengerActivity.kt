@@ -5,10 +5,10 @@ import android.content.Context
 import android.content.Intent
 import android.content.ServiceConnection
 import android.os.*
+import com.tustar.common.util.Logger
 import com.tustar.demo.R
 import com.tustar.demo.base.BaseActivity
 import com.tustar.demo.module.ryg.ch2.utils.MyConstants
-import com.tustar.common.util.Logger
 
 
 class MessengerActivity : BaseActivity() {

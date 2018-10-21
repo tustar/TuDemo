@@ -1,19 +1,17 @@
 package com.tustar.common.util
 
-import android.app.Activity
-
 object ActivityCollector {
 
     @JvmField
-    var activities: MutableList<Activity> = ArrayList()
+    var activities: MutableList<androidx.appcompat.app.AppCompatActivity> = ArrayList()
 
     @JvmStatic
-    fun addActivity(activity: Activity) {
+    fun addActivity(activity: androidx.appcompat.app.AppCompatActivity) {
         activities.add(activity)
     }
 
     @JvmStatic
-    fun removeActivity(activity: Activity) {
+    fun removeActivity(activity: androidx.appcompat.app.AppCompatActivity) {
         activities.remove(activity)
     }
 

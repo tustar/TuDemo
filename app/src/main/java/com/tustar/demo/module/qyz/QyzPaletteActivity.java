@@ -6,14 +6,15 @@ import android.graphics.BitmapFactory;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Build;
 import android.os.Bundle;
-import android.support.v7.graphics.Palette;
 import android.view.View;
 import android.widget.TextView;
 
-import com.tustar.demo.R;
-import com.tustar.demo.base.BaseActivity;
 import com.tustar.common.util.ColorUtils;
 import com.tustar.common.util.Logger;
+import com.tustar.demo.R;
+import com.tustar.demo.base.BaseActivity;
+
+import androidx.palette.graphics.Palette;
 
 
 public class QyzPaletteActivity extends BaseActivity {

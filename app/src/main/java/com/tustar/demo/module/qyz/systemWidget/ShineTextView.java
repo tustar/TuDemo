@@ -10,12 +10,13 @@ import android.graphics.Paint;
 import android.graphics.Shader;
 import android.os.Build;
 import android.util.AttributeSet;
-import android.widget.TextView;
+
+import androidx.appcompat.widget.AppCompatTextView;
 
 /**
  * Created by tustar on 4/16/16.
  */
-public class ShineTextView extends TextView {
+public class ShineTextView extends AppCompatTextView {
 
     private LinearGradient mLinearGradient;
     private Matrix mGradientMatrix;
@@ -35,10 +36,6 @@ public class ShineTextView extends TextView {
         super(context, attrs, defStyleAttr);
     }
 
-    @TargetApi(Build.VERSION_CODES.LOLLIPOP)
-    public ShineTextView(Context context, AttributeSet attrs, int defStyleAttr, int defStyleRes) {
-        super(context, attrs, defStyleAttr, defStyleRes);
-    }
 
     @Override
     protected void onDraw(Canvas canvas) {

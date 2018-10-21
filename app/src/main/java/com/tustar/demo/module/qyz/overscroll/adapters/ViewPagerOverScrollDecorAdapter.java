@@ -1,9 +1,10 @@
 package com.tustar.demo.module.qyz.overscroll.adapters;
 
-import android.support.v4.view.ViewPager;
 import android.view.View;
 
 import com.tustar.demo.module.qyz.overscroll.HorizontalOverScrollBounceEffectDecorator;
+
+import androidx.viewpager.widget.ViewPager;
 
 
 /**

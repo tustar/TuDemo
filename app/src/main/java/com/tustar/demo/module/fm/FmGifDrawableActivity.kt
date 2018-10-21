@@ -1,10 +1,10 @@
 package com.tustar.demo.module.fm
 
 import android.os.Bundle
+import com.tustar.common.util.ToastUtils
 import com.tustar.demo.R
 import com.tustar.demo.base.BaseActivity
 import com.tustar.demo.common.CommonDefine
-import com.tustar.common.util.ToastUtils
 import kotlinx.android.synthetic.main.activity_fm_gif_drawable.*
 import pl.droidsonroids.gif.GifDrawable
 import java.io.File

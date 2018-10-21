@@ -5,7 +5,7 @@
     android:layout_height="match_parent"
     tools:context=".module.recycler.RecyclerViewActivity">
 
-    <android.support.v7.widget.RecyclerView
+    <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/re_recyclerview"
         android:layout_width="match_parent"
         android:dividerHeight="5dp"

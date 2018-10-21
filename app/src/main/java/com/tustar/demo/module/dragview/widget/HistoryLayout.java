@@ -11,8 +11,8 @@ import android.widget.FrameLayout;
 import android.widget.OverScroller;
 import android.widget.TextView;
 
-import com.tustar.demo.R;
 import com.tustar.common.util.Logger;
+import com.tustar.demo.R;
 
 /**
  * Created by tustar on 16-11-11.

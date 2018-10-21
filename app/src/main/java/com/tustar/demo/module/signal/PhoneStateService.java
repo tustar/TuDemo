@@ -7,7 +7,6 @@ import android.graphics.PixelFormat;
 import android.os.Handler;
 import android.os.IBinder;
 import android.os.Message;
-import android.support.annotation.Nullable;
 import android.telephony.CellInfo;
 import android.telephony.CellLocation;
 import android.telephony.PhoneStateListener;
@@ -18,11 +17,13 @@ import android.text.TextUtils;
 import android.view.Gravity;
 import android.view.WindowManager;
 
-import com.tustar.demo.R;
 import com.tustar.common.util.Logger;
+import com.tustar.demo.R;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import androidx.annotation.Nullable;
 
 /**
  * Created by tustar on 16-2-16.

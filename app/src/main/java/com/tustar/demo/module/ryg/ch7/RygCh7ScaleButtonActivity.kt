@@ -5,9 +5,9 @@ import android.animation.ObjectAnimator
 import android.animation.ValueAnimator
 import android.os.Bundle
 import android.view.View
+import com.tustar.common.util.Logger
 import com.tustar.demo.R
 import com.tustar.demo.base.BaseActivity
-import com.tustar.common.util.Logger
 import kotlinx.android.synthetic.main.activity_ryg_ch7_scale_button.*
 
 

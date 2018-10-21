@@ -1,6 +1,5 @@
 package com.tustar.demo.module.ryg.ch12
 
-import android.app.AlertDialog
 import android.content.Context
 import android.graphics.drawable.Drawable
 import android.os.Bundle
@@ -10,11 +9,12 @@ import android.view.ViewGroup
 import android.widget.AbsListView
 import android.widget.BaseAdapter
 import android.widget.ImageView
+import androidx.appcompat.app.AlertDialog
+import com.tustar.common.util.DeviceUtils
 import com.tustar.demo.R
 import com.tustar.demo.base.BaseActivity
 import com.tustar.demo.module.ryg.ch12.loader.ImageLoader
 import com.tustar.demo.module.ryg.ch12.provider.Images
-import com.tustar.common.util.DeviceUtils
 import kotlinx.android.synthetic.main.activity_ryg_ch12.*
 
 
@@ -59,7 +59,7 @@ class RygCh12Activity : BaseActivity(), AbsListView.OnScrollListener {
         ryg_ch12_grid_view.setOnScrollListener(this)
 
         if (!mIsWifi) {
-            val builder = AlertDialog.Builder(this)
+            val builder = androidx.appcompat.app.AlertDialog.Builder(this)
             builder.setMessage("初次使用会从网络下载大概5MB的图片，确认要下载吗？")
             builder.setTitle("注意")
             builder.setPositiveButton("是") { _, _ ->

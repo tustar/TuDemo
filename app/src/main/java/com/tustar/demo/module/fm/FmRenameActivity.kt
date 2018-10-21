@@ -1,18 +1,16 @@
 package com.tustar.demo.module.fm
 
-import android.app.AlertDialog
 import android.os.Bundle
 import android.os.Environment
-import android.support.v7.widget.LinearLayoutManager
 import android.text.TextUtils
 import android.view.View
 import android.widget.EditText
+import androidx.appcompat.app.AlertDialog
+import com.tustar.common.util.Logger
+import com.tustar.common.util.ToastUtils
 import com.tustar.demo.R
 import com.tustar.demo.adapter.SimpleListItem1Adapter
 import com.tustar.demo.base.BaseActivity
-import com.tustar.common.util.Logger
-import com.tustar.common.util.ToastUtils
-import com.tustar.common.widget.Decoration
 import kotlinx.android.synthetic.main.activity_fm_rename.*
 import java.io.File
 
@@ -32,7 +30,7 @@ class FmRenameActivity : BaseActivity(), SimpleListItem1Adapter.OnItemClickListe
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_fm_rename)
 
-        fm_rename_rv.layoutManager = LinearLayoutManager(this)
+        fm_rename_rv.layoutManager = androidx.recyclerview.widget.LinearLayoutManager(this)
         file = Environment.getExternalStorageDirectory()
         Logger.d(TAG, "onCreate :: file = $file")
         mFiles = getFiles()
@@ -48,7 +46,7 @@ class FmRenameActivity : BaseActivity(), SimpleListItem1Adapter.OnItemClickListe
         Logger.i(TAG, "onItemClick :: view = $view, position = $position")
         val editText = EditText(this)
         var oldFile = mFiles[position]
-        AlertDialog.Builder(this).setTitle(R.string.rename)
+        androidx.appcompat.app.AlertDialog.Builder(this).setTitle(R.string.rename)
                 .setIcon(android.R.drawable.ic_dialog_alert)
                 .setView(editText)
                 .setPositiveButton(android.R.string.ok, { dialog, _ ->
