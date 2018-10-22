@@ -79,9 +79,9 @@ class DbRedditPostRepository(
                 .setBoundaryCallback(boundaryCallback)
 
         val refreshTrigger = MutableLiveData<Unit>()
-        val refreshState = Transformations.switchMap(refreshTrigger, {
+        val refreshState = Transformations.switchMap(refreshTrigger) {
             refresh(subReddit)
-        })
+        }
 
         return Listing(pagedList = builder.build(),
                 networkState = boundaryCallback.networkState,

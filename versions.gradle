@@ -15,7 +15,7 @@ versions.material = '1.0.0'
 //
 versions.retrofit = "2.3.0"
 versions.okhttp_logging_interceptor = "3.9.0"
-versions.glide = "4.7.1"
+versions.glide = "4.8.0"
 //
 versions.recyclerview_swipe = '1.0.2'
 versions.android_gif_drawable = '1.2.7'

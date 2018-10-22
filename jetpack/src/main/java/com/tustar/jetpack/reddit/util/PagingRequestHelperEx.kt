@@ -1,6 +1,5 @@
 package com.tustar.jetpack.reddit.util
 
-import android.app.ApplicationErrorReport
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.androidx.paging.PagingRequestHelper

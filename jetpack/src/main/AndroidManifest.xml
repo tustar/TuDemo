@@ -3,6 +3,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     package="com.tustar.jetpack">
 
+    <uses-permission android:name="android.permission.INTERNET"/>
+
     <application tools:ignore="GoogleAppIndexingWarning">
         <activity android:name=".MainActivity"
             android:label="@string/app_name"
@@ -11,6 +13,14 @@
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity android:name=".reddit.ui.RedditActivity"
+            android:theme="@style/AppTheme.NoActionBar">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN"/>
+
+                <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
     </application>
