@@ -7,8 +7,8 @@ import com.tustar.jetpack.reddit.api.RedditApi
 import com.tustar.jetpack.reddit.db.RedditDb
 import com.tustar.jetpack.reddit.repository.RedditPostRepository
 import com.tustar.jetpack.reddit.repository.inDb.DbRedditPostRepository
-import com.tustar.jetpack.reddit.repository.inMemory.ByItem.InMemoryByItemRepository
-import com.tustar.jetpack.reddit.repository.inMemory.ByPage.InMemoryByPageKeyRepository
+import com.tustar.jetpack.reddit.repository.inMemory.byItem.InMemoryByItemRepository
+import com.tustar.jetpack.reddit.repository.inMemory.byPage.InMemoryByPageKeyRepository
 import java.util.concurrent.Executor
 import java.util.concurrent.Executors
 

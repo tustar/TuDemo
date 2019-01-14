@@ -31,9 +31,13 @@ android {
 }
 
 dependencies {
+    kapt deps.room.compiler
+    kapt deps.glide.compiler
+    //
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     //
     implementation deps.constraint.layout
+    implementation deps.material
     implementation deps.kotlin.stdlib
     // retrofit
     implementation deps.retrofit.runtime
@@ -47,7 +51,7 @@ dependencies {
     implementation deps.room.runtime
     implementation deps.room.rxjava2
     implementation deps.room.testing
-    kapt deps.room.compiler
+
     // Paging
     implementation deps.paging.runtime
     testImplementation deps.paging.common
