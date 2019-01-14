@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".module.jet.pagingroom.AddBookFragment">
+    tools:context=".ui.jet.pagingroom.AddBookFragment">
 
     <EditText
         android:id="@+id/jet_name"

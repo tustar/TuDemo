@@ -1,10 +1,10 @@
 <fragment xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/item_list"
-    android:name="com.tustar.demo.module.fm.ItemListFragment"
+    android:name="com.tustar.demo.ui.fm.ItemListFragment"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".module.fm.ItemListActivity"
+    tools:context=".ui.fm.ItemListActivity"
     tools:ignore="NewApi"
     tools:layout="@android:layout/list_content" />
 

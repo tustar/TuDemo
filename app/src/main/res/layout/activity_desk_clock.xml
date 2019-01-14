@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".module.deskclock.DeskClockActivity">
+    tools:context=".ui.deskclock.DeskClockActivity">
 
     <androidx.viewpager.widget.ViewPager
         android:id="@+id/desk_viewpager"

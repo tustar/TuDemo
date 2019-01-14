@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/book_home"
-        android:name="com.tustar.demo.module.jet.pagingroom.BookFragment"
+        android:name="com.tustar.demo.ui.jet.pagingroom.BookFragment"
         android:label="Home"
         tools:layout="@layout/fragment_jet_book">
         <action
@@ -17,7 +17,7 @@
 
     <fragment
         android:id="@+id/add_book"
-        android:name="com.tustar.demo.module.jet.pagingroom.AddBookFragment"
+        android:name="com.tustar.demo.ui.jet.pagingroom.AddBookFragment"
         android:label="End"
         tools:layout="@layout/fragment_jet_add_book" />
 </navigation>

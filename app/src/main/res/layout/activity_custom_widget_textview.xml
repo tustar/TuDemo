@@ -6,16 +6,16 @@
     android:paddingBottom="@dimen/activity_vertical_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
     android:orientation="vertical"
-    tools:context=".module.customwidget.CustomWidgetShowActivity">
+    tools:context=".ui.customwidget.CustomWidgetShowActivity">
 
 
-    <com.tustar.demo.module.qyz.systemWidget.BorderTextView
+    <com.tustar.demo.ui.qyz.systemWidget.BorderTextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:padding="10dp"
         android:text="Android Studio"/>
 
-    <com.tustar.demo.module.qyz.systemWidget.ShineTextView
+    <com.tustar.demo.ui.qyz.systemWidget.ShineTextView
         android:layout_marginTop="10dp"
         android:layout_width="300dp"
         android:layout_height="50dp"

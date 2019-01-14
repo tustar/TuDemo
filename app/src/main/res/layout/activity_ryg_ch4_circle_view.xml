@@ -7,7 +7,7 @@
     android:background="#ffffff"
     android:orientation="vertical">
 
-    <com.tustar.demo.module.ryg.ch4.widget.CircleView
+    <com.tustar.demo.ui.ryg.ch4.widget.CircleView
         android:id="@+id/ryg_ch4_circle_view"
         android:layout_width="wrap_content"
         android:layout_height="100dp"

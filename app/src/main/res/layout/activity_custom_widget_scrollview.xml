@@ -5,9 +5,9 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".module.customwidget.CustomWidgetShowActivity">
+    tools:context=".ui.customwidget.CustomWidgetShowActivity">
 
-    <com.tustar.demo.module.qyz.systemWidget.CustomScrollView
+    <com.tustar.demo.ui.qyz.systemWidget.CustomScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
@@ -34,6 +34,6 @@
             android:layout_height="match_parent"
             android:scaleType="fitXY"
             app:srcCompat="@mipmap/custom_test4" />
-    </com.tustar.demo.module.qyz.systemWidget.CustomScrollView>
+    </com.tustar.demo.ui.qyz.systemWidget.CustomScrollView>
 
 </LinearLayout>

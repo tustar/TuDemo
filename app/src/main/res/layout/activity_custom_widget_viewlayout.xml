@@ -3,24 +3,24 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".module.customwidget.CustomWidgetShowActivity">
+    tools:context=".ui.customwidget.CustomWidgetShowActivity">
 
 
-    <com.tustar.demo.module.qyz.viewlayout.CustomViewGroupA
+    <com.tustar.demo.ui.qyz.viewlayout.CustomViewGroupA
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@android:color/holo_orange_light">
 
-        <com.tustar.demo.module.qyz.viewlayout.CustomViewGroupB
+        <com.tustar.demo.ui.qyz.viewlayout.CustomViewGroupB
             android:layout_width="300dp"
             android:layout_height="300dp"
             android:background="@android:color/holo_red_light">
 
-            <com.tustar.demo.module.qyz.viewlayout.CustomView
+            <com.tustar.demo.ui.qyz.viewlayout.CustomView
                 android:layout_width="150dp"
                 android:layout_height="150dp"
                 android:background="@android:color/holo_green_light" />
-        </com.tustar.demo.module.qyz.viewlayout.CustomViewGroupB>
-    </com.tustar.demo.module.qyz.viewlayout.CustomViewGroupA>
+        </com.tustar.demo.ui.qyz.viewlayout.CustomViewGroupB>
+    </com.tustar.demo.ui.qyz.viewlayout.CustomViewGroupA>
 
 </RelativeLayout>

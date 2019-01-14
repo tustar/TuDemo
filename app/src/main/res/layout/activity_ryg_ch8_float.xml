@@ -5,7 +5,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.tustar.demo.module.ryg.ch8.RygCh8FloatActivity">
+    tools:context="com.tustar.demo.ui.ryg.ch8.RygCh8FloatActivity">
 
     <Button
         android:id="@+id/ryg_ch8_btn"

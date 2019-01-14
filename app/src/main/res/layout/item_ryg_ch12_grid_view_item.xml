@@ -6,7 +6,7 @@
     android:gravity="center"
     android:orientation="vertical">
 
-    <com.tustar.demo.module.ryg.ch12.widget.SquareImageView
+    <com.tustar.demo.ui.ryg.ch12.widget.SquareImageView
         android:id="@+id/ryg_ch12_item_image"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

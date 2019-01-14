@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/list_view_bg"
-    tools:context="com.tustar.demo.module.anim.viewanim.HideActionBarActivity">
+    tools:context="com.tustar.demo.ui.anim.viewanim.HideActionBarActivity">
 
     <TextView
         android:id="@+id/hide_action_bar"

@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context="com.tustar.demo.module.ryg.ch5.RygCh5Activity">
+    tools:context="com.tustar.demo.ui.ryg.ch5.RygCh5Activity">
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/ryg_base_rv"

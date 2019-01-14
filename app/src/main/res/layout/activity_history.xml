@@ -4,9 +4,9 @@
     android:id="@+id/activity_history"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.tustar.demo.module.customwidget.HistoryActivity">
+    tools:context="com.tustar.demo.ui.customwidget.HistoryActivity">
 
-    <com.tustar.demo.module.dragview.widget.HistoryLayout xmlns:app="http://schemas.android.com/apk/res-auto"
+    <com.tustar.demo.ui.dragview.widget.HistoryLayout xmlns:app="http://schemas.android.com/apk/res-auto"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         app:content="@+id/content_view"
@@ -37,6 +37,6 @@
         </LinearLayout>
 
 
-    </com.tustar.demo.module.dragview.widget.HistoryLayout>
+    </com.tustar.demo.ui.dragview.widget.HistoryLayout>
 
 </RelativeLayout>

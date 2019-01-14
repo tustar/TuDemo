@@ -6,10 +6,10 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:paddingBottom="@dimen/activity_vertical_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context=".module.customwidget.CustomWidgetShowActivity">
+    tools:context=".ui.customwidget.CustomWidgetShowActivity">
 
 
-    <com.tustar.demo.module.qyz.systemWidget.CustomActionBar
+    <com.tustar.demo.ui.qyz.systemWidget.CustomActionBar
         android:id="@+id/custom_widget_topBar"
         android:layout_width="match_parent"
         android:layout_height="44dp"

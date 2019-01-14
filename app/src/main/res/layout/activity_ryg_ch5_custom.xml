@@ -5,7 +5,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.tustar.demo.module.ryg.ch5.RygCh5CustomActivity">
+    tools:context="com.tustar.demo.ui.ryg.ch5.RygCh5CustomActivity">
 
     <Button
         android:id="@+id/ryg_ch5_send"

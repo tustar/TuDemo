@@ -4,9 +4,9 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.tustar.demo.module.ryg.ch3.RygCh3InnerActivity">
+    tools:context="com.tustar.demo.ui.ryg.ch3.RygCh3InnerActivity">
 
-    <com.tustar.demo.module.ryg.ch3.widget.InnerHorizontalScrollView
+    <com.tustar.demo.ui.ryg.ch3.widget.InnerHorizontalScrollView
         android:id="@+id/ryg_ch3_inner"
         android:layout_width="match_parent"
         android:layout_height="match_parent"/>

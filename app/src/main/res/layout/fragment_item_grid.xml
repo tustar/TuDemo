@@ -8,4 +8,4 @@
     android:columnWidth="100dip"
     android:numColumns="auto_fit"
     android:padding="16dp"
-    tools:context=".module.fm.ItemListFragment" />
+    tools:context=".ui.fm.ItemListFragment" />

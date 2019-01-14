@@ -3,6 +3,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.tustar.demo.module.fm.FmSectionGridViewActivity">
+    tools:context="com.tustar.demo.ui.fm.FmSectionGridViewActivity">
 
 </androidx.constraintlayout.widget.ConstraintLayout>

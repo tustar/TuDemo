@@ -4,9 +4,9 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.tustar.demo.module.ryg.ch4.RygCh4ExActivity">
+    tools:context="com.tustar.demo.ui.ryg.ch4.RygCh4ExActivity">
 
-    <com.tustar.demo.module.ryg.ch3.widget.ExHorizontalScrollView
+    <com.tustar.demo.ui.ryg.ch3.widget.ExHorizontalScrollView
         android:id="@+id/ryg_ch4_ex"
         android:layout_width="match_parent"
         android:layout_height="match_parent"/>

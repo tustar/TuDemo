@@ -5,7 +5,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.tustar.demo.module.ryg.ch2.aidl.BookManagerActivity">
+    tools:context="com.tustar.demo.ui.ryg.ch2.aidl.BookManagerActivity">
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/ryg_ch2_bm_rv"

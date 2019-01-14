@@ -6,9 +6,9 @@
     android:id="@+id/ryg_ch3_view_move_root"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.tustar.demo.module.ryg.ch3.RygCh3ViewMoveActivity">
+    tools:context="com.tustar.demo.ui.ryg.ch3.RygCh3ViewMoveActivity">
 
-    <com.tustar.demo.module.ryg.ch3.widget.TestButton
+    <com.tustar.demo.ui.ryg.ch3.widget.TestButton
         android:id="@+id/ryg_ch3_test_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

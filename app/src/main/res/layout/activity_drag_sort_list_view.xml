@@ -3,9 +3,9 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".module.dragsortlistview.DragSortListViewActivity">
+    tools:context=".ui.dragsortlistview.DragSortListViewActivity">
 
-    <com.tustar.demo.module.dragsortlistview.DragSortListView xmlns:dslv="http://schemas.android.com/apk/res_auto"
+    <com.tustar.demo.ui.dragsortlistview.DragSortListView xmlns:dslv="http://schemas.android.com/apk/res_auto"
                                                               android:id="@+id/dslv_listView"
                                                               android:layout_width="match_parent"
                                                               android:layout_height="match_parent"

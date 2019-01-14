@@ -10,6 +10,6 @@
     android:layout_marginLeft="16dp"
     android:layout_marginRight="16dp"
     app:layoutManager="LinearLayoutManager"
-    tools:context="com.tustar.demo.module.deskclock.AlarmClockFragment"
+    tools:context="com.tustar.demo.ui.deskclock.AlarmClockFragment"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
     tools:listitem="@layout/fragment_alarmclock_item"/>

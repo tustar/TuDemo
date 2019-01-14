@@ -3,6 +3,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.tustar.demo.module.ryg.ch7.RygCh7ActivityAnimatorActivity">
+    tools:context="com.tustar.demo.ui.ryg.ch7.RygCh7ActivityAnimatorActivity">
 
 </androidx.constraintlayout.widget.ConstraintLayout>

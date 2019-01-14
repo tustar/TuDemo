@@ -4,9 +4,9 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".module.customwidget.CustomWidgetShowActivity">
+    tools:context=".ui.customwidget.CustomWidgetShowActivity">
 
-    <com.tustar.demo.module.qyz.systemWidget.VolumeView
+    <com.tustar.demo.ui.qyz.systemWidget.VolumeView
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
     

@@ -4,9 +4,9 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.tustar.demo.module.ryg.ch3.RygCh3OuterActivity">
+    tools:context="com.tustar.demo.ui.ryg.ch3.RygCh3OuterActivity">
 
-    <com.tustar.demo.module.ryg.ch3.widget.OuterHorizontalScrollView
+    <com.tustar.demo.ui.ryg.ch3.widget.OuterHorizontalScrollView
         android:id="@+id/ryg_ch3_outer"
         android:layout_width="match_parent"
         android:layout_height="match_parent"/>

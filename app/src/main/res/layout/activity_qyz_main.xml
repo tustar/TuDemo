@@ -5,7 +5,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.tustar.demo.module.qyz.QyzMainActivity">
+    tools:context="com.tustar.demo.ui.qyz.QyzMainActivity">
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/qyz_main_rv"

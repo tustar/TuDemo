@@ -5,7 +5,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.tustar.demo.module.ryg.RygMainActivity">
+    tools:context="com.tustar.demo.ui.ryg.RygMainActivity">
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/ryg_main_rv"

@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <com.tustar.demo.module.deskclock.subscaleview.PhotoView
+    <com.tustar.demo.ui.deskclock.subscaleview.PhotoView
         android:id="@+id/photo_view"
         android:layout_width="match_parent"
         android:layout_height="match_parent"

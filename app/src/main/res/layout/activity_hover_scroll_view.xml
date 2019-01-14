@@ -5,9 +5,9 @@
     android:id="@+id/activity_hover_scroll_view"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.tustar.demo.module.scroller.HOverScrollViewActivity">
+    tools:context="com.tustar.demo.ui.scroller.HOverScrollViewActivity">
 
-    <com.tustar.demo.module.scroller.HOverScrollView
+    <com.tustar.demo.ui.scroller.HOverScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical">
@@ -39,6 +39,6 @@
             android:layout_width="500dp"
             android:layout_height="500dp"
             android:background="#00ff00"/>
-    </com.tustar.demo.module.scroller.HOverScrollView>
+    </com.tustar.demo.ui.scroller.HOverScrollView>
 
 </RelativeLayout>

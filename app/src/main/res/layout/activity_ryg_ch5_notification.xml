@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:gravity="center_horizontal"
     android:orientation="vertical"
-    tools:context="com.tustar.demo.module.ryg.ch5.RygCh5NotificationActivity">
+    tools:context="com.tustar.demo.ui.ryg.ch5.RygCh5NotificationActivity">
 
     <Button
         android:id="@+id/ryg_ch5_normal_btn"

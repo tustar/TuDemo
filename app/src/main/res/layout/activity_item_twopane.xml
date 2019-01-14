@@ -5,7 +5,7 @@
     android:divider="?attr/dividerHorizontal"
     android:orientation="horizontal"
     android:showDividers="middle"
-    tools:context="com.tustar.demo.module.fm.ItemListActivity"
+    tools:context="com.tustar.demo.ui.fm.ItemListActivity"
     tools:ignore="NewApi" >
 
     <!--
@@ -21,7 +21,7 @@
 
     <fragment
         android:id="@+id/item_list"
-        android:name="com.tustar.demo.module.fm.ItemListFragment"
+        android:name="com.tustar.demo.ui.fm.ItemListFragment"
         android:layout_width="0dp"
         android:layout_height="match_parent"
         android:layout_weight="1"

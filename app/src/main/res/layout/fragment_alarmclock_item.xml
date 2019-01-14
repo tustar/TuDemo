@@ -5,7 +5,7 @@
     <data>
         <variable
             name="history"
-            type="com.tustar.demo.module.deskclock.provider.History" />
+            type="com.tustar.demo.ui.deskclock.provider.History" />
     </data>
 
     <LinearLayout

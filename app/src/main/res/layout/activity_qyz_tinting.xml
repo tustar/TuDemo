@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:orientation="horizontal"
     android:paddingTop="8dp"
-    tools:context=".module.qyz.QyzTintingActivity">
+    tools:context=".ui.qyz.QyzTintingActivity">
 
     <TextView
         android:id="@+id/tinting_text"

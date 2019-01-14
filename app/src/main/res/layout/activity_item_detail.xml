@@ -3,5 +3,5 @@
     android:id="@+id/item_detail_container"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.tustar.demo.module.fm.ItemDetailActivity"
+    tools:context="com.tustar.demo.ui.fm.ItemDetailActivity"
     tools:ignore="MergeRootFrame" />

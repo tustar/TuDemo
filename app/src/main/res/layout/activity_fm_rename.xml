@@ -5,7 +5,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.tustar.demo.module.fm.FmRenameActivity">
+    tools:context="com.tustar.demo.ui.fm.FmRenameActivity">
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/fm_rename_rv"
