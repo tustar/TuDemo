@@ -135,7 +135,7 @@
         <!-- Android开发艺术探索 -->
         <activity android:name=".ui.ryg.RygMainActivity" />
         <!-- Ryg.ch1 -->
-        <activity android:name=".ui.ryg.ch1.RygCh1Activity" />
+        <activity android:name=".ui.ryg.ch1.FlCh1Activity" />
         <!-- Ryg.ch2 -->
         <activity android:name=".ui.ryg.ch2.RygCh2Activity" />
         <!-- Ryg ch2 IPC -->
@@ -255,7 +255,7 @@
         <activity android:name=".ui.fm.FmGifDrawableActivity" />
         <activity android:name=".ui.fm.FmRenameActivity" />
         <activity android:name=".ui.fm.FmJavaRenameActivity" />
-        <activity android:name=".ui.fm.FmArcActivity"/>
+        <activity android:name=".ui.fm.FmArcActivity" />
 
         <service android:name=".ui.fm.service.FileMonitorService" />
         <service
@@ -272,6 +272,14 @@
         <!-- JetPack -->
         <activity android:name=".ui.jet.JetMainActivity" />
         <activity android:name=".ui.jet.pagingroom.BookActivity" />
+
+        <!--Android应用开发进阶-->
+        <activity android:name=".ui.fl.FlMainActivity" />
+        <activity android:name=".ui.fl.ch1.FlCh1Activity"/>
+        <activity android:name=".ui.fl.ch2.FlCh2Activity"/>
+        <activity android:name=".ui.fl.ch3.FlCh3Activity"/>
+        <activity android:name=".ui.fl.ch4.FlCh4Activity"/>
+        <activity android:name=".ui.fl.ch5.FlCh5Activity"/>
 
     </application>
 

@@ -8,12 +8,12 @@ import android.os.Bundle
 import android.widget.RemoteViews
 import com.tustar.demo.R
 import com.tustar.demo.adapter.SimpleListItem1Adapter
-import com.tustar.demo.ui.ryg.base.BaseRygActivity
+import com.tustar.demo.base.BaseBookActivity
 import com.tustar.demo.ui.ryg.ch2.utils.MyConstants
 import kotlinx.android.synthetic.main.activity_ryg_ch5.*
 
 
-class RygCh5Activity : BaseRygActivity(), SimpleListItem1Adapter.OnItemClickListener {
+class RygCh5Activity : BaseBookActivity(), SimpleListItem1Adapter.OnItemClickListener {
 
     init {
         sClassList.add(RygCh5NotificationActivity::class.java)
@@ -32,8 +32,8 @@ class RygCh5Activity : BaseRygActivity(), SimpleListItem1Adapter.OnItemClickList
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
-        ryg_layout_id = R.layout.activity_ryg_ch5
-        ryg_data_source = R.array.ryg_ch5_list
+        book_layout_id = R.layout.activity_ryg_ch5
+        book_data_source = R.array.ryg_ch5_list
         super.onCreate(savedInstanceState)
         title = getString(R.string.ryg_ch5_title)
 

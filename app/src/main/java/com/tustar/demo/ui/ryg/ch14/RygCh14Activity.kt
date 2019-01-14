@@ -3,10 +3,10 @@ package com.tustar.demo.ui.ryg.ch14
 import android.os.Bundle
 import com.tustar.common.util.Logger
 import com.tustar.demo.R
-import com.tustar.demo.ui.ryg.base.BaseRygActivity
-import kotlinx.android.synthetic.main.activity_ryg_base.*
+import com.tustar.demo.base.BaseBookActivity
+import kotlinx.android.synthetic.main.activity_book_base.*
 
-class RygCh14Activity : BaseRygActivity() {
+class RygCh14Activity : BaseBookActivity() {
 
     companion object {
         private val TAG = RygCh14Activity::class.java.simpleName
@@ -20,7 +20,7 @@ class RygCh14Activity : BaseRygActivity() {
         super.onCreate(savedInstanceState)
         title = getString(R.string.ryg_ch14_title)
 
-        rgy_base_empty_view.text = stringFromJNI()
+        book_base_empty_view.text = stringFromJNI()
     }
 
     external fun stringFromJNI(): String

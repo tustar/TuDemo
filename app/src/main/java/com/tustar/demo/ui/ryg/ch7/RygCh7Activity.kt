@@ -5,9 +5,9 @@ import android.os.Bundle
 import android.view.View
 import com.tustar.common.util.Logger
 import com.tustar.demo.R
-import com.tustar.demo.ui.ryg.base.BaseRygActivity
+import com.tustar.demo.base.BaseBookActivity
 
-class RygCh7Activity : BaseRygActivity() {
+class RygCh7Activity : BaseBookActivity() {
 
     companion object {
         private val TAG = RygCh7Activity::class.java.simpleName
@@ -21,7 +21,7 @@ class RygCh7Activity : BaseRygActivity() {
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
-        ryg_data_source = R.array.ryg_ch7_list
+        book_data_source = R.array.ryg_ch7_list
         super.onCreate(savedInstanceState)
         title = getString(R.string.ryg_ch7_title)
     }

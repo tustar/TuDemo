@@ -26,6 +26,7 @@ import com.tustar.demo.ui.deskclock.DeskClockActivity
 import com.tustar.demo.ui.deskclock.SubScaleViewActivity
 import com.tustar.demo.ui.dragsortlistview.DragSortListViewActivity
 import com.tustar.demo.ui.dragview.DragViewActivity
+import com.tustar.demo.ui.fl.FlMainActivity
 import com.tustar.demo.ui.fm.FmMainActivity
 import com.tustar.demo.ui.jet.JetMainActivity
 import com.tustar.demo.ui.loader.LoaderActivity
@@ -51,28 +52,31 @@ class MainActivity : AppCompatActivity(), com.google.android.material.navigation
 
         // List
         init {
-            sClassList += RecyclerViewActivity::class.java
-            sClassList += CustomWidgetActivity::class.java
-            sClassList += FloatWindowActivity::class.java
-            sClassList += DragSortListViewActivity::class.java
-            sClassList += DragViewActivity::class.java
-            sClassList += ViewAnimActivity::class.java
-            sClassList += LoaderActivity::class.java
-            sClassList += ServiceActivity::class.java
-            sClassList += HideActionBarActivity::class.java
-            sClassList += AccountActivity::class.java
-            sClassList += ProviderActivity::class.java
-            sClassList += DeskClockActivity::class.java
-            sClassList += ScrollerActivity::class.java
-            sClassList += HistoryActivity::class.java
-            sClassList += SubScaleViewActivity::class.java
-            //
-            sClassList += FmMainActivity::class.java
-            sClassList += QyzMainActivity::class.java
-            sClassList += RygMainActivity::class.java
-            //
-            sClassList += JetMainActivity::class.java
-            sClassList.reverse()
+            with(sClassList) {
+                this += RecyclerViewActivity::class.java
+                this += CustomWidgetActivity::class.java
+                this += FloatWindowActivity::class.java
+                this += DragSortListViewActivity::class.java
+                this += DragViewActivity::class.java
+                this += ViewAnimActivity::class.java
+                this += LoaderActivity::class.java
+                this += ServiceActivity::class.java
+                this += HideActionBarActivity::class.java
+                this += AccountActivity::class.java
+                this += ProviderActivity::class.java
+                this += DeskClockActivity::class.java
+                this += ScrollerActivity::class.java
+                this += HistoryActivity::class.java
+                this += SubScaleViewActivity::class.java
+                //
+                this += FmMainActivity::class.java
+                this += QyzMainActivity::class.java
+                this += RygMainActivity::class.java
+                //
+                this += JetMainActivity::class.java
+                this += FlMainActivity::class.java
+                reverse()
+            }
         }
     }
 

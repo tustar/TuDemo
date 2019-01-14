@@ -153,6 +153,14 @@
     <string name="jet_navigate">Navigate</string>
     <string name="jet_add_book_hint">请添加书籍</string>
 
+    <!--Android应用开发进阶-->
+    <string name="fl_main_title">Android应用开发进阶</string>
+    <string name="fl_ch1_title">第1章 自定义控件</string>
+    <string name="fl_ch2_title">第2章 轮子</string>
+    <string name="fl_ch3_title">第3章 Android应用架构</string>
+    <string name="fl_ch4_title">第4章 AndroidPlus项目实战</string>
+    <string name="fl_ch5_title">第5章 开发实践</string>
+
     <!--Other-->
     <string name="appwidget_text">EXAMPLE</string>
     <string name="add_widget">Add widget</string>

@@ -22,7 +22,7 @@
         <item>@string/ryg_main_title</item>
         <!---->
         <item>@string/jet_main_title</item>
-
+        <item>@string/fl_main_title</item>
     </string-array>
 
     <string-array name="fm_list">
@@ -128,6 +128,15 @@
         <item>@string/qyz_flex_title</item>
         <item>@string/qyz_over_scroll_title</item>
     </string-array>
+
+    <string-array name="fl_chapters">
+        <item>@string/fl_ch1_title</item>
+        <item>@string/fl_ch2_title</item>
+        <item>@string/fl_ch3_title</item>
+        <item>@string/fl_ch4_title</item>
+        <item>@string/fl_ch5_title</item>
+    </string-array>
+
 
     <string-array name="countries">
 

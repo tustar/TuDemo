@@ -5,9 +5,9 @@ import android.os.Handler
 import android.os.Looper
 import com.tustar.common.util.Logger
 import com.tustar.demo.R
-import com.tustar.demo.ui.ryg.base.BaseRygActivity
+import com.tustar.demo.base.BaseBookActivity
 
-class RygCh10Activity : BaseRygActivity() {
+class RygCh10Activity : BaseBookActivity() {
 
     companion object {
         private val TAG = RygCh10Activity::class.java.simpleName

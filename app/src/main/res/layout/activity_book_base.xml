@@ -5,10 +5,10 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.tustar.demo.ui.ryg.ch5.RygCh5Activity">
+    tools:context="com.tustar.demo.base.BaseBookActivity">
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/ryg_base_rv"
+        android:id="@+id/book_base_rv"
         android:layout_width="0dp"
         android:layout_height="0dp"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -19,7 +19,7 @@
         app:layout_constraintVertical_bias="0.0"/>
 
     <TextView
-        android:id="@+id/rgy_base_empty_view"
+        android:id="@+id/book_base_empty_view"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/no_data"

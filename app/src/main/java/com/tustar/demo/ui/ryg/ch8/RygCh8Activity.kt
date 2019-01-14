@@ -2,9 +2,9 @@ package com.tustar.demo.ui.ryg.ch8
 
 import android.os.Bundle
 import com.tustar.demo.R
-import com.tustar.demo.ui.ryg.base.BaseRygActivity
+import com.tustar.demo.base.BaseBookActivity
 
-class RygCh8Activity : BaseRygActivity() {
+class RygCh8Activity : BaseBookActivity() {
 
 
     init {
@@ -13,7 +13,7 @@ class RygCh8Activity : BaseRygActivity() {
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
-        ryg_data_source = R.array.ryg_ch8_list
+        book_data_source = R.array.ryg_ch8_list
         super.onCreate(savedInstanceState)
         title = getString(R.string.ryg_ch8_title)
     }

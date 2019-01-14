@@ -5,14 +5,14 @@ import android.os.AsyncTask
 import android.os.Bundle
 import android.os.SystemClock
 import com.tustar.demo.R
-import com.tustar.demo.ui.ryg.base.BaseRygActivity
+import com.tustar.demo.base.BaseBookActivity
 import java.net.MalformedURLException
 import java.net.URL
 import java.util.concurrent.Executors
 import java.util.concurrent.TimeUnit
 
 
-class RygCh11Activity : BaseRygActivity() {
+class RygCh11Activity : BaseBookActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

@@ -2,9 +2,9 @@ package com.tustar.demo.ui.ryg.ch13
 
 import android.os.Bundle
 import com.tustar.demo.R
-import com.tustar.demo.ui.ryg.base.BaseRygActivity
+import com.tustar.demo.base.BaseBookActivity
 
-class RygCh13Activity : BaseRygActivity() {
+class RygCh13Activity : BaseBookActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
