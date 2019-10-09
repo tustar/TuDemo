@@ -1,4 +1,4 @@
-package com.tustar.demo.ui.deskclock;
+package com.tustar.demo.ui.fm;
 
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -15,14 +15,15 @@ import com.tustar.common.util.Logger;
 import com.tustar.common.util.ToastUtils;
 import com.tustar.demo.R;
 import com.tustar.demo.base.BaseActivity;
-import com.tustar.demo.ui.deskclock.subscaleview.ImageSource;
-import com.tustar.demo.ui.deskclock.subscaleview.PhotoView;
+import com.tustar.demo.ui.fm.subscaleview.ImageSource;
+import com.tustar.demo.ui.fm.subscaleview.PhotoView;
 
 import java.io.File;
+import java.io.IOException;
 
-public class SubScaleViewActivity extends BaseActivity {
+public class FmLongPhotoActivity extends BaseActivity {
 
-    private static final String TAG = "SubScaleViewActivity";
+    private static final String TAG = "FmLongPhotoActivity";
     private PhotoView mPhotoView;
 
     /**
@@ -36,7 +37,8 @@ public class SubScaleViewActivity extends BaseActivity {
     protected void onCreate(Bundle savedInstanceState) {
         Logger.i(TAG, "onCreate :: ");
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_subscale_view);
+        setContentView(R.layout.activity_fm_photo_view);
+        setTitle(R.string.fm_long_photo);
         imageLoader = ImageLoader.getInstance();
         ImageLoaderConfiguration config = new ImageLoaderConfiguration
                 .Builder(this)
@@ -56,8 +58,7 @@ public class SubScaleViewActivity extends BaseActivity {
                 .cacheOnDisk(false) // default
                 .bitmapConfig(Bitmap.Config.ARGB_8888) // default
                 .build();
-//        String uri = "assets://weibo_long_image.png";
-        String uri = "file:///storage/emulated/0/Screenshot_2017-05-24-15-13-56-1692626583.png";
+        String uri = "assets://weibo_long_image.png";
         if (!new File(uri).exists()) {
             ToastUtils.showLong(this, R.string.image_no_exist);
             return;
@@ -65,12 +66,15 @@ public class SubScaleViewActivity extends BaseActivity {
         ImageSize targetSize = null;
         BitmapFactory.Options opts = new BitmapFactory.Options();
         opts.inJustDecodeBounds = true;
-        String pathName = "/storage/emulated/0/Screenshot_2017-05-24-15-13-56-1692626583.png";
-        if (!new File(pathName).exists()) {
+        if (!new File(uri).exists()) {
             ToastUtils.showLong(this, R.string.image_no_exist);
             return;
         }
-        BitmapFactory.decodeFile(pathName, opts);
+        try {
+            BitmapFactory.decodeStream(getAssets().open("weibo_long_image.png"));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
         int imageWidth = opts.outWidth;
         int imageHeight = opts.outHeight;
         Logger.d(TAG, "onCreate :: (" + imageWidth + ", " + imageHeight + ")");

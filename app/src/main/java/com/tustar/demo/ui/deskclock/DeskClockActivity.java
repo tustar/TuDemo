@@ -20,6 +20,7 @@ public class DeskClockActivity extends BaseActivity implements AlarmClockFragmen
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_desk_clock);
+        setTitle(R.string.deskclock_title);
         mDeskViewpager = findViewById(R.id.desk_viewpager);
         mDeskTabs = findViewById(R.id.desk_tabs);
 

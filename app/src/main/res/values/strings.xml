@@ -5,6 +5,11 @@
     <string name="no_data">没有数据</string>
     <string name="add">添加</string>
 
+    <!-- Main section-->
+    <string name="section_books">书籍范例</string>
+    <string name="section_jetpack">Jetpack</string>
+    <string name="section_project">项目功能调研</string>
+
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
 
@@ -28,8 +33,14 @@
     <string name="transition_name_share">share</string>
     <string name="transition_name_fab">fab</string>
 
+    <!-- Deskclock-->
+    <string name="deskclock_title">时钟</string>
+
+    <!-- Calculator-->
+    <string name="calculator_title">计算器</string>
+
     <!--Float Windows-->
-    <string name="rf_signal_title">显示信号强度情况</string>
+    <string name="rf_signal_title">信号强度</string>
     <string name="rf_signal_sub">屏幕叠加层显示当前信号强度情况</string>
     <string name="rf_gsm_signal_strength">gsm signal strength/%1$d</string>
     <string name="rf_gsm_bit_error_rate">gsm bit error rate/%1$d</string>
@@ -71,7 +82,7 @@
     <string name="vert_drag_label">⇳ Drag Vertically</string>
 
     <!--Gif-->
-    <string name="fm_main_title">文件管理器实例</string>
+    <string name="fm_main_title">文件管理器</string>
     <string name="fm_gif_player">GifPlayer</string>
     <string name="fm_android_gif_drawable">Android Gif Drawable</string>
     <string name="fm_rename">Rename</string>
@@ -83,6 +94,7 @@
     <string name="fm_section_list_view">Section ListView</string>
     <string name="fm_section_grid_view">Section GridView</string>
     <string name="fm_arc">ArcView</string>
+    <string name="fm_long_photo">长截图</string>
 
 
     <!--Android开发艺术探索-->
@@ -147,8 +159,8 @@
     <string name="qyz_flex_title">FlexibleListView</string>
     <string name="qyz_over_scroll_title">OverScroll GridView</string>
 
-    <!--JetPack-->
-    <string name="jet_main_title">JetPack</string>
+    <!--Jetpack-->
+    <string name="jet_main_title">Jetpack</string>
     <string name="jet_book_title">Navigation+Room+ViewModel+Paging</string>
     <string name="jet_navigate">Navigate</string>
     <string name="jet_add_book_hint">请添加书籍</string>

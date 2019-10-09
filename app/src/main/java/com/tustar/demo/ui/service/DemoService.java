@@ -10,7 +10,7 @@ import android.os.Process;
 import android.os.RemoteException;
 
 import com.tustar.common.util.Logger;
-import com.tustar.demo.MainActivity;
+import com.tustar.demo.ui.main.MainActivity;
 import com.tustar.demo.R;
 import com.tustar.demo.service.IDemoAidlService;
 

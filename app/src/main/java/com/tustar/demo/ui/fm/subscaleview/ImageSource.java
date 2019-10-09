@@ -1,4 +1,4 @@
-package com.tustar.demo.ui.deskclock.subscaleview;
+package com.tustar.demo.ui.fm.subscaleview;
 
 import android.graphics.Bitmap;
 import android.graphics.Rect;

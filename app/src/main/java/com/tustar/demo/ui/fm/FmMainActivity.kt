@@ -28,6 +28,7 @@ class FmMainActivity : BaseActivity(), SimpleListItem1Adapter.OnItemClickListene
                 add(FmSectionListViewActivity::class.java)
                 add(ItemListActivity::class.java)
                 add(FmArcActivity::class.java)
+                add(FmLongPhotoActivity::class.java)
             }
         }
     }

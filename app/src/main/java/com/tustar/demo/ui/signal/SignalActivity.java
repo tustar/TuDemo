@@ -13,9 +13,9 @@ import com.tustar.demo.base.BaseActivity;
 import com.tustar.demo.common.Preferences;
 
 
-public class FloatWindowActivity extends BaseActivity {
+public class SignalActivity extends BaseActivity {
 
-    private static final String TAG = FloatWindowActivity.class.getSimpleName();
+    private static final String TAG = SignalActivity.class.getSimpleName();
     private Switch mRfSwitch;
     private Context mContext;
     private boolean mIsChecked;
@@ -24,7 +24,8 @@ public class FloatWindowActivity extends BaseActivity {
     protected void onCreate(Bundle savedInstanceState) {
         Logger.i(TAG, "onCreate ::");
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_float_window);
+        setContentView(R.layout.activity_singal);
+        setTitle(R.string.rf_signal_title);
         mContext = this;
 
         mRfSwitch = (Switch)findViewById(R.id.rf_switch);

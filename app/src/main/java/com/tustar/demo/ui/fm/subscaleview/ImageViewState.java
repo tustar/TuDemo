@@ -14,7 +14,7 @@ See the License for the specific language governing permissions and
 limitations under the License.
 */
 
-package com.tustar.demo.ui.deskclock.subscaleview;
+package com.tustar.demo.ui.fm.subscaleview;
 
 import android.graphics.PointF;
 

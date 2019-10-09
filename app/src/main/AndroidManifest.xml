@@ -29,7 +29,7 @@
 
         <!-- 主页 -->
         <activity
-            android:name=".MainActivity"
+            android:name=".ui.main.MainActivity"
             android:label="@string/app_name"
             android:launchMode="singleTask"
             android:theme="@style/AppTheme.NoActionBar">
@@ -62,16 +62,16 @@
         <activity android:name=".ui.dragview.DragViewGroupActivity" />
 
         <!-- 信号监听 -->
-        <activity android:name=".ui.signal.FloatWindowActivity" />
+        <activity android:name=".ui.signal.SignalActivity" />
 
         <service android:name=".ui.signal.PhoneStateService" />
 
         <!-- 控件实例 -->
         <activity android:name=".ui.customwidget.CustomWidgetActivity" />
         <activity android:name=".ui.customwidget.CustomWidgetShowActivity" />
-        <activity
-            android:name=".ui.customwidget.HistoryActivity"
-            android:theme="@android:style/Theme.DeviceDefault.Light.NoActionBar" />
+
+        <!-- 计算器-->
+        <activity android:name=".ui.calculator.HistoryActivity" />
 
         <!-- Service实例 -->
         <activity android:name=".ui.service.ServiceActivity" />
@@ -110,7 +110,6 @@
 
         <!-- 时钟实例 -->
         <activity android:name=".ui.deskclock.DeskClockActivity" />
-        <activity android:name=".ui.deskclock.SubScaleViewActivity" />
 
         <!-- 三国群英传 -->
         <activity android:name=".ui.qyz.QyzMainActivity" />
@@ -268,18 +267,18 @@
         <activity android:name=".ui.fm.FmSectionGridViewActivity" />
         <activity android:name=".ui.fm.ItemListActivity" />
         <activity android:name=".ui.fm.ItemDetailActivity" />
+        <activity android:name=".ui.fm.FmLongPhotoActivity" />
 
         <!-- JetPack -->
-        <activity android:name=".ui.jet.JetMainActivity" />
         <activity android:name=".ui.jet.pagingroom.BookActivity" />
 
         <!--Android应用开发进阶-->
         <activity android:name=".ui.fl.FlMainActivity" />
-        <activity android:name=".ui.fl.ch1.FlCh1Activity"/>
-        <activity android:name=".ui.fl.ch2.FlCh2Activity"/>
-        <activity android:name=".ui.fl.ch3.FlCh3Activity"/>
-        <activity android:name=".ui.fl.ch4.FlCh4Activity"/>
-        <activity android:name=".ui.fl.ch5.FlCh5Activity"/>
+        <activity android:name=".ui.fl.ch1.FlCh1Activity" />
+        <activity android:name=".ui.fl.ch2.FlCh2Activity" />
+        <activity android:name=".ui.fl.ch3.FlCh3Activity" />
+        <activity android:name=".ui.fl.ch4.FlCh4Activity" />
+        <activity android:name=".ui.fl.ch5.FlCh5Activity" />
 
     </application>
 

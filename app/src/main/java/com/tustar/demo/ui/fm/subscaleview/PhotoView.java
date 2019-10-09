@@ -14,7 +14,7 @@ See the License for the specific language governing permissions and
 limitations under the License.
 */
 
-package com.tustar.demo.ui.deskclock.subscaleview;
+package com.tustar.demo.ui.fm.subscaleview;
 
 import android.content.ContentResolver;
 import android.content.Context;
@@ -47,12 +47,12 @@ import android.view.View;
 import android.view.ViewParent;
 
 import com.tustar.demo.R.styleable;
-import com.tustar.demo.ui.deskclock.subscaleview.decoder.CompatDecoderFactory;
-import com.tustar.demo.ui.deskclock.subscaleview.decoder.DecoderFactory;
-import com.tustar.demo.ui.deskclock.subscaleview.decoder.ImageDecoder;
-import com.tustar.demo.ui.deskclock.subscaleview.decoder.ImageRegionDecoder;
-import com.tustar.demo.ui.deskclock.subscaleview.decoder.SkiaImageDecoder;
-import com.tustar.demo.ui.deskclock.subscaleview.decoder.SkiaImageRegionDecoder;
+import com.tustar.demo.ui.fm.subscaleview.decoder.CompatDecoderFactory;
+import com.tustar.demo.ui.fm.subscaleview.decoder.DecoderFactory;
+import com.tustar.demo.ui.fm.subscaleview.decoder.ImageDecoder;
+import com.tustar.demo.ui.fm.subscaleview.decoder.ImageRegionDecoder;
+import com.tustar.demo.ui.fm.subscaleview.decoder.SkiaImageDecoder;
+import com.tustar.demo.ui.fm.subscaleview.decoder.SkiaImageRegionDecoder;
 
 import java.lang.ref.WeakReference;
 import java.lang.reflect.Field;

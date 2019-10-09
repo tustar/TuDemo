@@ -1,4 +1,4 @@
-package com.tustar.demo.ui.deskclock.subscaleview.decoder;
+package com.tustar.demo.ui.fm.subscaleview.decoder;
 
 /**
  * Interface for decoder (and region decoder) factories.

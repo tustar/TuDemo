@@ -4,12 +4,13 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
+import androidx.recyclerview.widget.RecyclerView
 
 /**
  * Created by tustar on 11/19/16.
  */
 
-class SimpleListItem1Adapter(var data: List<String>?) : androidx.recyclerview.widget.RecyclerView.Adapter<SimpleListItem1Adapter.ViewHolder>() {
+class SimpleListItem1Adapter(var data: List<String>?) : RecyclerView.Adapter<SimpleListItem1Adapter.ViewHolder>() {
 
     private var mItemClickListener: OnItemClickListener? = null
 
@@ -31,7 +32,7 @@ class SimpleListItem1Adapter(var data: List<String>?) : androidx.recyclerview.wi
         mItemClickListener = listener
     }
 
-    inner class ViewHolder(itemView: View) : androidx.recyclerview.widget.RecyclerView.ViewHolder(itemView) {
+    inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
 
         var mText: TextView? = null
 

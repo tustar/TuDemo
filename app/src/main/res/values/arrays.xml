@@ -12,17 +12,10 @@
         <item>Hide ActionBar</item>
         <item>Account Manager</item>
         <item>Provider</item>
-        <item>DeskClock+Tabs+Svg+Databinding+RecyclerView</item>
+        <item>DeskClock</item>
         <item>Scroller</item>
         <item>History</item>
         <item>SubScaleView</item>
-        <!---->
-        <item>@string/fm_main_title</item>
-        <item>@string/qyz_main_title</item>
-        <item>@string/ryg_main_title</item>
-        <!---->
-        <item>@string/jet_main_title</item>
-        <item>@string/fl_main_title</item>
     </string-array>
 
     <string-array name="fm_list">
@@ -34,10 +27,7 @@
         <item>@string/fm_section_list_view</item>
         <item>@string/fm_section_grid_view</item>
         <item>@string/fm_arc</item>
-    </string-array>
-
-    <string-array name="jet_list">
-        <item>@string/jet_book_title</item>
+        <item>@string/fm_long_photo</item>
     </string-array>
 
     <string-array name="fm_float_list">

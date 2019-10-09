@@ -1,4 +1,4 @@
-package com.tustar.demo.ui.customwidget;
+package com.tustar.demo.ui.calculator;
 
 import android.content.res.Configuration;
 import android.os.Bundle;
@@ -14,6 +14,7 @@ public class HistoryActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setTitle(R.string.calculator_title);
         // 竖屏和分屏模式，都不隐藏状态栏
         final Window window = getWindow();
         if (isFullScreen()) {
