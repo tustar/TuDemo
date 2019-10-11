@@ -117,6 +117,8 @@
         <item>@string/qyz_svg_title</item>
         <item>@string/qyz_flex_title</item>
         <item>@string/qyz_over_scroll_title</item>
+        <item>@@string/qyz_custom_widget</item>
+        <item>@@string/qyz_drag_view</item>
     </string-array>
 
     <string-array name="fl_chapters">

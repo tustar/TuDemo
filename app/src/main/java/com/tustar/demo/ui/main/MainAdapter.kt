@@ -4,6 +4,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
+import androidx.appcompat.widget.AppCompatImageView
 import androidx.recyclerview.widget.RecyclerView
 import com.tustar.demo.R
 import com.tustar.demo.ui.main.MainItem.Companion.TYPE_SECTION
@@ -44,7 +45,7 @@ class MainAdapter(val items: List<MainItem>,
 
     inner class SectionViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
 
-        var sectionName: TextView = itemView.findViewById(R.id.item_main_section_name)
+        private val sectionName: TextView = itemView.findViewById(R.id.item_main_section_name)
 
         fun bind(item: SectionItem) {
             sectionName.setText(item.nameResId)
@@ -53,11 +54,14 @@ class MainAdapter(val items: List<MainItem>,
 
     inner class ContentViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
 
-        var contentDesc: TextView = itemView.findViewById(R.id.item_main_content_desc)
+        private val contentDesc: TextView = itemView.findViewById(R.id.item_main_content_desc)
+        private val contentArrow: AppCompatImageView = itemView.findViewById(
+                R.id.item_main_content_arrow)
 
         fun bind(item: ContentItem) {
             contentDesc.setText(item.descResId)
             itemView.setOnClickListener { itemClickListener?.onItemClick(item) }
+            contentArrow.visibility = if (item.isMenu) View.VISIBLE else View.GONE
         }
     }
 

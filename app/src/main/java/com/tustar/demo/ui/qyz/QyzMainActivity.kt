@@ -7,29 +7,26 @@ import com.tustar.common.util.Logger
 import com.tustar.demo.R
 import com.tustar.demo.adapter.SimpleListItem1Adapter
 import com.tustar.demo.base.BaseActivity
+import com.tustar.demo.ui.qyz.dragview.QyzDragViewActivity
 import kotlinx.android.synthetic.main.activity_qyz_main.*
 
 class QyzMainActivity : BaseActivity(), SimpleListItem1Adapter.OnItemClickListener {
 
     companion object {
         private val TAG = QyzMainActivity::class.java.simpleName
-        private val sClassList = ArrayList<Class<*>>()
-
-        // List
-        init {
-            sClassList.run {
-                sClassList.add(QyzRotationActivity::class.java)
-                sClassList.add(QyzPaletteActivity::class.java)
-                sClassList.add(QyzTintingActivity::class.java)
-                sClassList.add(QyzElevationActivity::class.java)
-                sClassList.add(QyzClippingActivity::class.java)
-                sClassList.add(QyzAnimMainActivity::class.java)
-                sClassList.add(QyzSurfaceViewActivity::class.java)
-                sClassList.add(QyzSvgActivity::class.java)
-                sClassList.add(QyzFlexibleListViewActivity::class.java)
-                sClassList.add(QyzOverScrollGridViewActivity::class.java)
-            }
-        }
+        private val sClassList = arrayListOf(
+                QyzRotationActivity::class.java,
+                QyzPaletteActivity::class.java,
+                QyzTintingActivity::class.java,
+                QyzElevationActivity::class.java,
+                QyzClippingActivity::class.java,
+                QyzAnimMainActivity::class.java,
+                QyzSurfaceViewActivity::class.java,
+                QyzSvgActivity::class.java,
+                QyzFlexibleListViewActivity::class.java,
+                QyzOverScrollGridViewActivity::class.java,
+                QyzCustomWidgetActivity::class.java,
+                QyzDragViewActivity::class.java)
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {

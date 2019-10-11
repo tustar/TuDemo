@@ -18,6 +18,7 @@ public class ViewAnimActivity extends BaseActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_view_anim);
+        setTitle(R.string.view_anim_title);
     }
 
     public void btnAlpha(View view) {

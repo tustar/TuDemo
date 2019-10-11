@@ -1,4 +1,4 @@
-package com.tustar.demo.ui.dragview.widget;
+package com.tustar.demo.ui.qyz.dragview.widget;
 
 import android.content.Context;
 import android.content.res.TypedArray;

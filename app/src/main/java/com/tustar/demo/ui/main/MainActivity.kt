@@ -19,13 +19,22 @@ import com.google.android.material.snackbar.Snackbar
 import com.tustar.common.util.Logger
 import com.tustar.common.widget.Decoration
 import com.tustar.demo.R
+import com.tustar.demo.ui.account.AccountActivity
+import com.tustar.demo.ui.anim.viewanim.HideActionBarActivity
+import com.tustar.demo.ui.anim.viewanim.ViewAnimActivity
 import com.tustar.demo.ui.calculator.HistoryActivity
 import com.tustar.demo.ui.deskclock.DeskClockActivity
+import com.tustar.demo.ui.dragsortlistview.DragSortListViewActivity
 import com.tustar.demo.ui.fl.FlMainActivity
 import com.tustar.demo.ui.fm.FmMainActivity
 import com.tustar.demo.ui.jet.pagingroom.BookActivity
+import com.tustar.demo.ui.loader.LoaderActivity
+import com.tustar.demo.ui.provider.ProviderActivity
 import com.tustar.demo.ui.qyz.QyzMainActivity
+import com.tustar.demo.ui.recycler.RecyclerViewActivity
 import com.tustar.demo.ui.ryg.RygMainActivity
+import com.tustar.demo.ui.scroller.ScrollerActivity
+import com.tustar.demo.ui.service.ServiceActivity
 import com.tustar.demo.ui.signal.SignalActivity
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.app_bar_main.*
@@ -39,34 +48,78 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         private val TAG = MainActivity::class.java.simpleName
         //
         private val BOOK_DEMOS = listOf(
-                ContentItem(FlMainActivity::class.java, R.string.fl_main_title),
-                ContentItem(RygMainActivity::class.java, R.string.ryg_main_title),
-                ContentItem(QyzMainActivity::class.java, R.string.qyz_main_title)
+                ContentItem(FlMainActivity::class.java, R.string.fl_main_title, true),
+                ContentItem(RygMainActivity::class.java, R.string.ryg_main_title, true),
+                ContentItem(QyzMainActivity::class.java, R.string.qyz_main_title, true)
         )
         private val BOOK_SECTION = SectionItem(R.string.section_books, BOOK_DEMOS)
         //
         private val PROJECT_DEMOS = listOf(
-                ContentItem(FmMainActivity::class.java, R.string.fm_main_title),
+                ContentItem(FmMainActivity::class.java, R.string.fm_main_title, true),
                 ContentItem(DeskClockActivity::class.java, R.string.deskclock_title),
                 ContentItem(HistoryActivity::class.java, R.string.calculator_title),
-                ContentItem(SignalActivity::class.java, R.string.rf_signal_title)
+                ContentItem(SignalActivity::class.java, R.string.rf_signal_title),
+                ContentItem(AccountActivity::class.java, R.string.account_title)
         )
         private val PROJECT_SECTION = SectionItem(R.string.section_project, PROJECT_DEMOS)
+        //
+        private val ABCS_DEMOS = listOf(
+                ContentItem(ServiceActivity::class.java, R.string.service_title),
+                ContentItem(ProviderActivity::class.java, R.string.provider_title)
+        )
+        private val ABCS_SECTION = SectionItem(R.string.section_abcs, ABCS_DEMOS)
+        //
+        private val WIDGETS_DEMOS = listOf(
+                ContentItem(RecyclerViewActivity::class.java, R.string.recycler_title),
+                ContentItem(DragSortListViewActivity::class.java, R.string.drag_list_title)
+        )
+        private val WIDGETS_SECTION = SectionItem(R.string.section_widgets, WIDGETS_DEMOS)
         //
         private val JETPACK_DEMOS = listOf(
                 ContentItem(BookActivity::class.java, R.string.jet_main_title)
         )
         private val JETPACK_SECTION = SectionItem(R.string.section_jetpack, JETPACK_DEMOS)
         //
-        val ITEMS = arrayListOf<MainItem>().apply {
+        private val ANIMS_DEMOS = listOf(
+                ContentItem(ViewAnimActivity::class.java, R.string.view_anim_title),
+                ContentItem(HideActionBarActivity::class.java, R.string.hide_action_title)
+        )
+        private val ANIMS_SECTION = SectionItem(R.string.section_anims, ANIMS_DEMOS)
+        //
+        private val SCROLLER_DEMOS = listOf(
+                ContentItem(ScrollerActivity::class.java, R.string.scroller_title, true)
+        )
+        private val SCROLLER_SECTION = SectionItem(R.string.section_scroller, SCROLLER_DEMOS)
+        //
+        private val OTHER_DEMOS = listOf(
+                ContentItem(LoaderActivity::class.java, R.string.loader_title)
+        )
+        private val OTHER_SECTION = SectionItem(R.string.section_other, OTHER_DEMOS)
+        //
+        val ITEMS = mutableListOf<MainItem>().apply {
             add(BOOK_SECTION)
             addAll(BOOK_DEMOS)
             //
             add(PROJECT_SECTION)
             addAll(PROJECT_DEMOS)
             //
+            add(ABCS_SECTION)
+            addAll(ABCS_DEMOS)
+            //
+            add(WIDGETS_SECTION)
+            addAll(WIDGETS_DEMOS)
+            //
             add(JETPACK_SECTION)
             addAll(JETPACK_DEMOS)
+            //
+            add(ANIMS_SECTION)
+            addAll(ANIMS_DEMOS)
+            //
+            add(SCROLLER_SECTION)
+            addAll(SCROLLER_DEMOS)
+            //
+            add(OTHER_SECTION)
+            addAll(OTHER_DEMOS)
         }
 
 //        .run {
@@ -75,15 +128,11 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 //        }
 //        private val sClassList = arrayOf(
 //                RecyclerViewActivity::class.java,
-//                CustomWidgetActivity::class.java,
-//                DragSortListViewActivity::class.java,
-//                DragViewActivity::class.java,
+//
 //                ViewAnimActivity::class.java,
 //                LoaderActivity::class.java,
-//                ServiceActivity::class.java,
 //                HideActionBarActivity::class.java,
-//                AccountActivity::class.java,
-//                ProviderActivity::class.java,
+
 //                ScrollerActivity::class.java,
 
     }

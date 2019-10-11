@@ -49,6 +49,7 @@ public class DragSortListViewActivity extends BaseActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_drag_sort_list_view);
+        setTitle(R.string.drag_list_title);
         mContext = this;
 
         mDatas.addAll(Arrays.asList(getResources().getStringArray(R.array.content_data)));

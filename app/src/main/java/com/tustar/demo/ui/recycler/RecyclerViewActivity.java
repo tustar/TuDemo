@@ -34,6 +34,7 @@ public class RecyclerViewActivity extends BaseActivity implements OnItemClickLis
         Logger.i(TAG, "onCreate ::");
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_recycler_view);
+        setTitle(R.string.recycler_title);
 
         mRecyclerView = (RecyclerView) findViewById(R.id.re_recyclerview);
         // Layout Manager

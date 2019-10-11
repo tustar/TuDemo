@@ -29,6 +29,7 @@ public class HideActionBarActivity extends BaseActivity implements View.OnClickL
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_hide_action_bar);
+        setTitle(R.string.hide_action_title);
 
         initActionBar();
 

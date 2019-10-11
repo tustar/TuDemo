@@ -1,4 +1,4 @@
-package com.tustar.demo.ui.dragview.widget;
+package com.tustar.demo.ui.qyz.dragview.widget;
 
 import android.annotation.TargetApi;
 import android.content.Context;
@@ -9,14 +9,16 @@ import android.os.Build;
 import android.util.AttributeSet;
 import android.view.MotionEvent;
 import android.view.View;
+import android.widget.Scroller;
 
 /**
  * Created by tustar on 4/18/16.
  */
-public class DragView3 extends View {
+public class DragView6 extends View {
 
     private int mLastX = 0;
     private int mLastY = 0;
+    private Scroller mScroller;
     private Paint mTextPaint;
     private int mTextSize = 42;
     private int mWidth;
@@ -24,34 +26,37 @@ public class DragView3 extends View {
     private float mCenterX;
     private float mCenterY;
 
-    public DragView3(Context context) {
+    public DragView6(Context context) {
         super(context);
 
         init();
     }
 
-    public DragView3(Context context, AttributeSet attrs) {
+    public DragView6(Context context, AttributeSet attrs) {
         super(context, attrs);
         init();
     }
 
-    public DragView3(Context context, AttributeSet attrs, int defStyleAttr) {
+    public DragView6(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
         init();
     }
 
     @TargetApi(Build.VERSION_CODES.LOLLIPOP)
-    public DragView3(Context context, AttributeSet attrs, int defStyleAttr, int defStyleRes) {
+    public DragView6(Context context, AttributeSet attrs, int defStyleAttr, int defStyleRes) {
         super(context, attrs, defStyleAttr, defStyleRes);
         init();
     }
 
     private void init() {
-        setBackgroundColor(getResources().getColor(android.R.color.holo_red_light));
+        setBackgroundColor(getResources().getColor(android.R.color.holo_green_dark));
         mTextPaint = new Paint();
         mTextPaint.setColor(Color.WHITE);
         mTextPaint.setTextSize(42);
         mTextPaint.setTextAlign(Paint.Align.CENTER);
+
+        //
+        mScroller = new Scroller(getContext());
     }
 
     @Override
@@ -67,7 +72,7 @@ public class DragView3 extends View {
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
 
-        canvas.drawText("offsetLeftAndRight|TopAndBottom", mCenterX, mCenterY, mTextPaint);
+        canvas.drawText("Scroller", mCenterX, mCenterY, mTextPaint);
     }
 
     @Override
@@ -82,14 +87,27 @@ public class DragView3 extends View {
             case MotionEvent.ACTION_MOVE:
                 int offsetX = x - mLastX;
                 int offsetY = y - mLastY;
-                layout(getLeft() + offsetX,
-                        getTop() + offsetY,
-                        getRight() + offsetX,
-                        getBottom() + offsetY);
+                ((View)getParent()).scrollBy(-offsetX, -offsetY);
                 break;
             case MotionEvent.ACTION_UP:
+                // 手指离开时，执行滑动过程
+                View viewGroup = (View)getParent();
+                mScroller.startScroll(viewGroup.getScrollX(),viewGroup.getScrollY(),
+                        -viewGroup.getScrollX(), -viewGroup.getScrollY());
+                invalidate();
                 break;
         }
         return true;
+    }
+
+    @Override
+    public void computeScroll() {
+        super.computeScroll();
+        // 判断Scroller是否执行完毕
+        if (mScroller.computeScrollOffset()) {
+            ((View)getParent()).scrollTo(mScroller.getCurrX(), mScroller.getCurrY());
+            // 通过重绘来不断调用computeScroll
+            invalidate();
+        }
     }
 }

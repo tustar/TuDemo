@@ -36,6 +36,7 @@ public class ServiceActivity extends BaseActivity implements View.OnClickListene
         Logger.d(TAG, "onCreate :: ServiceActivity process id = " + Process.myPid());
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_service);
+        setTitle(R.string.service_title);
 
         mStartService = findViewById(R.id.start_service);
         mStartService.setOnClickListener(this);

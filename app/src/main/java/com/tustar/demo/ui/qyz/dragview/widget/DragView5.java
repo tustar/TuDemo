@@ -1,4 +1,4 @@
-package com.tustar.demo.ui.dragview.widget;
+package com.tustar.demo.ui.qyz.dragview.widget;
 
 import android.annotation.TargetApi;
 import android.content.Context;
@@ -13,7 +13,7 @@ import android.view.View;
 /**
  * Created by tustar on 4/18/16.
  */
-public class DragView2 extends View {
+public class DragView5 extends View {
 
     private int mLastX = 0;
     private int mLastY = 0;
@@ -24,30 +24,30 @@ public class DragView2 extends View {
     private float mCenterX;
     private float mCenterY;
 
-    public DragView2(Context context) {
+    public DragView5(Context context) {
         super(context);
 
         init();
     }
 
-    public DragView2(Context context, AttributeSet attrs) {
+    public DragView5(Context context, AttributeSet attrs) {
         super(context, attrs);
         init();
     }
 
-    public DragView2(Context context, AttributeSet attrs, int defStyleAttr) {
+    public DragView5(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
         init();
     }
 
     @TargetApi(Build.VERSION_CODES.LOLLIPOP)
-    public DragView2(Context context, AttributeSet attrs, int defStyleAttr, int defStyleRes) {
+    public DragView5(Context context, AttributeSet attrs, int defStyleAttr, int defStyleRes) {
         super(context, attrs, defStyleAttr, defStyleRes);
         init();
     }
 
     private void init() {
-        setBackgroundColor(getResources().getColor(android.R.color.holo_green_light));
+        setBackgroundColor(getResources().getColor(android.R.color.holo_blue_dark));
         mTextPaint = new Paint();
         mTextPaint.setColor(Color.WHITE);
         mTextPaint.setTextSize(42);
@@ -67,27 +67,22 @@ public class DragView2 extends View {
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
 
-        canvas.drawText("getRawX()\nlayout", mCenterX, mCenterY, mTextPaint);
+        canvas.drawText("ScrollBy", mCenterX, mCenterY, mTextPaint);
     }
 
     @Override
     public boolean onTouchEvent(MotionEvent event) {
-        int rawX = (int) event.getRawX();
-        int rawY = (int) event.getRawY();
+        int x = (int) event.getX();
+        int y = (int) event.getY();
         switch (event.getAction()) {
             case MotionEvent.ACTION_DOWN:
-                mLastX = rawX;
-                mLastY = rawY;
+                mLastX = x;
+                mLastY = y;
                 break;
             case MotionEvent.ACTION_MOVE:
-                int offsetX = rawX - mLastX;
-                int offsetY = rawY - mLastY;
-                layout(getLeft() + offsetX,
-                        getTop() + offsetY,
-                        getRight() + offsetX,
-                        getBottom() + offsetY);
-                mLastX = rawX;
-                mLastY = rawY;
+                int offsetX = x - mLastX;
+                int offsetY = y - mLastY;
+                ((View)getParent()).scrollBy(-offsetX, -offsetY);
                 break;
             case MotionEvent.ACTION_UP:
                 break;

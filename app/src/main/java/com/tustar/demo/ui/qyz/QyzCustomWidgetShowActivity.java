@@ -1,4 +1,4 @@
-package com.tustar.demo.ui.customwidget;
+package com.tustar.demo.ui.qyz;
 
 import android.content.Context;
 import android.os.Bundle;
@@ -9,9 +9,9 @@ import com.tustar.demo.base.BaseActivity;
 import com.tustar.demo.common.IntentExtraKey;
 import com.tustar.demo.ui.qyz.systemWidget.CustomActionBar;
 
-import static com.tustar.demo.ui.customwidget.CustomWidgetActivity.CustomType;
+import static com.tustar.demo.ui.qyz.QyzCustomWidgetActivity.CustomType;
 
-public class CustomWidgetShowActivity extends BaseActivity {
+public class QyzCustomWidgetShowActivity extends BaseActivity {
 
     private Context mContext;
 
@@ -23,26 +23,26 @@ public class CustomWidgetShowActivity extends BaseActivity {
                 getSerializableExtra(IntentExtraKey.FLAG);
         switch (type) {
             case MEASURE:
-                setContentView(R.layout.activity_custom_widget_measure);
+                setContentView(R.layout.activity_qyz_custom_widget_measure);
                 break;
             case ACTIONBAR:
-                setContentView(R.layout.activity_custom_widget_actionbar);
+                setContentView(R.layout.activity_qyz_custom_widget_actionbar);
                 initTopBarView();
                 break;
             case TEXTVIEW:
-                setContentView(R.layout.activity_custom_widget_textview);
+                setContentView(R.layout.activity_qyz_custom_widget_textview);
                 break;
             case CIRCLEPROGRESS:
-                setContentView(R.layout.activity_custom_widget_circleprogress);
+                setContentView(R.layout.activity_qyz_custom_widget_circleprogress);
                 break;
             case VOLUME:
-                setContentView(R.layout.activity_custom_widget_volume);
+                setContentView(R.layout.activity_qyz_custom_widget_volume);
                 break;
             case SCROLLVIEW:
-                setContentView(R.layout.activity_custom_widget_scrollview);
+                setContentView(R.layout.activity_qyz_custom_widget_scrollview);
                 break;
             case VIEWLAYOUT:
-                setContentView(R.layout.activity_custom_widget_viewlayout);
+                setContentView(R.layout.activity_qyz_custom_widget_viewlayout);
         }
     }
 

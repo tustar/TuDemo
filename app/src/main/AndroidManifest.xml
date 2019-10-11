@@ -40,104 +40,18 @@
             </intent-filter>
         </activity>
 
-        <!-- RecyclerView实例 -->
-        <activity android:name=".ui.recycler.RecyclerViewActivity" />
+        <!--Android应用开发进阶-->
+        <activity android:name=".ui.fl.FlMainActivity" />
+        <activity android:name=".ui.fl.ch1.FlCh1Activity" />
+        <activity android:name=".ui.fl.ch2.FlCh2Activity" />
+        <activity android:name=".ui.fl.ch3.FlCh3Activity" />
+        <activity android:name=".ui.fl.ch4.FlCh4Activity" />
 
-        <!-- 可拖动ListView实例 -->
-        <activity android:name=".ui.dragsortlistview.DragSortListViewActivity" />
-
-        <!-- Loader实例 -->
-        <activity android:name=".ui.loader.LoaderActivity" />
-
-        <!-- 账号管理 -->
-        <activity android:name=".ui.account.AccountActivity" />
-
-        <!-- 动画模块 -->
-        <activity android:name=".ui.anim.viewanim.ViewAnimActivity" />
-        <activity android:name=".ui.anim.viewanim.HideActionBarActivity" />
-
-        <!-- 拖动View -->
-        <activity android:name=".ui.dragview.DragViewActivity" />
-        <activity android:name=".ui.dragview.DragViewShowActivity" />
-        <activity android:name=".ui.dragview.DragViewGroupActivity" />
-
-        <!-- 信号监听 -->
-        <activity android:name=".ui.signal.SignalActivity" />
-
-        <service android:name=".ui.signal.PhoneStateService" />
-
-        <!-- 控件实例 -->
-        <activity android:name=".ui.customwidget.CustomWidgetActivity" />
-        <activity android:name=".ui.customwidget.CustomWidgetShowActivity" />
-
-        <!-- 计算器-->
-        <activity android:name=".ui.calculator.HistoryActivity" />
-
-        <!-- Service实例 -->
-        <activity android:name=".ui.service.ServiceActivity" />
-
-        <service
-            android:name=".ui.service.DemoService"
-            android:enabled="true"
-            android:exported="true"
-            android:process=":remote">
-            <intent-filter>
-                <action android:name="com.tustar.demo.AIDL" />
-            </intent-filter>
-        </service>
-        <service
-            android:name=".ui.service.DemoIntentService"
-            android:exported="false" />
-
-        <!-- Provider实例 -->
-        <provider
-            android:name=".ui.deskclock.provider.HistoryProvider"
-            android:authorities="com.tustar.demo"
-            android:exported="false" />
-
-        <activity android:name=".ui.provider.ProviderActivity" />
-
-        <!-- Scroller实例 -->
-        <activity android:name=".ui.scroller.ScrollerActivity" />
-        <activity android:name=".ui.scroller.OnePointerDrawViewActivity" />
-        <activity android:name=".ui.scroller.TwoPointerDrawViewActivity" />
-        <activity android:name=".ui.scroller.HOverScrollViewActivity" />
-        <activity android:name=".ui.scroller.HScrollViewActivity" />
-        <activity android:name=".ui.scroller.other.OtherOnePointerDrawViewActivity" />
-        <activity android:name=".ui.scroller.other.OtherTwoPointerDrawViewActivity" />
-        <activity android:name=".ui.scroller.other.OtherHScrollViewActivity" />
-        <activity android:name=".ui.scroller.other.OtherHOverScrollViewActivity" />
-
-        <!-- 时钟实例 -->
-        <activity android:name=".ui.deskclock.DeskClockActivity" />
-
-        <!-- 三国群英传 -->
-        <activity android:name=".ui.qyz.QyzMainActivity" />
-        <activity
-            android:name=".ui.qyz.QyzPaletteActivity"
-            android:label="@string/title_activity_palette" />
-        <activity android:name=".ui.qyz.QyzTintingActivity" />
-        <activity android:name=".ui.qyz.QyzClippingActivity" />
-        <activity android:name=".ui.qyz.QyzElevationActivity" />
-        <activity android:name=".ui.qyz.QyzAnimMainActivity" />
-        <activity android:name=".ui.qyz.QyzAnimTransitionsActivity" />
-        <activity android:name=".ui.qyz.QyzFlexibleListViewActivity" />
-        <activity android:name=".ui.qyz.QyzOverScrollGridViewActivity" />
-        <activity
-            android:name=".ui.qyz.QyzRotationActivity"
-            android:configChanges="orientation|keyboardHidden|screenSize"
-            android:screenOrientation="user"
-            android:windowSoftInputMode="stateAlwaysHidden" />
-        <activity android:name=".ui.qyz.QyzSurfaceViewActivity" />
-        <activity android:name=".ui.qyz.QyzSvgActivity" />
 
         <!-- Android开发艺术探索 -->
         <activity android:name=".ui.ryg.RygMainActivity" />
-        <!-- Ryg.ch1 -->
-        <activity android:name=".ui.ryg.ch1.FlCh1Activity" />
-        <!-- Ryg.ch2 -->
+        <activity android:name=".ui.ryg.ch1.RygCh1Activity" />
         <activity android:name=".ui.ryg.ch2.RygCh2Activity" />
-        <!-- Ryg ch2 IPC -->
         <activity android:name=".ui.ryg.ch2.RygOneActivity" />
         <activity
             android:name=".ui.ryg.ch2.RygSecondActivity"
@@ -145,23 +59,18 @@
         <activity
             android:name=".ui.ryg.ch2.RygThirdActivity"
             android:process="com.tustar.demo.remote" />
-        <!-- Ryg ch2 BookManager -->
         <activity android:name=".ui.ryg.ch2.aidl.BookManagerActivity" />
 
         <service
             android:name=".ui.ryg.ch2.aidl.BookManagerService"
             android:process=":remote" />
-        <!-- Ryg ch2 BookProvider -->
         <activity android:name=".ui.ryg.ch2.provider.RygProviderActivity" />
-
         <provider
             android:name=".ui.ryg.ch2.provider.BookProvider"
             android:authorities="com.tustar.demo.ui.ryg.ch2.provider"
             android:permission="com.tustar.PROVIDER"
             android:process=":provider" />
-        <!-- Ryg ch2 Messenger -->
         <activity android:name=".ui.ryg.ch2.messenger.MessengerActivity" />
-
         <service
             android:name=".ui.ryg.ch2.messenger.MessengerService"
             android:process=":remote">
@@ -169,29 +78,24 @@
                 <action android:name="com.tustar.MessengerService.launch" />
             </intent-filter>
         </service>
-        <!-- Ryg ch2 Socket -->
         <activity android:name=".ui.ryg.ch2.socket.TCPClientActivity" />
 
         <service
             android:name=".ui.ryg.ch2.socket.TCPServerService"
             android:process=":remote" />
-        <!-- Ryg ch2 `BinderPool.java` -->
         <service
             android:name=".ui.ryg.ch2.binderpool.BinderPoolService"
             android:process=":remote" />
 
         <activity android:name=".ui.ryg.ch2.binderpool.BinderPoolActivity" />
-        <!-- Ryg ch3 -->
         <activity android:name=".ui.ryg.ch3.RygCh3Activity" />
         <activity android:name=".ui.ryg.ch3.RygCh3ViewMoveActivity" />
         <activity android:name=".ui.ryg.ch3.RygCh3OuterActivity" />
         <activity android:name=".ui.ryg.ch3.RygCh3InnerActivity" />
-        <!-- Ryg ch4 -->
         <activity android:name=".ui.ryg.ch4.RygCh4WidthHeightActivity" />
         <activity android:name=".ui.ryg.ch4.RygCh4CircleViewActivity" />
         <activity android:name=".ui.ryg.ch4.RygCh4ExActivity" />
         <activity android:name=".ui.ryg.ch4.RygCh4Activity" />
-        <!-- Ryg ch5 -->
         <activity
             android:name=".ui.ryg.ch5.RygCh5Activity"
             android:process=":remote" />
@@ -215,38 +119,55 @@
                 android:name="android.appwidget.provider"
                 android:resource="@xml/ryg_ch5_app_widget_info" />
         </receiver>
-        <!-- Ryg ch6 -->
+
         <activity android:name=".ui.ryg.ch6.RygCh6Activity" />
         <activity android:name=".ui.ryg.ch6.RygCh6DrawableActivity" />
-        <!-- Ryg ch7 -->
         <activity android:name=".ui.ryg.ch7.RygCh7Activity" />
         <activity android:name=".ui.ryg.ch7.RygCh7ActivityAnimatorActivity" />
         <activity android:name=".ui.ryg.ch7.RygCh7ScaleButtonActivity" />
         <activity android:name=".ui.ryg.ch7.RygCh7LayoutAnimationActivity" />
-        <!-- Ryg ch8 -->
         <activity android:name=".ui.ryg.ch8.RygCh8Activity" />
         <activity android:name=".ui.ryg.ch8.RygCh8DialogActivity" />
         <activity android:name=".ui.ryg.ch8.RygCh8FloatActivity" />
-        <!-- Ryg ch9 -->
         <activity android:name=".ui.ryg.ch9.RygCh9Activity" />
-        <!-- Ryg ch10 -->
         <activity android:name=".ui.ryg.ch10.RygCh10Activity" />
-        <!-- Ryg ch11 -->
         <activity android:name=".ui.ryg.ch11.RygCh11Activity" />
 
         <service
             android:name=".ui.ryg.ch11.LocalIntentService"
             android:exported="false" />
-        <!-- Ryg ch12 -->
+
         <activity android:name=".ui.ryg.ch12.RygCh12Activity" />
-        <!-- Ryg ch13 -->
         <activity android:name=".ui.ryg.ch13.RygCh13Activity" />
-        <!-- Ryg ch14 -->
         <activity android:name=".ui.ryg.ch14.RygCh14Activity" />
-        <!-- Ryg ch15 -->
         <activity android:name=".ui.ryg.ch15.RygCh15Activity" />
 
-        <!-- 文件管理器Demo -->
+        <!-- 三国群英传 -->
+        <activity android:name=".ui.qyz.QyzMainActivity" />
+        <activity
+            android:name=".ui.qyz.QyzPaletteActivity"
+            android:label="@string/title_activity_palette" />
+        <activity android:name=".ui.qyz.QyzTintingActivity" />
+        <activity android:name=".ui.qyz.QyzClippingActivity" />
+        <activity android:name=".ui.qyz.QyzElevationActivity" />
+        <activity android:name=".ui.qyz.QyzAnimMainActivity" />
+        <activity android:name=".ui.qyz.QyzAnimTransitionsActivity" />
+        <activity android:name=".ui.qyz.QyzFlexibleListViewActivity" />
+        <activity android:name=".ui.qyz.QyzOverScrollGridViewActivity" />
+        <activity
+            android:name=".ui.qyz.QyzRotationActivity"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:screenOrientation="user"
+            android:windowSoftInputMode="stateAlwaysHidden" />
+        <activity android:name=".ui.qyz.QyzSurfaceViewActivity" />
+        <activity android:name=".ui.qyz.QyzSvgActivity" />
+        <activity android:name=".ui.qyz.QyzCustomWidgetActivity" />
+        <activity android:name=".ui.qyz.QyzCustomWidgetShowActivity" />
+        <activity android:name=".ui.qyz.dragview.QyzDragViewActivity" />
+        <activity android:name=".ui.qyz.dragview.QyzDragViewShowActivity" />
+        <activity android:name=".ui.qyz.dragview.QyzDragViewGroupActivity" />
+
+        <!-- 文件管理器 -->
         <activity android:name=".ui.fm.FmMainActivity" />
         <activity
             android:name=".ui.fm.FmGifPlayerActivity"
@@ -269,17 +190,67 @@
         <activity android:name=".ui.fm.ItemDetailActivity" />
         <activity android:name=".ui.fm.FmLongPhotoActivity" />
 
+        <!-- 时钟实例 -->
+        <activity android:name=".ui.deskclock.DeskClockActivity" />
+        <provider
+            android:name=".ui.deskclock.provider.HistoryProvider"
+            android:authorities="com.tustar.demo"
+            android:exported="false" />
+
+        <!-- 计算器-->
+        <activity android:name=".ui.calculator.HistoryActivity" />
+
+        <!-- 信号监听 -->
+        <activity android:name=".ui.signal.SignalActivity" />
+        <service android:name=".ui.signal.PhoneStateService" />
+
+        <!-- 账号管理 -->
+        <activity android:name=".ui.account.AccountActivity" />
+
+        <!-- Service实例 -->
+        <activity android:name=".ui.service.ServiceActivity" />
+
+        <service
+            android:name=".ui.service.DemoService"
+            android:enabled="true"
+            android:exported="true"
+            android:process=":remote">
+            <intent-filter>
+                <action android:name="com.tustar.demo.AIDL" />
+            </intent-filter>
+        </service>
+        <service
+            android:name=".ui.service.DemoIntentService"
+            android:exported="false" />
+
+        <!-- Provider实例　-->
+        <activity android:name=".ui.provider.ProviderActivity" />
+
+        <!-- RecyclerView实例 -->
+        <activity android:name=".ui.recycler.RecyclerViewActivity" />
+        <!-- 可拖动ListView实例 -->
+        <activity android:name=".ui.dragsortlistview.DragSortListViewActivity" />
+
+        <!-- 动画模块 -->
+        <activity android:name=".ui.anim.viewanim.ViewAnimActivity" />
+        <activity android:name=".ui.anim.viewanim.HideActionBarActivity" />
+
+        <!-- Scroller实例 -->
+        <activity android:name=".ui.scroller.ScrollerActivity" />
+        <activity android:name=".ui.scroller.OnePointerDrawViewActivity" />
+        <activity android:name=".ui.scroller.TwoPointerDrawViewActivity" />
+        <activity android:name=".ui.scroller.HOverScrollViewActivity" />
+        <activity android:name=".ui.scroller.HScrollViewActivity" />
+        <activity android:name=".ui.scroller.other.OtherOnePointerDrawViewActivity" />
+        <activity android:name=".ui.scroller.other.OtherTwoPointerDrawViewActivity" />
+        <activity android:name=".ui.scroller.other.OtherHScrollViewActivity" />
+        <activity android:name=".ui.scroller.other.OtherHOverScrollViewActivity" />
+
         <!-- JetPack -->
         <activity android:name=".ui.jet.pagingroom.BookActivity" />
 
-        <!--Android应用开发进阶-->
-        <activity android:name=".ui.fl.FlMainActivity" />
-        <activity android:name=".ui.fl.ch1.FlCh1Activity" />
-        <activity android:name=".ui.fl.ch2.FlCh2Activity" />
-        <activity android:name=".ui.fl.ch3.FlCh3Activity" />
-        <activity android:name=".ui.fl.ch4.FlCh4Activity" />
-        <activity android:name=".ui.fl.ch5.FlCh5Activity" />
-
+        <!-- Loader实例 -->
+        <activity android:name=".ui.loader.LoaderActivity" />
     </application>
 
 </manifest>

@@ -1,4 +1,4 @@
-package com.tustar.demo.ui.customwidget;
+package com.tustar.demo.ui.qyz;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -8,7 +8,7 @@ import com.tustar.demo.R;
 import com.tustar.demo.base.BaseActivity;
 import com.tustar.demo.common.IntentExtraKey;
 
-public class CustomWidgetActivity extends BaseActivity {
+public class QyzCustomWidgetActivity extends BaseActivity {
 
     public enum CustomType {
         MEASURE, ACTIONBAR, TEXTVIEW, CIRCLEPROGRESS, VOLUME, SCROLLVIEW, VIEWLAYOUT
@@ -19,8 +19,9 @@ public class CustomWidgetActivity extends BaseActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_custom_widget);
-        intent = new Intent(this, CustomWidgetShowActivity.class);
+        setContentView(R.layout.activity_qyz_custom_widget);
+        setTitle(R.string.qyz_drag_view);
+        intent = new Intent(this, QyzCustomWidgetShowActivity.class);
     }
 
     public void customMeasure(View view) {

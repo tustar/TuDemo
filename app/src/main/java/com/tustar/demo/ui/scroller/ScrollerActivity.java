@@ -50,7 +50,7 @@ public class ScrollerActivity extends BaseActivity implements ScrollerAdapter.On
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_scroller);
-        setTitle(ScrollerActivity.class.getSimpleName());
+        setTitle(R.string.scroller_title);
         mContext = this;
 
         mScrollerRecyclerview = findViewById(R.id.scroller_recyclerview);
