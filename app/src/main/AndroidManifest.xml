@@ -11,8 +11,7 @@
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.INTERNET" />
-    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
-    <!--  -->
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" /> <!--  -->
     <uses-permission android:name="com.tustar.PROVIDER" />
     <uses-permission android:name="com.tustar.permission.ACCESS_BOOK_SERVICE" />
     <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" />
@@ -38,17 +37,12 @@
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-        </activity>
-
-        <!--Android应用开发进阶-->
+        </activity> <!-- Android应用开发进阶 -->
         <activity android:name=".ui.fl.FlMainActivity" />
         <activity android:name=".ui.fl.ch1.FlCh1Activity" />
         <activity android:name=".ui.fl.ch2.FlCh2Activity" />
         <activity android:name=".ui.fl.ch3.FlCh3Activity" />
-        <activity android:name=".ui.fl.ch4.FlCh4Activity" />
-
-
-        <!-- Android开发艺术探索 -->
+        <activity android:name=".ui.fl.ch4.FlCh4Activity" /> <!-- Android开发艺术探索 -->
         <activity android:name=".ui.ryg.RygMainActivity" />
         <activity android:name=".ui.ryg.ch1.RygCh1Activity" />
         <activity android:name=".ui.ryg.ch2.RygCh2Activity" />
@@ -64,13 +58,17 @@
         <service
             android:name=".ui.ryg.ch2.aidl.BookManagerService"
             android:process=":remote" />
+
         <activity android:name=".ui.ryg.ch2.provider.RygProviderActivity" />
+
         <provider
             android:name=".ui.ryg.ch2.provider.BookProvider"
             android:authorities="com.tustar.demo.ui.ryg.ch2.provider"
             android:permission="com.tustar.PROVIDER"
             android:process=":provider" />
+
         <activity android:name=".ui.ryg.ch2.messenger.MessengerActivity" />
+
         <service
             android:name=".ui.ryg.ch2.messenger.MessengerService"
             android:process=":remote">
@@ -78,6 +76,7 @@
                 <action android:name="com.tustar.MessengerService.launch" />
             </intent-filter>
         </service>
+
         <activity android:name=".ui.ryg.ch2.socket.TCPClientActivity" />
 
         <service
@@ -140,9 +139,7 @@
         <activity android:name=".ui.ryg.ch12.RygCh12Activity" />
         <activity android:name=".ui.ryg.ch13.RygCh13Activity" />
         <activity android:name=".ui.ryg.ch14.RygCh14Activity" />
-        <activity android:name=".ui.ryg.ch15.RygCh15Activity" />
-
-        <!-- 三国群英传 -->
+        <activity android:name=".ui.ryg.ch15.RygCh15Activity" /> <!-- 三国群英传 -->
         <activity android:name=".ui.qyz.QyzMainActivity" />
         <activity
             android:name=".ui.qyz.QyzPaletteActivity"
@@ -165,9 +162,7 @@
         <activity android:name=".ui.qyz.QyzCustomWidgetShowActivity" />
         <activity android:name=".ui.qyz.dragview.QyzDragViewActivity" />
         <activity android:name=".ui.qyz.dragview.QyzDragViewShowActivity" />
-        <activity android:name=".ui.qyz.dragview.QyzDragViewGroupActivity" />
-
-        <!-- 文件管理器 -->
+        <activity android:name=".ui.qyz.dragview.QyzDragViewGroupActivity" /> <!-- 文件管理器 -->
         <activity android:name=".ui.fm.FmMainActivity" />
         <activity
             android:name=".ui.fm.FmGifPlayerActivity"
@@ -188,26 +183,18 @@
         <activity android:name=".ui.fm.FmSectionGridViewActivity" />
         <activity android:name=".ui.fm.ItemListActivity" />
         <activity android:name=".ui.fm.ItemDetailActivity" />
-        <activity android:name=".ui.fm.FmLongPhotoActivity" />
-
-        <!-- 时钟实例 -->
+        <activity android:name=".ui.fm.FmLongPhotoActivity" /> <!-- 时钟实例 -->
         <activity android:name=".ui.deskclock.DeskClockActivity" />
+
         <provider
             android:name=".ui.deskclock.provider.HistoryProvider"
             android:authorities="com.tustar.demo"
-            android:exported="false" />
-
-        <!-- 计算器-->
-        <activity android:name=".ui.calculator.HistoryActivity" />
-
-        <!-- 信号监听 -->
+            android:exported="false" /> <!-- 计算器 -->
+        <activity android:name=".ui.calculator.HistoryActivity" /> <!-- 信号监听 -->
         <activity android:name=".ui.signal.SignalActivity" />
-        <service android:name=".ui.signal.PhoneStateService" />
 
-        <!-- 账号管理 -->
-        <activity android:name=".ui.account.AccountActivity" />
-
-        <!-- Service实例 -->
+        <service android:name=".ui.signal.PhoneStateService" /> <!-- 账号管理 -->
+        <activity android:name=".ui.account.AccountActivity" /> <!-- Service实例 -->
         <activity android:name=".ui.service.ServiceActivity" />
 
         <service
@@ -221,21 +208,12 @@
         </service>
         <service
             android:name=".ui.service.DemoIntentService"
-            android:exported="false" />
-
-        <!-- Provider实例　-->
-        <activity android:name=".ui.provider.ProviderActivity" />
-
-        <!-- RecyclerView实例 -->
-        <activity android:name=".ui.recycler.RecyclerViewActivity" />
-        <!-- 可拖动ListView实例 -->
-        <activity android:name=".ui.dragsortlistview.DragSortListViewActivity" />
-
-        <!-- 动画模块 -->
+            android:exported="false" /> <!-- Provider实例　 -->
+        <activity android:name=".ui.provider.ProviderActivity" /> <!-- RecyclerView实例 -->
+        <activity android:name=".ui.recycler.RecyclerViewActivity" /> <!-- 可拖动ListView实例 -->
+        <activity android:name=".ui.dragsortlistview.DragSortListViewActivity" /> <!-- 动画模块 -->
         <activity android:name=".ui.anim.viewanim.ViewAnimActivity" />
-        <activity android:name=".ui.anim.viewanim.HideActionBarActivity" />
-
-        <!-- Scroller实例 -->
+        <activity android:name=".ui.anim.viewanim.HideActionBarActivity" /> <!-- Scroller实例 -->
         <activity android:name=".ui.scroller.ScrollerActivity" />
         <activity android:name=".ui.scroller.OnePointerDrawViewActivity" />
         <activity android:name=".ui.scroller.TwoPointerDrawViewActivity" />
@@ -244,13 +222,15 @@
         <activity android:name=".ui.scroller.other.OtherOnePointerDrawViewActivity" />
         <activity android:name=".ui.scroller.other.OtherTwoPointerDrawViewActivity" />
         <activity android:name=".ui.scroller.other.OtherHScrollViewActivity" />
-        <activity android:name=".ui.scroller.other.OtherHOverScrollViewActivity" />
-
-        <!-- JetPack -->
-        <activity android:name=".ui.jet.pagingroom.BookActivity" />
-
-        <!-- Loader实例 -->
+        <activity android:name=".ui.scroller.other.OtherHOverScrollViewActivity" /> <!-- JetPack -->
+        <activity android:name=".ui.jet.pagingroom.BookActivity" /> <!-- Loader实例 -->
         <activity android:name=".ui.loader.LoaderActivity" />
+
+
+        <!-- Hencoder练习-->
+        <activity
+            android:name=".ui.hencoder.ch1.PracticeDraw1Activity"
+            android:screenOrientation="portrait" />
     </application>
 
 </manifest>

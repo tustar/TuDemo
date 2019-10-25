@@ -27,6 +27,7 @@ import com.tustar.demo.ui.deskclock.DeskClockActivity
 import com.tustar.demo.ui.dragsortlistview.DragSortListViewActivity
 import com.tustar.demo.ui.fl.FlMainActivity
 import com.tustar.demo.ui.fm.FmMainActivity
+import com.tustar.demo.ui.hencoder.ch1.PracticeDraw1Activity
 import com.tustar.demo.ui.jet.pagingroom.BookActivity
 import com.tustar.demo.ui.loader.LoaderActivity
 import com.tustar.demo.ui.provider.ProviderActivity
@@ -46,6 +47,10 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
     companion object {
 
         private val TAG = MainActivity::class.java.simpleName
+        private val HENCODER_DEMOS = listOf(
+                ContentItem(PracticeDraw1Activity::class.java, R.string.hen_practice_draw_1)
+        )
+        private val HENCODER_SECTION = SectionItem(R.string.section_hencoder, HENCODER_DEMOS)
         //
         private val BOOK_DEMOS = listOf(
                 ContentItem(FlMainActivity::class.java, R.string.fl_main_title, true),
@@ -97,6 +102,10 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         private val OTHER_SECTION = SectionItem(R.string.section_other, OTHER_DEMOS)
         //
         val ITEMS = mutableListOf<MainItem>().apply {
+            //
+            add(HENCODER_SECTION)
+            addAll(HENCODER_DEMOS)
+            //
             add(BOOK_SECTION)
             addAll(BOOK_DEMOS)
             //

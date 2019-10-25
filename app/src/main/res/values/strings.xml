@@ -6,6 +6,7 @@
     <string name="add">添加</string>
 
     <!-- Main section-->
+    <string name="section_hencoder">Hencoder练习</string>
     <string name="section_books">书籍范例</string>
     <string name="section_project">项目功能调研</string>
     <string name="section_abcs">四大组件</string>
@@ -205,5 +206,8 @@
     <!--Other-->
     <string name="appwidget_text">EXAMPLE</string>
     <string name="add_widget">Add widget</string>
+
+    <!--Hencoder练习-->
+    <string name="hen_practice_draw_1">PracticeDraw1</string>
 
 </resources>

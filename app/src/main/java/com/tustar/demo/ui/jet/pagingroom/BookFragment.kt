@@ -43,8 +43,8 @@ class BookFragment : androidx.fragment.app.Fragment() {
         initSwipeToDelete()
     }
 
-    override fun onCreateOptionsMenu(menu: Menu?, inflater: MenuInflater?) {
-        inflater?.inflate(R.menu.fragment_jet_book, menu)
+    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
+        inflater.inflate(R.menu.fragment_jet_book, menu)
         super.onCreateOptionsMenu(menu, inflater)
     }
 
