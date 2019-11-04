@@ -7,10 +7,10 @@ import android.graphics.Paint
 import android.util.AttributeSet
 import android.view.View
 
-class DrawCircleView @JvmOverloads constructor(context: Context,
-                                               attrs: AttributeSet,
-                                               defStyleAttr: Int = 0,
-                                               defStyleRes: Int = 0)
+class Draw2CircleView @JvmOverloads constructor(context: Context,
+                                                attrs: AttributeSet? = null,
+                                                defStyleAttr: Int = 0,
+                                                defStyleRes: Int = 0)
     : View(context, attrs, defStyleAttr, defStyleRes) {
 
     var paint: Paint = Paint()
@@ -24,6 +24,8 @@ class DrawCircleView @JvmOverloads constructor(context: Context,
     override fun onDraw(canvas: Canvas) {
         super.onDraw(canvas)
 
+        paint.color = Color.BLACK
+        paint.style = Paint.Style.FILL
         canvas.drawCircle(150F, 300F, 100F, paint)
 
         paint.style = Paint.Style.STROKE

@@ -4,11 +4,12 @@ import android.content.Context
 import android.graphics.Canvas
 import android.graphics.Color
 import android.graphics.Paint
+import android.graphics.Path
 import android.util.AttributeSet
 import android.view.View
 
-class DrawPointView @JvmOverloads constructor(context: Context,
-                                              attrs: AttributeSet,
+class Draw9PathView @JvmOverloads constructor(context: Context,
+                                              attrs: AttributeSet? = null,
                                               defStyleAttr: Int = 0,
                                               defStyleRes: Int = 0)
     : View(context, attrs, defStyleAttr, defStyleRes) {
@@ -18,19 +19,17 @@ class DrawPointView @JvmOverloads constructor(context: Context,
     init {
         paint.isAntiAlias = true
         paint.color = Color.BLACK
+        paint.style = Paint.Style.FILL
     }
 
     override fun onDraw(canvas: Canvas) {
         super.onDraw(canvas)
 
-        paint.strokeWidth = 40F
-        paint.strokeCap = Paint.Cap.ROUND
-        canvas.drawPoint(250F, 300F, paint)
-
-        paint.strokeCap = Paint.Cap.SQUARE
-        canvas.drawPoint(550F, 300F, paint)
-
-        paint.strokeCap = Paint.Cap.BUTT
-        canvas.drawPoint(850F, 300F, paint)
+        val path = Path()
+        path.addArc(200F, 200F, 400F, 400F, -225F, 225F)
+        path.arcTo(400F, 200F, 600F, 400F, -180F, 225F,
+                false)
+        path.lineTo(400F, 542F)
+        canvas.drawPath(path, paint)
     }
 }

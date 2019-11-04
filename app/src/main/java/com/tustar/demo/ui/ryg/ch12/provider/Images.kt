@@ -17,7 +17,7 @@
 package com.tustar.demo.ui.ryg.ch12.provider
 
 /**
- * Some simple test data to use for this sample app.
+ * Some simple test DATAS to use for this sample app.
  */
 object Images {
 

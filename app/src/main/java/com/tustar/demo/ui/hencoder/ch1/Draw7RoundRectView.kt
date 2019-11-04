@@ -4,14 +4,13 @@ import android.content.Context
 import android.graphics.Canvas
 import android.graphics.Color
 import android.graphics.Paint
-import android.graphics.RectF
 import android.util.AttributeSet
 import android.view.View
 
-class DrawOvalView @JvmOverloads constructor(context: Context,
-                                             attrs: AttributeSet,
-                                             defStyleAttr: Int = 0,
-                                             defStyleRes: Int = 0)
+class Draw7RoundRectView @JvmOverloads constructor(context: Context,
+                                                   attrs: AttributeSet? = null,
+                                                   defStyleAttr: Int = 0,
+                                                   defStyleRes: Int = 0)
     : View(context, attrs, defStyleAttr, defStyleRes) {
 
     var paint: Paint = Paint()
@@ -24,15 +23,12 @@ class DrawOvalView @JvmOverloads constructor(context: Context,
     override fun onDraw(canvas: Canvas) {
         super.onDraw(canvas)
 
-        val oval = RectF(300F, 150F, 800F, 450F)
-
+        paint.color = Color.BLACK
         paint.style = Paint.Style.FILL
-        canvas.drawArc(oval, -110F, 100F, true, paint)
-
-        canvas.drawArc(oval, 20F, 140F, false, paint)
+        canvas.drawRoundRect(100F, 150F, 500F, 450F, 50F, 50F, paint)
 
         paint.style = Paint.Style.STROKE
         paint.strokeWidth = 3F
-        canvas.drawArc(oval, 180F, 60F, false, paint)
+        canvas.drawRoundRect(600F, 150F, 1000F, 450F, 50F, 50F, paint)
     }
 }

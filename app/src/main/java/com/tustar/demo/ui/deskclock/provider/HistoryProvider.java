@@ -63,7 +63,7 @@ public class HistoryProvider extends ContentProvider {
 //        if (DeviceUtils.isNOrLater()) {
             // All N devices have split storage areas, but we may need to
             // migrate existing database into the new device encrypted
-            // storage area, which is where our data lives from now on.
+            // storage area, which is where our DATAS lives from now on.
 //            storageContext = context.createDeviceProtectedStorageContext();
 //            if (!storageContext.moveDatabaseFrom(context, HistoryDatabaseHelper.DATABASE_NAME)) {
 //                Logger.wtf("Failed to migrate database: %s", HistoryDatabaseHelper.DATABASE_NAME);

@@ -4,11 +4,12 @@ import android.content.Context
 import android.graphics.Canvas
 import android.graphics.Color
 import android.graphics.Paint
+import android.graphics.RectF
 import android.util.AttributeSet
 import android.view.View
 
-class DrawRectView @JvmOverloads constructor(context: Context,
-                                             attrs: AttributeSet,
+class Draw8ArcView @JvmOverloads constructor(context: Context,
+                                             attrs: AttributeSet? = null,
                                              defStyleAttr: Int = 0,
                                              defStyleRes: Int = 0)
     : View(context, attrs, defStyleAttr, defStyleRes) {
@@ -23,10 +24,15 @@ class DrawRectView @JvmOverloads constructor(context: Context,
     override fun onDraw(canvas: Canvas) {
         super.onDraw(canvas)
 
-        canvas.drawRect(100F, 150F, 400F, 450F, paint)
+        val oval = RectF(300F, 150F, 800F, 450F)
+
+        paint.style = Paint.Style.FILL
+        canvas.drawArc(oval, -110F, 100F, true, paint)
+
+        canvas.drawArc(oval, 20F, 140F, false, paint)
 
         paint.style = Paint.Style.STROKE
         paint.strokeWidth = 3F
-        canvas.drawRect(500F, 150F, 800F, 450F, paint)
+        canvas.drawArc(oval, 180F, 60F, false, paint)
     }
 }

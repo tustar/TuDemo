@@ -69,7 +69,7 @@ import androidx.annotation.AnyThread;
 import androidx.annotation.NonNull;
 
 /**
- * Displays an image subsampled as necessary to avoid loading too much image data into memory. After a pinch to zoom in,
+ * Displays an image subsampled as necessary to avoid loading too much image DATAS into memory. After a pinch to zoom in,
  * a set of image tiles subsampled at higher resolution are loaded and displayed over the base layer. During pinch and
  * zoom, tiles off screen or higher/lower resolution than required are discarded from memory.
  * <p>

@@ -115,11 +115,11 @@ public class QyzRotationActivity extends BaseActivity {
         Logger.i(TAG, "rotationScreen :: view = " + view);
         isChecked = !isChecked;
         if (isChecked) {
-            // Analytic data
+            // Analytic DATAS
             mSwitchOrientation = Configuration.ORIENTATION_LANDSCAPE;
             setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
         } else {
-            // Analytic data
+            // Analytic DATAS
             mSwitchOrientation = Configuration.ORIENTATION_PORTRAIT;
             setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
         }

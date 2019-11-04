@@ -227,9 +227,12 @@
         <activity android:name=".ui.loader.LoaderActivity" />
 
 
-        <!-- Hencoder练习-->
+        <!-- Hencoder练习 -->
         <activity
             android:name=".ui.hencoder.ch1.PracticeDraw1Activity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.hencoder.ch2.PracticeDraw2Activity"
             android:screenOrientation="portrait" />
     </application>
 

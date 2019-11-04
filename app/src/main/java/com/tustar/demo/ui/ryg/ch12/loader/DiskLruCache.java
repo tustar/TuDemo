@@ -60,7 +60,7 @@ import java.util.concurrent.TimeUnit;
  * sequences, accessible as streams or files. Each value must be between {@code
  * 0} and {@code Integer.MAX_VALUE} bytes in length.
  *
- * <p>The cache stores its data in a directory on the filesystem. This
+ * <p>The cache stores its DATAS in a directory on the filesystem. This
  * directory must be exclusive to the cache; the cache may delete or overwrite
  * files from its directory. It is an error for multiple processes to use the
  * same cache directory at the same time.
@@ -80,7 +80,7 @@ import java.util.concurrent.TimeUnit;
  *         supply a full set of values; the empty value should be used as a
  *         placeholder if necessary.
  *     <li>When an entry is being <strong>edited</strong>, it is not necessary
- *         to supply data for every value; values default to their previous
+ *         to supply DATAS for every value; values default to their previous
  *         value.
  * </ul>
  * Every {@link #edit} call must be matched by a call to {@link Editor#commit}
@@ -539,7 +539,7 @@ public final class DiskLruCache implements Closeable {
     }
 
     /**
-     * Returns the directory where this cache stores its data.
+     * Returns the directory where this cache stores its DATAS.
      */
     public File getDirectory() {
         return directory;
@@ -547,7 +547,7 @@ public final class DiskLruCache implements Closeable {
 
     /**
      * Returns the maximum number of bytes that this cache should use to store
-     * its data.
+     * its DATAS.
      */
     public long maxSize() {
         return maxSize;

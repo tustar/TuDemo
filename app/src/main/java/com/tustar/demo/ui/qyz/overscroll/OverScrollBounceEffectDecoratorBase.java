@@ -89,7 +89,7 @@ public abstract class OverScrollBounceEffectDecoratorBase implements IOverScroll
     protected float mVelocity;
 
     /**
-     * Motion attributes: keeps data describing current motion event.
+     * Motion attributes: keeps DATAS describing current motion event.
      * <br/>Orientation agnostic: subclasses provide either horizontal or vertical
      * initialization of the agnostic attributes.
      */

@@ -107,7 +107,7 @@ public class LoaderActivity extends BaseActivity {
 
         @Override
         public void onLoadFinished(Loader<List<AppEntry>> loader, List<AppEntry> data) {
-            Logger.i(TAG, "onLoadFinished: loader = " + loader + ", data = " + data);
+            Logger.i(TAG, "onLoadFinished: loader = " + loader + ", DATAS = " + data);
             mAdapter.setData(data);
             if (isResumed()) {
                 setListShown(true);

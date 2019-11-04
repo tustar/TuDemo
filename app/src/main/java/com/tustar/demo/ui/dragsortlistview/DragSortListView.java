@@ -87,7 +87,7 @@ public class DragSortListView extends ListView {
     private boolean mFloatViewOnMeasured = false;
 
     /**
-     * Watch the Adapter for data changes. Cancel a drag if
+     * Watch the Adapter for DATAS changes. Cancel a drag if
      * coincident with a change.
      */ 
     private DataSetObserver mObserver;
@@ -597,7 +597,7 @@ public class DragSortListView extends ListView {
      * <code>adapter</code>, this method calls the appropriate
      * set*Listener method with <code>adapter</code> as the argument.
      * 
-     * @param adapter The ListAdapter providing data to back
+     * @param adapter The ListAdapter providing DATAS to back
      * DragSortListView.
      *
      * @see ListView#setAdapter(ListAdapter)

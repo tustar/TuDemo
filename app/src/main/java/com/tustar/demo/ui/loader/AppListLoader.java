@@ -63,7 +63,7 @@ public class AppListLoader extends AsyncTaskLoader<List<AppEntry>> {
     /** (2) Deliver the results to the client **/
     /*******************************************/
     /**
-     * Called when there is new data to deliver to the client. The superclass will
+     * Called when there is new DATAS to deliver to the client. The superclass will
      * deliver it to the registered listener (i.e. the LoaderManager), which will
      * forward the results to the client through a call to onLoadFinished.
      */
@@ -72,20 +72,20 @@ public class AppListLoader extends AsyncTaskLoader<List<AppEntry>> {
         Logger.i(TAG, "deliverResult: ");
         if (isReset()) {
             Logger.d(TAG, "deliverResult: Warning! An async query came in while the Loader was reset!");
-            // The Loader has been reset; ignore the result and invalidate the data.
+            // The Loader has been reset; ignore the result and invalidate the DATAS.
             // This can happen when the Loader is reset while an asynchronous query
             // is working in the background. That is, when the background thread
             // finishes its work and attempts to deliver the results to the client,
             // it will see here that the Loader has been reset and discard any
-            // resources associated with the new data as necessary.
+            // resources associated with the new DATAS as necessary.
             if (null != data) {
                 releaseResources(data);
                 return;
             }
         }
 
-        // Hold a reference to the old data so it doesn't get garbage collected.
-        // We must protect it until the new data has been delivered.
+        // Hold a reference to the old DATAS so it doesn't get garbage collected.
+        // We must protect it until the new DATAS has been delivered.
         List<AppEntry> oldApps = mApps;
         mApps = data;
 
@@ -97,9 +97,9 @@ public class AppListLoader extends AsyncTaskLoader<List<AppEntry>> {
             super.deliverResult(data);
         }
 
-        // Invalidate the old data as we don't need it any more.
+        // Invalidate the old DATAS as we don't need it any more.
         if (null != oldApps && oldApps != data) {
-            Logger.d(TAG, "deliverResult: Releasing any old data associated with this Loader.");
+            Logger.d(TAG, "deliverResult: Releasing any old DATAS associated with this Loader.");
             releaseResources(oldApps);
         }
     }
@@ -111,7 +111,7 @@ public class AppListLoader extends AsyncTaskLoader<List<AppEntry>> {
     protected void onStartLoading() {
         Logger.i(TAG, "onStartLoading: ");
         if (null != mApps) {
-            Logger.d(TAG, "onStartLoading: Delivering previously loaded data to the client...");
+            Logger.d(TAG, "onStartLoading: Delivering previously loaded DATAS to the client...");
             deliverResult(mApps);
         }
 
@@ -124,12 +124,12 @@ public class AppListLoader extends AsyncTaskLoader<List<AppEntry>> {
             // When the observer detects a new installed application, it will call
             // onContentChanged() on the Loader, which will cause the next call to
             // takeContentChanged() to return true. If this is ever the case (or if
-            // the current data is null), we force a new load.
+            // the current DATAS is null), we force a new load.
             Logger.d(TAG, "onStartLoading: A content change has been detected... so force load!");
             forceLoad();
         } else if (null == mApps) {
-            // If the current data is null... then we should make it non-null! :)
-            Logger.d(TAG, "onStartLoading: The current data is data is null... so force load!");
+            // If the current DATAS is null... then we should make it non-null! :)
+            Logger.d(TAG, "onStartLoading: The current DATAS is DATAS is null... so force load!");
             forceLoad();
 
         }
@@ -143,7 +143,7 @@ public class AppListLoader extends AsyncTaskLoader<List<AppEntry>> {
         cancelLoad();
 
         // Note that we leave the observer as is; Loaders in a stopped state
-        // should still monitor the data source for changes so that the Loader
+        // should still monitor the DATAS source for changes so that the Loader
         // will know to force a new load if it is ever started again.
     }
 
@@ -188,7 +188,7 @@ public class AppListLoader extends AsyncTaskLoader<List<AppEntry>> {
 
     /**
      * Helper method to take care of releasing resources associated with an
-     * actively loaded data set.
+     * actively loaded DATAS set.
      */
     private void releaseResources(List<AppEntry> mApps) {
         // For a simple List, there is nothing to do. For something like a Cursor,
@@ -197,7 +197,7 @@ public class AppListLoader extends AsyncTaskLoader<List<AppEntry>> {
     }
 
     /*********************************************************************/
-    /** (4) Observer which receives notifications when the data changes **/
+    /** (4) Observer which receives notifications when the DATAS changes **/
     /*********************************************************************/
     // An observer to notify the Loader when new apps are installed/updated.
     private AppListObserver mAppsObserver;
@@ -207,7 +207,7 @@ public class AppListLoader extends AsyncTaskLoader<List<AppEntry>> {
     /**************************/
     /**
      * Performs alphabetical comparison of {@link AppEntry} objects. This is
-     * used to sort queried data in {@link loadInBackground}.
+     * used to sort queried DATAS in {@link loadInBackground}.
      */
     private static final Comparator<? super AppEntry> ALPHA_COMPARATOR = new Comparator<AppEntry>() {
 

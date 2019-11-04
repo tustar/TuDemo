@@ -115,16 +115,16 @@ public class StickyGridHeadersBaseAdapterWrapper extends BaseAdapter {
     }
 
     /**
-     * Get the data item associated with the specified position in the data set.
+     * Get the DATAS item associated with the specified position in the DATAS set.
      * <p>
      * Since this wrapper inserts fake entries to fill out items grouped by
      * header and also spaces to insert headers into some positions will return
      * null.
      * </p>
      * 
-     * @param position Position of the item whose data we want within the
-     *            adapter's data set.
-     * @return The data at the specified position.
+     * @param position Position of the item whose DATAS we want within the
+     *            adapter's DATAS set.
+     * @return The DATAS at the specified position.
      */
     @Override
     public Object getItem(int position) throws ArrayIndexOutOfBoundsException {

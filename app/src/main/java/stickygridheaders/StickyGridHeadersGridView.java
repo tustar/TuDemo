@@ -486,7 +486,7 @@ public class StickyGridHeadersGridView extends GridView implements OnScrollListe
         if (adapter instanceof StickyGridHeadersBaseAdapter) {
             baseAdapter = (StickyGridHeadersBaseAdapter)adapter;
         } else if (adapter instanceof StickyGridHeadersSimpleAdapter) {
-            // Wrap up simple adapter to auto-generate the data we need.
+            // Wrap up simple adapter to auto-generate the DATAS we need.
             baseAdapter = new StickyGridHeadersSimpleAdapterWrapper(
                     (StickyGridHeadersSimpleAdapter)adapter);
         } else {
@@ -1105,7 +1105,7 @@ public class StickyGridHeadersGridView extends GridView implements OnScrollListe
 
         @Override
         public void run() {
-            // The data has changed since we posted this action to the event
+            // The DATAS has changed since we posted this action to the event
             // queue, bail out before bad things happen.
             if (mDataChanged)
                 return;
