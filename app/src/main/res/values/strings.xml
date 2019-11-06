@@ -209,5 +209,7 @@
 
     <!--Hencoder练习-->
     <string name="hen_practice_draw_1">PracticeDraw1</string>
+    <string name="hen_practice_draw_2">PracticeDraw2</string>
+    <string name="hen_practice_draw_3">PracticeDraw3</string>
 
 </resources>

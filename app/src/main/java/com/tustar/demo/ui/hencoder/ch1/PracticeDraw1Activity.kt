@@ -4,7 +4,6 @@ package com.tustar.demo.ui.hencoder.ch1
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import com.tustar.demo.R
-import com.tustar.demo.ui.hencoder.PageFragment
 import com.tustar.demo.ui.hencoder.PracticeDrawActivity
 
 class PracticeDraw1Activity : PracticeDrawActivity() {

@@ -1,4 +1,4 @@
-package com.tustar.demo.ui.hencoder
+package com.tustar.demo.ui.hencoder.ch1
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -7,7 +7,6 @@ import android.view.ViewGroup
 import android.widget.LinearLayout
 import androidx.fragment.app.Fragment
 import com.tustar.demo.R
-import com.tustar.demo.ui.hencoder.ch1.*
 
 class PageFragment : Fragment() {
 
@@ -22,43 +21,18 @@ class PageFragment : Fragment() {
 
     private fun addChildView(parent: ViewGroup) {
         val childView = when (title) {
-            "DrawColor" -> {
-                Draw1ColorView(context!!)
-
-            }
-            "DrawCircle" -> {
-                Draw2CircleView(context!!)
-            }
-            "DrawRect" -> {
-                Draw3RectView(context!!)
-            }
-            "DrawPoint" -> {
-                Draw4PointView(context!!)
-            }
-            "DrawOval" -> {
-                Draw5OvalView(context!!)
-            }
-            "DrawLine" -> {
-                Draw6LineView(context!!)
-            }
-            "DrawRoundRect" -> {
-                Draw7RoundRectView(context!!)
-            }
-            "DrawArc" -> {
-                Draw8ArcView(context!!)
-            }
-            "DrawPath" -> {
-                Draw9PathView(context!!)
-            }
-            "Histogram" -> {
-                Histogram10View(context!!)
-            }
-            "PieChart" -> {
-                PieChart11View(context!!)
-            }
-            else -> {
-                null
-            }
+            "DrawColor" -> Draw1ColorView(context!!)
+            "DrawCircle" -> Draw2CircleView(context!!)
+            "DrawRect" -> Draw3RectView(context!!)
+            "DrawPoint" -> Draw4PointView(context!!)
+            "DrawOval" -> Draw5OvalView(context!!)
+            "DrawLine" -> Draw6LineView(context!!)
+            "DrawRoundRect" -> Draw7RoundRectView(context!!)
+            "DrawArc" -> Draw8ArcView(context!!)
+            "DrawPath" -> Draw9PathView(context!!)
+            "Histogram" -> Histogram10View(context!!)
+            "PieChart" -> PieChart11View(context!!)
+            else -> null
         }
         childView?.let {
             val params = LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT,
