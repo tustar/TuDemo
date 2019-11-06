@@ -14,12 +14,13 @@ class PageFragment : Fragment() {
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         val parent = inflater.inflate(R.layout.fragment_page, container, false) as ViewGroup
-        addChildView(parent)
+        parent.removeAllViews()
+        addPracticeView(parent)
 
         return parent
     }
 
-    private fun addChildView(parent: ViewGroup) {
+    private fun addPracticeView(parent: ViewGroup) {
         val childView = when (title) {
             "DrawColor" -> Draw1ColorView(context!!)
             "DrawCircle" -> Draw2CircleView(context!!)

@@ -30,6 +30,7 @@ import com.tustar.demo.ui.fm.FmMainActivity
 import com.tustar.demo.ui.hencoder.ch1.PracticeDraw1Activity
 import com.tustar.demo.ui.hencoder.ch2.PracticeDraw2Activity
 import com.tustar.demo.ui.hencoder.ch3.PracticeDraw3Activity
+import com.tustar.demo.ui.hencoder.ch4.PracticeDraw4Activity
 import com.tustar.demo.ui.jet.pagingroom.BookActivity
 import com.tustar.demo.ui.loader.LoaderActivity
 import com.tustar.demo.ui.provider.ProviderActivity
@@ -52,7 +53,8 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         private val HENCODER_DEMOS = listOf(
                 ContentItem(PracticeDraw1Activity::class.java, R.string.hen_practice_draw_1),
                 ContentItem(PracticeDraw2Activity::class.java, R.string.hen_practice_draw_2),
-                ContentItem(PracticeDraw3Activity::class.java, R.string.hen_practice_draw_3)
+                ContentItem(PracticeDraw3Activity::class.java, R.string.hen_practice_draw_3),
+                ContentItem(PracticeDraw4Activity::class.java, R.string.hen_practice_draw_4)
         )
         private val HENCODER_SECTION = SectionItem(R.string.section_hencoder, HENCODER_DEMOS)
         //
