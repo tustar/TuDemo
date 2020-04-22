@@ -1,7 +1,7 @@
 package com.tustar.demo.ui.ryg.ch14
 
 import android.os.Bundle
-import com.tustar.common.util.Logger
+import com.tustar.util.Logger
 import com.tustar.demo.R
 import com.tustar.demo.base.BaseBookActivity
 import kotlinx.android.synthetic.main.activity_book_base.*

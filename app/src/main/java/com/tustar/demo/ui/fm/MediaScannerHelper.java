@@ -4,7 +4,7 @@ import android.content.Context;
 import android.media.MediaScannerConnection;
 import android.net.Uri;
 
-import com.tustar.common.util.Logger;
+import com.tustar.util.Logger;
 
 import java.io.File;
 import java.util.ArrayList;

@@ -8,7 +8,7 @@ import android.view.View;
 
 import com.nostra13.universalimageloader.core.assist.ViewScaleType;
 import com.nostra13.universalimageloader.core.imageaware.ViewAware;
-import com.tustar.common.util.Logger;
+import com.tustar.util.Logger;
 import com.tustar.demo.ui.fm.subscaleview.ImageSource;
 import com.tustar.demo.ui.fm.subscaleview.PhotoView;
 

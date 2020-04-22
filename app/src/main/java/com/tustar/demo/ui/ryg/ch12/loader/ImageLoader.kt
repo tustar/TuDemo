@@ -7,7 +7,7 @@ import android.os.Looper
 import android.os.Message
 import android.util.LruCache
 import android.widget.ImageView
-import com.tustar.common.util.Logger
+import com.tustar.util.Logger
 import com.tustar.demo.R
 import java.io.FileOutputStream
 import java.io.IOException

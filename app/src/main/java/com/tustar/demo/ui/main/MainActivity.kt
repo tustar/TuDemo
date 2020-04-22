@@ -16,7 +16,7 @@ import androidx.core.view.GravityCompat
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.android.material.navigation.NavigationView
 import com.google.android.material.snackbar.Snackbar
-import com.tustar.common.util.Logger
+import com.tustar.util.Logger
 import com.tustar.common.widget.Decoration
 import com.tustar.demo.R
 import com.tustar.demo.ui.account.AccountActivity

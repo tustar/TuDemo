@@ -10,7 +10,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 
-import com.tustar.common.util.Logger;
+import com.tustar.util.Logger;
 import com.tustar.demo.R;
 import com.tustar.demo.base.BaseActivity;
 

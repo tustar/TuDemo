@@ -5,7 +5,7 @@ import android.content.Context
 import android.content.Intent
 import android.content.ServiceConnection
 import android.os.*
-import com.tustar.common.util.Logger
+import com.tustar.util.Logger
 import com.tustar.demo.R
 import com.tustar.demo.base.BaseActivity
 import com.tustar.demo.ui.ryg.ch2.utils.MyConstants

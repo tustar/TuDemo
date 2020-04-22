@@ -3,7 +3,7 @@ package com.tustar.demo.ui.jet.pagingroom
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.LifecycleObserver
 import androidx.lifecycle.OnLifecycleEvent
-import com.tustar.common.util.Logger
+import com.tustar.util.Logger
 
 class ActivityLifeObserver : BaseActivityPresenter, LifecycleObserver {
 

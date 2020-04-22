@@ -4,7 +4,7 @@ import android.content.Context;
 import android.content.pm.ApplicationInfo;
 import android.content.pm.PackageManager;
 
-import com.tustar.common.util.Logger;
+import com.tustar.util.Logger;
 
 import java.text.Collator;
 import java.util.ArrayList;

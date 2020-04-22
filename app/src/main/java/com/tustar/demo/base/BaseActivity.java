@@ -7,7 +7,7 @@ import android.os.Build;
 import android.os.Bundle;
 import android.view.MenuItem;
 
-import com.tustar.common.util.Logger;
+import com.tustar.util.Logger;
 
 import androidx.appcompat.app.AppCompatActivity;
 

@@ -9,7 +9,7 @@ import android.view.ViewParent;
 import android.widget.LinearLayout;
 import android.widget.Scroller;
 
-import com.tustar.common.util.Logger;
+import com.tustar.util.Logger;
 
 /**
  * Created by tustar on 11/20/16.

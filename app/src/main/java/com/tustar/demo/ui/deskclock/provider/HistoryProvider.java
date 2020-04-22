@@ -13,7 +13,7 @@ import android.net.Uri;
 import android.text.TextUtils;
 import android.util.ArrayMap;
 
-import com.tustar.common.util.Logger;
+import com.tustar.util.Logger;
 
 import java.util.Map;
 

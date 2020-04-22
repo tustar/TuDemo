@@ -5,7 +5,7 @@ import android.os.Bundle
 import android.view.View
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.tustar.common.util.Logger
+import com.tustar.util.Logger
 import com.tustar.common.widget.Decoration
 import com.tustar.demo.R
 import com.tustar.demo.adapter.SimpleListItem1Adapter

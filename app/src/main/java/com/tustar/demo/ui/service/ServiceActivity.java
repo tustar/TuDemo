@@ -10,7 +10,7 @@ import android.os.RemoteException;
 import android.view.View;
 import android.widget.Button;
 
-import com.tustar.common.util.Logger;
+import com.tustar.util.Logger;
 import com.tustar.demo.R;
 import com.tustar.demo.base.BaseActivity;
 import com.tustar.demo.service.IDemoAidlService;

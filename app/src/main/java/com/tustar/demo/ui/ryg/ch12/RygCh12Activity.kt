@@ -9,7 +9,7 @@ import android.view.ViewGroup
 import android.widget.AbsListView
 import android.widget.BaseAdapter
 import android.widget.ImageView
-import com.tustar.common.util.DeviceUtils
+import com.tustar.util.DeviceUtils
 import com.tustar.demo.R
 import com.tustar.demo.base.BaseActivity
 import com.tustar.demo.ui.ryg.ch12.loader.ImageLoader

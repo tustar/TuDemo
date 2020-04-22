@@ -5,7 +5,7 @@ import android.util.AttributeSet
 import android.view.MotionEvent
 import android.view.ViewConfiguration
 import android.widget.TextView
-import com.tustar.common.util.Logger
+import com.tustar.util.Logger
 
 
 /**

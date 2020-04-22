@@ -5,7 +5,7 @@ import android.content.pm.PackageManager
 import android.os.Build
 import android.os.Environment
 import android.os.Process
-import com.tustar.common.util.Logger
+import com.tustar.util.Logger
 import java.io.*
 import java.text.SimpleDateFormat
 import java.util.*

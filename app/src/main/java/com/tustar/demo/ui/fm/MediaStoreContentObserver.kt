@@ -4,7 +4,7 @@ import android.content.Context
 import android.database.ContentObserver
 import android.net.Uri
 import android.os.Handler
-import com.tustar.common.util.Logger
+import com.tustar.util.Logger
 import java.util.concurrent.ScheduledThreadPoolExecutor
 import java.util.concurrent.TimeUnit
 

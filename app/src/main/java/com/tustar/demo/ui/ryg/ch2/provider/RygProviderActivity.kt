@@ -2,7 +2,7 @@ package com.tustar.demo.ui.ryg.ch2.provider
 
 import android.content.ContentValues
 import android.os.Bundle
-import com.tustar.common.util.Logger
+import com.tustar.util.Logger
 import com.tustar.demo.R
 import com.tustar.demo.adapter.SimpleListItem1Adapter
 import com.tustar.demo.base.BaseActivity

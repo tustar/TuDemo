@@ -2,7 +2,7 @@ package com.tustar.demo.ui.ryg.ch2
 
 import android.content.Context
 import android.content.Intent
-import com.tustar.common.util.Logger
+import com.tustar.util.Logger
 import com.tustar.demo.R
 import com.tustar.demo.ui.ryg.ch2.manager.UserManager
 import com.tustar.demo.ui.ryg.ch2.model.User

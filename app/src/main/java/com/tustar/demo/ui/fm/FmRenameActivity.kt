@@ -5,8 +5,8 @@ import android.os.Environment
 import android.text.TextUtils
 import android.view.View
 import android.widget.EditText
-import com.tustar.common.util.Logger
-import com.tustar.common.util.ToastUtils
+import com.tustar.util.Logger
+import com.tustar.util.ToastUtils
 import com.tustar.demo.R
 import com.tustar.demo.adapter.SimpleListItem1Adapter
 import com.tustar.demo.base.BaseActivity

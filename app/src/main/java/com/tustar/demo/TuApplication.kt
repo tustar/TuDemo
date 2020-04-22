@@ -2,8 +2,8 @@ package com.tustar.demo
 
 import android.app.Application
 import android.content.Context
-import com.tustar.common.util.DeviceUtils
-import com.tustar.common.util.Logger
+import com.tustar.util.DeviceUtils
+import com.tustar.util.Logger
 import com.tustar.demo.proxy.ProxyUtils
 
 /**

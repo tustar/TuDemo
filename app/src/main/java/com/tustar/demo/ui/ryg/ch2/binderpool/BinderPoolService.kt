@@ -3,7 +3,7 @@ package com.tustar.demo.ui.ryg.ch2.binderpool
 import android.app.Service
 import android.content.Intent
 import android.os.IBinder
-import com.tustar.common.util.Logger
+import com.tustar.util.Logger
 
 /**
  * Created by tustar on 17-7-24.

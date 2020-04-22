@@ -1,6 +1,6 @@
 package com.tustar.demo.proxy;
 
-import com.tustar.common.util.Logger;
+import com.tustar.util.Logger;
 
 import java.lang.reflect.InvocationHandler;
 import java.lang.reflect.Method;

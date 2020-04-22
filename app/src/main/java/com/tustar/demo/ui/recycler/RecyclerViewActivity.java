@@ -8,7 +8,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Toast;
 
-import com.tustar.common.util.Logger;
+import com.tustar.util.Logger;
 import com.tustar.demo.R;
 import com.tustar.demo.base.BaseActivity;
 import com.tustar.demo.ui.qyz.overscroll.OverScrollDecoratorHelper;

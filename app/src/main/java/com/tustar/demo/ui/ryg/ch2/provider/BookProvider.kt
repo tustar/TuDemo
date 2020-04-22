@@ -7,7 +7,7 @@ import android.content.UriMatcher
 import android.database.Cursor
 import android.database.sqlite.SQLiteDatabase
 import android.net.Uri
-import com.tustar.common.util.Logger
+import com.tustar.util.Logger
 
 /**
  * Created by tustar on 17-6-26.

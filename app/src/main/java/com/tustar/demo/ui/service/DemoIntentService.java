@@ -5,7 +5,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.text.TextUtils;
 
-import com.tustar.common.util.Logger;
+import com.tustar.util.Logger;
 
 public class DemoIntentService extends IntentService {
 

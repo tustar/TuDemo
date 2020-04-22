@@ -7,7 +7,7 @@ import android.view.VelocityTracker
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Scroller
-import com.tustar.common.util.Logger
+import com.tustar.util.Logger
 
 /**
  * Created by tustar on 17-8-1.

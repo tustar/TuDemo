@@ -17,7 +17,7 @@ import android.text.TextUtils;
 import android.view.Gravity;
 import android.view.WindowManager;
 
-import com.tustar.common.util.Logger;
+import com.tustar.util.Logger;
 import com.tustar.demo.R;
 
 import java.util.ArrayList;

@@ -3,7 +3,7 @@ package com.tustar.demo.ui.qyz
 import android.content.Intent
 import android.os.Bundle
 import android.view.View
-import com.tustar.common.util.Logger
+import com.tustar.util.Logger
 import com.tustar.demo.R
 import com.tustar.demo.adapter.SimpleListItem1Adapter
 import com.tustar.demo.base.BaseActivity

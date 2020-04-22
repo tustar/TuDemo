@@ -2,7 +2,7 @@ package com.tustar.demo.ui.ryg.ch2.binderpool
 
 import android.os.Bundle
 import android.os.RemoteException
-import com.tustar.common.util.Logger
+import com.tustar.util.Logger
 import com.tustar.demo.R
 import com.tustar.demo.base.BaseActivity
 import com.tustar.demo.ui.ryg.ch2.bindpool.ICompute

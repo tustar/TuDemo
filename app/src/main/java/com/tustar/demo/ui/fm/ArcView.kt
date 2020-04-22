@@ -10,7 +10,7 @@ import android.graphics.PointF
 import android.util.AttributeSet
 import android.view.View
 import android.view.animation.LinearInterpolator
-import com.tustar.common.util.Logger
+import com.tustar.util.Logger
 import com.tustar.demo.R
 
 class ArcView @JvmOverloads constructor(

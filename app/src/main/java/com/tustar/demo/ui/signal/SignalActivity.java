@@ -6,8 +6,8 @@ import android.os.Bundle;
 import android.widget.CompoundButton;
 import android.widget.Switch;
 
-import com.tustar.common.util.Logger;
-import com.tustar.common.util.PreferencesUtils;
+import com.tustar.util.Logger;
+import com.tustar.util.PreferencesUtils;
 import com.tustar.demo.R;
 import com.tustar.demo.base.BaseActivity;
 import com.tustar.demo.common.Preferences;

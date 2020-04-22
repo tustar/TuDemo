@@ -1,7 +1,7 @@
 package com.tustar.demo.ui.fm
 
 import android.os.Bundle
-import com.tustar.common.util.ToastUtils
+import com.tustar.util.ToastUtils
 import com.tustar.demo.R
 import com.tustar.demo.base.BaseActivity
 import com.tustar.demo.common.CommonDefine

@@ -3,7 +3,7 @@ package com.tustar.demo.ui.ryg.ch11
 import android.app.IntentService
 import android.content.Intent
 import android.os.SystemClock
-import com.tustar.common.util.Logger
+import com.tustar.util.Logger
 
 
 /**

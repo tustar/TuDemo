@@ -12,8 +12,8 @@ import android.graphics.Matrix
 import android.os.SystemClock
 import android.text.TextUtils
 import android.widget.RemoteViews
-import com.tustar.common.util.Logger
-import com.tustar.common.util.ToastUtils
+import com.tustar.util.Logger
+import com.tustar.util.ToastUtils
 import com.tustar.demo.R
 
 /**

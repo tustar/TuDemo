@@ -3,7 +3,7 @@ package com.tustar.demo.proxy;
 import android.app.NotificationManager;
 import android.content.Context;
 
-import com.tustar.common.util.Logger;
+import com.tustar.util.Logger;
 
 import java.lang.reflect.Field;
 import java.lang.reflect.InvocationTargetException;
