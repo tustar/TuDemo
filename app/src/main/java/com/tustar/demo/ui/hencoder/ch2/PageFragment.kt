@@ -75,7 +75,7 @@ class PageFragment : Fragment() {
         super.onCreate(savedInstanceState)
         val args = arguments
         if (args != null) {
-            title = args.getString("title")
+            title = args.getString("title").toString()
         }
     }
 

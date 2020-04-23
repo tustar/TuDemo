@@ -16,8 +16,6 @@ import androidx.core.view.GravityCompat
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.android.material.navigation.NavigationView
 import com.google.android.material.snackbar.Snackbar
-import com.tustar.util.Logger
-import com.tustar.common.widget.Decoration
 import com.tustar.demo.R
 import com.tustar.demo.ui.account.AccountActivity
 import com.tustar.demo.ui.anim.viewanim.HideActionBarActivity
@@ -40,6 +38,8 @@ import com.tustar.demo.ui.ryg.RygMainActivity
 import com.tustar.demo.ui.scroller.ScrollerActivity
 import com.tustar.demo.ui.service.ServiceActivity
 import com.tustar.demo.ui.signal.SignalActivity
+import com.tustar.util.Logger
+import com.tustar.widget.Decoration
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.app_bar_main.*
 import kotlinx.android.synthetic.main.content_main.*

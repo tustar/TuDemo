@@ -32,9 +32,9 @@ class User : Parcelable, Serializable {
 
     constructor(source: Parcel) : this(
             source.readInt(),
-            source.readString(),
+            source.readString()!!,
             1 == source.readInt(),
-            source.readParcelable<Book>(Book::class.java.classLoader)
+            source.readParcelable<Book>(Book::class.java.classLoader)!!
     )
 
     override fun describeContents() = 0

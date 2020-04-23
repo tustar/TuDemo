@@ -3,9 +3,10 @@ package com.tustar.demo.ui.jet.pagingroom
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import android.widget.TextView
+import androidx.recyclerview.widget.RecyclerView
 import com.tustar.demo.R
 
-class BookViewHolder(parent: ViewGroup) : androidx.recyclerview.widget.RecyclerView.ViewHolder(
+class BookViewHolder(parent: ViewGroup) : RecyclerView.ViewHolder(
         LayoutInflater.from(parent.context).inflate(R.layout.item_jet_book, parent, false)) {
 
     private val name = itemView.findViewById<TextView>(R.id.name)

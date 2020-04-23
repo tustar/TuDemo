@@ -22,7 +22,7 @@ object LoaderUtils {
         val externalStorageAvailable = Environment.getExternalStorageState() ==
                 Environment.MEDIA_MOUNTED
         var cachePath = if (externalStorageAvailable) {
-            context.externalCacheDir.path
+            context.externalCacheDir?.path
         } else {
             context.cacheDir.path
         }

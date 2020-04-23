@@ -50,14 +50,14 @@ class BookManagerService : Service() {
             Logger.d(TAG, "registerListener, current size: ${N}")
         }
 
-        override fun onTransact(code: Int, data: Parcel?, reply: Parcel?, flags: Int): Boolean {
+        override fun onTransact(code: Int, data: Parcel, reply: Parcel?, flags: Int): Boolean {
             if (checkCallingOrSelfPermission(ACCESS_BOOK_SERVICE) ==
                     PackageManager.PERMISSION_DENIED) {
                 return false
             }
 
-            if (!packageManager.getPackagesForUid(Binder.getCallingUid())[0]
-                    .startsWith("com.tustar")) {
+            if (!packageManager.getPackagesForUid(Binder.getCallingUid())!![0]
+                            ?.startsWith("com.tustar")!!) {
                 return false
             }
 

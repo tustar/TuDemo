@@ -12,6 +12,7 @@ import com.tustar.demo.ui.fl.ch2.FlCh2Activity
 import com.tustar.demo.ui.fl.ch3.FlCh3Activity
 import com.tustar.demo.ui.fl.ch4.FlCh4Activity
 import com.tustar.demo.ui.fl.ch5.FlCh5Activity
+import com.tustar.widget.Decoration
 import kotlinx.android.synthetic.main.activity_fl_main.*
 
 class FlMainActivity : BaseActivity(), SimpleListItem1Adapter.OnItemClickListener {
@@ -44,7 +45,7 @@ class FlMainActivity : BaseActivity(), SimpleListItem1Adapter.OnItemClickListene
         var adapter = SimpleListItem1Adapter(desc)
         fl_main_rv.adapter = adapter
         adapter.setOnItemClickListener(this)
-        fl_main_rv.addItemDecoration(com.tustar.common.widget.Decoration(this, com.tustar.common.widget.Decoration.VERTICAL))
+        fl_main_rv.addItemDecoration(Decoration(this, Decoration.VERTICAL))
     }
 
     override fun onItemClick(view: View, position: Int) {

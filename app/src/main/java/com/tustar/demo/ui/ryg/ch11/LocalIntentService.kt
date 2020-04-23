@@ -20,12 +20,12 @@ class LocalIntentService : IntentService("LocalIntentService") {
         private val TAG = LocalIntentService::class.java.simpleName
     }
 
-    override fun onHandleIntent(intent: Intent) {
-        val action = intent.getStringExtra("task_action")
-        Logger.d(TAG, "receive task :" + action)
+    override fun onHandleIntent(intent: Intent?) {
+        val action = intent?.getStringExtra("task_action")
+        Logger.d(TAG, "receive task :$action")
         SystemClock.sleep(3000)
         if ("com.ryg.action.TASK1" == action) {
-            Logger.d(TAG, "handle task: " + action)
+            Logger.d(TAG, "handle task: $action")
         }
     }
 }

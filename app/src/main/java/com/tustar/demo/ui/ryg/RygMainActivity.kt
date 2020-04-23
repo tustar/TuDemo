@@ -22,6 +22,7 @@ import com.tustar.demo.ui.ryg.ch6.RygCh6Activity
 import com.tustar.demo.ui.ryg.ch7.RygCh7Activity
 import com.tustar.demo.ui.ryg.ch8.RygCh8Activity
 import com.tustar.demo.ui.ryg.ch9.RygCh9Activity
+import com.tustar.widget.Decoration
 import kotlinx.android.synthetic.main.activity_ryg_main.*
 
 class RygMainActivity : BaseActivity(), SimpleListItem1Adapter.OnItemClickListener {
@@ -64,7 +65,7 @@ class RygMainActivity : BaseActivity(), SimpleListItem1Adapter.OnItemClickListen
         var adapter = SimpleListItem1Adapter(desc)
         ryg_main_rv.adapter = adapter
         adapter.setOnItemClickListener(this)
-        ryg_main_rv.addItemDecoration(com.tustar.common.widget.Decoration(this, com.tustar.common.widget.Decoration.VERTICAL))
+        ryg_main_rv.addItemDecoration(Decoration(this, Decoration.VERTICAL))
     }
 
     override fun onItemClick(view: View, position: Int) {

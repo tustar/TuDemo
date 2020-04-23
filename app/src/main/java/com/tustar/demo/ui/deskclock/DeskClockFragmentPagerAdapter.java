@@ -33,9 +33,6 @@ public class DeskClockFragmentPagerAdapter extends FragmentPagerAdapter {
 
     @Override
     public Fragment getItem(int position) {
-        if (position % 2 == 1) {
-            return WorldClockFragment.newInstance();
-        }
         return AlarmClockFragment.newInstance(1);
     }
 

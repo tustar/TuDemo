@@ -8,18 +8,18 @@ import android.view.ViewGroup
 import android.view.inputmethod.EditorInfo
 import android.widget.Button
 import android.widget.EditText
-import androidx.lifecycle.ViewModelProviders
+import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
 import com.tustar.demo.R
 
-class AddBookFragment : androidx.fragment.app.Fragment() {
+class AddBookFragment : Fragment() {
 
     companion object {
         fun newInstance() = AddBookFragment()
     }
 
-    private val viewModel by lazy(LazyThreadSafetyMode.NONE) {
-        ViewModelProviders.of(this).get(BookViewModel::class.java)
-    }
+    private val viewModel: BookViewModel by viewModels { BookViewModelFactory(requireContext()) }
+
     private lateinit var name: EditText
     private lateinit var addBtn: Button
 

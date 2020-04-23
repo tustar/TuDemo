@@ -10,6 +10,7 @@ import com.tustar.util.ToastUtils
 import com.tustar.demo.R
 import com.tustar.demo.adapter.SimpleListItem1Adapter
 import com.tustar.demo.base.BaseActivity
+import com.tustar.widget.Decoration
 import kotlinx.android.synthetic.main.activity_fm_rename.*
 import java.io.File
 
@@ -38,7 +39,7 @@ class FmRenameActivity : BaseActivity(), SimpleListItem1Adapter.OnItemClickListe
         mAdapter = SimpleListItem1Adapter(mFiles.map { it -> it.name })
         fm_rename_rv.adapter = mAdapter
         mAdapter!!.setOnItemClickListener(this)
-        fm_rename_rv.addItemDecoration(com.tustar.common.widget.Decoration(this, com.tustar.common.widget.Decoration.VERTICAL))
+        fm_rename_rv.addItemDecoration(Decoration(this, Decoration.VERTICAL))
     }
 
     override fun onItemClick(view: View, position: Int) {

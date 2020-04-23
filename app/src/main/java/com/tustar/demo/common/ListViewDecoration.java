@@ -22,7 +22,6 @@ import android.graphics.drawable.Drawable;
 import android.view.View;
 
 import com.tustar.demo.R;
-import com.yanzhenjie.recyclerview.swipe.ResCompat;
 
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -35,7 +34,7 @@ public class ListViewDecoration extends RecyclerView.ItemDecoration {
     private Drawable mDrawable;
 
     public ListViewDecoration(Context context) {
-        mDrawable = ResCompat.getDrawable(context, R.drawable.shape_deskclock_item_divider);
+        mDrawable = context.getDrawable(R.drawable.shape_deskclock_item_divider);
     }
 
     @Override

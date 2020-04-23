@@ -10,6 +10,7 @@ import com.tustar.util.ToastUtils
 import com.tustar.demo.R
 import com.tustar.demo.adapter.SimpleListItem1Adapter
 import com.tustar.demo.base.BaseActivity
+import com.tustar.widget.Decoration
 import kotlinx.android.synthetic.main.activity_ryg_book_manager.*
 
 
@@ -44,7 +45,7 @@ class BookManagerActivity : BaseActivity() {
     init {
         mDeathRecipient = IBinder.DeathRecipient {
             Logger.d(TAG, "binder died. tname:${Thread.currentThread().name}")
-            mRemoteBookManager!!.asBinder().unlinkToDeath(mDeathRecipient, 0)
+            mDeathRecipient?.let { mRemoteBookManager!!.asBinder().unlinkToDeath(it, 0) }
             mRemoteBookManager = null
             // TODO:这里重新绑定远程Service
         }
@@ -58,7 +59,7 @@ class BookManagerActivity : BaseActivity() {
             var bookManager = IBookManager.Stub.asInterface(service)
             mRemoteBookManager = bookManager
             try {
-                mRemoteBookManager!!.asBinder().linkToDeath(mDeathRecipient, 0)
+                mDeathRecipient?.let { mRemoteBookManager!!.asBinder().linkToDeath(it, 0) }
                 var list = bookManager.bookList
                 Logger.i(TAG, "onServiceConnected :: query book list ${list}")
                 var book = Book(3, "Android开发艺术探索")
@@ -104,7 +105,7 @@ class BookManagerActivity : BaseActivity() {
         ryg_ch2_bm_rv.layoutManager = androidx.recyclerview.widget.LinearLayoutManager(this)
         mAdapter = SimpleListItem1Adapter(mData)
         ryg_ch2_bm_rv.adapter = mAdapter
-        ryg_ch2_bm_rv.addItemDecoration(com.tustar.common.widget.Decoration(this, com.tustar.common.widget.Decoration.VERTICAL))
+        ryg_ch2_bm_rv.addItemDecoration(Decoration(this, Decoration.VERTICAL))
 
         ryg_ch2_bm_btn.setOnClickListener {
             Logger.d(TAG, "setOnClickListener ::")

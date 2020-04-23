@@ -6,9 +6,9 @@ import android.view.View
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.tustar.util.Logger
-import com.tustar.common.widget.Decoration
 import com.tustar.demo.R
 import com.tustar.demo.adapter.SimpleListItem1Adapter
+import com.tustar.widget.Decoration
 import kotlinx.android.synthetic.main.activity_book_base.*
 
 open class BaseBookActivity : BaseActivity(), SimpleListItem1Adapter.OnItemClickListener {

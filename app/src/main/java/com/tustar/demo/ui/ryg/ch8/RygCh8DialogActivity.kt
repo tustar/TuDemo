@@ -22,7 +22,7 @@ class RygCh8DialogActivity : BaseActivity() {
         val textView = TextView(this)
         textView.text = "This is toast!"
         dialog.setContentView(textView)
-        dialog.window.setType(WindowManager.LayoutParams.TYPE_SYSTEM_ERROR)
+        dialog.window!!.setType(WindowManager.LayoutParams.TYPE_SYSTEM_ERROR)
         dialog.show()
     }
 }
