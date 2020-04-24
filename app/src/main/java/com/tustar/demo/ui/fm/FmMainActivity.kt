@@ -27,7 +27,6 @@ class FmMainActivity : BaseActivity(), SimpleListItem1Adapter.OnItemClickListene
                 add(FmSpShareActivity::class.java)
                 add(FmOpenActivity::class.java)
                 add(FmSectionListViewActivity::class.java)
-                add(ItemListActivity::class.java)
                 add(FmArcActivity::class.java)
                 add(FmLongPhotoActivity::class.java)
             }

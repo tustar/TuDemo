@@ -42,7 +42,7 @@ public class AccountActivity extends BaseActivity {
         AccountAdapter adapter = new AccountAdapter(this, accounts);
         mAccountListView.setAdapter(adapter);
 
-        View emptyView = View.inflate(this, R.layout.global_empty_layout, null);
+        View emptyView = View.inflate(this, R.layout.item_empty, null);
         addContentView(emptyView, new RelativeLayout.LayoutParams(
                 RelativeLayout.LayoutParams.MATCH_PARENT,
                 RelativeLayout.LayoutParams.MATCH_PARENT));

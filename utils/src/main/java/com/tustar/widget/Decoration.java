@@ -27,6 +27,10 @@ public class Decoration extends RecyclerView.ItemDecoration {
             android.R.attr.listDivider
     };
 
+    public Decoration(Context context) {
+        this(context, Decoration.VERTICAL);
+    }
+
     public Decoration(Context context, int orientation) {
         this.mContext = context;
         final TypedArray ta = context.obtainStyledAttributes(ATRRS);

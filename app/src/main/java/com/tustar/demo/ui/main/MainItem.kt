@@ -1,6 +1,8 @@
 package com.tustar.demo.ui.main
 
-abstract class MainItem {
+import androidx.annotation.StringRes
+
+sealed class MainItem {
 
     abstract fun getType(): Int
 
@@ -10,3 +12,14 @@ abstract class MainItem {
     }
 }
 
+data class GroupItem(@StringRes val nameResId: Int,
+                     val childCount: Int) : MainItem() {
+
+    override fun getType(): Int = TYPE_SECTION
+}
+
+data class ChildItem(val clazz: Class<*>,
+                     @StringRes val descResId: Int,
+                     val isMenu: Boolean = false) : MainItem() {
+    override fun getType(): Int = TYPE_CONTENT
+}

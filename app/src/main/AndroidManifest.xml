@@ -32,7 +32,7 @@
             android:label="@string/app_name"
             android:launchMode="singleTask"
             android:configChanges="orientation|keyboardHidden|screenSize|uiMode"
-            android:theme="@style/AppTheme.NoActionBar">
+            android:theme="@style/AppTheme">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -182,8 +182,6 @@
         <activity android:name=".ui.fm.FmOpenActivity" />
         <activity android:name=".ui.fm.FmSectionListViewActivity" />
         <activity android:name=".ui.fm.FmSectionGridViewActivity" />
-        <activity android:name=".ui.fm.ItemListActivity" />
-        <activity android:name=".ui.fm.ItemDetailActivity" />
         <activity android:name=".ui.fm.FmLongPhotoActivity" /> <!-- 时钟实例 -->
         <activity android:name=".ui.deskclock.DeskClockActivity" />
 
