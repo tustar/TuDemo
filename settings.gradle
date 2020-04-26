@@ -1,1 +1,2 @@
 include ':app', ':jetpack', ':utils'
+include ':hencoder'

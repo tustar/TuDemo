@@ -224,21 +224,6 @@
         <activity android:name=".ui.scroller.other.OtherHOverScrollViewActivity" /> <!-- JetPack -->
         <activity android:name=".ui.jet.pagingroom.BookActivity" /> <!-- Loader实例 -->
         <activity android:name=".ui.loader.LoaderActivity" />
-
-
-        <!-- Hencoder练习 -->
-        <activity
-            android:name=".ui.hencoder.ch1.PracticeDraw1Activity"
-            android:screenOrientation="portrait" />
-        <activity
-            android:name=".ui.hencoder.ch2.PracticeDraw2Activity"
-            android:screenOrientation="portrait" />
-        <activity
-            android:name=".ui.hencoder.ch3.PracticeDraw3Activity"
-            android:screenOrientation="portrait" />
-        <activity
-            android:name=".ui.hencoder.ch4.PracticeDraw4Activity"
-            android:screenOrientation="portrait" />
     </application>
 
 </manifest>

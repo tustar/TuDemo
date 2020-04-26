@@ -1,0 +1,18 @@
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.tustar.hencoder">
+
+    <application>
+        <activity
+            android:name="ch1.PracticeDraw1Activity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ch2.PracticeDraw2Activity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ch3.PracticeDraw3Activity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ch4.PracticeDraw4Activity"
+            android:screenOrientation="portrait" />
+    </application>
+</manifest>

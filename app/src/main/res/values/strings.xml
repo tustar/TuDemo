@@ -207,10 +207,4 @@
     <string name="appwidget_text">EXAMPLE</string>
     <string name="add_widget">Add widget</string>
 
-    <!--Hencoder练习-->
-    <string name="hen_practice_draw_1">PracticeDraw1</string>
-    <string name="hen_practice_draw_2">PracticeDraw2</string>
-    <string name="hen_practice_draw_3">PracticeDraw3</string>
-    <string name="hen_practice_draw_4">PracticeDraw4</string>
-
 </resources>
