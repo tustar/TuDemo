@@ -1,11 +1,25 @@
 <?xml version="1.0" encoding="utf-8"?>
-<TextView xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/item_main_group_name"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:gravity="center_vertical"
-    android:paddingStart="4dp"
-    android:paddingTop="4dp"
-    android:paddingBottom="4dp"
-    android:textColor="#191919"
-    android:textSize="12sp" />
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="group"
+            type="com.tustar.demo.ui.main.GroupItem" />
+    </data>
+
+    <TextView
+        android:id="@+id/item_main_group_name"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#ccc"
+        android:gravity="center_vertical"
+        android:paddingStart="4dp"
+        android:paddingTop="4dp"
+        android:paddingBottom="4dp"
+        android:text="@{context.getString(group.nameResId)}"
+        android:textColor="#191919"
+        android:textSize="12sp"
+        tools:text="Group" />
+</layout>

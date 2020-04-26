@@ -1,8 +1,9 @@
 package com.tustar.demo.ui.main
 
 import androidx.annotation.StringRes
+import androidx.navigation.NavDirections
 
-sealed class MainItem {
+sealed class MainItem() {
 
     abstract fun getType(): Int
 
@@ -18,8 +19,8 @@ data class GroupItem(@StringRes val nameResId: Int,
     override fun getType(): Int = TYPE_SECTION
 }
 
-data class ChildItem(val clazz: Class<*>,
-                     @StringRes val descResId: Int,
+data class ChildItem(@StringRes val nameResId: Int,
+                     val direction: NavDirections,
                      val isMenu: Boolean = false) : MainItem() {
     override fun getType(): Int = TYPE_CONTENT
 }

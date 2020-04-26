@@ -6,51 +6,44 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.recyclerview.widget.MergeAdapter
 import com.tustar.demo.databinding.FragmentMainBinding
 import com.tustar.ex.observe
+import com.tustar.util.Logger
 import com.tustar.widget.Decoration
 
-class MainFragment : Fragment(), MainAdapter.OnItemClickListener {
+class MainFragment : Fragment() {
 
-    private lateinit var mainAdapter: MainAdapter
-    private lateinit var binding: FragmentMainBinding
     private val viewModel: MainViewModel by viewModels {
         MainViewModelFactory()
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
-        binding = FragmentMainBinding.inflate(inflater, container, false)
-        return binding.apply {
+        val binding = FragmentMainBinding.inflate(inflater, container,
+                false).apply {
             lifecycleOwner = viewLifecycleOwner
-            vm = viewModel
-        }.root
-    }
-
-    override fun onActivityCreated(savedInstanceState: Bundle?) {
-        super.onActivityCreated(savedInstanceState)
-
-        mainAdapter = MainAdapter(emptyList(), this@MainFragment)
-        with(binding.mainContainer) {
-            addItemDecoration(Decoration(requireContext()))
-            adapter = mainAdapter
+            mainList.addItemDecoration(Decoration(requireContext()))
         }
+        context ?: return binding.root
 
+        val hencoderAdapter = MainAdapter()
+        val booksAdapter = MainAdapter()
+        val mergeAdapter = MergeAdapter(hencoderAdapter, booksAdapter)
+        binding.mainList.adapter = mergeAdapter
         with(viewModel) {
-            observe(hencoders) {
-                mainAdapter.items = it
-                mainAdapter.notifyDataSetChanged()
+            observe(hencoderDemos) { items ->
+                hencoderAdapter.submitList(items)
+            }
+            observe(bookDemos) { items ->
+                booksAdapter.submitList(items)
             }
         }
-        viewModel.addHencoderDemos()
-    }
 
-    override fun onItemClick(item: ChildItem) {
-
+        return binding.root
     }
 
     companion object {
         fun newInstance() = MainFragment()
     }
-
 }

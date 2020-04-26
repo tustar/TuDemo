@@ -5,10 +5,6 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import com.tustar.demo.R
-import com.tustar.demo.ui.hencoder.ch1.PracticeDraw1Activity
-import com.tustar.demo.ui.hencoder.ch2.PracticeDraw2Activity
-import com.tustar.demo.ui.hencoder.ch3.PracticeDraw3Activity
-import com.tustar.demo.ui.hencoder.ch4.PracticeDraw4Activity
 
 class MainViewModelFactory : ViewModelProvider.NewInstanceFactory() {
 
@@ -18,40 +14,46 @@ class MainViewModelFactory : ViewModelProvider.NewInstanceFactory() {
 }
 
 class MainViewModel : ViewModel() {
-    val hencoders: LiveData<List<MainItem>> get() = _hencoders
-    private var _hencoders = MutableLiveData<List<MainItem>>()
-
-    fun addHencoderDemos() {
+    val hencoderDemos: LiveData<List<MainItem>> = addHencoderDemos()
+    private fun addHencoderDemos(): MutableLiveData<List<MainItem>> {
         val children = listOf(
-                ChildItem(PracticeDraw1Activity::class.java, R.string.hen_practice_draw_1),
-                ChildItem(PracticeDraw2Activity::class.java, R.string.hen_practice_draw_2),
-                ChildItem(PracticeDraw3Activity::class.java, R.string.hen_practice_draw_3),
-                ChildItem(PracticeDraw4Activity::class.java, R.string.hen_practice_draw_4)
+                ChildItem(R.string.hen_practice_draw_1, MainFragmentDirections.actionMainToDraw1()),
+                ChildItem(R.string.hen_practice_draw_2, MainFragmentDirections.actionMainToDraw2()),
+                ChildItem(R.string.hen_practice_draw_3, MainFragmentDirections.actionMainToDraw3()),
+                ChildItem(R.string.hen_practice_draw_4, MainFragmentDirections.actionMainToDraw4())
         )
         val group = GroupItem(R.string.section_hencoder, children.size)
         val data = mutableListOf<MainItem>().apply {
             add(group)
             addAll(children)
         }
-        _hencoders.postValue(data)
+        return MutableLiveData(data)
     }
-//    companion object {
-//
-//        private val TAG = MainActivity::class.java.simpleName
-//        private val HENCODER_DEMOS = listOf(
-//                ChildItem(PracticeDraw1Activity::class.java, R.string.hen_practice_draw_1),
-//                ChildItem(PracticeDraw2Activity::class.java, R.string.hen_practice_draw_2),
-//                ChildItem(PracticeDraw3Activity::class.java, R.string.hen_practice_draw_3),
-//                ChildItem(PracticeDraw4Activity::class.java, R.string.hen_practice_draw_4)
-//        )
-//        private val HENCODER_SECTION = GroupItem(R.string.section_hencoder, HENCODER_DEMOS)
+
+    val bookDemos: LiveData<List<MainItem>> = addBookDemos()
+    private fun addBookDemos(): MutableLiveData<List<MainItem>> {
+        val children = listOf(
+                ChildItem(R.string.fl_main_title, MainFragmentDirections.actionMainToFl(),
+                        true),
+                ChildItem(R.string.ryg_main_title, MainFragmentDirections.actionMainToRyg(),
+                        true),
+                ChildItem(R.string.qyz_main_title, MainFragmentDirections.actionMainToQyz(),
+                        true)
+        )
+        val group = GroupItem(R.string.section_books, children.size)
+        val data = mutableListOf<MainItem>().apply {
+            add(group)
+            addAll(children)
+        }
+        return MutableLiveData(data)
+    }
 //        //
 //        private val BOOK_DEMOS = listOf(
-//                ChildItem(FlMainActivity::class.java, R.string.fl_main_title, true),
-//                ChildItem(RygMainActivity::class.java, R.string.ryg_main_title, true),
-//                ChildItem(QyzMainActivity::class.java, R.string.qyz_main_title, true)
+//                ChildItem(FlMainActivity::class.java, R.string., true),
+//                ChildItem(RygMainActivity::class.java, R.string., true),
+//                ChildItem(QyzMainActivity::class.java, R.string., true)
 //        )
-//        private val BOOK_SECTION = GroupItem(R.string.section_books, BOOK_DEMOS)
+//        private val BOOK_SECTION = GroupItem(, BOOK_DEMOS)
 //        //
 //        private val PROJECT_DEMOS = listOf(
 //                ChildItem(FmMainActivity::class.java, R.string.fm_main_title, true),
