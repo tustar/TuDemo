@@ -3,7 +3,7 @@
 
     <application>
         <activity
-            android:name="ch1.PracticeDraw1Activity"
+            android:name=".ch1.PracticeDraw1Activity"
             android:screenOrientation="portrait" />
         <activity
             android:name=".ch2.PracticeDraw2Activity"
