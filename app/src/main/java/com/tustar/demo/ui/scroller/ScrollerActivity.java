@@ -7,7 +7,7 @@ import android.widget.RelativeLayout;
 
 import com.tustar.demo.R;
 import com.tustar.demo.base.BaseActivity;
-import com.tustar.demo.common.ListViewDecoration;
+import com.tustar.demo.ui.loader.ListViewDecoration;
 import com.tustar.demo.ui.scroller.other.OtherHOverScrollView;
 import com.tustar.demo.ui.scroller.other.OtherHOverScrollViewActivity;
 import com.tustar.demo.ui.scroller.other.OtherHScrollView;

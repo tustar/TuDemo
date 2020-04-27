@@ -9,16 +9,13 @@
     <color name="status_bar_bg_light">#fff0f0f0</color>
     <color name="status_bar_icon_color">#ff000000</color>
     <color name="status_bar_icon_color_light">#ff000000</color>
-    
+
     <!--Backgroud-->
     <color name="list_view_bg">#4699cc00</color>
 
-    <color name="shape_ripple_round_solid_color">@android:color/holo_orange_dark</color>
     <color name="side_nav_bar_centerColor">@android:color/holo_blue_light</color>
     <color name="side_nav_bar_endColor">@android:color/holo_blue_dark</color>
     <color name="side_nav_bar_startColor">@android:color/holo_blue_bright</color>
-    <color name="yellow">#FF0</color>
-    <color name="black">#000</color>
     <color name="hide_actionbar_bg">#808080</color>
 
     <color name="color_path_63p">#A0FFFFFF</color>
@@ -26,10 +23,4 @@
 
     <color name="deskclock_item_delete_n">#FF0000</color>
     <color name="deskclock_item_delete_p">#FF6666</color>
-
-    <color name="spectrum_cyan">#00e0e0</color>
-    <color name="spectrum_yellow">#f0e000</color>
-    <color name="reveal_color">#1b000000</color>
-
-    <color name="header">#ff33b5e5</color>
 </resources>

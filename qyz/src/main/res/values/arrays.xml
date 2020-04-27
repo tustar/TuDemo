@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string-array name="content_data">
+        <item>RecyclerView</item>
+        <item>Custom Widget</item>
+        <item>Float Window</item>
+        <item>Drag Sort ListView</item>
+        <item>Drag View</item>
+        <item>View Animator</item>
+        <item>Loader</item>
+        <item>Services Demo</item>
+        <item>Hide ActionBar</item>
+        <item>Account Manager</item>
+        <item>Provider</item>
+        <item>DeskClock</item>
+        <item>Scroller</item>
+        <item>History</item>
+        <item>SubScaleView</item>
+    </string-array>
+
+    <string-array name="qyz_list">
+        <item>@string/qyz_rotation_title</item>
+        <item>@string/qyz_palette_title</item>
+        <item>@string/qyz_tinting_title</item>
+        <item>@string/qyz_elevation_title</item>
+        <item>@string/qyz_clipping_title</item>
+        <item>@string/qyz_translation_title</item>
+        <item>@string/qyz_surface_title</item>
+        <item>@string/qyz_svg_title</item>
+        <item>@string/qyz_flex_title</item>
+        <item>@string/qyz_over_scroll_title</item>
+        <item>@string/qyz_custom_widget</item>
+        <item>@string/qyz_drag_view</item>
+    </string-array>
+
+
+</resources>

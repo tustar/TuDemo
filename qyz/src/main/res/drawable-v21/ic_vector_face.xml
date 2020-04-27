@@ -1,0 +1,25 @@
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+        android:width="200dp"
+        android:height="200dp"
+        android:viewportHeight="100.0"
+        android:viewportWidth="100.0">
+
+    <!--绘制圆-->
+    <path
+        android:fillColor="@color/yellow"
+        android:pathData="@string/path_circle"/>
+    <!--绘制左眼-->
+    <path android:fillColor="@color/black"
+          android:pathData="@string/path_face_left_eye"/>
+    <!--绘制右眼-->
+    <path android:fillColor="@color/black"
+          android:pathData="@string/path_face_right_eye"/>
+    <!--绘制嘴巴（生气）-->
+    <path
+        android:name="mouth"
+        android:strokeColor="@color/black"
+        android:strokeWidth="@integer/stroke_width"
+        android:strokeLineCap="round"
+        android:pathData="@string/path_face_mouth_sad"/>
+
+</vector>

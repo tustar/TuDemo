@@ -1,0 +1,102 @@
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.tustar.ryg" >
+    <application>
+        <activity android:name="RygMainActivity" />
+        <activity android:name="ch1.RygCh1Activity" />
+        <activity android:name="ch2.RygCh2Activity" />
+        <activity android:name="ch2.RygOneActivity" />
+        <activity
+            android:name="ch2.RygSecondActivity"
+            android:process=":remote" />
+        <activity
+            android:name="ch2.RygThirdActivity"
+            android:process="com.tustar.demo.remote" />
+        <activity android:name="ch2.aidl.BookManagerActivity" />
+
+        <service
+            android:name="ch2.aidl.BookManagerService"
+            android:process=":remote" />
+
+        <activity android:name="ch2.provider.RygProviderActivity" />
+
+        <provider
+            android:name="ch2.provider.BookProvider"
+            android:authorities="com.tustar.democh2.provider"
+            android:permission="com.tustar.PROVIDER"
+            android:process=":provider" />
+
+        <activity android:name="ch2.messenger.MessengerActivity" />
+
+        <service
+            android:name="ch2.messenger.MessengerService"
+            android:process=":remote">
+            <intent-filter>
+                <action android:name="com.tustar.MessengerService.launch" />
+            </intent-filter>
+        </service>
+
+        <activity android:name="ch2.socket.TCPClientActivity" />
+
+        <service
+            android:name="ch2.socket.TCPServerService"
+            android:process=":remote" />
+        <service
+            android:name="ch2.binderpool.BinderPoolService"
+            android:process=":remote" />
+
+        <activity android:name="ch2.binderpool.BinderPoolActivity" />
+        <activity android:name="ch3.RygCh3Activity" />
+        <activity android:name="ch3.RygCh3ViewMoveActivity" />
+        <activity android:name="ch3.RygCh3OuterActivity" />
+        <activity android:name="ch3.RygCh3InnerActivity" />
+        <activity android:name="ch4.RygCh4WidthHeightActivity" />
+        <activity android:name="ch4.RygCh4CircleViewActivity" />
+        <activity android:name="ch4.RygCh4ExActivity" />
+        <activity android:name="ch4.RygCh4Activity" />
+        <activity
+            android:name="ch5.RygCh5Activity"
+            android:process=":remote" />
+        <activity android:name="ch5.RygCh5NotificationActivity" />
+        <activity android:name="ch5.RygCh5AppWidgetActivity" />
+        <activity
+            android:name="ch5.RygCh5CustomActivity"
+            android:configChanges="screenLayout"
+            android:exported="true" />
+        <activity
+            android:name="ch5.RygCh5RemoteViewsActivity"
+            android:exported="true" />
+
+        <receiver android:name="ch5.RygCh5AppWidget">
+            <intent-filter>
+                <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
+                <action android:name="com.tustar.democh5.action.CLICK" />
+            </intent-filter>
+
+            <meta-data
+                android:name="android.appwidget.provider"
+                android:resource="@xml/ryg_ch5_app_widget_info" />
+        </receiver>
+
+        <activity android:name="ch6.RygCh6Activity" />
+        <activity android:name="ch6.RygCh6DrawableActivity" />
+        <activity android:name="ch7.RygCh7Activity" />
+        <activity android:name="ch7.RygCh7ActivityAnimatorActivity" />
+        <activity android:name="ch7.RygCh7ScaleButtonActivity" />
+        <activity android:name="ch7.RygCh7LayoutAnimationActivity" />
+        <activity android:name="ch8.RygCh8Activity" />
+        <activity android:name="ch8.RygCh8DialogActivity" />
+        <activity android:name="ch8.RygCh8FloatActivity" />
+        <activity android:name="ch9.RygCh9Activity" />
+        <activity android:name="ch10.RygCh10Activity" />
+        <activity android:name="ch11.RygCh11Activity" />
+
+        <service
+            android:name="ch11.LocalIntentService"
+            android:exported="false" />
+
+        <activity android:name="ch12.RygCh12Activity" />
+        <activity android:name="ch13.RygCh13Activity" />
+        <activity android:name="ch14.RygCh14Activity" />
+        <activity android:name="ch15.RygCh15Activity" />
+    </application>
+</manifest>

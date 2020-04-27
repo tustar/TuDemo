@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:paddingBottom="16dp"
+    android:paddingLeft="16dp"
+    android:paddingRight="16dp"
+    android:paddingTop="16dp"
+    tools:context=".QyzAnimMainActivity">
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:background="@android:color/holo_orange_light"
+        android:onClick="explode"
+        android:text="explode" />
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:layout_marginTop="5dp"
+        android:background="@android:color/holo_blue_light"
+        android:onClick="slide"
+        android:text="slide" />
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:layout_marginTop="5dp"
+        android:background="@android:color/holo_green_light"
+        android:onClick="fade"
+        android:text="fade" />
+
+    <Button
+        android:id="@+id/anim_share"
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:layout_marginTop="5dp"
+        android:background="@android:color/holo_red_light"
+        android:onClick="share"
+        android:text="share"
+        android:transitionName="@string/qyz_transition_name_share" />
+
+    <Button
+        android:layout_width="56dp"
+        android:layout_height="56dp"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="5dp"
+        android:background="@drawable/shape_ripple_round"
+        android:elevation="5dp"
+        android:onClick="fab"
+        android:text="fab"
+        android:transitionName="@string/qyz_transition_name_fab" />
+
+
+</LinearLayout>

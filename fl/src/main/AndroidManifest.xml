@@ -1,0 +1,11 @@
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.tustar.fl" >
+    <application>
+        <activity android:name=".FlMainActivity" />
+        <activity android:name=".ch1.FlCh1Activity" />
+        <activity android:name=".ch2.FlCh2Activity" />
+        <activity android:name=".ch3.FlCh3Activity" />
+        <activity android:name=".ch4.FlCh4Activity" />
+    </application>
+    
+</manifest>

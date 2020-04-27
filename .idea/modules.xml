@@ -4,9 +4,12 @@
     <modules>
       <module fileurl="file://$PROJECT_DIR$/TuDemo.iml" filepath="$PROJECT_DIR$/TuDemo.iml" group="TuDemo" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" group="TuDemo/app" />
+      <module fileurl="file://$PROJECT_DIR$/fl/fl.iml" filepath="$PROJECT_DIR$/fl/fl.iml" group="TuDemo/fl" />
       <module fileurl="file://$PROJECT_DIR$/hencoder/hencoder.iml" filepath="$PROJECT_DIR$/hencoder/hencoder.iml" group="TuDemo/hencoder" />
       <module fileurl="file://$PROJECT_DIR$/jetpack/jetpack.iml" filepath="$PROJECT_DIR$/jetpack/jetpack.iml" group="TuDemo/jetpack" />
       <module fileurl="file://$PROJECT_DIR$/lib-theme/lib-theme.iml" filepath="$PROJECT_DIR$/lib-theme/lib-theme.iml" />
+      <module fileurl="file://$PROJECT_DIR$/qyz/qyz.iml" filepath="$PROJECT_DIR$/qyz/qyz.iml" group="TuDemo/qyz" />
+      <module fileurl="file://$PROJECT_DIR$/ryg/ryg.iml" filepath="$PROJECT_DIR$/ryg/ryg.iml" group="TuDemo/ryg" />
       <module fileurl="file://$PROJECT_DIR$/utils/utils.iml" filepath="$PROJECT_DIR$/utils/utils.iml" group="TuDemo/utils" />
     </modules>
   </component>

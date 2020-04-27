@@ -12,8 +12,11 @@
           <set>
             <option value="$PROJECT_DIR$" />
             <option value="$PROJECT_DIR$/app" />
+            <option value="$PROJECT_DIR$/fl" />
             <option value="$PROJECT_DIR$/hencoder" />
             <option value="$PROJECT_DIR$/jetpack" />
+            <option value="$PROJECT_DIR$/qyz" />
+            <option value="$PROJECT_DIR$/ryg" />
             <option value="$PROJECT_DIR$/utils" />
           </set>
         </option>

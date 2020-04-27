@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/ryg_ch3_view_move_root"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ch3.RygCh3ViewMoveActivity">
+
+    <com.tustar.ryg.ch3.widget.TestButton
+        android:id="@+id/ryg_ch3_test_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:background="@android:color/holo_green_light"
+        android:gravity="center"
+        android:padding="10dp"
+        android:text="Translation移动"
+        android:textColor="@android:color/white"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="@id/ryg_ch3_view_move_root"
+        app:layout_constraintStart_toStartOf="@id/ryg_ch3_view_move_root"
+        app:layout_constraintTop_toTopOf="@id/ryg_ch3_view_move_root"/>
+
+    <Button
+        android:id="@+id/ryg_ch3_object_animator"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="40dp"
+        android:background="@android:color/holo_orange_dark"
+        android:padding="10dp"
+        android:text="属性动画移动"
+        android:textColor="@android:color/white"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="@id/ryg_ch3_view_move_root"
+        app:layout_constraintStart_toStartOf="@id/ryg_ch3_view_move_root"
+        app:layout_constraintTop_toBottomOf="@+id/ryg_ch3_test_button"/>
+
+    <Button
+        android:id="@+id/ryg_ch3_layout_params"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="40dp"
+        android:background="@android:color/holo_purple"
+        android:padding="10dp"
+        android:text="布局参数"
+        android:textColor="@android:color/white"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="@id/ryg_ch3_view_move_root"
+        app:layout_constraintStart_toStartOf="@id/ryg_ch3_view_move_root"
+        app:layout_constraintTop_toBottomOf="@+id/ryg_ch3_object_animator"/>
+
+    <Button
+        android:id="@+id/ryg_ch3_handler_move"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="40dp"
+        android:background="@android:color/holo_red_light"
+        android:padding="10dp"
+        android:text="Handler延迟"
+        android:textColor="@android:color/white"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="@id/ryg_ch3_view_move_root"
+        app:layout_constraintStart_toStartOf="@id/ryg_ch3_view_move_root"
+        app:layout_constraintTop_toBottomOf="@+id/ryg_ch3_layout_params"/>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

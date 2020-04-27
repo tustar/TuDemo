@@ -1,7 +1,6 @@
 <resources>
     <string name="app_name">范例大全</string>
     <string name="rename">重命名</string>
-    <string name="send">发送</string>
     <string name="no_data">没有数据</string>
     <string name="add">添加</string>
 
@@ -16,28 +15,10 @@
     <string name="section_jetpack">Jetpack</string>
     <string name="section_other">其他</string>
 
-    <string name="navigation_drawer_open">Open navigation drawer</string>
-    <string name="navigation_drawer_close">Close navigation drawer</string>
-
     <string name="action_settings">Settings</string>
 
     <!--Custom-->
     <string name="image_no_exist">图片不存在</string>
-
-    <!--Nav header-->
-    <string name="nav_header_name">Tustar</string>
-    <string name="nav_header_email">tustar1030@gmail.com</string>
-    <string name="nav_header_motto">天行健,君子以自强不息;\n地势坤,君子以厚德载物.</string>
-
-    <!--Menu-->
-    <string name="menu_configure_locale">Change language</string>
-
-    <!--Rotation-->
-    <string name="rotation_port">竖屏->横屏</string>
-    <string name="rotation_land">横屏->竖屏</string>
-    <string name="title_activity_palette">PaletteActivity</string>
-    <string name="transition_name_share">share</string>
-    <string name="transition_name_fab">fab</string>
 
     <!-- Deskclock-->
     <string name="deskclock_title">时钟</string>
@@ -76,38 +57,7 @@
 
     <!-- Other-->
     <string name="loader_title">Loader</string>
-
-    <!--SVG-->
-    <string name="path_circle">
-        M 50, 50
-        m -48,0
-        a 48, 48 0 1 , 0 96, 0
-        a 48, 48 0 1 , 0 -96, 0
-    </string>
-    <string name="path_face_left_eye">
-        M 35, 40
-        m -7, 0
-        a 7, 7 0 1, 0 14, 0
-        a 7, 7 0 1, 0 -14, 0
-    </string>
-    <string name="path_face_right_eye">
-        M 65, 40
-        m -7, 0
-        a 7, 7 0 1, 0 14, 0
-        a 7, 7 0 1, 0 -14, 0
-    </string>
-    <string name="path_face_mouth_sad">
-        M 30, 75
-        Q 50, 55 70, 75
-    </string>
-    <string name="path_face_mouth_happy">
-        M 30, 65
-        Q 50, 85 70, 65
-    </string>
-
-    <!--Drag-->
-    <string name="horiz_drag_label">⇔ Drag Horizontally</string>
-    <string name="vert_drag_label">⇳ Drag Vertically</string>
+    <string name="menu_configure_locale">切换语言</string>
 
     <!--Gif-->
     <string name="fm_main_title">文件管理器</string>
@@ -124,84 +74,11 @@
     <string name="fm_arc">ArcView</string>
     <string name="fm_long_photo">长截图</string>
 
-
-    <!--Android开发艺术探索-->
-    <string name="ryg_main_title">Android开发艺术探索</string>
-    <string name="ryg_ch1_title">第1章 Activity的生命周期和启动模式</string>
-    <string name="ryg_ch2_title">第2章 IPC机制</string>
-    <string name="ryg_ch3_title">第3章 View的事件体系</string>
-    <string name="ryg_ch4_title">第4章 View的工作原理</string>
-    <string name="ryg_ch5_title">第5章 理解RemoteViews</string>
-    <string name="ryg_ch6_title">第6章 Android的Drawable</string>
-    <string name="ryg_ch7_title">第7章 Android动画深入分析</string>
-    <string name="ryg_ch8_title">第8章 理解Window和WindowManager</string>
-    <string name="ryg_ch9_title">第9章 四大组件的工作过程</string>
-    <string name="ryg_ch10_title">第10章 Android的消息机制</string>
-    <string name="ryg_ch11_title">第11章 Android的线程和线程池</string>
-    <string name="ryg_ch12_title">第12章 Bitmap的加载和Cache</string>
-    <string name="ryg_ch13_title">第13章 综合技术</string>
-    <string name="ryg_ch14_title">第14章 JNI和NDK编程</string>
-    <string name="ryg_ch15_title">第15章 Android性能优化</string>
-    <!--ryg_ch2-->
-    <string name="ryg_ch2_ipc">Android IPC</string>
-    <string name="ryg_ch2_provider">Provider</string>
-    <string name="ryg_ch2_messenger">Messenger</string>
-    <string name="ryg_ch2_book_manager">BookManager</string>
-    <string name="ryg_ch2_second">Second</string>
-    <string name="ryg_ch2_third">Third</string>
-    <string name="ryg_ch2_socket">Socket</string>
-    <string name="ryg_ch2_binder_pool">BinderPool</string>
-    <!--ryg_ch3-->
-    <string name="ryg_ch3_view_move">View滑动</string>
-    <string name="rgy_ch3_outer">外部拦截法</string>
-    <string name="rgy_ch3_inner">内部拦截法</string>
-    <!--ryg_ch4-->
-    <string name="ryg_ch4_width_height">四种方法获取宽高</string>
-    <string name="ryg_ch4_circle_view">自定义圆形View</string>
-    <string name="ryg_ch4_ex">完善版的外部拦截</string>
-    <!--ryg_ch5-->
-    <string name="ryg_ch5_notification">RemoteViews通知栏</string>
-    <string name="ryg_ch5_app_widget">RemoteViews桌面小控件</string>
-    <string name="ryg_ch5_custom">RemoteViews原理模拟实现</string>
-    <string name="ryg_ch5_remote_views">RemoteViews用于通知打开</string>
-    <!--ryg_ch6-->
-    <string name="ryg_ch6_drawable">各种Drawable</string>
-    <!--ryg_ch7-->
-    <string name="ryg_ch7_activity_animator">Activity切换动画</string>
-    <string name="ryg_ch7_scale_button">Button放大动画</string>
-    <string name="ryg_ch7_layout_animation">LayoutAnimation</string>
-    <!--ryg_ch8-->
-    <string name="ryg_ch8_float_button">FloatButton</string>
-    <string name="ryg_ch8_dialog">Dialog</string>
-
-    <!--三国群英传-->
-    <string name="qyz_main_title">三国群英传</string>
-    <string name="qyz_rotation_title">Rotation</string>
-    <string name="qyz_palette_title">Palette</string>
-    <string name="qyz_tinting_title">Tinting</string>
-    <string name="qyz_elevation_title">Elevation</string>
-    <string name="qyz_clipping_title">Clipping</string>
-    <string name="qyz_translation_title">Activity Translation</string>
-    <string name="qyz_surface_title">Surface</string>
-    <string name="qyz_svg_title">SVG</string>
-    <string name="qyz_flex_title">FlexibleListView</string>
-    <string name="qyz_over_scroll_title">OverScroll GridView</string>
-    <string name="qyz_custom_widget">Custom Widgets</string>
-    <string name="qyz_drag_view">Drag View</string>
-
     <!--Jetpack-->
     <string name="jet_main_title">Jetpack</string>
     <string name="jet_book_title">Navigation+Room+ViewModel+Paging</string>
     <string name="jet_navigate">Navigate</string>
     <string name="jet_add_book_hint">请添加书籍</string>
-
-    <!--Android应用开发进阶-->
-    <string name="fl_main_title">Android应用开发进阶</string>
-    <string name="fl_ch1_title">第1章 自定义控件</string>
-    <string name="fl_ch2_title">第2章 轮子</string>
-    <string name="fl_ch3_title">第3章 Android应用架构</string>
-    <string name="fl_ch4_title">第4章 AndroidPlus项目实战</string>
-    <string name="fl_ch5_title">第5章 开发实践</string>
 
     <!--Other-->
     <string name="appwidget_text">EXAMPLE</string>

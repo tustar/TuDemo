@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:paddingBottom="16dp"
+    android:paddingTop="16dp"
+    tools:context=".QyzCustomWidgetShowActivity">
+
+
+    <com.tustar.qyz.systemWidget.CustomActionBar
+        android:id="@+id/custom_widget_topBar"
+        android:layout_width="match_parent"
+        android:layout_height="44dp"
+        android:background="@android:color/holo_red_dark"
+        app:left_background="@drawable/selector_custom_widget_topbar_btn"
+        app:left_text="Back"
+        app:left_textColor="@android:color/white"
+        app:right_background="@drawable/selector_custom_widget_topbar_btn"
+        app:right_text="More"
+        app:right_textColor="@android:color/white"
+        app:title_text="自定义标题"
+        app:title_textColor="@android:color/white"
+        app:title_textSize="10sp" />
+    
+</RelativeLayout>

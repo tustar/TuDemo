@@ -8,18 +8,18 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Toast;
 
+import com.tustar.qyz.overscroll.OverScrollDecoratorHelper;
 import com.tustar.util.Logger;
 import com.tustar.demo.R;
 import com.tustar.demo.base.BaseActivity;
-import com.tustar.demo.ui.qyz.overscroll.OverScrollDecoratorHelper;
 
 import java.util.Arrays;
 
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import static com.tustar.demo.ui.qyz.overscroll.OverScrollDecoratorHelper.ORIENTATION_VERTICAL;
 import static com.tustar.demo.ui.recycler.RcViewAdapter.OnItemClickListener;
+import static com.tustar.qyz.overscroll.OverScrollDecoratorHelper.ORIENTATION_VERTICAL;
 
 public class RecyclerViewActivity extends BaseActivity implements OnItemClickListener {
 

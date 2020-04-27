@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".ch5.RygCh5Activity">
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/ryg_base_rv"
+        android:layout_width="match_parent"
+        android:layout_height="200dp"/>
+
+    <TextView
+        android:id="@+id/ryg_base_empty_view"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:text="@string/no_data"
+        android:visibility="gone"/>
+
+    <LinearLayout
+        android:id="@+id/ryg_ch5_remote_views_content"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/ryg_base_rv"
+        android:orientation="vertical"
+        android:layout_marginTop="10dp">
+    </LinearLayout>
+
+</RelativeLayout>

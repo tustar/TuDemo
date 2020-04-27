@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="16dp"
+    android:paddingTop="16dp"
+    android:orientation="vertical"
+    tools:context=".QyzCustomWidgetShowActivity">
+
+
+    <com.tustar.qyz.systemWidget.BorderTextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="10dp"
+        android:text="Android Studio"/>
+
+    <com.tustar.qyz.systemWidget.ShineTextView
+        android:layout_marginTop="10dp"
+        android:layout_width="300dp"
+        android:layout_height="50dp"
+        android:text="My Android TextView"
+        android:textSize="30sp" />
+    
+</LinearLayout>

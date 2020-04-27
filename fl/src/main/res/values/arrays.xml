@@ -1,0 +1,9 @@
+<resources>
+    <string-array name="fl_chapters">
+        <item>@string/fl_ch1_title</item>
+        <item>@string/fl_ch2_title</item>
+        <item>@string/fl_ch3_title</item>
+        <item>@string/fl_ch4_title</item>
+        <item>@string/fl_ch5_title</item>
+    </string-array>
+</resources>
