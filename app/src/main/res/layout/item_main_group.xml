@@ -6,7 +6,7 @@
 
         <variable
             name="group"
-            type="com.tustar.demo.ui.main.GroupItem" />
+            type="com.tustar.demo.data.Group" />
     </data>
 
     <TextView
@@ -18,7 +18,7 @@
         android:paddingStart="4dp"
         android:paddingTop="4dp"
         android:paddingBottom="4dp"
-        android:text="@{context.getString(group.nameResId)}"
+        android:text="@{context.getString(group.name)}"
         android:textColor="#191919"
         android:textSize="12sp"
         tools:text="Group" />

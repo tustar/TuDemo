@@ -5,9 +5,9 @@
     android:id="@+id/activity_two_pointer_draw_view"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.tustar.demo.ui.scroller.TwoPointerDrawViewActivity">
+    tools:context="com.tustar.demo.ui.custom.TwoPointerDrawViewActivity">
 
-    <com.tustar.demo.ui.scroller.TwoPointerDrawView
+    <com.tustar.demo.ui.custom.TwoPointerDrawView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@color/colorAccent"/>

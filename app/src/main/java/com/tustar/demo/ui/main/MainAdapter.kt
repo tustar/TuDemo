@@ -1,15 +1,17 @@
 package com.tustar.demo.ui.main
 
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
 import androidx.navigation.findNavController
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
+import com.tustar.demo.data.Demo
+import com.tustar.demo.data.Group
+import com.tustar.demo.data.MainItem
+import com.tustar.demo.data.MainItem.Companion.TYPE_GROUP
 import com.tustar.demo.databinding.ItemMainChildBinding
 import com.tustar.demo.databinding.ItemMainGroupBinding
-import com.tustar.demo.ui.main.MainItem.Companion.TYPE_SECTION
 
 
 class MainAdapter()
@@ -18,7 +20,7 @@ class MainAdapter()
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
         val inflater = LayoutInflater.from(parent.context)
         return when (viewType) {
-            TYPE_SECTION -> GroupViewHolder(ItemMainGroupBinding.inflate(inflater, parent,
+            TYPE_GROUP -> GroupViewHolder(ItemMainGroupBinding.inflate(inflater, parent,
                     false))
             else -> ChildViewHolder(ItemMainChildBinding.inflate(inflater, parent,
                     false))
@@ -28,10 +30,10 @@ class MainAdapter()
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
         when (holder) {
             is GroupViewHolder -> {
-                holder.bind(getItem(position) as GroupItem)
+                holder.bind(getItem(position) as Group)
             }
             is ChildViewHolder -> {
-                holder.bind(getItem(position) as ChildItem)
+                holder.bind(getItem(position) as Demo)
             }
         }
     }
@@ -43,7 +45,7 @@ class MainAdapter()
     inner class GroupViewHolder(private val binding: ItemMainGroupBinding) :
             RecyclerView.ViewHolder(binding.root) {
 
-        fun bind(item: GroupItem) {
+        fun bind(item: Group) {
             binding.apply {
                 group = item
                 executePendingBindings()
@@ -55,14 +57,14 @@ class MainAdapter()
         : RecyclerView.ViewHolder(binding.root) {
 
         init {
-            binding.setClickListener {view ->
+            binding.setClickListener { view ->
                 binding.child?.let { child ->
-                    view.findNavController().navigate(child.direction)
+                    view.findNavController().navigate(child.actionId)
                 }
             }
         }
 
-        fun bind(item: ChildItem) {
+        fun bind(item: Demo) {
             binding.apply {
                 child = item
                 executePendingBindings()

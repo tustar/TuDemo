@@ -106,11 +106,6 @@ dependencies {
     // Autodispose
     implementation 'com.uber.autodispose:autodispose:1.4.0'
     implementation 'com.uber.autodispose:autodispose-android:1.4.0'
-    //
-    implementation 'pl.droidsonroids.gif:android-gif-drawable:1.2.19'
-    // Glide
-    implementation 'com.github.bumptech.glide:glide:4.11.0'
-    kapt 'com.github.bumptech.glide:compiler:4.11.0'
     // Test
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'androidx.test.ext:junit:1.1.1'
@@ -120,5 +115,6 @@ dependencies {
     implementation project(':fl')
     implementation project(':ryg')
     implementation project(':qyz')
+    implementation project(':survey')
     implementation project(':utils')
 }

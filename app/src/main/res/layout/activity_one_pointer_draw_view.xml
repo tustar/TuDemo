@@ -5,9 +5,9 @@
     android:id="@+id/activity_one_pointer_draw_view"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.tustar.demo.ui.scroller.OnePointerDrawViewActivity">
+    tools:context="com.tustar.demo.ui.custom.OnePointerDrawViewActivity">
 
-    <com.tustar.demo.ui.scroller.OnePointerDrawView
+    <com.tustar.demo.ui.custom.OnePointerDrawView
         android:layout_width="match_parent"
         android:background="@color/colorAccent"
         android:layout_height="match_parent"/>

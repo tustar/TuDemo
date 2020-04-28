@@ -9,13 +9,12 @@ import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.MergeAdapter
 import com.tustar.demo.databinding.FragmentMainBinding
 import com.tustar.ex.observe
-import com.tustar.util.Logger
 import com.tustar.widget.Decoration
 
 class MainFragment : Fragment() {
 
     private val viewModel: MainViewModel by viewModels {
-        MainViewModelFactory()
+        MainViewModelFactory(requireContext())
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
@@ -27,20 +26,23 @@ class MainFragment : Fragment() {
         }
         context ?: return binding.root
 
-        val hencoderAdapter = MainAdapter()
-        val booksAdapter = MainAdapter()
-        val mergeAdapter = MergeAdapter(hencoderAdapter, booksAdapter)
+        val mainAdapter = MainAdapter()
+        val mergeAdapter = MergeAdapter(mainAdapter)
         binding.mainList.adapter = mergeAdapter
-        with(viewModel) {
-            observe(hencoderDemos) { items ->
-                hencoderAdapter.submitList(items)
-            }
-            observe(bookDemos) { items ->
-                booksAdapter.submitList(items)
-            }
-        }
+        subscribeUi(mainAdapter)
+
+        //
+        viewModel.findDemos()
 
         return binding.root
+    }
+
+    private fun subscribeUi(mainAdapter: MainAdapter) {
+        with(viewModel) {
+            observe(demos) { items ->
+                mainAdapter.submitList(items)
+            }
+        }
     }
 
     companion object {

@@ -13,7 +13,7 @@
 
         <variable
             name="child"
-            type="com.tustar.demo.ui.main.ChildItem" />
+            type="com.tustar.demo.data.Demo" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -29,7 +29,7 @@
             android:layout_height="wrap_content"
             android:gravity="center_vertical"
             android:minHeight="?android:attr/listPreferredItemHeightSmall"
-            android:text="@{context.getString(child.nameResId)}"
+            android:text="@{context.getString(child.name)}"
             android:textAppearance="?android:attr/textAppearanceListItemSmall"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"

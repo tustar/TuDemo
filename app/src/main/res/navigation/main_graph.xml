@@ -32,7 +32,19 @@
         <action
             android:id="@+id/action_main_to_qyz"
             app:destination="@id/qyzMainActivity" />
+        <!--Components-->
+        <action
+            android:id="@+id/action_main_to_service"
+            app:destination="@id/demoServiceActivity" />
+        <action
+            android:id="@+id/action_main_to_provider"
+            app:destination="@id/historyProviderActivity" />
+        <action
+            android:id="@+id/action_main_to_fm"
+            app:destination="@id/fmMainActivity" />
+
     </fragment>
+    <!--Hencoder-->
     <activity
         android:id="@+id/practiceDraw1Activity"
         android:name="com.tustar.hencoder.ch1.PracticeDraw1Activity"
@@ -49,6 +61,7 @@
         android:id="@+id/practiceDraw4Activity"
         android:name="com.tustar.hencoder.ch4.PracticeDraw4Activity"
         android:label="PracticeDraw4Activity" />
+    <!--Books-->
     <activity
         android:id="@+id/flMainActivity"
         android:name="com.tustar.fl.FlMainActivity"
@@ -64,4 +77,22 @@
         android:name="com.tustar.qyz.QyzMainActivity"
         android:label="activity_qyz_main"
         tools:layout="@layout/activity_qyz_main" />
+    <!--Components-->
+    <activity
+        android:id="@+id/demoServiceActivity"
+        android:name="com.tustar.demo.ui.component.DemoServiceActivity"
+        android:label="activity_demo_service"
+        tools:layout="@layout/activity_demo_service" />
+    <activity
+        android:id="@+id/historyProviderActivity"
+        android:name="com.tustar.demo.ui.component.HistoryProviderActivity"
+        android:label="activity_history_provider"
+        tools:layout="@layout/activity_history_provider" />
+    <!--Survey-->
+    <activity
+        android:id="@+id/fmMainActivity"
+        android:name="com.tustar.fm.FmMainActivity"
+        android:label="activity_fm_main"
+        tools:layout="@layout/activity_fm_main" />
+
 </navigation>

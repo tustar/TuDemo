@@ -1,87 +1,26 @@
 <resources>
     <string name="app_name">范例大全</string>
-    <string name="rename">重命名</string>
     <string name="no_data">没有数据</string>
-    <string name="add">添加</string>
 
-    <!-- Main section-->
-    <string name="section_hencoder">Hencoder练习</string>
-    <string name="section_books">书籍范例</string>
-    <string name="section_project">项目功能调研</string>
-    <string name="section_abcs">四大组件</string>
-    <string name="section_widgets">控件</string>
-    <string name="section_anims">动画</string>
-    <string name="section_scroller">滑动</string>
-    <string name="section_jetpack">Jetpack</string>
-    <string name="section_other">其他</string>
+    <!--Group-->
+    <string name="group_hencoder">Hencoder练习</string>
+    <string name="group_book_demo">书籍范例</string>
+    <string name="group_component">四大组件</string>
+    <string name="group_survey">项目功能调研</string>
+    <string name="group_anim">动画</string>
+    <string name="group_widget">新控件(MotionLayout)</string>
+    <string name="group_custom">自定义View</string>
+    <string name="group_jetpack">Jetpack</string>
+    <string name="group_other">其他</string>
 
-    <string name="action_settings">Settings</string>
+    <!--Component-->
+    <string name="demo_service_title">Service实例</string>
+    <string name="history_provider_title">Provider实例</string>
 
-    <!--Custom-->
-    <string name="image_no_exist">图片不存在</string>
-
-    <!-- Deskclock-->
-    <string name="deskclock_title">时钟</string>
-
-    <!-- Calculator-->
-    <string name="calculator_title">计算器</string>
-
-    <!--Float Windows-->
-    <string name="rf_signal_title">信号强度</string>
-    <string name="rf_signal_sub">屏幕叠加层显示当前信号强度情况</string>
-    <string name="rf_gsm_signal_strength">gsm signal strength/%1$d</string>
-    <string name="rf_gsm_bit_error_rate">gsm bit error rate/%1$d</string>
-    <string name="rf_cdma_rssi">cdma rssi/%1$d dBm</string>
-    <string name="rf_cdma_ecio">cdma ecio/%1$d dB*10</string>
-    <string name="rf_signal_sim">sim/%1$s</string>
-    <string name="rf_signal_network">network/%1$s</string>
-
-    <!-- Account-->
-    <string name="account_title">账号管理</string>
-
-    <!-- Service Demo-->
-    <string name="service_title">Service实例</string>
-    <!-- Provider Demo-->
-    <string name="provider_title">Provider实例</string>
-
-    <!-- Widgets-->
-    <string name="recycler_title">Recycler实例</string>
-    <string name="drag_list_title">可拖动Item实例</string>
-
-    <!-- Anims-->
+    <!--Anim-->
     <string name="view_anim_title">动画效果(缩放|平移)</string>
     <string name="hide_action_title">隐藏标题栏</string>
 
-    <!-- Scroller-->
+    <!--Custom-->
     <string name="scroller_title">Scroller</string>
-
-    <!-- Other-->
-    <string name="loader_title">Loader</string>
-    <string name="menu_configure_locale">切换语言</string>
-
-    <!--Gif-->
-    <string name="fm_main_title">文件管理器</string>
-    <string name="fm_gif_player">GifPlayer</string>
-    <string name="fm_android_gif_drawable">Android Gif Drawable</string>
-    <string name="fm_rename">Rename</string>
-    <string name="fm_text_header_view">Header View</string>
-    <string name="fm_list_item_text">List Item </string>
-    <string name="fm_changed_list_item_text">Changed List Item </string>
-    <string name="fm_sp_share">SharedPreferences数据共享</string>
-    <string name="fm_open_file">打开文件管理器浏览</string>
-    <string name="fm_section_list_view">Section ListView</string>
-    <string name="fm_section_grid_view">Section GridView</string>
-    <string name="fm_arc">ArcView</string>
-    <string name="fm_long_photo">长截图</string>
-
-    <!--Jetpack-->
-    <string name="jet_main_title">Jetpack</string>
-    <string name="jet_book_title">Navigation+Room+ViewModel+Paging</string>
-    <string name="jet_navigate">Navigate</string>
-    <string name="jet_add_book_hint">请添加书籍</string>
-
-    <!--Other-->
-    <string name="appwidget_text">EXAMPLE</string>
-    <string name="add_widget">Add widget</string>
-
 </resources>
