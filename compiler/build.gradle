@@ -1,0 +1,18 @@
+apply plugin: 'java-library'
+apply plugin: 'kotlin'
+apply plugin: 'kotlin-kapt'
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
+
+    compileOnly "com.squareup:javapoet:1.12.1"
+    compileOnly "com.google.auto.service:auto-service:1.0-rc3"
+    compileOnly 'com.alibaba:fastjson:1.2.61'
+    kapt "com.google.auto.service:auto-service:1.0-rc3"
+
+    implementation project(':annotation')
+}
+
+sourceCompatibility = "7"
+targetCompatibility = "7"

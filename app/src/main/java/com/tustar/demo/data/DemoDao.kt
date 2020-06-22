@@ -6,10 +6,10 @@ import androidx.room.*
 interface DemoDao {
 
     @Query("SELECT * FROM demos WHERE group_id = :groupId AND parent_id=-1 ORDER BY created_at")
-    suspend fun getDemosByGroupId(groupId: Long): List<Demo>
+    suspend fun getDemosByGroupId(groupId: Int): List<Demo>
 
     @Query("SELECT * FROM demos WHERE parent_id = :parentId ORDER BY created_at")
-    suspend fun getDemosByParentId(parentId: Long): List<Demo>
+    suspend fun getDemosByParentId(parentId: Int): List<Demo>
 
     @Insert(onConflict = OnConflictStrategy.IGNORE)
     suspend fun insertDemo(demo: Demo)

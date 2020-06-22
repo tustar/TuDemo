@@ -6,12 +6,16 @@ import androidx.room.Room
 import androidx.room.RoomDatabase
 import androidx.room.TypeConverters
 import androidx.sqlite.db.SupportSQLiteDatabase
+import com.tustar.annotation.GROUP_HEN_ID
+import com.tustar.annotation.RowGroup
 import com.tustar.demo.R
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 
 const val DATABASE_NAME = "demo.db"
+@RowGroup(id = GROUP_HEN_ID, name = R.string.group_hencoder)
+const val HEN_ID = GROUP_HEN_ID
 
 @Database(entities = [Group::class, Demo::class], version = 1, exportSchema = true)
 @TypeConverters(Converters::class)
@@ -56,8 +60,8 @@ abstract class DemoDatabase : RoomDatabase() {
         private suspend fun initDatabase(context: Context) {
             val database = DemoDatabase.getInstance(context)
             val groups = listOf(
-                    Group(id = 1, name = R.string.group_hencoder),
-                    Group(id = 2, name = R.string.group_book_demo)
+                    Group(id =HEN_ID, name = R.string.group_hencoder)
+//                    Group(id = BOOK_ID, name = R.string.group_book_demo)
 //                    Group(id = 3, name = R.string.group_component),
 //                    Group(id = 4, name = R.string.group_survey),
 //                    Group(id = 5, name = R.string.group_anim),
@@ -67,44 +71,44 @@ abstract class DemoDatabase : RoomDatabase() {
 //                    Group(id = 9, name = R.string.group_other)
             )
             val hencoder = listOf(
-                    Demo(groupId = 1,
+                    Demo(groupId = HEN_ID,
                             name = R.string.hen_practice_draw_1,
                             actionId = R.id.action_main_to_draw1),
-                    Demo(groupId = 1,
+                    Demo(groupId = HEN_ID,
                             name = R.string.hen_practice_draw_2,
                             actionId = R.id.action_main_to_draw2),
-                    Demo(groupId = 1,
+                    Demo(groupId = HEN_ID,
                             name = R.string.hen_practice_draw_3,
                             actionId = R.id.action_main_to_draw3),
-                    Demo(groupId = 1,
+                    Demo(groupId = HEN_ID,
                             name = R.string.hen_practice_draw_4,
                             actionId = R.id.action_main_to_draw4)
             )
-            val books = listOf(
-                    Demo(groupId = 2,
-                            name = R.string.fl_main_title,
-                            actionId = R.id.action_main_to_fl,
-                            isMenu = true),
-                    Demo(groupId = 2,
-                            name = R.string.ryg_main_title,
-                            actionId = R.id.action_main_to_ryg,
-                            isMenu = true),
-                    Demo(groupId = 2,
-                            name = R.string.qyz_main_title,
-                            actionId = R.id.action_main_to_qyz,
-                            isMenu = true)
-            )
+//            val books = listOf(
+//                    Demo(groupId = BOOK_ID,
+//                            name = R.string.fl_main_title,
+//                            actionId = R.id.action_main_to_fl,
+//                            isMenu = true),
+//                    Demo(groupId = BOOK_ID,
+//                            name = R.string.ryg_main_title,
+//                            actionId = R.id.action_main_to_ryg,
+//                            isMenu = true),
+//                    Demo(groupId = BOOK_ID,
+//                            name = R.string.qyz_main_title,
+//                            actionId = R.id.action_main_to_qyz,
+//                            isMenu = true)
+//            )
             database.groupDao().insertAll(groups)
             database.demoDao().apply {
                 insertAll(hencoder)
-                insertAll(books)
+//                insertAll(books)
             }
 
 
             //    val hencoderDemos: LiveData<List<MainItem>> = addHencoderDemos()
 //    private fun addHencoderDemos(): MutableLiveData<List<MainItem>> {
 //        val children = listOf(
-//                ChildItem(R.string.hen_practice_draw_1, MainFragmentDirections.actionMainToDraw1()),
+//                ChildItem(R.string.hen_practice_draw_GROUP_HENCODER, MainFragmentDirections.actionMainToDrawGROUP_HENCODER()),
 //                ChildItem(R.string.hen_practice_draw_2, MainFragmentDirections.actionMainToDraw2()),
 //                ChildItem(R.string.hen_practice_draw_3, MainFragmentDirections.actionMainToDraw3()),
 //                ChildItem(R.string.hen_practice_draw_4, MainFragmentDirections.actionMainToDraw4())

@@ -117,4 +117,7 @@ dependencies {
     implementation project(':qyz')
     implementation project(':survey')
     implementation project(':utils')
+
+    implementation project(":annotation")
+    implementation project(":compiler")
 }

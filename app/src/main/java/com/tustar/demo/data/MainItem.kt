@@ -14,7 +14,7 @@ sealed class MainItem {
 
 @Entity(tableName = "groups")
 data class Group(@PrimaryKey
-                 val id: Long,
+                 val id: Int,
                  val name: Int,
                  @ColumnInfo(name = "created_at")
                  val createdAt: Calendar = Calendar.getInstance()) : MainItem() {
@@ -30,12 +30,12 @@ data class Group(@PrimaryKey
                     childColumns = ["group_id"])],
         indices = [Index("group_id")])
 data class Demo(@PrimaryKey(autoGenerate = true)
-                var id: Long = 0,
+                var id: Int = 0,
                 val name: Int,
                 @ColumnInfo(name = "group_id")
-                var groupId: Long = 0,
+                var groupId: Int = 0,
                 @ColumnInfo(name = "parent_id")
-                var parentId: Long = -1,
+                var parentId: Int = -1,
                 @ColumnInfo(name = "action_id")
                 var actionId: Int,
                 @ColumnInfo(name = "is_menu")
