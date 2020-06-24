@@ -5,12 +5,8 @@
       <module fileurl="file://$PROJECT_DIR$/TuDemo.iml" filepath="$PROJECT_DIR$/TuDemo.iml" group="TuDemo" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/annotation/TuDemo-annotation.iml" filepath="$PROJECT_DIR$/.idea/modules/annotation/TuDemo-annotation.iml" group="TuDemo/annotation" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/TuDemo-app.iml" filepath="$PROJECT_DIR$/.idea/modules/app/TuDemo-app.iml" group="TuDemo/app" />
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/fl/TuDemo-fl.iml" filepath="$PROJECT_DIR$/.idea/modules/fl/TuDemo-fl.iml" group="TuDemo/fl" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/compiler/TuDemo-compiler.iml" filepath="$PROJECT_DIR$/.idea/modules/compiler/TuDemo-compiler.iml" group="TuDemo/compiler" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/hencoder/TuDemo-hencoder.iml" filepath="$PROJECT_DIR$/.idea/modules/hencoder/TuDemo-hencoder.iml" group="TuDemo/hencoder" />
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/jetpack/TuDemo-jetpack.iml" filepath="$PROJECT_DIR$/.idea/modules/jetpack/TuDemo-jetpack.iml" group="TuDemo/jetpack" />
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/qyz/TuDemo-qyz.iml" filepath="$PROJECT_DIR$/.idea/modules/qyz/TuDemo-qyz.iml" group="TuDemo/qyz" />
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/ryg/TuDemo-ryg.iml" filepath="$PROJECT_DIR$/.idea/modules/ryg/TuDemo-ryg.iml" group="TuDemo/ryg" />
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/survey/TuDemo-survey.iml" filepath="$PROJECT_DIR$/.idea/modules/survey/TuDemo-survey.iml" group="TuDemo/survey" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/utils/TuDemo-utils.iml" filepath="$PROJECT_DIR$/.idea/modules/utils/TuDemo-utils.iml" group="TuDemo/utils" />
       <module fileurl="file://$PROJECT_DIR$/annotation/annotation.iml" filepath="$PROJECT_DIR$/annotation/annotation.iml" group="TuDemo/annotation" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" group="TuDemo/app" />

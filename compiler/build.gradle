@@ -6,10 +6,12 @@ dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
 
-    compileOnly "com.squareup:javapoet:1.12.1"
-    compileOnly "com.google.auto.service:auto-service:1.0-rc3"
-    compileOnly 'com.alibaba:fastjson:1.2.61'
-    kapt "com.google.auto.service:auto-service:1.0-rc3"
+//    implementation "com.squareup:javapoet:1.12.1"
+    implementation "com.squareup:kotlinpoet:1.6.0"
+    implementation "com.alibaba:fastjson:1.2.61"
+
+    implementation "com.google.auto.service:auto-service:1.0-rc6"
+    kapt "com.google.auto.service:auto-service:1.0-rc6"
 
     implementation project(':annotation')
 }

@@ -48,10 +48,10 @@ public class HideActionBarActivity extends BaseActivity implements View.OnClickL
     }
 
     private void initListView() {
-        mHideListView = (ListView) findViewById(R.id.hide_list_view);
-        mAdatpter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1,
-                getResources().getStringArray(R.array.content_data));
-        mHideListView.setAdapter(mAdatpter);
+//        mHideListView = (ListView) findViewById(R.id.hide_list_view);
+//        mAdatpter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1,
+//                getResources().getStringArray(R.array.content_data));
+//        mHideListView.setAdapter(mAdatpter);
     }
 
     @Override

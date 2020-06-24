@@ -2,13 +2,15 @@ package com.tustar.annotation
 
 import androidx.annotation.IdRes
 import androidx.annotation.StringRes
+import kotlin.annotation.AnnotationRetention.RUNTIME
+import kotlin.annotation.AnnotationTarget.CLASS
+import kotlin.annotation.AnnotationTarget.FUNCTION
 
 
-@Target(AnnotationTarget.CLASS, AnnotationTarget.FUNCTION)
-@Retention(AnnotationRetention.RUNTIME)
+@Target(CLASS, FUNCTION)
+@Retention(RUNTIME)
 annotation class RowDemo(
-        @StringRes val name: Int,
         val groupId: Int,
+        @StringRes val name: Int,
         @IdRes val actionId: Int,
-        val parentId: Int = -1,
-        val isMenu: Boolean = false)
+        val parentId: Int = -1)

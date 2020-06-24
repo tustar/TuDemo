@@ -22,26 +22,26 @@
         <action
             android:id="@+id/action_main_to_draw4"
             app:destination="@id/practiceDraw4Activity" />
-        <!--Books-->
-        <action
-            android:id="@+id/action_main_to_fl"
-            app:destination="@id/flMainActivity" />
-        <action
-            android:id="@+id/action_main_to_ryg"
-            app:destination="@id/rygMainActivity" />
-        <action
-            android:id="@+id/action_main_to_qyz"
-            app:destination="@id/qyzMainActivity" />
-        <!--Components-->
-        <action
-            android:id="@+id/action_main_to_service"
-            app:destination="@id/demoServiceActivity" />
-        <action
-            android:id="@+id/action_main_to_provider"
-            app:destination="@id/historyProviderActivity" />
-        <action
-            android:id="@+id/action_main_to_fm"
-            app:destination="@id/fmMainActivity" />
+<!--        &lt;!&ndash;Books&ndash;&gt;-->
+<!--        <action-->
+<!--            android:id="@+id/action_main_to_fl"-->
+<!--            app:destination="@id/flMainActivity" />-->
+<!--        <action-->
+<!--            android:id="@+id/action_main_to_ryg"-->
+<!--            app:destination="@id/rygMainActivity" />-->
+<!--        <action-->
+<!--            android:id="@+id/action_main_to_qyz"-->
+<!--            app:destination="@id/qyzMainActivity" />-->
+<!--        &lt;!&ndash;Components&ndash;&gt;-->
+<!--        <action-->
+<!--            android:id="@+id/action_main_to_service"-->
+<!--            app:destination="@id/demoServiceActivity" />-->
+<!--        <action-->
+<!--            android:id="@+id/action_main_to_provider"-->
+<!--            app:destination="@id/historyProviderActivity" />-->
+<!--        <action-->
+<!--            android:id="@+id/action_main_to_fm"-->
+<!--            app:destination="@id/fmMainActivity" />-->
 
     </fragment>
     <!--Hencoder-->
@@ -61,38 +61,38 @@
         android:id="@+id/practiceDraw4Activity"
         android:name="com.tustar.hencoder.ch4.PracticeDraw4Activity"
         android:label="PracticeDraw4Activity" />
-    <!--Books-->
-    <activity
-        android:id="@+id/flMainActivity"
-        android:name="com.tustar.fl.FlMainActivity"
-        android:label="activity_fm_main"
-        tools:layout="@layout/activity_fm_main" />
-    <activity
-        android:id="@+id/rygMainActivity"
-        android:name="com.tustar.ryg.RygMainActivity"
-        android:label="activity_ryg_main"
-        tools:layout="@layout/activity_ryg_main" />
-    <activity
-        android:id="@+id/qyzMainActivity"
-        android:name="com.tustar.qyz.QyzMainActivity"
-        android:label="activity_qyz_main"
-        tools:layout="@layout/activity_qyz_main" />
-    <!--Components-->
-    <activity
-        android:id="@+id/demoServiceActivity"
-        android:name="com.tustar.demo.ui.component.DemoServiceActivity"
-        android:label="activity_demo_service"
-        tools:layout="@layout/activity_demo_service" />
-    <activity
-        android:id="@+id/historyProviderActivity"
-        android:name="com.tustar.demo.ui.component.HistoryProviderActivity"
-        android:label="activity_history_provider"
-        tools:layout="@layout/activity_history_provider" />
-    <!--Survey-->
-    <activity
-        android:id="@+id/fmMainActivity"
-        android:name="com.tustar.fm.FmMainActivity"
-        android:label="activity_fm_main"
-        tools:layout="@layout/activity_fm_main" />
+<!--    &lt;!&ndash;Books&ndash;&gt;-->
+<!--    <activity-->
+<!--        android:id="@+id/flMainActivity"-->
+<!--        android:name="com.tustar.fl.FlMainActivity"-->
+<!--        android:label="activity_fm_main"-->
+<!--        tools:layout="@layout/activity_fm_main" />-->
+<!--    <activity-->
+<!--        android:id="@+id/rygMainActivity"-->
+<!--        android:name="com.tustar.ryg.RygMainActivity"-->
+<!--        android:label="activity_ryg_main"-->
+<!--        tools:layout="@layout/activity_ryg_main" />-->
+<!--    <activity-->
+<!--        android:id="@+id/qyzMainActivity"-->
+<!--        android:name="com.tustar.qyz.QyzMainActivity"-->
+<!--        android:label="activity_qyz_main"-->
+<!--        tools:layout="@layout/activity_qyz_main" />-->
+<!--    &lt;!&ndash;Components&ndash;&gt;-->
+<!--    <activity-->
+<!--        android:id="@+id/demoServiceActivity"-->
+<!--        android:name="com.tustar.demo.ui.component.DemoServiceActivity"-->
+<!--        android:label="activity_demo_service"-->
+<!--        tools:layout="@layout/activity_demo_service" />-->
+<!--    <activity-->
+<!--        android:id="@+id/historyProviderActivity"-->
+<!--        android:name="com.tustar.demo.ui.component.HistoryProviderActivity"-->
+<!--        android:label="activity_history_provider"-->
+<!--        tools:layout="@layout/activity_history_provider" />-->
+<!--    &lt;!&ndash;Survey&ndash;&gt;-->
+<!--    <activity-->
+<!--        android:id="@+id/fmMainActivity"-->
+<!--        android:name="com.tustar.fm.FmMainActivity"-->
+<!--        android:label="activity_fm_main"-->
+<!--        tools:layout="@layout/activity_fm_main" />-->
 
 </navigation>

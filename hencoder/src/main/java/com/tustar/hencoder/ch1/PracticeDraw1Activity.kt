@@ -8,6 +8,7 @@ import com.tustar.annotation.RowDemo
 import com.tustar.hencoder.PracticeDrawActivity
 import com.tustar.hencoder.R
 
+
 class PracticeDraw1Activity : PracticeDrawActivity() {
 
     init {
@@ -24,7 +25,6 @@ class PracticeDraw1Activity : PracticeDrawActivity() {
         pageModels.add("PieChart")
     }
 
-//    @RowDemo(groupId = GROUP_HEN_ID, name = R.string.hen_practice_draw_1, actionId = 0)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
