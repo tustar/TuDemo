@@ -1,12 +1,14 @@
 package com.tustar.compiler
 
-import com.alibaba.fastjson.JSON
 import com.google.auto.service.AutoService
+import com.squareup.kotlinpoet.ClassName
+import com.squareup.kotlinpoet.FileSpec
+import com.squareup.kotlinpoet.FunSpec
+import com.squareup.kotlinpoet.ParameterizedTypeName.Companion.parameterizedBy
 import com.tustar.annotation.RowDemo
 import com.tustar.annotation.RowGroup
 import javax.annotation.processing.*
 import javax.lang.model.SourceVersion
-import javax.lang.model.element.ElementKind
 import javax.lang.model.element.TypeElement
 import javax.lang.model.util.Elements
 import javax.lang.model.util.Types
@@ -29,7 +31,7 @@ class DemosProcessor : AbstractProcessor() {
     }
 
     override fun getSupportedSourceVersion(): SourceVersion {
-        return SourceVersion.latestSupported()
+        return SourceVersion.latest()
     }
 
     override fun getSupportedAnnotationTypes(): MutableSet<String> {
@@ -44,72 +46,72 @@ class DemosProcessor : AbstractProcessor() {
             Boolean {
         val groups = mutableListOf<Group>()
         roundEnv.getElementsAnnotatedWith(RowGroup::class.java).forEach { element ->
-            println("element=${element}")
-            if (element.kind != ElementKind.CLASS) {
-                error("Only field can can be annotated " +
-                        "with ${RowGroup::class.java.simpleName}", element)
-                return true
-            }
-
+            note("element=${element}, ${element.kind}; ")
             val annotation = element.getAnnotation(RowGroup::class.java)
             val id = annotation.id
             val name = annotation.name
             groups.add(Group(id, name))
         }
-        println("Json=${JSON.toJSONString(groups)}")
-
-//        val demos = mutableListOf<Demo>()
-//        roundEnv.getElementsAnnotatedWith(RowDemo::class.java).forEach { element ->
-//            if (element.kind != ElementKind.CLASS) {
-//                error("Only field can can be annotated " +
-//                        "with ${RowDemo::class.java.simpleName}", element)
-//                return true
-//            }
-//
-//            val annotation = element.getAnnotation(RowDemo::class.java)
-//            val groupId = annotation.groupId
-//            val name = annotation.name
-//            val actionId = annotation.actionId
-//            demos.add(Demo(groupId, name, actionId))
-//        }
-//        note(JSON.toJSONString(groups))
-
-//        val greeterClass = ClassName("com.tustar.demo.data", "Greeter")
-//        val file = FileSpec.builder("com.tustar.demo.data", "HelloWorld")
-//                .addType(
-//                        TypeSpec.classBuilder("Greeter")
-//                                .primaryConstructor(
-//                                        FunSpec.constructorBuilder()
-//                                                .addParameter("name", String::class)
-//                                                .build()
-//                                )
-//                                .addProperty(
-//                                        PropertySpec.builder("name", String::class)
-//                                                .initializer("name")
-//                                                .build()
-//                                )
-//                                .addFunction(
-//                                        FunSpec.builder("greet")
-//                                                .addStatement("println(%P)", "Hello, \$name")
-//                                                .build()
-//                                )
-//                                .build()
-//                )
-//                .addFunction(
-//                        FunSpec.builder("main")
-//                                .addParameter("args", String::class, KModifier.VARARG)
-//                                .addStatement("%T(args[0]).greet()", greeterClass)
-//                                .build()
-//                )
-//                .build()
-//
-//        try {
-//            file.writeTo(System.out)
-//        } catch (e: Throwable) {
+        //
+        val demos = mutableListOf<Demo>()
+        roundEnv.getElementsAnnotatedWith(RowDemo::class.java).forEach { element ->
+            note("element=${element}, ${element.kind}; ")
+            val annotation = element.getAnnotation(RowDemo::class.java)
+            val groupId = annotation.groupId
+            val name = annotation.name
+            val actionId = annotation.actionId
+            demos.add(Demo(groupId, name, actionId))
+        }
+        //
+        val generateGroups = buildGroupFun(groups)
+        val generateDemos = buildDemoFun(demos)
+        val file = FileSpec.builder("com.tustar.demo.data",
+                "GenerateData")
+                .addFunction(generateGroups)
+                .addFunction(generateDemos)
+                .build()
+        try {
+            file.writeTo(filer)
+        } catch (e: Throwable) {
 //            e.printStackTrace()
-//        }
+        }
 
-        return false
+        return true
+    }
+
+    private fun buildGroupFun(groups: MutableList<Group>): FunSpec {
+        return buildFun(groups, "Group", "generateGroups") {
+            "  " +
+                    "it.add(%T(" +
+                    " id =${it.id}," +
+                    " name = ${it.name}))"
+        }
+    }
+
+    private fun buildDemoFun(demos: MutableList<Demo>): FunSpec {
+        return buildFun(demos, "Demo", "generateDemos") {
+            "  " +
+                    "it.add(%T(" +
+                    " groupId =${it.groupId}," +
+                    " name = ${it.name}," +
+                    " actionId = ${it.actionId}))"
+        }
+    }
+
+    private fun <T> buildFun(demos: MutableList<T>, className: String,
+                             funName: String, block: (T) -> String): FunSpec {
+        val tClazz = ClassName("com.tustar.demo.data", className)
+        val arrayList = ClassName("kotlin.collections", "ArrayList")
+        val arrayListOfT = arrayList.parameterizedBy(tClazz)
+        val builder = FunSpec.builder(funName)
+                .returns(arrayListOfT)
+                .addStatement("val result = %T().also {", arrayListOfT)
+        demos.forEach {
+            builder.addStatement(block.invoke(it), tClazz)
+        }
+        builder.addStatement("}")
+        builder.addStatement("return result")
+        return builder.build()
     }
 
     private fun note(msg: String) {

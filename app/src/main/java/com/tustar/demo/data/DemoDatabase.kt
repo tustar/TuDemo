@@ -14,7 +14,6 @@ import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 
 const val DATABASE_NAME = "demo.db"
-@RowGroup(id = GROUP_HEN_ID, name = R.string.group_hencoder)
 const val HEN_ID = GROUP_HEN_ID
 
 @Database(entities = [Group::class, Demo::class], version = 1, exportSchema = true)
@@ -59,8 +58,8 @@ abstract class DemoDatabase : RoomDatabase() {
 
         private suspend fun initDatabase(context: Context) {
             val database = DemoDatabase.getInstance(context)
-            val groups = listOf(
-                    Group(id =HEN_ID, name = R.string.group_hencoder)
+//            val groups = listOf(
+//                    Group(id =HEN_ID, name = R.string.group_hencoder)
 //                    Group(id = BOOK_ID, name = R.string.group_book_demo)
 //                    Group(id = 3, name = R.string.group_component),
 //                    Group(id = 4, name = R.string.group_survey),
@@ -69,21 +68,21 @@ abstract class DemoDatabase : RoomDatabase() {
 //                    Group(id = 7, name = R.string.group_custom),
 //                    Group(id = 8, name = R.string.group_jetpack),
 //                    Group(id = 9, name = R.string.group_other)
-            )
-            val hencoder = listOf(
-                    Demo(groupId = HEN_ID,
-                            name = R.string.hen_practice_draw_1,
-                            actionId = R.id.action_main_to_draw1),
-                    Demo(groupId = HEN_ID,
-                            name = R.string.hen_practice_draw_2,
-                            actionId = R.id.action_main_to_draw2),
-                    Demo(groupId = HEN_ID,
-                            name = R.string.hen_practice_draw_3,
-                            actionId = R.id.action_main_to_draw3),
-                    Demo(groupId = HEN_ID,
-                            name = R.string.hen_practice_draw_4,
-                            actionId = R.id.action_main_to_draw4)
-            )
+//            )
+//            val hencoder = listOf(
+//                    Demo(groupId = HEN_ID,
+//                            name = R.string.hen_practice_draw_1,
+//                            actionId = R.id.action_main_to_draw1),
+//                    Demo(groupId = HEN_ID,
+//                            name = R.string.hen_practice_draw_2,
+//                            actionId = R.id.action_main_to_draw2),
+//                    Demo(groupId = HEN_ID,
+//                            name = R.string.hen_practice_draw_3,
+//                            actionId = R.id.action_main_to_draw3),
+//                    Demo(groupId = HEN_ID,
+//                            name = R.string.hen_practice_draw_4,
+//                            actionId = R.id.action_main_to_draw4)
+//            )
 //            val books = listOf(
 //                    Demo(groupId = BOOK_ID,
 //                            name = R.string.fl_main_title,
@@ -98,9 +97,9 @@ abstract class DemoDatabase : RoomDatabase() {
 //                            actionId = R.id.action_main_to_qyz,
 //                            isMenu = true)
 //            )
-            database.groupDao().insertAll(groups)
+            database.groupDao().insertAll(generateGroups())
             database.demoDao().apply {
-                insertAll(hencoder)
+                insertAll(generateDemos())
 //                insertAll(books)
             }
 
