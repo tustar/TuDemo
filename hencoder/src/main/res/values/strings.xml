@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <string name="group_hencoder">Hencoder练习</string>
     <!--Hencoder练习-->
     <string name="hen_practice_draw_1">PracticeDraw1</string>
     <string name="hen_practice_draw_2">PracticeDraw2</string>

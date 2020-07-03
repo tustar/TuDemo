@@ -3,7 +3,6 @@
     <string name="no_data">没有数据</string>
 
     <!--Group-->
-    <string name="group_hencoder">Hencoder练习</string>
     <string name="group_book_demo">书籍范例</string>
     <string name="group_component">四大组件</string>
     <string name="group_survey">项目功能调研</string>

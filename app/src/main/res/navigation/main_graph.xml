@@ -9,19 +9,7 @@
         android:id="@+id/main_fragment"
         android:name="com.tustar.demo.ui.main.MainFragment"
         tools:layout="@layout/fragment_main">
-        <!--Hencoder-->
-        <action
-            android:id="@+id/action_main_to_draw1"
-            app:destination="@id/practiceDraw1Activity" />
-        <action
-            android:id="@+id/action_main_to_draw2"
-            app:destination="@id/practiceDraw2Activity" />
-        <action
-            android:id="@+id/action_main_to_draw3"
-            app:destination="@id/practiceDraw3Activity" />
-        <action
-            android:id="@+id/action_main_to_draw4"
-            app:destination="@id/practiceDraw4Activity" />
+
 <!--        &lt;!&ndash;Books&ndash;&gt;-->
 <!--        <action-->
 <!--            android:id="@+id/action_main_to_fl"-->
@@ -44,23 +32,6 @@
 <!--            app:destination="@id/fmMainActivity" />-->
 
     </fragment>
-    <!--Hencoder-->
-    <activity
-        android:id="@+id/practiceDraw1Activity"
-        android:name="com.tustar.hencoder.ch1.PracticeDraw1Activity"
-        android:label="PracticeDraw1Activity" />
-    <activity
-        android:id="@+id/practiceDraw2Activity"
-        android:name="com.tustar.hencoder.ch2.PracticeDraw2Activity"
-        android:label="PracticeDraw2Activity" />
-    <activity
-        android:id="@+id/practiceDraw3Activity"
-        android:name="com.tustar.hencoder.ch3.PracticeDraw3Activity"
-        android:label="PracticeDraw3Activity" />
-    <activity
-        android:id="@+id/practiceDraw4Activity"
-        android:name="com.tustar.hencoder.ch4.PracticeDraw4Activity"
-        android:label="PracticeDraw4Activity" />
 <!--    &lt;!&ndash;Books&ndash;&gt;-->
 <!--    <activity-->
 <!--        android:id="@+id/flMainActivity"-->

@@ -2,10 +2,14 @@ package com.tustar.hencoder.ch4
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
+import com.tustar.annotation.GROUP_HEN_ID
+import com.tustar.annotation.RowDemo
 import com.tustar.hencoder.PracticeDrawActivity
 import com.tustar.hencoder.R
+import com.tustar.hencoder.R2
 
-
+@RowDemo(groupId = GROUP_HEN_ID, name = R2.string.hen_practice_draw_4,
+        actionId = R2.id.action_main_to_draw4)
 class PracticeDraw4Activity : PracticeDrawActivity() {
 
     init {

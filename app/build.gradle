@@ -3,6 +3,7 @@ apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
 apply plugin: 'kotlin-kapt'
 apply plugin: "androidx.navigation.safeargs.kotlin"
+apply plugin: 'com.tustar.gradle'
 
 android {
     compileSdkVersion 29
@@ -37,7 +38,7 @@ android {
     buildFeatures {
         dataBinding = true
         // for view binding :
-        // viewBinding = true
+//        viewBinding = true
     }
 //    externalNativeBuild {
 //        cmake {
@@ -114,7 +115,7 @@ dependencies {
 //    implementation project(':qyz')
 //    implementation project(':survey')
     //
-    implementation project(":annotation")
-    kapt project(":compiler")
-    implementation project(':utils')
+    implementation project(":TuDemo-annotation")
+    kapt project(":TuDemo-compiler")
+    implementation project(':TuDemo-utils')
 }

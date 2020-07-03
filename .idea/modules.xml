@@ -3,15 +3,16 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/TuDemo.iml" filepath="$PROJECT_DIR$/TuDemo.iml" group="TuDemo" />
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/annotation/TuDemo-annotation.iml" filepath="$PROJECT_DIR$/.idea/modules/annotation/TuDemo-annotation.iml" group="TuDemo/annotation" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/TuDemo-annotation/TuDemo-TuDemo-annotation.iml" filepath="$PROJECT_DIR$/.idea/modules/TuDemo-annotation/TuDemo-TuDemo-annotation.iml" group="TuDemo/TuDemo-annotation" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/TuDemo-utils/TuDemo-TuDemo-utils.iml" filepath="$PROJECT_DIR$/.idea/modules/TuDemo-utils/TuDemo-TuDemo-utils.iml" group="TuDemo/TuDemo-utils" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/TuDemo-app.iml" filepath="$PROJECT_DIR$/.idea/modules/app/TuDemo-app.iml" group="TuDemo/app" />
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/compiler/TuDemo-compiler.iml" filepath="$PROJECT_DIR$/.idea/modules/compiler/TuDemo-compiler.iml" group="TuDemo/compiler" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/compiler/TuDemo-compiler.iml" filepath="$PROJECT_DIR$/.idea/modules/compiler/TuDemo-compiler.iml" group="TuDemo/TuDemo-compiler" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/TuDemo-gradle-plugin/TuDemo-gradle-plugin.iml" filepath="$PROJECT_DIR$/.idea/modules/TuDemo-gradle-plugin/TuDemo-gradle-plugin.iml" group="TuDemo/TuDemo-gradle-plugin" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/hencoder/TuDemo-hencoder.iml" filepath="$PROJECT_DIR$/.idea/modules/hencoder/TuDemo-hencoder.iml" group="TuDemo/hencoder" />
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/utils/TuDemo-utils.iml" filepath="$PROJECT_DIR$/.idea/modules/utils/TuDemo-utils.iml" group="TuDemo/utils" />
       <module fileurl="file://$PROJECT_DIR$/annotation/annotation.iml" filepath="$PROJECT_DIR$/annotation/annotation.iml" group="TuDemo/annotation" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" group="TuDemo/app" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/bitbucket-TuDemo.iml" filepath="$PROJECT_DIR$/.idea/modules/bitbucket-TuDemo.iml" group="TuDemo" />
-      <module fileurl="file://$PROJECT_DIR$/compiler/compiler.iml" filepath="$PROJECT_DIR$/compiler/compiler.iml" group="TuDemo/compiler" />
+      <module fileurl="file://$PROJECT_DIR$/TuDemo-compiler/compiler.iml" filepath="$PROJECT_DIR$/TuDemo-compiler/compiler.iml" group="TuDemo/compiler" />
       <module fileurl="file://$PROJECT_DIR$/fl/fl.iml" filepath="$PROJECT_DIR$/fl/fl.iml" group="TuDemo/fl" />
       <module fileurl="file://$PROJECT_DIR$/hencoder/hencoder.iml" filepath="$PROJECT_DIR$/hencoder/hencoder.iml" group="TuDemo/hencoder" />
       <module fileurl="file://$PROJECT_DIR$/jetpack/jetpack.iml" filepath="$PROJECT_DIR$/jetpack/jetpack.iml" group="TuDemo/jetpack" />
