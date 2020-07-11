@@ -13,7 +13,8 @@ buildscript {
         jcenter()
 
         maven {//本地Maven仓库地址
-            url uri('/home/tustar/Documents/project/bitbucket/TuDemo/plugins')
+//            url uri('/home/tustar/Documents/project/bitbucket/TuDemo/plugins')
+            url uri("D:\\project\\github\\TuDemo\\plugins")
         }
     }
 
