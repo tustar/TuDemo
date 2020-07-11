@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CompilerConfiguration">
+    <bytecodeTargetLevel>
+      <module name="TuDemo-annotation" target="1.7" />
+      <module name="TuDemo-compiler" target="1.7" />
+      <module name="TuDemo-jstudy" target="1.7" />
+    </bytecodeTargetLevel>
+  </component>
+</project>

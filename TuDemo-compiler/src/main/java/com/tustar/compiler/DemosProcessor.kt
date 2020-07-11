@@ -78,8 +78,7 @@ class DemosProcessor : AbstractProcessor() {
                 .addFunction(generateDemos)
                 .build()
         try {
-            file.writeToApp(filer)
-            val src = file
+            file.writeTo(filer)
         } catch (e: Throwable) {
             e.printStackTrace()
         }
