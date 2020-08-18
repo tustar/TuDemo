@@ -1,9 +1,12 @@
 <resources>
-    <string name="app_name">TuDemo</string>
-
+    <string name="app_name">Coder World</string>
+    <!-- Title -->
+    <string name="title_home">Demos</string>
+    <string name="title_article">Article</string>
+    <string name="title_todo">Todo</string>
     <!-- Group -->
-    <string name="group_custom_widget">自定义控件</string>
-    <!--    -->
-    <string name="custom_recycler_view">自定义RecyclerView</string>
-    <string name="custom_view">自定义View</string>
+    <string name="group_custom_widget">Custom widgets</string>
+    <!-- Custom -->
+    <string name="custom_recycler_view">Custom RecyclerView</string>
+    <string name="custom_view">Custom View</string>
 </resources>

@@ -1,4 +1,4 @@
-package com.tustar.demo.ui.main
+package com.tustar.demo.ui.home
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -7,23 +7,23 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
-import com.tustar.demo.databinding.FragmentMainBinding
+import com.tustar.demo.databinding.FragmentHomeBinding
 
-class MainFragment : Fragment() {
+class HomeFragment : Fragment() {
 
-    private val viewModel: MainViewModel by viewModels {
-        MainViewModelFactory(requireContext())
+    private val viewModel: HomeViewModel by viewModels {
+        HomeViewModelFactory(requireContext())
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
-        val binding = FragmentMainBinding.inflate(inflater, container,
+        val binding = FragmentHomeBinding.inflate(inflater, container,
                 false).apply {
             lifecycleOwner = viewLifecycleOwner
         }
         context ?: return binding.root
 
-        val mainAdapter = MainAdapter()
+        val mainAdapter = HomeAdapter()
         binding.mainList.adapter = mainAdapter
         subscribeUi(mainAdapter)
 
@@ -33,7 +33,7 @@ class MainFragment : Fragment() {
         return binding.root
     }
 
-    private fun subscribeUi(mainAdapter: MainAdapter) {
+    private fun subscribeUi(mainAdapter: HomeAdapter) {
         with(viewModel) {
             demos.observe(viewLifecycleOwner, Observer {
                     items ->
@@ -43,6 +43,6 @@ class MainFragment : Fragment() {
     }
 
     companion object {
-        fun newInstance() = MainFragment()
+        fun newInstance() = HomeFragment()
     }
 }

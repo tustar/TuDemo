@@ -14,6 +14,7 @@
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/TuDemo-ktx/TuDemo-ktx.iml" filepath="$PROJECT_DIR$/.idea/modules/TuDemo-ktx/TuDemo-ktx.iml" group="TuDemo/TuDemo-ktx" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/bitbucket-TuDemo.iml" filepath="$PROJECT_DIR$/.idea/modules/bitbucket-TuDemo.iml" group="TuDemo" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/TuDemo/bitbucket-TuDemo-TuDemo.iml" filepath="$PROJECT_DIR$/.idea/modules/TuDemo/bitbucket-TuDemo-TuDemo.iml" group="TuDemo/TuDemo" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/project-bitbucket-TuDemo.iml" filepath="$PROJECT_DIR$/.idea/modules/project-bitbucket-TuDemo.iml" group="TuDemo" />
     </modules>
   </component>
 </project>

@@ -1,4 +1,4 @@
-package com.tustar.demo.ui.main
+package com.tustar.demo.ui.home
 
 import android.content.Context
 import androidx.lifecycle.MutableLiveData
@@ -12,14 +12,14 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import java.util.*
 
-class MainViewModelFactory(private val context: Context) : ViewModelProvider.NewInstanceFactory() {
+class HomeViewModelFactory(private val context: Context) : ViewModelProvider.NewInstanceFactory() {
 
     override fun <T : ViewModel?> create(modelClass: Class<T>): T {
-        return MainViewModel(context) as T
+        return HomeViewModel(context) as T
     }
 }
 
-class MainViewModel(context: Context) : ViewModel() {
+class HomeViewModel(context: Context) : ViewModel() {
 
     val demos get() = _demos
     private val _demos = MutableLiveData<LinkedList<MainItem>>()

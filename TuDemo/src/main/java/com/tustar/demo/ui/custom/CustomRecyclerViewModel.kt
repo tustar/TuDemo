@@ -3,7 +3,6 @@ package com.tustar.demo.ui.custom
 import android.content.Context
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
-import com.tustar.demo.ui.main.MainViewModel
 
 class CustomRecyclerViewModelFactory(private val context: Context)
     : ViewModelProvider.NewInstanceFactory() {

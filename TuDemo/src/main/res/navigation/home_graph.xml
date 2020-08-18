@@ -7,8 +7,8 @@
 
     <fragment
         android:id="@+id/main_fragment"
-        android:name="com.tustar.demo.ui.main.MainFragment"
-        tools:layout="@layout/fragment_main">
+        android:name="com.tustar.demo.ui.home.HomeFragment"
+        tools:layout="@layout/fragment_home">
         <action
             android:id="@+id/action_main_to_recycler"
             app:destination="@id/custom_recycler_fragment" />

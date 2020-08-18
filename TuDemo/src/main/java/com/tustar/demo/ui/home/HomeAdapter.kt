@@ -1,4 +1,4 @@
-package com.tustar.demo.ui.main
+package com.tustar.demo.ui.home
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
@@ -10,19 +10,19 @@ import com.tustar.demo.data.Demo
 import com.tustar.demo.data.Group
 import com.tustar.demo.data.MainItem
 import com.tustar.demo.data.MainItem.Companion.TYPE_GROUP
-import com.tustar.demo.databinding.ItemMainChildBinding
-import com.tustar.demo.databinding.ItemMainGroupBinding
+import com.tustar.demo.databinding.ItemHomeChildBinding
+import com.tustar.demo.databinding.ItemHomeGroupBinding
 
 
-class MainAdapter()
+class HomeAdapter()
     : ListAdapter<MainItem, RecyclerView.ViewHolder>(MainDiffCallback()) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
         val inflater = LayoutInflater.from(parent.context)
         return when (viewType) {
-            TYPE_GROUP -> GroupViewHolder(ItemMainGroupBinding.inflate(inflater, parent,
+            TYPE_GROUP -> GroupViewHolder(ItemHomeGroupBinding.inflate(inflater, parent,
                     false))
-            else -> ChildViewHolder(ItemMainChildBinding.inflate(inflater, parent,
+            else -> ChildViewHolder(ItemHomeChildBinding.inflate(inflater, parent,
                     false))
         }
     }
@@ -42,7 +42,7 @@ class MainAdapter()
         return getItem(position).getType()
     }
 
-    inner class GroupViewHolder(private val binding: ItemMainGroupBinding) :
+    inner class GroupViewHolder(private val binding: ItemHomeGroupBinding) :
             RecyclerView.ViewHolder(binding.root) {
 
         fun bind(item: Group) {
@@ -53,7 +53,7 @@ class MainAdapter()
         }
     }
 
-    inner class ChildViewHolder(private val binding: ItemMainChildBinding)
+    inner class ChildViewHolder(private val binding: ItemHomeChildBinding)
         : RecyclerView.ViewHolder(binding.root) {
 
         init {
