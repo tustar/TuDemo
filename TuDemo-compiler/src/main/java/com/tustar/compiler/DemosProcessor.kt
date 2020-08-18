@@ -4,22 +4,15 @@ import com.google.auto.service.AutoService
 import com.squareup.kotlinpoet.ClassName
 import com.squareup.kotlinpoet.FileSpec
 import com.squareup.kotlinpoet.FunSpec
-import com.squareup.kotlinpoet.OriginatingElementsHolder
 import com.squareup.kotlinpoet.ParameterizedTypeName.Companion.parameterizedBy
 import com.tustar.annotation.RowDemo
 import com.tustar.annotation.RowGroup
-import java.io.IOException
-import java.io.OutputStreamWriter
-import java.nio.charset.StandardCharsets
-import java.nio.file.Files
-import java.nio.file.Paths
 import javax.annotation.processing.*
 import javax.lang.model.SourceVersion
 import javax.lang.model.element.TypeElement
 import javax.lang.model.util.Elements
 import javax.lang.model.util.Types
 import javax.tools.Diagnostic
-import javax.tools.StandardLocation
 
 @AutoService(Processor::class)
 class DemosProcessor : AbstractProcessor() {

@@ -5,6 +5,8 @@
       <module name="TuDemo-annotation" target="1.7" />
       <module name="TuDemo-compiler" target="1.7" />
       <module name="TuDemo-jstudy" target="1.7" />
+      <module name="TuDemo-TuDemo-annotation" target="1.7" />
+      <module name="TuDemo-TuDemo-compiler" target="1.7" />
     </bytecodeTargetLevel>
   </component>
 </project>

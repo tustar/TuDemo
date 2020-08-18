@@ -1,9 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<resources>
-
-    <color name="yellow">#FF0</color>
-    <color name="black">#000</color>
-    <color name="spectrum_cyan">#00e0e0</color>
-    <color name="spectrum_yellow">#f0e000</color>
-    <color name="shape_ripple_round_solid_color">@android:color/holo_orange_dark</color>
-</resources>
