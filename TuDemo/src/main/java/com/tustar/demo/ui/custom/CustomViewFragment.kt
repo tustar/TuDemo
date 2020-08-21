@@ -10,7 +10,7 @@ import com.tustar.annotation.RowDemo
 import com.tustar.demo.R
 
 @RowDemo(groupId = GROUP_CUSTOM_WIDGET_ID, name = R.string.custom_view,
-    actionId = R.id.action_main_to_view)
+    actionId = R.id.action_home_to_view)
 class CustomViewFragment : Fragment() {
 
     override fun onCreateView(

@@ -6,7 +6,10 @@
     <string name="title_todo">Todo</string>
     <!-- Group -->
     <string name="group_custom_widget">Custom widgets</string>
-    <!-- Custom -->
+    <string name="group_system_widget">System widgets</string>
+    <!-- Custom widget -->
     <string name="custom_recycler_view">Custom RecyclerView</string>
     <string name="custom_view">Custom View</string>
+    <!-- System widget-->
+    <string name="custom_motion_layout">MotionLayout</string>
 </resources>

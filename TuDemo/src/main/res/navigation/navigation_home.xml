@@ -2,29 +2,37 @@
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/main_graph"
-    app:startDestination="@+id/main_fragment">
+    android:id="@+id/navigation_home"
+    app:startDestination="@+id/home_fragment">
 
     <fragment
-        android:id="@+id/main_fragment"
+        android:id="@+id/home_fragment"
         android:name="com.tustar.demo.ui.home.HomeFragment"
         tools:layout="@layout/fragment_home">
         <action
-            android:id="@+id/action_main_to_recycler"
+            android:id="@+id/action_home_to_recycler"
             app:destination="@id/custom_recycler_fragment" />
         <action
-            android:id="@+id/action_main_to_view"
+            android:id="@+id/action_home_to_view"
             app:destination="@id/custom_view_fragment" />
+        <action
+            android:id="@+id/action_home_to_motion_layout"
+            app:destination="@id/motion_layout_fragment" />
     </fragment>
     <fragment
         android:id="@+id/custom_recycler_fragment"
         android:name="com.tustar.demo.ui.custom.CustomRecyclerFragment"
-        android:label="custom_recycler_fragment"
+        android:label="@string/custom_recycler_view"
         tools:layout="@layout/fragment_custom_recycler" />
     <fragment
         android:id="@+id/custom_view_fragment"
         android:name="com.tustar.demo.ui.custom.CustomViewFragment"
-        android:label="custom_view_fragment"
+        android:label="@string/custom_view"
         tools:layout="@layout/fragment_custom_view" />
+    <fragment
+        android:id="@+id/motion_layout_fragment"
+        android:name="com.tustar.demo.ui.systemWidget.MotionLayoutFragment"
+        android:label="@string/custom_motion_layout"
+        tools:layout="@layout/fragment_motion_layout" />
 
 </navigation>

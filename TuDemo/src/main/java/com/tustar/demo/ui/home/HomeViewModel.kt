@@ -25,8 +25,13 @@ class HomeViewModel(context: Context) : ViewModel() {
     private val _demos = MutableLiveData<LinkedList<MainItem>>()
     fun findDemos() = viewModelScope.launch(Dispatchers.IO) {
         val items = LinkedList<MainItem>()
-        items.addAll(generateGroups())
-        items.addAll(generateDemos())
+        val group = generateGroups()
+        val demos = generateDemos()
+        val demoMap = demos.groupBy { it.groupId }
+        group.forEach {
+            items.add(it)
+            items.addAll(demoMap[it.id] ?: error("Wrong key"))
+        }
         _demos.postValue(items)
     }
 }

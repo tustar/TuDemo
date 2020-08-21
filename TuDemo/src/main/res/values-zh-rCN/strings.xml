@@ -1,13 +1,15 @@
 <resources>
     <string name="app_name">码农世界</string>
     <!-- Title -->
-    <string name="title_activity_main">MainActivity</string>
     <string name="title_home">范例</string>
     <string name="title_article">干货</string>
     <string name="title_todo">待办</string>
     <!-- Group -->
     <string name="group_custom_widget">自定义控件</string>
+    <string name="group_system_widget">系统控件</string>
     <!-- Custom -->
     <string name="custom_recycler_view">自定义RecyclerView</string>
     <string name="custom_view">自定义View</string>
+    <!-- System widget-->
+    <string name="custom_motion_layout">MotionLayout</string>
 </resources>
