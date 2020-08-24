@@ -7,9 +7,15 @@
     <!-- Group -->
     <string name="group_custom_widget">自定义控件</string>
     <string name="group_system_widget">系统控件</string>
+    <string name="group_jetpack">Jetpack</string>
     <!-- Custom -->
     <string name="custom_recycler_view">自定义RecyclerView</string>
     <string name="custom_view">自定义View</string>
     <!-- System widget-->
-    <string name="custom_motion_layout">MotionLayout</string>
+    <string name="sys_motion_base">MotionLayout Base</string>
+    <string name="sys_motion_image_filter_view">MotionLayout ImageFilterView</string>
+    <!-- Jetpack-->
+    <string name="jet_hilt">Hilt</string>
+    <!-- Article-->
+    <string name="article_detail">干货详情</string>
 </resources>

@@ -16,8 +16,14 @@
             android:id="@+id/action_home_to_view"
             app:destination="@id/custom_view_fragment" />
         <action
-            android:id="@+id/action_home_to_motion_layout"
-            app:destination="@id/motion_layout_fragment" />
+            android:id="@+id/action_home_to_motion_base"
+            app:destination="@id/motion_base_fragment" />
+        <action
+            android:id="@+id/action_home_to_motion_image_filter_view"
+            app:destination="@id/motion_image_filter_view_fragment" />
+        <action
+            android:id="@+id/action_home_to_jet_hilt"
+            app:destination="@id/jet_hilt_fragment" />
     </fragment>
     <fragment
         android:id="@+id/custom_recycler_fragment"
@@ -30,9 +36,19 @@
         android:label="@string/custom_view"
         tools:layout="@layout/fragment_custom_view" />
     <fragment
-        android:id="@+id/motion_layout_fragment"
-        android:name="com.tustar.demo.ui.systemWidget.MotionLayoutFragment"
-        android:label="@string/custom_motion_layout"
-        tools:layout="@layout/fragment_motion_layout" />
+        android:id="@+id/motion_base_fragment"
+        android:name="com.tustar.demo.ui.sys.motion.MotionBaseFragment"
+        android:label="@string/sys_motion_base"
+        tools:layout="@layout/fragment_motion_base" />
+    <fragment
+        android:id="@+id/motion_image_filter_view_fragment"
+        android:name="com.tustar.demo.ui.sys.motion.MotionImageFilterViewFragment"
+        android:label="@string/sys_motion_image_filter_view"
+        tools:layout="@layout/fragment_motion_image_filter_view" />
+    <fragment
+        android:id="@+id/jet_hilt_fragment"
+        android:name="com.tustar.demo.ui.jetpack.JetHiltFragment"
+        android:label="@string/jet_hilt"
+        tools:layout="@layout/fragment_jet_hilt" />
 
 </navigation>

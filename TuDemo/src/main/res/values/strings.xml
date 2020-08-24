@@ -7,9 +7,15 @@
     <!-- Group -->
     <string name="group_custom_widget">Custom widgets</string>
     <string name="group_system_widget">System widgets</string>
+    <string name="group_jetpack">Jetpack</string>
     <!-- Custom widget -->
     <string name="custom_recycler_view">Custom RecyclerView</string>
     <string name="custom_view">Custom View</string>
     <!-- System widget-->
-    <string name="custom_motion_layout">MotionLayout</string>
+    <string name="sys_motion_base">MotionLayout　Base</string>
+    <string name="sys_motion_image_filter_view">MotionLayout ImageFilterView</string>
+    <!-- Jetpack-->
+    <string name="jet_hilt">Hilt</string>
+    <!-- Article-->
+    <string name="article_detail">Article Detail</string>
 </resources>

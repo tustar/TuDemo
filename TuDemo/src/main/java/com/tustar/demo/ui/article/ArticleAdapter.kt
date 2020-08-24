@@ -11,7 +11,9 @@ import java.text.SimpleDateFormat
 import java.util.*
 
 
-class ArticleAdapter() : ListAdapter<Article, RecyclerView.ViewHolder>(ArticleDiffCallback()) {
+class ArticleAdapter : ListAdapter<Article, RecyclerView.ViewHolder>(ArticleDiffCallback()) {
+
+    var onItemClick: ((Article) -> Unit)? = null
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
         val inflater = LayoutInflater.from(parent.context)
@@ -31,13 +33,12 @@ class ArticleAdapter() : ListAdapter<Article, RecyclerView.ViewHolder>(ArticleDi
     inner class ArticleViewHolder(private val binding: ItemArticleBinding) :
         RecyclerView.ViewHolder(binding.root) {
 
-        init {
-            binding.root.setOnClickListener {
-
-            }
-        }
 
         fun bind(item: Article) {
+            binding.root.setOnClickListener {
+                onItemClick?.invoke(item)
+            }
+
             binding.apply {
                 articleTitle.text = item.title
                 articleDescription.text = item.description

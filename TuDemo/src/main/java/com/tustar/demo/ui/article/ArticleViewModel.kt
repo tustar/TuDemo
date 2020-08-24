@@ -20,7 +20,7 @@ class ArticleViewModel(context: Context) : ViewModel() {
 
     val articles get() = _articles
     private val _articles = MutableLiveData<List<Article>>().apply {
-       val article = Article(
+        val article = Article(
             "给Android开发者的RxJava详解",
             "我从去年开始使用 RxJava ，到现在一年多了。今年加入了 Flipboard 后，看到" +
                     " Flipboard 的 Android 项目也在使用 RxJava ，并且使用的场景越来越多 。而最近这几个月" +
@@ -29,7 +29,7 @@ class ArticleViewModel(context: Context) : ViewModel() {
             author = "扔物线",
             createAt = System.currentTimeMillis()
         )
-        val articles = ArrayList<Article>(Collections.nCopies(8, article))
+        val articles = ArrayList<Article>(Collections.nCopies(1, article))
         postValue(articles)
     }
 }

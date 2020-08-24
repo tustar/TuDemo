@@ -5,7 +5,6 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
-import com.tustar.demo.data.Article
 import com.tustar.demo.data.Todo
 import com.tustar.demo.databinding.ItemTodoBinding
 
@@ -38,6 +37,7 @@ class TodoAdapter() : ListAdapter<Todo, RecyclerView.ViewHolder>(TodoDiffCallbac
 
         fun bind(item: Todo) {
             binding.apply {
+                todoCheck.isChecked = item.isDone
                 todoTitle.text = item.title
                 todoDescription.text = item.description
             }

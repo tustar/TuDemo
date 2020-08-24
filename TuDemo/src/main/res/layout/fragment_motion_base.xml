@@ -2,11 +2,10 @@
 <androidx.constraintlayout.motion.widget.MotionLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     xmlns:apps="http://schemas.android.com/apk/res-auto"
-    android:id="@+id/motion_layout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    apps:layoutDescription="@xml/scene_01"
-    tools:context=".ui.systemWidget.MotionLayoutFragment"
+    apps:layoutDescription="@xml/scene_base"
+    tools:context=".ui.sys.motion.MotionImageFilterViewFragment"
     tools:showPaths="true">
 
     <View

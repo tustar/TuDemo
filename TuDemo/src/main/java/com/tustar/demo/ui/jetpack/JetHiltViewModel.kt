@@ -1,18 +1,17 @@
-package com.tustar.demo.ui.systemWidget
+package com.tustar.demo.ui.jetpack
 
 import android.content.Context
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 
-
-class MotionLayoutViewModelFactory(private val context: Context) :
+class JetHiltViewModelFactory(private val context: Context) :
     ViewModelProvider.NewInstanceFactory() {
 
     override fun <T : ViewModel?> create(modelClass: Class<T>): T {
-        return MotionLayoutViewModel(context) as T
+        return JetHiltViewModel(context) as T
     }
 }
 
-class MotionLayoutViewModel(context: Context) : ViewModel() {
+class JetHiltViewModel(context: Context) : ViewModel() {
 
 }

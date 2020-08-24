@@ -6,6 +6,7 @@ import kotlin.annotation.AnnotationTarget.CLASS
 
 const val GROUP_CUSTOM_WIDGET_ID = 1
 const val GROUP_SYSTEM_WIDGET_ID = 2
+const val GROUP_JETPACK_ID = 3
 
 @Target(CLASS)
 @Retention(RUNTIME)
