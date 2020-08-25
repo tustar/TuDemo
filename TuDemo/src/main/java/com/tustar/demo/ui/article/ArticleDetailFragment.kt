@@ -4,6 +4,8 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.webkit.WebChromeClient
+import android.webkit.WebView
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.navArgs
@@ -27,7 +29,23 @@ class ArticleDetailFragment : Fragment() {
             inflater, container,
             false
         )
-        binding.articleDetailWeb.loadUrl(args.article.url)
+        binding.articleDetailWeb.apply {
+            loadUrl(args.article.url)
+            webChromeClient = object : WebChromeClient() {
+                override fun onProgressChanged(view: WebView, newProgress: Int) {
+                    if (newProgress == 100) {
+                        binding.articleDetailProgress.visibility = View.GONE
+                    } else {
+                        binding.articleDetailProgress.visibility = View.VISIBLE
+                        binding.articleDetailProgress.progress = progress
+                    }
+                    super.onProgressChanged(view, newProgress)
+                }
+            }
+            settings.apply {
+                javaScriptEnabled = true
+            }
+        }
         subscribeUi()
         return binding.root
     }
