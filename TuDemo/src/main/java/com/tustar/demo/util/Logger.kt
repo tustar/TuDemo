@@ -93,7 +93,7 @@ object Logger {
 
     @JvmStatic
     fun e(msg: String? = "", tr: Throwable) {
-        if (type and TYPE_E != 0) {
+        if ((type and TYPE_E != 0) or Log.isLoggable(APP_TAG, Log.ERROR)) {
             Log.e(APP_TAG, "$prefix $msg", tr)
         }
     }
