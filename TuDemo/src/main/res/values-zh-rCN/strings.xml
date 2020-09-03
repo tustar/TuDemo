@@ -18,4 +18,7 @@
     <string name="jet_hilt">Hilt</string>
     <!-- Article-->
     <string name="article_detail">干货详情</string>
+    <!-- Channel -->
+    <string name="channel_name">TuDemo渠道</string>
+    <string name="channel_description">TuDemo描述</string>
 </resources>

@@ -18,4 +18,7 @@
     <string name="jet_hilt">Hilt</string>
     <!-- Article-->
     <string name="article_detail">Article Detail</string>
+    <!-- Channel -->
+    <string name="channel_name">TuDemo Channel</string>
+    <string name="channel_description">TuDemo Description</string>
 </resources>

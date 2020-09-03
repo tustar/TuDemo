@@ -9,6 +9,7 @@ import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.tustar.demo.util.Logger
+import com.tustar.demo.util.postNotification
 import com.tustar.ktx.navigateUpOrFinish
 
 class MainActivity : AppCompatActivity() {
@@ -38,4 +39,9 @@ class MainActivity : AppCompatActivity() {
     }
 
     override fun onSupportNavigateUp() = navController.navigateUpOrFinish(this)
+
+    override fun onResume() {
+        super.onResume()
+        postNotification(this)
+    }
 }
