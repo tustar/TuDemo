@@ -4,7 +4,7 @@ import android.content.Context
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
-import com.tustar.demo.data.Todo
+import com.tustar.demo.data.model.Todo
 
 
 class TodoViewModelFactory(private val context: Context) :

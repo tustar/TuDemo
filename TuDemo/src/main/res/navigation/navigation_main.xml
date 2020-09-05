@@ -9,4 +9,6 @@
     <include app:graph="@navigation/navigation_article" />
 
     <include app:graph="@navigation/navigation_todo" />
+
+    <include app:graph="@navigation/navigation_weather" />
 </navigation>

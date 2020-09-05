@@ -4,6 +4,7 @@
     <string name="title_home">Demos</string>
     <string name="title_article">Article</string>
     <string name="title_todo">Todo</string>
+    <string name="title_weather">Weather</string>
     <!-- Group -->
     <string name="group_custom_widget">Custom widgets</string>
     <string name="group_system_widget">System widgets</string>

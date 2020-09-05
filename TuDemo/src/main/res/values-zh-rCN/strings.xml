@@ -4,6 +4,7 @@
     <string name="title_home">范例</string>
     <string name="title_article">干货</string>
     <string name="title_todo">待办</string>
+    <string name="title_weather">天气</string>
     <!-- Group -->
     <string name="group_custom_widget">自定义控件</string>
     <string name="group_system_widget">系统控件</string>

@@ -5,7 +5,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
-import com.tustar.demo.data.Article
+import com.tustar.demo.data.model.Article
 import com.tustar.demo.databinding.ItemArticleBinding
 import java.text.SimpleDateFormat
 import java.util.*

@@ -13,7 +13,7 @@
 
         <variable
             name="child"
-            type="com.tustar.demo.data.Demo" />
+            type="com.tustar.demo.data.model.Demo" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout

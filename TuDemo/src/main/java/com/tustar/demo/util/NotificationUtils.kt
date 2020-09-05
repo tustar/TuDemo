@@ -12,7 +12,7 @@ import android.net.Uri
 import android.os.Build
 import androidx.core.app.NotificationCompat
 import androidx.core.app.NotificationManagerCompat
-import com.tustar.demo.MainActivity
+import com.tustar.demo.ui.MainActivity
 import com.tustar.demo.R
 
 

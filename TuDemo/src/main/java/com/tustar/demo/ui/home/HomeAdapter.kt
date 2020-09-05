@@ -6,10 +6,10 @@ import androidx.navigation.findNavController
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
-import com.tustar.demo.data.Demo
-import com.tustar.demo.data.Group
-import com.tustar.demo.data.MainItem
-import com.tustar.demo.data.MainItem.Companion.TYPE_GROUP
+import com.tustar.demo.data.model.Demo
+import com.tustar.demo.data.model.Group
+import com.tustar.demo.data.model.MainItem
+import com.tustar.demo.data.model.MainItem.Companion.TYPE_GROUP
 import com.tustar.demo.databinding.ItemHomeChildBinding
 import com.tustar.demo.databinding.ItemHomeGroupBinding
 

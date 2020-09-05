@@ -1,4 +1,4 @@
-package com.tustar.demo
+package com.tustar.demo.ui
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
@@ -8,6 +8,7 @@ import androidx.navigation.ui.NavigationUI
 import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
 import com.google.android.material.bottomnavigation.BottomNavigationView
+import com.tustar.demo.R
 import com.tustar.demo.util.Logger
 import com.tustar.demo.util.postNotification
 import com.tustar.ktx.navigateUpOrFinish
@@ -30,7 +31,8 @@ class MainActivity : AppCompatActivity() {
             setOf(
                 R.id.navigation_home,
                 R.id.navigation_article,
-                R.id.navigation_todo
+                R.id.navigation_todo,
+                R.id.navigation_weather
             )
         )
         setupActionBarWithNavController(navController, appBarConfiguration)
@@ -39,9 +41,4 @@ class MainActivity : AppCompatActivity() {
     }
 
     override fun onSupportNavigateUp() = navController.navigateUpOrFinish(this)
-
-    override fun onResume() {
-        super.onResume()
-        postNotification(this)
-    }
 }

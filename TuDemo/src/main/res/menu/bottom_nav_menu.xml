@@ -16,4 +16,8 @@
         android:icon="@drawable/ic_todo_black_24dp"
         android:title="@string/title_todo" />
 
+    <item
+        android:id="@+id/navigation_weather"
+        android:icon="@drawable/ic_weather_black_24dp"
+        android:title="@string/title_weather" />
 </menu>

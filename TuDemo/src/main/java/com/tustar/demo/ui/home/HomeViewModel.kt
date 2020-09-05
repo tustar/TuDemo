@@ -5,9 +5,9 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.viewModelScope
-import com.tustar.demo.data.MainItem
-import com.tustar.demo.data.generateDemos
-import com.tustar.demo.data.generateGroups
+import com.tustar.demo.data.model.MainItem
+import com.tustar.demo.data.gen.generateDemos
+import com.tustar.demo.data.gen.generateGroups
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import java.util.*

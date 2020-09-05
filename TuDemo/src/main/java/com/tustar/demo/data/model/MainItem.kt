@@ -1,4 +1,4 @@
-package com.tustar.demo.data
+package com.tustar.demo.data.model
 
 import java.util.*
 

@@ -1,4 +1,4 @@
-package com.tustar.demo.data
+package com.tustar.demo.data.model
 
 import android.os.Parcelable
 import kotlinx.android.parcel.Parcelize

@@ -65,7 +65,7 @@ class DemosProcessor : AbstractProcessor() {
         //
         val generateGroups = buildGroupFun(groups)
         val generateDemos = buildDemoFun(demos)
-        val file = FileSpec.builder("com.tustar.demo.data",
+        val file = FileSpec.builder("com.tustar.demo.data.gen",
                 "GenerateData")
                 .addFunction(generateGroups)
                 .addFunction(generateDemos)
@@ -100,7 +100,7 @@ class DemosProcessor : AbstractProcessor() {
 
     private fun <T> buildFun(demos: MutableList<T>, className: String,
                              funName: String, block: (T) -> String): FunSpec {
-        val tClazz = ClassName("com.tustar.demo.data", className)
+        val tClazz = ClassName("com.tustar.demo.data.model", className)
         val arrayList = ClassName("kotlin.collections", "ArrayList")
         val arrayListOfT = arrayList.parameterizedBy(tClazz)
         val builder = FunSpec.builder(funName)

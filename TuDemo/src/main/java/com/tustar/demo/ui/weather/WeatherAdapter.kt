@@ -1,32 +1,32 @@
-package com.tustar.demo.ui.todo
+package com.tustar.demo.ui.weather
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
-import com.tustar.demo.data.model.Todo
-import com.tustar.demo.databinding.ItemTodoBinding
+import com.tustar.demo.data.remote.Place
+import com.tustar.demo.databinding.ItemPlaceBinding
 
 
-class TodoAdapter() : ListAdapter<Todo, RecyclerView.ViewHolder>(TodoDiffCallback()) {
+class WeatherAdapter : ListAdapter<Place, RecyclerView.ViewHolder>(TodoDiffCallback()) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
         val inflater = LayoutInflater.from(parent.context)
-        return TodoViewHolder(ItemTodoBinding.inflate(inflater, parent, false))
+        return PlaceViewHolder(ItemPlaceBinding.inflate(inflater, parent, false))
     }
 
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
-        if (holder is TodoViewHolder) {
+        if (holder is PlaceViewHolder) {
             val item = getItem(position)
-            if (item is Todo) {
+            if (item is Place) {
                 holder.bind(item)
             }
         }
     }
 
 
-    inner class TodoViewHolder(private val binding: ItemTodoBinding) :
+    inner class PlaceViewHolder(private val binding: ItemPlaceBinding) :
         RecyclerView.ViewHolder(binding.root) {
 
         init {
@@ -35,22 +35,21 @@ class TodoAdapter() : ListAdapter<Todo, RecyclerView.ViewHolder>(TodoDiffCallbac
             }
         }
 
-        fun bind(item: Todo) {
+        fun bind(item: Place) {
             binding.apply {
-                todoCheck.isChecked = item.isDone
-                todoTitle.text = item.title
-                todoDescription.text = item.description
+                placeName.text = item.name
+                placeAddress.text = item.address
             }
         }
     }
 
-    private class TodoDiffCallback : DiffUtil.ItemCallback<Todo>() {
+    private class TodoDiffCallback : DiffUtil.ItemCallback<Place>() {
 
-        override fun areItemsTheSame(oldItem: Todo, newItem: Todo): Boolean {
+        override fun areItemsTheSame(oldItem: Place, newItem: Place): Boolean {
             return oldItem == newItem
         }
 
-        override fun areContentsTheSame(oldItem: Todo, newItem: Todo): Boolean {
+        override fun areContentsTheSame(oldItem: Place, newItem: Place): Boolean {
             return oldItem == newItem
         }
     }

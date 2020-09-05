@@ -15,7 +15,7 @@
             app:destination="@id/article_detail_fragment">
             <argument
                 android:name="article"
-                app:argType="com.tustar.demo.data.Article" />
+                app:argType="com.tustar.demo.data.model.Article" />
         </action>
     </fragment>
     <fragment
@@ -25,7 +25,7 @@
         tools:layout="@layout/fragment_article_detail">
         <argument
             android:name="article"
-            app:argType="com.tustar.demo.data.Article" />
+            app:argType="com.tustar.demo.data.model.Article" />
     </fragment>
 
 </navigation>
