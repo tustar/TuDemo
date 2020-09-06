@@ -22,4 +22,7 @@
     <color name="background_color">#F5F5F5</color>
     <color name="article_title_color">#191919</color>
     <color name="article_desc_color">#999999</color>
+    <!-- Weather-->
+    <color name="weather_text_color">#FFF</color>
+    <color name="weather_option_color">#191919</color>
 </resources>

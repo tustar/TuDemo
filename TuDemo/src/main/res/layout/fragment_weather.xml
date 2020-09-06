@@ -7,15 +7,71 @@
     tools:context=".ui.todo.TodoFragment">
 
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/weather_recycler_view"
+    <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:overScrollMode="never"
-        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:itemCount="5"
-        tools:listitem="@layout/item_todo" />
+        android:background="@color/light_blue_700">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:id="@+id/temperature"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="100dp"
+                android:textColor="@color/weather_text_color"
+                android:textSize="@dimen/weather_temperature_text_size"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:text="25°" />
+
+            <TextView
+                android:id="@+id/apparent_temperature"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/weather_text_color"
+                android:textSize="@dimen/weather_sky_text_size"
+                app:layout_constraintBaseline_toBaselineOf="@id/temperature"
+                app:layout_constraintStart_toEndOf="@id/temperature"
+                tools:text="体感25°" />
+
+            <TextView
+                android:id="@+id/sky"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:textColor="@color/weather_text_color"
+                android:textSize="@dimen/weather_sky_text_size"
+                app:layout_constraintEnd_toStartOf="@id/wind"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/temperature"
+                tools:text="多云" />
+
+            <TextView
+                android:id="@+id/wind"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/weather_text_color"
+                android:textSize="@dimen/weather_sky_text_size"
+                app:layout_constraintBaseline_toBaselineOf="@id/sky"
+                app:layout_constraintEnd_toStartOf="@id/humidity"
+                app:layout_constraintStart_toEndOf="@id/sky"
+                tools:text="东北风 2级" />
+
+            <TextView
+                android:id="@+id/humidity"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/weather_text_color"
+                android:textSize="@dimen/weather_sky_text_size"
+                app:layout_constraintBaseline_toBaselineOf="@id/wind"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@id/wind"
+                tools:text="湿度%57" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </ScrollView>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

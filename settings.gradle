@@ -1,3 +1,4 @@
+include ':TuDemo-ktstudy'
 include ':TuDemo-jstudy'
 include ':TuDemo'
 include ':TuDemo-ktx'

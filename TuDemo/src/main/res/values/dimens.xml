@@ -2,4 +2,9 @@
     <!-- Default screen margins, per the Android Design guidelines. -->
     <dimen name="activity_horizontal_margin">16dp</dimen>
     <dimen name="activity_vertical_margin">16dp</dimen>
+
+    <!-- Weather-->
+    <dimen name="weather_temperature_text_size">60sp</dimen>
+    <dimen name="weather_sky_text_size">16sp</dimen>
+    <dimen name="weather_option_text_size">20sp</dimen>
 </resources>

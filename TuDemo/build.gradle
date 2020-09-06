@@ -14,6 +14,7 @@ android {
         targetSdkVersion 29
         versionCode 1
         versionName "1.0"
+        multiDexEnabled true
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
@@ -77,6 +78,11 @@ dependencies {
     // Hilt & Dagger
     implementation "com.google.dagger:hilt-android:2.28-alpha"
     kapt "com.google.dagger:hilt-android-compiler:2.28-alpha"
+    
+    // WorkManager
+    implementation "androidx.work:work-runtime-ktx:2.4.0"
+    implementation "androidx.work:work-gcm:2.4.0"
+    androidTestImplementation "androidx.work:work-testing:2.4.0"
 
     // Retrofit
     implementation "com.squareup.retrofit2:retrofit:2.9.0"
