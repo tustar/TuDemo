@@ -9,12 +9,12 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.DividerItemDecoration
 import com.tustar.demo.databinding.FragmentTodoBinding
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class TodoFragment : Fragment() {
 
-    private val viewModel: TodoViewModel by viewModels {
-        TodoViewModelFactory(requireContext())
-    }
+    private val viewModel by viewModels<TodoViewModel>()
 
     private lateinit var todoAdapter: TodoAdapter
 

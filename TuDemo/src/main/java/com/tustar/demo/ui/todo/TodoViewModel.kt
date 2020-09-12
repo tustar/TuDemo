@@ -1,21 +1,12 @@
 package com.tustar.demo.ui.todo
 
-import android.content.Context
+import androidx.hilt.lifecycle.ViewModelInject
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import androidx.lifecycle.ViewModelProvider
 import com.tustar.demo.data.model.Todo
 
 
-class TodoViewModelFactory(private val context: Context) :
-    ViewModelProvider.NewInstanceFactory() {
-
-    override fun <T : ViewModel?> create(modelClass: Class<T>): T {
-        return TodoViewModel(context) as T
-    }
-}
-
-class TodoViewModel(context: Context) : ViewModel() {
+class TodoViewModel @ViewModelInject constructor() : ViewModel() {
 
     val todos get() = _todos
     private val _todos = MutableLiveData<List<Todo>>().apply {

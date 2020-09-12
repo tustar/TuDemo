@@ -1,22 +1,13 @@
 package com.tustar.demo.ui.article
 
-import android.content.Context
+import androidx.hilt.lifecycle.ViewModelInject
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import androidx.lifecycle.ViewModelProvider
 import com.tustar.demo.data.model.Article
 import java.util.*
 import kotlin.collections.ArrayList
 
-class ArticleViewModelFactory(private val context: Context) :
-    ViewModelProvider.NewInstanceFactory() {
-
-    override fun <T : ViewModel?> create(modelClass: Class<T>): T {
-        return ArticleViewModel(context) as T
-    }
-}
-
-class ArticleViewModel(context: Context) : ViewModel() {
+class ArticleViewModel @ViewModelInject constructor() : ViewModel() {
 
     val articles get() = _articles
     private val _articles = MutableLiveData<List<Article>>().apply {

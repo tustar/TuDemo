@@ -1,0 +1,40 @@
+<resources>
+    <!-- Weather Sky-->
+    <string name="CLEAR_DAY">Clear</string>
+    <string name="CLEAR_NIGHT">Clear</string>
+    <string name="PARTLY_CLOUDY_DAY">Cloudy</string>
+    <string name="PARTLY_CLOUDY_NIGHT">Cloudy</string>
+    <string name="CLOUDY">Cloudy</string>
+    <string name="LIGHT_HAZE">Light Haze</string>
+    <string name="MODERATE_HAZE">Moderate Haze</string>
+    <string name="HEAVY_HAZE">Heavy Haze</string>
+    <string name="LIGHT_RAIN">Light Rain</string>
+    <string name="MODERATE_RAIN">Moderate Rain</string>
+    <string name="HEAVY_RAIN">Heavy Rain</string>
+    <string name="STORM_RAIN">Storm Rain</string>
+    <string name="LIGHT_SNOW">Light Snow</string>
+    <string name="MODERATE_SNOW">Moderate Snow</string>
+    <string name="HEAVY_SNOW">Heavy Snow</string>
+    <string name="STORM_SNOW">Storm Snow</string>
+    <string name="FOG">Fog</string>
+    <string name="DUST">Dust</string>
+    <string name="SAND">Sand</string>
+    <string name="WIND">Wind</string>
+    <!-- Weather windy diretion-->
+    <string name="N">N</string>
+    <string name="NNE">NNE</string>
+    <string name="NE">NE</string>
+    <string name="ENE">ENE</string>
+    <string name="E">E</string>
+    <string name="ESE">ESE</string>
+    <string name="SE">SE</string>
+    <string name="SSE">SSE</string>
+    <string name="S">S</string>
+    <string name="SSW">SSW</string>
+    <string name="SW">SW</string>
+    <string name="WSW">WSW</string>
+    <string name="W">W</string>
+    <string name="WNW">WNW</string>
+    <string name="NW">NW</string>
+    <string name="NNW">NNW</string>
+</resources>

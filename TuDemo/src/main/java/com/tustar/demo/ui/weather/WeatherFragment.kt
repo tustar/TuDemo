@@ -14,12 +14,12 @@ import com.tustar.demo.databinding.FragmentWeatherBinding
 import com.tustar.demo.ui.MainActivity
 import com.tustar.demo.util.Logger
 import com.tustar.ktx.getStringByName
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class WeatherFragment : Fragment() {
 
-    private val viewModel: WeatherViewModel by viewModels {
-        WeatherViewModelFactory(requireContext())
-    }
+    private val viewModel by viewModels<WeatherViewModel>()
 
     private lateinit var weatherAdapter: WeatherAdapter
     private lateinit var binding: FragmentWeatherBinding

@@ -10,13 +10,13 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.navArgs
 import com.tustar.demo.databinding.FragmentArticleDetailBinding
+import dagger.hilt.android.AndroidEntryPoint
 
-
+@AndroidEntryPoint
 class ArticleDetailFragment : Fragment() {
 
-    private val viewModel: ArticleViewModel by viewModels {
-        ArticleViewModelFactory(requireContext())
-    }
+    private val viewModel by viewModels<ArticleViewModel>()
+
     private lateinit var binding: FragmentArticleDetailBinding
     val args: ArticleDetailFragmentArgs by navArgs()
 

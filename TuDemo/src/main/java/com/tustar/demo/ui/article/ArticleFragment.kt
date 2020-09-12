@@ -13,9 +13,8 @@ import com.tustar.demo.databinding.FragmentArticleBinding
 
 class ArticleFragment : Fragment() {
 
-    private val viewModel: ArticleViewModel by viewModels {
-        ArticleViewModelFactory(requireContext())
-    }
+    private val viewModel by viewModels<ArticleViewModel>()
+
     private lateinit var articleAdapter: ArticleAdapter
 
     override fun onCreateView(

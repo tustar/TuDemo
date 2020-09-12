@@ -21,9 +21,6 @@
         <action
             android:id="@+id/action_home_to_motion_image_filter_view"
             app:destination="@id/motion_image_filter_view_fragment" />
-        <action
-            android:id="@+id/action_home_to_jet_hilt"
-            app:destination="@id/jet_hilt_fragment" />
     </fragment>
     <fragment
         android:id="@+id/custom_recycler_fragment"
@@ -45,10 +42,5 @@
         android:name="com.tustar.demo.ui.sys.motion.MotionImageFilterViewFragment"
         android:label="@string/sys_motion_image_filter_view"
         tools:layout="@layout/fragment_motion_image_filter_view" />
-    <fragment
-        android:id="@+id/jet_hilt_fragment"
-        android:name="com.tustar.demo.ui.jetpack.JetHiltFragment"
-        android:label="@string/jet_hilt"
-        tools:layout="@layout/fragment_jet_hilt" />
 
 </navigation>

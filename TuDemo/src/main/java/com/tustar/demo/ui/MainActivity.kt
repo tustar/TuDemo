@@ -26,9 +26,11 @@ import com.tustar.demo.R
 import com.tustar.demo.ui.weather.WeatherWorker
 import com.tustar.demo.util.Logger
 import com.tustar.ktx.navigateUpOrFinish
+import dagger.hilt.android.AndroidEntryPoint
 
 
 @SuppressLint("NewApi")
+@AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
 
     private val navController by lazy {

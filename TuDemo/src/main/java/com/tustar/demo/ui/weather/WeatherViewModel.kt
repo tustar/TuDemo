@@ -1,21 +1,15 @@
 package com.tustar.demo.ui.weather
 
-import android.content.Context
 import android.location.Location
-import androidx.lifecycle.*
+import androidx.hilt.lifecycle.ViewModelInject
+import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.Transformations
+import androidx.lifecycle.ViewModel
+import androidx.lifecycle.liveData
 import com.tustar.demo.data.WeatherRepository
 import kotlinx.coroutines.Dispatchers
 
-
-class WeatherViewModelFactory(private val context: Context) :
-    ViewModelProvider.NewInstanceFactory() {
-
-    override fun <T : ViewModel?> create(modelClass: Class<T>): T {
-        return WeatherViewModel(context) as T
-    }
-}
-
-class WeatherViewModel(context: Context) : ViewModel() {
+class WeatherViewModel @ViewModelInject constructor() : ViewModel() {
 
     private val searchLiveData = MutableLiveData<String>()
     private val locationLiveData = MutableLiveData<Location>()
