@@ -30,6 +30,11 @@ class WeatherViewModel(context: Context) : ViewModel() {
             emit(WeatherRepository.getRealtime(it).result.realtime)
         }
     }
+    val address = Transformations.switchMap(locationLiveData) {
+        liveData(Dispatchers.IO) {
+            emit(WeatherRepository.geocode(it).regeocode.formattedAddress)
+        }
+    }
 
     fun searchPlaces(query: String) {
         searchLiveData.value = query

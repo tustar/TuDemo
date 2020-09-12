@@ -1,6 +1,5 @@
 package com.tustar.demo.data.remote
 
-import com.tustar.demo.data.remote.CaiyunApi.Companion.BASE_URL
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Call
@@ -21,14 +20,13 @@ object RetrofitManager {
         .addInterceptor(interceptor)
         .build()
 
-    private val retrofit = Retrofit.Builder()
-        .baseUrl(BASE_URL)
-        .client(client)
-        .addConverterFactory(GsonConverterFactory.create())
-        .build()
-
-    fun <T> create(serviceClass: Class<T>): T = retrofit.create(serviceClass)
-    inline fun <reified T> create(): T = create(T::class.java)
+    fun <T> create(serviceClass: Class<T>, baseUrl:String): T  {
+       return Retrofit.Builder()
+            .baseUrl(baseUrl)
+            .client(client)
+            .addConverterFactory(GsonConverterFactory.create())
+            .build().create(serviceClass)
+    }
 
     suspend fun <T> Call<T>.await(): T {
         return suspendCoroutine {

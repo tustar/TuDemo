@@ -51,6 +51,9 @@ class WeatherFragment : Fragment() {
                 Logger.d("realtime = $it")
                 it.updateView(binding)
             })
+            address.observe(viewLifecycleOwner, Observer {
+                binding.address.text = it.toString()
+            })
         }
 
         (activity as MainActivity).liveLocation.observe(viewLifecycleOwner,

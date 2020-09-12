@@ -74,4 +74,16 @@
         </androidx.constraintlayout.widget.ConstraintLayout>
     </ScrollView>
 
+    <TextView
+        android:id="@+id/address"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="30dp"
+        android:layout_marginLeft="30dp"
+        android:layout_marginTop="30dp"
+        android:textColor="@color/weather_text_color"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:text="北京" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
