@@ -2,15 +2,11 @@ package com.tustar.demo.ui
 
 import android.Manifest
 import android.annotation.SuppressLint
+import android.content.Intent
 import android.content.pm.PackageManager
-import android.location.Criteria
-import android.location.Location
-import android.location.LocationListener
-import android.location.LocationManager
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
-import androidx.core.location.LocationManagerCompat
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.LifecycleObserver
 import androidx.lifecycle.MutableLiveData
@@ -20,14 +16,23 @@ import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.NavigationUI
 import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
-import androidx.work.OneTimeWorkRequestBuilder
+import com.amap.api.location.AMapLocation
+import com.amap.api.location.AMapLocationListener
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.tustar.demo.R
-import com.tustar.demo.ui.weather.WeatherWorker
+import com.tustar.demo.util.LocationHelper
 import com.tustar.demo.util.Logger
 import com.tustar.ktx.navigateUpOrFinish
 import dagger.hilt.android.AndroidEntryPoint
 
+const val TAB_INDEX_HOME = 0
+const val TAB_INDEX_ARTICLE = 1
+const val TAB_INDEX_TODO = 2
+const val TAB_INDEX_WEATHER = 3
+const val KEY_TAB_INDEX_SELECTED = "tab_index_selected"
+
+//
+const val KEY_LOCATION = "location"
 
 @SuppressLint("NewApi")
 @AndroidEntryPoint
@@ -36,42 +41,21 @@ class MainActivity : AppCompatActivity() {
     private val navController by lazy {
         findNavController(R.id.nav_host_fragment)
     }
+    private lateinit var navView: BottomNavigationView
+
+    // Location
     private val locationLifecycleObserver by lazy {
         LocationLifecycleObserver()
     }
-    val liveLocation = MutableLiveData<Location>()
-    //
-    private val locationManager: LocationManager by lazy {
-        getSystemService(LocationManager::class.java)
-    }
-    private val locationCallback = object : LocationListener {
-        override fun onLocationChanged(location: Location) {
-            Logger.i("location=$location")
-            updateLocation(location)
-        }
-
-        override fun onStatusChanged(provider: String, status: Int, extras: Bundle) {
-            Logger.i("$provider status:$status, extra:$extras")
-        }
-
-        override fun onProviderEnabled(provider: String) {
-            Logger.i("$provider")
-        }
-
-        override fun onProviderDisabled(provider: String) {
-            Logger.i("$provider")
-        }
-    }
-
-    private val weatherWorkRequest by lazy {
-        OneTimeWorkRequestBuilder<WeatherWorker>()
-            .build()
+    val liveLocation = MutableLiveData<AMapLocation>()
+    val locationHelper by lazy {
+        LocationHelper(applicationContext)
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        val navView: BottomNavigationView = findViewById(R.id.nav_view)
+        navView = findViewById(R.id.nav_view)
         Logger.d()
 
         // Passing each menu ID as a set of Ids because each
@@ -90,6 +74,16 @@ class MainActivity : AppCompatActivity() {
 
         //
         lifecycle.addObserver(locationLifecycleObserver)
+    }
+
+    override fun onNewIntent(intent: Intent) {
+        super.onNewIntent(intent)
+        updateSelectedTab(intent)
+    }
+
+    private fun updateSelectedTab(intent: Intent) {
+        val selectedTabIndex = intent.getIntExtra(KEY_TAB_INDEX_SELECTED, TAB_INDEX_ARTICLE)
+        navView.selectedItemId = navView.menu.getItem(selectedTabIndex).itemId
     }
 
     override fun onSupportNavigateUp() = navController.navigateUpOrFinish(this)
@@ -151,8 +145,6 @@ class MainActivity : AppCompatActivity() {
 
     private fun getBestLocation() {
         Logger.i()
-        val criteria = Criteria()
-        val provider = locationManager.getBestProvider(criteria, true)
         if (ActivityCompat.checkSelfPermission(
                 this,
                 Manifest.permission.ACCESS_FINE_LOCATION
@@ -165,31 +157,20 @@ class MainActivity : AppCompatActivity() {
             return
         }
 
-        val location = if (provider.isNullOrEmpty()) {
-            if (LocationManagerCompat.isLocationEnabled(locationManager)) {
-                locationManager.getLastKnownLocation(LocationManager.NETWORK_PROVIDER);
-            } else {
-                null
+        locationHelper.startLocation(AMapLocationListener { location ->
+            // 可在其中解析location获取相应内容。
+            if (location.errorCode == 0) {
+                Logger.d("location=$location")
+                liveLocation.postValue(location)
             }
-        } else {
-            locationManager.getLastKnownLocation(provider)
-        }
-        if (location == null) {
-            val provider = LocationManager.PASSIVE_PROVIDER
-            val location = locationManager.getLastKnownLocation(provider)
-            if (location != null) {
-                updateLocation(location)
+            // 定位失败时，可通过ErrCode（错误码）信息来确定失败的原因，errInfo是错误信息，详见错误码表。
+            else {
+                Logger.e(
+                    "location Error, ErrCode:${location.errorCode}, " +
+                            "errInfo:${location.errorInfo}"
+                )
             }
-            locationManager.requestLocationUpdates(provider, 60000L, 1.0F,
-                locationCallback)
-        } else {
-            updateLocation(location)
-        }
-    }
-
-    private fun updateLocation(location: Location) {
-        Logger.i("location=$location")
-        liveLocation.postValue(location)
+        })
     }
 
     inner class LocationLifecycleObserver : LifecycleObserver {
@@ -203,7 +184,13 @@ class MainActivity : AppCompatActivity() {
         @OnLifecycleEvent(Lifecycle.Event.ON_PAUSE)
         fun onStop() {
             Logger.i()
-            locationManager.removeUpdates(locationCallback)
+            locationHelper.stopLocation()
+        }
+
+        @OnLifecycleEvent(Lifecycle.Event.ON_DESTROY)
+        fun onDestroy() {
+            Logger.i()
+            locationHelper.onDestroy()
         }
     }
 

@@ -3,6 +3,7 @@ package com.tustar.demo.data
 import android.location.Location
 import com.tustar.demo.data.remote.AmapClient
 import com.tustar.demo.data.remote.CaiyunClient
+import com.tustar.demo.ui.weather.toParams
 
 object WeatherRepository {
 
@@ -12,7 +13,5 @@ object WeatherRepository {
         location.latitude
     )
 
-    suspend fun geocode(location: Location) = AmapClient.service.geocode(
-        "${location.longitude},${location.latitude}"
-    )
+    suspend fun geocode(location: Location) = AmapClient.service.geocode(location.toParams())
 }

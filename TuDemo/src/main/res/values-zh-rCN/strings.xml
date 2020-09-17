@@ -17,10 +17,9 @@
     <string name="sys_motion_image_filter_view">MotionLayout ImageFilterView</string>
     <!-- Article-->
     <string name="article_detail">干货详情</string>
-    <!-- Channel -->
-    <string name="channel_name">TuDemo渠道</string>
-    <string name="channel_description">TuDemo描述</string>
     <!-- Weather-->
+    <string name="weather_channel_name">天气渠道</string>
+    <string name="weather_channel_description">推送天气信息</string>
     <string name="weather_temperature">%1$.1f°</string>
     <string name="weather_apparent_temperature">体感%1$.1f°</string>
     <string name="weather_wind">%1$s风 %2$d级</string>
