@@ -20,8 +20,9 @@
     <!-- Weather-->
     <string name="weather_channel_name">天气渠道</string>
     <string name="weather_channel_description">推送天气信息</string>
-    <string name="weather_temp">%1$.1f°</string>
-    <string name="weather_feels_like">体感%1$.1f°</string>
+    <string name="weather_temp">%1$d°</string>
+    <string name="weather_feels_like">体感%1$d°</string>
     <string name="weather_wind">%1$s %2$d级</string>
     <string name="weather_humidity">湿度%1$d</string>
+    <string name="weather_24h">24小时预报</string>
 </resources>

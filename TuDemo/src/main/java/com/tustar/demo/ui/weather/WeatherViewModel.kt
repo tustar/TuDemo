@@ -18,6 +18,11 @@ class WeatherViewModel @ViewModelInject constructor() : ViewModel() {
             emit(WeatherRepository.now(it))
         }
     }
+    val hourly = Transformations.switchMap(locationLiveData) {
+        liveData(Dispatchers.IO) {
+            emit(WeatherRepository.hourly(it))
+        }
+    }
 
     fun now(location: AMapLocation) {
         locationLiveData.value = location

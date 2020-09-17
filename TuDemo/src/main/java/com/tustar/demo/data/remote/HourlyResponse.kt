@@ -1,27 +1,26 @@
 package com.tustar.demo.data.remote
 
-data class NowResponse(
+data class HourlyResponse(
     val code: String,
     val fxLink: String,
-    val now: Now,
+    val hourly: List<Hourly>,
     val refer: Refer,
     val updateTime: String
 )
 
-data class Now(
+data class Hourly(
     val cloud: Int,
     val dew: String,
-    val feelsLike: Int,
-    val humidity: Int,
+    val fxTime: String,
+    val humidity: String,
     val icon: String,
-    val obsTime: String,
+    val pop: String,
     val precip: String,
     val pressure: String,
     val temp: Int,
     val text: String,
-    val vis: String,
     val wind360: Int,
     val windDir: String,
-    val windScale: Int,
+    val windScale: String,
     val windSpeed: Float
 )

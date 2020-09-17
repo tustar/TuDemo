@@ -4,13 +4,13 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/background_color"
     tools:context=".ui.todo.TodoFragment">
 
 
     <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="@color/light_blue_700">
+        android:layout_height="match_parent">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
@@ -43,12 +43,14 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
+                android:drawablePadding="4dp"
+                android:gravity="center"
                 android:textColor="@color/weather_text_color"
                 android:textSize="@dimen/weather_sky_text_size"
                 app:layout_constraintEnd_toStartOf="@id/wind"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/temp"
-                tools:text="多云" />
+                tools:text="晴" />
 
             <TextView
                 android:id="@+id/wind"
@@ -71,6 +73,38 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toEndOf="@id/wind"
                 tools:text="湿度%57" />
+
+            <TextView
+                android:id="@+id/section_24h_title"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="16dp"
+                android:layout_marginTop="24dp"
+                android:text="@string/weather_24h"
+                android:textColor="@color/weather_section_text_color"
+                android:textSize="@dimen/weather_section_text_size"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/sky" />
+
+            <View
+                android:id="@+id/section_24h_divider"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/divider_height"
+                android:layout_marginTop="4dp"
+                android:background="@color/divider_color"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/section_24h_title" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/hourly_recycler_view"
+                android:layout_width="match_parent"
+                android:orientation="horizontal"
+                android:layout_height="wrap_content"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/section_24h_divider"
+                tools:itemCount="24"
+                tools:listitem="@layout/item_hourly"/>
         </androidx.constraintlayout.widget.ConstraintLayout>
     </ScrollView>
 

@@ -7,4 +7,5 @@ import com.tustar.demo.ui.weather.toParams
 object WeatherRepository {
 
     suspend fun now(location: AMapLocation) = HeClient.service.now(location.toParams())
+    suspend fun hourly(location: AMapLocation) = HeClient.service.hourly(location.toParams())
 }

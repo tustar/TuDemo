@@ -6,6 +6,7 @@ import com.amap.api.location.AMapLocation
 import com.tustar.demo.R
 import com.tustar.demo.data.remote.Now
 import com.tustar.demo.databinding.FragmentWeatherBinding
+import com.tustar.ktx.getDrawableByName
 
 @SuppressLint("SetTextI18n")
 fun Now.updateView(context: Context, binding: FragmentWeatherBinding) {
@@ -13,6 +14,10 @@ fun Now.updateView(context: Context, binding: FragmentWeatherBinding) {
     binding.feelsLike.text =
         context.getString(R.string.weather_feels_like, feelsLike)
     binding.sky.text = text
+    val icon =
+        context.getDrawableByName("w_$icon")
+    icon?.setBounds(0, 0, icon.minimumWidth, icon.minimumHeight)
+    binding.sky.setCompoundDrawables(icon, null, null, null)
     binding.wind.text = context.getString(R.string.weather_wind, windDir, windScale)
     binding.humidity.text =
         context.getString(R.string.weather_humidity, humidity) + "%"

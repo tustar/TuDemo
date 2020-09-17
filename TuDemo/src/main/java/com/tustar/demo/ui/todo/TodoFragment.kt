@@ -16,7 +16,9 @@ class TodoFragment : Fragment() {
 
     private val viewModel by viewModels<TodoViewModel>()
 
-    private lateinit var todoAdapter: TodoAdapter
+    private val todoAdapter by lazy {
+        TodoAdapter()
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -27,7 +29,6 @@ class TodoFragment : Fragment() {
             inflater, container,
             false
         )
-        todoAdapter = TodoAdapter()
         binding.todoRecyclerView.apply {
             adapter = todoAdapter
             val divider = DividerItemDecoration(requireContext(), DividerItemDecoration.VERTICAL)

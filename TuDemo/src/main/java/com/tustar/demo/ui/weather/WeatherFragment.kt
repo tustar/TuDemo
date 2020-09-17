@@ -21,6 +21,9 @@ class WeatherFragment : Fragment() {
 
     private val viewModel by viewModels<WeatherViewModel>()
 
+    private val hourlyAdapter by lazy {
+        HourlyAdapter()
+    }
     private lateinit var binding: FragmentWeatherBinding
     private lateinit var poiName: String
 
@@ -33,6 +36,7 @@ class WeatherFragment : Fragment() {
             inflater, container,
             false
         )
+        binding.hourlyRecyclerView.adapter = hourlyAdapter
         subscribeUi()
         return binding.root
     }
@@ -46,7 +50,9 @@ class WeatherFragment : Fragment() {
             now.observe(viewLifecycleOwner, Observer {
                 Logger.d("now = $it")
                 it.now.updateView(requireContext(), binding)
-                WeatherNotification.postNotification(requireContext(), it.now, poiName)
+            })
+            hourly.observe(viewLifecycleOwner, Observer {
+                hourlyAdapter.submitList(it.hourly)
             })
         }
 
