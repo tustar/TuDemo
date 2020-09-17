@@ -37,11 +37,11 @@ class ArticleFragment : Fragment() {
             val divider = DividerItemDecoration(requireContext(), DividerItemDecoration.VERTICAL)
             addItemDecoration(divider)
         }
-        subscribeUi()
+        addLiveObserver()
         return binding.root
     }
 
-    private fun subscribeUi() {
+    private fun addLiveObserver() {
         with(viewModel) {
             articles.observe(viewLifecycleOwner, Observer { items ->
                 articleAdapter.submitList(items)

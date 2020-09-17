@@ -11,21 +11,15 @@ import kotlinx.coroutines.Dispatchers
 
 class WeatherViewModel @ViewModelInject constructor() : ViewModel() {
 
-    private val searchLiveData = MutableLiveData<String>()
     private val locationLiveData = MutableLiveData<AMapLocation>()
 
-    val places = Transformations.switchMap(searchLiveData) {
+    val now = Transformations.switchMap(locationLiveData) {
         liveData(Dispatchers.IO) {
-            emit(WeatherRepository.searchPlace(it).places)
-        }
-    }
-    val realtime = Transformations.switchMap(locationLiveData) {
-        liveData(Dispatchers.IO) {
-            emit(WeatherRepository.getRealtime(it).result.realtime)
+            emit(WeatherRepository.now(it))
         }
     }
 
-    fun getRealtime(location: AMapLocation) {
+    fun now(location: AMapLocation) {
         locationLiveData.value = location
     }
 }

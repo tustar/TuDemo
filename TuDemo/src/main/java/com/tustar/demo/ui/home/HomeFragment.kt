@@ -25,7 +25,7 @@ class HomeFragment : Fragment() {
 
         val mainAdapter = HomeAdapter()
         binding.mainList.adapter = mainAdapter
-        subscribeUi(mainAdapter)
+        addLiveObserver(mainAdapter)
 
         //
         viewModel.findDemos()
@@ -33,7 +33,7 @@ class HomeFragment : Fragment() {
         return binding.root
     }
 
-    private fun subscribeUi(mainAdapter: HomeAdapter) {
+    private fun addLiveObserver(mainAdapter: HomeAdapter) {
         with(viewModel) {
             demos.observe(viewLifecycleOwner, Observer {
                     items ->

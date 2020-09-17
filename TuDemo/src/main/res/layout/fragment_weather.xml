@@ -17,7 +17,7 @@
             android:layout_height="match_parent">
 
             <TextView
-                android:id="@+id/temperature"
+                android:id="@+id/temp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="100dp"
@@ -29,13 +29,13 @@
                 tools:text="25°" />
 
             <TextView
-                android:id="@+id/apparent_temperature"
+                android:id="@+id/feels_like"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textColor="@color/weather_text_color"
                 android:textSize="@dimen/weather_sky_text_size"
-                app:layout_constraintBaseline_toBaselineOf="@id/temperature"
-                app:layout_constraintStart_toEndOf="@id/temperature"
+                app:layout_constraintBaseline_toBaselineOf="@id/temp"
+                app:layout_constraintStart_toEndOf="@id/temp"
                 tools:text="体感25°" />
 
             <TextView
@@ -47,7 +47,7 @@
                 android:textSize="@dimen/weather_sky_text_size"
                 app:layout_constraintEnd_toStartOf="@id/wind"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/temperature"
+                app:layout_constraintTop_toBottomOf="@id/temp"
                 tools:text="多云" />
 
             <TextView

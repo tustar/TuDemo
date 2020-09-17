@@ -20,8 +20,8 @@
     <!-- Weather-->
     <string name="weather_channel_name">Weather Channel</string>
     <string name="weather_channel_description">Push Weather Notification</string>
-    <string name="weather_temperature">%1$.1f°</string>
-    <string name="weather_apparent_temperature">Feels Like%1$.1f°</string>
+    <string name="weather_temp">%1$.1f°</string>
+    <string name="weather_feels_like">Feels Like%1$.1f°</string>
     <string name="weather_wind">%1$s wind LV%2$d</string>
     <string name="weather_humidity">Humidity %1$d</string>
 </resources>

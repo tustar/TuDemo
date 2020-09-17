@@ -21,8 +21,8 @@ class WeatherFragment : Fragment() {
 
     private val viewModel by viewModels<WeatherViewModel>()
 
-    private lateinit var weatherAdapter: WeatherAdapter
     private lateinit var binding: FragmentWeatherBinding
+    private lateinit var poiName: String
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -33,7 +33,6 @@ class WeatherFragment : Fragment() {
             inflater, container,
             false
         )
-        weatherAdapter = WeatherAdapter()
         subscribeUi()
         return binding.root
     }
@@ -44,20 +43,19 @@ class WeatherFragment : Fragment() {
 
     private fun subscribeUi() {
         with(viewModel) {
-            places.observe(viewLifecycleOwner, Observer { items ->
-                weatherAdapter.submitList(items)
-            })
-            realtime.observe(viewLifecycleOwner, Observer {
-                Logger.d("realtime = $it")
-                it.updateView(requireContext(), binding)
+            now.observe(viewLifecycleOwner, Observer {
+                Logger.d("now = $it")
+                it.now.updateView(requireContext(), binding)
+                WeatherNotification.postNotification(requireContext(), it.now, poiName)
             })
         }
 
         (activity as MainActivity).liveLocation.observe(viewLifecycleOwner,
             Observer {
+                poiName = it.poiName
                 binding.address.text = it.poiName
                 // Request weather
-                viewModel.getRealtime(it)
+                viewModel.now(it)
                 //
 //                startWorker(it)
             })

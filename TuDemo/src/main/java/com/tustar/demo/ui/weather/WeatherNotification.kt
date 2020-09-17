@@ -12,11 +12,10 @@ import android.os.Build
 import androidx.core.app.NotificationCompat
 import androidx.core.app.NotificationManagerCompat
 import com.tustar.demo.R
-import com.tustar.demo.data.remote.Realtime
+import com.tustar.demo.data.remote.Now
 import com.tustar.demo.ui.KEY_TAB_INDEX_SELECTED
 import com.tustar.demo.ui.MainActivity
 import com.tustar.demo.ui.TAB_INDEX_WEATHER
-import com.tustar.ktx.getStringByName
 
 object WeatherNotification {
 
@@ -50,15 +49,7 @@ object WeatherNotification {
                 "${context.packageName}/${R.raw.voicetips}"
     )
 
-    fun notify(context: Context, realtime: Realtime) {
-
-        val temperature = context.getString(R.string.weather_temperature, realtime.temperature)
-        val apparentTemperature =
-            context.getString(R.string.weather_apparent_temperature, realtime.apparentTemperature)
-        val sky = context.getStringByName(realtime.skycon)
-        val wind = realtime.wind.toValue(context)
-        val humidity =
-            context.getString(R.string.weather_humidity, (realtime.humidity * 100).toInt()) + "%"
+    fun notify(context: Context, now: Now, location: String) {
 
         val notificationId = 0x1
         // Create an explicit intent for an Activity in your app
@@ -70,8 +61,8 @@ object WeatherNotification {
 
         val notification = NotificationCompat.Builder(context, WEATHER_CHANNEL_ID)
             .setSmallIcon(R.mipmap.ic_launcher)
-            .setContentTitle(sky)
-            .setContentText("$temperature $apparentTemperature $wind $humidity")
+            .setContentTitle(location)
+            .setContentText(now.toContent(context))
             .setPriority(NotificationCompat.PRIORITY_DEFAULT)
             // Set the intent that will fire when the user taps the notification
             .setContentIntent(pendingIntent)
@@ -85,8 +76,8 @@ object WeatherNotification {
         }
     }
 
-    fun postNotification(context: Context, realtime: Realtime) {
+    fun postNotification(context: Context, now: Now, location: String) {
         createNotificationChannel(context)
-        notify(context, realtime)
+        notify(context, now, location)
     }
 }

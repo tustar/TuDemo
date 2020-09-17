@@ -46,11 +46,11 @@ class ArticleDetailFragment : Fragment() {
                 javaScriptEnabled = true
             }
         }
-        subscribeUi()
+        addLiveObserver()
         return binding.root
     }
 
-    private fun subscribeUi() {
+    private fun addLiveObserver() {
         with(viewModel) {
         }
     }

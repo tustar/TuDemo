@@ -28,7 +28,7 @@ import dagger.hilt.android.AndroidEntryPoint
 const val TAB_INDEX_HOME = 0
 const val TAB_INDEX_ARTICLE = 1
 const val TAB_INDEX_TODO = 2
-const val TAB_INDEX_WEATHER = 3
+const val TAB_INDEX_WEATHER = R.id.navigation_weather
 const val KEY_TAB_INDEX_SELECTED = "tab_index_selected"
 
 //
@@ -83,7 +83,7 @@ class MainActivity : AppCompatActivity() {
 
     private fun updateSelectedTab(intent: Intent) {
         val selectedTabIndex = intent.getIntExtra(KEY_TAB_INDEX_SELECTED, TAB_INDEX_ARTICLE)
-        navView.selectedItemId = navView.menu.getItem(selectedTabIndex).itemId
+        navView.selectedItemId = selectedTabIndex
     }
 
     override fun onSupportNavigateUp() = navController.navigateUpOrFinish(this)
