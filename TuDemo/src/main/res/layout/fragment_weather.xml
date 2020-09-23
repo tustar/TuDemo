@@ -4,7 +4,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/background_color"
     tools:context=".ui.todo.TodoFragment">
 
 
@@ -98,13 +97,13 @@
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/hourly_recycler_view"
                 android:layout_width="match_parent"
-                android:orientation="horizontal"
                 android:layout_height="wrap_content"
+                android:orientation="horizontal"
                 app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/section_24h_divider"
                 tools:itemCount="24"
-                tools:listitem="@layout/item_hourly"/>
+                tools:listitem="@layout/item_hourly" />
         </androidx.constraintlayout.widget.ConstraintLayout>
     </ScrollView>
 

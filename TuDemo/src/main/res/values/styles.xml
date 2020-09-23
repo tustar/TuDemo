@@ -1,11 +1,12 @@
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools">
+
     <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
-        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimary">@color/action_bar_bg_color</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
         <!--        -->
-        <item name="statusBarForeground">@color/colorPrimary</item>
-
+        <item name="android:statusBarColor" tools:ignore="NewApi">@color/action_bar_bg_color</item>
+        <item name="android:actionBarSize">@dimen/action_bar_size</item>
     </style>
 
 </resources>
