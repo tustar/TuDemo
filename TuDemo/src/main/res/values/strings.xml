@@ -12,6 +12,7 @@
     <!-- Custom widget -->
     <string name="custom_recycler_view">Custom RecyclerView</string>
     <string name="custom_view">Custom View</string>
+    <string name="custom_flow_layout">FlowLayout</string>
     <!-- System widget-->
     <string name="sys_motion_base">MotionLayout　Base</string>
     <string name="sys_motion_image_filter_view">MotionLayout ImageFilterView</string>
@@ -25,4 +26,9 @@
     <string name="weather_wind">%1$s wind LV%2$d</string>
     <string name="weather_humidity">Humidity %1$d</string>
     <string name="weather_24h">24小时预报</string>
+
+    <string name="card_empty_tips_1">No game added yet. Try to find some in %1$s.\n</string>
+    <string name="card_empty_tips_1_click_text">Google play</string>
+    <string name="card_empty_tips_2">Or you can add installed apps as game through %1$s.</string>
+    <string name="card_empty_tips_2_click_text">Add Games</string>
 </resources>
