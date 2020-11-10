@@ -47,7 +47,7 @@
         tools:layout="@layout/fragment_motion_image_filter_view" />
     <fragment
         android:id="@+id/custom_flow_layout_fragment"
-        android:name="com.tustar.demo.ui.custom.FlowLayoutFragment"
+        android:name="com.tustar.demo.ui.custom.CustomFlowLayoutFragment"
         android:label="@string/custom_flow_layout"
         tools:layout="@layout/fragment_custom_flow_layout" />
 

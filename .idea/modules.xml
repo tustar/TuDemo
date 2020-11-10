@@ -2,22 +2,14 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/TuDemo.iml" filepath="$PROJECT_DIR$/.idea/modules/TuDemo.iml" group="TuDemo" />
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/TuDemo/TuDemo-TuDemo.iml" filepath="$PROJECT_DIR$/.idea/modules/TuDemo/TuDemo-TuDemo.iml" group="TuDemo/TuDemo" />
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/TuDemo-annotation/TuDemo-TuDemo-annotation.iml" filepath="$PROJECT_DIR$/.idea/modules/TuDemo-annotation/TuDemo-TuDemo-annotation.iml" group="TuDemo/TuDemo-annotation" />
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/TuDemo-compiler/TuDemo-TuDemo-compiler.iml" filepath="$PROJECT_DIR$/.idea/modules/TuDemo-compiler/TuDemo-TuDemo-compiler.iml" group="TuDemo/TuDemo-compiler" />
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/TuDemo-jstudy/TuDemo-TuDemo-jstudy.iml" filepath="$PROJECT_DIR$/.idea/modules/TuDemo-jstudy/TuDemo-TuDemo-jstudy.iml" group="TuDemo/TuDemo-jstudy" />
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/TuDemo-ktstudy/TuDemo-TuDemo-ktstudy.iml" filepath="$PROJECT_DIR$/.idea/modules/TuDemo-ktstudy/TuDemo-TuDemo-ktstudy.iml" group="TuDemo/TuDemo-ktstudy" />
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/TuDemo-ktx/TuDemo-TuDemo-ktx.iml" filepath="$PROJECT_DIR$/.idea/modules/TuDemo-ktx/TuDemo-TuDemo-ktx.iml" group="TuDemo/TuDemo-ktx" />
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/TuDemo-annotation/TuDemo-annotation.iml" filepath="$PROJECT_DIR$/.idea/modules/TuDemo-annotation/TuDemo-annotation.iml" group="TuDemo/TuDemo-annotation" />
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/TuDemo-compiler/TuDemo-compiler.iml" filepath="$PROJECT_DIR$/.idea/modules/TuDemo-compiler/TuDemo-compiler.iml" group="TuDemo/TuDemo-compiler" />
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/TuDemo-jstudy/TuDemo-jstudy.iml" filepath="$PROJECT_DIR$/.idea/modules/TuDemo-jstudy/TuDemo-jstudy.iml" group="TuDemo/TuDemo-jstudy" />
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/TuDemo-ktstudy/TuDemo-ktstudy.iml" filepath="$PROJECT_DIR$/.idea/modules/TuDemo-ktstudy/TuDemo-ktstudy.iml" group="TuDemo/TuDemo-ktstudy" />
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/TuDemo-ktx/TuDemo-ktx.iml" filepath="$PROJECT_DIR$/.idea/modules/TuDemo-ktx/TuDemo-ktx.iml" group="TuDemo/TuDemo-ktx" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/TuDemo/TuDemo.TuDemo.iml" filepath="$PROJECT_DIR$/.idea/modules/TuDemo/TuDemo.TuDemo.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/TuDemo-annotation/TuDemo.TuDemo-annotation.iml" filepath="$PROJECT_DIR$/.idea/modules/TuDemo-annotation/TuDemo.TuDemo-annotation.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/TuDemo-compiler/TuDemo.TuDemo-compiler.iml" filepath="$PROJECT_DIR$/.idea/modules/TuDemo-compiler/TuDemo.TuDemo-compiler.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/TuDemo-jstudy/TuDemo.TuDemo-jstudy.iml" filepath="$PROJECT_DIR$/.idea/modules/TuDemo-jstudy/TuDemo.TuDemo-jstudy.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/TuDemo-ktstudy/TuDemo.TuDemo-ktstudy.iml" filepath="$PROJECT_DIR$/.idea/modules/TuDemo-ktstudy/TuDemo.TuDemo-ktstudy.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/TuDemo-ktx/TuDemo.TuDemo-ktx.iml" filepath="$PROJECT_DIR$/.idea/modules/TuDemo-ktx/TuDemo.TuDemo-ktx.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/bitbucket-TuDemo.iml" filepath="$PROJECT_DIR$/.idea/modules/bitbucket-TuDemo.iml" group="TuDemo" />
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/TuDemo/bitbucket-TuDemo-TuDemo.iml" filepath="$PROJECT_DIR$/.idea/modules/TuDemo/bitbucket-TuDemo-TuDemo.iml" group="TuDemo/TuDemo" />
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/TuDemo-jstudy/github-TuDemo-TuDemo-jstudy.iml" filepath="$PROJECT_DIR$/.idea/modules/TuDemo-jstudy/github-TuDemo-TuDemo-jstudy.iml" group="TuDemo/TuDemo-jstudy" />
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/project-bitbucket-TuDemo.iml" filepath="$PROJECT_DIR$/.idea/modules/project-bitbucket-TuDemo.iml" group="TuDemo" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/bitbucket.TuDemo.iml" filepath="$PROJECT_DIR$/.idea/modules/bitbucket.TuDemo.iml" />
     </modules>
   </component>
 </project>

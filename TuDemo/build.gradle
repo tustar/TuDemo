@@ -16,7 +16,7 @@ android {
         versionName "1.0"
         multiDexEnabled true
 
-        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        testInstrumentationRunner "androidx.selector_sunset2.runner.AndroidJUnitRunner"
     }
 
     buildTypes {
@@ -103,8 +103,8 @@ dependencies {
 
     //
     testImplementation 'junit:junit:4.13'
-    androidTestImplementation 'androidx.test.ext:junit:1.1.2'
-    androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'
+    androidTestImplementation 'androidx.selector_sunset2.ext:junit:1.1.2'
+    androidTestImplementation 'androidx.selector_sunset2.espresso:espresso-core:3.3.0'
 
     //
     implementation project(":TuDemo-annotation")

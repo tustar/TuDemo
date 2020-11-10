@@ -11,7 +11,7 @@ android {
         versionCode 1
         versionName "1.0"
 
-        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        testInstrumentationRunner "androidx.selector_sunset2.runner.AndroidJUnitRunner"
         consumerProguardFiles "consumer-rules.pro"
     }
 
