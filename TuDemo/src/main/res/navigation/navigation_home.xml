@@ -24,6 +24,9 @@
         <action
             android:id="@+id/action_home_to_flow_layout"
             app:destination="@id/custom_flow_layout_fragment" />
+        <action
+            android:id="@+id/action_home_to_view_pager"
+            app:destination="@id/custom_view_pager_fragment" />
     </fragment>
     <fragment
         android:id="@+id/custom_recycler_fragment"
@@ -50,5 +53,10 @@
         android:name="com.tustar.demo.ui.custom.CustomFlowLayoutFragment"
         android:label="@string/custom_flow_layout"
         tools:layout="@layout/fragment_custom_flow_layout" />
+    <fragment
+        android:id="@+id/custom_view_pager_fragment"
+        android:name="com.tustar.demo.ui.custom.CustomViewPagerFragment"
+        android:label="@string/custom_view_pager"
+        tools:layout="@layout/fragment_custom_view_pager" />
 
 </navigation>
