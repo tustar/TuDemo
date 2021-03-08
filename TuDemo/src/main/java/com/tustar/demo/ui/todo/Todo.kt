@@ -1,4 +1,4 @@
-package com.tustar.demo.data.model
+package com.tustar.demo.ui.todo
 
 data class Todo(
     val title: String,

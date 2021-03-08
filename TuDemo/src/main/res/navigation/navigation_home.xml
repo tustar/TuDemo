@@ -27,6 +27,9 @@
         <action
             android:id="@+id/action_home_to_view_pager"
             app:destination="@id/custom_view_pager_fragment" />
+        <action
+            android:id="@+id/action_home_to_svg_china"
+            app:destination="@id/custom_svg_china_fragment" />
     </fragment>
     <fragment
         android:id="@+id/custom_recycler_fragment"
@@ -58,5 +61,10 @@
         android:name="com.tustar.demo.ui.custom.CustomViewPagerFragment"
         android:label="@string/custom_view_pager"
         tools:layout="@layout/fragment_custom_view_pager" />
+    <fragment
+        android:id="@+id/custom_svg_china_fragment"
+        android:name="com.tustar.demo.ui.custom.SvgMapFragment"
+        android:label="@string/custom_svg_china"
+        tools:layout="@layout/fragment_svg_map" />
 
 </navigation>

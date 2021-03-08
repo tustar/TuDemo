@@ -1,4 +1,4 @@
-package com.tustar.demo.di
+package com.tustar.demo.ui.article.di
 
 import dagger.Module
 import dagger.hilt.InstallIn

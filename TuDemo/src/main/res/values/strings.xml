@@ -14,6 +14,7 @@
     <string name="custom_view">Custom View</string>
     <string name="custom_flow_layout">FlowLayout</string>
     <string name="custom_view_pager">Custom ViewPager</string>
+    <string name="custom_svg_china">Svg China Map</string>
     <!-- System widget-->
     <string name="sys_motion_base">MotionLayout　Base</string>
     <string name="sys_motion_image_filter_view">MotionLayout ImageFilterView</string>

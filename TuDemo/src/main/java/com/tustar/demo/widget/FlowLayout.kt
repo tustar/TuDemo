@@ -16,7 +16,6 @@ class FlowLayout @JvmOverloads constructor(
     attrs: AttributeSet? = null,
     defStyleAttr: Int = 0
 ) : ViewGroup(context, attrs, defStyleAttr) {
-
     private var horizontalSpacing = 10
     private var verticalSpacing = 10
     private lateinit var childrenRect: ArrayList<Rect>

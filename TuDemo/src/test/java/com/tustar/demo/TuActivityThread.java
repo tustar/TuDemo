@@ -1,5 +1,7 @@
 package com.tustar.demo;
 
+import android.os.HandlerThread;
+
 import androidx.annotation.NonNull;
 
 import com.tustar.demo.handler.TuHandler;
@@ -41,4 +43,6 @@ public class TuActivityThread {
 
         TuLooper.loop();
     }
+
+    HandlerThread
 }
