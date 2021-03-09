@@ -10,9 +10,13 @@ data class ProvinceItem(
     var selected: Boolean = false
 ) {
     var bounds: RectF = RectF()
+    var pathMeasure = PathMeasure(path, true)
+    var dst: Path = Path()
+    private var length: Float
 
     init {
         path.computeBounds(bounds, true)
+        length = pathMeasure.length
     }
 
     @SuppressLint("NewApi")
@@ -21,7 +25,7 @@ data class ProvinceItem(
             // 画边界
             paint.apply {
                 clearShadowLayer()
-                strokeWidth = 1F
+                strokeWidth = 1.0F
                 color = drawColor
                 style = Paint.Style.FILL
             }
@@ -35,7 +39,7 @@ data class ProvinceItem(
             canvas.drawPath(path, paint)
         } else {// 画边界
             paint.apply {
-                strokeWidth = 2F
+                strokeWidth = 2.0F
                 color = Color.BLACK
                 style = Paint.Style.FILL
                 setShadowLayer(8F, 0F, 0F, 0xFFF)
@@ -48,6 +52,21 @@ data class ProvinceItem(
             }
             canvas.drawPath(path, paint)
         }
+    }
+
+    @SuppressLint("NewApi")
+    fun draw(canvas: Canvas, paint: Paint, progress: Float) {
+        paint.apply {
+            isAntiAlias = true
+            strokeWidth = 1.0F
+            color = drawColor
+            style = Paint.Style.STROKE
+        }
+        dst.reset()
+        dst.lineTo(0.0F, 0.0F)
+        val stopD = length * progress
+        pathMeasure.getSegment(0.0F, stopD, dst, true)
+        canvas.drawPath(dst, paint)
     }
 
     fun isTouched(x: Float, y: Float): Boolean {

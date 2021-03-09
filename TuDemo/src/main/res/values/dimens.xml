@@ -10,4 +10,6 @@
     <dimen name="weather_sky_text_size">16sp</dimen>
     <dimen name="weather_section_text_size">14sp</dimen>
     <dimen name="weather_option_text_size">20sp</dimen>
+    <!-- Custom-->
+    <dimen name="custom_qq_header_image_height">160dp</dimen>
 </resources>

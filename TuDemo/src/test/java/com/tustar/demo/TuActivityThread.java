@@ -43,6 +43,4 @@ public class TuActivityThread {
 
         TuLooper.loop();
     }
-
-    HandlerThread
 }

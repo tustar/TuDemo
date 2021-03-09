@@ -1,5 +1,6 @@
 package com.tustar.demo.widget
 
+import android.animation.ValueAnimator
 import android.annotation.SuppressLint
 import android.content.Context
 import android.graphics.Canvas
@@ -9,6 +10,7 @@ import android.util.AttributeSet
 import android.view.MotionEvent
 import android.view.View
 import com.tustar.demo.ui.custom.ProvinceItem
+import com.tustar.demo.util.Logger
 import java.lang.Float.max
 import java.lang.Float.min
 
@@ -30,28 +32,28 @@ class SvgMapView @JvmOverloads constructor(
     var provinces: List<ProvinceItem> = emptyList()
         set(value) {
             field = value
-            var left = -1F
-            var top = -1F
-            var right = -1F
-            var bottom = -1F
+            var left = -1.0F
+            var top = -1.0F
+            var right = -1.0F
+            var bottom = -1.0F
             value.forEach {
                 val bounds = it.bounds
-                left = if (left == -1F) {
+                left = if (left == -1.0F) {
                     bounds.left
                 } else {
                     min(bounds.left, left)
                 }
-                top = if (top == -1F) {
+                top = if (top == -1.0F) {
                     bounds.top
                 } else {
                     min(bounds.top, top)
                 }
-                right = if (right == -1F) {
+                right = if (right == -1.0F) {
                     bounds.right
                 } else {
                     max(bounds.right, right)
                 }
-                bottom = if (bottom == -1F) {
+                bottom = if (bottom == -1.0F) {
                     bounds.bottom
                 } else {
                     max(bounds.bottom, bottom)
@@ -61,6 +63,19 @@ class SvgMapView @JvmOverloads constructor(
             requestLayout()
             postInvalidate()
         }
+    private var valueAnimator: Float = 0.0F
+
+    init {
+        ValueAnimator.ofFloat(0.0F, 1.0F).apply {
+            addUpdateListener {
+                valueAnimator = it.animatedValue as Float
+                Logger.d("valueAnimator = $valueAnimator")
+                invalidate()
+            }
+            repeatCount = 2
+            duration = 6000
+        }.start()
+    }
 
     override fun onMeasure(widthMeasureSpec: Int, heightMeasureSpec: Int) {
         val width = MeasureSpec.getSize(widthMeasureSpec)
@@ -79,7 +94,7 @@ class SvgMapView @JvmOverloads constructor(
         canvas.save()
         canvas.scale(sx, sy)
         provinces.forEach {
-            it.draw(canvas, paint)
+            it.draw(canvas, paint, valueAnimator)
         }
     }
 

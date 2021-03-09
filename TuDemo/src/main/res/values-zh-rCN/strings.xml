@@ -15,6 +15,8 @@
     <string name="custom_flow_layout">FlowLayout</string>
     <string name="custom_view_pager">自定义ViewPager</string>
     <string name="custom_svg_china">Svg中国地图</string>
+    <string name="custom_path_measure">自定义PathMeasureView</string>
+    <string name="custom_qq_list_view">仿QQ ListView</string>
     <!-- System widget-->
     <string name="sys_motion_base">MotionLayout Base</string>
     <string name="sys_motion_image_filter_view">MotionLayout ImageFilterView</string>

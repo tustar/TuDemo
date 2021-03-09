@@ -30,6 +30,12 @@
         <action
             android:id="@+id/action_home_to_svg_china"
             app:destination="@id/custom_svg_china_fragment" />
+        <action
+            android:id="@+id/action_home_to_path_measure"
+            app:destination="@id/custom_path_measure" />
+        <action
+            android:id="@+id/action_home_to_qq_list_view"
+            app:destination="@id/custom_qq_list_view" />
     </fragment>
     <fragment
         android:id="@+id/custom_recycler_fragment"
@@ -66,5 +72,19 @@
         android:name="com.tustar.demo.ui.custom.SvgMapFragment"
         android:label="@string/custom_svg_china"
         tools:layout="@layout/fragment_svg_map" />
+    <fragment
+        android:id="@+id/custom_path_measure"
+        android:name="com.tustar.demo.ui.custom.PathMeasureFragment"
+        android:label="@string/custom_path_measure"
+        tools:layout="@layout/fragment_path_measure" >
+        <action
+            android:id="@+id/action_custom_path_measure_to_QQListViewFragment"
+            app:destination="@id/custom_qq_list_view" />
+    </fragment>
+    <fragment
+        android:id="@+id/custom_qq_list_view"
+        android:name="com.tustar.demo.ui.custom.QQListViewFragment"
+        android:label="@string/custom_qq_list_view"
+        tools:layout="@layout/fragment_qq_list_view_" />
 
 </navigation>
