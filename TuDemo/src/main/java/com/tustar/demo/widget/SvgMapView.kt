@@ -69,11 +69,10 @@ class SvgMapView @JvmOverloads constructor(
         ValueAnimator.ofFloat(0.0F, 1.0F).apply {
             addUpdateListener {
                 valueAnimator = it.animatedValue as Float
-                Logger.d("valueAnimator = $valueAnimator")
                 invalidate()
             }
-            repeatCount = 2
-            duration = 6000
+            repeatCount = 1
+            duration = 2000
         }.start()
     }
 
@@ -93,8 +92,8 @@ class SvgMapView @JvmOverloads constructor(
     override fun onDraw(canvas: Canvas) {
         canvas.save()
         canvas.scale(sx, sy)
-        provinces.forEach {
-            it.draw(canvas, paint, valueAnimator)
+        provinces.forEachIndexed { index, province ->
+            province.draw(canvas, paint, valueAnimator)
         }
     }
 

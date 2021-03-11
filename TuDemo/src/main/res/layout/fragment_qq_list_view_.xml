@@ -5,9 +5,9 @@
     android:layout_height="match_parent"
     tools:context=".ui.custom.QQListViewFragment">
 
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="Hello" />
+  <com.tustar.demo.widget.QQListView
+      android:id="@+id/qq_list_view"
+      android:layout_width="match_parent"
+      android:layout_height="match_parent"/>
 
 </FrameLayout>

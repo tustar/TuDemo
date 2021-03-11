@@ -12,11 +12,9 @@ data class ProvinceItem(
     var bounds: RectF = RectF()
     var pathMeasure = PathMeasure(path, true)
     var dst: Path = Path()
-    private var length: Float
 
     init {
         path.computeBounds(bounds, true)
-        length = pathMeasure.length
     }
 
     @SuppressLint("NewApi")
@@ -59,12 +57,12 @@ data class ProvinceItem(
         paint.apply {
             isAntiAlias = true
             strokeWidth = 1.0F
-            color = drawColor
+            color = Color.BLACK
             style = Paint.Style.STROKE
         }
         dst.reset()
         dst.lineTo(0.0F, 0.0F)
-        val stopD = length * progress
+        val stopD = pathMeasure.length * progress
         pathMeasure.getSegment(0.0F, stopD, dst, true)
         canvas.drawPath(dst, paint)
     }
