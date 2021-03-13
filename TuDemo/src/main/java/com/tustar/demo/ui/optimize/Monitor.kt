@@ -6,36 +6,29 @@ import android.os.Build
 import android.os.Debug
 import androidx.annotation.RequiresApi
 import java.io.File
-import java.io.IOException
-import java.lang.reflect.InvocationTargetException
+import java.lang.Exception
 import java.nio.file.Files
 import java.nio.file.Paths
-import java.nio.file.StandardCopyOption
 
 object Monitor {
     private const val LIB_NAME = "monitor_agent"
-
-    /**
-     * 开启监控
-     * @param application
-     */
     fun init(application: Application) {
-        // 最低支持8.0
+        // 最低支持 Android 8.0
         if (Build.VERSION.SDK_INT < Build.VERSION_CODES.O) {
             return
         }
-        // so的地址
         val agentPath = createAgentLib(application)
+        //加载指定位置的so
         System.load(agentPath)
 
-        // 加载jvmti
+        //加载jvmti agent
         attachAgent(agentPath, application.classLoader)
 
-        // 准备一个目录，存放日志
+        //创建日志存放目录：/sdcard/Android/data/packagename/files/monitor
         val file = application.getExternalFilesDir("")
-        val root = File("Monitor")
+        val root = File(file, "Monitor")
         root.mkdirs()
-        native_init(root.absolutePath)
+        nInit(root.absolutePath)
     }
 
     private fun attachAgent(agentPath: String?, classLoader: ClassLoader) {
@@ -43,66 +36,51 @@ object Monitor {
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.P) {
                 Debug.attachJvmtiAgent(agentPath!!, null, classLoader)
             } else {
-                val vmDebug = Class.forName("dalvik.system.VMDebug")
-                val attachAgent = vmDebug.getMethod("attachAgent", String::class.java)
-                attachAgent.isAccessible = true
-                attachAgent.invoke(null, agentPath)
+                val vmDebugClazz = Class.forName("dalvik.system.VMDebug")
+                val attachAgentMethod = vmDebugClazz.getMethod("attachAgent", String::class.java)
+                attachAgentMethod.isAccessible = true
+                attachAgentMethod.invoke(null, agentPath)
             }
-        } catch (e: IOException) {
-            e.printStackTrace()
-        } catch (e: InvocationTargetException) {
-            e.printStackTrace()
-        } catch (e: NoSuchMethodException) {
-            e.printStackTrace()
-        } catch (e: IllegalAccessException) {
-            e.printStackTrace()
-        } catch (e: ClassNotFoundException) {
-            e.printStackTrace()
+        } catch (ex: Exception) {
+            ex.printStackTrace()
         }
     }
 
     @RequiresApi(api = Build.VERSION_CODES.O)
     private fun createAgentLib(context: Context): String? {
-        try {
+        return try {
+            //1、获得so的地址
             val classLoader = context.classLoader
-            val findLibrary = ClassLoader::class.java.getDeclaredMethod(
-                "findLibrary",
-                String::class.java
-            )
-
-            // so地址
+            val findLibrary =
+                ClassLoader::class.java.getDeclaredMethod("findLibrary", String::class.java)
             val jvmtiAgentLibPath = findLibrary.invoke(classLoader, LIB_NAME) as String
 
-            // 把so拷贝到程序私有目录/data/data/packagename/files/monitor/agent.so
-            val fileDir = context.filesDir
-            val jvmtiLibDir = File(fileDir, "monitor")
+            //2、创建目录：/data/data/packagename/files/monitor
+            val filesDir = context.filesDir
+            val jvmtiLibDir = File(filesDir, "monitor")
             if (!jvmtiLibDir.exists()) {
                 jvmtiLibDir.mkdirs()
             }
+            //3、将so拷贝到上面的目录中
             val agentLibSo = File(jvmtiLibDir, "agent.so")
             if (agentLibSo.exists()) {
                 agentLibSo.delete()
             }
             Files.copy(
                 Paths.get(File(jvmtiAgentLibPath).absolutePath),
-                Paths.get(agentLibSo.absolutePath), StandardCopyOption.REPLACE_EXISTING
+                Paths.get(agentLibSo.absolutePath)
             )
-            return agentLibSo.absolutePath
-        } catch (e: NoSuchMethodException) {
+            agentLibSo.absolutePath
+        } catch (e: Exception) {
             e.printStackTrace()
-        } catch (e: IllegalAccessException) {
-            e.printStackTrace()
-        } catch (e: InvocationTargetException) {
-            e.printStackTrace()
-        } catch (e: IOException) {
-            e.printStackTrace()
+            null
         }
-        return null
     }
 
-    external fun native_init(path: String?)
-
-    init {
-        System.loadLibrary("xxx")
+    fun release() {
+        nRelease()
     }
+
+    private external fun nInit(path: String)
+    private external fun nRelease()
 }
