@@ -1,6 +1,5 @@
-include ':TuDemo-ktstudy'
-include ':TuDemo-jstudy'
 include ':TuDemo'
-include ':TuDemo-ktx'
 include ':TuDemo-annotation'
 include ':TuDemo-compiler'
+include ':TuDemo-ktstudy'
+include ':TuDemo-jstudy'

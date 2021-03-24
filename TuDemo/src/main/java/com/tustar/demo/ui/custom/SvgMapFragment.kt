@@ -11,9 +11,7 @@ import com.tustar.annotation.GROUP_CUSTOM_WIDGET_ID
 import com.tustar.annotation.RowDemo
 import com.tustar.demo.R
 import com.tustar.demo.databinding.FragmentSvgMapBinding
-import com.tustar.demo.databinding.FragmentTodoBinding
-import com.tustar.demo.ui.weather.updateView
-import com.tustar.demo.util.Logger
+import com.tustar.demo.ex.bind
 import dagger.hilt.android.AndroidEntryPoint
 
 @RowDemo(
@@ -27,34 +25,23 @@ class SvgMapFragment : Fragment() {
         fun newInstance() = SvgMapFragment()
     }
 
-    private val viewModel by viewModels<SvgMapViewModel>()
+    private val viewModel: SvgMapViewModel by viewModels()
+    private val binding: FragmentSvgMapBinding by bind()
 
-    private var _binding: FragmentSvgMapBinding? = null
-    // This property is only valid between onCreateView and
-    // onDestroyView.
-    private val binding get() = _binding!!
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        _binding = FragmentSvgMapBinding.inflate(
-            inflater, container,
-            false
-        )
-        subscribeUi()
-        return binding.root
+        return inflater.inflate(R.layout.fragment_svg_map, container, false)
     }
 
-    override fun onActivityCreated(savedInstanceState: Bundle?) {
-        super.onActivityCreated(savedInstanceState)
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        subscribeUi()
         viewModel.parserData(requireContext())
     }
 
-    override fun onDestroyView() {
-        super.onDestroyView()
-        _binding = null
-    }
 
     private fun subscribeUi() {
         with(viewModel) {

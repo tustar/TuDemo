@@ -4,7 +4,7 @@ import android.app.Application
 import android.util.Log
 import androidx.hilt.work.HiltWorkerFactory
 import androidx.work.Configuration
-import androidx.work.OneTimeWorkRequestBuilder
+import com.tustar.demo.ui.optimize.Monitor
 import dagger.hilt.android.HiltAndroidApp
 import javax.inject.Inject
 
@@ -19,4 +19,9 @@ class DemoApplication : Application(), Configuration.Provider {
             .setWorkerFactory(workerFactory)
             .setMinimumLoggingLevel(Log.VERBOSE)
             .build()
+
+    override fun onCreate() {
+        super.onCreate()
+        Monitor.init(this)
+    }
 }

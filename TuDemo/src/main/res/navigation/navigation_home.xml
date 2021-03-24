@@ -8,7 +8,7 @@
     <fragment
         android:id="@+id/home_fragment"
         android:name="com.tustar.demo.ui.home.HomeFragment"
-        tools:layout="@layout/fragment_home">
+        tools:layout="@layout/fragment_chats">
         <action
             android:id="@+id/action_home_to_recycler"
             app:destination="@id/custom_recycler_fragment" />
@@ -36,6 +36,12 @@
         <action
             android:id="@+id/action_home_to_qq_list_view"
             app:destination="@id/custom_qq_list_view" />
+        <action
+            android:id="@+id/action_home_to_lazy_fragment"
+            app:destination="@id/optimize_lazy_fragment" />
+        <action
+            android:id="@+id/action_home_to_monitor"
+            app:destination="@id/optimize_monitor" />
     </fragment>
     <fragment
         android:id="@+id/custom_recycler_fragment"
@@ -76,7 +82,7 @@
         android:id="@+id/custom_path_measure"
         android:name="com.tustar.demo.ui.custom.PathMeasureFragment"
         android:label="@string/custom_path_measure"
-        tools:layout="@layout/fragment_path_measure" >
+        tools:layout="@layout/fragment_path_measure">
         <action
             android:id="@+id/action_custom_path_measure_to_QQListViewFragment"
             app:destination="@id/custom_qq_list_view" />
@@ -85,6 +91,15 @@
         android:id="@+id/custom_qq_list_view"
         android:name="com.tustar.demo.ui.custom.QQListViewFragment"
         android:label="@string/custom_qq_list_view"
-        tools:layout="@layout/fragment_qq_list_view_" />
-
+        tools:layout="@layout/fragment_qq_list_view" />
+    <fragment
+        android:id="@+id/optimize_lazy_fragment"
+        android:name="com.tustar.demo.ui.optimize.TabFragment"
+        android:label="@string/optimize_lazy_fragment"
+        tools:layout="@layout/fragment_tab" />
+    <fragment
+        android:id="@+id/optimize_monitor"
+        android:name="com.tustar.demo.ui.optimize.MonitorFragment"
+        android:label="@string/optimize_monitor"
+        tools:layout="@layout/fragment_monitor" />
 </navigation>

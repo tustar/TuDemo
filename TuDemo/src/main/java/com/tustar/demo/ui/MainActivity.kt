@@ -5,6 +5,7 @@ import android.annotation.SuppressLint
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.os.Bundle
+import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import androidx.lifecycle.Lifecycle
@@ -19,7 +20,9 @@ import androidx.navigation.ui.setupWithNavController
 import com.amap.api.location.AMapLocation
 import com.amap.api.location.AMapLocationListener
 import com.google.android.material.bottomnavigation.BottomNavigationView
+import com.google.android.material.navigation.NavigationView
 import com.tustar.demo.R
+import com.tustar.demo.databinding.ActivityMainBinding
 import com.tustar.demo.util.LocationHelper
 import com.tustar.demo.util.Logger
 import com.tustar.ktx.navigateUpOrFinish
@@ -43,6 +46,7 @@ class MainActivity : AppCompatActivity() {
     }
     private lateinit var navView: BottomNavigationView
 
+
     // Location
     private val locationLifecycleObserver by lazy {
         LocationLifecycleObserver()
@@ -56,7 +60,6 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         navView = findViewById(R.id.nav_view)
-        Logger.d()
 
         // Passing each menu ID as a set of Ids because each
         // menu should be considered as top level destinations.
@@ -74,6 +77,14 @@ class MainActivity : AppCompatActivity() {
 
         //
         lifecycle.addObserver(locationLifecycleObserver)
+
+        navController.addOnDestinationChangedListener { _, destination, _ ->
+            if (destination.id == R.id.optimize_lazy_fragment) {
+                runOnUiThread { navView.visibility = View.GONE }
+            } else {
+                runOnUiThread { navView.visibility = View.VISIBLE }
+            }
+        }
     }
 
     override fun onNewIntent(intent: Intent) {

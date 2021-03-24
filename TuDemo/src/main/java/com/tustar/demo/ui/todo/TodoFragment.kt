@@ -8,13 +8,16 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.DividerItemDecoration
+import com.tustar.demo.R
 import com.tustar.demo.databinding.FragmentTodoBinding
+import com.tustar.demo.ex.bind
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
 class TodoFragment : Fragment() {
 
-    private val viewModel by viewModels<TodoViewModel>()
+    private val viewModel:TodoViewModel by viewModels()
+    private val binding: FragmentTodoBinding by bind()
 
     private val todoAdapter by lazy {
         TodoAdapter()
@@ -25,17 +28,17 @@ class TodoFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        val binding = FragmentTodoBinding.inflate(
-            inflater, container,
-            false
-        )
+        return inflater.inflate(R.layout.fragment_todo, container, false)
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
         binding.todoRecyclerView.apply {
             adapter = todoAdapter
             val divider = DividerItemDecoration(requireContext(), DividerItemDecoration.VERTICAL)
             addItemDecoration(divider)
         }
         addLiveObserver()
-        return binding.root
     }
 
     private fun addLiveObserver() {

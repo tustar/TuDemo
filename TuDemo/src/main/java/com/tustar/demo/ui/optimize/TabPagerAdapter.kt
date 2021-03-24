@@ -7,15 +7,18 @@ import androidx.fragment.app.FragmentPagerAdapter
 
 class TabPagerAdapter(
     @NonNull fm: FragmentManager,
-    private val fragments: Array<Fragment>
+    private val pagerInfos: Array<Pair<String, Fragment>>
 ) : FragmentPagerAdapter(fm, BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT) {
 
     override fun getCount(): Int {
-        return fragments.size
+        return pagerInfos.size
     }
 
     override fun getItem(position: Int): Fragment {
-        return fragments[position]
+        return pagerInfos[position].second
     }
 
+    override fun getPageTitle(position: Int): CharSequence? {
+        return pagerInfos[position].first
+    }
 }

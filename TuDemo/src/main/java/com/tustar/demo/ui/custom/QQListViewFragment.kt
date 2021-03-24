@@ -6,14 +6,14 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ArrayAdapter
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.viewModels
 import com.tustar.annotation.GROUP_CUSTOM_WIDGET_ID
 import com.tustar.annotation.RowDemo
 import com.tustar.demo.R
 import com.tustar.demo.databinding.FragmentQqListViewBinding
+import com.tustar.demo.databinding.ItemQqHeaderBinding
+import com.tustar.demo.ex.bind
 import com.tustar.demo.widget.QQListView
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.android.synthetic.main.item_qq_header.view.*
 
 @RowDemo(
     groupId = GROUP_CUSTOM_WIDGET_ID, name = R.string.custom_qq_list_view,
@@ -22,24 +22,17 @@ import kotlinx.android.synthetic.main.item_qq_header.view.*
 @AndroidEntryPoint
 class QQListViewFragment : Fragment() {
 
-    companion object {
-        fun newInstance() = QQListViewFragment()
-    }
-
-    private val viewModel by viewModels<QQListViewViewModel>()
-    private var _binding: FragmentQqListViewBinding? = null
-    private val binding get() = _binding!!
+    private val binding: FragmentQqListViewBinding by bind()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        _binding = FragmentQqListViewBinding.inflate(inflater, container, false)
-        return binding.root
+        return inflater.inflate(R.layout.fragment_qq_list_view, container, false)
     }
 
-    override fun onActivityCreated(savedInstanceState: Bundle?) {
-        super.onActivityCreated(savedInstanceState)
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
         initView(binding.qqListView)
     }
 
@@ -64,14 +57,9 @@ class QQListViewFragment : Fragment() {
                 "……"
             )
         )
-        val header = View.inflate(requireContext(), R.layout.item_qq_header, null)
-        qqListView.zoomView = header.rootView.qq_header_bg
-        qqListView.addHeaderView(header)
+        val header = ItemQqHeaderBinding.inflate(layoutInflater, null, false)
+        qqListView.zoomView = header.qqHeaderBg
+        qqListView.addHeaderView(header.root)
         qqListView.adapter = adapter
-    }
-
-    override fun onDestroy() {
-        super.onDestroy()
-        _binding = null
     }
 }

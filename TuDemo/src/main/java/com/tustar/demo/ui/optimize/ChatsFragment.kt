@@ -5,25 +5,19 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import com.tustar.demo.R
 import com.tustar.demo.databinding.FragmentChatsBinding
+import com.tustar.demo.ex.bind
 import com.tustar.demo.util.Logger
 
 
 class ChatsFragment : Fragment() {
 
-    private var _binding: FragmentChatsBinding? = null
-    private val binding get() = _binding!!
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-    }
-
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        _binding = FragmentChatsBinding.inflate(inflater, container, false)
-        return binding.root
+        return inflater.inflate(R.layout.fragment_chats, container, false)
     }
 
     override fun onResume() {
@@ -34,11 +28,6 @@ class ChatsFragment : Fragment() {
     override fun onPause() {
         Logger.i()
         super.onPause()
-    }
-
-    override fun onDestroy() {
-        super.onDestroy()
-        _binding = null
     }
 
     companion object {

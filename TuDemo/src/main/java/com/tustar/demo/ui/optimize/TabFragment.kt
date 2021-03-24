@@ -5,13 +5,17 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.viewModels
+import com.google.android.material.tabs.TabLayout
+import com.google.android.material.tabs.TabLayout.OnTabSelectedListener
 import com.tustar.annotation.GROUP_OPTIMIZE
 import com.tustar.annotation.RowDemo
+import com.tustar.annotation.RowGroup
 import com.tustar.demo.R
 import com.tustar.demo.databinding.FragmentTabBinding
+import com.tustar.demo.ex.bind
 import dagger.hilt.android.AndroidEntryPoint
 
+@RowGroup(id = GROUP_OPTIMIZE, name = R.string.group_optimize)
 @RowDemo(
     groupId = GROUP_OPTIMIZE, name = R.string.optimize_lazy_fragment,
     actionId = R.id.action_home_to_lazy_fragment
@@ -19,44 +23,49 @@ import dagger.hilt.android.AndroidEntryPoint
 @AndroidEntryPoint
 class TabFragment : Fragment() {
 
-    private val viewModel by viewModels<TabViewModel>()
+    private val binding: FragmentTabBinding by bind()
 
-    private var _binding: FragmentTabBinding? = null
-    private val binding get() = _binding!!
-
-    private val fragments = arrayOf(
-        ChatsFragment.newInstance(),
-        ContactsFragment.newInstance(),
-        DiscoverFragment.newInstance(),
-        MeFragment.newInstance(),
+    private val pagerInfos = arrayOf(
+        "微信" to ChatsFragment.newInstance(),
+        "联系人" to ContactsFragment.newInstance(),
+        "发现" to DiscoverFragment.newInstance(),
+        "我" to MeFragment.newInstance(),
     )
     private val pagerAdapter by lazy {
-        TabPagerAdapter(parentFragmentManager, fragments)
+        TabPagerAdapter(parentFragmentManager, pagerInfos)
     }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        _binding = FragmentTabBinding.inflate(inflater, container, false)
-        initView()
-        return binding.root
+        return inflater.inflate(R.layout.fragment_tab, container, false)
     }
 
-    override fun onActivityCreated(savedInstanceState: Bundle?) {
-        super.onActivityCreated(savedInstanceState)
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        initView()
     }
 
     private fun initView() {
+        binding.tabLayout.apply {
+            setupWithViewPager(binding.viewPager, true)
+            addOnTabSelectedListener(object : OnTabSelectedListener {
+                override fun onTabSelected(tab: TabLayout.Tab) {
+
+                }
+
+                override fun onTabUnselected(tab: TabLayout.Tab) {
+
+                }
+
+                override fun onTabReselected(tab: TabLayout.Tab) {
+
+                }
+            })
+        }
         binding.viewPager.apply {
             adapter = pagerAdapter
         }
-        binding.tabLayout.apply {
-            setupWithViewPager(binding.viewPager, true)
-        }
-    }
-
-    companion object {
-        fun newInstance() = TabFragment()
     }
 }

@@ -1,44 +1,33 @@
 package com.tustar.demo.ui.weather
 
-import android.animation.ObjectAnimator
-import android.animation.ValueAnimator
-import android.annotation.SuppressLint
 import android.location.Location
 import android.os.Bundle
-import android.text.Spannable
-import android.text.SpannableStringBuilder
-import android.text.method.LinkMovementMethod
-import android.text.style.ClickableSpan
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.view.accessibility.AccessibilityEvent
-import android.widget.TextView
-import androidx.core.view.AccessibilityDelegateCompat
-import androidx.core.view.ViewCompat
-import androidx.core.view.accessibility.AccessibilityNodeInfoCompat
-import androidx.core.view.accessibility.AccessibilityNodeInfoCompat.AccessibilityActionCompat
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import androidx.work.*
 import com.tustar.demo.databinding.FragmentWeatherBinding
+import com.tustar.demo.ex.bind
 import com.tustar.demo.ui.KEY_LOCATION
 import com.tustar.demo.ui.MainActivity
 import com.tustar.demo.util.Logger
+import com.tustar.demo.R
 import dagger.hilt.android.AndroidEntryPoint
 import java.util.concurrent.TimeUnit
-import com.tustar.demo.R
 
 @AndroidEntryPoint
 class WeatherFragment : Fragment() {
 
-    private val viewModel by viewModels<WeatherViewModel>()
+    private val viewModel:WeatherViewModel by viewModels()
+    private val binding: FragmentWeatherBinding by bind()
 
     private val hourlyAdapter by lazy {
         HourlyAdapter()
     }
-    private lateinit var binding: FragmentWeatherBinding
     private lateinit var poiName: String
 
     override fun onCreateView(
@@ -46,10 +35,11 @@ class WeatherFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        binding = FragmentWeatherBinding.inflate(
-            inflater, container,
-            false
-        )
+        return inflater.inflate(R.layout.fragment_weather, container, false)
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
         binding.temp.setOnClickListener {
         }
         binding.temp.setOnLongClickListener {
@@ -57,7 +47,8 @@ class WeatherFragment : Fragment() {
             it.sendAccessibilityEvent(AccessibilityEvent.TYPE_ANNOUNCEMENT)
             return@setOnLongClickListener true
         }
-//        ViewCompat.setAccessibilityDelegate(binding.temp, object : AccessibilityDelegateCompat() {
+
+        //        ViewCompat.setAccessibilityDelegate(binding.temp, object : AccessibilityDelegateCompat() {
 //            override fun onPopulateAccessibilityEvent(host: View, event: AccessibilityEvent) {
 //                super.onPopulateAccessibilityEvent(host, event)
 //            }
@@ -81,11 +72,6 @@ class WeatherFragment : Fragment() {
 //        })
         binding.hourlyRecyclerView.adapter = hourlyAdapter
         subscribeUi()
-        return binding.root
-    }
-
-    override fun onDestroyView() {
-        super.onDestroyView()
     }
 
     private fun subscribeUi() {

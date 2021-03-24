@@ -10,16 +10,20 @@ import com.tustar.annotation.RowDemo
 import com.tustar.demo.R
 import com.tustar.demo.databinding.FragmentCustomFlowLayoutBinding
 import com.tustar.demo.databinding.ItemFlowBinding
+import com.tustar.demo.ex.bind
 import com.tustar.demo.widget.FlowLayout
 import com.tustar.demo.widget.FlowLayout.Adapter
+import dagger.hilt.android.AndroidEntryPoint
 
 @RowDemo(
     groupId = GROUP_CUSTOM_WIDGET_ID, name = R.string.custom_flow_layout,
     actionId = R.id.action_home_to_flow_layout
 )
+@AndroidEntryPoint
 class CustomFlowLayoutFragment : Fragment() {
 
-    private lateinit var binding: FragmentCustomFlowLayoutBinding
+    private val binding: FragmentCustomFlowLayoutBinding by bind()
+
     private val flowAdapter: FlowAdapter by lazy {
         FlowAdapter()
     }
@@ -28,24 +32,15 @@ class CustomFlowLayoutFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        binding = FragmentCustomFlowLayoutBinding.inflate(
-            inflater, container,
-            false
-        )
+        return inflater.inflate(R.layout.fragment_custom_flow_layout, container, false)
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
         with(binding) {
             flowHistory.setAdapter(flowAdapter)
             flowDiscover.setAdapter(flowAdapter)
         }
-        //
-        return binding.root
-    }
-
-    override fun onActivityCreated(savedInstanceState: Bundle?) {
-        super.onActivityCreated(savedInstanceState)
-    }
-
-    companion object {
-        fun newInstance() = CustomFlowLayoutFragment()
     }
 
     class FlowAdapter : Adapter<FlowLayout.ViewHolder>() {

@@ -9,15 +9,17 @@ import android.webkit.WebView
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.navArgs
+import com.tustar.demo.R
 import com.tustar.demo.databinding.FragmentArticleDetailBinding
+import com.tustar.demo.ex.bind
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
 class ArticleDetailFragment : Fragment() {
 
-    private val viewModel by viewModels<ArticleViewModel>()
+    private val viewModel: ArticleViewModel by viewModels()
+    private val binding: FragmentArticleDetailBinding by bind()
 
-    private lateinit var binding: FragmentArticleDetailBinding
     val args: ArticleDetailFragmentArgs by navArgs()
 
     override fun onCreateView(
@@ -25,10 +27,11 @@ class ArticleDetailFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        binding = FragmentArticleDetailBinding.inflate(
-            inflater, container,
-            false
-        )
+        return inflater.inflate(R.layout.fragment_article_detail, container, false)
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
         binding.articleDetailWeb.apply {
             loadUrl(args.article.url)
             webChromeClient = object : WebChromeClient() {
@@ -47,7 +50,6 @@ class ArticleDetailFragment : Fragment() {
             }
         }
         addLiveObserver()
-        return binding.root
     }
 
     private fun addLiveObserver() {

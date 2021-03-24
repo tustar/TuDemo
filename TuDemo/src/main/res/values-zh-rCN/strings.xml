@@ -9,6 +9,7 @@
     <string name="group_custom_widget">自定义控件</string>
     <string name="group_system_widget">系统控件</string>
     <string name="group_jetpack">Jetpack</string>
+    <string name="group_optimize">性能优化</string>
     <!-- Custom -->
     <string name="custom_recycler_view">自定义RecyclerView</string>
     <string name="custom_view">自定义View</string>
@@ -17,6 +18,9 @@
     <string name="custom_svg_china">Svg中国地图</string>
     <string name="custom_path_measure">自定义PathMeasureView</string>
     <string name="custom_qq_list_view">仿QQ ListView</string>
+    <!-- Optimize  -->
+    <string name="optimize_lazy_fragment">懒加载Fragment</string>
+    <string name="optimize_monitor">性能监测Monitor</string>
     <!-- System widget-->
     <string name="sys_motion_base">MotionLayout Base</string>
     <string name="sys_motion_image_filter_view">MotionLayout ImageFilterView</string>

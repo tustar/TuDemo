@@ -90,6 +90,7 @@ class SvgMapView @JvmOverloads constructor(
     }
 
     override fun onDraw(canvas: Canvas) {
+        super.onDraw(canvas)
         canvas.save()
         canvas.scale(sx, sy)
         provinces.forEachIndexed { index, province ->
