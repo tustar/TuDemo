@@ -1,15 +1,17 @@
 package com.tustar.demo.ui.weather
 
-import androidx.hilt.lifecycle.ViewModelInject
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.Transformations
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.liveData
 import com.amap.api.location.AMapLocation
 import com.tustar.demo.data.WeatherRepository
+import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
+import javax.inject.Inject
 
-class WeatherViewModel @ViewModelInject constructor() : ViewModel() {
+@HiltViewModel
+class WeatherViewModel @Inject constructor() : ViewModel() {
 
     private val locationLiveData = MutableLiveData<AMapLocation>()
 

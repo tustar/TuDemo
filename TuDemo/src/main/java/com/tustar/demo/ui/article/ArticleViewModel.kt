@@ -1,13 +1,15 @@
 package com.tustar.demo.ui.article
 
-import androidx.hilt.lifecycle.ViewModelInject
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.tustar.demo.data.model.Article
+import dagger.hilt.android.lifecycle.HiltViewModel
 import java.util.*
+import javax.inject.Inject
 import kotlin.collections.ArrayList
 
-class ArticleViewModel @ViewModelInject constructor() : ViewModel() {
+@HiltViewModel
+class ArticleViewModel @Inject constructor() : ViewModel() {
 
     val articles get() = _articles
     private val _articles = MutableLiveData<List<Article>>().apply {

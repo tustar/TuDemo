@@ -4,7 +4,6 @@ import android.app.Application
 import android.util.Log
 import androidx.hilt.work.HiltWorkerFactory
 import androidx.work.Configuration
-import com.tustar.demo.ui.optimize.Monitor
 import dagger.hilt.android.HiltAndroidApp
 import javax.inject.Inject
 
@@ -22,6 +21,6 @@ class DemoApplication : Application(), Configuration.Provider {
 
     override fun onCreate() {
         super.onCreate()
-        Monitor.init(this)
+//        Monitor.init(this)
     }
 }

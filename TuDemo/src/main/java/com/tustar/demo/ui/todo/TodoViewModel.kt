@@ -1,11 +1,12 @@
 package com.tustar.demo.ui.todo
 
-import androidx.hilt.lifecycle.ViewModelInject
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import dagger.hilt.android.lifecycle.HiltViewModel
+import javax.inject.Inject
 
-
-class TodoViewModel @ViewModelInject constructor() : ViewModel() {
+@HiltViewModel
+class TodoViewModel @Inject constructor() : ViewModel() {
 
     val todos get() = _todos
     private val _todos = MutableLiveData<List<Todo>>().apply {

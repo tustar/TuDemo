@@ -2,18 +2,20 @@ package com.tustar.demo.ui.custom
 
 import android.content.Context
 import androidx.core.graphics.PathParser
-import androidx.hilt.lifecycle.ViewModelInject
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.tustar.demo.util.Logger
+import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import org.xmlpull.v1.XmlPullParser
 import org.xmlpull.v1.XmlPullParserFactory
+import javax.inject.Inject
 
-class SvgMapViewModel : @ViewModelInject ViewModel() {
+@HiltViewModel
+class SvgMapViewModel @Inject constructor(): ViewModel() {
 
     val provinces get() = _provinces
     private val _provinces = MutableLiveData<List<ProvinceItem>>()
