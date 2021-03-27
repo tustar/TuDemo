@@ -7,18 +7,17 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import com.google.android.material.tabs.TabLayout
 import com.google.android.material.tabs.TabLayout.OnTabSelectedListener
-import com.tustar.annotation.GROUP_OPTIMIZE
-import com.tustar.annotation.RowDemo
-import com.tustar.annotation.RowGroup
+import com.tustar.annotation.DemoItem
 import com.tustar.demo.R
 import com.tustar.demo.databinding.FragmentTabBinding
 import com.tustar.demo.ex.bind
 import dagger.hilt.android.AndroidEntryPoint
 
-@RowGroup(id = GROUP_OPTIMIZE, name = R.string.group_optimize)
-@RowDemo(
-    groupId = GROUP_OPTIMIZE, name = R.string.optimize_lazy_fragment,
-    actionId = R.id.action_home_to_lazy_fragment
+@DemoItem(
+    group = R.string.group_optimize,
+    item = R.string.optimize_lazy_fragment,
+    createdAt = "2021-03-06 13:05:00",
+    updatedAt = "2021-03-19 15:00:00",
 )
 @AndroidEntryPoint
 class TabFragment : Fragment() {

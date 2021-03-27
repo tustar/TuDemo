@@ -1,10 +1,11 @@
 <resources>
     <string name="app_name">Coder World</string>
     <!-- Title -->
-    <string name="title_home">Demos</string>
+    <string name="title_home">Demo</string>
     <string name="title_article">Article</string>
     <string name="title_todo">Todo</string>
     <string name="title_weather">Weather</string>
+    <string name="title_me">Me</string>
     <!-- Group -->
     <string name="group_custom_widget">Custom widgets</string>
     <string name="group_system_widget">System widgets</string>
@@ -34,10 +35,8 @@
     <string name="weather_wind">%1$s wind LV%2$d</string>
     <string name="weather_humidity">Humidity %1$d</string>
     <string name="weather_24h">24小时预报</string>
-
-    <string name="card_empty_tips_1">No game added yet. Try to find some in %1$s.\n</string>
-    <string name="card_empty_tips_1_click_text">Google play</string>
-    <string name="card_empty_tips_2">Or you can add installed apps as game through %1$s.</string>
-    <string name="card_empty_tips_2_click_text">Add Games</string>
-
+    <!-- Todo-->
+    <string name="todo_undo">Undo</string>
+    <string name="todo_doing">Doing</string>
+    <string name="todo_done">Done</string>
 </resources>

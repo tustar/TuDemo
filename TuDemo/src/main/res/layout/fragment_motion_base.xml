@@ -12,7 +12,7 @@
         android:id="@+id/button"
         android:layout_width="64dp"
         android:layout_height="64dp"
-        android:background="@color/colorAccent"
+        android:background="@color/light_blue_A700"
         android:text="Button" />
 
 </androidx.constraintlayout.motion.widget.MotionLayout>

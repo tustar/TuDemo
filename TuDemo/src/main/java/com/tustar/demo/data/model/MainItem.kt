@@ -11,21 +11,21 @@ sealed class MainItem {
     }
 }
 
-data class Group(val id: Int,
-                 val name: Int,
-                 val createdAt: Calendar = Calendar.getInstance()) : MainItem() {
+data class GroupItem(
+    var group: Int = 0,
+    val createdAt: Calendar = Calendar.getInstance()
+) : MainItem() {
     override fun getType(): Int {
         return TYPE_GROUP
     }
 }
 
-data class Demo(var id: Int = 0,
-                val name: Int,
-                var groupId: Int = 0,
-                var parentId: Int = -1,
-                var actionId: Int,
-                val isMenu: Boolean = false,
-                val createdAt: Calendar = Calendar.getInstance()) : MainItem() {
+data class DemoItem(
+    var group: Int = 0,
+    val item: Int = 0,
+    val createdAt : String,
+    val updatedAt : String,
+) : MainItem() {
 
     override fun getType(): Int {
         return TYPE_CHILD

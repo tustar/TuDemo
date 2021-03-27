@@ -3,9 +3,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     package="com.tustar.demo">
 
-    <uses-permission android:name="android.permission.INTERNET" />
-    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
-    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <!--用于进行网络定位-->
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
     <!--用于访问GPS定位-->
@@ -41,10 +38,11 @@
             android:exported="false"
             android:multiprocess="true"
             tools:node="remove"
-            tools:targetApi="n" />
+            tools:targetApi="n"
+            tools:ignore="Instantiatable" />
 
         <activity
-            android:name=".ui.MainActivity2"
+            android:name=".ui.MainActivity"
             android:label="@string/app_name"
             android:launchMode="singleTop">
             <intent-filter>

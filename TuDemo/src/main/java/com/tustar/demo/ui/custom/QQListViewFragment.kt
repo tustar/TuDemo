@@ -6,8 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ArrayAdapter
 import androidx.fragment.app.Fragment
-import com.tustar.annotation.GROUP_CUSTOM_WIDGET_ID
-import com.tustar.annotation.RowDemo
+import com.tustar.annotation.DemoItem
 import com.tustar.demo.R
 import com.tustar.demo.databinding.FragmentQqListViewBinding
 import com.tustar.demo.databinding.ItemQqHeaderBinding
@@ -15,9 +14,11 @@ import com.tustar.demo.ex.bind
 import com.tustar.demo.widget.QQListView
 import dagger.hilt.android.AndroidEntryPoint
 
-@RowDemo(
-    groupId = GROUP_CUSTOM_WIDGET_ID, name = R.string.custom_qq_list_view,
-    actionId = R.id.action_home_to_qq_list_view
+@DemoItem(
+    group = R.string.group_custom_widget,
+    item = R.string.custom_qq_list_view,
+    createdAt = "2021-02-27 12:00:00",
+    updatedAt = "2021-03-18 16:00:00",
 )
 @AndroidEntryPoint
 class QQListViewFragment : Fragment() {

@@ -5,8 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import com.tustar.annotation.GROUP_CUSTOM_WIDGET_ID
-import com.tustar.annotation.RowDemo
+import com.tustar.annotation.DemoItem
 import com.tustar.demo.R
 import com.tustar.demo.databinding.FragmentCustomFlowLayoutBinding
 import com.tustar.demo.databinding.ItemFlowBinding
@@ -15,9 +14,11 @@ import com.tustar.demo.widget.FlowLayout
 import com.tustar.demo.widget.FlowLayout.Adapter
 import dagger.hilt.android.AndroidEntryPoint
 
-@RowDemo(
-    groupId = GROUP_CUSTOM_WIDGET_ID, name = R.string.custom_flow_layout,
-    actionId = R.id.action_home_to_flow_layout
+@DemoItem(
+    group = R.string.group_custom_widget,
+    item = R.string.custom_flow_layout,
+    createdAt = "2020-10-15 12:20:50",
+    updatedAt = "2021-03-15 15:30:10",
 )
 @AndroidEntryPoint
 class CustomFlowLayoutFragment : Fragment() {

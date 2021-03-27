@@ -44,7 +44,7 @@ class ArticleAdapter : ListAdapter<Article, RecyclerView.ViewHolder>(ArticleDiff
                 articleDescription.text = item.description
                 articleAuthor.text = item.author
                 articleCreateAt.text = SimpleDateFormat("yyyy-MM-dd")
-                    .format(Date(item.createAt))
+                    .format(Date(item.createdAt))
             }
         }
     }

@@ -5,14 +5,15 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import com.tustar.annotation.GROUP_CUSTOM_WIDGET_ID
-import com.tustar.annotation.RowDemo
+import com.tustar.annotation.DemoItem
 import com.tustar.demo.R
 import dagger.hilt.android.AndroidEntryPoint
 
-@RowDemo(
-    groupId = GROUP_CUSTOM_WIDGET_ID, name = R.string.custom_view_pager,
-    actionId = R.id.action_home_to_view_pager
+@DemoItem(
+    group = R.string.group_custom_widget,
+    item = R.string.custom_view_pager,
+    createdAt = "2020-12-25 23:10:00",
+    updatedAt = "2021-03-16 15:10:00",
 )
 @AndroidEntryPoint
 class CustomViewPagerFragment : Fragment() {

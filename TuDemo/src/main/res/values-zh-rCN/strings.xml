@@ -5,6 +5,7 @@
     <string name="title_article">干货</string>
     <string name="title_todo">待办</string>
     <string name="title_weather">天气</string>
+    <string name="title_me">我</string>
     <!-- Group -->
     <string name="group_custom_widget">自定义控件</string>
     <string name="group_system_widget">系统控件</string>
@@ -34,9 +35,8 @@
     <string name="weather_wind">%1$s %2$d级</string>
     <string name="weather_humidity">湿度%1$d</string>
     <string name="weather_24h">24小时预报</string>
-
-    <string name="card_empty_tips_1">No game added yet. Try to find some in %1$s.\n</string>
-    <string name="card_empty_tips_1_click_text">Google play</string>
-    <string name="card_empty_tips_2">Or you can add installed apps as game through %1$s.</string>
-    <string name="card_empty_tips_2_click_text">Add Games</string>
+    <!-- Todo-->
+    <string name="todo_undo">待办事项</string>
+    <string name="todo_doing">进行中</string>
+    <string name="todo_done">已完成</string>
 </resources>

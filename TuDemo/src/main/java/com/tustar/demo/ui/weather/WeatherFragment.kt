@@ -16,6 +16,7 @@ import com.tustar.demo.ui.KEY_LOCATION
 import com.tustar.demo.ui.MainActivity
 import com.tustar.demo.util.Logger
 import com.tustar.demo.R
+import com.tustar.demo.ui.MainActivity3
 import dagger.hilt.android.AndroidEntryPoint
 import java.util.concurrent.TimeUnit
 
@@ -85,7 +86,7 @@ class WeatherFragment : Fragment() {
             })
         }
 
-        (activity as MainActivity).liveLocation.observe(viewLifecycleOwner,
+        (activity as MainActivity3).liveLocation.observe(viewLifecycleOwner,
             Observer {
                 poiName = it.poiName
                 binding.address.text = it.poiName

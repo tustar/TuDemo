@@ -5,14 +5,15 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import com.tustar.annotation.GROUP_CUSTOM_WIDGET_ID
-import com.tustar.annotation.RowDemo
+import com.tustar.annotation.DemoItem
 import com.tustar.demo.R
 import dagger.hilt.android.AndroidEntryPoint
 
-@RowDemo(
-    groupId = GROUP_CUSTOM_WIDGET_ID, name = R.string.custom_view,
-    actionId = R.id.action_home_to_view
+@DemoItem(
+    group = R.string.group_custom_widget,
+    item = R.string.custom_view,
+    createdAt = "2020-12-24 20:00:00",
+    updatedAt = "2021-03-15 15:00:00",
 )
 @AndroidEntryPoint
 class CustomViewFragment : Fragment() {

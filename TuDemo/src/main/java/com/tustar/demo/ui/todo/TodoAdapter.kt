@@ -36,7 +36,7 @@ class TodoAdapter() : ListAdapter<Todo, RecyclerView.ViewHolder>(TodoDiffCallbac
 
         fun bind(item: Todo) {
             binding.apply {
-                todoCheck.isChecked = item.isDone
+                todoCheck.isChecked = item.state == STATE_DONE
                 todoTitle.text = item.title
                 todoDescription.text = item.description
             }

@@ -5,13 +5,14 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import com.tustar.annotation.GROUP_SYSTEM_WIDGET_ID
-import com.tustar.annotation.RowDemo
+import com.tustar.annotation.DemoItem
 import com.tustar.demo.R
 
-@RowDemo(
-    groupId = GROUP_SYSTEM_WIDGET_ID, name = R.string.sys_motion_image_filter_view,
-    actionId = R.id.action_home_to_motion_image_filter_view
+@DemoItem(
+    group = R.string.group_system_widget,
+    item = R.string.sys_motion_image_filter_view,
+    createdAt = "2020-07-15 12:10:00",
+    updatedAt = "2021-02-20 17:10:00",
 )
 class MotionImageFilterViewFragment : Fragment() {
 

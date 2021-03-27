@@ -7,16 +7,17 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
-import com.tustar.annotation.GROUP_CUSTOM_WIDGET_ID
-import com.tustar.annotation.RowDemo
+import com.tustar.annotation.DemoItem
 import com.tustar.demo.R
 import com.tustar.demo.databinding.FragmentSvgMapBinding
 import com.tustar.demo.ex.bind
 import dagger.hilt.android.AndroidEntryPoint
 
-@RowDemo(
-    groupId = GROUP_CUSTOM_WIDGET_ID, name = R.string.custom_svg_china,
-    actionId = R.id.action_home_to_svg_china
+@DemoItem(
+    group = R.string.group_custom_widget,
+    item = R.string.custom_svg_china,
+    createdAt = "2021-03-12 17:00:00",
+    updatedAt = "2021-03-20 21:00:00",
 )
 @AndroidEntryPoint
 class SvgMapFragment : Fragment() {

@@ -5,17 +5,18 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import com.tustar.annotation.GROUP_OPTIMIZE
-import com.tustar.annotation.RowDemo
+import com.tustar.annotation.DemoItem
 import com.tustar.demo.R
 import com.tustar.demo.databinding.FragmentMonitorBinding
 import com.tustar.demo.ex.bind
 import com.tustar.demo.util.Logger
 import dagger.hilt.android.AndroidEntryPoint
 
-@RowDemo(
-    groupId = GROUP_OPTIMIZE, name = R.string.optimize_monitor,
-    actionId = R.id.action_home_to_monitor
+@DemoItem(
+    group = R.string.group_optimize,
+    item = R.string.optimize_monitor,
+    createdAt = "2021-03-13 16:00:00",
+    updatedAt = "2021-03-21 07:00:00",
 )
 @AndroidEntryPoint
 class MonitorFragment : Fragment() {
@@ -66,7 +67,7 @@ class MonitorFragment : Fragment() {
         try {
             System.gc()
             System.runFinalization()
-        } catch (e:Exception) {
+        } catch (e: Exception) {
             e.printStackTrace()
         }
     }

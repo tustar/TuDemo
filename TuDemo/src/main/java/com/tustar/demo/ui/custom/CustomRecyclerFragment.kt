@@ -5,16 +5,15 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import com.tustar.annotation.GROUP_CUSTOM_WIDGET_ID
-import com.tustar.annotation.RowDemo
-import com.tustar.annotation.RowGroup
+import com.tustar.annotation.DemoItem
 import com.tustar.demo.R
 import dagger.hilt.android.AndroidEntryPoint
 
-@RowGroup(id = GROUP_CUSTOM_WIDGET_ID, name = R.string.group_custom_widget)
-@RowDemo(
-    groupId = GROUP_CUSTOM_WIDGET_ID, name = R.string.custom_recycler_view,
-    actionId = R.id.action_home_to_recycler
+@DemoItem(
+    group = R.string.group_custom_widget,
+    item  = R.string.custom_recycler_view,
+    createdAt = "2020-11-15 09:10:30",
+    updatedAt = "2021-03-15 15:00:00",
 )
 @AndroidEntryPoint
 class CustomRecyclerFragment : Fragment() {
