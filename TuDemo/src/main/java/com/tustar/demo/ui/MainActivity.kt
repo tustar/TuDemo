@@ -20,6 +20,7 @@ import android.annotation.SuppressLint
 import android.content.pm.PackageManager
 import android.os.Bundle
 import androidx.activity.compose.setContent
+import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import androidx.lifecycle.Lifecycle
@@ -28,6 +29,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.OnLifecycleEvent
 import com.amap.api.location.AMapLocation
 import com.amap.api.location.AMapLocationListener
+import com.tustar.demo.data.remote.Now
 import com.tustar.demo.ui.theme.DemoTheme
 import com.tustar.demo.util.LocationHelper
 import com.tustar.demo.util.Logger
@@ -38,27 +40,31 @@ const val KEY_LOCATION = "location"
 
 @SuppressLint("NewApi")
 @AndroidEntryPoint
-
 class MainActivity : AppCompatActivity() {
 
     // Location
     private val locationLifecycleObserver by lazy {
         LocationLifecycleObserver()
     }
-    val liveLocation = MutableLiveData<AMapLocation>()
+    private val liveLocation = MutableLiveData<AMapLocation>()
     val locationHelper by lazy {
         LocationHelper(applicationContext)
     }
+    private val viewModel: MainViewModel by viewModels()
+    private var now: Now? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
             DemoTheme {
-                MainScreen()
+                MainScreen(now)
             }
         }
 
         lifecycle.addObserver(locationLifecycleObserver)
+        viewModel.now.observe(this, {
+            now = it
+        })
     }
 
     override fun onDestroy() {

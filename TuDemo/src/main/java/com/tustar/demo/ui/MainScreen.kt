@@ -1,10 +1,8 @@
 package com.tustar.demo.ui
 
 import androidx.compose.foundation.background
-import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.height
 import androidx.compose.material.*
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.MutableState
@@ -14,10 +12,10 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
-import androidx.compose.ui.unit.dp
 import androidx.constraintlayout.compose.ConstraintLayout
 import androidx.constraintlayout.compose.Dimension
 import com.tustar.demo.R
+import com.tustar.demo.data.remote.Now
 import com.tustar.demo.ui.article.ArticleContent
 import com.tustar.demo.ui.home.HomeContent
 import com.tustar.demo.ui.me.MeContent
@@ -26,7 +24,7 @@ import com.tustar.demo.ui.todo.TodoContent
 
 // Start building your app here!
 @Composable
-fun MainScreen() {
+fun MainScreen(now: Now? = null) {
     DemoTheme {
 
         ConstraintLayout(
@@ -37,7 +35,9 @@ fun MainScreen() {
             val state = remember { mutableStateOf(R.string.title_home) }
             val (content, tabRow) = createRefs()
 
-            MainContent(state = state,
+            MainContent(
+                now = now,
+                state = state,
                 modifier = Modifier
                     .fillMaxWidth()
                     .background(MaterialTheme.colors.background)
@@ -61,11 +61,12 @@ fun MainScreen() {
 
 @Composable
 fun MainContent(
+    now: Now?,
     state: MutableState<Int>,
     modifier: Modifier,
 ) {
     when (state.value) {
-        R.string.title_home -> HomeContent(modifier = modifier)
+        R.string.title_home -> HomeContent(modifier = modifier, now = now)
         R.string.title_article -> ArticleContent(modifier = modifier)
         R.string.title_todo -> TodoContent(modifier = modifier)
         R.string.title_me -> MeContent(modifier = modifier)

@@ -7,17 +7,26 @@ import androidx.lifecycle.liveData
 import com.amap.api.location.AMapLocation
 import com.tustar.demo.data.WeatherRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
-import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.flow.catch
+import kotlinx.coroutines.flow.collectLatest
+import kotlinx.coroutines.flow.onStart
 import javax.inject.Inject
 
 @HiltViewModel
-class MainViewModel @Inject constructor() : ViewModel() {
+class MainViewModel @Inject constructor(
+    private val weatherRepository: WeatherRepository
+) : ViewModel() {
 
     private val locationLiveData = MutableLiveData<AMapLocation>()
 
     val now = Transformations.switchMap(locationLiveData) {
-        liveData(Dispatchers.IO) {
-            emit(WeatherRepository.now(it))
+        liveData {
+            weatherRepository.now(it)
+                .onStart { }
+                .catch { }
+                .collectLatest {
+                    emit(it)
+                }
         }
     }
 }

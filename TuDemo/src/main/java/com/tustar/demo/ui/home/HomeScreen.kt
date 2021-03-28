@@ -20,54 +20,67 @@ import androidx.constraintlayout.compose.ConstraintLayout
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.tustar.demo.R
 import com.tustar.demo.data.model.DemoItem
+import com.tustar.demo.data.remote.Now
 import com.tustar.demo.ui.theme.sectionBgColor
 import com.tustar.demo.ui.theme.sectionTextColor
 import com.tustar.demo.ui.theme.typography
 
 @Composable
 fun HomeContent(
-    modifier: Modifier = Modifier
+    modifier: Modifier = Modifier,
+    now: Now?
 ) {
+    val viewModel: HomeViewModel = viewModel()
+    val grouped = viewModel.createDemos()
+
     Column(modifier = modifier) {
-        HomeTopAppBar(modifier = modifier)
-        HomeListContent(modifier = modifier)
+        HomeTopAppBar(
+            modifier = modifier,
+            now = now
+        )
+        HomeListContent(
+            modifier = modifier,
+            grouped = grouped
+        )
     }
 }
 
 @Composable
 private fun HomeTopAppBar(
-    modifier: Modifier
+    modifier: Modifier,
+    now: Now?
 ) {
     TopAppBar(
         title = {
             Text(text = stringResource(id = R.string.title_home))
         },
-//        actions = {
-//            IconButton(onClick = { }) {
-//                Icon(
-//                    imageVector = Icons.Filled.Settings,
-//                    contentDescription = null
-//                )
-//            }
-//        },
+        actions = {
+            WeatherContent(now)
+        },
         modifier = modifier
             .height(52.dp),
         backgroundColor = MaterialTheme.colors.primary,
     )
 }
 
+@Composable
+fun WeatherContent(now: Now?) {
+    now?.let {
+        Column() {
+            Text(text = now.text)
+            Text(text = stringResource(id = R.string.weather_temp, now.temp))
+        }
+    }
+}
+
 @OptIn(ExperimentalFoundationApi::class)
 @Composable
 fun HomeListContent(
-    modifier: Modifier
+    modifier: Modifier,
+    grouped: Map<Int, List<DemoItem>>
 ) {
 
-    val viewModel: HomeViewModel = viewModel()
-    val grouped = viewModel.createDemos()
-
     val listState = rememberLazyListState()
-
-
     LazyColumn(
         state = listState,
         modifier = modifier,

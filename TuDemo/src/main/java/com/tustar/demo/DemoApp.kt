@@ -21,6 +21,5 @@ class DemoApplication : Application(), Configuration.Provider {
 
     override fun onCreate() {
         super.onCreate()
-//        Monitor.init(this)
     }
 }
