@@ -1,2 +1,0 @@
-com/tustar/ktx/BuildConfig.java
- com.tustar.ktx.BuildConfig

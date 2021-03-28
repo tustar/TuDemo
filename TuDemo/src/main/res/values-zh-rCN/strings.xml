@@ -28,14 +28,10 @@
     <!-- Article-->
     <string name="article_detail">干货详情</string>
     <!-- Weather-->
-    <string name="weather_channel_name">天气渠道</string>
-    <string name="weather_channel_description">推送天气信息</string>
+    <string name="weather_channel_name">每日天气</string>
+    <string name="weather_channel_description">更新每日天气信息</string>
     <string name="weather_temp">%1$d°</string>
-    <string name="weather_feels_like">体感%1$d°</string>
-    <string name="weather_wind">%1$s %2$d级</string>
-    <string name="weather_humidity">湿度%1$d</string>
-    <string name="weather_24h">24小时预报</string>
-    <!-- Todo-->
+    <!-- Todos-->
     <string name="todo_undo">待办事项</string>
     <string name="todo_doing">进行中</string>
     <string name="todo_done">已完成</string>

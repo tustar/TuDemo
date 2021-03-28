@@ -55,12 +55,12 @@
         tools:layout="@layout/fragment_custom_view" />
     <fragment
         android:id="@+id/motion_base_fragment"
-        android:name="com.tustar.demo.ui.sys.motion.MotionBaseFragment"
+        android:name="com.tustar.demo.ui.motion.MotionBaseFragment"
         android:label="@string/sys_motion_base"
         tools:layout="@layout/fragment_motion_base" />
     <fragment
         android:id="@+id/motion_image_filter_view_fragment"
-        android:name="com.tustar.demo.ui.sys.motion.MotionImageFilterViewFragment"
+        android:name="com.tustar.demo.ui.motion.MotionImageFilterViewFragment"
         android:label="@string/sys_motion_image_filter_view"
         tools:layout="@layout/fragment_motion_image_filter_view" />
     <fragment

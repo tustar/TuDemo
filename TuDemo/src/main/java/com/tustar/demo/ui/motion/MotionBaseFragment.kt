@@ -1,4 +1,4 @@
-package com.tustar.demo.ui.sys.motion
+package com.tustar.demo.ui.motion
 
 import android.os.Bundle
 import android.view.LayoutInflater

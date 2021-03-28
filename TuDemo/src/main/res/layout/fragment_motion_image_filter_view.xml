@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     apps:layoutDescription="@xml/scene_image_filter_view"
-    tools:context=".ui.sys.motion.MotionImageFilterViewFragment"
+    tools:context=".ui.motion.MotionImageFilterViewFragment"
     tools:showPaths="true">
 
     <androidx.constraintlayout.utils.widget.ImageFilterView
@@ -13,7 +13,7 @@
         android:layout_width="match_parent"
         android:layout_height="300dp"
         android:scaleType="centerCrop"
-        android:src="@drawable/sunset2" />
+        android:src="@drawable/ic_motion_sunset2" />
 
 </androidx.constraintlayout.motion.widget.MotionLayout>
 

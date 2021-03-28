@@ -3,5 +3,4 @@
     android:id="@+id/keyword"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
-    android:background="@drawable/shape_button_circle_bg"
     android:text="水果味孕味奶粉" />

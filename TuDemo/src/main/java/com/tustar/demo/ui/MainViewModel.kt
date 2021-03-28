@@ -1,4 +1,4 @@
-package com.tustar.demo.ui.weather
+package com.tustar.demo.ui
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.Transformations
@@ -11,7 +11,7 @@ import kotlinx.coroutines.Dispatchers
 import javax.inject.Inject
 
 @HiltViewModel
-class WeatherViewModel @Inject constructor() : ViewModel() {
+class MainViewModel @Inject constructor() : ViewModel() {
 
     private val locationLiveData = MutableLiveData<AMapLocation>()
 
@@ -19,14 +19,5 @@ class WeatherViewModel @Inject constructor() : ViewModel() {
         liveData(Dispatchers.IO) {
             emit(WeatherRepository.now(it))
         }
-    }
-    val hourly = Transformations.switchMap(locationLiveData) {
-        liveData(Dispatchers.IO) {
-            emit(WeatherRepository.hourly(it))
-        }
-    }
-
-    fun now(location: AMapLocation) {
-        locationLiveData.value = location
     }
 }
