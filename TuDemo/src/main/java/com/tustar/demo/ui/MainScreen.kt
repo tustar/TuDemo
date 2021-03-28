@@ -92,22 +92,22 @@ fun MainBottomTabBar(
         backgroundColor = MaterialTheme.colors.primary,
         indicator = {},
     ) {
-        titles.mapKeys { (title, icon) ->
+        titles.mapKeys { (tabIndex, icon) ->
             Tab(
                 text = {
                     Text(
-                        text = stringResource(id = title)
+                        text = stringResource(id = tabIndex)
                     )
                 },
                 icon = {
                     Icon(
                         painter = painterResource(id = icon),
-                        contentDescription = stringResource(id = title),
+                        contentDescription = stringResource(id = tabIndex),
                     )
                 },
-                selected = state.value == title,
+                selected = state.value == tabIndex,
                 onClick = {
-                    state.value = title
+                    state.value = tabIndex
                 },
             )
         }

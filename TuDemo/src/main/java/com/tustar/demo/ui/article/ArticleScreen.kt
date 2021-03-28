@@ -7,10 +7,10 @@ import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.rememberLazyListState
 import androidx.compose.material.*
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.Add
-import androidx.compose.material.icons.filled.AddTask
 import androidx.compose.material.icons.filled.NoteAdd
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
@@ -32,7 +32,7 @@ fun ArticleContent(
 ) {
     Column(modifier = modifier) {
         ArticleTopAppBar(modifier = modifier)
-        ArticleListContent(modifier = modifier)
+        ArticleTabsContent(modifier = modifier)
     }
 }
 
@@ -58,24 +58,49 @@ private fun ArticleTopAppBar(
     )
 }
 
-@OptIn(ExperimentalFoundationApi::class)
 @Composable
-fun ArticleListContent(
+fun ArticleTabsContent(
     modifier: Modifier
 ) {
 
     val viewModel: ArticleViewModel = viewModel()
     val grouped = viewModel.getArticles()
+    val keys = grouped.keys.toList()
+    val state = remember { mutableStateOf(0) }
 
+    Column(modifier = modifier) {
+        ScrollableTabRow(selectedTabIndex = state.value) {
+            grouped.keys.forEach { tabIndex ->
+                Tab(
+                    text = {
+                        Text(text = tabIndex)
+                    },
+                    selected = state.value == keys.indexOf(tabIndex),
+                    onClick = {
+                        state.value = keys.indexOf(tabIndex)
+                    },
+                )
+            }
+        }
+        val subGrouped = grouped[keys[state.value]]!!.groupBy { it.title }
+        ArticleListContent(modifier = modifier, subGrouped = subGrouped)
+    }
+}
+
+@OptIn(ExperimentalFoundationApi::class)
+@Composable
+fun ArticleListContent(
+    modifier: Modifier,
+    subGrouped: Map<String, List<Article>>
+) {
     val listState = rememberLazyListState()
-
 
     LazyColumn(
         state = listState,
         modifier = modifier,
         verticalArrangement = Arrangement.spacedBy(4.dp),
     ) {
-        grouped.forEach { (author, articles) ->
+        subGrouped.forEach { (author, articles) ->
             stickyHeader {
                 ArticleHeader(author)
             }
@@ -91,9 +116,9 @@ fun ArticleListContent(
 }
 
 @Composable
-fun ArticleHeader(author: String) {
+fun ArticleHeader(group: String) {
     Text(
-        text = author,
+        text = group,
         modifier = Modifier
             .background(sectionBgColor)
             .padding(start = 16.dp, top = 2.dp, bottom = 2.dp)

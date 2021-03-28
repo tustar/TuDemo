@@ -102,9 +102,9 @@ fun HomeListContent(
 }
 
 @Composable
-fun DemoHeader(groupResId: Int) {
+fun DemoHeader(group: Int) {
     Text(
-        text = stringResource(id = groupResId),
+        text = stringResource(id = group),
         modifier = Modifier
             .background(sectionBgColor)
             .padding(start = 16.dp, top = 2.dp, bottom = 2.dp)

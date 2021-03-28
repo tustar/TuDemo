@@ -65,6 +65,8 @@ class MainActivity : AppCompatActivity() {
         viewModel.now.observe(this, {
             now = it
         })
+
+        requestPermissions()
     }
 
     override fun onDestroy() {
@@ -141,7 +143,7 @@ class MainActivity : AppCompatActivity() {
             // 可在其中解析location获取相应内容。
             if (location.errorCode == 0) {
                 Logger.d("location=$location")
-                liveLocation.postValue(location)
+                liveLocation.run { postValue(location) }
             }
             // 定位失败时，可通过ErrCode（错误码）信息来确定失败的原因，errInfo是错误信息，详见错误码表。
             else {

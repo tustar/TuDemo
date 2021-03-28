@@ -7,10 +7,10 @@ import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.rememberLazyListState
 import androidx.compose.material.*
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.Add
 import androidx.compose.material.icons.filled.AddTask
-import androidx.compose.material.icons.filled.NoteAdd
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
@@ -31,7 +31,7 @@ fun TodoContent(
 ) {
     Column(modifier = modifier) {
         TodoTopAppBar(modifier = modifier)
-        TodoListContent(modifier = modifier)
+        TodoTabsContent(modifier = modifier)
     }
 }
 
@@ -57,24 +57,54 @@ private fun TodoTopAppBar(
     )
 }
 
-@OptIn(ExperimentalFoundationApi::class)
 @Composable
-fun TodoListContent(
+fun TodoTabsContent(
     modifier: Modifier
 ) {
 
     val viewModel: TodoViewModel = viewModel()
     val grouped = viewModel.getTodos()
+    val keys = grouped.keys.toList()
+    val state = remember { mutableStateOf(STATE_UNDO) }
+
+    Column(modifier = modifier) {
+        ScrollableTabRow(selectedTabIndex = state.value) {
+            grouped.keys.forEach { tabIndex ->
+                Tab(
+                    text = {
+                        Text(
+                            text = stringResource(
+                                id = stateToStringResId(tabIndex)
+                            )
+                        )
+                    },
+                    selected = state.value == tabIndex,
+                    onClick = {
+                        state.value = tabIndex
+                    },
+                )
+            }
+        }
+        val subGrouped = grouped[keys[state.value]]!!.groupBy { it.category }
+        TodoListContent(modifier = modifier, subGrouped = subGrouped)
+    }
+}
+
+@OptIn(ExperimentalFoundationApi::class)
+@Composable
+fun TodoListContent(
+    modifier: Modifier,
+    subGrouped: Map<String, List<Todo>>
+) {
 
     val listState = rememberLazyListState()
-
 
     LazyColumn(
         state = listState,
         modifier = modifier,
         verticalArrangement = Arrangement.spacedBy(4.dp),
     ) {
-        grouped.forEach { (group, todos) ->
+        subGrouped.forEach { (group, todos) ->
             stickyHeader {
                 TodoHeader(group)
             }
@@ -90,15 +120,9 @@ fun TodoListContent(
 }
 
 @Composable
-fun TodoHeader(@TodoState state: Int) {
-    val resId = when (state) {
-        STATE_UNDO -> R.string.todo_undo
-        STATE_DOING -> R.string.todo_doing
-        STATE_DONE -> R.string.todo_done
-        else -> -1
-    }
+fun TodoHeader(group: String) {
     Text(
-        text = stringResource(id = resId),
+        text = group,
         modifier = Modifier
             .background(sectionBgColor)
             .padding(start = 16.dp, top = 2.dp, bottom = 2.dp)

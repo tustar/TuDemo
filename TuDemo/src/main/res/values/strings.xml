@@ -35,4 +35,14 @@
     <string name="todo_undo">Undo</string>
     <string name="todo_doing">Doing</string>
     <string name="todo_done">Done</string>
+    <string name="todo_canceled">Canceled</string>
+    <!-- Me-->
+    <string name="me_contact">Contact Me</string>
+    <string name="me_mobile">Mobile:18101024167</string>
+    <string name="me_wechat">Wechat:tustar1030</string>
+    <string name="me_email">E-Mail:tustar1030@126.com</string>
+    <string name="me_blog">Blog|Github</string>
+    <string name="me_github">Github:https://github.com/tustar</string>
+    <string name="me_about">About Coder World</string>
+    <string name="me_version">Version %1$s</string>
 </resources>

@@ -35,4 +35,14 @@
     <string name="todo_undo">待办事项</string>
     <string name="todo_doing">进行中</string>
     <string name="todo_done">已完成</string>
+    <string name="todo_canceled">已取消</string>
+    <!-- Me-->
+    <string name="me_contact">联系方式</string>
+    <string name="me_mobile">手机:18101024167</string>
+    <string name="me_wechat">微信号:tustar1030</string>
+    <string name="me_email">E-Mail:tustar1030@126.com</string>
+    <string name="me_blog">博客|Github</string>
+    <string name="me_github">Github:https://github.com/tustar</string>
+    <string name="me_about">关于码农世界</string>
+    <string name="me_version">版本信息 %1$s</string>
 </resources>

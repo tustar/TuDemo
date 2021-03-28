@@ -58,6 +58,24 @@ class ArticleViewModel @Inject constructor() : ViewModel() {
             createdAt = System.currentTimeMillis()
         )
         articles.add(article3)
-        return articles.groupBy { it.author }
+        val article4 = Article(
+            id = 4,
+            title = "Android消息机制2-Handler(Native层)",
+            description = "本文基于Android 6.0的源代码，来分析native层的handler消息处理机制",
+            url = "http://gityuan.com/2015/12/27/handler-message-native/",
+            author = "郭霖",
+            createdAt = System.currentTimeMillis()
+        )
+        articles.add(article4)
+        val article5 = Article(
+            id = 5,
+            title = "Android消息机制2-Handler(Native层)",
+            description = "本文基于Android 6.0的源代码，来分析native层的handler消息处理机制",
+            url = "http://gityuan.com/2015/12/27/handler-message-native/",
+            author = "任玉刚",
+            createdAt = System.currentTimeMillis()
+        )
+        articles.add(article5)
+        return articles.groupBy { it.author }.toSortedMap()
     }
 }
