@@ -21,27 +21,24 @@ import androidx.constraintlayout.compose.ConstraintLayout
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.tustar.demo.R
 import com.tustar.demo.ex.toFormatDate
+import com.tustar.demo.ex.topAppBar
 import com.tustar.demo.ui.theme.sectionBgColor
 import com.tustar.demo.ui.theme.sectionTextColor
 import com.tustar.demo.ui.theme.typography
 
 @Composable
-fun TodoContent(
-    modifier: Modifier = Modifier
-) {
-    Column(modifier = modifier) {
-        TodoTopAppBar(modifier = modifier)
-        TodoTabsContent(modifier = modifier)
+fun TodoContent(modifier: Modifier) {
+    Column(modifier) {
+        TodoTopAppBar()
+        TodoTabsContent()
     }
 }
 
 @Composable
-private fun TodoTopAppBar(
-    modifier: Modifier
-) {
+private fun TodoTopAppBar() {
     TopAppBar(
         title = {
-            Text(text = stringResource(id = R.string.title_home))
+            Text(text = stringResource(id = R.string.title_todo))
         },
         actions = {
             IconButton(onClick = { }) {
@@ -51,24 +48,21 @@ private fun TodoTopAppBar(
                 )
             }
         },
-        modifier = modifier
-            .height(52.dp),
+        modifier = Modifier.topAppBar(),
         backgroundColor = MaterialTheme.colors.primary,
     )
 }
 
 @Composable
-fun TodoTabsContent(
-    modifier: Modifier
-) {
+fun TodoTabsContent() {
 
     val viewModel: TodoViewModel = viewModel()
     val grouped = viewModel.getTodos()
     val keys = grouped.keys.toList()
     val state = remember { mutableStateOf(STATE_UNDO) }
 
-    Column(modifier = modifier) {
-        ScrollableTabRow(selectedTabIndex = state.value) {
+    Column {
+        TabRow(selectedTabIndex = state.value) {
             grouped.keys.forEach { tabIndex ->
                 Tab(
                     text = {
@@ -86,22 +80,18 @@ fun TodoTabsContent(
             }
         }
         val subGrouped = grouped[keys[state.value]]!!.groupBy { it.category }
-        TodoListContent(modifier = modifier, subGrouped = subGrouped)
+        TodoListContent(subGrouped)
     }
 }
 
 @OptIn(ExperimentalFoundationApi::class)
 @Composable
-fun TodoListContent(
-    modifier: Modifier,
-    subGrouped: Map<String, List<Todo>>
-) {
+fun TodoListContent(subGrouped: Map<String, List<Todo>>) {
 
     val listState = rememberLazyListState()
 
     LazyColumn(
         state = listState,
-        modifier = modifier,
         verticalArrangement = Arrangement.spacedBy(4.dp),
     ) {
         subGrouped.forEach { (group, todos) ->

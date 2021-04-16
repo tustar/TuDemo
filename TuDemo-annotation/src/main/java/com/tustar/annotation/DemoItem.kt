@@ -10,6 +10,6 @@ import kotlin.annotation.AnnotationTarget.*
 annotation class DemoItem(
     @StringRes val group: Int,
     @StringRes val item: Int,
-    val createdAt : String,
-    val updatedAt : String,
+    val createdAt : String = "2021-03-28 21:00:00",
+    val updatedAt : String = "2021-03-30 21:00:00",
 )

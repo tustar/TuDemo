@@ -18,38 +18,30 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.constraintlayout.compose.ConstraintLayout
 import androidx.lifecycle.viewmodel.compose.viewModel
+import com.google.accompanist.insets.statusBarsHeight
+import com.google.accompanist.insets.statusBarsPadding
 import com.tustar.demo.R
 import com.tustar.demo.data.model.DemoItem
 import com.tustar.demo.data.remote.Now
+import com.tustar.demo.ex.topAppBar
+import com.tustar.demo.ui.theme.background
 import com.tustar.demo.ui.theme.sectionBgColor
 import com.tustar.demo.ui.theme.sectionTextColor
 import com.tustar.demo.ui.theme.typography
 
 @Composable
-fun HomeContent(
-    modifier: Modifier = Modifier,
-    now: Now?
-) {
+fun HomeContent(modifier: Modifier, now: Now? = null) {
     val viewModel: HomeViewModel = viewModel()
     val grouped = viewModel.createDemos()
 
-    Column(modifier = modifier) {
-        HomeTopAppBar(
-            modifier = modifier,
-            now = now
-        )
-        HomeListContent(
-            modifier = modifier,
-            grouped = grouped
-        )
+    Column(modifier) {
+        HomeTopAppBar(now)
+        HomeListContent(grouped)
     }
 }
 
 @Composable
-private fun HomeTopAppBar(
-    modifier: Modifier,
-    now: Now?
-) {
+private fun HomeTopAppBar(now: Now?) {
     TopAppBar(
         title = {
             Text(text = stringResource(id = R.string.title_home))
@@ -57,8 +49,7 @@ private fun HomeTopAppBar(
         actions = {
             WeatherContent(now)
         },
-        modifier = modifier
-            .height(52.dp),
+        modifier = Modifier.topAppBar(),
         backgroundColor = MaterialTheme.colors.primary,
     )
 }
@@ -75,15 +66,11 @@ fun WeatherContent(now: Now?) {
 
 @OptIn(ExperimentalFoundationApi::class)
 @Composable
-fun HomeListContent(
-    modifier: Modifier,
-    grouped: Map<Int, List<DemoItem>>
-) {
+fun HomeListContent(grouped: Map<Int, List<DemoItem>>) {
 
     val listState = rememberLazyListState()
     LazyColumn(
         state = listState,
-        modifier = modifier,
         verticalArrangement = Arrangement.spacedBy(4.dp),
     ) {
         grouped.forEach { (group, demos) ->
