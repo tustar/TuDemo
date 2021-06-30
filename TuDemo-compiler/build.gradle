@@ -1,3 +1,5 @@
+import com.tustar.demo.buildsrc.Libs
+
 plugins {
     id 'java-library'
     id 'kotlin'
@@ -12,17 +14,13 @@ tasks.withType(org.jetbrains.kotlin.gradle.tasks.KotlinCompile).all {
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
-    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
+    implementation Libs.Kotlin.stdlib
 
-//    implementation "com.squareup:javapoet:1.12.1"
-    implementation "com.squareup:kotlinpoet:1.6.0"
-    implementation 'com.alibaba:fastjson:1.2.71'
+    implementation Libs.Squareup.kotlinpoet
+    implementation Libs.Alibaba.fastJson
 
-    implementation 'com.google.auto.service:auto-service:1.0-rc7'
-    kapt 'com.google.auto.service:auto-service:1.0-rc7'
+    implementation Libs.Google.autoService
+    kapt Libs.Google.autoService
 
     implementation project(':TuDemo-annotation')
 }
-
-sourceCompatibility = "7"
-targetCompatibility = "7"

@@ -1,3 +1,5 @@
+import com.tustar.demo.buildsrc.Libs
+
 plugins {
     id 'java-library'
     id 'kotlin'
@@ -5,10 +7,7 @@ plugins {
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
-    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
+    implementation Libs.Kotlin.stdlib
 
-    implementation 'androidx.annotation:annotation:1.1.0'
+    implementation Libs.AndroidX.annotation
 }
-
-sourceCompatibility = "7"
-targetCompatibility = "7"

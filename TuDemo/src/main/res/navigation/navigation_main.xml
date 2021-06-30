@@ -6,7 +6,7 @@
 
     <include app:graph="@navigation/navigation_home" />
 
-    <include app:graph="@navigation/navigation_article" />
+<!--    <include app:graph="@navigation/navigation_article" />-->
 
     <include app:graph="@navigation/navigation_todo" />
 
