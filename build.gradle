@@ -34,7 +34,7 @@ task clean(type: Delete) {
 }
 
 //plugins {
-//    id 'com.diffplug.spotless' version '5.7.0'
+//    id 'com.diffplug.spotless' plugin '5.7.0'
 //}
 //
 //subprojects {

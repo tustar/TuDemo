@@ -1,0 +1,32 @@
+buildscript {
+    repositories {
+        mavenCentral()
+    }
+    dependencies {
+        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:1.5.10"
+    }
+}
+
+plugins {
+    id 'kotlin'
+    id 'java-gradle-plugin'
+}
+
+repositories {
+    mavenCentral()
+}
+
+gradlePlugin {
+    plugins {
+        version {
+            id = 'com.tustar.plugin'
+            implementationClass = 'com.tustar.plugin.version.Dependencies'
+        }
+    }
+}
+
+
+java {
+    sourceCompatibility = JavaVersion.VERSION_1_8
+    targetCompatibility = JavaVersion.VERSION_1_8
+}
