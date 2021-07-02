@@ -3,14 +3,11 @@ package com.tustar.demo.widget
 import android.animation.ValueAnimator
 import android.annotation.SuppressLint
 import android.content.Context
-import android.graphics.Canvas
-import android.graphics.Paint
-import android.graphics.RectF
+import android.graphics.*
 import android.util.AttributeSet
 import android.view.MotionEvent
 import android.view.View
-import com.tustar.demo.ui.custom.ProvinceItem
-import com.tustar.demo.util.Logger
+import androidx.core.graphics.toRegion
 import java.lang.Float.max
 import java.lang.Float.min
 
@@ -110,5 +107,75 @@ class SvgMapView @JvmOverloads constructor(
             it.selected = it.isTouched(x, y)
         }
         postInvalidate()
+    }
+}
+
+data class ProvinceItem(
+    val path: Path,
+    val drawColor: Int,
+    var selected: Boolean = false
+) {
+    var bounds: RectF = RectF()
+    var pathMeasure = PathMeasure(path, true)
+    var dst: Path = Path()
+
+    init {
+        path.computeBounds(bounds, true)
+    }
+
+    @SuppressLint("NewApi")
+    fun draw(canvas: Canvas, paint: Paint) {
+        if (selected) {
+            // 画边界
+            paint.apply {
+                clearShadowLayer()
+                strokeWidth = 1.0F
+                color = drawColor
+                style = Paint.Style.FILL
+            }
+            canvas.drawPath(path, paint)
+            // 填充
+            paint.apply {
+                clearShadowLayer()
+                color = Color.GREEN
+                style = Paint.Style.STROKE
+            }
+            canvas.drawPath(path, paint)
+        } else {// 画边界
+            paint.apply {
+                strokeWidth = 2.0F
+                color = Color.BLACK
+                style = Paint.Style.FILL
+                setShadowLayer(8F, 0F, 0F, 0xFFF)
+            }
+            canvas.drawPath(path, paint)
+            // 填充
+            paint.apply {
+                clearShadowLayer()
+                color = drawColor
+            }
+            canvas.drawPath(path, paint)
+        }
+    }
+
+    @SuppressLint("NewApi")
+    fun draw(canvas: Canvas, paint: Paint, progress: Float) {
+        paint.apply {
+            isAntiAlias = true
+            strokeWidth = 1.0F
+            color = Color.BLACK
+            style = Paint.Style.STROKE
+        }
+        dst.reset()
+        dst.lineTo(0.0F, 0.0F)
+        val stopD = pathMeasure.length * progress
+        pathMeasure.getSegment(0.0F, stopD, dst, true)
+        canvas.drawPath(dst, paint)
+    }
+
+    fun isTouched(x: Float, y: Float): Boolean {
+        val region = Region()
+        region.setPath(path, bounds.toRegion())
+        return region.contains(x.toInt(), y.toInt())
     }
 }

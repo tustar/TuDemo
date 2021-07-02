@@ -9,8 +9,8 @@ import androidx.navigation.NavHostController
 import androidx.navigation.NavType
 import androidx.navigation.compose.*
 import com.tustar.demo.ui.MainDestinations.DEMO_DETAIL_ID_KEY
-import com.tustar.demo.ui.home.DemoDetails
-import com.tustar.demo.ui.home.Demos
+import com.tustar.demo.ui.home.DemoDetailDispatcher
+import com.tustar.demo.ui.home.DemosScreen
 import com.tustar.demo.ui.me.MeScreen
 
 /**
@@ -36,7 +36,7 @@ fun NavGraph(
         startDestination = startDestination
     ) {
         composable(MainDestinations.DEMO_ROUTE) {
-            Demos(
+            DemosScreen(
                 onDemoClick = actions.openDemo,
                 modifier = modifier,
             )
@@ -49,7 +49,7 @@ fun NavGraph(
         ) { backStackEntry: NavBackStackEntry ->
             val arguments = requireNotNull(backStackEntry.arguments)
             val currentDemoId = arguments.getInt(DEMO_DETAIL_ID_KEY)
-            DemoDetails(
+            DemoDetailDispatcher(
                 demoId = currentDemoId,
                 upPress = { actions.upPress() }
             )

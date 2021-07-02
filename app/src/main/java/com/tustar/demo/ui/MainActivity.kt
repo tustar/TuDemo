@@ -17,21 +17,26 @@ package com.tustar.demo.ui
 
 import android.Manifest
 import android.annotation.SuppressLint
-import android.content.pm.PackageManager
+import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
+import android.provider.Settings
 import androidx.activity.compose.setContent
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.activity.viewModels
+import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.app.ActivityCompat
 import androidx.core.view.WindowCompat
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.LifecycleObserver
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.OnLifecycleEvent
 import com.amap.api.location.AMapLocation
-import com.amap.api.location.AMapLocationListener
-import com.tustar.demo.data.remote.Now
-import com.tustar.demo.ui.theme.DemoTheme
+import com.tustar.demo.R
+import com.tustar.demo.ex.isLocationEnable
+import com.tustar.demo.ex.isPermissionsAllowed
+import com.tustar.demo.ex.isPermissionsGranted
+import com.tustar.demo.ex.toFormatString
 import com.tustar.demo.util.LocationHelper
 import com.tustar.demo.util.Logger
 import dagger.hilt.android.AndroidEntryPoint
@@ -44,15 +49,29 @@ const val KEY_LOCATION = "location"
 class MainActivity : AppCompatActivity() {
 
     // Location
-    private val locationLifecycleObserver by lazy {
-        LocationLifecycleObserver()
+    private val locationListener by lazy {
+        LocationListener()
     }
-    private val liveLocation = MutableLiveData<AMapLocation>()
-    val locationHelper by lazy {
+    private val locationHelper by lazy {
         LocationHelper(applicationContext)
     }
+    private val liveLocation = MutableLiveData<AMapLocation>()
+
+    //
+    private val permissions = arrayOf(
+        Manifest.permission.ACCESS_FINE_LOCATION,
+        Manifest.permission.ACCESS_COARSE_LOCATION,
+//        Manifest.permission.ACCESS_BACKGROUND_LOCATION
+    )
+    private val permission =
+        registerForActivityResult(ActivityResultContracts.RequestMultiplePermissions()) { map ->
+            if (map.values.all { it }) {
+                getBestLocation()
+            }
+        }
+
+    //
     private val viewModel: MainViewModel by viewModels()
-    private var now: Now? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -64,123 +83,99 @@ class MainActivity : AppCompatActivity() {
             DemoApp { finish() }
         }
 
-        lifecycle.addObserver(locationLifecycleObserver)
+        lifecycle.addObserver(locationListener)
         viewModel.now.observe(this, {
-            now = it
+            Logger.d("$it")
         })
-
-        requestPermissions()
     }
 
     override fun onDestroy() {
         super.onDestroy()
-        lifecycle.removeObserver(locationLifecycleObserver)
-    }
-
-    private fun requestPermissions() {
-        val shouldProvideRationale =
-            ActivityCompat.shouldShowRequestPermissionRationale(
-                this,
-                Manifest.permission.ACCESS_FINE_LOCATION
-            ) || ActivityCompat.shouldShowRequestPermissionRationale(
-                this,
-                Manifest.permission.ACCESS_COARSE_LOCATION
-            )
-
-        // Provide an additional rationale to the user. This would happen if the user denied the
-        // request previously, but didn't check the "Don't ask again" checkbox.
-        if (shouldProvideRationale) {
-            Logger.i("Displaying permission rationale to provide additional context.")
-            ActivityCompat.requestPermissions(
-                this@MainActivity,
-                arrayOf(
-                    Manifest.permission.ACCESS_FINE_LOCATION,
-                    Manifest.permission.ACCESS_COARSE_LOCATION
-                ),
-                REQUEST_PERMISSIONS_REQUEST_CODE
-            )
-        } else {
-            Logger.i("Requesting permission")
-            // Request permission. It's possible this can be auto answered if device policy
-            // sets the permission in a given state or the user denied the permission
-            // previously and checked "Never ask again".
-            ActivityCompat.requestPermissions(
-                this@MainActivity,
-                arrayOf(
-                    Manifest.permission.ACCESS_FINE_LOCATION,
-                    Manifest.permission.ACCESS_COARSE_LOCATION
-                ),
-                REQUEST_PERMISSIONS_REQUEST_CODE
-            )
-        }
-    }
-
-    override fun onRequestPermissionsResult(
-        requestCode: Int,
-        permissions: Array<out String>,
-        grantResults: IntArray
-    ) {
-        super.onRequestPermissionsResult(requestCode, permissions, grantResults)
-        if (requestCode == REQUEST_PERMISSIONS_REQUEST_CODE) {
-            if (grantResults.all { it == PackageManager.PERMISSION_GRANTED }) {
-                getBestLocation()
-            }
-        }
+        lifecycle.removeObserver(locationListener)
     }
 
     private fun getBestLocation() {
         Logger.i()
-        if (ActivityCompat.checkSelfPermission(
-                this,
-                Manifest.permission.ACCESS_FINE_LOCATION
-            ) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(
-                this,
-                Manifest.permission.ACCESS_COARSE_LOCATION
-            ) != PackageManager.PERMISSION_GRANTED
-        ) {
-            requestPermissions()
+        if (!isPermissionsGranted(permissions)) {
+            permission.launch(permissions)
             return
         }
 
-        locationHelper.startLocation(AMapLocationListener { location ->
-            // 可在其中解析location获取相应内容。
+        if (!isLocationEnable()) {
+            showLocationEnableDialog()
+            return
+        }
+
+        // FIXME:
+//        if (!isPermissionsAllowed(permissions)) {
+//            showLocationPermissionDialog()
+//            return
+//        }
+
+
+        locationHelper.startLocation { location ->
+            Logger.d("location=${location.toFormatString()}")
             if (location.errorCode == 0) {
-                Logger.d("location=$location")
                 liveLocation.run { postValue(location) }
             }
-            // 定位失败时，可通过ErrCode（错误码）信息来确定失败的原因，errInfo是错误信息，详见错误码表。
-            else {
-                Logger.e(
-                    "location Error, ErrCode:${location.errorCode}, " +
-                            "errInfo:${location.errorInfo}"
-                )
-            }
-        })
+        }
     }
 
-    inner class LocationLifecycleObserver : LifecycleObserver {
+    private fun showLocationEnableDialog() {
+        AlertDialog.Builder(this)
+            .setTitle(R.string.dlg_title_location)
+            .setPositiveButton(R.string.dlg_to_setting) { _, _ ->
+                val intent = Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS).apply {
+                    flags = Intent.FLAG_ACTIVITY_NEW_TASK
+                }
+                startActivity(intent)
+            }
+            .setNegativeButton(R.string.dlg_not_now) { dialog, _ ->
+                dialog.dismiss()
+            }
+            .show()
+    }
 
-        @OnLifecycleEvent(Lifecycle.Event.ON_RESUME)
-        fun onStart() {
+    private fun showLocationPermissionDialog() {
+        AlertDialog.Builder(this)
+            .setTitle(R.string.dlg_title_location)
+            .setPositiveButton(R.string.dlg_to_setting) { _, _ ->
+                val intent = Intent(Settings.ACTION_APPLICATION_DETAILS_SETTINGS).apply {
+                    flags = Intent.FLAG_ACTIVITY_NEW_TASK
+                    data = Uri.parse("package:$packageName")
+                }
+                startActivity(intent)
+            }
+            .setNegativeButton(R.string.dlg_not_now) { dialog, _ ->
+                dialog.dismiss()
+            }
+            .show()
+    }
+
+    inner class LocationListener : LifecycleObserver {
+
+        private var enabled = false
+
+        @OnLifecycleEvent(Lifecycle.Event.ON_START)
+        fun start() {
             Logger.i()
+            // connect
             getBestLocation()
         }
 
-        @OnLifecycleEvent(Lifecycle.Event.ON_PAUSE)
-        fun onStop() {
+
+        @OnLifecycleEvent(Lifecycle.Event.ON_STOP)
+        fun stop() {
+            // disconnect if connected
             Logger.i()
             locationHelper.stopLocation()
         }
 
         @OnLifecycleEvent(Lifecycle.Event.ON_DESTROY)
-        fun onDestroy() {
+        fun destroy() {
             Logger.i()
             locationHelper.onDestroy()
         }
-    }
-
-    companion object {
-        private const val REQUEST_PERMISSIONS_REQUEST_CODE = 0x1
     }
 }
 

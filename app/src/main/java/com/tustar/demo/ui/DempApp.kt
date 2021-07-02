@@ -65,8 +65,6 @@ fun DemoBottomBar(navController: NavController, tabs: Array<MainTabs>) {
                         }
                     },
                     alwaysShowLabel = true,
-                    selectedContentColor = MaterialTheme.colors.secondary,
-                    unselectedContentColor = LocalContentColor.current,
                     modifier = Modifier.navigationBarsPadding()
                 )
             }
