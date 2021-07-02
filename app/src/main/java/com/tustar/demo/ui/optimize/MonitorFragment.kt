@@ -1,5 +1,6 @@
 package com.tustar.demo.ui.optimize
 
+import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -7,7 +8,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import com.tustar.annotation.DemoItem
 import com.tustar.demo.R
-import com.tustar.demo.databinding.FragmentMonitorBinding
+import com.tustar.demo.databinding.MonitorFragmentBinding
 import com.tustar.demo.ex.bind
 import com.tustar.demo.util.Logger
 import dagger.hilt.android.AndroidEntryPoint
@@ -16,18 +17,29 @@ import dagger.hilt.android.AndroidEntryPoint
     group = R.string.group_optimize,
     item = R.string.optimize_monitor,
     createdAt = "2021-03-13 16:00:00",
-    updatedAt = "2021-03-21 07:00:00",
+    updatedAt = "2021-07-02 17:40:00",
 )
 @AndroidEntryPoint
 class MonitorFragment : Fragment() {
 
-    private val binding: FragmentMonitorBinding by bind()
+    companion object {
+        fun newInstance() = MonitorFragment()
+    }
+
+    private val binding: MonitorFragmentBinding by bind()
+
+    override fun onAttach(context: Context) {
+        super.onAttach(context)
+        activity?.application?.let {
+            Monitor.init(it)
+        }
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        return inflater.inflate(R.layout.fragment_monitor, container, false)
+        return inflater.inflate(R.layout.monitor_fragment, container, false)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {

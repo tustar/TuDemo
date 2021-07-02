@@ -13,13 +13,8 @@
     <string name="group_jetpack">Jetpack</string>
     <string name="group_optimize">性能优化</string>
     <!-- Custom -->
-    <string name="custom_recycler_view">自定义RecyclerView</string>
-    <string name="custom_view">自定义View</string>
-    <string name="custom_flow_layout">FlowLayout</string>
-    <string name="custom_view_pager">自定义ViewPager</string>
     <string name="custom_svg_china">Svg中国地图</string>
     <string name="custom_path_measure">自定义PathMeasureView</string>
-    <string name="custom_qq_list_view">仿QQ ListView</string>
     <string name="custom_wave_view">WaveView</string>
     <!-- Optimize  -->
     <string name="optimize_lazy_fragment">懒加载Fragment</string>

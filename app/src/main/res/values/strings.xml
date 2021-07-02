@@ -13,13 +13,8 @@
     <string name="group_jetpack">Jetpack</string>
     <string name="group_optimize">Optimize</string>
     <!-- Custom widget -->
-    <string name="custom_recycler_view">Custom RecyclerView</string>
-    <string name="custom_view">Custom View</string>
-    <string name="custom_flow_layout">FlowLayout</string>
-    <string name="custom_view_pager">Custom ViewPager</string>
     <string name="custom_svg_china">Svg China Map</string>
     <string name="custom_path_measure">Custom PathMeasureView</string>
-    <string name="custom_qq_list_view">Custom QQ ListView</string>
     <string name="custom_wave_view">WaveView</string>
     <!-- Optimize  -->
     <string name="optimize_lazy_fragment">Lazy Fragment</string>
@@ -27,17 +22,10 @@
     <!-- System widget-->
     <string name="sys_motion_base">MotionLayout　Base</string>
     <string name="sys_motion_image_filter_view">MotionLayout ImageFilterView</string>
-    <!-- Article-->
-    <string name="article_detail">Article Detail</string>
     <!-- Weather-->
     <string name="weather_channel_name">Daily Weather</string>
     <string name="weather_channel_description">Update daily weather</string>
     <string name="weather_temp">%s %1$d°</string>
-    <!-- Todos-->
-    <string name="todo_undo">Undo</string>
-    <string name="todo_doing">Doing</string>
-    <string name="todo_done">Done</string>
-    <string name="todo_canceled">Canceled</string>
     <!-- Me-->
     <string name="me_contact">Contact Me</string>
     <string name="me_mobile">Mobile:18101024167</string>

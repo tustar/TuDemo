@@ -1,5 +1,6 @@
 package com.tustar.demo.ui.home
 
+import android.content.Intent
 import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
@@ -10,7 +11,10 @@ import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Text
 import androidx.compose.material.TopAppBar
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.State
+import androidx.compose.runtime.collectAsState
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
@@ -18,28 +22,31 @@ import androidx.lifecycle.viewmodel.compose.viewModel
 import com.tustar.demo.R
 import com.tustar.demo.data.model.DemoItem
 import com.tustar.demo.ex.topAppBar
+import com.tustar.demo.ui.custom.PathMeasureScreen
 import com.tustar.demo.ui.custom.SvgChinaScreen
 import com.tustar.demo.ui.custom.WaveViewScreen
+import com.tustar.demo.ui.motion.MotionBaseScreen
+import com.tustar.demo.ui.motion.MotionImageFilterScreen
 import com.tustar.demo.ui.theme.sectionBgColor
 import com.tustar.demo.ui.theme.sectionTextColor
 import com.tustar.demo.ui.theme.typography
 
 @Composable
-fun Demos(
+fun DemosScreen(
     onDemoClick: (Int) -> Unit,
-    modifier: Modifier
+    modifier: Modifier,
+    viewModel: DemoViewModel = viewModel()
 ) {
-    val viewModel: DemoViewModel = viewModel()
-    val grouped = viewModel.createDemos()
+    val grouped = viewModel.createDemos().collectAsState(initial = mapOf())
 
     Column(modifier) {
-        HomeTopAppBar()
-        HomeListContent(grouped, onDemoClick)
+        DemosTopBar()
+        DemosContent(grouped, onDemoClick)
     }
 }
 
 @Composable
-fun HomeTopAppBar() {
+fun DemosTopBar() {
     TopAppBar(
         title = {
             Text(text = stringResource(R.string.title_home))
@@ -51,8 +58,8 @@ fun HomeTopAppBar() {
 
 @OptIn(ExperimentalFoundationApi::class)
 @Composable
-fun HomeListContent(
-    grouped: Map<Int, List<DemoItem>>,
+fun DemosContent(
+    grouped: State<Map<Int, List<DemoItem>>>,
     onDemoClick: (Int) -> Unit,
 ) {
 
@@ -61,23 +68,23 @@ fun HomeListContent(
         state = listState,
         verticalArrangement = Arrangement.spacedBy(4.dp),
     ) {
-        grouped.forEach { (group, demos) ->
+        grouped.value.forEach { (group, demos) ->
             stickyHeader {
-                DemoHeader(group)
+                DemosHeader(group)
             }
 
             items(count = demos.size,
                 key = {
                     demos[it].item
                 }) {
-                DemoItemRow(demos[it], onDemoClick)
+                DemoItemView(demos[it], onDemoClick)
             }
         }
     }
 }
 
 @Composable
-fun DemoHeader(group: Int) {
+fun DemosHeader(group: Int) {
     Text(
         text = stringResource(id = group),
         modifier = Modifier
@@ -90,29 +97,20 @@ fun DemoHeader(group: Int) {
 }
 
 @Composable
-fun DemoItemRow(
+fun DemoItemView(
     demoItem: DemoItem,
     onDemoClick: (Int) -> Unit,
 ) {
     Text(
         text = stringResource(id = demoItem.item),
         modifier = Modifier
-            .padding(start = 16.dp, top = 0.dp, bottom = 4.dp, end = 16.dp)
+            .padding(start = 16.dp, top = 8.dp, bottom = 8.dp, end = 16.dp)
             .fillMaxWidth()
             .clickable {
                 onDemoClick(demoItem.item)
-            }
-            .height(50.dp),
+            },
         style = typography.h6,
         overflow = TextOverflow.Ellipsis,
         maxLines = 2,
     )
-}
-
-@Composable
-fun DemoDetails(demoId: Int, upPress: () -> Unit) {
-    when (demoId) {
-        R.string.custom_wave_view -> WaveViewScreen(demoId, upPress)
-        R.string.custom_svg_china -> SvgChinaScreen(demoId, upPress)
-    }
 }
