@@ -4,13 +4,13 @@ import com.google.auto.service.AutoService
 import com.squareup.kotlinpoet.ClassName
 import com.squareup.kotlinpoet.FileSpec
 import com.squareup.kotlinpoet.FunSpec
-import com.squareup.kotlinpoet.ParameterizedTypeName.Companion.parameterizedBy
 import com.tustar.annotation.DemoItem
 import javax.annotation.processing.*
 import javax.lang.model.SourceVersion
 import javax.lang.model.element.TypeElement
 import javax.lang.model.util.Elements
 import javax.lang.model.util.Types
+import com.squareup.kotlinpoet.ParameterizedTypeName.Companion.parameterizedBy
 import javax.tools.Diagnostic
 
 @AutoService(Processor::class)
@@ -81,15 +81,17 @@ class DemoProcessor : AbstractProcessor() {
         funName: String, block: (T) -> String
     ): FunSpec {
         val tClazz = ClassName("com.tustar.demo.data.model", className)
-        val arrayList = ClassName("kotlin.collections", "ArrayList")
-        val arrayListOfT = arrayList.parameterizedBy(tClazz)
+        val ktList = ClassName("kotlin.collections", "List")
+        val ktListOfT = ktList.parameterizedBy(tClazz)
+        val ktArrayList = ClassName("kotlin.collections", "ArrayList")
+        val ktArrayListOfT = ktArrayList.parameterizedBy(tClazz)
         val builder = FunSpec.builder(funName)
-            .returns(arrayListOfT)
-            .addStatement("val demos = %T().also {", arrayListOfT)
+            .returns(ktListOfT)
+            .addStatement("val demos = %T().also {", ktArrayListOfT)
         demos.forEach {
             builder.addStatement(block.invoke(it), tClazz)
         }
-        builder.addStatement("}")
+        builder.addStatement("}.sortedByDescending { it.updatedAt }")
         builder.addStatement("return demos")
         return builder.build()
     }

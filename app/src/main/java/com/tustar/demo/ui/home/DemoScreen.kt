@@ -18,7 +18,8 @@ import androidx.lifecycle.viewmodel.compose.viewModel
 import com.tustar.demo.R
 import com.tustar.demo.data.model.DemoItem
 import com.tustar.demo.ex.topAppBar
-import com.tustar.demo.ui.custom.WaveView
+import com.tustar.demo.ui.custom.SvgChinaScreen
+import com.tustar.demo.ui.custom.WaveViewScreen
 import com.tustar.demo.ui.theme.sectionBgColor
 import com.tustar.demo.ui.theme.sectionTextColor
 import com.tustar.demo.ui.theme.typography
@@ -111,6 +112,7 @@ fun DemoItemRow(
 @Composable
 fun DemoDetails(demoId: Int, upPress: () -> Unit) {
     when (demoId) {
-        R.string.custom_wave_view -> WaveView(demoId, upPress)
+        R.string.custom_wave_view -> WaveViewScreen(demoId, upPress)
+        R.string.custom_svg_china -> SvgChinaScreen(demoId, upPress)
     }
 }
