@@ -31,7 +31,7 @@ class MonitorFragment : Fragment() {
     override fun onAttach(context: Context) {
         super.onAttach(context)
         activity?.application?.let {
-            Monitor.init(it)
+//            Monitor.init(it)
         }
     }
 
@@ -64,7 +64,7 @@ class MonitorFragment : Fragment() {
 
     override fun onDestroy() {
         super.onDestroy()
-        Monitor.release()
+//        Monitor.release()
     }
 
     private fun create() {
