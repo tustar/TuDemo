@@ -2,6 +2,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     package="com.tustar.demo">
+
     <!--用于进行网络定位-->
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
     <!--用于访问GPS定位-->
@@ -55,15 +56,11 @@
             </intent-filter>
         </activity>
 
-        <activity
-            android:name=".ui.home.DemoDetailActivity"
-            android:exported="true" />
-
         <meta-data
             android:name="com.amap.api.v2.apikey"
-            android:value="f097123e081466d050183966fc3aff39" />
+            android:value="f097123e081466d050183966fc3aff39"/>
 
-        <service android:name="com.amap.api.location.APSService" />
+        <service android:name="com.amap.api.location.APSService"/>
     </application>
 
 </manifest>
