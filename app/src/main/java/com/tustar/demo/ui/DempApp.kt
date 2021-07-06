@@ -22,7 +22,11 @@ import com.tustar.demo.ui.theme.DemoTheme
 import java.util.*
 
 @Composable
-fun DemoApp(finishActivity: () -> Unit) {
+fun DemoApp(
+    viewModel: MainViewModel,
+    updateLocation: () -> Unit,
+    finishActivity: () -> Unit
+) {
     ProvideWindowInsets {
         DemoTheme {
             val tabs = remember { MainTabs.values() }
@@ -30,6 +34,8 @@ fun DemoApp(finishActivity: () -> Unit) {
             Scaffold(bottomBar = { DemoBottomBar(navController = navController, tabs) }
             ) { innerPaddingModifier ->
                 NavGraph(
+                    viewModel = viewModel,
+                    updateLocation = updateLocation,
                     finishActivity = finishActivity,
                     navController = navController,
                     modifier = Modifier.padding(innerPaddingModifier)

@@ -28,7 +28,7 @@
     <!-- Weather-->
     <string name="weather_channel_name">Daily Weather</string>
     <string name="weather_channel_description">Update daily weather</string>
-    <string name="weather_temp">%s %1$d°</string>
+    <string name="weather_daily_temp">%1$s %2$d°</string>
     <!-- Me-->
     <string name="me_contact">Contact Me</string>
     <string name="me_mobile">Mobile:18101024167</string>

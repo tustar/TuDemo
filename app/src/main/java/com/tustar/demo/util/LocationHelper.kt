@@ -31,11 +31,14 @@ class LocationHelper constructor(applicationContext: Context) {
         }
     }
 
-    fun startLocation(listener: AMapLocationListener) {
+    fun setLocationListener(listener: AMapLocationListener) {
         // 设置定位回调监听
         locationClient.setLocationListener(listener)
         // 给定位客户端对象设置定位参数
         locationClient.setLocationOption(locationOption)
+    }
+
+    fun startLocation() {
         // 启动定位
         locationClient.startLocation()
     }

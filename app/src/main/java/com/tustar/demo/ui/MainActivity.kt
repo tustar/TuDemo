@@ -29,7 +29,6 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.WindowCompat
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.LifecycleObserver
-import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.OnLifecycleEvent
 import com.amap.api.location.AMapLocation
 import com.tustar.demo.R
@@ -53,9 +52,15 @@ class MainActivity : AppCompatActivity() {
         LocationListener()
     }
     private val locationHelper by lazy {
-        LocationHelper(applicationContext)
+        LocationHelper(applicationContext).apply {
+            setLocationListener { location ->
+                Logger.d("location=${location.toFormatString()}")
+                if (location.errorCode == 0) {
+                    viewModel.liveLocation.value = location
+                }
+            }
+        }
     }
-    private val liveLocation = MutableLiveData<AMapLocation>()
 
     //
     private val permissions = arrayOf(
@@ -80,13 +85,10 @@ class MainActivity : AppCompatActivity() {
         WindowCompat.setDecorFitsSystemWindows(window, false)
 
         setContent {
-            DemoApp { finish() }
+            DemoApp(viewModel, { getBestLocation() }) { finish() }
         }
 
         lifecycle.addObserver(locationListener)
-        viewModel.now.observe(this, {
-            Logger.d("$it")
-        })
     }
 
     override fun onDestroy() {
@@ -112,13 +114,7 @@ class MainActivity : AppCompatActivity() {
 //            return
 //        }
 
-
-        locationHelper.startLocation { location ->
-            Logger.d("location=${location.toFormatString()}")
-            if (location.errorCode == 0) {
-                liveLocation.run { postValue(location) }
-            }
-        }
+        locationHelper.startLocation()
     }
 
     private fun showLocationEnableDialog() {
@@ -154,8 +150,6 @@ class MainActivity : AppCompatActivity() {
 
     inner class LocationListener : LifecycleObserver {
 
-        private var enabled = false
-
         @OnLifecycleEvent(Lifecycle.Event.ON_START)
         fun start() {
             Logger.i()
@@ -178,4 +172,3 @@ class MainActivity : AppCompatActivity() {
         }
     }
 }
-

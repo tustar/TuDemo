@@ -6,6 +6,7 @@ import com.amap.api.location.AMapLocationQualityReport
 import java.text.SimpleDateFormat
 import java.util.*
 
+fun AMapLocation.toParams(): String = "${longitude},${latitude}"
 
 fun AMapLocation.toFormatString(): String =
     StringBuffer().apply {

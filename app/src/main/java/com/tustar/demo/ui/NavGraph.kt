@@ -12,6 +12,7 @@ import com.tustar.demo.ui.MainDestinations.DEMO_DETAIL_ID_KEY
 import com.tustar.demo.ui.home.DemoDetailDispatcher
 import com.tustar.demo.ui.home.DemosScreen
 import com.tustar.demo.ui.me.MeScreen
+import androidx.lifecycle.viewmodel.compose.viewModel
 
 /**
  * Destinations used in the ([DemoApp]).
@@ -25,7 +26,9 @@ object MainDestinations {
 
 @Composable
 fun NavGraph(
+    viewModel: MainViewModel = viewModel(),
     modifier: Modifier = Modifier,
+    updateLocation: () -> Unit = {},
     finishActivity: () -> Unit = {},
     navController: NavHostController = rememberNavController(),
     startDestination: String = MainDestinations.DEMO_ROUTE,
@@ -37,6 +40,8 @@ fun NavGraph(
     ) {
         composable(MainDestinations.DEMO_ROUTE) {
             DemosScreen(
+                viewModel = viewModel,
+                updateLocation = updateLocation,
                 onDemoClick = actions.openDemo,
                 modifier = modifier,
             )

@@ -2,9 +2,10 @@ package com.tustar.demo.data
 
 import com.amap.api.location.AMapLocation
 import com.tustar.demo.data.remote.HeService
-import com.tustar.demo.data.remote.Now
-import com.tustar.demo.ui.weather.toParams
+import com.tustar.demo.ex.toParams
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.flow
+import kotlinx.coroutines.flow.flowOn
 import javax.inject.Inject
 
 class WeatherRepositoryImpl @Inject constructor(
@@ -12,8 +13,8 @@ class WeatherRepositoryImpl @Inject constructor(
 ) : WeatherRepository {
 
     override
-    suspend fun now(location: AMapLocation) =
-        flow<Now> {
-            service.now(location.toParams()).now
-        }
+    suspend fun now(location: AMapLocation) = flow {
+        val response = service.now(location.toParams()).now
+        emit(response)
+    }.flowOn(Dispatchers.IO)
 }
