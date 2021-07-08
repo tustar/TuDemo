@@ -11,7 +11,6 @@ import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.rememberLazyListState
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Text
-import androidx.compose.material.TextButton
 import androidx.compose.material.TopAppBar
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.State
@@ -23,13 +22,13 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import com.tustar.demo.R
-import com.tustar.demo.data.model.DemoItem
+import com.tustar.demo.data.DemoItem
 import com.tustar.demo.ex.topAppBar
 import com.tustar.demo.ui.MainViewModel
 import com.tustar.demo.ui.theme.sectionBgColor
 import com.tustar.demo.ui.theme.sectionTextColor
 import com.tustar.demo.ui.theme.typography
-import com.tustar.demo.ui.weather.Weather
+import com.tustar.demo.data.Weather
 import com.tustar.demo.util.Logger
 
 @Composable

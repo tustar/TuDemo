@@ -2,9 +2,9 @@ package com.tustar.demo.ui
 
 import androidx.lifecycle.*
 import com.amap.api.location.AMapLocation
-import com.tustar.demo.data.WeatherRepository
-import com.tustar.demo.data.gen.generateDemos
-import com.tustar.demo.ui.weather.Weather
+import com.tustar.demo.data.source.WeatherRepository
+import com.tustar.demo.codegen.generateDemos
+import com.tustar.demo.data.Weather
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.catch
 import kotlinx.coroutines.flow.collectLatest
@@ -29,7 +29,14 @@ class MainViewModel @Inject constructor(
         }
     }
 
+    val liveResult = MutableLiveData<LocationPermissionResult>()
+
     fun createDemos() = flow {
         emit(generateDemos().groupBy { it.group })
     }
 }
+
+data class LocationPermissionResult(
+    var show: Boolean = false,
+    var rationale: Boolean = false
+)

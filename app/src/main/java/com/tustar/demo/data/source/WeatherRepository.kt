@@ -1,7 +1,7 @@
-package com.tustar.demo.data
+package com.tustar.demo.data.source
 
 import com.amap.api.location.AMapLocation
-import com.tustar.demo.data.remote.Now
+import com.tustar.demo.data.source.remote.Now
 import kotlinx.coroutines.flow.Flow
 
 interface WeatherRepository {

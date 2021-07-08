@@ -17,25 +17,19 @@ package com.tustar.demo.ui
 
 import android.Manifest
 import android.annotation.SuppressLint
-import android.content.Intent
-import android.net.Uri
+import android.app.AppOpsManager
+import android.content.Context
+import android.os.Binder
 import android.os.Bundle
-import android.provider.Settings
 import androidx.activity.compose.setContent
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.activity.viewModels
-import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.WindowCompat
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.LifecycleObserver
 import androidx.lifecycle.OnLifecycleEvent
-import com.amap.api.location.AMapLocation
-import com.tustar.demo.R
-import com.tustar.demo.ex.isLocationEnable
-import com.tustar.demo.ex.isPermissionsAllowed
-import com.tustar.demo.ex.isPermissionsGranted
-import com.tustar.demo.ex.toFormatString
+import com.tustar.demo.ex.*
 import com.tustar.demo.util.LocationHelper
 import com.tustar.demo.util.Logger
 import dagger.hilt.android.AndroidEntryPoint
@@ -68,8 +62,14 @@ class MainActivity : AppCompatActivity() {
         Manifest.permission.ACCESS_COARSE_LOCATION,
 //        Manifest.permission.ACCESS_BACKGROUND_LOCATION
     )
-    private val permission =
+    private val opstrs = arrayOf(
+        AppOpsManager.OPSTR_FINE_LOCATION,
+        AppOpsManager.OPSTR_COARSE_LOCATION
+    )
+    private val requestPermissionLauncher =
         registerForActivityResult(ActivityResultContracts.RequestMultiplePermissions()) { map ->
+
+
             if (map.values.all { it }) {
                 getBestLocation()
             }
@@ -96,56 +96,43 @@ class MainActivity : AppCompatActivity() {
         lifecycle.removeObserver(locationListener)
     }
 
+    private fun requestPermissions() {
+        if (containsIgnore(opstrs)) {
+            Logger.d("containsIgnore")
+            viewModel.liveResult.value = LocationPermissionResult(
+                show = true,
+                rationale = true
+            )
+            return
+        }
+
+        if (shouldShowRequestPermissionsRationale(permissions)) {
+            Logger.d("shouldShowRequestPermissionsRationale")
+            requestPermissionLauncher.launch(permissions)
+            return
+        }
+
+        if (!isPermissionsGranted(permissions)) {
+            Logger.d("!isPermissionsGranted")
+            requestPermissionLauncher.launch(permissions)
+            return
+        }
+    }
+
     private fun getBestLocation() {
         Logger.i()
         if (!isPermissionsGranted(permissions)) {
-            permission.launch(permissions)
+            requestPermissions()
             return
         }
 
-        if (!isLocationEnable()) {
-            showLocationEnableDialog()
+        val show = !isLocationEnable()
+        viewModel.liveResult.value = LocationPermissionResult(show)
+        if (show) {
             return
         }
-
-        // FIXME:
-//        if (!isPermissionsAllowed(permissions)) {
-//            showLocationPermissionDialog()
-//            return
-//        }
 
         locationHelper.startLocation()
-    }
-
-    private fun showLocationEnableDialog() {
-        AlertDialog.Builder(this)
-            .setTitle(R.string.dlg_title_location)
-            .setPositiveButton(R.string.dlg_to_setting) { _, _ ->
-                val intent = Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS).apply {
-                    flags = Intent.FLAG_ACTIVITY_NEW_TASK
-                }
-                startActivity(intent)
-            }
-            .setNegativeButton(R.string.dlg_not_now) { dialog, _ ->
-                dialog.dismiss()
-            }
-            .show()
-    }
-
-    private fun showLocationPermissionDialog() {
-        AlertDialog.Builder(this)
-            .setTitle(R.string.dlg_title_location)
-            .setPositiveButton(R.string.dlg_to_setting) { _, _ ->
-                val intent = Intent(Settings.ACTION_APPLICATION_DETAILS_SETTINGS).apply {
-                    flags = Intent.FLAG_ACTIVITY_NEW_TASK
-                    data = Uri.parse("package:$packageName")
-                }
-                startActivity(intent)
-            }
-            .setNegativeButton(R.string.dlg_not_now) { dialog, _ ->
-                dialog.dismiss()
-            }
-            .show()
     }
 
     inner class LocationListener : LifecycleObserver {

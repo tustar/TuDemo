@@ -1,11 +1,10 @@
-package com.tustar.demo.ui.weather
+package com.tustar.demo.woker
 
 import android.content.Context
 import androidx.hilt.work.HiltWorker
 import androidx.work.CoroutineWorker
 import androidx.work.WorkerParameters
 import com.amap.api.location.AMapLocation
-import com.tustar.demo.data.WeatherRepository
 import com.tustar.demo.ui.KEY_LOCATION
 import dagger.assisted.Assisted
 import dagger.assisted.AssistedInject

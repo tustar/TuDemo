@@ -6,8 +6,8 @@
     <string name="title_weather">Weather</string>
     <string name="title_me">Me</string>
     <!-- Dialog -->
-    <string name="dlg_title_location">需要打开系统定位开关</string>
-    <string name="dlg_title_location_permission">需要授予定位权限</string>
+    <string name="dlg_title_location_enable">获取天气需要打开定位开关</string>
+    <string name="dlg_title_location_permissons">获取天气需要授予定位权限</string>
     <string name="dlg_not_now">暂不开启</string>
     <string name="dlg_to_setting">去设置</string>
     <!-- Group -->

@@ -1,4 +1,4 @@
-package com.tustar.demo.data.remote
+package com.tustar.demo.data.source.remote
 
 data class NowResponse(
     val code: String,

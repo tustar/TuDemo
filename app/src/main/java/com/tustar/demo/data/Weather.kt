@@ -1,4 +1,4 @@
-package com.tustar.demo.ui.weather
+package com.tustar.demo.data
 
 data class Weather(
     val address: String,

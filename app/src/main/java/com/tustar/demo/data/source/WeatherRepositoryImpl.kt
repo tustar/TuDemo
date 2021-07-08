@@ -1,7 +1,7 @@
-package com.tustar.demo.data
+package com.tustar.demo.data.source
 
 import com.amap.api.location.AMapLocation
-import com.tustar.demo.data.remote.HeService
+import com.tustar.demo.data.source.remote.HeService
 import com.tustar.demo.ex.toParams
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.flow

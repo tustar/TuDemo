@@ -1,8 +1,8 @@
 package com.tustar.demo.di
 
-import com.tustar.demo.data.WeatherRepository
-import com.tustar.demo.data.WeatherRepositoryImpl
-import com.tustar.demo.data.remote.HeService
+import com.tustar.demo.data.source.WeatherRepository
+import com.tustar.demo.data.source.WeatherRepositoryImpl
+import com.tustar.demo.data.source.remote.HeService
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -15,7 +15,7 @@ import javax.inject.Singleton
 
 @Module
 @InstallIn(SingletonComponent::class)
-object NetworkModule {
+object AppModule {
 
     @Provides
     @Singleton
@@ -38,14 +38,14 @@ object NetworkModule {
         .addConverterFactory(GsonConverterFactory.create())
         .build()
 
-    @Singleton
     @Provides
+    @Singleton
     fun provideHeService(retrofit: Retrofit): HeService {
         return retrofit.create(HeService::class.java)
     }
 
-    @Singleton
     @Provides
+    @Singleton
     fun provideWeatherRepository(service: HeService): WeatherRepository {
         return WeatherRepositoryImpl(service)
     }

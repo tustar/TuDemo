@@ -1,13 +1,17 @@
 package com.tustar.demo.ex
 
-import android.Manifest
+import android.app.Activity
 import android.app.AppOpsManager
 import android.content.Context
+import android.content.Intent
 import android.content.pm.ApplicationInfo
 import android.content.pm.PackageManager
 import android.graphics.drawable.Drawable
 import android.location.LocationManager
+import android.net.Uri
+import android.os.Binder
 import android.os.Build
+import android.provider.Settings
 import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
@@ -49,8 +53,38 @@ fun Context.isPermissionsAllowed(permissions: Array<String>): Boolean {
     }
 }
 
+fun Context.containsIgnore(opstrs: Array<String>): Boolean {
+    val appOpsManager = getSystemService(Context.APP_OPS_SERVICE) as AppOpsManager
+    return opstrs.any {
+        appOpsManager.checkOpNoThrow(
+            it,
+            Binder.getCallingUid(),
+            packageName
+        ) == AppOpsManager.MODE_IGNORED
+    }
+}
+
+fun Activity.shouldShowRequestPermissionsRationale(permissions: Array<String>): Boolean {
+    return permissions.any {
+        ActivityCompat.shouldShowRequestPermissionRationale(this, it)
+    }
+}
+
 fun Context.isPermissionsGranted(permissions: Array<String>): Boolean {
     return permissions.all {
         ActivityCompat.checkSelfPermission(this, it) == PackageManager.PERMISSION_GRANTED
     }
+}
+
+fun Context.openSettings(rationale: Boolean) {
+    val intent = Intent().apply {
+        flags = Intent.FLAG_ACTIVITY_NEW_TASK
+        if (rationale) {
+            action = Settings.ACTION_APPLICATION_DETAILS_SETTINGS
+            data = Uri.parse("package:$packageName")
+        } else {
+            action = Settings.ACTION_LOCATION_SOURCE_SETTINGS
+        }
+    }
+    startActivity(intent)
 }

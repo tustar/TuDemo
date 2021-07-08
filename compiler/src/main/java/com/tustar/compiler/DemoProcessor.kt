@@ -4,6 +4,7 @@ import com.google.auto.service.AutoService
 import com.squareup.kotlinpoet.ClassName
 import com.squareup.kotlinpoet.FileSpec
 import com.squareup.kotlinpoet.FunSpec
+import com.squareup.kotlinpoet.Import
 import com.tustar.annotation.DemoItem
 import javax.annotation.processing.*
 import javax.lang.model.SourceVersion
@@ -53,11 +54,11 @@ class DemoProcessor : AbstractProcessor() {
             demos.add(DemoInfo(group, item, createdAt, updatedAt))
         }
         //
-        val generateDemos = buildDemoFun(demos)
-        val file = FileSpec.builder(
-            "com.tustar.demo.data.gen",
-            "GenData"
-        )
+        val packageName = "com.tustar.demo.codegen"
+        val fileName = "GenData"
+        val generateDemos = buildDemoFun(packageName, demos)
+        val file = FileSpec.builder(packageName, fileName)
+            .addImport("com.tustar.demo.data", "DemoItem")
             .addFunction(generateDemos)
             .build()
         try {
@@ -69,30 +70,32 @@ class DemoProcessor : AbstractProcessor() {
         return true
     }
 
-    private fun buildDemoFun(demos: MutableList<DemoInfo>): FunSpec {
-        return buildFun(demos, "DemoItem", "generateDemos") {
-            "    it.add(%T(group = ${it.group}, item = ${it.item}, " +
-                    "createdAt = \"${it.createdAt}\", updatedAt = \"${it.updatedAt}\"))"
+    private fun buildDemoFun(packageName: String, demos: MutableList<DemoInfo>): FunSpec {
+        return buildFun(demos, packageName, className = "DemoItem", funName = "generateDemos") {
+            "result += %T(group = ${it.group}, item = ${it.item}, " +
+                    "createdAt = \"${it.createdAt}\", updatedAt = \"${it.updatedAt}\")"
         }
     }
 
     private fun <T> buildFun(
-        demos: MutableList<T>, className: String,
-        funName: String, block: (T) -> String
+        demos: MutableList<T>,
+        packageName: String,
+        className: String,
+        funName: String,
+        block: (T) -> String
     ): FunSpec {
-        val tClazz = ClassName("com.tustar.demo.data.model", className)
+        val tClazz = ClassName(packageName, className)
         val ktList = ClassName("kotlin.collections", "List")
         val ktListOfT = ktList.parameterizedBy(tClazz)
         val ktArrayList = ClassName("kotlin.collections", "ArrayList")
         val ktArrayListOfT = ktArrayList.parameterizedBy(tClazz)
         val builder = FunSpec.builder(funName)
             .returns(ktListOfT)
-            .addStatement("val demos = %T().also {", ktArrayListOfT)
+            .addStatement("val result = %T()", ktArrayListOfT)
         demos.forEach {
             builder.addStatement(block.invoke(it), tClazz)
         }
-        builder.addStatement("}.sortedByDescending { it.updatedAt }")
-        builder.addStatement("return demos")
+        builder.addStatement("return result.sortedByDescending(DemoItem::updatedAt)")
         return builder.build()
     }
 

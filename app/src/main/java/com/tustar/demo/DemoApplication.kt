@@ -18,8 +18,4 @@ class DemoApplication : Application(), Configuration.Provider {
             .setWorkerFactory(workerFactory)
             .setMinimumLoggingLevel(Log.VERBOSE)
             .build()
-
-    override fun onCreate() {
-        super.onCreate()
-    }
 }
