@@ -38,12 +38,7 @@
         <provider
             android:name="androidx.work.impl.WorkManagerInitializer"
             android:authorities="${applicationId}.workmanager-init"
-            android:directBootAware="false"
-            android:exported="false"
-            android:multiprocess="true"
-            tools:ignore="Instantiatable"
-            tools:node="remove"
-            tools:targetApi="n" />
+            tools:node="remove" />
 
         <activity
             android:name=".ui.MainActivity"

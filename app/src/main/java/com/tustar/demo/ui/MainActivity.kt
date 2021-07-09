@@ -18,8 +18,6 @@ package com.tustar.demo.ui
 import android.Manifest
 import android.annotation.SuppressLint
 import android.app.AppOpsManager
-import android.content.Context
-import android.os.Binder
 import android.os.Bundle
 import androidx.activity.compose.setContent
 import androidx.activity.result.contract.ActivityResultContracts
@@ -29,13 +27,13 @@ import androidx.core.view.WindowCompat
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.LifecycleObserver
 import androidx.lifecycle.OnLifecycleEvent
+import androidx.work.*
 import com.tustar.demo.ex.*
 import com.tustar.demo.util.LocationHelper
 import com.tustar.demo.util.Logger
+import com.tustar.demo.woker.WeatherWorker
 import dagger.hilt.android.AndroidEntryPoint
 
-
-const val KEY_LOCATION = "location"
 
 @SuppressLint("NewApi")
 @AndroidEntryPoint
@@ -50,7 +48,7 @@ class MainActivity : AppCompatActivity() {
             setLocationListener { location ->
                 Logger.d("location=${location.toFormatString()}")
                 if (location.errorCode == 0) {
-                    viewModel.liveLocation.value = location
+                    WeatherWorker.doRequest(this@MainActivity, location, viewModel)
                 }
             }
         }
@@ -99,8 +97,8 @@ class MainActivity : AppCompatActivity() {
     private fun requestPermissions() {
         if (containsIgnore(opstrs)) {
             Logger.d("containsIgnore")
-            viewModel.liveResult.value = LocationPermissionResult(
-                show = true,
+            viewModel.liveResult.value = AppOpsResult(
+                visible = true,
                 rationale = true
             )
             return
@@ -126,9 +124,9 @@ class MainActivity : AppCompatActivity() {
             return
         }
 
-        val show = !isLocationEnable()
-        viewModel.liveResult.value = LocationPermissionResult(show)
-        if (show) {
+        val visible = !isLocationEnable()
+        viewModel.liveResult.value = AppOpsResult(visible)
+        if (visible) {
             return
         }
 

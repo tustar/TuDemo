@@ -127,10 +127,16 @@ object Libs {
         }
 
         object Work {
-            private const val version = "2.6.0-alpha01"
+            private const val version = "2.5.0"
             const val runtimeKtx = "androidx.work:work-runtime-ktx:$version"
             const val gcm = "androidx.work:work-gcm:$version"
+            const val multiprocess = "androidx.work:work-multiprocess:$version"
             const val testing = "androidx.work:work-testing:$version"
+        }
+
+        object StartUp {
+            private const val version = "1.0.0"
+            const val runtime = "androidx.startup:startup-runtime:$version"
         }
 
         object Test {
@@ -152,7 +158,8 @@ object Libs {
 
         const val gradlePlugin = "com.google.dagger:hilt-android-gradle-plugin:$version"
         const val android = "com.google.dagger:hilt-android:$version"
-        const val compiler = "com.google.dagger:hilt-compiler:$version"
+        const val draggerCompiler = "com.google.dagger:hilt-compiler:$version"
+        const val hiltCompiler = "androidx.hilt:hilt-compiler:1.0.0"
         const val work = "androidx.hilt:hilt-work:1.0.0"
         const val navigationCompose = "androidx.hilt:hilt-navigation-compose:1.0.0-alpha03"
         const val testing = "com.google.dagger:hilt-android-testing:$version"

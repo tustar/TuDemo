@@ -6,37 +6,22 @@ import com.tustar.demo.data.source.WeatherRepository
 import com.tustar.demo.codegen.generateDemos
 import com.tustar.demo.data.Weather
 import dagger.hilt.android.lifecycle.HiltViewModel
-import kotlinx.coroutines.flow.catch
-import kotlinx.coroutines.flow.collectLatest
-import kotlinx.coroutines.flow.flow
-import kotlinx.coroutines.flow.onStart
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.flow.*
 import javax.inject.Inject
 
 @HiltViewModel
-class MainViewModel @Inject constructor(
-    private val weatherRepository: WeatherRepository
-) : ViewModel() {
+class MainViewModel @Inject constructor() : ViewModel() {
 
-    val liveLocation = MutableLiveData<AMapLocation>()
-    val now = liveLocation.switchMap { location ->
-        liveData {
-            weatherRepository.now(location)
-                .onStart { }
-                .catch { }
-                .collectLatest { now ->
-                    emit(Weather(location.poiName, now.temp, now.text))
-                }
-        }
-    }
-
-    val liveResult = MutableLiveData<LocationPermissionResult>()
+    val liveWeather = MutableLiveData<Weather>()
+    val liveResult = MutableLiveData<AppOpsResult>()
 
     fun createDemos() = flow {
         emit(generateDemos().groupBy { it.group })
     }
 }
 
-data class LocationPermissionResult(
-    var show: Boolean = false,
+data class AppOpsResult(
+    var visible: Boolean = false,
     var rationale: Boolean = false
 )

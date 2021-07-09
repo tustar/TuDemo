@@ -38,7 +38,7 @@ fun DemosScreen(
     onDemoClick: (Int) -> Unit,
     modifier: Modifier
 ) {
-    val weatherState = viewModel.now.observeAsState()
+    val weatherState = viewModel.liveWeather.observeAsState()
     val groupedState = viewModel.createDemos().collectAsState(initial = mapOf())
 
     Column(modifier) {

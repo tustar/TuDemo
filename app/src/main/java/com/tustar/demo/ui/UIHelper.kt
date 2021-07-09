@@ -10,7 +10,6 @@ import androidx.compose.runtime.livedata.observeAsState
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
-import androidx.compose.ui.unit.TextUnit
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.tustar.demo.R
@@ -42,10 +41,10 @@ fun showLocationDialog(viewModel: MainViewModel) {
 
     val context = LocalContext.current
     val resultState = viewModel.liveResult.observeAsState(
-        initial = LocationPermissionResult()
+        initial = AppOpsResult()
     )
     Logger.d("${resultState.value}")
-    if (!resultState.value.show) {
+    if (!resultState.value.visible) {
         return
     }
     val title = if (resultState.value.rationale) R.string.dlg_title_location_permissons else
@@ -70,7 +69,7 @@ fun showLocationDialog(viewModel: MainViewModel) {
                 modifier = Modifier
                     .clickable {
                         context.openSettings(resultState.value.rationale)
-                        viewModel.liveResult.value = LocationPermissionResult()
+                        viewModel.liveResult.value = AppOpsResult()
                     }
                     .padding(12.dp)
             )
@@ -83,7 +82,7 @@ fun showLocationDialog(viewModel: MainViewModel) {
                 fontSize = 14.sp,
                 modifier = Modifier
                     .clickable {
-                        viewModel.liveResult.value = LocationPermissionResult()
+                        viewModel.liveResult.value = AppOpsResult()
                     }
                     .padding(12.dp)
             )
