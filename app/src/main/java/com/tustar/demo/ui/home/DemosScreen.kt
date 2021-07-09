@@ -58,7 +58,6 @@ fun DemosTopBar(
             Text(text = stringResource(R.string.title_home))
         },
         modifier = Modifier.topAppBar(),
-        backgroundColor = MaterialTheme.colors.primary,
         actions = {
             weatherState.value?.let {
                 Column(

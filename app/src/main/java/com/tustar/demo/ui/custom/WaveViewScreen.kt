@@ -3,23 +3,20 @@ package com.tustar.demo.ui.custom
 import androidx.compose.foundation.Canvas
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.material.*
-import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.rounded.ArrowBack
+import androidx.compose.material.rememberScaffoldState
 import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.res.stringResource
 import com.tustar.annotation.DemoItem
 import com.tustar.demo.R
-import com.tustar.demo.ex.topAppBar
 import com.tustar.demo.ui.DetailTopBar
-import com.tustar.demo.ui.theme.blueA200
-import com.tustar.demo.ui.theme.teal200
-import kotlinx.coroutines.*
+import kotlinx.coroutines.DelicateCoroutinesApi
 import kotlinx.coroutines.channels.ticker
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.isActive
+import kotlinx.coroutines.launch
 
 val heights = intArrayOf(
     2, 3, 10, 5, 20, 30, 20, 10, 6, 5,

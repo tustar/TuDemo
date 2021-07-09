@@ -57,7 +57,7 @@ fun showLocationDialog(viewModel: MainViewModel) {
             Text(
                 text = stringResource(id = title),
                 style = MaterialTheme.typography.h6,
-                fontSize = 18.sp
+                fontSize = 18.sp,
             )
         },
         confirmButton = {

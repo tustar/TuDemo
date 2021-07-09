@@ -17,14 +17,11 @@ package com.tustar.demo.ui.theme
 
 import androidx.compose.ui.graphics.Color
 
-val selectedContentColor = Color(0xFF4294EA)
-val unselectedContentColor = Color(0xFF191919)
-val dividerColor = Color(0xFF333333)
 val sectionTextColor = Color(0xFF03A9F4)
 val sectionBgColor = Color(0xFFF3F6FA)
-val background = Color.White
 val blue600 = Color(0xFF039BE5)
 val blue700 = Color(0xFF0288D1)
+val blue800 = Color(0xFF0277BD)
+val blue900 = Color(0xFF01579B)
 val blueA100 = Color(0xFF80D8FF)
-val blueA200 = Color(0xFF40C4FF)
 val teal200 = Color(0xFF03DAC5)

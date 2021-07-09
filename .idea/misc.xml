@@ -30,8 +30,10 @@
         <entry key="..\:/project/github/TuDemo/TuDemo/src/main/res/layout/item_place.xml" value="0.1" />
         <entry key="..\:/project/github/TuDemo/TuDemo/src/main/res/menu/bottom_nav_menu.xml" value="0.16770833333333332" />
         <entry key="..\:/project/github/TuDemo/TuDemo/src/main/res/mipmap-anydpi-v26/ic_launcher_round.xml" value="0.16822916666666668" />
+        <entry key="app/src/main/res/drawable-sw600dp/ic_splash.xml" value="0.148" />
         <entry key="app/src/main/res/drawable/ic_author.xml" value="0.1" />
         <entry key="app/src/main/res/drawable/ic_splash.xml" value="0.1" />
+        <entry key="app/src/main/res/drawable/ic_splash_coder.xml" value="0.148" />
         <entry key="app/src/main/res/drawable/ic_splash_coder_foreground.xml" value="0.1" />
         <entry key="app/src/main/res/drawable/shape_dialog_bg.xml" value="0.1095" />
         <entry key="app/src/main/res/layout/demo_detail_activity.xml" value="0.1625" />
@@ -46,7 +48,7 @@
         <entry key="app/src/main/res/layout/fragment_qq_list_view.xml" value="0.1691995947315096" />
         <entry key="app/src/main/res/layout/item_place.xml" value="0.1691995947315096" />
         <entry key="app/src/main/res/layout/item_qq_header.xml" value="0.1691995947315096" />
-        <entry key="app/src/main/res/layout/motion_base_fragment.xml" value="0.10597826086956522" />
+        <entry key="app/src/main/res/layout/motion_base_fragment.xml" value="0.25" />
       </map>
     </option>
   </component>

@@ -35,6 +35,8 @@
                 motion:wavePeriod="0"
                 motion:waveShape="sin" />
         </KeyFrameSet>
+        <OnClick />
+        <OnSwipe />
     </Transition>
 
     <ConstraintSet android:id="@+id/start">
@@ -45,7 +47,8 @@
             android:layout_marginStart="8dp"
             motion:layout_constraintBottom_toBottomOf="parent"
             motion:layout_constraintStart_toStartOf="parent"
-            motion:layout_constraintTop_toTopOf="parent">
+            motion:layout_constraintTop_toTopOf="parent"
+            motion:transitionEasing="cubic(0.26,0.79,0.8,0.8)">
 
             <CustomAttribute
                 motion:attributeName="backgroundColor"
