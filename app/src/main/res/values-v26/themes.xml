@@ -2,6 +2,7 @@
 <resources>
 
     <style name="AppTheme" parent="Theme.MaterialComponents.DayNight.NoActionBar">
+        <item name="android:statusBarColor">@color/colorPrimary</item>
         <item name="android:windowSplashscreenContent">@drawable/ic_splash</item>
         <item name="android:windowOverscan">true</item>
     </style>

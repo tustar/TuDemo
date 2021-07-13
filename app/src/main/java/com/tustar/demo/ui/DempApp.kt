@@ -3,6 +3,7 @@ package com.tustar.demo.ui
 import androidx.annotation.DrawableRes
 import androidx.annotation.StringRes
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
 import androidx.compose.material.*
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
@@ -59,7 +60,12 @@ fun DemoBottomBar(navController: NavController, tabs: Array<MainTabs>) {
         BottomNavigation(Modifier.navigationBarsHeight(additional = 56.dp)) {
             tabs.forEach { tab ->
                 BottomNavigationItem(
-                    icon = { Icon(painterResource(tab.icon), contentDescription = null) },
+                    icon = {
+                        Icon(
+                            painterResource(tab.icon), contentDescription = null,
+                            modifier = Modifier.size(28.dp, 28.dp)
+                        )
+                    },
                     label = { Text(stringResource(tab.title).uppercase(Locale.getDefault())) },
                     selected = currentRoute == tab.route,
                     onClick = {
@@ -73,7 +79,7 @@ fun DemoBottomBar(navController: NavController, tabs: Array<MainTabs>) {
                             }
                         }
                     },
-                    alwaysShowLabel = true,
+                    alwaysShowLabel = false,
                     modifier = Modifier.navigationBarsPadding()
                 )
             }

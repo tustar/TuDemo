@@ -11,7 +11,7 @@
         android:id="@+id/button"
         android:layout_width="64dp"
         android:layout_height="64dp"
-        android:background="@color/blue_A700"
+        android:background="#039BE5"
         android:text="Button"
         tools:layout_editor_absoluteX="8dp"
         tools:layout_editor_absoluteY="297dp" />

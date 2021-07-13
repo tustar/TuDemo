@@ -15,9 +15,7 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.tustar.demo.R
-import com.tustar.demo.ui.theme.sectionBgColor
-import com.tustar.demo.ui.theme.sectionTextColor
-import com.tustar.demo.ui.theme.typography
+import com.tustar.demo.ui.theme.DemoTheme
 
 @Composable
 fun MeScreen(
@@ -59,8 +57,10 @@ fun MeScreen(
         //
         MeSection(resId = R.string.me_about)
         MeItem(
-            content = stringResource(id = R.string.me_version,
-                 "1.0.0"),
+            content = stringResource(
+                id = R.string.me_version,
+                "1.0.0"
+            ),
             icon = R.drawable.ic_me_version,
             tint = Color(0xFFFF8F00)
         )
@@ -72,11 +72,11 @@ private fun MeSection(resId: Int) {
     Text(
         text = stringResource(id = resId),
         modifier = Modifier
-            .background(sectionBgColor)
+            .background(DemoTheme.demoColors.sectionBgColor)
             .padding(start = 16.dp, top = 2.dp, bottom = 2.dp)
             .fillMaxWidth(),
-        style = typography.subtitle2,
-        color = sectionTextColor,
+        style = DemoTheme.typography.subtitle2,
+        color = DemoTheme.demoColors.sectionTextColor,
     )
 }
 
@@ -97,8 +97,7 @@ fun MeItem(content: String, icon: Int, tint: Color) {
             .padding(
                 top = 2.dp,
                 bottom = 2.dp
-            )
-            .background(Color(0xFFFFFFFF)),
+            ),
         verticalAlignment = Alignment.CenterVertically
     ) {
         Icon(
@@ -113,7 +112,7 @@ fun MeItem(content: String, icon: Int, tint: Color) {
             modifier = Modifier
                 .padding(start = 4.dp)
                 .fillMaxWidth(),
-            style = typography.body1,
+            style = DemoTheme.typography.body1,
             fontSize = 18.sp,
         )
     }

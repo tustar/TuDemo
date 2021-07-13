@@ -9,7 +9,6 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.rememberLazyListState
-import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Text
 import androidx.compose.material.TopAppBar
 import androidx.compose.runtime.Composable
@@ -23,12 +22,10 @@ import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import com.tustar.demo.R
 import com.tustar.demo.data.DemoItem
+import com.tustar.demo.data.Weather
 import com.tustar.demo.ex.topAppBar
 import com.tustar.demo.ui.MainViewModel
-import com.tustar.demo.ui.theme.sectionBgColor
-import com.tustar.demo.ui.theme.sectionTextColor
-import com.tustar.demo.ui.theme.typography
-import com.tustar.demo.data.Weather
+import com.tustar.demo.ui.theme.DemoTheme
 import com.tustar.demo.util.Logger
 
 @Composable
@@ -66,8 +63,16 @@ fun DemosTopBar(
                     },
                     horizontalAlignment = Alignment.End
                 ) {
-                    Text(it.address)
-                    Text(stringResource(id = R.string.weather_daily_temp, it.daily, it.temp))
+                    Text(
+                        text = it.address,
+                        modifier = Modifier
+                            .padding(end = 8.dp),
+                    )
+                    Text(
+                        text = stringResource(id = R.string.weather_daily_temp, it.daily, it.temp),
+                        modifier = Modifier
+                            .padding(end = 8.dp),
+                    )
                 }
             }
         }
@@ -106,11 +111,11 @@ fun DemosHeader(group: Int) {
     Text(
         text = stringResource(id = group),
         modifier = Modifier
-            .background(sectionBgColor)
+            .background(DemoTheme.demoColors.sectionBgColor)
             .padding(start = 16.dp, top = 2.dp, bottom = 2.dp)
             .fillMaxWidth(),
-        style = typography.subtitle2,
-        color = sectionTextColor,
+        style = DemoTheme.typography.subtitle2,
+        color = DemoTheme.demoColors.sectionTextColor,
     )
 }
 
@@ -127,7 +132,7 @@ fun DemoItemView(
             .clickable {
                 onDemoClick(demoItem.item)
             },
-        style = typography.h6,
+        style = DemoTheme.typography.h6,
         overflow = TextOverflow.Ellipsis,
         maxLines = 2,
     )

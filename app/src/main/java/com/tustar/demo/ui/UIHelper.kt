@@ -15,6 +15,7 @@ import androidx.compose.ui.unit.sp
 import com.tustar.demo.R
 import com.tustar.demo.ex.openSettings
 import com.tustar.demo.ex.topAppBar
+import com.tustar.demo.ui.theme.DemoTheme
 import com.tustar.demo.util.Logger
 
 @Composable
@@ -24,7 +25,7 @@ fun DetailTopBar(demoItem: Int, upPress: () -> Unit) {
             Text(text = stringResource(demoItem))
         },
         modifier = Modifier.topAppBar(),
-        backgroundColor = MaterialTheme.colors.primary,
+        backgroundColor = DemoTheme.colors.primary,
         navigationIcon = {
             IconButton(onClick = upPress) {
                 Icon(
@@ -56,15 +57,15 @@ fun showLocationDialog(viewModel: MainViewModel) {
         title = {
             Text(
                 text = stringResource(id = title),
-                style = MaterialTheme.typography.h6,
+                style = DemoTheme.typography.h6,
                 fontSize = 18.sp,
             )
         },
         confirmButton = {
             Text(
                 text = stringResource(id = R.string.dlg_to_setting),
-                style = MaterialTheme.typography.button,
-                color = MaterialTheme.colors.primary,
+                style = DemoTheme.typography.button,
+                color = DemoTheme.colors.primary,
                 fontSize = 14.sp,
                 modifier = Modifier
                     .clickable {
@@ -77,8 +78,8 @@ fun showLocationDialog(viewModel: MainViewModel) {
         dismissButton = {
             Text(
                 text = stringResource(id = R.string.dlg_not_now),
-                style = MaterialTheme.typography.button,
-//                                color = MaterialTheme.colors.primary,
+                style = DemoTheme.typography.button,
+//                                color = DemoTheme.colors.primary,
                 fontSize = 14.sp,
                 modifier = Modifier
                     .clickable {

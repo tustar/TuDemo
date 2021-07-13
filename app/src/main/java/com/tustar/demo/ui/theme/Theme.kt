@@ -16,12 +16,14 @@
 package com.tustar.demo.ui.theme
 
 import androidx.compose.foundation.isSystemInDarkTheme
-import androidx.compose.material.MaterialTheme
-import androidx.compose.material.darkColors
-import androidx.compose.material.lightColors
+import androidx.compose.material.*
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.CompositionLocalProvider
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.staticCompositionLocalOf
 import androidx.compose.ui.graphics.Color
 
+// Dark
 private val DarkColorPalette = darkColors(
     primary = blue900,
     primaryVariant = blue800,
@@ -29,37 +31,84 @@ private val DarkColorPalette = darkColors(
     background = Color.Black,
     surface = Color.Black,
 )
+private val DarkDemoColorPalette = darkDemoColors(
+    sectionTextColor = Color(0xFF157DAC),
+    sectionBgColor = Color(0xFF2B2B2B)
+)
 
+// Light
 private val LightColorPalette = lightColors(
     primary = blue600,
     primaryVariant = blue700,
     secondary = blueA100,
     background = Color(0xFFFAFAFA),
     surface = Color(0xFFFAFAFA),
-
-        /* Other default colors to override
-    background = Color.White,
-    surface = Color.White,
-    onPrimary = Color.White,
-    onSecondary = Color.Black,
-    onBackground = Color.Black,
-    onSurface = Color.Black,
-    */
+)
+private val LightDemoColorPalette = lightDemoColors(
+    sectionTextColor = Color(0xFF03A9F4),
+    sectionBgColor = Color(0xFFF3F6FA)
 )
 
-@Composable
-fun DemoTheme(darkTheme: Boolean = isSystemInDarkTheme(),
-              content: @Composable() () -> Unit) {
-    val colors = if (darkTheme) {
-        DarkColorPalette
-    } else {
-        LightColorPalette
-    }
 
-    MaterialTheme(
-        colors = colors,
-        typography = typography,
-        shapes = shapes,
-        content = content,
-    )
+@Composable
+fun DemoTheme(
+    darkTheme: Boolean = isSystemInDarkTheme(),
+    content: @Composable() () -> Unit
+) {
+    val colors = if (darkTheme) DarkColorPalette else LightColorPalette
+    val demoColors = if (darkTheme) DarkDemoColorPalette else LightDemoColorPalette
+
+    ProvideDemoColors(demoColors) {
+        MaterialTheme(
+            colors = colors,
+            typography = typography,
+            shapes = shapes,
+            content = content,
+        )
+    }
+}
+
+object DemoTheme {
+    val demoColors: DemoColors
+        @Composable
+        get() = LocalDemoColors.current
+
+    /**
+     * Proxy to [MaterialTheme]
+     */
+    val colors: Colors
+        @Composable
+        get() = MaterialTheme.colors
+
+    /**
+     * Proxy to [MaterialTheme]
+     */
+    val typography: Typography
+        @Composable
+        get() = MaterialTheme.typography
+
+    /**
+     * Proxy to [MaterialTheme]
+     */
+    val shapes: Shapes
+        @Composable
+        get() = MaterialTheme.shapes
+}
+
+@Composable
+fun ProvideDemoColors(
+    colors: DemoColors,
+    content: @Composable () -> Unit
+) {
+    val colorPalette = remember {
+        // Explicitly creating a new object here so we don't mutate the initial [colors]
+        // provided, and overwrite the values set in it.
+        colors.copy()
+    }
+    colorPalette.update(colors)
+    CompositionLocalProvider(LocalDemoColors provides colorPalette, content = content)
+}
+
+private val LocalDemoColors = staticCompositionLocalOf<DemoColors> {
+    error("No DemoColorPalette provided")
 }
