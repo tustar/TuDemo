@@ -27,7 +27,6 @@ fun DetailTopBar(demoItem: Int, upPress: () -> Unit) {
             Text(text = stringResource(demoItem))
         },
         modifier = Modifier.topAppBar(),
-        backgroundColor = DemoTheme.colors.primary,
         navigationIcon = {
             IconButton(onClick = upPress) {
                 Icon(
