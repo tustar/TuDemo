@@ -15,6 +15,7 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.tustar.demo.R
+import com.tustar.demo.ui.SectionView
 import com.tustar.demo.ui.theme.DemoTheme
 
 @Composable
@@ -31,7 +32,7 @@ fun MeScreen(
                 .height(180.dp)
         )
 
-        MeSection(resId = R.string.me_contact)
+        SectionView(resId = R.string.me_contact)
         MeItem(
             content = R.string.me_mobile,
             icon = R.drawable.ic_me_mobile,
@@ -48,14 +49,14 @@ fun MeScreen(
             tint = Color(0xFF9E9D24)
         )
         //
-        MeSection(resId = R.string.me_blog)
+        SectionView(resId = R.string.me_blog)
         MeItem(
             content = R.string.me_github,
             icon = R.drawable.ic_me_github,
             tint = Color(0xFF0277BD)
         )
         //
-        MeSection(resId = R.string.me_about)
+        SectionView(resId = R.string.me_about)
         MeItem(
             content = stringResource(
                 id = R.string.me_version,
@@ -67,18 +68,7 @@ fun MeScreen(
     }
 }
 
-@Composable
-private fun MeSection(resId: Int) {
-    Text(
-        text = stringResource(id = resId),
-        modifier = Modifier
-            .background(DemoTheme.demoColors.sectionBgColor)
-            .padding(start = 16.dp, top = 2.dp, bottom = 2.dp)
-            .fillMaxWidth(),
-        style = DemoTheme.typography.subtitle2,
-        color = DemoTheme.demoColors.sectionTextColor,
-    )
-}
+
 
 @Composable
 fun MeItem(content: Int, icon: Int, tint: Color) {

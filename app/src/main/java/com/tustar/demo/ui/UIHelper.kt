@@ -1,6 +1,8 @@
 package com.tustar.demo.ui
 
+import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material.*
 import androidx.compose.material.icons.Icons
@@ -88,5 +90,18 @@ fun showLocationDialog(viewModel: MainViewModel) {
                     .padding(12.dp)
             )
         }
+    )
+}
+
+@Composable
+fun SectionView(resId: Int) {
+    Text(
+        text = stringResource(id = resId),
+        modifier = Modifier
+            .background(DemoTheme.demoColors.sectionBgColor)
+            .padding(start = 16.dp, top = 2.dp, bottom = 2.dp)
+            .fillMaxWidth(),
+        style = DemoTheme.typography.subtitle2,
+        color = DemoTheme.demoColors.sectionTextColor,
     )
 }

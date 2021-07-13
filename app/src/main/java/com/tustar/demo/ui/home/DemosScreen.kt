@@ -25,6 +25,7 @@ import com.tustar.demo.data.DemoItem
 import com.tustar.demo.data.Weather
 import com.tustar.demo.ex.topAppBar
 import com.tustar.demo.ui.MainViewModel
+import com.tustar.demo.ui.SectionView
 import com.tustar.demo.ui.theme.DemoTheme
 import com.tustar.demo.util.Logger
 
@@ -93,7 +94,7 @@ fun DemosContent(
     ) {
         groupedState.value.forEach { (group, demos) ->
             stickyHeader {
-                DemosHeader(group)
+                SectionView(group)
             }
 
             items(count = demos.size,
@@ -104,19 +105,6 @@ fun DemosContent(
             }
         }
     }
-}
-
-@Composable
-fun DemosHeader(group: Int) {
-    Text(
-        text = stringResource(id = group),
-        modifier = Modifier
-            .background(DemoTheme.demoColors.sectionBgColor)
-            .padding(start = 16.dp, top = 2.dp, bottom = 2.dp)
-            .fillMaxWidth(),
-        style = DemoTheme.typography.subtitle2,
-        color = DemoTheme.demoColors.sectionTextColor,
-    )
 }
 
 @Composable
