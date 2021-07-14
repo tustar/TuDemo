@@ -2,24 +2,27 @@ package com.tustar.demo.ui
 
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.remember
-import androidx.compose.ui.Modifier
 import androidx.lifecycle.Lifecycle
+import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavBackStackEntry
 import androidx.navigation.NavHostController
 import androidx.navigation.NavType
-import androidx.navigation.compose.*
+import androidx.navigation.compose.NavHost
+import androidx.navigation.compose.composable
+import androidx.navigation.compose.navArgument
+import androidx.navigation.compose.rememberNavController
+import androidx.navigation.navDeepLink
 import com.tustar.demo.ui.MainDestinations.DEMO_DETAIL_ID_KEY
 import com.tustar.demo.ui.home.DemoDetailDispatcher
 import com.tustar.demo.ui.home.DemosScreen
 import com.tustar.demo.ui.me.MeScreen
-import androidx.lifecycle.viewmodel.compose.viewModel
+import com.tustar.demo.util.Logger
 
 /**
  * Destinations used in the ([DemoApp]).
  */
 object MainDestinations {
     const val DEMO_ROUTE = "demos"
-    const val DEMO_DETAIL_ROUTE = "demo"
     const val DEMO_DETAIL_ID_KEY = "demoId"
     const val ME_ROUTE = "me"
 }
@@ -27,9 +30,7 @@ object MainDestinations {
 @Composable
 fun NavGraph(
     viewModel: MainViewModel = viewModel(),
-    modifier: Modifier = Modifier,
     updateLocation: () -> Unit = {},
-    finishActivity: () -> Unit = {},
     navController: NavHostController = rememberNavController(),
     startDestination: String = MainDestinations.DEMO_ROUTE,
 ) {
@@ -43,24 +44,28 @@ fun NavGraph(
                 viewModel = viewModel,
                 updateLocation = updateLocation,
                 onDemoClick = actions.openDemo,
-                modifier = modifier,
             )
         }
         composable(
-            "${MainDestinations.DEMO_DETAIL_ROUTE}/{$DEMO_DETAIL_ID_KEY}",
+            "${MainDestinations.DEMO_ROUTE}/{$DEMO_DETAIL_ID_KEY}",
             arguments = listOf(
                 navArgument(DEMO_DETAIL_ID_KEY) { type = NavType.IntType }
-            )
-        ) { backStackEntry: NavBackStackEntry ->
-            val arguments = requireNotNull(backStackEntry.arguments)
+            ),
+            // adb shell am start -d "tustar://demos/2131689633" -a android.intent.action.VIEW
+            deepLinks = listOf(navDeepLink {
+                uriPattern = "tustar://${MainDestinations.DEMO_ROUTE}/{${DEMO_DETAIL_ID_KEY}}"
+            })
+        ) {
+            val arguments = requireNotNull(it.arguments)
             val currentDemoId = arguments.getInt(DEMO_DETAIL_ID_KEY)
+            Logger.d("currentDemoId=$currentDemoId")
             DemoDetailDispatcher(
                 demoId = currentDemoId,
                 upPress = { actions.upPress() }
             )
         }
         composable(MainDestinations.ME_ROUTE) {
-            MeScreen(modifier = modifier)
+            MeScreen()
         }
     }
 }
@@ -70,7 +75,7 @@ fun NavGraph(
  */
 class MainActions(navController: NavHostController) {
     val openDemo = { id: Int ->
-        navController.navigate("${MainDestinations.DEMO_DETAIL_ROUTE}/$id")
+        navController.navigate("${MainDestinations.DEMO_ROUTE}/$id")
     }
 
     val upPress = { navController.navigateUp() }

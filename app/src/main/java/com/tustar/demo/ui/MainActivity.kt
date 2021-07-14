@@ -18,6 +18,7 @@ package com.tustar.demo.ui
 import android.Manifest
 import android.annotation.SuppressLint
 import android.app.AppOpsManager
+import android.content.Intent
 import android.os.Bundle
 import androidx.activity.compose.setContent
 import androidx.activity.result.contract.ActivityResultContracts
@@ -83,10 +84,15 @@ class MainActivity : AppCompatActivity() {
         WindowCompat.setDecorFitsSystemWindows(window, false)
 
         setContent {
-            DemoApp(viewModel, { getBestLocation() }) { finish() }
+            DemoApp(viewModel) { getBestLocation() }
         }
 
         lifecycle.addObserver(locationListener)
+    }
+
+    override fun onNewIntent(intent: Intent?) {
+        super.onNewIntent(intent)
+        Logger.d("intent=$intent")
     }
 
     override fun onDestroy() {

@@ -2,12 +2,10 @@ package com.tustar.demo.ui
 
 import androidx.annotation.DrawableRes
 import androidx.annotation.StringRes
-import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.material.*
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
-import androidx.compose.runtime.livedata.observeAsState
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.painterResource
@@ -26,25 +24,22 @@ import java.util.*
 @Composable
 fun DemoApp(
     viewModel: MainViewModel,
-    updateLocation: () -> Unit,
-    finishActivity: () -> Unit
+    updateLocation: () -> Unit
 ) {
     ProvideWindowInsets {
         DemoTheme {
             val tabs = remember { MainTabs.values() }
             val navController = rememberNavController()
-            Scaffold(bottomBar = { DemoBottomBar(navController = navController, tabs) }
-            ) { innerPaddingModifier ->
+            //
+            Scaffold(bottomBar = { DemoBottomBar(navController = navController, tabs) }) {
                 NavGraph(
                     viewModel = viewModel,
                     updateLocation = updateLocation,
-                    finishActivity = finishActivity,
                     navController = navController,
-                    modifier = Modifier.padding(innerPaddingModifier)
                 )
             }
 
-            showLocationDialog(viewModel)
+            ShowLocationDialog(viewModel)
         }
     }
 }

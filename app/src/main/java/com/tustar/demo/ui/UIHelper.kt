@@ -8,6 +8,7 @@ import androidx.compose.material.*
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.rounded.ArrowBack
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
 import androidx.compose.runtime.livedata.observeAsState
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
@@ -39,18 +40,25 @@ fun DetailTopBar(demoItem: Int, upPress: () -> Unit) {
 }
 
 @Composable
-fun showLocationDialog(viewModel: MainViewModel) {
+fun ShowLocationDialog(viewModel: MainViewModel) {
 
     val context = LocalContext.current
-    val resultState = viewModel.liveResult.observeAsState(
+    val opsResult by viewModel.liveResult.observeAsState(
         initial = AppOpsResult()
     )
-    Logger.d("${resultState.value}")
-    if (!resultState.value.visible) {
+    Logger.d("$opsResult")
+    if (!opsResult.visible) {
         return
     }
-    val title = if (resultState.value.rationale) R.string.dlg_title_location_permissons else
+    val title = if (opsResult.rationale) R.string.dlg_title_location_permissons else
         R.string.dlg_title_location_enable
+    val confirmAction = {
+        context.openSettings(opsResult.rationale)
+        viewModel.liveResult.value = AppOpsResult()
+    }
+    val dismissAction = {
+        viewModel.liveResult.value = AppOpsResult()
+    }
 
     AlertDialog(
         modifier = Modifier.padding(20.dp),
@@ -70,8 +78,7 @@ fun showLocationDialog(viewModel: MainViewModel) {
                 fontSize = 14.sp,
                 modifier = Modifier
                     .clickable {
-                        context.openSettings(resultState.value.rationale)
-                        viewModel.liveResult.value = AppOpsResult()
+                        confirmAction()
                     }
                     .padding(12.dp)
             )
@@ -84,7 +91,7 @@ fun showLocationDialog(viewModel: MainViewModel) {
                 fontSize = 14.sp,
                 modifier = Modifier
                     .clickable {
-                        viewModel.liveResult.value = AppOpsResult()
+                        dismissAction()
                     }
                     .padding(12.dp)
             )

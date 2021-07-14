@@ -41,6 +41,7 @@ const val MAX_AMPLITUDE = 100.0F
 @Composable
 fun WaveViewScreen(demoItem: Int, upPress: () -> Unit) {
     var currentAmp by remember { mutableStateOf(30) }
+    //
     LaunchedEffect(rememberScaffoldState()) {
         val tickerChannel = ticker(delayMillis = 100, initialDelayMillis = 0)
         val job = launch {

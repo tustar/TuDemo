@@ -1,7 +1,6 @@
 package com.tustar.demo.ui.home
 
 import androidx.compose.foundation.ExperimentalFoundationApi
-import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -12,8 +11,8 @@ import androidx.compose.foundation.lazy.rememberLazyListState
 import androidx.compose.material.Text
 import androidx.compose.material.TopAppBar
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.State
 import androidx.compose.runtime.collectAsState
+import androidx.compose.runtime.getValue
 import androidx.compose.runtime.livedata.observeAsState
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -34,30 +33,39 @@ fun DemosScreen(
     viewModel: MainViewModel,
     updateLocation: () -> Unit,
     onDemoClick: (Int) -> Unit,
-    modifier: Modifier
 ) {
-    val weatherState = viewModel.liveWeather.observeAsState()
-    val groupedState = viewModel.createDemos().collectAsState(initial = mapOf())
+    val weather by viewModel.liveWeather.observeAsState()
+    val grouped by viewModel.createDemos().collectAsState(initial = mapOf())
 
-    Column(modifier) {
-        DemosTopBar(weatherState, updateLocation)
-        DemosContent(groupedState, onDemoClick)
+    DemosContent(weather, updateLocation, grouped, onDemoClick)
+}
+
+@Composable
+private fun DemosContent(
+    weather: Weather?,
+    updateLocation: () -> Unit,
+    grouped: Map<Int, List<DemoItem>>,
+    onDemoClick: (Int) -> Unit
+) {
+    Column {
+        DemosTopBar(weather, updateLocation)
+        DemosListView(grouped, onDemoClick)
     }
 }
 
 @Composable
 fun DemosTopBar(
-    weatherState: State<Weather?>,
+    weather: Weather?,
     updateLocation: () -> Unit,
 ) {
-    Logger.d("${weatherState.value}")
+    Logger.d("$weather")
     TopAppBar(
         title = {
             Text(text = stringResource(R.string.title_home))
         },
         modifier = Modifier.topAppBar(),
         actions = {
-            weatherState.value?.let {
+            weather?.let {
                 Column(
                     modifier = Modifier.clickable {
                         updateLocation()
@@ -82,17 +90,12 @@ fun DemosTopBar(
 
 @OptIn(ExperimentalFoundationApi::class)
 @Composable
-fun DemosContent(
-    groupedState: State<Map<Int, List<DemoItem>>>,
+fun DemosListView(
+    grouped: Map<Int, List<DemoItem>>,
     onDemoClick: (Int) -> Unit,
 ) {
-
-    val listState = rememberLazyListState()
-    LazyColumn(
-        state = listState,
-        verticalArrangement = Arrangement.spacedBy(4.dp),
-    ) {
-        groupedState.value.forEach { (group, demos) ->
+    LazyColumn(verticalArrangement = Arrangement.spacedBy(4.dp)) {
+        grouped.forEach { (group, demos) ->
             stickyHeader {
                 SectionView(group)
             }

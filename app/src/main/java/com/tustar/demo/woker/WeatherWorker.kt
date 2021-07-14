@@ -9,7 +9,6 @@ import com.google.gson.Gson
 import com.tustar.demo.data.Weather
 import com.tustar.demo.data.source.WeatherRepository
 import com.tustar.demo.ui.MainViewModel
-import com.tustar.demo.util.Logger
 import dagger.assisted.Assisted
 import dagger.assisted.AssistedInject
 import kotlinx.coroutines.coroutineScope

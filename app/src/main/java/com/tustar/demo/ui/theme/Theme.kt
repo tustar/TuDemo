@@ -28,12 +28,12 @@ private val DarkColorPalette = darkColors(
     primary = blue900,
     primaryVariant = blue800,
     secondary = teal200,
-    background = Color.Black,
-    surface = Color.Black,
+    background = Color(0xFF2B2B2B),
+    surface = Color(0xFF2B2B2B),
 )
 private val DarkDemoColorPalette = darkDemoColors(
-    sectionTextColor = Color(0xFF157DAC),
-    sectionBgColor = Color(0xFF2B2B2B)
+    sectionTextColor = Color(0xFF5084B8),
+    sectionBgColor = Color(0xFF323232)
 )
 
 // Light

@@ -19,10 +19,8 @@ import com.tustar.demo.ui.SectionView
 import com.tustar.demo.ui.theme.DemoTheme
 
 @Composable
-fun MeScreen(
-    modifier: Modifier
-) {
-    Column(modifier = modifier) {
+fun MeScreen() {
+    Column {
         Image(
             painter = painterResource(id = R.drawable.ic_me_header),
             contentDescription = null,
@@ -67,7 +65,6 @@ fun MeScreen(
         )
     }
 }
-
 
 
 @Composable
