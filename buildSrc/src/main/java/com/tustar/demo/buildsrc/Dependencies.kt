@@ -51,7 +51,7 @@ object Libs {
     object AndroidX {
 
         const val coreKtx = "androidx.core:core-ktx:1.3.2"
-        const val appcompat = "androidx.appcompat:appcompat:1.3.0-beta01"
+        const val appcompat = "androidx.appcompat:appcompat:1.3.0"
         const val recyclerview = "androidx.recyclerview:recyclerview:1.2.1"
         const val annotation = "androidx.annotation:annotation:1.2.0"
         const val vectordrawable = "androidx.vectordrawable:vectordrawable:1.1.0"
@@ -70,7 +70,7 @@ object Libs {
         }
 
         object Navigation {
-            const val compose = "androidx.navigation:navigation-compose:2.4.0-alpha03"
+            const val compose = "androidx.navigation:navigation-compose:2.4.0-alpha04"
 
             private const val version = "2.3.5"
             const val fragmentKtx = "androidx.navigation:navigation-fragment-ktx:$version"

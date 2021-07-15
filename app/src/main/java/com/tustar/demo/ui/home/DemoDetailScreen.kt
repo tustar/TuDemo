@@ -1,40 +1,59 @@
 package com.tustar.demo.ui.home
 
-import android.content.Intent
 import androidx.compose.foundation.layout.Column
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.ui.platform.LocalContext
+import androidx.navigation.NavGraphBuilder
+import androidx.navigation.NavType
+import androidx.navigation.compose.composable
+import androidx.navigation.compose.navArgument
+import androidx.navigation.navDeepLink
 import com.tustar.demo.R
 import com.tustar.demo.ui.DetailTopBar
+import com.tustar.demo.ui.MainDestinations
 import com.tustar.demo.ui.custom.PathMeasureScreen
 import com.tustar.demo.ui.custom.SvgChinaScreen
 import com.tustar.demo.ui.custom.WaveViewScreen
 import com.tustar.demo.ui.motion.MotionBaseScreen
 import com.tustar.demo.ui.motion.MotionImageFilterScreen
+import com.tustar.demo.util.Logger
+
+fun NavGraphBuilder.detail(
+    route: String,
+    content: @Composable (Int) -> Unit
+) {
+    composable(
+        route = route,
+        arguments = listOf(
+            navArgument(MainDestinations.DEMO_ID) { type = NavType.IntType }
+        ),
+        // adb shell am start -d "tustar://demos/compose/2131689632" -a android.intent.action.VIEW
+        deepLinks = listOf(navDeepLink {
+            uriPattern =
+                "tustar://${MainDestinations.DEMO_ROUTE}/{${MainDestinations.DEMO_ID}}"
+        })
+    ) {
+        val arguments = requireNotNull(it.arguments)
+        val demoId = arguments.getInt(MainDestinations.DEMO_ID)
+        val route = route.replace(
+            "{${MainDestinations.DEMO_ID}}",
+            demoId.toString()
+        )
+        Logger.d("route=$route")
+        content(demoId)
+    }
+}
 
 @Composable
-fun DemoDetailDispatcher(demoId: Int, upPress: () -> Unit) {
+fun DemoDetailComposeDispatcher(demoId: Int, upPress: () -> Unit) {
     when (demoId) {
         R.string.custom_wave_view -> WaveViewScreen(demoId, upPress)
         R.string.custom_svg_china -> SvgChinaScreen(demoId, upPress)
         R.string.custom_path_measure -> PathMeasureScreen(demoId, upPress)
         R.string.sys_motion_base -> MotionBaseScreen(demoId, upPress)
         R.string.sys_motion_image_filter_view -> MotionImageFilterScreen(demoId, upPress)
-        R.string.optimize_monitor ->
-            startDemoDetailActivity(demoId)
         else -> DemoDetailScreen(demoId, upPress)
     }
-}
-
-@Composable
-private fun startDemoDetailActivity(demoId: Int) {
-    val context = LocalContext.current
-    context.startActivity(
-        Intent(context, DemoDetailActivity::class.java).apply {
-            putExtra(INTENT_KEY_DEMO_ID, demoId)
-        }
-    )
 }
 
 @Composable

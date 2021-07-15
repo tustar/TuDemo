@@ -122,11 +122,6 @@ dependencies {
     implementation Libs.AndroidX.Navigation.fragmentKtx
     implementation Libs.AndroidX.Navigation.uiKtx
     implementation Libs.AndroidX.Navigation.dynamicFeaturesFragment
-    implementation 'androidx.appcompat:appcompat:1.2.0'
-    implementation 'androidx.constraintlayout:constraintlayout:2.0.4'
-    implementation 'androidx.lifecycle:lifecycle-livedata-ktx:2.3.1'
-    implementation 'androidx.lifecycle:lifecycle-viewmodel-ktx:2.3.1'
-    implementation 'com.google.android.material:material:1.3.0'
     androidTestImplementation Libs.AndroidX.Navigation.testing
     // StartUp
     implementation Libs.AndroidX.StartUp.runtime

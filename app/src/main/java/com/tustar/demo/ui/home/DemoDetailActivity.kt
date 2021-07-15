@@ -5,7 +5,9 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import com.tustar.demo.R
 import com.tustar.demo.ui.optimize.MonitorFragment
+import com.tustar.demo.util.Logger
 import dagger.hilt.android.AndroidEntryPoint
+
 
 const val INTENT_KEY_DEMO_ID = "demoId"
 
@@ -14,6 +16,7 @@ class DemoDetailActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        Logger.d("$savedInstanceState")
         setContentView(R.layout.demo_detail_activity)
 
         val demoId = intent.getIntExtra(INTENT_KEY_DEMO_ID, -1)
