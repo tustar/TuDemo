@@ -7,8 +7,11 @@ import androidx.compose.material.rememberScaffoldState
 import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.geometry.Offset
+import androidx.compose.ui.geometry.RoundRect
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.Path
+import androidx.compose.ui.graphics.TileMode
 import com.tustar.annotation.DemoItem
 import com.tustar.demo.R
 import com.tustar.demo.ui.DetailTopBar
@@ -17,19 +20,11 @@ import kotlinx.coroutines.channels.ticker
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.isActive
 import kotlinx.coroutines.launch
+import java.util.*
+import kotlin.properties.Delegates
 
-val heights = intArrayOf(
-    2, 3, 10, 5, 20, 30, 20, 10, 6, 5,
-    4, 6, 20, 10, 40, 60, 40, 20, 12, 5,
-    2, 3, 10, 5, 20, 30, 20, 10, 6, 5,
-    4, 6, 20, 10, 40, 60, 40, 20, 12, 5,
-    2, 3, 10, 5, 20, 30, 20, 10, 6, 5,
-    4, 6, 20, 10, 40, 60, 40, 20, 12, 5,
-    2, 3, 10, 5, 20, 30, 20, 10, 6, 5,
-    4, 6, 20, 10, 40, 60, 40, 20, 12, 5,
-    2, 5, 10, 6, 2,
-)
 const val MAX_AMPLITUDE = 100.0F
+const val MIN_OFFSET_Y = 6.0F
 
 @DelicateCoroutinesApi
 @DemoItem(
@@ -43,14 +38,14 @@ fun WaveViewScreen(demoItem: Int, upPress: () -> Unit) {
     var currentAmp by remember { mutableStateOf(30) }
     //
     LaunchedEffect(rememberScaffoldState()) {
-        val tickerChannel = ticker(delayMillis = 100, initialDelayMillis = 0)
+        val tickerChannel = ticker(delayMillis = 300, initialDelayMillis = 0)
         val job = launch {
             while (isActive) {
                 tickerChannel.receive()
                 currentAmp = (30..50).random()
             }
         }
-        delay(1_000L)
+        delay(5_000L)
         job.cancel()
         tickerChannel.cancel()
     }
@@ -63,27 +58,64 @@ fun WaveViewScreen(demoItem: Int, upPress: () -> Unit) {
 
 @Composable
 private fun WaveView(currentAmp: Int) {
+    val source = VoiceSource().apply {
+        data = currentAmp
+    }
+    val lineWidth = 6f
+    val lineGap = 6f
+    val radius = 5f
     Canvas(modifier = Modifier.fillMaxSize()) {
         val canvasWidth = size.width
         val canvasHeight = size.height
         val cx = canvasWidth / 2
         val cy = canvasHeight / 2
-        val lineWidth = 6f
-        val lineGap = 6f
-        val startX0 = cx - heights.size / 2 * (lineWidth + lineGap)
-
+        val startX0 = cx - source.queue.size / 2 * (lineWidth + lineGap)
         val scale = currentAmp / MAX_AMPLITUDE
-        heights.forEachIndexed { index, height ->
+        val path = Path()
+        source.queue.forEachIndexed { index, height ->
             val startX = startX0 + index * (lineWidth + lineGap)
-            val lineHeight = height * 10 * scale / 2f
-            drawLine(
-                brush = Brush.linearGradient(
-                    colors = listOf(Color.Red, Color.Blue, Color.Yellow),
-                ),
-                start = Offset(x = startX, y = cy - lineHeight),
-                end = Offset(x = startX, y = cy + lineHeight),
-                strokeWidth = lineWidth,
+            val offsetY = (height * 10 * scale / 2f).coerceAtLeast(MIN_OFFSET_Y)
+            path.addRoundRect(
+                RoundRect(
+                    startX, cy - offsetY, startX + lineWidth, cy + offsetY,
+                    radius, radius
+                )
             )
         }
+        drawPath(
+            path = path,
+            brush = Brush.horizontalGradient(
+                listOf(
+                    Color(0xFF6A55FF),
+                    Color(0xFF51CCF8),
+                    Color(0xFF6A55FF),
+                    Color(0xFF48ECF5),
+                    Color(0xFF704FFF),
+                ),
+            )
+        )
+    }
+}
+
+class VoiceSource {
+    val queue = LinkedList<Int>()
+    private val random = Random()
+    var data: Int by Delegates.observable(30) { _, oldValue, newValue ->
+        if (oldValue != newValue) {
+            queue.clear()
+            for (index in 0 until LIMIT) {
+                queue.add(random.nextInt(data))
+            }
+        }
+    }
+
+    init {
+        for (index in 0 until LIMIT) {
+            queue.add(random.nextInt(100))
+        }
+    }
+
+    companion object {
+        private const val LIMIT = 60
     }
 }

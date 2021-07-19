@@ -101,9 +101,7 @@ fun DemosListView(
             }
 
             items(count = demos.size,
-                key = {
-                    demos[it].item
-                }) {
+                key = { demos[it].item }) {
                 DemoItemView(demos[it], onDemoClick)
             }
         }
