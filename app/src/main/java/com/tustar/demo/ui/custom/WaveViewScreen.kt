@@ -1,8 +1,10 @@
 package com.tustar.demo.ui.custom
 
 import androidx.compose.foundation.Canvas
-import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.background
+import androidx.compose.foundation.layout.*
+import androidx.compose.material.Text
+import androidx.compose.material.TextButton
 import androidx.compose.material.rememberScaffoldState
 import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
@@ -12,6 +14,8 @@ import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.Path
 import androidx.compose.ui.graphics.TileMode
+import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.unit.dp
 import com.tustar.annotation.DemoItem
 import com.tustar.demo.R
 import com.tustar.demo.ui.DetailTopBar
@@ -35,36 +39,43 @@ const val MIN_OFFSET_Y = 6.0F
 )
 @Composable
 fun WaveViewScreen(demoItem: Int, upPress: () -> Unit) {
-    var currentAmp by remember { mutableStateOf(30) }
-    //
-    LaunchedEffect(rememberScaffoldState()) {
-        val tickerChannel = ticker(delayMillis = 300, initialDelayMillis = 0)
-        val job = launch {
-            while (isActive) {
-                tickerChannel.receive()
-                currentAmp = (30..50).random()
-            }
-        }
-        delay(5_000L)
-        job.cancel()
-        tickerChannel.cancel()
-    }
+    var apmState = remember { mutableStateOf(30) }
+
+    val context = LocalContext.current
+    val startAction = { RecorderService.startRecording(context) }
+    val stopAction = { RecorderService.stopRecording(context) }
 
     Column {
         DetailTopBar(demoItem, upPress)
-        WaveView(currentAmp)
+        WaveView(
+            modifier = Modifier
+                .height(300.dp)
+                .fillMaxWidth(), apmState.value
+        )
+        Row(
+            modifier = Modifier
+                .padding(20.dp)
+                .fillMaxWidth()
+        ) {
+            TextButton(onClick = startAction) {
+                Text(text = "Start")
+            }
+            TextButton(onClick = stopAction) {
+                Text(text = "Stop")
+            }
+        }
     }
 }
 
 @Composable
-private fun WaveView(currentAmp: Int) {
+private fun WaveView(modifier: Modifier = Modifier, currentAmp: Int) {
     val source = VoiceSource().apply {
         data = currentAmp
     }
     val lineWidth = 6f
     val lineGap = 6f
     val radius = 5f
-    Canvas(modifier = Modifier.fillMaxSize()) {
+    Canvas(modifier = modifier) {
         val canvasWidth = size.width
         val canvasHeight = size.height
         val cx = canvasWidth / 2

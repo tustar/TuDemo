@@ -21,7 +21,6 @@ import android.app.AppOpsManager
 import android.content.Intent
 import android.os.Bundle
 import androidx.activity.compose.setContent
-import androidx.activity.result.contract.ActivityResultContracts
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.WindowCompat
@@ -30,6 +29,8 @@ import androidx.lifecycle.LifecycleObserver
 import androidx.lifecycle.OnLifecycleEvent
 import androidx.work.*
 import com.tustar.demo.ex.*
+import com.tustar.demo.permisson.PermissionRequest
+import com.tustar.demo.permisson.PermissionsRequest
 import com.tustar.demo.util.LocationHelper
 import com.tustar.demo.util.Logger
 import com.tustar.demo.woker.WeatherWorker
@@ -55,24 +56,35 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    //
-    private val permissions = arrayOf(
-        Manifest.permission.ACCESS_FINE_LOCATION,
-        Manifest.permission.ACCESS_COARSE_LOCATION,
-//        Manifest.permission.ACCESS_BACKGROUND_LOCATION
-    )
-    private val opstrs = arrayOf(
-        AppOpsManager.OPSTR_FINE_LOCATION,
-        AppOpsManager.OPSTR_COARSE_LOCATION
-    )
-    private val requestPermissionLauncher =
-        registerForActivityResult(ActivityResultContracts.RequestMultiplePermissions()) { map ->
 
-
-            if (map.values.all { it }) {
-                getBestLocation()
-            }
-        }
+    private val locationPermissionsRequest = PermissionsRequest(
+        activity = this,
+        params = PermissionsRequest.Params(
+            permissions = arrayOf(
+                Manifest.permission.ACCESS_FINE_LOCATION,
+                Manifest.permission.ACCESS_COARSE_LOCATION,
+//                    Manifest.permission.ACCESS_BACKGROUND_LOCATION
+            ),
+            opstrs = arrayOf(
+                AppOpsManager.OPSTR_FINE_LOCATION,
+                AppOpsManager.OPSTR_COARSE_LOCATION
+            ),
+            success = this::getBestLocation,
+            failure = {
+                viewModel.liveResult.value = AppOpsResult(
+                    visible = true,
+                    rationale = true
+                )
+            },
+        )
+    )
+    private val audioPermissionRequest = PermissionRequest(
+        activity = this,
+        params = PermissionRequest.Params(permission = Manifest.permission.RECORD_AUDIO,
+            opstr = AppOpsManager.OPSTR_RECORD_AUDIO,
+            success = {},
+            failure = {})
+    )
 
     //
     private val viewModel: MainViewModel by viewModels()
@@ -100,33 +112,11 @@ class MainActivity : AppCompatActivity() {
         lifecycle.removeObserver(locationListener)
     }
 
-    private fun requestPermissions() {
-        if (containsIgnore(opstrs)) {
-            Logger.d("containsIgnore")
-            viewModel.liveResult.value = AppOpsResult(
-                visible = true,
-                rationale = true
-            )
-            return
-        }
-
-        if (shouldShowRequestPermissionsRationale(permissions)) {
-            Logger.d("shouldShowRequestPermissionsRationale")
-            requestPermissionLauncher.launch(permissions)
-            return
-        }
-
-        if (!isPermissionsGranted(permissions)) {
-            Logger.d("!isPermissionsGranted")
-            requestPermissionLauncher.launch(permissions)
-            return
-        }
-    }
 
     private fun getBestLocation() {
         Logger.i()
-        if (!isPermissionsGranted(permissions)) {
-            requestPermissions()
+        if (!locationPermissionsRequest.isGranted()) {
+            locationPermissionsRequest.request()
             return
         }
 

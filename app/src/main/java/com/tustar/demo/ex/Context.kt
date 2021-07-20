@@ -53,7 +53,7 @@ fun Context.isPermissionsAllowed(permissions: Array<String>): Boolean {
     }
 }
 
-fun Context.containsIgnore(opstrs: Array<String>): Boolean {
+fun Context.containsIgnoreOpstrs(opstrs: Array<String>): Boolean {
     val appOpsManager = getSystemService(Context.APP_OPS_SERVICE) as AppOpsManager
     return opstrs.any {
         appOpsManager.checkOpNoThrow(
@@ -62,6 +62,15 @@ fun Context.containsIgnore(opstrs: Array<String>): Boolean {
             packageName
         ) == AppOpsManager.MODE_IGNORED
     }
+}
+
+fun Context.containsIgnoreOpstr(opstr: String): Boolean {
+    val appOpsManager = getSystemService(Context.APP_OPS_SERVICE) as AppOpsManager
+    return appOpsManager.checkOpNoThrow(
+        opstr,
+        Binder.getCallingUid(),
+        packageName
+    ) == AppOpsManager.MODE_IGNORED
 }
 
 fun Activity.shouldShowRequestPermissionsRationale(permissions: Array<String>): Boolean {

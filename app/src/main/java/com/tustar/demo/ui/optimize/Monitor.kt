@@ -13,6 +13,15 @@ import java.nio.file.Paths
 object Monitor {
     private const val LIB_NAME = "monitor_agent"
     fun init(application: Application) {
+        System.loadLibrary(LIB_NAME)
+        //创建日志存放目录：/sdcard/Android/data/packagename/files/monitor
+        val file = application.getExternalFilesDir("")
+        val root = File(file, "Monitor")
+        root.mkdirs()
+        nInit(root.absolutePath)
+    }
+
+    fun init2(application: Application) {
         // 最低支持 Android 8.0
         if (Build.VERSION.SDK_INT < Build.VERSION_CODES.O) {
             return

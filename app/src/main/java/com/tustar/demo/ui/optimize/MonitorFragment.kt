@@ -28,10 +28,10 @@ class MonitorFragment : Fragment() {
 
     private val binding: MonitorFragmentBinding by bind()
 
-    override fun onAttach(context: Context) {
-        super.onAttach(context)
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
         activity?.application?.let {
-//            Monitor.init(it)
+            Monitor.init(it)
         }
     }
 
@@ -64,7 +64,7 @@ class MonitorFragment : Fragment() {
 
     override fun onDestroy() {
         super.onDestroy()
-//        Monitor.release()
+        Monitor.release()
     }
 
     private fun create() {
