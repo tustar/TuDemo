@@ -1,4 +1,4 @@
-package com.tustar.demo.ex
+package com.tustar.demo.ktx
 
 import android.app.Activity
 import android.app.Dialog
@@ -9,7 +9,6 @@ import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.LifecycleObserver
 import androidx.lifecycle.OnLifecycleEvent
 import androidx.viewbinding.ViewBinding
-import com.tustar.demo.util.Logger
 import kotlin.properties.ReadOnlyProperty
 import kotlin.reflect.KProperty
 

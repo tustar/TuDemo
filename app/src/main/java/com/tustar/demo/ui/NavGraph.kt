@@ -9,10 +9,8 @@ import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavBackStackEntry
 import androidx.navigation.NavHostController
-import androidx.navigation.activity
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
-import androidx.navigation.compose.navArgument
 import androidx.navigation.compose.rememberNavController
 import com.tustar.demo.R
 import com.tustar.demo.ui.MainDestinations.DEMO_DETAIL_ANDROID_ROUTE
@@ -57,8 +55,9 @@ fun NavGraph(
         }
         detail(route = "${DEMO_DETAIL_COMPOSE_ROUTE}/{$DEMO_ID}") {
             DemoDetailComposeDispatcher(
+                viewModel = viewModel,
                 demoId = it,
-                upPress = { actions.upPress() }
+                upPress = { actions.upPress() },
             )
         }
         detail(route = "${DEMO_DETAIL_ANDROID_ROUTE}/{$DEMO_ID}") {

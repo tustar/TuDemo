@@ -11,13 +11,11 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.livedata.observeAsState
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.tustar.demo.R
-import com.tustar.demo.ex.openSettings
-import com.tustar.demo.ex.topAppBar
+import com.tustar.demo.ktx.topAppBar
 import com.tustar.demo.ui.theme.DemoTheme
 import com.tustar.demo.util.Logger
 
@@ -40,24 +38,25 @@ fun DetailTopBar(demoItem: Int, upPress: () -> Unit) {
 }
 
 @Composable
-fun ShowLocationDialog(viewModel: MainViewModel) {
-
-    val context = LocalContext.current
-    val opsResult by viewModel.liveResult.observeAsState(
+fun ShowPermissionDialog(viewModel: MainViewModel) {
+    val result by viewModel.liveResult.observeAsState(
         initial = AppOpsResult()
     )
-    Logger.d("$opsResult")
-    if (!opsResult.visible) {
+    Logger.d("$result")
+    PermissionDialogContent(result = result) {
+        viewModel.liveResult.value = AppOpsResult()
+    }
+}
+
+@Composable
+fun PermissionDialogContent(result: AppOpsResult, dismissAction: () -> Unit) {
+    if (!result.visible) {
         return
     }
-    val title = if (opsResult.rationale) R.string.dlg_title_location_permissons else
-        R.string.dlg_title_location_enable
+    val title = result.title
     val confirmAction = {
-        context.openSettings(opsResult.rationale)
-        viewModel.liveResult.value = AppOpsResult()
-    }
-    val dismissAction = {
-        viewModel.liveResult.value = AppOpsResult()
+        result.nextAction()
+        dismissAction()
     }
 
     AlertDialog(
@@ -87,7 +86,6 @@ fun ShowLocationDialog(viewModel: MainViewModel) {
             Text(
                 text = stringResource(id = R.string.dlg_not_now),
                 style = DemoTheme.typography.button,
-//                                color = DemoTheme.colors.primary,
                 fontSize = 14.sp,
                 modifier = Modifier
                     .clickable {

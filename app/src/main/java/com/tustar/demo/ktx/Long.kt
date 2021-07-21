@@ -1,4 +1,4 @@
-package com.tustar.demo.ex
+package com.tustar.demo.ktx
 
 import android.annotation.SuppressLint
 import java.text.SimpleDateFormat

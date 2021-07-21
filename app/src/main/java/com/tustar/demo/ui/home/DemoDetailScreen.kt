@@ -11,9 +11,10 @@ import androidx.navigation.navDeepLink
 import com.tustar.demo.R
 import com.tustar.demo.ui.DetailTopBar
 import com.tustar.demo.ui.MainDestinations
+import com.tustar.demo.ui.MainViewModel
 import com.tustar.demo.ui.custom.PathMeasureScreen
 import com.tustar.demo.ui.custom.SvgChinaScreen
-import com.tustar.demo.ui.custom.WaveViewScreen
+import com.tustar.demo.ui.recorder.RecorderScreen
 import com.tustar.demo.ui.motion.MotionBaseScreen
 import com.tustar.demo.ui.motion.MotionImageFilterScreen
 import com.tustar.demo.util.Logger
@@ -45,9 +46,12 @@ fun NavGraphBuilder.detail(
 }
 
 @Composable
-fun DemoDetailComposeDispatcher(demoId: Int, upPress: () -> Unit) {
+fun DemoDetailComposeDispatcher(
+    viewModel: MainViewModel, demoId: Int,
+    upPress: () -> Unit,
+) {
     when (demoId) {
-        R.string.custom_wave_view -> WaveViewScreen(demoId, upPress)
+        R.string.custom_wave_view -> RecorderScreen(viewModel, demoId, upPress)
         R.string.custom_svg_china -> SvgChinaScreen(demoId, upPress)
         R.string.custom_path_measure -> PathMeasureScreen(demoId, upPress)
         R.string.sys_motion_base -> MotionBaseScreen(demoId, upPress)

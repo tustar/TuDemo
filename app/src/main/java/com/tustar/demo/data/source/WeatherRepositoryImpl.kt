@@ -3,10 +3,7 @@ package com.tustar.demo.data.source
 import com.amap.api.location.AMapLocation
 import com.tustar.demo.data.Weather
 import com.tustar.demo.data.source.remote.HeService
-import com.tustar.demo.ex.toParams
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.flow.flow
-import kotlinx.coroutines.flow.flowOn
+import com.tustar.demo.ktx.toParams
 import javax.inject.Inject
 
 class WeatherRepositoryImpl @Inject constructor(

@@ -15,11 +15,12 @@
  */
 package com.tustar.demo.ui
 
-import android.Manifest
 import android.annotation.SuppressLint
-import android.app.AppOpsManager
+import android.content.ComponentName
 import android.content.Intent
+import android.content.ServiceConnection
 import android.os.Bundle
+import android.os.IBinder
 import androidx.activity.compose.setContent
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
@@ -28,9 +29,11 @@ import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.LifecycleObserver
 import androidx.lifecycle.OnLifecycleEvent
 import androidx.work.*
-import com.tustar.demo.ex.*
-import com.tustar.demo.permisson.PermissionRequest
-import com.tustar.demo.permisson.PermissionsRequest
+import com.tustar.demo.R
+import com.tustar.demo.ktx.*
+import com.tustar.demo.ui.recorder.OnRecorderListener
+import com.tustar.demo.ui.recorder.RecorderInfo
+import com.tustar.demo.ui.recorder.RecorderService
 import com.tustar.demo.util.LocationHelper
 import com.tustar.demo.util.Logger
 import com.tustar.demo.woker.WeatherWorker
@@ -39,7 +42,7 @@ import dagger.hilt.android.AndroidEntryPoint
 
 @SuppressLint("NewApi")
 @AndroidEntryPoint
-class MainActivity : AppCompatActivity() {
+class MainActivity : AppCompatActivity(), OnRecorderListener {
 
     // Location
     private val locationListener by lazy {
@@ -56,35 +59,19 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
+    private var recorderService: RecorderService? = null
+    private var conn: ServiceConnection = object : ServiceConnection {
+        override fun onServiceConnected(name: ComponentName, service: IBinder) {
+            Logger.i()
+            val binder = service as RecorderService.RecorderBinder
+            recorderService = binder.getService()
+            recorderService?.addOnRecorderListener(this@MainActivity)
+        }
 
-    private val locationPermissionsRequest = PermissionsRequest(
-        activity = this,
-        params = PermissionsRequest.Params(
-            permissions = arrayOf(
-                Manifest.permission.ACCESS_FINE_LOCATION,
-                Manifest.permission.ACCESS_COARSE_LOCATION,
-//                    Manifest.permission.ACCESS_BACKGROUND_LOCATION
-            ),
-            opstrs = arrayOf(
-                AppOpsManager.OPSTR_FINE_LOCATION,
-                AppOpsManager.OPSTR_COARSE_LOCATION
-            ),
-            success = this::getBestLocation,
-            failure = {
-                viewModel.liveResult.value = AppOpsResult(
-                    visible = true,
-                    rationale = true
-                )
-            },
-        )
-    )
-    private val audioPermissionRequest = PermissionRequest(
-        activity = this,
-        params = PermissionRequest.Params(permission = Manifest.permission.RECORD_AUDIO,
-            opstr = AppOpsManager.OPSTR_RECORD_AUDIO,
-            success = {},
-            failure = {})
-    )
+        override fun onServiceDisconnected(name: ComponentName) {
+            Logger.i()
+        }
+    }
 
     //
     private val viewModel: MainViewModel by viewModels()
@@ -96,10 +83,14 @@ class MainActivity : AppCompatActivity() {
         WindowCompat.setDecorFitsSystemWindows(window, false)
 
         setContent {
-            DemoApp(viewModel) { getBestLocation() }
+            DemoApp(
+                viewModel,
+                updateLocation = { locationHelper.startLocation() }
+            )
         }
 
         lifecycle.addObserver(locationListener)
+        RecorderService.bindService(this, conn)
     }
 
     override fun onNewIntent(intent: Intent?) {
@@ -107,37 +98,18 @@ class MainActivity : AppCompatActivity() {
         Logger.d("intent=$intent")
     }
 
+    override fun onRecorderChanged(info: RecorderInfo) {
+        viewModel.liveRecorderInfo.value = info
+    }
+
     override fun onDestroy() {
         super.onDestroy()
         lifecycle.removeObserver(locationListener)
-    }
-
-
-    private fun getBestLocation() {
-        Logger.i()
-        if (!locationPermissionsRequest.isGranted()) {
-            locationPermissionsRequest.request()
-            return
-        }
-
-        val visible = !isLocationEnable()
-        viewModel.liveResult.value = AppOpsResult(visible)
-        if (visible) {
-            return
-        }
-
-        locationHelper.startLocation()
+        recorderService?.removeOnRecorderListener(this)
+        unbindService(conn)
     }
 
     inner class LocationListener : LifecycleObserver {
-
-        @OnLifecycleEvent(Lifecycle.Event.ON_START)
-        fun start() {
-            Logger.i()
-            // connect
-            getBestLocation()
-        }
-
 
         @OnLifecycleEvent(Lifecycle.Event.ON_STOP)
         fun stop() {

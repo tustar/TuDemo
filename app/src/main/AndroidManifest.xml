@@ -57,9 +57,9 @@
             android:theme="@style/AppTheme" />
 
         <service
-            android:name=".ui.custom.RecorderService"
-            android:enabled="false"
-            android:exported="false" />
+            android:name=".ui.recorder.RecorderService"
+            android:enabled="true"
+            android:exported="true" />
 
         <meta-data
             android:name="com.amap.api.v2.apikey"

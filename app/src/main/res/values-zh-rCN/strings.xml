@@ -1,6 +1,10 @@
 <resources>
     <string name="app_name">码农世界</string>
     <string name="back">返回</string>
+    <string name="start">开始</string>
+    <string name="pause">暂停</string>
+    <string name="resume">继续</string>
+    <string name="stop">停止</string>
     <!-- Title -->
     <string name="title_home">范例</string>
     <string name="title_weather">天气</string>
@@ -8,6 +12,7 @@
     <!-- Dialog -->
     <string name="dlg_title_location_enable">获取天气需要打开定位开关</string>
     <string name="dlg_title_location_permissons">获取天气需要授予定位权限</string>
+    <string name="dlg_title_audio_permisson">录音需要授予录音权限</string>
     <string name="dlg_not_now">暂不开启</string>
     <string name="dlg_to_setting">去设置</string>
     <!-- Group -->

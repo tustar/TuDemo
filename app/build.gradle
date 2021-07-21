@@ -22,7 +22,7 @@ android {
 
     defaultConfig {
         applicationId "com.tustar.demo"
-        minSdkVersion 23
+        minSdkVersion 24
         targetSdkVersion 30
         versionCode verCode
         versionName verName
@@ -161,6 +161,7 @@ dependencies {
     // Accompanist
     implementation Libs.Accompanist.coil
     implementation Libs.Accompanist.insets
+    implementation Libs.Accompanist.permissions
     // Test
     testImplementation Libs.JUnit.junit
     androidTestImplementation Libs.AndroidX.Test.Ext.junit

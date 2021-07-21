@@ -1,5 +1,7 @@
 package com.tustar.demo.ui.home
 
+import android.Manifest
+import android.app.AppOpsManager
 import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
@@ -7,24 +9,25 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
-import androidx.compose.foundation.lazy.rememberLazyListState
 import androidx.compose.material.Text
 import androidx.compose.material.TopAppBar
-import androidx.compose.runtime.Composable
-import androidx.compose.runtime.collectAsState
-import androidx.compose.runtime.getValue
+import androidx.compose.runtime.*
 import androidx.compose.runtime.livedata.observeAsState
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
+import com.google.accompanist.permissions.ExperimentalPermissionsApi
+import com.google.accompanist.permissions.rememberMultiplePermissionsState
 import com.tustar.demo.R
 import com.tustar.demo.data.DemoItem
-import com.tustar.demo.data.Weather
-import com.tustar.demo.ex.topAppBar
+import com.tustar.demo.ktx.*
+import com.tustar.demo.ui.AppOpsResult
 import com.tustar.demo.ui.MainViewModel
 import com.tustar.demo.ui.SectionView
+import com.tustar.demo.ui.ShowPermissionDialog
 import com.tustar.demo.ui.theme.DemoTheme
 import com.tustar.demo.util.Logger
 
@@ -34,30 +37,29 @@ fun DemosScreen(
     updateLocation: () -> Unit,
     onDemoClick: (Int) -> Unit,
 ) {
-    val weather by viewModel.liveWeather.observeAsState()
     val grouped by viewModel.createDemos().collectAsState(initial = mapOf())
 
-    DemosContent(weather, updateLocation, grouped, onDemoClick)
-}
-
-@Composable
-private fun DemosContent(
-    weather: Weather?,
-    updateLocation: () -> Unit,
-    grouped: Map<Int, List<DemoItem>>,
-    onDemoClick: (Int) -> Unit
-) {
     Column {
-        DemosTopBar(weather, updateLocation)
+        DemosTopBar(viewModel, updateLocation)
         DemosListView(grouped, onDemoClick)
     }
 }
 
+@OptIn(ExperimentalPermissionsApi::class)
 @Composable
 fun DemosTopBar(
-    weather: Weather?,
+    viewModel: MainViewModel,
     updateLocation: () -> Unit,
 ) {
+    val context = LocalContext.current
+    val weather by viewModel.liveWeather.observeAsState()
+    //
+    val multiplePermissionsState = rememberMultiplePermissionsState(
+        listOf(
+            Manifest.permission.ACCESS_FINE_LOCATION,
+            Manifest.permission.ACCESS_COARSE_LOCATION,
+        )
+    )
     Logger.d("$weather")
     TopAppBar(
         title = {
@@ -65,6 +67,47 @@ fun DemosTopBar(
         },
         modifier = Modifier.topAppBar(),
         actions = {
+            Logger.d(
+                "shouldShowRationale = ${multiplePermissionsState.shouldShowRationale}, " +
+                        "permissionRequested = ${multiplePermissionsState.permissionRequested}"
+            )
+            when {
+                // If all permissions are granted, then show screen with the feature enabled
+                multiplePermissionsState.allPermissionsGranted -> {
+                    // Location Service disable
+                    if (!context.isLocationEnable()) {
+                        viewModel.liveResult.value = AppOpsResult(
+                            true,
+                            R.string.dlg_title_location_enable
+                        ) { context.actionLocationSourceSettings() }
+                        ShowPermissionDialog(viewModel = viewModel)
+                    }
+                    //
+                    else {
+                        SideEffect {
+                            updateLocation()
+                        }
+                    }
+                }
+                // If the user denied any permission but a rationale should be shown, or the user sees
+                // the permissions for the first time, explain why the feature is needed by the app and
+                // allow the user decide if they don't want to see the rationale any more.
+                multiplePermissionsState.shouldShowRationale || !multiplePermissionsState.permissionRequested -> {
+                    SideEffect {
+                        multiplePermissionsState.launchMultiplePermissionRequest()
+                    }
+                }
+                //
+                context.containsIgnoreOpstrs(
+                    arrayOf(AppOpsManager.OPSTR_FINE_LOCATION, AppOpsManager.OPSTR_COARSE_LOCATION)
+                ) -> {
+                    viewModel.liveResult.value = AppOpsResult(
+                        true,
+                        R.string.dlg_title_location_permissons
+                    ) { context.actionApplicationDetailsSettings() }
+                    ShowPermissionDialog(viewModel = viewModel)
+                }
+            }
             weather?.let {
                 Column(
                     modifier = Modifier.clickable {

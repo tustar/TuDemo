@@ -1,4 +1,4 @@
-package com.tustar.demo.ex
+package com.tustar.demo.ktx
 
 import android.text.TextUtils
 import com.amap.api.location.AMapLocation

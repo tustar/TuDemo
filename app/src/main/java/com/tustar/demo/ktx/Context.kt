@@ -1,4 +1,4 @@
-package com.tustar.demo.ex
+package com.tustar.demo.ktx
 
 import android.app.Activity
 import android.app.AppOpsManager
@@ -85,15 +85,15 @@ fun Context.isPermissionsGranted(permissions: Array<String>): Boolean {
     }
 }
 
-fun Context.openSettings(rationale: Boolean) {
-    val intent = Intent().apply {
-        flags = Intent.FLAG_ACTIVITY_NEW_TASK
-        if (rationale) {
-            action = Settings.ACTION_APPLICATION_DETAILS_SETTINGS
-            data = Uri.parse("package:$packageName")
-        } else {
-            action = Settings.ACTION_LOCATION_SOURCE_SETTINGS
-        }
-    }
-    startActivity(intent)
+fun Context.actionLocationSourceSettings() {
+    startActivity(Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS))
+}
+
+fun Context.actionApplicationDetailsSettings() {
+    startActivity(
+        Intent(
+            Settings.ACTION_APPLICATION_DETAILS_SETTINGS,
+            Uri.fromParts("package", packageName, null)
+        )
+    )
 }

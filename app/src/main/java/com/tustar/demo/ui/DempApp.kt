@@ -39,7 +39,7 @@ fun DemoApp(
                 )
             }
 
-            ShowLocationDialog(viewModel)
+            ShowPermissionDialog(viewModel)
         }
     }
 }

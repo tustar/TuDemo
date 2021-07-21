@@ -1,4 +1,4 @@
-package com.tustar.demo.ui.custom
+package com.tustar.demo.ui.recorder
 
 import android.content.ContentResolver
 import android.content.ContentValues
@@ -40,7 +40,7 @@ object RecorderDao {
             put(MediaStore.Audio.Media.IS_MUSIC, "0")
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
                 put(MediaStore.Audio.Media.IS_PENDING, 1)
-                put(MediaStore.MediaColumns.RELATIVE_PATH, "${Environment.DIRECTORY_MUSIC}demo")
+                put(MediaStore.MediaColumns.RELATIVE_PATH, "${Environment.DIRECTORY_MUSIC}/recorder")
             }
         }
 
