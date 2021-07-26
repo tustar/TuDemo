@@ -1,10 +1,13 @@
 package com.tustar.demo.ui.recorder
 
 import android.Manifest
+import android.content.Context
+import android.content.pm.PackageManager
 import androidx.compose.foundation.layout.*
 import androidx.compose.material.Button
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.livedata.observeAsState
 import androidx.compose.ui.Modifier
@@ -12,6 +15,7 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.core.content.ContextCompat
 import com.google.accompanist.permissions.ExperimentalPermissionsApi
 import com.google.accompanist.permissions.PermissionRequired
 import com.google.accompanist.permissions.rememberPermissionState
@@ -53,10 +57,11 @@ fun RecorderScreen(
         DetailTopBar(demoItem, upPress)
         WaveView(
             modifier = Modifier
-                .height(300.dp)
+                .height(500.dp)
                 .fillMaxWidth(),
             info.maxAmplitude.coerceAtLeast(4)
         )
+
         PermissionRequired(
             permissionState = permissionState,
             permissionNotGrantedContent = {
@@ -64,16 +69,24 @@ fun RecorderScreen(
             },
             permissionNotAvailableContent = {
                 RecorderButtons(startAction = { permissionState.launchPermissionRequest() })
-                viewModel.liveResult.value = AppOpsResult(
-                    true,
-                    R.string.dlg_title_audio_permisson
-                ) { context.actionApplicationDetailsSettings() }
-                ShowPermissionDialog(viewModel = viewModel)
+                PermissionsDenied(context, viewModel)
             }
         ) {
             RecorderButtons(info, startAction, pauseAction, resumeAction, stopAction)
         }
     }
+}
+
+@Composable
+private fun PermissionsDenied(
+    context: Context,
+    viewModel: MainViewModel
+) {
+    viewModel.liveResult.value = AppOpsResult(
+        true,
+        R.string.dlg_title_audio_permisson
+    ) { context.actionApplicationDetailsSettings() }
+    ShowPermissionDialog(viewModel = viewModel)
 }
 
 @Composable
