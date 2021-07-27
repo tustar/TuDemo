@@ -24,6 +24,7 @@
     <string name="custom_svg_china">Svg China Map</string>
     <string name="custom_path_measure">Custom PathMeasureView</string>
     <string name="custom_wave_view">WaveView</string>
+    <string name="custom_composes_example">Composes Example</string>
     <!-- Optimize  -->
     <string name="optimize_lazy_fragment">Lazy Fragment</string>
     <string name="optimize_monitor">Monitor</string>

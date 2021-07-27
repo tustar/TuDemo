@@ -17,7 +17,6 @@ import java.io.FileNotFoundException
 import java.lang.ref.WeakReference
 import java.text.SimpleDateFormat
 import java.util.*
-import kotlin.math.log10
 
 
 class RecorderService : Service() {

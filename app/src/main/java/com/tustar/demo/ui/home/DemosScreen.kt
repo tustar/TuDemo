@@ -1,8 +1,5 @@
 package com.tustar.demo.ui.home
 
-import android.Manifest
-import android.app.AppOpsManager
-import android.content.Context
 import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
@@ -12,45 +9,38 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.material.Text
 import androidx.compose.material.TopAppBar
-import androidx.compose.runtime.*
+import androidx.compose.runtime.Composable
+import androidx.compose.runtime.collectAsState
+import androidx.compose.runtime.getValue
 import androidx.compose.runtime.livedata.observeAsState
-import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
-import com.google.accompanist.permissions.ExperimentalPermissionsApi
-import com.google.accompanist.permissions.rememberMultiplePermissionsState
 import com.tustar.demo.R
 import com.tustar.demo.data.DemoItem
 import com.tustar.demo.data.Weather
-import com.tustar.demo.ktx.*
-import com.tustar.demo.ui.*
+import com.tustar.demo.ktx.topAppBar
+import com.tustar.demo.ui.LocalMainViewModel
+import com.tustar.demo.ui.SectionView
 import com.tustar.demo.ui.theme.DemoTheme
 import com.tustar.demo.util.Logger
 
 @Composable
 fun DemosScreen(
-    viewModel: MainViewModel,
     updateLocation: () -> Unit,
     onDemoClick: (Int) -> Unit,
 ) {
-    val grouped by viewModel.createDemos().collectAsState(initial = mapOf())
-
     Column {
-        DemosTopBar(viewModel, updateLocation)
-        DemosListView(grouped, onDemoClick)
+        DemosTopBar(updateLocation)
+        DemosListView(onDemoClick)
     }
 }
 
 @Composable
-fun DemosTopBar(
-    viewModel: MainViewModel,
-    updateLocation: () -> Unit,
-) {
-    val context = LocalContext.current
+fun DemosTopBar(updateLocation: () -> Unit) {
+    val viewModel = LocalMainViewModel.current
     val weather by viewModel.liveWeather.observeAsState()
     Logger.d("$weather")
     TopAppBar(
@@ -59,7 +49,7 @@ fun DemosTopBar(
         },
         modifier = Modifier.topAppBar(),
         actions = {
-            LocationPermissionsRequest(context, viewModel, updateLocation)
+            LocationPermissionsRequest(updateLocation)
             weather?.let {
                 WeatherActionItem(it, updateLocation)
             }
@@ -93,10 +83,9 @@ private fun WeatherActionItem(
 
 @OptIn(ExperimentalFoundationApi::class)
 @Composable
-fun DemosListView(
-    grouped: Map<Int, List<DemoItem>>,
-    onDemoClick: (Int) -> Unit
-) {
+fun DemosListView(onDemoClick: (Int) -> Unit) {
+    val viewModel = LocalMainViewModel.current
+    val grouped by viewModel.createDemos().collectAsState(initial = mapOf())
     LazyColumn(verticalArrangement = Arrangement.spacedBy(4.dp)) {
         grouped.forEach { (group, demos) ->
             stickyHeader {

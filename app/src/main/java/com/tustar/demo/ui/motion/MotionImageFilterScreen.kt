@@ -18,9 +18,9 @@ import com.tustar.demo.ui.DetailTopBar
     updatedAt = "2021-07-02 16:10:00",
 )
 @Composable
-fun MotionImageFilterScreen(demoItem: Int, upPress: () -> Unit) {
+fun MotionImageFilterScreen() {
     Column {
-        DetailTopBar(demoItem, upPress)
+        DetailTopBar()
         MotionImageFilterView()
     }
 }

@@ -20,7 +20,6 @@ import androidx.compose.material.*
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.runtime.remember
-import androidx.compose.runtime.staticCompositionLocalOf
 import androidx.compose.ui.graphics.Color
 
 // Dark
@@ -107,8 +106,4 @@ fun ProvideDemoColors(
     }
     colorPalette.update(colors)
     CompositionLocalProvider(LocalDemoColors provides colorPalette, content = content)
-}
-
-private val LocalDemoColors = staticCompositionLocalOf<DemoColors> {
-    error("No DemoColorPalette provided")
 }

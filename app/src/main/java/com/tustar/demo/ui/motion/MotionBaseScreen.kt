@@ -17,9 +17,9 @@ import com.tustar.demo.ui.DetailTopBar
     updatedAt = "2021-02-18 15:28:00",
 )
 @Composable
-fun MotionBaseScreen(demoItem: Int, upPress: () -> Unit) {
+fun MotionBaseScreen() {
     Column {
-        DetailTopBar(demoItem, upPress)
+        DetailTopBar()
         MotionBaseView()
     }
 }

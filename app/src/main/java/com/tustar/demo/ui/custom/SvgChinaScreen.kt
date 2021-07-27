@@ -20,9 +20,9 @@ import com.tustar.demo.widget.SvgMapView
     updatedAt = "2021-07-02 10:56:00",
 )
 @Composable
-fun SvgChinaScreen(demoItem: Int, upPress: () -> Unit) {
+fun SvgChinaScreen() {
     Column {
-        DetailTopBar(demoItem, upPress)
+        DetailTopBar()
         SvgMapView()
     }
 }

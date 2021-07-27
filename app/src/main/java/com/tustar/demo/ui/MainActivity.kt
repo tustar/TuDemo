@@ -24,12 +24,13 @@ import android.os.IBinder
 import androidx.activity.compose.setContent
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
+import androidx.compose.runtime.CompositionLocalProvider
 import androidx.core.view.WindowCompat
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.LifecycleObserver
 import androidx.lifecycle.OnLifecycleEvent
 import androidx.work.*
-import com.tustar.demo.R
+import com.google.accompanist.insets.ProvideWindowInsets
 import com.tustar.demo.ktx.*
 import com.tustar.demo.ui.recorder.OnRecorderListener
 import com.tustar.demo.ui.recorder.RecorderInfo
@@ -83,12 +84,14 @@ class MainActivity : AppCompatActivity(), OnRecorderListener {
         WindowCompat.setDecorFitsSystemWindows(window, false)
 
         setContent {
-            DemoApp(
-                viewModel,
-                updateLocation = { locationHelper.startLocation() }
-            )
+            ProvideWindowInsets {
+                CompositionLocalProvider(
+                    LocalMainViewModel provides viewModel
+                ) {
+                    DemoApp { locationHelper.startLocation() }
+                }
+            }
         }
-
         lifecycle.addObserver(locationListener)
         RecorderService.bindService(this, conn)
     }

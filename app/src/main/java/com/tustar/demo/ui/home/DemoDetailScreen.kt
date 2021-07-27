@@ -10,13 +10,14 @@ import androidx.navigation.compose.navArgument
 import androidx.navigation.navDeepLink
 import com.tustar.demo.R
 import com.tustar.demo.ui.DetailTopBar
+import com.tustar.demo.ui.LocalDemoId
 import com.tustar.demo.ui.MainDestinations
-import com.tustar.demo.ui.MainViewModel
+import com.tustar.demo.ui.custom.ComposesScreens
 import com.tustar.demo.ui.custom.PathMeasureScreen
 import com.tustar.demo.ui.custom.SvgChinaScreen
-import com.tustar.demo.ui.recorder.RecorderScreen
 import com.tustar.demo.ui.motion.MotionBaseScreen
 import com.tustar.demo.ui.motion.MotionImageFilterScreen
+import com.tustar.demo.ui.recorder.RecorderScreen
 import com.tustar.demo.util.Logger
 
 fun NavGraphBuilder.detail(
@@ -46,24 +47,22 @@ fun NavGraphBuilder.detail(
 }
 
 @Composable
-fun DemoDetailComposeDispatcher(
-    viewModel: MainViewModel, demoId: Int,
-    upPress: () -> Unit,
-) {
-    when (demoId) {
-        R.string.custom_wave_view -> RecorderScreen(viewModel, demoId, upPress)
-        R.string.custom_svg_china -> SvgChinaScreen(demoId, upPress)
-        R.string.custom_path_measure -> PathMeasureScreen(demoId, upPress)
-        R.string.sys_motion_base -> MotionBaseScreen(demoId, upPress)
-        R.string.sys_motion_image_filter_view -> MotionImageFilterScreen(demoId, upPress)
-        else -> DemoDetailScreen(demoId, upPress)
+fun DemoDetailComposeDispatcher() {
+    when (LocalDemoId.current) {
+        R.string.custom_wave_view -> RecorderScreen()
+        R.string.custom_svg_china -> SvgChinaScreen()
+        R.string.custom_path_measure -> PathMeasureScreen()
+        R.string.sys_motion_base -> MotionBaseScreen()
+        R.string.sys_motion_image_filter_view -> MotionImageFilterScreen()
+        R.string.custom_composes_example -> ComposesScreens()
+        else -> DemoDetailScreen()
     }
 }
 
 @Composable
-fun DemoDetailScreen(demoItem: Int, upPress: () -> Unit) {
+fun DemoDetailScreen() {
     Column {
-        DetailTopBar(demoItem, upPress)
+        DetailTopBar()
         Text(text = "待完善")
     }
 }

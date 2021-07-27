@@ -8,7 +8,6 @@ import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.Path
 import java.util.*
-import kotlin.math.log10
 import kotlin.properties.Delegates
 
 @Composable

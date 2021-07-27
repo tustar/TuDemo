@@ -3,10 +3,10 @@ package com.tustar.demo.ui
 import android.content.Context
 import android.content.Intent
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.runtime.remember
 import androidx.compose.ui.platform.LocalContext
 import androidx.lifecycle.Lifecycle
-import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavBackStackEntry
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
@@ -36,7 +36,6 @@ object MainDestinations {
 
 @Composable
 fun NavGraph(
-    viewModel: MainViewModel = viewModel(),
     updateLocation: () -> Unit = {},
     navController: NavHostController = rememberNavController(),
     startDestination: String = DEMO_ROUTE,
@@ -48,17 +47,18 @@ fun NavGraph(
     ) {
         composable(DEMO_ROUTE) {
             DemosScreen(
-                viewModel = viewModel,
                 updateLocation = updateLocation,
                 onDemoClick = actions.openDemo,
             )
         }
         detail(route = "${DEMO_DETAIL_COMPOSE_ROUTE}/{$DEMO_ID}") {
-            DemoDetailComposeDispatcher(
-                viewModel = viewModel,
-                demoId = it,
-                upPress = { actions.upPress() },
-            )
+            CompositionLocalProvider(
+                LocalBackPressedDispatcher provides { navController.navigateUp() },
+                LocalDemoId provides it
+            ) {
+                DemoDetailComposeDispatcher()
+            }
+
         }
         detail(route = "${DEMO_DETAIL_ANDROID_ROUTE}/{$DEMO_ID}") {
             actions.startDemoDetailActivity(LocalContext.current, it)
@@ -88,8 +88,6 @@ class MainActions(navController: NavHostController) {
             }
         )
     }
-
-    val upPress = { navController.navigateUp() }
 }
 
 

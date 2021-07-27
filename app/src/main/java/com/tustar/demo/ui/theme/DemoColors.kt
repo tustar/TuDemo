@@ -1,9 +1,6 @@
 package com.tustar.demo.ui.theme
 
-import androidx.compose.runtime.Stable
-import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.setValue
+import androidx.compose.runtime.*
 import androidx.compose.ui.graphics.Color
 
 @Stable
@@ -41,3 +38,7 @@ fun lightDemoColors(
     sectionTextColor: Color = Color.Black,
     sectionBgColor: Color = Color.White,
 ) = DemoColors(sectionTextColor, sectionBgColor, true)
+
+internal val LocalDemoColors = staticCompositionLocalOf<DemoColors> {
+    error("No DemoColorPalette provided")
+}

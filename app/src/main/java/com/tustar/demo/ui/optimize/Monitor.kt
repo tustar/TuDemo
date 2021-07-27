@@ -6,7 +6,6 @@ import android.os.Build
 import android.os.Debug
 import androidx.annotation.RequiresApi
 import java.io.File
-import java.lang.Exception
 import java.nio.file.Files
 import java.nio.file.Paths
 

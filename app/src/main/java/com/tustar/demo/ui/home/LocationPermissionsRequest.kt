@@ -2,9 +2,9 @@ package com.tustar.demo.ui.home
 
 import android.Manifest
 import android.content.Context
-import androidx.compose.foundation.layout.*
 import androidx.compose.runtime.*
 import androidx.compose.runtime.saveable.rememberSaveable
+import androidx.compose.ui.platform.LocalContext
 import com.google.accompanist.permissions.ExperimentalPermissionsApi
 import com.google.accompanist.permissions.rememberMultiplePermissionsState
 import com.tustar.demo.R
@@ -12,16 +12,15 @@ import com.tustar.demo.ktx.actionApplicationDetailsSettings
 import com.tustar.demo.ktx.actionLocationSourceSettings
 import com.tustar.demo.ktx.isLocationEnable
 import com.tustar.demo.ui.AppOpsResult
-import com.tustar.demo.ui.MainViewModel
+import com.tustar.demo.ui.LocalMainViewModel
 import com.tustar.demo.ui.ShowPermissionDialog
 
 @OptIn(ExperimentalPermissionsApi::class)
 @Composable
 fun LocationPermissionsRequest(
-    context: Context,
-    viewModel: MainViewModel,
     updateLocation: () -> Unit
 ) {
+    val context = LocalContext.current
     // When true, the permissions request must be presented to the user.
     var launchPermissionsRequest by rememberSaveable { mutableStateOf(false) }
     val multiplePermissionsState = rememberMultiplePermissionsState(
@@ -35,7 +34,7 @@ fun LocationPermissionsRequest(
         multiplePermissionsState.allPermissionsGranted -> {
             // Location Service disable
             if (!context.isLocationEnable()) {
-                LocationDisable(context, viewModel)
+                LocationDisable()
             }
             //
             else {
@@ -55,7 +54,7 @@ fun LocationPermissionsRequest(
         }
         // If the criteria above hasn't been met, the user denied some permission.
         else -> {
-            PermissionsDenied(context, viewModel)
+            PermissionsDenied()
         }
     }
 
@@ -69,25 +68,23 @@ fun LocationPermissionsRequest(
 }
 
 @Composable
-private fun LocationDisable(
-    context: Context,
-    viewModel: MainViewModel
-) {
+private fun LocationDisable() {
+    val context = LocalContext.current
+    val viewModel = LocalMainViewModel.current
     viewModel.liveResult.value = AppOpsResult(
         true,
         R.string.dlg_title_location_enable
     ) { context.actionLocationSourceSettings() }
-    ShowPermissionDialog(viewModel = viewModel)
+    ShowPermissionDialog()
 }
 
 @Composable
-private fun PermissionsDenied(
-    context: Context,
-    viewModel: MainViewModel
-) {
+private fun PermissionsDenied() {
+    val context = LocalContext.current
+    val viewModel = LocalMainViewModel.current
     viewModel.liveResult.value = AppOpsResult(
         true,
         R.string.dlg_title_location_permissons
     ) { context.actionApplicationDetailsSettings() }
-    ShowPermissionDialog(viewModel = viewModel)
+    ShowPermissionDialog()
 }

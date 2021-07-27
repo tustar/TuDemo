@@ -2,12 +2,10 @@ package com.tustar.demo.ui.recorder
 
 import android.Manifest
 import android.content.Context
-import android.content.pm.PackageManager
 import androidx.compose.foundation.layout.*
 import androidx.compose.material.Button
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.livedata.observeAsState
 import androidx.compose.ui.Modifier
@@ -15,14 +13,16 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import androidx.core.content.ContextCompat
 import com.google.accompanist.permissions.ExperimentalPermissionsApi
 import com.google.accompanist.permissions.PermissionRequired
 import com.google.accompanist.permissions.rememberPermissionState
 import com.tustar.annotation.DemoItem
 import com.tustar.demo.R
 import com.tustar.demo.ktx.actionApplicationDetailsSettings
-import com.tustar.demo.ui.*
+import com.tustar.demo.ui.AppOpsResult
+import com.tustar.demo.ui.DetailTopBar
+import com.tustar.demo.ui.LocalMainViewModel
+import com.tustar.demo.ui.ShowPermissionDialog
 import com.tustar.demo.ui.theme.DemoTheme
 import com.tustar.demo.util.Logger
 import kotlinx.coroutines.DelicateCoroutinesApi
@@ -38,13 +38,10 @@ const val MIN_OFFSET_Y = 6.0F
     updatedAt = "2021-07-01 14:49:50",
 )
 @Composable
-fun RecorderScreen(
-    viewModel: MainViewModel,
-    demoItem: Int,
-    upPress: () -> Unit,
-) {
+fun RecorderScreen() {
     val permissionState = rememberPermissionState(Manifest.permission.RECORD_AUDIO)
     //
+    val viewModel = LocalMainViewModel.current
     val info by viewModel.liveRecorderInfo.observeAsState(RecorderInfo())
     Logger.d("maxAmplitude = ${info.maxAmplitude}")
     val context = LocalContext.current
@@ -54,7 +51,7 @@ fun RecorderScreen(
     val stopAction = { RecorderService.stopRecording(context) }
 
     Column {
-        DetailTopBar(demoItem, upPress)
+        DetailTopBar()
         WaveView(
             modifier = Modifier
                 .height(500.dp)
@@ -69,7 +66,7 @@ fun RecorderScreen(
             },
             permissionNotAvailableContent = {
                 RecorderButtons(startAction = { permissionState.launchPermissionRequest() })
-                PermissionsDenied(context, viewModel)
+                PermissionsDenied()
             }
         ) {
             RecorderButtons(info, startAction, pauseAction, resumeAction, stopAction)
@@ -78,15 +75,14 @@ fun RecorderScreen(
 }
 
 @Composable
-private fun PermissionsDenied(
-    context: Context,
-    viewModel: MainViewModel
-) {
+private fun PermissionsDenied() {
+    val context = LocalContext.current
+    val viewModel = LocalMainViewModel.current
     viewModel.liveResult.value = AppOpsResult(
         true,
         R.string.dlg_title_audio_permisson
     ) { context.actionApplicationDetailsSettings() }
-    ShowPermissionDialog(viewModel = viewModel)
+    ShowPermissionDialog()
 }
 
 @Composable

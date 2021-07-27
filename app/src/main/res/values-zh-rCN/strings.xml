@@ -24,6 +24,7 @@
     <string name="custom_svg_china">Svg中国地图</string>
     <string name="custom_path_measure">自定义PathMeasureView</string>
     <string name="custom_wave_view">WaveView</string>
+    <string name="custom_composes_example">Composes示例</string>
     <!-- Optimize  -->
     <string name="optimize_lazy_fragment">懒加载Fragment</string>
     <string name="optimize_monitor">性能监测Monitor</string>

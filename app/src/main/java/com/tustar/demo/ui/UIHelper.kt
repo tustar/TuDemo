@@ -20,14 +20,15 @@ import com.tustar.demo.ui.theme.DemoTheme
 import com.tustar.demo.util.Logger
 
 @Composable
-fun DetailTopBar(demoItem: Int, upPress: () -> Unit) {
+fun DetailTopBar() {
+    val demoItem = LocalDemoId.current
     TopAppBar(
         title = {
             Text(text = stringResource(demoItem))
         },
         modifier = Modifier.topAppBar(),
         navigationIcon = {
-            IconButton(onClick = upPress) {
+            IconButton(onClick = LocalBackPressedDispatcher.current) {
                 Icon(
                     imageVector = Icons.Rounded.ArrowBack,
                     contentDescription = stringResource(demoItem)
@@ -38,7 +39,8 @@ fun DetailTopBar(demoItem: Int, upPress: () -> Unit) {
 }
 
 @Composable
-fun ShowPermissionDialog(viewModel: MainViewModel) {
+fun ShowPermissionDialog() {
+    val viewModel = LocalMainViewModel.current
     val result by viewModel.liveResult.observeAsState(
         initial = AppOpsResult()
     )

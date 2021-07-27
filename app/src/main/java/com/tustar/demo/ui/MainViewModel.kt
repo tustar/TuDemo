@@ -1,15 +1,13 @@
 package com.tustar.demo.ui
 
 import androidx.annotation.StringRes
-import androidx.lifecycle.*
-import com.amap.api.location.AMapLocation
-import com.tustar.demo.data.source.WeatherRepository
+import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.ViewModel
 import com.tustar.demo.codegen.generateDemos
 import com.tustar.demo.data.Weather
 import com.tustar.demo.ui.recorder.RecorderInfo
 import dagger.hilt.android.lifecycle.HiltViewModel
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.flow.*
+import kotlinx.coroutines.flow.flow
 import javax.inject.Inject
 
 @HiltViewModel

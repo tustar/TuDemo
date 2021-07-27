@@ -17,9 +17,9 @@ import com.tustar.demo.widget.PathMeasureView
     updatedAt = "2021-07-02 14:48:00",
 )
 @Composable
-fun PathMeasureScreen(demoItem: Int, upPress: () -> Unit) {
+fun PathMeasureScreen() {
     Column {
-        DetailTopBar(demoItem, upPress)
+        DetailTopBar()
         PathMeasureView()
     }
 }
