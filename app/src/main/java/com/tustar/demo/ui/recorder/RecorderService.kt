@@ -34,7 +34,7 @@ class RecorderService : Service() {
     private val onMaxAmplitudeCaller: Runnable = object : Runnable {
         override fun run() {
             for (listener in onRecorderListeners) {
-                listener.get()?.onRecorderChanged(RecorderInfo(state, recorder.maxAmplitude))
+                listener.get()?.onRecorderChanged(RecorderInfo(state, getMaxAmplitude()))
                 if (!recording) {
                     return
                 }
@@ -150,11 +150,19 @@ class RecorderService : Service() {
     private fun updateRecordState(state: State) {
         this.state = state
         for (listener in onRecorderListeners) {
-            listener.get()?.onRecorderChanged(RecorderInfo(state, recorder.maxAmplitude))
+            listener.get()?.onRecorderChanged(RecorderInfo(state, getMaxAmplitude()))
         }
         handler.removeCallbacks(onMaxAmplitudeCaller)
         handler.post(onMaxAmplitudeCaller)
     }
+
+    private fun getMaxAmplitude() =
+        try {
+            recorder.maxAmplitude
+        } catch (e: IllegalStateException) {
+            e.printStackTrace()
+            0
+        }
 
     inner class RecorderBinder : Binder() {
         fun getService(): RecorderService = this@RecorderService

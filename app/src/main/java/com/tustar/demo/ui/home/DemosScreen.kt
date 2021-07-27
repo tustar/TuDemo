@@ -108,11 +108,11 @@ fun DemoItemView(
     Text(
         text = stringResource(id = demoItem.item),
         modifier = Modifier
-            .padding(start = 16.dp, top = 8.dp, bottom = 8.dp, end = 16.dp)
-            .fillMaxWidth()
             .clickable {
                 onDemoClick(demoItem.item)
-            },
+            }
+            .padding(start = 16.dp, top = 8.dp, bottom = 8.dp, end = 16.dp)
+            .fillMaxWidth(),
         style = DemoTheme.typography.h6,
         overflow = TextOverflow.Ellipsis,
         maxLines = 2,
