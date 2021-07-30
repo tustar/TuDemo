@@ -7,7 +7,10 @@ plugins {
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
+    // Kotlin
     implementation Libs.Kotlin.stdlib
+    implementation Libs.Kotlin.Coroutines.core
+    implementation Libs.Kotlin.Coroutines.android
 }
 java {
     sourceCompatibility = JavaVersion.VERSION_1_8
