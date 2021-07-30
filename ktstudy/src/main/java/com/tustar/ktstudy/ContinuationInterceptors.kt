@@ -27,17 +27,10 @@ fun main() {
         "$hello $world"
     }
 
-    val completion = MyContinuation()
+    val completion = MyContinuation(MyCoroutineDispatch())
 
     thread(name = "测试线程") {
         suspendLambda.startCoroutine(completion)
-    }
-}
-
-class MyContinuation : Continuation<String> {
-    override val context: CoroutineContext = MyCoroutineDispatch()
-    override fun resumeWith(result: Result<String>) {
-        Logger.d("MyCoroutine回调resumeWith返回 ${result.getOrNull()}")
     }
 }
 
@@ -46,7 +39,7 @@ class MyCoroutineDispatch : AbstractCoroutineContextElement(ContinuationIntercep
 
     override fun <T> interceptContinuation(continuation: Continuation<T>): Continuation<T> {
         Logger.d("interceptContinuation")
-        return MyInterceptorContinuation<T>(continuation.context, continuation)
+        return MyInterceptorContinuation(continuation.context, continuation)
     }
 
     override fun releaseInterceptedContinuation(continuation: Continuation<*>) {

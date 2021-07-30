@@ -20,7 +20,7 @@ fun main() {
         result
     }
 
-    val completion = MyCoroutine()
+    val completion = MyContinuation()
     suspendLambda.startCoroutine(completion)
 }
 

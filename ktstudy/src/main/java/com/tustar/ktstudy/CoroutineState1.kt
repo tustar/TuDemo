@@ -23,7 +23,7 @@ fun main() {
         one + two + three
     }
 
-    val completion = MyCoroutine()
+    val completion = MyContinuation()
     /**
      *  调用顺序
      *  block.startCoroutine(completion) ->

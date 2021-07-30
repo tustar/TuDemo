@@ -37,7 +37,7 @@ fun main() {
         safeSuspendTwo()
     }
 
-    val completion = MyCoroutine()
+    val completion = MyContinuation()
     suspendLambda.startCoroutine(completion)
     Logger.d("启动协程,由于挂起函数延迟返回结果,所以这句话会先打出来")
 }
