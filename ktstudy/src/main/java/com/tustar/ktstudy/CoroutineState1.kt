@@ -25,11 +25,13 @@ fun main() {
 
     val completion = MyContinuation()
     /**
-     *  调用顺序
-     *  block.startCoroutine(completion) ->
-     *  TempContinuation(SuspendLambda子类).resumeWith ->
-     *  BaseContinuationImpl.resumeWith ->
-     *  TempContinuation.invokeSuspend
+     * SuspendLambda extends ContinuationImpl extends BaseContinuationImpl
+     *
+     * 调用顺序
+     * block.startCoroutine(completion) ->
+     * TempContinuation(SuspendLambda子类).resumeWith ->
+     * BaseContinuationImpl.resumeWith ->
+     * TempContinuation.invokeSuspend
      */
     suspendLambda.startCoroutine(completion)
 }
