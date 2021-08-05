@@ -17,7 +17,7 @@
 package com.tustar.demo.buildsrc
 
 object Versions {
-    const val ktLint = "0.40.0"
+    const val ktLint = "0.41.0"
 }
 
 object Libs {
@@ -62,7 +62,7 @@ object Libs {
         }
 
         object Activity {
-            const val compose = "androidx.activity:activity-compose:1.3.0-alpha05"
+            const val compose = "androidx.activity:activity-compose:1.3.0"
             const val ktx = "androidx.activity:activity-ktx:1.3.0-alpha08"
         }
 
@@ -92,7 +92,7 @@ object Libs {
 
         object Compose {
             const val snapshot = ""
-            private const val version = "1.0.0-rc02"
+            private const val version = "1.0.0"
 
             const val runtime = "androidx.compose.runtime:runtime:$version"
             const val runtimeLivedata = "androidx.compose.runtime:runtime-livedata:$version"
@@ -141,12 +141,12 @@ object Libs {
         }
 
         object Test {
-            private const val version = "1.2.0"
+            private const val version = "1.3.0"
             const val runner = "androidx.test:runner:$version"
             const val rules = "androidx.test:rules:$version"
 
             object Ext {
-                private const val version = "1.1.2-rc01"
+                private const val version = "1.1.2"
                 const val junit = "androidx.test.ext:junit-ktx:$version"
             }
 

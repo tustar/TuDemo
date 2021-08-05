@@ -1,25 +1,69 @@
 package com.tustar.demo.ui.custom
 
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.padding
+import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.ui.Modifier
+import androidx.compose.ui.layout.AlignmentLine
+import androidx.compose.ui.layout.FirstBaseline
+import androidx.compose.ui.layout.layout
+import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import com.tustar.annotation.DemoItem
 import com.tustar.demo.R
 import com.tustar.demo.ui.DetailTopBar
+import com.tustar.demo.ui.theme.DemoTheme
 
 
 @DemoItem(
     group = R.string.group_custom_widget,
     item = R.string.custom_composes_example,
-    createdAt = "2021-03-12 17:00:00",
-    updatedAt = "2021-07-02 10:56:00",
+    createdAt = "2021-07-25 10:15:00",
+    updatedAt = "2021-08-02 15:24:00",
 )
 @Composable
 fun ComposesScreens() {
     Column {
         DetailTopBar()
     }
-//    var offsetX by remember { mutableStateOf(0f) }
-    val boxSideLengthDp = 50.dp
-//    val boxSideLengthPx =
+}
+
+@Preview
+@Composable
+fun TextWithPaddingToBaselinePreview() {
+    val a = remember {
+        mutableStateOf()
+    }
+    DemoTheme {
+        Text("Hi there!", Modifier.firstBaselineToTop(32.dp))
+    }
+}
+
+@Preview
+@Composable
+fun TextWithNormalPaddingPreview() {
+    DemoTheme {
+        Text("Hi there!", Modifier.padding(top = 32.dp))
+    }
+}
+
+fun Modifier.firstBaselineToTop(firstBaselineToTop: Dp) = layout { measurable, constraints ->
+    // Measure the composable
+    val placeable = measurable.measure(constraints)
+
+    // Check the composable has a first baseline
+    check(placeable[FirstBaseline] != AlignmentLine.Unspecified)
+    val firstBaseline = placeable[FirstBaseline]
+
+    // Height of the composable with padding - first baseline
+    val placeableY = firstBaselineToTop.roundToPx() - firstBaseline
+    val height = placeable.height + placeableY
+    layout(placeable.width, height) {
+        // Where the composable gets placed
+        placeable.placeRelative(0, placeableY)
+    }
 }
