@@ -39,6 +39,7 @@ import com.tustar.demo.util.LocationHelper
 import com.tustar.demo.util.Logger
 import com.tustar.demo.woker.WeatherWorker
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.MainScope
 
 
 @SuppressLint("NewApi")
@@ -76,6 +77,8 @@ class MainActivity : AppCompatActivity(), OnRecorderListener {
 
     //
     private val viewModel: MainViewModel by viewModels()
+
+    val mainscope = MainScope()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

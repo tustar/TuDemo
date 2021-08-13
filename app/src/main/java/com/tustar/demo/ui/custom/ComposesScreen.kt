@@ -35,9 +35,6 @@ fun ComposesScreens() {
 @Preview
 @Composable
 fun TextWithPaddingToBaselinePreview() {
-    val a = remember {
-        mutableStateOf()
-    }
     DemoTheme {
         Text("Hi there!", Modifier.firstBaselineToTop(32.dp))
     }
