@@ -18,22 +18,22 @@ import com.google.accompanist.insets.navigationBarsHeight
 import com.google.accompanist.insets.navigationBarsPadding
 import com.tustar.demo.R
 import com.tustar.demo.ui.theme.DemoTheme
+import com.tustar.demo.util.Logger
 import java.util.*
 
 @Composable
-fun DemoApp(updateLocation: () -> Unit) {
+fun DemoApp(viewModel: MainViewModel, updateLocation: () -> Unit) {
     DemoTheme {
         val tabs = remember { MainTabs.values() }
         val navController = rememberNavController()
         //
         Scaffold(bottomBar = { DemoBottomBar(navController = navController, tabs) }) {
             NavGraph(
+                viewModel = viewModel,
                 updateLocation = updateLocation,
                 navController = navController,
             )
         }
-
-        ShowPermissionDialog()
     }
 }
 

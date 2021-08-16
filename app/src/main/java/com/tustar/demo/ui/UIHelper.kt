@@ -8,8 +8,8 @@ import androidx.compose.material.*
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.rounded.ArrowBack
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
-import androidx.compose.runtime.livedata.observeAsState
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
@@ -39,25 +39,24 @@ fun DetailTopBar() {
 }
 
 @Composable
-fun ShowPermissionDialog() {
-    val viewModel = LocalMainViewModel.current
-    val result by viewModel.liveResult.observeAsState(
-        initial = AppOpsResult()
-    )
-    Logger.d("$result")
-    PermissionDialogContent(result = result) {
-        viewModel.liveResult.value = AppOpsResult()
+fun ShowPermissionDialog(viewModel: MainViewModel) {
+    val opsResult by viewModel.opsResultState.collectAsState()
+    Logger.d("$opsResult")
+    opsResult?.let {
+        PermissionDialogContent(opsResult = it) {
+            viewModel.opsResultState.value = AppOpsResult()
+        }
     }
 }
 
 @Composable
-fun PermissionDialogContent(result: AppOpsResult, dismissAction: () -> Unit) {
-    if (!result.visible) {
+fun PermissionDialogContent(opsResult: AppOpsResult, dismissAction: () -> Unit) {
+    if (!opsResult.visible) {
         return
     }
-    val title = result.title
+    val title = opsResult.title
     val confirmAction = {
-        result.nextAction()
+        opsResult.nextAction()
         dismissAction()
     }
 

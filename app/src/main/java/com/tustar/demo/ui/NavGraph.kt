@@ -7,6 +7,7 @@ import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.runtime.remember
 import androidx.compose.ui.platform.LocalContext
 import androidx.lifecycle.Lifecycle
+import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavBackStackEntry
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
@@ -36,6 +37,7 @@ object MainDestinations {
 
 @Composable
 fun NavGraph(
+    viewModel: MainViewModel = MainViewModel(),
     updateLocation: () -> Unit = {},
     navController: NavHostController = rememberNavController(),
     startDestination: String = DEMO_ROUTE,
@@ -47,6 +49,7 @@ fun NavGraph(
     ) {
         composable(DEMO_ROUTE) {
             DemosScreen(
+                viewModel = viewModel,
                 updateLocation = updateLocation,
                 onDemoClick = actions.openDemo,
             )
@@ -56,7 +59,7 @@ fun NavGraph(
                 LocalBackPressedDispatcher provides { navController.navigateUp() },
                 LocalDemoId provides it
             ) {
-                DemoDetailComposeDispatcher()
+                DemoDetailComposeDispatcher(viewModel)
             }
 
         }

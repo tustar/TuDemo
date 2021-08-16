@@ -12,7 +12,6 @@ import androidx.compose.material.TopAppBar
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
-import androidx.compose.runtime.livedata.observeAsState
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
@@ -22,26 +21,27 @@ import com.tustar.demo.R
 import com.tustar.demo.data.DemoItem
 import com.tustar.demo.data.Weather
 import com.tustar.demo.ktx.topAppBar
-import com.tustar.demo.ui.LocalMainViewModel
+import com.tustar.demo.ui.MainViewModel
 import com.tustar.demo.ui.SectionView
 import com.tustar.demo.ui.theme.DemoTheme
 import com.tustar.demo.util.Logger
 
 @Composable
 fun DemosScreen(
+    viewModel: MainViewModel,
     updateLocation: () -> Unit,
     onDemoClick: (Int) -> Unit,
 ) {
+    val grouped by viewModel.createDemos().collectAsState(initial = mapOf())
     Column {
-        DemosTopBar(updateLocation)
-        DemosListView(onDemoClick)
+        DemosTopBar(viewModel, updateLocation)
+        DemosListView(grouped, onDemoClick)
     }
 }
 
 @Composable
-fun DemosTopBar(updateLocation: () -> Unit) {
-    val viewModel = LocalMainViewModel.current
-    val weather by viewModel.liveWeather.observeAsState()
+fun DemosTopBar(viewModel: MainViewModel, updateLocation: () -> Unit) {
+    val weather by viewModel.weatherState.collectAsState()
     Logger.d("$weather")
     TopAppBar(
         title = {
@@ -49,7 +49,7 @@ fun DemosTopBar(updateLocation: () -> Unit) {
         },
         modifier = Modifier.topAppBar(),
         actions = {
-            LocationPermissionsRequest(updateLocation)
+            LocationPermissionsRequest(viewModel, updateLocation)
             weather?.let {
                 WeatherActionItem(it, updateLocation)
             }
@@ -83,9 +83,10 @@ private fun WeatherActionItem(
 
 @OptIn(ExperimentalFoundationApi::class)
 @Composable
-fun DemosListView(onDemoClick: (Int) -> Unit) {
-    val viewModel = LocalMainViewModel.current
-    val grouped by viewModel.createDemos().collectAsState(initial = mapOf())
+fun DemosListView(
+    grouped: Map<Int, List<DemoItem>>,
+    onDemoClick: (Int) -> Unit
+) {
     LazyColumn(verticalArrangement = Arrangement.spacedBy(4.dp)) {
         grouped.forEach { (group, demos) ->
             stickyHeader {

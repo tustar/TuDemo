@@ -1,7 +1,6 @@
 package com.tustar.demo.ui.home
 
 import android.Manifest
-import android.content.Context
 import androidx.compose.runtime.*
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.ui.platform.LocalContext
@@ -12,12 +11,13 @@ import com.tustar.demo.ktx.actionApplicationDetailsSettings
 import com.tustar.demo.ktx.actionLocationSourceSettings
 import com.tustar.demo.ktx.isLocationEnable
 import com.tustar.demo.ui.AppOpsResult
-import com.tustar.demo.ui.LocalMainViewModel
+import com.tustar.demo.ui.MainViewModel
 import com.tustar.demo.ui.ShowPermissionDialog
 
 @OptIn(ExperimentalPermissionsApi::class)
 @Composable
 fun LocationPermissionsRequest(
+    viewModel: MainViewModel,
     updateLocation: () -> Unit
 ) {
     val context = LocalContext.current
@@ -34,7 +34,7 @@ fun LocationPermissionsRequest(
         multiplePermissionsState.allPermissionsGranted -> {
             // Location Service disable
             if (!context.isLocationEnable()) {
-                LocationDisable()
+                LocationDisable(viewModel)
             }
             //
             else {
@@ -54,7 +54,7 @@ fun LocationPermissionsRequest(
         }
         // If the criteria above hasn't been met, the user denied some permission.
         else -> {
-            PermissionsDenied()
+            PermissionsDenied(viewModel)
         }
     }
 
@@ -68,23 +68,21 @@ fun LocationPermissionsRequest(
 }
 
 @Composable
-private fun LocationDisable() {
+private fun LocationDisable(viewModel: MainViewModel) {
     val context = LocalContext.current
-    val viewModel = LocalMainViewModel.current
-    viewModel.liveResult.value = AppOpsResult(
+    viewModel.opsResultState.value = AppOpsResult(
         true,
         R.string.dlg_title_location_enable
     ) { context.actionLocationSourceSettings() }
-    ShowPermissionDialog()
+    ShowPermissionDialog(viewModel)
 }
 
 @Composable
-private fun PermissionsDenied() {
+private fun PermissionsDenied(viewModel: MainViewModel) {
     val context = LocalContext.current
-    val viewModel = LocalMainViewModel.current
-    viewModel.liveResult.value = AppOpsResult(
+    viewModel.opsResultState.value = AppOpsResult(
         true,
         R.string.dlg_title_location_permissons
     ) { context.actionApplicationDetailsSettings() }
-    ShowPermissionDialog()
+    ShowPermissionDialog(viewModel)
 }

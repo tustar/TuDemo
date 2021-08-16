@@ -3,6 +3,7 @@ package com.tustar.demo.ui.home
 import androidx.compose.foundation.layout.Column
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
+import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavGraphBuilder
 import androidx.navigation.NavType
 import androidx.navigation.compose.composable
@@ -12,6 +13,7 @@ import com.tustar.demo.R
 import com.tustar.demo.ui.DetailTopBar
 import com.tustar.demo.ui.LocalDemoId
 import com.tustar.demo.ui.MainDestinations
+import com.tustar.demo.ui.MainViewModel
 import com.tustar.demo.ui.custom.ComposesScreens
 import com.tustar.demo.ui.custom.PathMeasureScreen
 import com.tustar.demo.ui.custom.SvgChinaScreen
@@ -47,9 +49,9 @@ fun NavGraphBuilder.detail(
 }
 
 @Composable
-fun DemoDetailComposeDispatcher() {
+fun DemoDetailComposeDispatcher(viewModel: MainViewModel) {
     when (LocalDemoId.current) {
-        R.string.custom_wave_view -> RecorderScreen()
+        R.string.custom_wave_view -> RecorderScreen(viewModel)
         R.string.custom_svg_china -> SvgChinaScreen()
         R.string.custom_path_measure -> PathMeasureScreen()
         R.string.sys_motion_base -> MotionBaseScreen()

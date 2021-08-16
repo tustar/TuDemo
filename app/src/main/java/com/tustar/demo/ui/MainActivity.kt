@@ -39,7 +39,6 @@ import com.tustar.demo.util.LocationHelper
 import com.tustar.demo.util.Logger
 import com.tustar.demo.woker.WeatherWorker
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.coroutines.MainScope
 
 
 @SuppressLint("NewApi")
@@ -78,8 +77,6 @@ class MainActivity : AppCompatActivity(), OnRecorderListener {
     //
     private val viewModel: MainViewModel by viewModels()
 
-    val mainscope = MainScope()
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
@@ -88,11 +85,7 @@ class MainActivity : AppCompatActivity(), OnRecorderListener {
 
         setContent {
             ProvideWindowInsets {
-                CompositionLocalProvider(
-                    LocalMainViewModel provides viewModel
-                ) {
-                    DemoApp { locationHelper.startLocation() }
-                }
+                DemoApp(viewModel) { locationHelper.startLocation() }
             }
         }
         lifecycle.addObserver(locationListener)
@@ -105,7 +98,7 @@ class MainActivity : AppCompatActivity(), OnRecorderListener {
     }
 
     override fun onRecorderChanged(info: RecorderInfo) {
-        viewModel.liveRecorderInfo.value = info
+        viewModel.recorderInfoState.value = info
     }
 
     override fun onDestroy() {

@@ -1,13 +1,12 @@
 package com.tustar.demo.ui.recorder
 
 import android.Manifest
-import android.content.Context
 import androidx.compose.foundation.layout.*
 import androidx.compose.material.Button
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
-import androidx.compose.runtime.livedata.observeAsState
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
@@ -21,7 +20,7 @@ import com.tustar.demo.R
 import com.tustar.demo.ktx.actionApplicationDetailsSettings
 import com.tustar.demo.ui.AppOpsResult
 import com.tustar.demo.ui.DetailTopBar
-import com.tustar.demo.ui.LocalMainViewModel
+import com.tustar.demo.ui.MainViewModel
 import com.tustar.demo.ui.ShowPermissionDialog
 import com.tustar.demo.ui.theme.DemoTheme
 import com.tustar.demo.util.Logger
@@ -38,11 +37,10 @@ const val MIN_OFFSET_Y = 6.0F
     updatedAt = "2021-07-01 14:49:50",
 )
 @Composable
-fun RecorderScreen() {
+fun RecorderScreen(viewModel: MainViewModel) {
     val permissionState = rememberPermissionState(Manifest.permission.RECORD_AUDIO)
     //
-    val viewModel = LocalMainViewModel.current
-    val info by viewModel.liveRecorderInfo.observeAsState(RecorderInfo())
+    val info by viewModel.recorderInfoState.collectAsState()
     Logger.d("maxAmplitude = ${info.maxAmplitude}")
     val context = LocalContext.current
     var startAction = { RecorderService.startRecording(context) }
@@ -66,7 +64,7 @@ fun RecorderScreen() {
             },
             permissionNotAvailableContent = {
                 RecorderButtons(startAction = { permissionState.launchPermissionRequest() })
-                PermissionsDenied()
+                PermissionsDenied(viewModel)
             }
         ) {
             RecorderButtons(info, startAction, pauseAction, resumeAction, stopAction)
@@ -75,14 +73,13 @@ fun RecorderScreen() {
 }
 
 @Composable
-private fun PermissionsDenied() {
+private fun PermissionsDenied(viewModel: MainViewModel) {
     val context = LocalContext.current
-    val viewModel = LocalMainViewModel.current
-    viewModel.liveResult.value = AppOpsResult(
+    viewModel.opsResultState.value = AppOpsResult(
         true,
         R.string.dlg_title_audio_permisson
     ) { context.actionApplicationDetailsSettings() }
-    ShowPermissionDialog()
+    ShowPermissionDialog(viewModel)
 }
 
 @Composable
