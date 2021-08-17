@@ -29,10 +29,14 @@ object Libs {
     }
 
     object Accompanist {
-        private const val version = "0.14.0"
+        private const val version = "0.15.0"
         const val coil = "com.google.accompanist:accompanist-coil:$version"
         const val insets = "com.google.accompanist:accompanist-insets:$version"
         const val permissions = "com.google.accompanist:accompanist-permissions:$version"
+    }
+
+    object Coil {
+        const val coilCompose = "io.coil-kt:coil-compose:1.3.0"
     }
 
     object Kotlin {
@@ -155,15 +159,17 @@ object Libs {
     }
 
     object Hilt {
-        private const val version = "2.37"
+        private const val version = "2.38.1"
 
         const val gradlePlugin = "com.google.dagger:hilt-android-gradle-plugin:$version"
         const val android = "com.google.dagger:hilt-android:$version"
-        const val draggerCompiler = "com.google.dagger:hilt-compiler:$version"
-        const val hiltCompiler = "androidx.hilt:hilt-compiler:1.0.0"
+        const val compiler = "com.google.dagger:hilt-compiler:$version"
+        const val testing = "com.google.dagger:hilt-android-testing:$version"
+        //
+//        const val hiltCompiler = "androidx.hilt:hilt-compiler:1.0.0"
         const val work = "androidx.hilt:hilt-work:1.0.0"
         const val navigationCompose = "androidx.hilt:hilt-navigation-compose:1.0.0-alpha03"
-        const val testing = "com.google.dagger:hilt-android-testing:$version"
+
     }
 
     object JUnit {

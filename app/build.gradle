@@ -5,7 +5,6 @@ plugins {
     id 'kotlin-android'
     id 'kotlin-kapt'
     id 'androidx.navigation.safeargs.kotlin'
-    id 'dagger.hilt.android.plugin'
     id 'kotlin-parcelize'
 //    id 'com.google.devtools.ksp'
 }
@@ -151,8 +150,7 @@ dependencies {
     implementation Libs.Hilt.android
     implementation Libs.Hilt.work
     implementation Libs.Hilt.navigationCompose
-    kapt Libs.Hilt.draggerCompiler
-    kapt Libs.Hilt.hiltCompiler
+    kapt Libs.Hilt.compiler
     // Retrofit
     implementation Libs.Squareup.Retrofit2.retrofit
     implementation Libs.Squareup.Retrofit2.converterJson
@@ -173,6 +171,7 @@ dependencies {
     //
     implementation project(':annotation')
     kapt project(':compiler')
+    implementation project(':weather')
 }
 
 static def getVerName(String baseVerName, String autoBuildNumber) {

@@ -24,6 +24,7 @@ import com.tustar.demo.ktx.topAppBar
 import com.tustar.demo.ui.MainViewModel
 import com.tustar.demo.ui.SectionView
 import com.tustar.demo.ui.theme.DemoTheme
+import com.tustar.demo.ui.weather.WeatherScreen
 import com.tustar.demo.util.Logger
 
 @Composable
@@ -31,16 +32,21 @@ fun DemosScreen(
     viewModel: MainViewModel,
     updateLocation: () -> Unit,
     onDemoClick: (Int) -> Unit,
+    onWeatherClick: (Weather) -> Unit,
 ) {
     val grouped by viewModel.createDemos().collectAsState(initial = mapOf())
     Column {
-        DemosTopBar(viewModel, updateLocation)
+        DemosTopBar(viewModel, updateLocation, onWeatherClick)
         DemosListView(grouped, onDemoClick)
     }
 }
 
 @Composable
-fun DemosTopBar(viewModel: MainViewModel, updateLocation: () -> Unit) {
+fun DemosTopBar(
+    viewModel: MainViewModel,
+    updateLocation: () -> Unit,
+    onWeatherClick: (Weather) -> Unit,
+) {
     val weather by viewModel.weatherState.collectAsState()
     Logger.d("$weather")
     TopAppBar(
@@ -52,6 +58,7 @@ fun DemosTopBar(viewModel: MainViewModel, updateLocation: () -> Unit) {
             LocationPermissionsRequest(viewModel, updateLocation)
             weather?.let {
                 WeatherActionItem(it, updateLocation)
+                onWeatherClick(it)
             }
         }
     )

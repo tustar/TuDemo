@@ -56,6 +56,13 @@
         <entry key="app/src/main/res/layout/item_place.xml" value="0.1691995947315096" />
         <entry key="app/src/main/res/layout/item_qq_header.xml" value="0.1691995947315096" />
         <entry key="app/src/main/res/layout/motion_base_fragment.xml" value="0.25" />
+        <entry key="weather/src/main/res/drawable/bg_0_n.xml" value="0.19375" />
+        <entry key="weather/src/main/res/drawable/bg_1_n.xml" value="0.25555555555555554" />
+        <entry key="weather/src/main/res/drawable/bg_2_n.xml" value="0.25555555555555554" />
+        <entry key="weather/src/main/res/drawable/bg_3_n.xml" value="0.25555555555555554" />
+        <entry key="weather/src/main/res/drawable/bg_4_n.xml" value="0.25555555555555554" />
+        <entry key="weather/src/main/res/drawable/bg_5_n.xml" value="0.25555555555555554" />
+        <entry key="weather/src/main/res/layout/custom_toast.xml" value="0.17760416666666667" />
       </map>
     </option>
   </component>
