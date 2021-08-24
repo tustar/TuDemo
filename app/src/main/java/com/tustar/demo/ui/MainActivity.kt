@@ -24,21 +24,24 @@ import android.os.IBinder
 import androidx.activity.compose.setContent
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
-import androidx.compose.runtime.CompositionLocalProvider
+import androidx.compose.material.primarySurface
+import androidx.compose.runtime.SideEffect
+import androidx.compose.ui.graphics.Color
 import androidx.core.view.WindowCompat
-import androidx.lifecycle.Lifecycle
-import androidx.lifecycle.LifecycleObserver
-import androidx.lifecycle.OnLifecycleEvent
+import androidx.lifecycle.*
 import androidx.work.*
 import com.google.accompanist.insets.ProvideWindowInsets
+import com.google.accompanist.systemuicontroller.rememberSystemUiController
 import com.tustar.demo.ktx.*
 import com.tustar.demo.ui.recorder.OnRecorderListener
 import com.tustar.demo.ui.recorder.RecorderInfo
 import com.tustar.demo.ui.recorder.RecorderService
+import com.tustar.demo.ui.theme.DemoTheme
 import com.tustar.demo.util.LocationHelper
 import com.tustar.demo.util.Logger
-import com.tustar.demo.woker.WeatherWorker
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.flow.collect
+import kotlinx.coroutines.launch
 
 
 @SuppressLint("NewApi")
@@ -54,7 +57,8 @@ class MainActivity : AppCompatActivity(), OnRecorderListener {
             setLocationListener { location ->
                 Logger.d("location=${location.toFormatString()}")
                 if (location.errorCode == 0) {
-                    WeatherWorker.doRequest(this@MainActivity, location, viewModel)
+                    viewModel.onUpdateLocation(false)
+                    viewModel.requestWeather(this@MainActivity, location)
                 }
             }
         }
@@ -85,11 +89,27 @@ class MainActivity : AppCompatActivity(), OnRecorderListener {
 
         setContent {
             ProvideWindowInsets {
-                DemoApp(viewModel) { locationHelper.startLocation() }
+                DemoApp(viewModel)
             }
         }
         lifecycle.addObserver(locationListener)
         RecorderService.bindService(this, conn)
+
+        // Start a coroutine in the lifecycle scope
+        lifecycleScope.launch {
+            // repeatOnLifecycle launches the block in a new coroutine every time the
+            // lifecycle is in the STARTED state (or above) and cancels it when it's STOPPED.
+            lifecycle.repeatOnLifecycle(Lifecycle.State.STARTED) {
+                // Trigger the flow and start listening for values.
+                // Note that this happens when lifecycle is STARTED and stops
+                // collecting when the lifecycle is STOPPED
+                viewModel.updateLocation.collect {
+                    if (it) {
+                        locationHelper.startLocation()
+                    }
+                }
+            }
+        }
     }
 
     override fun onNewIntent(intent: Intent?) {
@@ -98,7 +118,7 @@ class MainActivity : AppCompatActivity(), OnRecorderListener {
     }
 
     override fun onRecorderChanged(info: RecorderInfo) {
-        viewModel.recorderInfoState.value = info
+        viewModel.onRecorderInfoChange(info)
     }
 
     override fun onDestroy() {

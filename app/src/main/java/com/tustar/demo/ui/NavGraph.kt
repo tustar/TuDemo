@@ -2,22 +2,21 @@ package com.tustar.demo.ui
 
 import android.content.Context
 import android.content.Intent
-import android.os.Bundle
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.runtime.remember
 import androidx.compose.ui.platform.LocalContext
 import androidx.lifecycle.Lifecycle
-import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavBackStackEntry
 import androidx.navigation.NavHostController
-import androidx.navigation.NavType
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
-import androidx.navigation.compose.navArgument
 import androidx.navigation.compose.rememberNavController
+import com.google.accompanist.systemuicontroller.SystemUiController
+import com.google.accompanist.systemuicontroller.rememberSystemUiController
 import com.tustar.demo.R
 import com.tustar.demo.data.Weather
+import com.tustar.demo.ktx.getParcelable
 import com.tustar.demo.ktx.putParcelable
 import com.tustar.demo.ui.MainDestinations.DEMO_DETAIL_ANDROID_ROUTE
 import com.tustar.demo.ui.MainDestinations.DEMO_DETAIL_COMPOSE_ROUTE
@@ -48,8 +47,8 @@ object MainDestinations {
 @Composable
 fun NavGraph(
     viewModel: MainViewModel = MainViewModel(),
-    updateLocation: () -> Unit = {},
     navController: NavHostController = rememberNavController(),
+    systemUiController: SystemUiController = rememberSystemUiController(),
     startDestination: String = DEMO_ROUTE,
 ) {
     val actions = remember(navController) { MainActions(navController) }
@@ -59,8 +58,8 @@ fun NavGraph(
     ) {
         composable(DEMO_ROUTE) {
             DemosScreen(
+                systemUiController = systemUiController,
                 viewModel = viewModel,
-                updateLocation = updateLocation,
                 onDemoClick = actions.openDemo,
                 onWeatherClick = actions.openWeather
             )
@@ -77,14 +76,14 @@ fun NavGraph(
         detail(route = "${DEMO_DETAIL_ANDROID_ROUTE}/{$DEMO_ID}") {
             actions.startDemoDetailActivity(LocalContext.current, it)
         }
-        composable(WEATHER_ROUTE) { entry ->
-            val weather = entry.arguments?.getParcelable<Weather>(KEY_WEATHER)
+        composable(WEATHER_ROUTE) {
+            val weather = navController.getParcelable<Weather>(KEY_WEATHER)
             weather?.let {
-                WeatherScreen(it)
+                WeatherScreen(systemUiController, it)
             }
         }
         composable(ME_ROUTE) {
-            MeScreen()
+            MeScreen(systemUiController = systemUiController)
         }
     }
 }

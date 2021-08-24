@@ -39,9 +39,8 @@ class WeatherWorker @AssistedInject constructor(
     companion object {
         const val KEY_LOCATION = "location"
         const val KEY_WEATHER = "weather"
-        private const val UNIQUE_WORK_NAME = "getWeather"
 
-        fun doRequest(
+        fun requestWeather(
             activity: AppCompatActivity,
             location: AMapLocation,
             viewModel: MainViewModel
@@ -62,7 +61,7 @@ class WeatherWorker @AssistedInject constructor(
                         it.outputData.getString(KEY_WEATHER),
                         Weather::class.java
                     )
-                    viewModel.weatherState.value = weather
+                    viewModel.onWeatherChange(weather)
                 }
             }
             workManager.enqueue(oneTimeWorkRequest)

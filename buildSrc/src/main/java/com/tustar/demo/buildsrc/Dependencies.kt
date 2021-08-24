@@ -29,14 +29,15 @@ object Libs {
     }
 
     object Accompanist {
-        private const val version = "0.15.0"
+        private const val version = "0.17.0"
         const val coil = "com.google.accompanist:accompanist-coil:$version"
         const val insets = "com.google.accompanist:accompanist-insets:$version"
         const val permissions = "com.google.accompanist:accompanist-permissions:$version"
+        const val systemuicontroller =  "com.google.accompanist:accompanist-systemuicontroller:$version"
     }
 
     object Coil {
-        const val coilCompose = "io.coil-kt:coil-compose:1.3.0"
+        const val coilCompose = "io.coil-kt:coil-compose:1.3.2"
     }
 
     object Kotlin {
@@ -75,7 +76,7 @@ object Libs {
         }
 
         object Navigation {
-            const val compose = "androidx.navigation:navigation-compose:2.4.0-alpha04"
+            const val compose = "androidx.navigation:navigation-compose:2.4.0-alpha06"
 
             private const val version = "2.3.5"
             const val fragmentKtx = "androidx.navigation:navigation-fragment-ktx:$version"
@@ -114,11 +115,11 @@ object Libs {
         object Lifecycle {
             const val extensions = "androidx.lifecycle:lifecycle-extensions:2.2.0"
 
-            private const val version = "2.3.1"
+            private const val version = "2.4.0-alpha03"
 
             object ViewModel {
                 const val compose =
-                    "androidx.lifecycle:lifecycle-viewmodel-compose:1.0.0-alpha03"
+                    "androidx.lifecycle:lifecycle-viewmodel-compose:1.0.0-alpha07"
                 const val ktx = "androidx.lifecycle:lifecycle-viewmodel-ktx:$version"
             }
 
@@ -159,14 +160,14 @@ object Libs {
     }
 
     object Hilt {
-        private const val version = "2.38.1"
+        private const val version = "2.37"
 
         const val gradlePlugin = "com.google.dagger:hilt-android-gradle-plugin:$version"
         const val android = "com.google.dagger:hilt-android:$version"
-        const val compiler = "com.google.dagger:hilt-compiler:$version"
+        const val daggerCompiler = "com.google.dagger:hilt-compiler:$version"
         const val testing = "com.google.dagger:hilt-android-testing:$version"
         //
-//        const val hiltCompiler = "androidx.hilt:hilt-compiler:1.0.0"
+        const val hiltCompiler = "androidx.hilt:hilt-compiler:1.0.0"
         const val work = "androidx.hilt:hilt-work:1.0.0"
         const val navigationCompose = "androidx.hilt:hilt-navigation-compose:1.0.0-alpha03"
 

@@ -4,9 +4,8 @@ import android.Manifest
 import androidx.compose.foundation.layout.*
 import androidx.compose.material.Button
 import androidx.compose.material.Text
-import androidx.compose.runtime.Composable
-import androidx.compose.runtime.collectAsState
-import androidx.compose.runtime.getValue
+import androidx.compose.runtime.*
+import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
@@ -17,11 +16,12 @@ import com.google.accompanist.permissions.PermissionRequired
 import com.google.accompanist.permissions.rememberPermissionState
 import com.tustar.annotation.DemoItem
 import com.tustar.demo.R
+import com.tustar.demo.ui.StateEvent
 import com.tustar.demo.ktx.actionApplicationDetailsSettings
 import com.tustar.demo.ui.AppOpsResult
 import com.tustar.demo.ui.DetailTopBar
 import com.tustar.demo.ui.MainViewModel
-import com.tustar.demo.ui.ShowPermissionDialog
+import com.tustar.demo.ui.PermissionDialogContent
 import com.tustar.demo.ui.theme.DemoTheme
 import com.tustar.demo.util.Logger
 import kotlinx.coroutines.DelicateCoroutinesApi
@@ -38,9 +38,10 @@ const val MIN_OFFSET_Y = 6.0F
 )
 @Composable
 fun RecorderScreen(viewModel: MainViewModel) {
-    val permissionState = rememberPermissionState(Manifest.permission.RECORD_AUDIO)
-    //
-    val info by viewModel.recorderInfoState.collectAsState()
+    val info by viewModel.recorderInfo.collectAsState()
+    val opsResult by viewModel.opsResult.collectAsState()
+    val onOpsResultChange = viewModel::onOpsResultChange
+    val opsStateEvent = StateEvent(opsResult, onOpsResultChange)
     Logger.d("maxAmplitude = ${info.maxAmplitude}")
     val context = LocalContext.current
     var startAction = { RecorderService.startRecording(context) }
@@ -57,14 +58,25 @@ fun RecorderScreen(viewModel: MainViewModel) {
             info.maxAmplitude.coerceAtLeast(4)
         )
 
+        val permissionState = rememberPermissionState(Manifest.permission.RECORD_AUDIO)
+        var doNotShowRationale by rememberSaveable { mutableStateOf(false) }
         PermissionRequired(
             permissionState = permissionState,
             permissionNotGrantedContent = {
-                RecorderButtons(startAction = { permissionState.launchPermissionRequest() })
+                if (doNotShowRationale) {
+                    // Feature not available
+                    Logger.w("Feature not available")
+                } else {
+                    Rationale(
+                        onRequestPermission = { permissionState.launchPermissionRequest() },
+                        onDoNotShowRationale = { doNotShowRationale = true },
+                    )
+                }
+
             },
             permissionNotAvailableContent = {
                 RecorderButtons(startAction = { permissionState.launchPermissionRequest() })
-                PermissionsDenied(viewModel)
+                PermissionsDenied(opsStateEvent)
             }
         ) {
             RecorderButtons(info, startAction, pauseAction, resumeAction, stopAction)
@@ -73,13 +85,31 @@ fun RecorderScreen(viewModel: MainViewModel) {
 }
 
 @Composable
-private fun PermissionsDenied(viewModel: MainViewModel) {
+private fun Rationale(
+    onRequestPermission: () -> Unit,
+    onDoNotShowRationale: () -> Unit,
+) {
+    Logger.d("The audio is important for this app. Please grant the permission.")
+    // Request permission
+    RecorderButtons(startAction = onRequestPermission)
+    // Don't show rationale again
+//    onDoNotShowRationale()
+}
+
+@Composable
+private fun PermissionsDenied(opsStateEvent: StateEvent<AppOpsResult>) {
+    Logger.d(
+        "Audio permission denied. See this FAQ with information about why we " +
+                "need this permission. Please, grant us access on the Settings screen."
+    )
     val context = LocalContext.current
-    viewModel.opsResultState.value = AppOpsResult(
+    val opsResult = AppOpsResult(
+        tag = AppOpsResult.OPS_TAG_AUDIO,
         true,
         R.string.dlg_title_audio_permisson
     ) { context.actionApplicationDetailsSettings() }
-    ShowPermissionDialog(viewModel)
+    opsStateEvent.onEvent(opsResult)
+    PermissionDialogContent(opsStateEvent)
 }
 
 @Composable

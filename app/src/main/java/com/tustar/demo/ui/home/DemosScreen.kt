@@ -9,7 +9,9 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.material.Text
 import androidx.compose.material.TopAppBar
+import androidx.compose.material.primarySurface
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.SideEffect
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
@@ -17,37 +19,52 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
+import com.google.accompanist.systemuicontroller.SystemUiController
 import com.tustar.demo.R
 import com.tustar.demo.data.DemoItem
 import com.tustar.demo.data.Weather
+import com.tustar.demo.ui.StateEvent
 import com.tustar.demo.ktx.topAppBar
+import com.tustar.demo.ui.AppOpsResult
 import com.tustar.demo.ui.MainViewModel
 import com.tustar.demo.ui.SectionView
 import com.tustar.demo.ui.theme.DemoTheme
-import com.tustar.demo.ui.weather.WeatherScreen
 import com.tustar.demo.util.Logger
 
 @Composable
 fun DemosScreen(
+    systemUiController: SystemUiController,
     viewModel: MainViewModel,
-    updateLocation: () -> Unit,
     onDemoClick: (Int) -> Unit,
     onWeatherClick: (Weather) -> Unit,
 ) {
-    val grouped by viewModel.createDemos().collectAsState(initial = mapOf())
+    val statusBarColor = DemoTheme.colors.primarySurface
+    SideEffect {
+        systemUiController.setStatusBarColor(statusBarColor)
+    }
+    val weather by viewModel.weather.collectAsState()
+    val onUpdateLocation = viewModel::onUpdateLocation
+    val opsResult by viewModel.opsResult.collectAsState()
+    val onOpsResultChange = viewModel::onOpsResultChange
+    val opsStateEvent = StateEvent(opsResult, onOpsResultChange)
+    val grouped by viewModel.demos.collectAsState(initial = mapOf())
     Column {
-        DemosTopBar(viewModel, updateLocation, onWeatherClick)
+        DemosTopBar(
+            weather, onUpdateLocation,
+            opsStateEvent,
+            onWeatherClick
+        )
         DemosListView(grouped, onDemoClick)
     }
 }
 
 @Composable
 fun DemosTopBar(
-    viewModel: MainViewModel,
-    updateLocation: () -> Unit,
-    onWeatherClick: (Weather) -> Unit,
+    weather: Weather?,
+    onUpdateLocation: (Boolean) -> Unit,
+    opsStateEvent: StateEvent<AppOpsResult>,
+    onWeatherClick: (Weather) -> Unit
 ) {
-    val weather by viewModel.weatherState.collectAsState()
     Logger.d("$weather")
     TopAppBar(
         title = {
@@ -55,10 +72,9 @@ fun DemosTopBar(
         },
         modifier = Modifier.topAppBar(),
         actions = {
-            LocationPermissionsRequest(viewModel, updateLocation)
+            LocationPermissionsRequest(onUpdateLocation, opsStateEvent)
             weather?.let {
-                WeatherActionItem(it, updateLocation)
-                onWeatherClick(it)
+                WeatherActionItem(it, onUpdateLocation, onWeatherClick)
             }
         }
     )
@@ -67,11 +83,13 @@ fun DemosTopBar(
 @Composable
 private fun WeatherActionItem(
     weather: Weather,
-    updateLocation: () -> Unit
+    onUpdateLocation: (Boolean) -> Unit,
+    onWeatherClick: (Weather) -> Unit
 ) {
     Column(
         modifier = Modifier.clickable {
-            updateLocation()
+            onUpdateLocation(true)
+            onWeatherClick(weather)
         },
         horizontalAlignment = Alignment.End
     ) {

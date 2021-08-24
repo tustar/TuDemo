@@ -4,7 +4,9 @@ import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.*
 import androidx.compose.material.Icon
 import androidx.compose.material.Text
+import androidx.compose.material.primarySurface
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.SideEffect
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -13,12 +15,16 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.google.accompanist.systemuicontroller.SystemUiController
 import com.tustar.demo.R
 import com.tustar.demo.ui.SectionView
 import com.tustar.demo.ui.theme.DemoTheme
 
 @Composable
-fun MeScreen() {
+fun MeScreen(systemUiController: SystemUiController,) {
+    SideEffect {
+        systemUiController.setStatusBarColor(Color.Transparent)
+    }
     Column {
         Image(
             painter = painterResource(id = R.drawable.ic_me_header),
