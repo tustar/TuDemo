@@ -1,4 +1,7 @@
-package com.tustar.demo.data.source.remote
+package com.tustar.data.source.remote
+
+import android.os.Parcelable
+import kotlinx.parcelize.Parcelize
 
 data class NowResponse(
     val code: String,
@@ -8,6 +11,7 @@ data class NowResponse(
     val updateTime: String
 )
 
+@Parcelize
 data class Now(
     val cloud: Int,
     val dew: String,
@@ -24,4 +28,4 @@ data class Now(
     val windDir: String,
     val windScale: Int,
     val windSpeed: Float
-)
+):Parcelable

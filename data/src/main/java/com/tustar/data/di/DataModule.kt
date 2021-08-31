@@ -1,8 +1,8 @@
-package com.tustar.demo.di
+package com.tustar.data.di
 
-import com.tustar.demo.data.source.WeatherRepository
-import com.tustar.demo.data.source.WeatherRepositoryImpl
-import com.tustar.demo.data.source.remote.HeService
+import com.tustar.data.source.WeatherRepository
+import com.tustar.data.source.WeatherRepositoryImpl
+import com.tustar.data.source.remote.HeService
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -15,7 +15,7 @@ import javax.inject.Singleton
 
 @Module
 @InstallIn(SingletonComponent::class)
-object AppModule {
+object DataModule {
 
     @Provides
     @Singleton

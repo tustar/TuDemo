@@ -4,9 +4,9 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.amap.api.location.AMapLocation
-import com.tustar.demo.codegen.generateDemos
-import com.tustar.demo.data.DemoItem
-import com.tustar.demo.data.Weather
+import com.tustar.data.DemoItem
+import com.tustar.data.Weather
+import com.tustar.data.codegen.generateDemos
 import com.tustar.demo.ui.AppOpsResult.Companion.OPS_TAG_LOCATION
 import com.tustar.demo.ui.recorder.RecorderInfo
 import com.tustar.demo.woker.WeatherWorker

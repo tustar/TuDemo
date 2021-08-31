@@ -54,11 +54,11 @@ class DemoProcessor : AbstractProcessor() {
             demos.add(DemoInfo(group, item, createdAt, updatedAt))
         }
         //
-        val packageName = "com.tustar.demo.codegen"
+        val packageName = "com.tustar.data.codegen"
         val fileName = "GenData"
         val generateDemos = buildDemoFun(packageName, demos)
         val file = FileSpec.builder(packageName, fileName)
-            .addImport("com.tustar.demo.data", "DemoItem")
+            .addImport("com.tustar.data", "DemoItem")
             .addFunction(generateDemos)
             .build()
         try {

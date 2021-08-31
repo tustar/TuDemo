@@ -15,7 +15,7 @@ import androidx.navigation.compose.rememberNavController
 import com.google.accompanist.systemuicontroller.SystemUiController
 import com.google.accompanist.systemuicontroller.rememberSystemUiController
 import com.tustar.demo.R
-import com.tustar.demo.data.Weather
+import com.tustar.data.Weather
 import com.tustar.demo.ktx.getParcelable
 import com.tustar.demo.ktx.putParcelable
 import com.tustar.demo.ui.MainDestinations.DEMO_DETAIL_ANDROID_ROUTE

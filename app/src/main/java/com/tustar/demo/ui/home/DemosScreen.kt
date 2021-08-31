@@ -20,14 +20,14 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import com.google.accompanist.systemuicontroller.SystemUiController
+import com.tustar.data.DemoItem
+import com.tustar.data.Weather
 import com.tustar.demo.R
-import com.tustar.demo.data.DemoItem
-import com.tustar.demo.data.Weather
-import com.tustar.demo.ui.StateEvent
 import com.tustar.demo.ktx.topAppBar
 import com.tustar.demo.ui.AppOpsResult
 import com.tustar.demo.ui.MainViewModel
 import com.tustar.demo.ui.SectionView
+import com.tustar.demo.ui.StateEvent
 import com.tustar.demo.ui.theme.DemoTheme
 import com.tustar.demo.util.Logger
 
@@ -99,7 +99,11 @@ private fun WeatherActionItem(
                 .padding(end = 8.dp),
         )
         Text(
-            text = stringResource(id = R.string.weather_daily_temp, weather.daily, weather.temp),
+            text = stringResource(
+                id = R.string.weather_daily_temp,
+                weather.now.text,
+                weather.now.temp
+            ),
             modifier = Modifier
                 .padding(end = 8.dp),
         )

@@ -15,6 +15,7 @@
             <option value="$PROJECT_DIR$/app" />
             <option value="$PROJECT_DIR$/buildSrc" />
             <option value="$PROJECT_DIR$/compiler" />
+            <option value="$PROJECT_DIR$/data" />
             <option value="$PROJECT_DIR$/jstudy" />
             <option value="$PROJECT_DIR$/ktstudy" />
             <option value="$PROJECT_DIR$/weather" />

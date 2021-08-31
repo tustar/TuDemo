@@ -6,8 +6,9 @@ import androidx.hilt.work.HiltWorker
 import androidx.work.*
 import com.amap.api.location.AMapLocation
 import com.google.gson.Gson
-import com.tustar.demo.data.Weather
-import com.tustar.demo.data.source.WeatherRepository
+import com.tustar.data.Weather
+import com.tustar.data.source.WeatherRepository
+import com.tustar.demo.ktx.toParams
 import com.tustar.demo.ui.MainViewModel
 import dagger.assisted.Assisted
 import dagger.assisted.AssistedInject
@@ -27,7 +28,7 @@ class WeatherWorker @AssistedInject constructor(
             val gson = Gson()
             val location =
                 gson.fromJson(inputData.getString(KEY_LOCATION), AMapLocation::class.java)
-            val weather = weatherRepository.weather(location)
+            val weather = weatherRepository.weather(location.toParams(), location.poiName)
             val outputData = workDataOf(KEY_WEATHER to gson.toJson(weather))
             Result.success(outputData)
         } catch (e: Exception) {

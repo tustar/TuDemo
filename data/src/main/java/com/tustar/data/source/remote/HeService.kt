@@ -1,4 +1,4 @@
-package com.tustar.demo.data.source.remote
+package com.tustar.data.source.remote
 
 import retrofit2.http.GET
 import retrofit2.http.Query

@@ -1,4 +1,4 @@
-package com.tustar.demo.data.source.remote
+package com.tustar.data.source.remote
 
 data class Refer(
     val license: List<String>,

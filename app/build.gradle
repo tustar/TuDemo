@@ -172,6 +172,7 @@ dependencies {
     implementation project(':annotation')
     kapt project(':compiler')
     implementation project(':weather')
+    implementation project(':data')
 }
 
 static def getVerName(String baseVerName, String autoBuildNumber) {

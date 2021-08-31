@@ -1,0 +1,55 @@
+import com.tustar.demo.buildsrc.Libs
+
+plugins {
+    id 'com.android.library'
+    id 'kotlin-android'
+    id 'kotlin-kapt'
+    id 'dagger.hilt.android.plugin'
+    id 'kotlin-parcelize'
+}
+
+android {
+    compileSdk 30
+
+    defaultConfig {
+        minSdk 21
+        targetSdk 30
+        versionCode 1
+        versionName "1.0"
+
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        consumerProguardFiles "consumer-rules.pro"
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+    kotlinOptions {
+        jvmTarget = '1.8'
+    }
+}
+
+dependencies {
+
+    // Hilt
+    implementation Libs.Hilt.android
+    implementation Libs.Hilt.work
+    implementation Libs.Hilt.navigationCompose
+    kapt Libs.Hilt.daggerCompiler
+    kapt Libs.Hilt.hiltCompiler
+    // Retrofit
+    implementation Libs.Squareup.Retrofit2.retrofit
+    implementation Libs.Squareup.Retrofit2.converterJson
+    implementation Libs.Squareup.OkHttp3.loggingInterceptor
+    // Test
+    testImplementation Libs.JUnit.junit
+    androidTestImplementation Libs.AndroidX.Test.Ext.junit
+    androidTestImplementation Libs.AndroidX.Test.espressoCore
+}
