@@ -16,6 +16,8 @@ import com.google.accompanist.systemuicontroller.SystemUiController
 import com.google.accompanist.systemuicontroller.rememberSystemUiController
 import com.tustar.demo.R
 import com.tustar.data.Weather
+import com.tustar.data.source.WeatherRepository
+import com.tustar.data.source.WeatherRepositoryImpl
 import com.tustar.demo.ktx.getParcelable
 import com.tustar.demo.ktx.putParcelable
 import com.tustar.demo.ui.MainDestinations.DEMO_DETAIL_ANDROID_ROUTE
@@ -27,7 +29,7 @@ import com.tustar.demo.ui.MainDestinations.ME_ROUTE
 import com.tustar.demo.ui.MainDestinations.WEATHER_ROUTE
 import com.tustar.demo.ui.home.*
 import com.tustar.demo.ui.me.MeScreen
-import com.tustar.demo.ui.weather.WeatherScreen
+import com.tustar.weather.ui.WeatherScreen
 
 /**
  * Destinations used in the ([DemoApp]).
@@ -46,7 +48,7 @@ object MainDestinations {
 
 @Composable
 fun NavGraph(
-    viewModel: MainViewModel = MainViewModel(),
+    viewModel: MainViewModel,
     navController: NavHostController = rememberNavController(),
     systemUiController: SystemUiController = rememberSystemUiController(),
     startDestination: String = DEMO_ROUTE,

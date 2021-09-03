@@ -10,6 +10,7 @@
         <entry key="../../../../../../layout/compose-model-1627889371782.xml" value="0.2039695945945946" />
         <entry key="../../../../../../layout/compose-model-1627891430388.xml" value="0.15071070234113712" />
         <entry key="../../../../../../layout/compose-model-1628254017373.xml" value="0.1" />
+        <entry key="../../../../../../layout/compose-model-1630579171950.xml" value="0.1" />
         <entry key="..\:/project/github/TuDemo/TuDemo/src/main/res/drawable/ic_home_black_24dp.xml" value="0.11197916666666667" />
         <entry key="..\:/project/github/TuDemo/TuDemo/src/main/res/drawable/ic_launcher_foreground.xml" value="0.16822916666666668" />
         <entry key="..\:/project/github/TuDemo/TuDemo/src/main/res/drawable/ic_me_email.xml" value="0.1" />
@@ -63,6 +64,7 @@
         <entry key="weather/src/main/res/drawable/bg_4_n.xml" value="0.25555555555555554" />
         <entry key="weather/src/main/res/drawable/bg_5_n.xml" value="0.25555555555555554" />
         <entry key="weather/src/main/res/drawable/bg_8_n.xml" value="0.26481481481481484" />
+        <entry key="weather/src/main/res/drawable/ic_leaf.xml" value="0.15677083333333333" />
         <entry key="weather/src/main/res/layout/custom_toast.xml" value="0.17760416666666667" />
       </map>
     </option>

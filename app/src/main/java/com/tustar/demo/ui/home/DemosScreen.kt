@@ -101,8 +101,8 @@ private fun WeatherActionItem(
         Text(
             text = stringResource(
                 id = R.string.weather_daily_temp,
-                weather.now.text,
-                weather.now.temp
+                weather.weatherNow.text,
+                weather.weatherNow.temp
             ),
             modifier = Modifier
                 .padding(end = 8.dp),

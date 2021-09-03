@@ -1,3 +1,5 @@
+import com.tustar.demo.buildsrc.Libs
+
 plugins {
     id 'com.android.library'
     id 'kotlin-android'
@@ -7,7 +9,7 @@ android {
     compileSdk 30
 
     defaultConfig {
-        minSdk 21
+        minSdk 24
         targetSdk 30
         versionCode 1
         versionName "1.0"
@@ -26,11 +28,35 @@ android {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
     }
-    kotlinOptions {
-        jvmTarget = '1.8'
+    buildFeatures {
+        compose true
     }
+    kotlinOptions {
+        jvmTarget = 1.8
+    }
+    composeOptions {
+        kotlinCompilerExtensionVersion Libs.AndroidX.Compose.version
+    }
+
 }
 
 dependencies {
-
+    // Accompanist
+    implementation Libs.Accompanist.systemuicontroller
+    // Compose
+    implementation Libs.AndroidX.Activity.compose
+    implementation Libs.AndroidX.Compose.foundation
+    implementation Libs.AndroidX.Compose.layout
+    implementation Libs.AndroidX.Compose.ui
+    implementation Libs.AndroidX.Compose.runtime
+    implementation Libs.AndroidX.Compose.runtimeLivedata
+    implementation Libs.AndroidX.Compose.material
+    implementation Libs.AndroidX.Compose.materialIconsExtended
+    implementation Libs.AndroidX.Compose.tooling
+    implementation Libs.AndroidX.Compose.animation
+    implementation Libs.AndroidX.Compose.uiTest
+    implementation Libs.AndroidX.Navigation.compose
+    implementation Libs.AndroidX.ConstraintLayout.compose
+    //
+    implementation project(':data')
 }

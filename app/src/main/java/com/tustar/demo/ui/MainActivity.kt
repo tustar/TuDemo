@@ -58,7 +58,7 @@ class MainActivity : AppCompatActivity(), OnRecorderListener {
                 Logger.d("location=${location.toFormatString()}")
                 if (location.errorCode == 0) {
                     viewModel.onUpdateLocation(false)
-                    viewModel.requestWeather(this@MainActivity, location)
+                    viewModel.requestWeather(location)
                 }
             }
         }
