@@ -1,5 +1,6 @@
 package com.tustar.weather.ui
 
+import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
@@ -9,6 +10,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
@@ -28,10 +30,23 @@ fun ItemWeatherHeader(
 ) {
     ConstraintLayout(
         modifier = Modifier
-            .padding(top = 48.dp)
             .fillMaxWidth()
+            .padding(top = 96.dp),
     ) {
-        val (temp, unit, daily, warning) = createRefs()
+        val (warning, temp, unit, daily, lunar, air) = createRefs()
+
+        ItemWarnings(
+            modifier = Modifier
+                .background(
+                    Color(0x33000000), RoundedCornerShape(16.dp)
+                )
+                .constrainAs(warning) {
+                    bottom.linkTo(temp.top)
+                    start.linkTo(parent.start)
+                    end.linkTo(parent.end)
+                },
+            warnings = warnings
+        )
 
         Text(
             text = weatherNow.temp.toString(),
@@ -43,7 +58,8 @@ fun ItemWeatherHeader(
                     top.linkTo(parent.top)
                     start.linkTo(parent.start)
                     end.linkTo(parent.end)
-                }
+
+                },
         )
         Text(
             text = stringResource(id = R.string.weather_temp_unit),
@@ -67,47 +83,88 @@ fun ItemWeatherHeader(
             }
         )
 
-        if (warnings.isNotEmpty()) {
-            Text(
-                text = stringResource(
-                    id = R.string.weather_warning,
-                    warnings[0].type,
-                    warnings[0].typeName
-                ),
-                color = Color(0xCCFFFFFF),
-                fontSize = 16.sp,
-                fontWeight = FontWeight.Light,
-                modifier = Modifier
-                    .background(
-                        Color(0x33000000), RoundedCornerShape(8.dp)
-                    )
-                    .constrainAs(warning) {
-                        top.linkTo(temp.bottom)
-                    }
-            )
-        }
+        ItemDate(modifier = Modifier.constrainAs(lunar) {
+            top.linkTo(temp.bottom)
+            start.linkTo(parent.start)
+            end.linkTo(parent.end)
+        })
 
         ItemAirNow(
             modifier = Modifier
                 .padding(top = 96.dp)
-                .constrainAs(warning) {
+                .constrainAs(air) {
                     top.linkTo(temp.bottom)
+                    end.linkTo(parent.end)
                 }, airNow = airNow
         )
     }
 }
 
 @Composable
-fun ItemAirNow(modifier: Modifier, airNow: AirNow) {
+private fun ItemWarnings(modifier: Modifier, warnings: List<Warning>) {
+    if (warnings.isNotEmpty()) {
+        ItemWarningRow(
+            modifier = modifier
+                .padding(horizontal = 8.dp, vertical = 2.dp),
+            warning = warnings[0]
+        )
+    }
+}
+
+@Composable
+private fun ItemWarningRow(
+    modifier: Modifier = Modifier,
+    warning: Warning
+) {
     Row(
+        modifier = modifier,
+        verticalAlignment = Alignment.CenterVertically,
+    ) {
+        Image(
+            painter = painterResource(
+                id = WeatherHelper.alertIcon(
+                    context = LocalContext.current,
+                    type = warning.type,
+                    level = warning.level
+                )
+            ),
+            contentDescription = null,
+            modifier = Modifier.width(20.dp)
+        )
+        Text(
+            text = stringResource(
+                id = R.string.weather_warning,
+                warning.level,
+                warning.typeName
+            ),
+            color = Color.White,
+            fontSize = 14.sp,
+            modifier = Modifier.padding(5.dp)
+        )
+    }
+}
+
+@Composable
+private fun ItemDate(modifier: Modifier) {
+    Column(modifier = modifier, horizontalAlignment = Alignment.CenterHorizontally) {
+        Text(
+            text = WeatherHelper.gregorianAndLunar(),
+            color = Color(0xCCFFFFFF),
+            fontSize = 14.sp,
+        )
+    }
+}
+
+@Composable
+private fun ItemAirNow(modifier: Modifier, airNow: AirNow) {
+    Row(
+        verticalAlignment = Alignment.CenterVertically,
         modifier = modifier
-            .padding(8.dp)
+            .padding(5.dp)
             .background(
                 Color(0x33000000), RoundedCornerShape(16.dp)
             )
-            .padding(4.dp),
-        verticalAlignment = Alignment.CenterVertically,
-        horizontalArrangement = Arrangement.End
+            .padding(horizontal = 8.dp, vertical = 2.dp),
     ) {
         Icon(
             painter = painterResource(id = R.drawable.ic_leaf),
@@ -115,21 +172,21 @@ fun ItemAirNow(modifier: Modifier, airNow: AirNow) {
             tint = WeatherHelper.aqiColor(airNow.aqi),
             modifier = Modifier
                 .width(24.dp)
-                .padding(start = 4.dp)
+                .padding(2.dp)
         )
         Text(
             text = airNow.aqi.toString(),
-            fontSize = 15.sp,
-            color = Color.White,
-            modifier = Modifier
-                .padding(start = 4.dp)
-        )
-        Text(
-            text = airNow.category,
             fontSize = 14.sp,
             color = Color.White,
             modifier = Modifier
-                .padding(horizontal = 4.dp)
+                .padding(start = 2.dp)
+        )
+        Text(
+            text = airNow.category,
+            fontSize = 13.sp,
+            color = Color.White,
+            modifier = Modifier
+                .padding(start = 2.dp)
         )
     }
 }

@@ -1,9 +1,8 @@
 package com.tustar.weather.ui
 
 import androidx.annotation.StringRes
-import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.*
+import androidx.compose.material.Divider
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
@@ -17,12 +16,22 @@ import com.tustar.weather.R
 
 @Composable
 fun ItemWeatherNow(weatherNow: WeatherNow) {
-    Row(modifier = Modifier.itemBackground()) {
+    Row(
+        modifier = Modifier
+            .itemBackground(vertical = 8.dp),
+        verticalAlignment = Alignment.CenterVertically
+    ) {
         ItemWeatherNowColumn(
             modifier = Modifier.weight(1f),
             keyId = R.string.weather_feelsLike,
             valueId = R.string.weather_temp_value,
             value = weatherNow.feelsLike
+        )
+        Divider(
+            modifier = Modifier
+                .width(0.5.dp)
+                .height(30.dp),
+            color = Color(0xCCFFFFFF),
         )
         ItemWeatherNowColumn(
             modifier = Modifier.weight(1f),
@@ -30,11 +39,23 @@ fun ItemWeatherNow(weatherNow: WeatherNow) {
             valueId = R.string.weather_humidity_value,
             value = weatherNow.humidity
         )
+        Divider(
+            modifier = Modifier
+                .width(0.5.dp)
+                .height(30.dp),
+            color = Color(0xCCFFFFFF),
+        )
         ItemWeatherNowColumn(
             modifier = Modifier.weight(1f),
             keyId = R.string.weather_windScale,
-            valueId = R.string.weather_windScale_value,
+            valueId = R.string.weather_wind_value,
             value = weatherNow.windScale
+        )
+        Divider(
+            modifier = Modifier
+                .width(0.5.dp)
+                .height(30.dp),
+            color = Color(0xCCFFFFFF),
         )
         ItemWeatherNowColumn(
             modifier = Modifier.weight(1f),
@@ -46,24 +67,25 @@ fun ItemWeatherNow(weatherNow: WeatherNow) {
 }
 
 @Composable
-fun ItemWeatherNowColumn(
+private fun ItemWeatherNowColumn(
     modifier: Modifier,
     @StringRes keyId: Int,
     @StringRes valueId: Int,
     value: Int
 ) {
     Column(
-        modifier = modifier.padding(top = 4.dp, bottom = 4.dp),
+        modifier = modifier,
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
         Text(
+            modifier = Modifier.padding(bottom = 3.dp),
             text = stringResource(valueId, value),
-            fontSize = 15.sp,
+            fontSize = 16.sp,
             color = Color(0xFF000000),
         )
         Text(
             text = stringResource(keyId),
-            fontSize = 14.sp,
+            fontSize = 13.sp,
             color = Color(0xFF666666),
         )
     }

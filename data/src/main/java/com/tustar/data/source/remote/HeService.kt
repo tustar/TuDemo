@@ -17,6 +17,9 @@ interface HeService {
     @GET("v7/air/now?key=$HE_WEATHER_KEY")
     suspend fun airNow(@Query("location") location: String): AirNowResponse
 
+    @GET("v7/air/5d?key=$HE_WEATHER_KEY")
+    suspend fun air5d(@Query("location") location: String): AirDaysResponse
+
     @GET("v7/warning/now?key=$HE_WEATHER_KEY")
     suspend fun warningNow(@Query("location") location: String): WarningNowResponse
 

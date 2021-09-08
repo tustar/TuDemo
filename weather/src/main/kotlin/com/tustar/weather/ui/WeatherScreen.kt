@@ -31,7 +31,7 @@ fun WeatherScreen(
                 .fillMaxSize()
         )
 
-        LazyColumn() {
+        LazyColumn {
             item {
                 ItemWeatherHeader(weather.weatherNow, weather.warning, weather.airNow)
             }
@@ -39,14 +39,23 @@ fun WeatherScreen(
                 ItemWeatherNow(weather.weatherNow)
             }
             item {
+                ItemWeather3d(weather.daily15d.subList(0, 3), weather.air5d.subList(0, 3))
+            }
+            item {
                 ItemWeather24h(weather.hourly24h)
             }
             item {
-                ItemWeather15d(weather.daily15d)
+                ItemWeather15d(weather.daily15d, weather.air5d)
+            }
+            item {
+                ItemWeatherSun(weather.daily15d[0])
             }
 //            item {
 //                ItemWeatherIndices(weather.indices)
 //            }
+            item {
+                ItemWeatherSources()
+            }
         }
     }
 }

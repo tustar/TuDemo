@@ -1,20 +1,16 @@
 package com.tustar.weather.ui
 
-import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.lazy.items
-import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material.Icon
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
-import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
@@ -28,71 +24,72 @@ fun ItemWeather24h(hourly24: List<Hourly>) {
         modifier = Modifier
             .itemBackground()
             .fillMaxWidth()
-            .padding(horizontal = 16.dp)
     ) {
         val (title, content) = createRefs()
 
-        Text(
-            text = stringResource(R.string.weather_24h_forecast),
-            fontSize = 15.sp,
-            color = Color(0xFF000000),
+        ItemWeatherTopBar(
             modifier = Modifier
-                .padding(vertical = 4.dp)
                 .constrainAs(title) {
                     top.linkTo(parent.top)
                     start.linkTo(parent.start)
                     end.linkTo(parent.end)
-                }
+                },
+            id = R.string.weather_24h_forecast
         )
 
-        LazyRow(modifier = Modifier
-            .padding(vertical = 4.dp)
-            .constrainAs(content) {
-                top.linkTo(title.bottom)
-                start.linkTo(parent.start)
-                end.linkTo(parent.end)
-            }) {
-            items(items = hourly24, itemContent = { item ->
-                val (isNow, formatFxTime) = WeatherHelper.hourlyTime(item.fxTime)
-                val modifier = if (isNow) {
-                    Modifier
-                        .border(1.dp, Color.LightGray, RoundedCornerShape(4.dp))
-                } else {
-                    Modifier
-                }
-                Column(
-                    modifier = modifier
-                        .padding(horizontal = 4.dp, vertical = 4.dp),
-                    horizontalAlignment = Alignment.CenterHorizontally
-                ) {
-                    Text(
-                        text = formatFxTime,
-                        fontSize = 15.sp,
-                        color = Color(0xFF000000),
-                    )
-                    Icon(
-                        painter = painterResource(
-                            id = WeatherHelper.iconId(
-                                LocalContext.current,
-                                item.icon
-                            )
-                        ),
-                        contentDescription = null,
-                        modifier = Modifier
-                            .padding(vertical = 4.dp)
-                    )
-                    Text(
-                        text = item.text,
-                        fontSize = 14.sp,
-                        color = Color(0xFF666666),
-                    )
-                    Text(
-                        text = stringResource(R.string.weather_temp_value, item.temp),
-                        fontSize = 15.sp,
-                        color = Color(0xFF000000),
-                    )
-                }
-            })
-        }
+        ItemWeather24List(
+            modifier = Modifier
+                .constrainAs(content) {
+                    top.linkTo(title.bottom)
+                    start.linkTo(parent.start)
+                    end.linkTo(parent.end)
+                },
+            hourly24 = hourly24
+        )
+    }
+}
+
+@Composable
+private fun ItemWeather24List(modifier: Modifier, hourly24: List<Hourly>) {
+    LazyRow(
+        modifier = modifier,
+    ) {
+        items(items = hourly24, itemContent = { hourly ->
+            ItemWeather24ListColumn(hourly = hourly)
+        })
+    }
+}
+
+@Composable
+private fun ItemWeather24ListColumn(hourly: Hourly) {
+    val (isNow, formatFxTime) = WeatherHelper.hourlyTime(LocalContext.current, hourly.fxTime)
+    val modifier = if (isNow) Modifier.itemSelected() else Modifier
+
+    Column(
+        modifier = modifier.padding(8.dp),
+        horizontalAlignment = Alignment.CenterHorizontally
+    ) {
+        Text(
+            text = formatFxTime,
+            fontSize = 15.sp,
+            color = Color(0xFF000000),
+        )
+        ItemWeatherImage(icon = hourly.icon)
+        Text(
+            text = stringResource(R.string.weather_temp_value, hourly.temp),
+            fontSize = 15.sp,
+            color = Color(0xFF000000),
+            modifier = Modifier
+                .padding(top = 4.dp)
+        )
+    }
+}
+
+@Composable
+private fun ItemWeather24Trend(modifier: Modifier, hourly24: List<Hourly>) {
+    LazyRow(modifier = modifier) {
+        items(items = hourly24, itemContent = { hourly ->
+            ItemWeather24ListColumn(hourly = hourly)
+        })
     }
 }
