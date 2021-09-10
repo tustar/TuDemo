@@ -1,9 +1,6 @@
 package com.tustar.weather.ui
 
-import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.*
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
@@ -37,13 +34,15 @@ fun ItemWeather15d(daily15d: List<WeatherDaily>, air5d: List<AirDaily>) {
             id = R.string.weather_15d_forecast
         )
 
-        Column(modifier = Modifier
-            .padding(vertical = 4.dp)
-            .constrainAs(content) {
-                top.linkTo(title.bottom)
-                start.linkTo(parent.start)
-                end.linkTo(parent.end)
-            }
+        Column(
+            verticalArrangement = Arrangement.spacedBy(4.dp),
+            modifier = Modifier
+                .padding(horizontal = 4.dp)
+                .constrainAs(content) {
+                    top.linkTo(title.bottom)
+                    start.linkTo(parent.start)
+                    end.linkTo(parent.end)
+                }
         ) {
             daily15d.forEachIndexed { index, weatherDaily ->
                 DayInfo(weatherDaily = weatherDaily, airDaily = air5d.getOrNull(index))
@@ -59,7 +58,7 @@ private fun DayInfo(weatherDaily: WeatherDaily, airDaily: AirDaily?) {
 
     Row(
         modifier = modifier
-            .padding(horizontal = 4.dp, vertical = 8.dp)
+            .padding(horizontal = 4.dp, vertical = 4.dp)
     ) {
         // 1 date & week
         Column(

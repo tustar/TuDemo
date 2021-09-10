@@ -18,5 +18,5 @@ data class IndicesDaily(
     val level: String,
     val name: String,
     val text: String,
-    val type: String
+    val type: Int
 ) : Parcelable

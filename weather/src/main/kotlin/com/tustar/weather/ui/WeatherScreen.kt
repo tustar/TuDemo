@@ -50,9 +50,9 @@ fun WeatherScreen(
             item {
                 ItemWeatherSun(weather.daily15d[0])
             }
-//            item {
-//                ItemWeatherIndices(weather.indices)
-//            }
+            item {
+                ItemWeatherIndices(weather.indices)
+            }
             item {
                 ItemWeatherSources()
             }

@@ -122,7 +122,7 @@ private fun ItemWarningRow(
     ) {
         Image(
             painter = painterResource(
-                id = WeatherHelper.alertIcon(
+                id = WeatherIcons.alertIconId(
                     context = LocalContext.current,
                     type = warning.type,
                     level = warning.level
@@ -148,7 +148,7 @@ private fun ItemWarningRow(
 private fun ItemDate(modifier: Modifier) {
     Column(modifier = modifier, horizontalAlignment = Alignment.CenterHorizontally) {
         Text(
-            text = WeatherHelper.gregorianAndLunar(),
+            text = WeatherHelper.gregorianAndLunar(LocalContext.current),
             color = Color(0xCCFFFFFF),
             fontSize = 14.sp,
         )

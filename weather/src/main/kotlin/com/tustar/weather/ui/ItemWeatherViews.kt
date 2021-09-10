@@ -38,7 +38,7 @@ fun ItemWeatherTopBar(modifier: Modifier, @StringRes id: Int) {
 fun ItemWeatherImage(modifier: Modifier = Modifier, icon: Int) {
     Image(
         painter = painterResource(
-            id = WeatherHelper.weatherIconId(
+            id = WeatherIcons.weatherIconId(
                 context = LocalContext.current,
                 icon = icon
             )

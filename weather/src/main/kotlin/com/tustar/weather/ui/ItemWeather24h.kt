@@ -1,8 +1,6 @@
 package com.tustar.weather.ui
 
-import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.lazy.items
 import androidx.compose.material.Text
@@ -66,7 +64,8 @@ private fun ItemWeather24ListColumn(hourly: Hourly) {
     val modifier = if (isNow) Modifier.itemSelected() else Modifier
 
     Column(
-        modifier = modifier.padding(8.dp),
+        modifier = modifier
+            .padding(horizontal = 5.dp, vertical = 8.dp),
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
         Text(

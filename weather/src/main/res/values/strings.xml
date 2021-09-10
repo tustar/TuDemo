@@ -5,7 +5,7 @@
     <string name="weather_warning">%1$s%2$s预警</string>
     <string name="weather_daily_temp">%1$s %2$d°</string>
     <string name="weather_temp_unit">°C</string>
-    <string name="weather_lunar">农历</string>
+    <string name="weather_lunar">农历%1$s</string>
     <string name="weather_feelsLike">体感</string>
     <string name="weather_humidity">湿度</string>
     <string name="weather_windScale">风力</string>
