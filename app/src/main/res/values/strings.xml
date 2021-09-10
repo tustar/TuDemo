@@ -5,16 +5,29 @@
     <string name="pause">暂停</string>
     <string name="resume">继续</string>
     <string name="stop">停止</string>
+    <string name="ok">确定</string>
+    <string name="cancel">取消</string>
     <!-- Title -->
     <string name="title_home">范例</string>
     <string name="title_weather">天气</string>
     <string name="title_me">我</string>
     <!-- Dialog -->
-    <string name="dlg_title_location_enable">获取天气需要打开定位开关</string>
-    <string name="dlg_title_location_permissons">获取天气需要授予定位权限</string>
-    <string name="dlg_title_audio_permisson">录音需要授予录音权限</string>
+    <string name="dlg_open_gps_title">请打开GPS开关</string>
+    <string name="dlg_open_gps_content">获取天气需要打开定位开关</string>
+    <string name="dlg_permission_tips">权限未全部授予，某些功能会无法正常使用</string>
+    <string name="dlg_permission_title">欢迎来到码农世界</string>
+    <string name="dlg_permission_content">为了给您提供优质的体验，码农世界将向您申请以下权限和信息：</string>
+    <string name="dlg_not_show">不再提示</string>
     <string name="dlg_not_now">暂不开启</string>
     <string name="dlg_to_setting">去设置</string>
+    <string name="dlg_content_location">定位</string>
+    <string name="dlg_content_location_desc">提供精确定位，获取天气信息。</string>
+    <string name="dlg_content_storage">存储</string>
+    <string name="dlg_content_storage_desc">读写录音文件。</string>
+    <string name="dlg_content_record_audio">录音</string>
+    <string name="dlg_content_record_audio_desc">录制声音。</string>
+    <string name="dlg_content_notification">通知</string>
+    <string name="dlg_content_notification_desc">为您推送天气和预警等信息。</string>
     <!-- Group -->
     <string name="group_custom_widget">自定义控件</string>
     <string name="group_system_widget">系统控件</string>

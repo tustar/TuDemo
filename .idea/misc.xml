@@ -40,6 +40,8 @@
         <entry key="app/src/main/res/drawable-sw600dp/ic_splash.xml" value="0.148" />
         <entry key="app/src/main/res/drawable/ic_author.xml" value="0.1" />
         <entry key="app/src/main/res/drawable/ic_launcher_foreground.xml" value="0.1385" />
+        <entry key="app/src/main/res/drawable/ic_permission_location.xml" value="0.2916666666666667" />
+        <entry key="app/src/main/res/drawable/ic_permission_record_audio.xml" value="0.2916666666666667" />
         <entry key="app/src/main/res/drawable/ic_splash.xml" value="0.1" />
         <entry key="app/src/main/res/drawable/ic_splash_coder.xml" value="0.148" />
         <entry key="app/src/main/res/drawable/ic_splash_coder_foreground.xml" value="0.1" />

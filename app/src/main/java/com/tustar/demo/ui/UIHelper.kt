@@ -8,6 +8,10 @@ import androidx.compose.material.*
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.rounded.ArrowBack
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.saveable.rememberSaveable
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
@@ -37,18 +41,17 @@ fun DetailTopBar() {
 }
 
 @Composable
-fun PermissionDialogContent(opsStateEvent: StateEvent<AppOpsResult>) {
-    Logger.d("opsResult = ${opsStateEvent.state}")
-    val opsResult = opsStateEvent.state
-    if (!opsResult.visible) {
+fun PermissionDialogContent(opsResult: AppOpsResult) {
+    var openDialog by rememberSaveable { mutableStateOf(true) }
+    if (!openDialog) {
         return
     }
 
-    val dismissAction = { opsStateEvent.onEvent(AppOpsResult(opsResult.tag)) }
+    val dismissAction = { openDialog = false }
     val title = opsResult.title
     val confirmAction = {
         opsResult.nextAction()
-        dismissAction()
+        openDialog = false
     }
 
     AlertDialog(

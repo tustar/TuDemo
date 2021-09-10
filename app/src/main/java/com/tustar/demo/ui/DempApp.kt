@@ -20,6 +20,7 @@ import com.google.accompanist.insets.navigationBarsHeight
 import com.google.accompanist.insets.navigationBarsPadding
 import com.google.accompanist.systemuicontroller.rememberSystemUiController
 import com.tustar.demo.R
+import com.tustar.demo.ui.home.PermissionsRequest
 import com.tustar.demo.ui.theme.DemoTheme
 import com.tustar.demo.util.Logger
 import java.util.*
@@ -38,6 +39,9 @@ fun DemoApp(viewModel: MainViewModel) {
                 systemUiController = systemUiController,
             )
         }
+        //
+        val onUpdateLocation = viewModel::onUpdateLocation
+        PermissionsRequest(onUpdateLocation)
     }
 }
 
