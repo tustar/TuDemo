@@ -33,7 +33,8 @@ object Libs {
         const val coil = "com.google.accompanist:accompanist-coil:$version"
         const val insets = "com.google.accompanist:accompanist-insets:$version"
         const val permissions = "com.google.accompanist:accompanist-permissions:$version"
-        const val systemuicontroller =  "com.google.accompanist:accompanist-systemuicontroller:$version"
+        const val systemuicontroller =
+            "com.google.accompanist:accompanist-systemuicontroller:$version"
     }
 
     object Coil {
@@ -61,6 +62,7 @@ object Libs {
         const val recyclerview = "androidx.recyclerview:recyclerview:1.2.1"
         const val annotation = "androidx.annotation:annotation:1.2.0"
         const val vectordrawable = "androidx.vectordrawable:vectordrawable:1.1.0"
+        const val datastorePreferences = "androidx.datastore:datastore-preferences:1.0.0"
 
         object Legacy {
             const val supportV4 = "androidx.legacy:legacy-support-v4:1.0.0"
@@ -97,7 +99,7 @@ object Libs {
 
         object Compose {
             const val snapshot = ""
-            private const val version = "1.0.1"
+            private const val version = "1.0.2"
 
             const val runtime = "androidx.compose.runtime:runtime:$version"
             const val runtimeLivedata = "androidx.compose.runtime:runtime-livedata:$version"
@@ -166,6 +168,7 @@ object Libs {
         const val android = "com.google.dagger:hilt-android:$version"
         const val daggerCompiler = "com.google.dagger:hilt-compiler:$version"
         const val testing = "com.google.dagger:hilt-android-testing:$version"
+
         //
         const val hiltCompiler = "androidx.hilt:hilt-compiler:1.0.0"
         const val work = "androidx.hilt:hilt-work:1.0.0"

@@ -1,25 +1,20 @@
 package com.tustar.demo.ui
 
 import androidx.compose.foundation.background
-import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
-import androidx.compose.material.*
+import androidx.compose.material.Icon
+import androidx.compose.material.IconButton
+import androidx.compose.material.Text
+import androidx.compose.material.TopAppBar
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.rounded.ArrowBack
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.saveable.rememberSaveable
-import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
-import androidx.compose.ui.unit.sp
-import com.tustar.demo.R
 import com.tustar.demo.ktx.topAppBar
 import com.tustar.demo.ui.theme.DemoTheme
-import com.tustar.demo.util.Logger
 
 @Composable
 fun DetailTopBar() {
@@ -36,58 +31,6 @@ fun DetailTopBar() {
                     contentDescription = stringResource(demoItem)
                 )
             }
-        }
-    )
-}
-
-@Composable
-fun PermissionDialogContent(opsResult: AppOpsResult) {
-    var openDialog by rememberSaveable { mutableStateOf(true) }
-    if (!openDialog) {
-        return
-    }
-
-    val dismissAction = { openDialog = false }
-    val title = opsResult.title
-    val confirmAction = {
-        opsResult.nextAction()
-        openDialog = false
-    }
-
-    AlertDialog(
-        modifier = Modifier.padding(20.dp),
-        onDismissRequest = { },
-        title = {
-            Text(
-                text = stringResource(id = title),
-                style = DemoTheme.typography.h6,
-                fontSize = 18.sp,
-            )
-        },
-        confirmButton = {
-            Text(
-                text = stringResource(id = R.string.dlg_to_setting),
-                style = DemoTheme.typography.button,
-                color = DemoTheme.colors.primary,
-                fontSize = 14.sp,
-                modifier = Modifier
-                    .clickable {
-                        confirmAction()
-                    }
-                    .padding(12.dp)
-            )
-        },
-        dismissButton = {
-            Text(
-                text = stringResource(id = R.string.dlg_not_now),
-                style = DemoTheme.typography.button,
-                fontSize = 14.sp,
-                modifier = Modifier
-                    .clickable {
-                        dismissAction()
-                    }
-                    .padding(12.dp)
-            )
         }
     )
 }

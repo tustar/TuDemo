@@ -1,15 +1,16 @@
 package com.tustar.weather.ui
 
 import androidx.compose.foundation.Image
-import androidx.compose.foundation.layout.Box
-import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.material.Surface
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.SideEffect
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
+import com.google.accompanist.insets.navigationBarsHeight
 import com.google.accompanist.systemuicontroller.SystemUiController
 import com.tustar.data.Weather
 import com.tustar.weather.R
@@ -21,6 +22,9 @@ fun WeatherScreen(
 ) {
     SideEffect {
         systemUiController.setStatusBarColor(color = Color.Transparent)
+    }
+    Column() {
+
     }
     Box {
         Image(
@@ -55,6 +59,9 @@ fun WeatherScreen(
             }
             item {
                 ItemWeatherSources()
+            }
+            item {
+                Spacer(modifier = Modifier.navigationBarsHeight())
             }
         }
     }

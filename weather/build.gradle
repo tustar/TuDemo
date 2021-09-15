@@ -42,6 +42,8 @@ android {
 
 dependencies {
     // Accompanist
+    implementation Libs.Accompanist.insets
+    implementation Libs.Accompanist.permissions
     implementation Libs.Accompanist.systemuicontroller
     // Compose
     implementation Libs.AndroidX.Activity.compose

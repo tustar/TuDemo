@@ -113,6 +113,7 @@ dependencies {
     implementation Libs.AndroidX.recyclerview
     implementation Libs.AndroidX.Legacy.supportV4
     implementation Libs.AndroidX.vectordrawable
+    implementation Libs.AndroidX.datastorePreferences
     // Lifecycle
     implementation Libs.AndroidX.Lifecycle.ViewModel.ktx
     implementation Libs.AndroidX.Lifecycle.LiveData.ktx

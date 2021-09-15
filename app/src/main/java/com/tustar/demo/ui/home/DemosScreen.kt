@@ -49,6 +49,8 @@ fun DemosScreen(
         )
         DemosListView(grouped, onDemoClick)
     }
+    //
+    PermissionsRequest(viewModel)
 }
 
 @Composable

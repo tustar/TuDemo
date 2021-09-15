@@ -1,5 +1,6 @@
 package com.tustar.demo.ui
 
+import android.content.Context
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.amap.api.location.AMapLocation
@@ -9,9 +10,14 @@ import com.tustar.data.codegen.generateDemos
 import com.tustar.data.source.WeatherRepository
 import com.tustar.demo.ktx.toParams
 import com.tustar.demo.ui.recorder.RecorderInfo
+import com.tustar.demo.util.doNotShowFlow
+import com.tustar.demo.util.updateDoNotShow
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
+import kotlinx.coroutines.flow.collect
+import kotlinx.coroutines.flow.flowOn
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
@@ -30,6 +36,9 @@ class MainViewModel @Inject constructor(
 
     private val _recorderInfo = MutableStateFlow(RecorderInfo())
     val recorderInfo: StateFlow<RecorderInfo> = _recorderInfo
+
+    private val _doNotShow = MutableStateFlow(false)
+    val doNotShow: StateFlow<Boolean> = _doNotShow
 
     init {
         viewModelScope.launch {
@@ -54,6 +63,21 @@ class MainViewModel @Inject constructor(
 
     fun onRecorderInfoChange(info: RecorderInfo) {
         _recorderInfo.value = info
+    }
+
+    fun doNotShow(context: Context) {
+        viewModelScope.launch {
+            doNotShowFlow(context).flowOn(Dispatchers.IO).collect {
+                _doNotShow.value = it.doNotShow
+            }
+        }
+    }
+
+    fun onDoNotShow(context: Context, doNotShow: Boolean) {
+        viewModelScope.launch {
+            _doNotShow.value = doNotShow
+            updateDoNotShow(context, doNotShow)
+        }
     }
 }
 

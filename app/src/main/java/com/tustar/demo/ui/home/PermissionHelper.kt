@@ -1,18 +1,15 @@
 package com.tustar.demo.ui.home
 
 import android.Manifest
-import android.widget.Toast
+import android.content.Context
 import androidx.annotation.DrawableRes
 import androidx.annotation.StringRes
 import androidx.compose.foundation.Image
-import androidx.compose.foundation.background
-import androidx.compose.foundation.clickable
-import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
-import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material.Divider
+import androidx.compose.material.Checkbox
+import androidx.compose.material.CheckboxDefaults
 import androidx.compose.material.Text
 import androidx.compose.runtime.*
 import androidx.compose.runtime.saveable.rememberSaveable
@@ -22,23 +19,28 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
-import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import androidx.compose.ui.window.Dialog
 import com.google.accompanist.permissions.ExperimentalPermissionsApi
 import com.google.accompanist.permissions.PermissionState
 import com.google.accompanist.permissions.rememberMultiplePermissionsState
 import com.tustar.demo.R
+import com.tustar.demo.ktx.actionApplicationDetailsSettings
+import com.tustar.demo.ktx.actionLocationSourceSettings
 import com.tustar.demo.ktx.isLocationEnable
+import com.tustar.demo.ui.MainViewModel
+import com.tustar.demo.ui.compose.ActionDialog
 import com.tustar.demo.util.Logger
 
 @OptIn(ExperimentalPermissionsApi::class)
 @Composable
-fun PermissionsRequest(
-    onUpdateLocation: (Boolean) -> Unit,
-) {
+fun PermissionsRequest(viewModel: MainViewModel) {
+
+    val doNotShow by viewModel.doNotShow.collectAsState()
+    val onUpdateLocation = viewModel::onUpdateLocation
+    val onDoNotShow = viewModel::onDoNotShow
+
     val context = LocalContext.current
     val multiplePermissionsState = rememberMultiplePermissionsState(
         listOf(
@@ -47,11 +49,11 @@ fun PermissionsRequest(
             Manifest.permission.RECORD_AUDIO
         )
     )
-    var doNotShowRationale by rememberSaveable { mutableStateOf(false) }
 
     when {
         // If all permissions are granted, then show the question
         multiplePermissionsState.allPermissionsGranted -> {
+            Logger.d("allPermissionsGranted")
             // Location Service disable
             if (!context.isLocationEnable()) {
                 LocationDisable()
@@ -63,23 +65,24 @@ fun PermissionsRequest(
                 }
             }
         }
-        multiplePermissionsState.shouldShowRationale ||
-                !multiplePermissionsState.permissionRequested -> {
-            if (doNotShowRationale) {
+        multiplePermissionsState.shouldShowRationale
+                || !multiplePermissionsState.permissionRequested -> {
+            Logger.d("shouldShowRationale || !permissionRequested")
+            if (doNotShow) {
                 // Feature not available
                 Logger.w("Feature not available")
-                Toast.makeText(context, R.string.dlg_permission_tips, Toast.LENGTH_SHORT)
-                    .show()
+                PermissionsDenied(revokedPermissions = multiplePermissionsState.revokedPermissions)
             } else {
                 Rationale(
                     revokedPermissions = multiplePermissionsState.revokedPermissions,
                     onRequestPermissions = { multiplePermissionsState.launchMultiplePermissionRequest() },
-                    onDoNotShowRationale = { doNotShowRationale = it }
+                    onDoNotShowRationale = onDoNotShow
                 )
             }
         }
         // If the criteria above hasn't been met, the user denied some permission.
         else -> {
+            Logger.d("permissionsDenied")
             PermissionsDenied(revokedPermissions = multiplePermissionsState.revokedPermissions)
         }
     }
@@ -87,7 +90,31 @@ fun PermissionsRequest(
 
 @Composable
 private fun LocationDisable() {
+    var openDialog by rememberSaveable { mutableStateOf(true) }
+    if (!openDialog) {
+        return
+    }
 
+    val context = LocalContext.current
+    ActionDialog(
+        title = R.string.dlg_title_open_gps,
+        cancelAction = {
+            openDialog = false
+        },
+        confirmAction = {
+            openDialog = false
+            context.actionLocationSourceSettings()
+        }) {
+        Image(
+            painter = painterResource(
+                id = R.drawable.ic_dlg_gps
+            ),
+            contentDescription = null,
+            modifier = Modifier
+                .width(240.dp)
+                .padding(bottom = 30.dp),
+        )
+    }
 }
 
 @OptIn(ExperimentalPermissionsApi::class)
@@ -95,40 +122,54 @@ private fun LocationDisable() {
 private fun PermissionsDenied(
     revokedPermissions: List<PermissionState>,
 ) {
-    val revokedPermissionsText = getPermissionsText(revokedPermissions)
-    Logger.d(
-        "$revokedPermissionsText denied. See this FAQ with " +
-                "information about why we need this permission. Please, grant us " +
-                "access on the Settings screen."
-    )
+    var openDialog by rememberSaveable { mutableStateOf(true) }
+    if (!openDialog) {
+        return
+    }
 
+    val context = LocalContext.current
+    val content = stringResource(
+        id = R.string.dlg_content_no_permission,
+        permissionsText(context, revokedPermissions)
+    )
+    ActionDialog(
+        title = R.string.dlg_title_permission_manager,
+        cancelAction = {
+            openDialog = false
+        },
+        confirmAction = {
+            openDialog = false
+            context.actionApplicationDetailsSettings()
+        }) {
+
+        Text(
+            text = content,
+            color = Color(0xFF191919),
+            fontSize = 16.sp,
+            modifier = Modifier.padding(bottom = 30.dp),
+        )
+    }
 }
 
 @OptIn(ExperimentalPermissionsApi::class)
-private fun getPermissionsText(permissions: List<PermissionState>): String {
-    val revokedPermissionsSize = permissions.size
-    if (revokedPermissionsSize == 0) return ""
-
-    val textToShow = StringBuilder().apply {
-        append("The ")
-    }
-
-    for (i in permissions.indices) {
-        textToShow.append(permissions[i].permission)
-        when {
-            revokedPermissionsSize > 1 && i == revokedPermissionsSize - 2 -> {
-                textToShow.append(", and ")
+private fun permissionsText(
+    context: Context,
+    permissions: List<PermissionState>
+): String {
+    return permissions.map {
+        when (it.permission) {
+            Manifest.permission.ACCESS_FINE_LOCATION -> {
+                context.getString(R.string.permission_location)
             }
-            i == revokedPermissionsSize - 1 -> {
-                textToShow.append(" ")
+            Manifest.permission.ACCESS_COARSE_LOCATION -> {
+                context.getString(R.string.permission_location)
             }
-            else -> {
-                textToShow.append(", ")
+            Manifest.permission.RECORD_AUDIO -> {
+                context.getString(R.string.permission_record_audio)
             }
+            else -> ""
         }
-    }
-    textToShow.append(if (revokedPermissionsSize == 1) "permission is" else "permissions are")
-    return textToShow.toString()
+    }.toSet().joinToString("、")
 }
 
 @OptIn(ExperimentalPermissionsApi::class)
@@ -136,109 +177,65 @@ private fun getPermissionsText(permissions: List<PermissionState>): String {
 private fun Rationale(
     revokedPermissions: List<PermissionState>,
     onRequestPermissions: () -> Unit,
-    onDoNotShowRationale: (Boolean) -> Unit,
+    onDoNotShowRationale: (Context, Boolean) -> Unit,
 ) {
-    val revokedPermissionsText = getPermissionsText(revokedPermissions)
-    Logger.d(
-        "$revokedPermissionsText important. " +
-                "Please grant all of them for the app to function properly."
+    val context = LocalContext.current
+    Logger.d("Request permissions " + permissionsText(context, revokedPermissions))
+
+    var checked by rememberSaveable { mutableStateOf(false) }
+    val permissions = listOf(
+        PermissionInfo(
+            R.drawable.ic_permission_location,
+            R.string.permission_location,
+            R.string.permission_location_desc,
+        ),
+        PermissionInfo(
+            R.drawable.ic_permission_record_audio,
+            R.string.permission_record_audio,
+            R.string.permission_record_audio_desc,
+        )
     )
-    // Request permission
-    Logger.d("Request permission")
-
-    var openDialog by rememberSaveable { mutableStateOf(true) }
-    if (!openDialog) {
-        return
-    }
-
-    Dialog(onDismissRequest = { /*TODO*/ }) {
-
-        Column(
+    ActionDialog(
+        title = R.string.dlg_title_permission,
+        cancelAction = {
+            onDoNotShowRationale(context, checked)
+        },
+        confirmAction = {
+            onDoNotShowRationale(context, checked)
+            onRequestPermissions()
+        }) {
+        // content
+        LazyColumn(
             modifier = Modifier
-                .width(300.dp)
-                .height(320.dp)
-                .background(Color.White, RoundedCornerShape(8.dp)),
-            horizontalAlignment = Alignment.CenterHorizontally
+                .fillMaxWidth(),
+            verticalArrangement = Arrangement.spacedBy(12.dp),
         ) {
-            // title
-            Text(
-                text = stringResource(id = R.string.dlg_permission_title),
-                fontSize = 20.sp,
-                fontWeight = FontWeight.Black,
-                modifier = Modifier
-                    .padding(top = 24.dp, bottom = 16.dp)
-            )
-            // content
-            Text(
-                text = stringResource(id = R.string.dlg_permission_content),
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .padding(start = 16.dp, end = 16.dp)
-            )
-            val permissions = listOf(
-                PermissionInfo(
-                    R.drawable.ic_permission_location,
-                    R.string.dlg_content_location,
-                    R.string.dlg_content_location_desc,
-                ),
-                PermissionInfo(
-                    R.drawable.ic_permission_record_audio,
-                    R.string.dlg_content_record_audio,
-                    R.string.dlg_content_record_audio_desc,
-                )
-            )
-            // content permissions
-            LazyColumn(
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .weight(1f),
-                contentPadding = PaddingValues(horizontal = 12.dp, vertical = 12.dp)
-            ) {
-                items(items = permissions) {
-                    ItemPermission(info = it)
-                }
+            items(items = permissions) {
+                ItemPermission(info = it)
             }
-            Divider(
-                Modifier
-                    .fillMaxWidth()
-                    .height(1.dp)
+        }
+        //
+        Row(
+            Modifier
+                .fillMaxWidth()
+                .padding(vertical = 24.dp),
+            verticalAlignment = Alignment.CenterVertically,
+        ) {
+            Checkbox(
+                checked = checked,
+                onCheckedChange = {
+                    checked = it
+                },
+                colors = CheckboxDefaults.colors(Color(0xFF596DFF)),
+                modifier = Modifier.padding(horizontal = 4.dp)
             )
-            // buttons
-            Row(
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .height(44.dp),
-                verticalAlignment = Alignment.CenterVertically,
-            ) {
-                Text(text = stringResource(id = R.string.cancel),
-                    textAlign = TextAlign.Center,
-                    modifier = Modifier
-                        .weight(1f)
-                        .clickable(
-                            interactionSource = MutableInteractionSource(),
-                            indication = null,
-                        ) {
-                            openDialog = false
-                        }
-                )
 
-                Divider(
-                    Modifier
-                        .width(1.dp)
-                        .fillMaxHeight()
-                )
-                Text(text = stringResource(id = R.string.ok),
-                    textAlign = TextAlign.Center,
-                    color = Color(0xFF579DFF),
-                    modifier = Modifier
-                        .weight(1f)
-                        .clickable(
-                            interactionSource = MutableInteractionSource(),
-                            indication = null,
-                        ) {
-                            onRequestPermissions()
-                        })
-            }
+            Text(
+                text = stringResource(id = R.string.dlg_not_show),
+                fontSize = 13.sp,
+                color = Color(0xFF666666),
+                textAlign = TextAlign.Center
+            )
         }
     }
 }
@@ -247,27 +244,28 @@ private fun Rationale(
 fun ItemPermission(info: PermissionInfo) {
     Row(
         modifier = Modifier
-            .fillMaxHeight()
-            .padding(top = 8.dp),
+            .fillMaxHeight(),
         verticalAlignment = Alignment.CenterVertically
     ) {
         Image(
             painter = painterResource(id = info.icon), contentDescription = null,
             modifier = Modifier
-                .padding(horizontal = 8.dp)
-                .width(30.dp)
+                .padding(horizontal = 4.dp)
+                .width(24.dp)
         )
         Column(
         ) {
             Text(
                 text = stringResource(id = info.title),
-                fontSize = 16.sp,
+                color = Color(0xFF191919),
+                fontSize = 15.sp,
                 textAlign = TextAlign.Center,
                 modifier = Modifier,
             )
             Text(
                 text = stringResource(id = info.desc),
-                fontSize = 14.sp,
+                color = Color(0xFF666666),
+                fontSize = 13.sp,
                 textAlign = TextAlign.Center,
                 modifier = Modifier.padding(top = 2.dp),
             )

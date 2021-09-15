@@ -24,19 +24,14 @@ import android.os.IBinder
 import androidx.activity.compose.setContent
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
-import androidx.compose.material.primarySurface
-import androidx.compose.runtime.SideEffect
-import androidx.compose.ui.graphics.Color
 import androidx.core.view.WindowCompat
 import androidx.lifecycle.*
 import androidx.work.*
 import com.google.accompanist.insets.ProvideWindowInsets
-import com.google.accompanist.systemuicontroller.rememberSystemUiController
 import com.tustar.demo.ktx.*
 import com.tustar.demo.ui.recorder.OnRecorderListener
 import com.tustar.demo.ui.recorder.RecorderInfo
 import com.tustar.demo.ui.recorder.RecorderService
-import com.tustar.demo.ui.theme.DemoTheme
 import com.tustar.demo.util.LocationHelper
 import com.tustar.demo.util.Logger
 import dagger.hilt.android.AndroidEntryPoint
@@ -86,7 +81,7 @@ class MainActivity : AppCompatActivity(), OnRecorderListener {
 
         // This app draws behind the system bars, so we want to handle fitting system windows
         WindowCompat.setDecorFitsSystemWindows(window, false)
-
+        viewModel.doNotShow(this)
         setContent {
             ProvideWindowInsets {
                 DemoApp(viewModel)
