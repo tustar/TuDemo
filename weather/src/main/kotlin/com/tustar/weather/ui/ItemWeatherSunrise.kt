@@ -1,0 +1,162 @@
+package com.tustar.weather.ui
+
+import android.graphics.Path
+import android.graphics.PathMeasure
+import androidx.compose.animation.core.*
+import androidx.compose.foundation.Canvas
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.padding
+import androidx.compose.material.Text
+import androidx.compose.runtime.*
+import androidx.compose.ui.Modifier
+import androidx.compose.ui.geometry.Offset
+import androidx.compose.ui.geometry.center
+import androidx.compose.ui.graphics.*
+import androidx.compose.ui.graphics.drawscope.Stroke
+import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
+import androidx.constraintlayout.compose.ConstraintLayout
+import com.tustar.data.source.remote.WeatherDaily
+import com.tustar.weather.R
+import com.tustar.weather.compose.res.vectorResource
+import com.tustar.weather.util.Logger
+
+@Composable
+fun ItemWeatherSunrise(today: WeatherDaily) {
+    ConstraintLayout(
+        modifier = Modifier
+            .itemBackground()
+            .fillMaxWidth(),
+    ) {
+        val (title, content) = createRefs()
+
+        ItemWeatherTopBar(
+            modifier = Modifier
+                .constrainAs(title) {
+                    top.linkTo(parent.top)
+                    start.linkTo(parent.start)
+                    end.linkTo(parent.end)
+                },
+            id = R.string.weather_sunrise_sunset
+        )
+
+        ConstraintLayout(modifier = Modifier
+            .padding(horizontal = 16.dp, vertical = 4.dp)
+            .fillMaxWidth()
+            .constrainAs(content) {
+                top.linkTo(title.bottom)
+                start.linkTo(parent.start)
+                end.linkTo(parent.end)
+            }) {
+            val (sunPath, sunrise, sunset) = createRefs()
+
+            DrawSunPath(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .height(105.dp)
+                    .padding(start = 16.dp, end = 16.dp, bottom = 5.dp)
+                    .constrainAs(sunPath) {
+                        start.linkTo(parent.start)
+                        end.linkTo(parent.end)
+                        top.linkTo(parent.top)
+                    },
+                WeatherHelper.movedPercent(today.sunrise, today.sunset)
+            )
+            Text(
+                text = stringResource(R.string.weather_sunrise, today.sunrise),
+                fontSize = 13.sp,
+                color = Color(0xFF191919),
+                modifier = Modifier
+                    .constrainAs(sunrise) {
+                        start.linkTo(parent.start)
+                        top.linkTo(sunPath.bottom)
+                    },
+            )
+
+            Text(
+                text = stringResource(R.string.weather_sunset, today.sunset),
+                fontSize = 13.sp,
+                color = Color(0xFF191919),
+                modifier = Modifier
+                    .constrainAs(sunset) {
+                        end.linkTo(parent.end)
+                        top.linkTo(sunPath.bottom)
+                    },
+            )
+        }
+    }
+}
+
+@Composable
+fun DrawSunPath(modifier: Modifier, percent: Float) {
+    val sun = ImageBitmap.vectorResource(id = R.drawable.ic_sun)
+    var rising by remember { mutableStateOf(false) }
+    val progress by animateFloatAsState(
+        targetValue = if (rising) percent else 0.0f,
+        animationSpec = tween(durationMillis = 300, easing = LinearEasing),
+    )
+    Logger.d("progress = $progress")
+    Canvas(modifier = modifier) {
+        val width = size.width
+        val height = size.height
+        val color = Color(0xFFF28D00)
+        val colors = listOf(
+            Color(0xFFF4EA2A),
+            Color(0x10F4EA2A)
+        )
+        drawCircle(
+            color = color,
+            center = Offset(0.0f, height),
+            radius = 6.0f,
+        )
+        drawCircle(
+            color = color,
+            center = Offset(width, height),
+            radius = 6.0f,
+        )
+        val path = Path().apply {
+            moveTo(0.0f, height)
+            quadTo(size.center.x, -height / 2.0f, width, height)
+        }
+        drawPath(
+            path = path.asComposePath(),
+            color = color,
+            style = Stroke(
+                width = 4.0f,
+                pathEffect = PathEffect.dashPathEffect(floatArrayOf(8.0f, 8.0f))
+            ),
+        )
+        //
+        val pathMeasure = PathMeasure(path, false)
+        val dst = Path().apply {
+            reset()
+            moveTo(0.0f, height)
+        }
+        val stopD = pathMeasure.length * progress
+        pathMeasure.getSegment(0.0F, stopD, dst, true)
+        val pos = FloatArray(2)
+        pathMeasure.getPosTan(stopD, pos, null)
+        drawPath(
+            path = dst.asComposePath(),
+            color = color,
+            style = Stroke(width = 4.0f),
+        )
+        dst.lineTo(pos[0], height)
+        drawPath(
+            path = dst.asComposePath(),
+            brush = Brush.verticalGradient(colors)
+        )
+        drawImage(
+            image = sun,
+            topLeft = Offset(pos[0] - sun.width / 2.0f, pos[1] - sun.height / 2.0f)
+        )
+    }
+
+    LaunchedEffect(Unit) {
+        if (!rising) {
+            rising = true
+        }
+    }
+}

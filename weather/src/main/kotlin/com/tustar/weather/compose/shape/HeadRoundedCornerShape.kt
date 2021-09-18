@@ -1,4 +1,4 @@
-package com.tustar.weather.shape
+package com.tustar.weather.compose.shape
 
 import androidx.compose.foundation.shape.CornerSize
 import androidx.compose.ui.geometry.*
@@ -14,7 +14,7 @@ class CupHeadRoundedCornerShape(
     bottomEnd: CornerSize,
     bottomStart: CornerSize,
     cupHeadRadius: CornerSize,
-) : CupHeadCornerBasedShape(
+) : HeadCornerBasedShape(
     topStart = topStart,
     topEnd = topEnd,
     bottomEnd = bottomEnd,
@@ -32,24 +32,30 @@ class CupHeadRoundedCornerShape(
         layoutDirection: LayoutDirection,
     ): Outline {
         val roundRect = RoundRect(
-            rect = Rect(Offset(0.0f, cupHeadRadius * 0.75f), Size( size.width, size.height - cupHeadRadius)),
+            rect = Rect(
+                Offset(0.0f, cupHeadRadius * 0.75f),
+                Size(size.width, size.height - cupHeadRadius)
+            ),
             topLeft = CornerRadius(if (layoutDirection == LayoutDirection.Ltr) topStart else topEnd),
             topRight = CornerRadius(if (layoutDirection == LayoutDirection.Ltr) topEnd else topStart),
             bottomRight = CornerRadius(if (layoutDirection == LayoutDirection.Ltr) bottomEnd else bottomStart),
             bottomLeft = CornerRadius(if (layoutDirection == LayoutDirection.Ltr) bottomStart else bottomEnd)
         )
-        val path = Path()
-        path.addArc(
-            Rect(
-                size.width / 2 - cupHeadRadius,
+        val path = Path().apply {
+            // Cup Head
+            addArc(
+                Rect(
+                    size.width / 2 - cupHeadRadius,
+                    0.0f,
+                    size.width / 2 + cupHeadRadius,
+                    cupHeadRadius * 2
+                ),
                 0.0f,
-                size.width / 2 + cupHeadRadius,
-                cupHeadRadius * 2
-            ),
-            0.0f,
-            -180.0f
-        )
-        path.addRoundRect(roundRect)
+                -180.0f
+            )
+            // Round Rect
+            addRoundRect(roundRect)
+        }
         return Outline.Generic(path)
     }
 

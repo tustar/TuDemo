@@ -1,4 +1,4 @@
-package com.tustar.weather.utils
+package com.tustar.weather.util
 
 import android.annotation.SuppressLint
 import java.text.ParseException

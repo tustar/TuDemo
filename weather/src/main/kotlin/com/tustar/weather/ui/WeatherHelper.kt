@@ -5,7 +5,7 @@ import android.content.Context
 import androidx.compose.ui.graphics.Color
 import com.tustar.data.source.remote.WeatherDaily
 import com.tustar.weather.R
-import com.tustar.weather.utils.Lunar
+import com.tustar.weather.util.Lunar
 import java.text.SimpleDateFormat
 import java.util.*
 
@@ -21,13 +21,13 @@ object WeatherHelper {
     20%         33
      */
     private val wGreen = Color(0xFF12C619)
-    private val wRed = Color(0XFFEA5623)
-    private val wBlue = Color(0XFF779CF9)
+    private val wRed = Color(0xFFEA5623)
+    private val wBlue = Color(0xFF779CF9)
     private val wYellow = Color(0xFFCFB003)
-    private val wOrange = Color(0XFFFE9900)
-    private val wWhite = Color(0XFFFFFFFF)
-    private val wPurple = Color(0XFFB12C9A)
-    private val wBrown = Color(0XFF582C21)
+    private val wOrange = Color(0xFFFE9900)
+    private val wWhite = Color(0xFFFFFFFF)
+    private val wPurple = Color(0xFFB12C9A)
+    private val wBrown = Color(0xFF582C21)
 
     /**
     --空气质量指数等级--
@@ -126,5 +126,35 @@ object WeatherHelper {
             Calendar.SATURDAY -> context.resources.getString(R.string.week_day_saturday)
             else -> ""
         }
+    }
+
+    fun movedPercent(startTime: String, endTime: String): Float {
+        val (startH, startM) = parseHHMM(startTime)
+        val start = Calendar.getInstance().apply {
+            set(Calendar.HOUR_OF_DAY, startH)
+            set(Calendar.MINUTE, startM)
+        }
+        //
+        val (endH, endM) = parseHHMM(endTime)
+        val end = Calendar.getInstance().apply {
+            set(Calendar.HOUR_OF_DAY, endH)
+            set(Calendar.MINUTE, endM)
+        }
+        //
+        val now = Calendar.getInstance()
+        if (now.before(start)) {
+            return 0.0f
+        }
+        if (now.after(end)) {
+            return 1.0f
+        }
+        val visibleTime = end.timeInMillis - start.timeInMillis
+        val passedTime = now.timeInMillis - start.timeInMillis
+        return passedTime / visibleTime.toFloat()
+    }
+
+    private fun parseHHMM(time: String): Pair<Int, Int> {
+        val hhMM = time.split(":")
+        return Pair(hhMM[0].toInt(), hhMM[1].toInt())
     }
 }

@@ -29,7 +29,8 @@ object Libs {
     }
 
     object Accompanist {
-        private const val version = "0.17.0"
+        private const val version = "0.18.0"
+        const val swiperefresh = "com.google.accompanist:accompanist-swiperefresh:$version"
         const val coil = "com.google.accompanist:accompanist-coil:$version"
         const val insets = "com.google.accompanist:accompanist-insets:$version"
         const val permissions = "com.google.accompanist:accompanist-permissions:$version"
@@ -57,8 +58,10 @@ object Libs {
 
     object AndroidX {
 
-        const val coreKtx = "androidx.core:core-ktx:1.3.2"
+        const val coreKtx = "androidx.core:core-ktx:1.6.0"
         const val appcompat = "androidx.appcompat:appcompat:1.3.0"
+        const val appcompatResources = "androidx.appcompat:appcompat-resources:1.2.0"
+
         const val recyclerview = "androidx.recyclerview:recyclerview:1.2.1"
         const val annotation = "androidx.annotation:annotation:1.2.0"
         const val vectordrawable = "androidx.vectordrawable:vectordrawable:1.1.0"

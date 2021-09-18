@@ -119,6 +119,7 @@ fun ActionDialog(
     ) {
         Column(
             modifier = Modifier
+                .padding(horizontal = 16.dp)
                 .background(Color.White, RoundedCornerShape(8.dp))
         ) {
             // title

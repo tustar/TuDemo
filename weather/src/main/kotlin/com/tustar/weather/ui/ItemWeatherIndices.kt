@@ -6,21 +6,11 @@ import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.GridCells
 import androidx.compose.foundation.shape.CircleShape
-import androidx.compose.foundation.shape.CornerBasedShape
-import androidx.compose.foundation.shape.CornerSize
-import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.Text
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.draw.clip
-import androidx.compose.ui.geometry.CornerRadius
-import androidx.compose.ui.geometry.RoundRect
-import androidx.compose.ui.geometry.Size
-import androidx.compose.ui.geometry.toRect
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.graphics.Outline
-import androidx.compose.ui.graphics.Shape
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
@@ -30,9 +20,8 @@ import androidx.compose.ui.window.Dialog
 import androidx.constraintlayout.compose.ConstraintLayout
 import com.tustar.data.source.remote.IndicesDaily
 import com.tustar.weather.R
-import com.tustar.weather.shape.CupHeadRoundedCornerShape
+import com.tustar.weather.compose.shape.CupHeadRoundedCornerShape
 import items
-import java.time.format.TextStyle
 
 
 @OptIn(ExperimentalFoundationApi::class)
@@ -115,12 +104,12 @@ private fun ItemLife(modifier: Modifier, indicesDaily: IndicesDaily) {
         Text(
             text = indicesDaily.category,
             fontSize = 16.sp,
-            color = Color(0xFF000000),
+            color = Color(0xFF333333),
         )
         Text(
             text = indicesDaily.name,
-            fontSize = 13.sp,
-            color = Color(0xFF666666),
+            fontSize = 12.sp,
+            color = Color(0xFF999999),
         )
     }
 }
@@ -133,7 +122,7 @@ fun LifeDialog(indicesDaily: IndicesDaily, onDismiss: (Boolean) -> Unit) {
     ) {
         Column(
             modifier = Modifier
-                .padding(horizontal = 10.dp)
+                .padding(horizontal = 16.dp)
                 .background(Color.White, CupHeadRoundedCornerShape(8.dp, 54.dp)),
             horizontalAlignment = Alignment.CenterHorizontally,
         ) {

@@ -41,10 +41,13 @@ android {
 }
 
 dependencies {
+    //
+    implementation Libs.AndroidX.appcompatResources
     // Accompanist
     implementation Libs.Accompanist.insets
     implementation Libs.Accompanist.permissions
     implementation Libs.Accompanist.systemuicontroller
+    implementation Libs.Accompanist.swiperefresh
     // Compose
     implementation Libs.AndroidX.Activity.compose
     implementation Libs.AndroidX.Compose.foundation

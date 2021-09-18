@@ -69,6 +69,7 @@
         <entry key="weather/src/main/res/drawable/bg_8_n.xml" value="0.26481481481481484" />
         <entry key="weather/src/main/res/drawable/checkbox_trend_white_new.xml" value="0.18020833333333333" />
         <entry key="weather/src/main/res/drawable/ic_leaf.xml" value="0.15677083333333333" />
+        <entry key="weather/src/main/res/drawable/ic_sun.xml" value="0.2722222222222222" />
         <entry key="weather/src/main/res/layout/custom_toast.xml" value="0.17760416666666667" />
       </map>
     </option>

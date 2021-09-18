@@ -24,6 +24,8 @@
     <string name="weather_24h_forecast">逐时预报</string>
     <string name="weather_15d_forecast">天气预报</string>
     <string name="weather_sunrise_sunset">日出日落</string>
+    <string name="weather_sunrise">日出 %1$s</string>
+    <string name="weather_sunset">日落 %1$s</string>
     <string name="weather_indices">生活指数</string>
     <string name="weather_sources">天气数据由和风天气提供</string>
     <!-- Week -->

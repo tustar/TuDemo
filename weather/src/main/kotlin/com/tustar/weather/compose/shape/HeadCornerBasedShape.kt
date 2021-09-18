@@ -1,4 +1,4 @@
-package com.tustar.weather.shape
+package com.tustar.weather.compose.shape
 
 import androidx.compose.foundation.shape.CornerSize
 import androidx.compose.ui.geometry.Size
@@ -8,7 +8,7 @@ import androidx.compose.ui.unit.Density
 import androidx.compose.ui.unit.LayoutDirection
 
 
-abstract class CupHeadCornerBasedShape(
+abstract class HeadCornerBasedShape(
     val topStart: CornerSize,
     val topEnd: CornerSize,
     val bottomEnd: CornerSize,
@@ -87,12 +87,12 @@ abstract class CupHeadCornerBasedShape(
         bottomEnd: CornerSize = this.bottomEnd,
         bottomStart: CornerSize = this.bottomStart,
         cupHeadRadius: CornerSize = this.cupHeadRadius
-    ): CupHeadCornerBasedShape
+    ): HeadCornerBasedShape
 
     /**
      * Creates a copy of this Shape with a new corner size.
      * @param all a size to apply for all four corners
      */
-    fun copy(all: CornerSize, cupHeadRadius: CornerSize): CupHeadCornerBasedShape =
+    fun copy(all: CornerSize, cupHeadRadius: CornerSize): HeadCornerBasedShape =
         copy(all, all, all, all, cupHeadRadius)
 }
