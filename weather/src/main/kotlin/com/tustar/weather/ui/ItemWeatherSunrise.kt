@@ -22,9 +22,13 @@ import com.tustar.data.source.remote.WeatherDaily
 import com.tustar.weather.R
 import com.tustar.weather.compose.res.vectorResource
 import com.tustar.weather.util.Logger
+import com.tustar.weather.util.StateEvent
 
 @Composable
-fun ItemWeatherSunrise(today: WeatherDaily) {
+fun ItemWeatherSunrise(
+    today: WeatherDaily,
+    rising: StateEvent<Boolean>,
+) {
     ConstraintLayout(
         modifier = Modifier
             .itemBackground()
@@ -62,7 +66,8 @@ fun ItemWeatherSunrise(today: WeatherDaily) {
                         end.linkTo(parent.end)
                         top.linkTo(parent.top)
                     },
-                WeatherHelper.movedPercent(today.sunrise, today.sunset)
+                WeatherHelper.movedPercent(today.sunrise, today.sunset),
+                rising,
             )
             Text(
                 text = stringResource(R.string.weather_sunrise, today.sunrise),
@@ -90,21 +95,22 @@ fun ItemWeatherSunrise(today: WeatherDaily) {
 }
 
 @Composable
-fun DrawSunPath(modifier: Modifier, percent: Float) {
+fun DrawSunPath(modifier: Modifier, percent: Float, rising: StateEvent<Boolean>) {
     val sun = ImageBitmap.vectorResource(id = R.drawable.ic_sun)
-    var rising by remember { mutableStateOf(false) }
     val progress by animateFloatAsState(
-        targetValue = if (rising) percent else 0.0f,
-        animationSpec = tween(durationMillis = 300, easing = LinearEasing),
+        targetValue = if (rising.state) percent else 0.0f,
+        animationSpec = tween(durationMillis = 2000, easing = LinearEasing),
+        finishedListener = {
+            rising.onEvent(it == percent)
+        }
     )
-    Logger.d("progress = $progress")
     Canvas(modifier = modifier) {
         val width = size.width
         val height = size.height
         val color = Color(0xFFF28D00)
         val colors = listOf(
-            Color(0xFFF4EA2A),
-            Color(0x10F4EA2A)
+            Color(0xFFFFFF99),
+            Color(0x20FFFF99)
         )
         drawCircle(
             color = color,
@@ -118,7 +124,11 @@ fun DrawSunPath(modifier: Modifier, percent: Float) {
         )
         val path = Path().apply {
             moveTo(0.0f, height)
-            quadTo(size.center.x, -height / 2.0f, width, height)
+            cubicTo(
+                size.center.x * 0.5f, height - width * 0.45f,
+                size.center.x * 1.5f, height - width * 0.45f,
+                width, height
+            )
         }
         drawPath(
             path = path.asComposePath(),
@@ -152,11 +162,5 @@ fun DrawSunPath(modifier: Modifier, percent: Float) {
             image = sun,
             topLeft = Offset(pos[0] - sun.width / 2.0f, pos[1] - sun.height / 2.0f)
         )
-    }
-
-    LaunchedEffect(Unit) {
-        if (!rising) {
-            rising = true
-        }
     }
 }

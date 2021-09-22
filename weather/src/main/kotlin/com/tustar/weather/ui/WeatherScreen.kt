@@ -24,6 +24,7 @@ import com.google.accompanist.swiperefresh.SwipeRefreshState
 import com.google.accompanist.swiperefresh.rememberSwipeRefreshState
 import com.tustar.data.Weather
 import com.tustar.weather.R
+import com.tustar.weather.util.StateEvent
 import kotlinx.coroutines.delay
 
 @Composable
@@ -63,6 +64,11 @@ fun WeatherScreen(
             },
         ) {
             val listState = rememberLazyListState()
+            var rising by remember { mutableStateOf(false) }
+            if (!rising) {
+                rising = listState.layoutInfo.visibleItemsInfo.any { it.index == 5 }
+            }
+            val stateEvent = StateEvent(rising, { rising = it })
             LazyColumn(state = listState) {
                 item {
                     ItemWeatherHeader(weather.weatherNow, weather.warning, weather.airNow)
@@ -80,7 +86,7 @@ fun WeatherScreen(
                     ItemWeather15d(weather.daily15d, weather.air5d)
                 }
                 item {
-                    ItemWeatherSunrise(weather.daily15d[0])
+                    ItemWeatherSunrise(weather.daily15d[0], stateEvent)
                 }
                 item {
                     ItemWeatherIndices(weather.indices)
