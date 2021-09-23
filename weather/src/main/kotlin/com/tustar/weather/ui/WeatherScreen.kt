@@ -18,10 +18,10 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import com.google.accompanist.insets.navigationBarsHeight
-import com.google.accompanist.systemuicontroller.SystemUiController
 import com.google.accompanist.swiperefresh.SwipeRefresh
 import com.google.accompanist.swiperefresh.SwipeRefreshState
 import com.google.accompanist.swiperefresh.rememberSwipeRefreshState
+import com.google.accompanist.systemuicontroller.SystemUiController
 import com.tustar.data.Weather
 import com.tustar.weather.R
 import com.tustar.weather.util.StateEvent
@@ -30,9 +30,20 @@ import kotlinx.coroutines.delay
 @Composable
 fun WeatherScreen(
     systemUiController: SystemUiController,
-    weather: Weather,
+    viewModel: WeatherViewModel,
 ) {
+    SideEffect {
+        systemUiController.setStatusBarColor(color = Color.Transparent)
+    }
 
+    val weather by viewModel.weather.collectAsState()
+    weather?.let {
+        WeatherContent(it)
+    }
+}
+
+@Composable
+fun WeatherContent(weather: Weather) {
     var refreshing by remember { mutableStateOf(false) }
     LaunchedEffect(refreshing) {
         if (refreshing) {
@@ -41,9 +52,6 @@ fun WeatherScreen(
         }
     }
 
-    SideEffect {
-        systemUiController.setStatusBarColor(color = Color.Transparent)
-    }
     Box {
         Image(
             painter = painterResource(id = R.drawable.bg_0_d),

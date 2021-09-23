@@ -34,7 +34,7 @@ fun DemosScreen(
     systemUiController: SystemUiController,
     viewModel: MainViewModel,
     onDemoClick: (Int) -> Unit,
-    onWeatherClick: (Weather) -> Unit,
+    onWeatherClick: () -> Unit,
 ) {
     val statusBarColor = DemoTheme.colors.primarySurface
     SideEffect {
@@ -56,7 +56,7 @@ fun DemosScreen(
 @Composable
 fun DemosTopBar(
     weather: Weather?,
-    onWeatherClick: (Weather) -> Unit
+    onWeatherClick: () -> Unit
 ) {
     Logger.d("$weather")
     TopAppBar(
@@ -75,11 +75,11 @@ fun DemosTopBar(
 @Composable
 private fun WeatherActionItem(
     weather: Weather,
-    onWeatherClick: (Weather) -> Unit
+    onWeatherClick: () -> Unit
 ) {
     Column(
         modifier = Modifier.clickable {
-            onWeatherClick(weather)
+            onWeatherClick()
         },
         horizontalAlignment = Alignment.End
     ) {

@@ -34,6 +34,7 @@ import com.tustar.demo.ui.recorder.RecorderInfo
 import com.tustar.demo.ui.recorder.RecorderService
 import com.tustar.demo.util.LocationHelper
 import com.tustar.demo.util.Logger
+import com.tustar.weather.ktx.toFormatString
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
@@ -52,8 +53,7 @@ class MainActivity : AppCompatActivity(), OnRecorderListener {
             setLocationListener { location ->
                 Logger.d("location=${location.toFormatString()}")
                 if (location.errorCode == 0) {
-                    viewModel.onUpdateLocation(false)
-                    viewModel.requestWeather(location)
+                    viewModel.onUpdateLocation(location)
                 }
             }
         }
@@ -98,8 +98,8 @@ class MainActivity : AppCompatActivity(), OnRecorderListener {
                 // Trigger the flow and start listening for values.
                 // Note that this happens when lifecycle is STARTED and stops
                 // collecting when the lifecycle is STOPPED
-                viewModel.updateLocation.collect {
-                    if (it) {
+                viewModel.aMapLocation.collect {
+                    if (it == null) {
                         locationHelper.startLocation()
                     }
                 }

@@ -3,6 +3,8 @@ import com.tustar.demo.buildsrc.Libs
 plugins {
     id 'com.android.library'
     id 'kotlin-android'
+    id 'kotlin-kapt'
+    id 'dagger.hilt.android.plugin'
 }
 
 android {
@@ -41,6 +43,14 @@ android {
 }
 
 dependencies {
+    // Amap
+    implementation Libs.Amap.location
+    // Hilt
+    implementation Libs.Hilt.android
+    implementation Libs.Hilt.work
+    implementation Libs.Hilt.navigationCompose
+    kapt Libs.Hilt.daggerCompiler
+    kapt Libs.Hilt.hiltCompiler
     //
     implementation Libs.AndroidX.appcompatResources
     // Accompanist

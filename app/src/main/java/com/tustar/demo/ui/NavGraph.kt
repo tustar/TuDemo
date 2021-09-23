@@ -14,15 +14,11 @@ import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import com.google.accompanist.systemuicontroller.SystemUiController
 import com.google.accompanist.systemuicontroller.rememberSystemUiController
-import com.tustar.data.Weather
 import com.tustar.demo.R
-import com.tustar.demo.ktx.getParcelable
-import com.tustar.demo.ktx.putParcelable
 import com.tustar.demo.ui.MainDestinations.DEMO_DETAIL_ANDROID_ROUTE
 import com.tustar.demo.ui.MainDestinations.DEMO_DETAIL_COMPOSE_ROUTE
 import com.tustar.demo.ui.MainDestinations.DEMO_ID
 import com.tustar.demo.ui.MainDestinations.DEMO_ROUTE
-import com.tustar.demo.ui.MainDestinations.KEY_WEATHER
 import com.tustar.demo.ui.MainDestinations.ME_ROUTE
 import com.tustar.demo.ui.MainDestinations.WEATHER_ROUTE
 import com.tustar.demo.ui.home.*
@@ -41,7 +37,6 @@ object MainDestinations {
 
     //
     const val DEMO_ID = "demoId"
-    const val KEY_WEATHER = "weather"
 }
 
 @Composable
@@ -77,10 +72,7 @@ fun NavGraph(
             actions.startDemoDetailActivity(LocalContext.current, it)
         }
         composable(WEATHER_ROUTE) {
-            val weather = navController.getParcelable<Weather>(KEY_WEATHER)
-            weather?.let {
-                WeatherScreen(systemUiController, it)
-            }
+            WeatherScreen(systemUiController, viewModel)
         }
         composable(ME_ROUTE) {
             MeScreen(systemUiController = systemUiController)
@@ -108,8 +100,7 @@ class MainActions(navController: NavHostController) {
         )
     }
 
-    val openWeather = { weather: Weather ->
-        navController.putParcelable(KEY_WEATHER, weather)
+    val openWeather = {
         navController.navigate(WEATHER_ROUTE)
     }
 }

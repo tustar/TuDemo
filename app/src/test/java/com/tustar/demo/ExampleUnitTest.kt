@@ -1,8 +1,7 @@
 package com.tustar.demo
 
+import org.junit.Assert.assertEquals
 import org.junit.Test
-
-import org.junit.Assert.*
 
 /**
  * Example local unit selector_sunset2, which will execute on the development machine (host).

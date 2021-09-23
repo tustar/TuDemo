@@ -2,13 +2,16 @@ package com.tustar.weather.ui
 
 import android.graphics.Path
 import android.graphics.PathMeasure
-import androidx.compose.animation.core.*
+import androidx.compose.animation.core.LinearEasing
+import androidx.compose.animation.core.animateFloatAsState
+import androidx.compose.animation.core.tween
 import androidx.compose.foundation.Canvas
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material.Text
-import androidx.compose.runtime.*
+import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.geometry.center
@@ -21,7 +24,6 @@ import androidx.constraintlayout.compose.ConstraintLayout
 import com.tustar.data.source.remote.WeatherDaily
 import com.tustar.weather.R
 import com.tustar.weather.compose.res.vectorResource
-import com.tustar.weather.util.Logger
 import com.tustar.weather.util.StateEvent
 
 @Composable

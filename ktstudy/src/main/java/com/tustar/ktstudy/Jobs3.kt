@@ -1,7 +1,6 @@
 package com.tustar.ktstudy
 
 import kotlinx.coroutines.*
-import kotlinx.coroutines.flow.flow
 import java.util.concurrent.TimeUnit
 
 fun main() {

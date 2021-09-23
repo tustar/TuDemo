@@ -61,7 +61,7 @@ fun PermissionsRequest(viewModel: MainViewModel) {
             //
             else {
                 LaunchedEffect(true) {
-                    onUpdateLocation(true)
+                    onUpdateLocation(null)
                 }
             }
         }

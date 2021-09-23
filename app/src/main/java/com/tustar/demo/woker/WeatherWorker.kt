@@ -8,8 +8,8 @@ import com.amap.api.location.AMapLocation
 import com.google.gson.Gson
 import com.tustar.data.Weather
 import com.tustar.data.source.WeatherRepository
-import com.tustar.demo.ktx.toParams
 import com.tustar.demo.ui.MainViewModel
+import com.tustar.weather.ktx.toParams
 import dagger.assisted.Assisted
 import dagger.assisted.AssistedInject
 import kotlinx.coroutines.coroutineScope

@@ -1,6 +1,6 @@
 package com.tustar.ktstudy
 
-import kotlin.coroutines.*
+import kotlin.coroutines.startCoroutine
 
 
 suspend fun suspendFun1(): String {

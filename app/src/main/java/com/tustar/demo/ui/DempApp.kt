@@ -18,12 +18,13 @@ import com.google.accompanist.insets.navigationBarsHeight
 import com.google.accompanist.insets.navigationBarsPadding
 import com.google.accompanist.systemuicontroller.rememberSystemUiController
 import com.tustar.demo.R
-import com.tustar.demo.ui.home.PermissionsRequest
 import com.tustar.demo.ui.theme.DemoTheme
 import java.util.*
 
 @Composable
-fun DemoApp(viewModel: MainViewModel) {
+fun DemoApp(
+    viewModel: MainViewModel
+) {
     DemoTheme {
         val tabs = remember { MainTabs.values() }
         val navController = rememberNavController()

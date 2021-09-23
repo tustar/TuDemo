@@ -2,9 +2,11 @@ package com.tustar.ktstudy
 
 import java.util.concurrent.TimeUnit
 import kotlin.concurrent.thread
-import kotlin.coroutines.*
-import kotlin.coroutines.intrinsics.suspendCoroutineUninterceptedOrReturn
 import kotlin.coroutines.intrinsics.COROUTINE_SUSPENDED
+import kotlin.coroutines.intrinsics.suspendCoroutineUninterceptedOrReturn
+import kotlin.coroutines.resume
+import kotlin.coroutines.startCoroutine
+import kotlin.coroutines.suspendCoroutine
 
 
 suspend fun suspendOne() = suspendCoroutineUninterceptedOrReturn<String> {

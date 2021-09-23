@@ -64,3 +64,13 @@ fun ItemWeatherAqi(modifier: Modifier = Modifier, airDaily: AirDaily?) {
         )
     }
 }
+
+@Composable
+fun WeatherSwitch(
+    checked: Boolean,
+    onCheckedChange: ((Boolean) -> Unit)?,
+    modifier: Modifier = Modifier,
+    enabled: Boolean = true,
+) {
+
+}

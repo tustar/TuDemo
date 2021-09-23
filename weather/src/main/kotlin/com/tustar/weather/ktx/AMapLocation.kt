@@ -1,4 +1,4 @@
-package com.tustar.demo.ktx
+package com.tustar.weather.ktx
 
 import android.text.TextUtils
 import com.amap.api.location.AMapLocation

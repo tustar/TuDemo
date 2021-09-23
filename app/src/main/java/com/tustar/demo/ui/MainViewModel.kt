@@ -1,17 +1,15 @@
 package com.tustar.demo.ui
 
 import android.content.Context
-import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.amap.api.location.AMapLocation
 import com.tustar.data.DemoItem
-import com.tustar.data.Weather
 import com.tustar.data.codegen.generateDemos
 import com.tustar.data.source.WeatherRepository
-import com.tustar.demo.ktx.toParams
 import com.tustar.demo.ui.recorder.RecorderInfo
 import com.tustar.demo.util.doNotShowFlow
 import com.tustar.demo.util.updateDoNotShow
+import com.tustar.weather.ui.WeatherViewModel
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -23,16 +21,14 @@ import javax.inject.Inject
 
 @HiltViewModel
 class MainViewModel @Inject constructor(
-    private val weatherRepository: WeatherRepository
-) : ViewModel() {
+    weatherRepository: WeatherRepository
+) : WeatherViewModel(weatherRepository) {
 
     private val _demos = MutableStateFlow<Map<Int, List<DemoItem>>>(emptyMap())
     val demos: StateFlow<Map<Int, List<DemoItem>>> = _demos
 
-    private val _updateLocation = MutableStateFlow(false)
-    val updateLocation: StateFlow<Boolean> = _updateLocation
-    private val _weather = MutableStateFlow<Weather?>(null)
-    val weather: StateFlow<Weather?> = _weather
+    private var _aMapLocation = MutableStateFlow<AMapLocation?>(null)
+    val aMapLocation: StateFlow<AMapLocation?> = _aMapLocation
 
     private val _recorderInfo = MutableStateFlow(RecorderInfo())
     val recorderInfo: StateFlow<RecorderInfo> = _recorderInfo
@@ -47,18 +43,11 @@ class MainViewModel @Inject constructor(
         }
     }
 
-    fun onUpdateLocation(updateLocation: Boolean) {
-        _updateLocation.value = updateLocation
-    }
-
-    fun requestWeather(location: AMapLocation) {
-        viewModelScope.launch {
-            _weather.value = weatherRepository.weather(location.toParams(), location.poiName)
+    fun onUpdateLocation(location: AMapLocation?) {
+        _aMapLocation.value = location
+        aMapLocation.value?.let {
+            requestWeather(it)
         }
-    }
-
-    fun onWeatherChange(weather: Weather) {
-        _weather.value = weather
     }
 
     fun onRecorderInfoChange(info: RecorderInfo) {
