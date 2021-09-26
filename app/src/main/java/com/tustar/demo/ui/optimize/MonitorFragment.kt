@@ -8,7 +8,7 @@ import androidx.fragment.app.Fragment
 import com.tustar.annotation.DemoItem
 import com.tustar.demo.R
 import com.tustar.demo.databinding.MonitorFragmentBinding
-import com.tustar.demo.ktx.bind
+import com.tustar.ktx.bind
 import com.tustar.demo.util.Logger
 import dagger.hilt.android.AndroidEntryPoint
 

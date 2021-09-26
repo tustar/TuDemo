@@ -1,5 +1,6 @@
 package com.tustar.weather.ui
 
+import android.content.Context
 import androidx.compose.animation.core.FastOutSlowInEasing
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.*
@@ -13,6 +14,7 @@ import androidx.compose.ui.draw.drawWithCache
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.Dp
@@ -24,8 +26,9 @@ import com.google.accompanist.swiperefresh.rememberSwipeRefreshState
 import com.google.accompanist.systemuicontroller.SystemUiController
 import com.tustar.data.Weather
 import com.tustar.weather.R
-import com.tustar.weather.util.StateEvent
+import com.tustar.weather.WeatherPrefs
 import kotlinx.coroutines.delay
+import kotlin.reflect.KFunction2
 
 @Composable
 fun WeatherScreen(
@@ -37,13 +40,20 @@ fun WeatherScreen(
     }
 
     val weather by viewModel.weather.collectAsState()
+    val weatherPrefs by viewModel.weatherPrefs.collectAsState()
+    viewModel.weatherPrefs(LocalContext.current)
     weather?.let {
-        WeatherContent(it)
+        WeatherContent(it, weatherPrefs, viewModel::onList24h, viewModel::onList15d)
     }
 }
 
 @Composable
-fun WeatherContent(weather: Weather) {
+fun WeatherContent(
+    weather: Weather,
+    weatherPrefs: WeatherPrefs,
+    onList24h: KFunction2<Context, Boolean, Unit>,
+    onList15d: KFunction2<Context, Boolean, Unit>,
+) {
     var refreshing by remember { mutableStateOf(false) }
     LaunchedEffect(refreshing) {
         if (refreshing) {
@@ -76,7 +86,7 @@ fun WeatherContent(weather: Weather) {
             if (!rising) {
                 rising = listState.layoutInfo.visibleItemsInfo.any { it.index == 5 }
             }
-            val stateEvent = StateEvent(rising, { rising = it })
+            val risingPair = Pair<Boolean, (Boolean) -> Unit>(rising, { rising = it })
             LazyColumn(state = listState) {
                 item {
                     ItemWeatherHeader(weather.weatherNow, weather.warning, weather.airNow)
@@ -88,13 +98,13 @@ fun WeatherContent(weather: Weather) {
                     ItemWeather3d(weather.daily15d.subList(0, 3), weather.air5d.subList(0, 3))
                 }
                 item {
-                    ItemWeather24h(weather.hourly24h)
+                    ItemWeather24h(weather.hourly24h, weatherPrefs.list24H, onList24h)
                 }
                 item {
-                    ItemWeather15d(weather.daily15d, weather.air5d)
+                    ItemWeather15d(weather.daily15d, weather.air5d, weatherPrefs.list15D, onList15d)
                 }
                 item {
-                    ItemWeatherSunrise(weather.daily15d[0], stateEvent)
+                    ItemWeatherSunrise(weather.daily15d[0], risingPair)
                 }
                 item {
                     ItemWeatherIndices(weather.indices)

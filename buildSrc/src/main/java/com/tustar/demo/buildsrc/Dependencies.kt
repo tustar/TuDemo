@@ -66,6 +66,7 @@ object Libs {
         const val annotation = "androidx.annotation:annotation:1.2.0"
         const val vectordrawable = "androidx.vectordrawable:vectordrawable:1.1.0"
         const val datastorePreferences = "androidx.datastore:datastore-preferences:1.0.0"
+        const val datastoreCore =  "androidx.datastore:datastore-core:1.0.0"
 
         object Legacy {
             const val supportV4 = "androidx.legacy:legacy-support-v4:1.0.0"
@@ -205,6 +206,7 @@ object Libs {
     object Google {
         const val autoService = "com.google.auto.service:auto-service:1.0"
         const val material = "com.google.android.material:material:1.3.0"
+        const val protobuf = "com.google.protobuf:protobuf-javalite:3.10.0"
 
         object Maps {
             const val maps = "com.google.android.libraries.maps:maps:3.1.0-beta"

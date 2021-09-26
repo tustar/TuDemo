@@ -16,6 +16,7 @@ import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
@@ -23,10 +24,10 @@ import com.google.accompanist.systemuicontroller.SystemUiController
 import com.tustar.data.DemoItem
 import com.tustar.data.Weather
 import com.tustar.demo.R
-import com.tustar.demo.ktx.topAppBar
 import com.tustar.demo.ui.MainViewModel
 import com.tustar.demo.ui.SectionView
 import com.tustar.demo.ui.theme.DemoTheme
+import com.tustar.demo.ui.topAppBar
 import com.tustar.demo.util.Logger
 
 @Composable
@@ -37,11 +38,15 @@ fun DemosScreen(
     onWeatherClick: () -> Unit,
 ) {
     val statusBarColor = DemoTheme.colors.primarySurface
+    val weatherPrefs by viewModel.weatherPrefs.collectAsState()
+    val weather by viewModel.weather.collectAsState()
+    val grouped by viewModel.demos.collectAsState(initial = mapOf())
+    //
+    viewModel.weatherPrefs(LocalContext.current)
     SideEffect {
         systemUiController.setStatusBarColor(statusBarColor)
     }
-    val weather by viewModel.weather.collectAsState()
-    val grouped by viewModel.demos.collectAsState(initial = mapOf())
+    //
     Column {
         DemosTopBar(
             weather,
@@ -49,8 +54,20 @@ fun DemosScreen(
         )
         DemosListView(grouped, onDemoClick)
     }
+
+    val onPermissionsGranted = when {
+        weatherPrefs.location == null -> {
+            { viewModel.onRequestLocation(true) }
+        }
+        weather == null -> {
+            { viewModel.requestWeather(weatherPrefs.location, weatherPrefs.poi) }
+        }
+        else -> {
+            {}
+        }
+    }
     //
-    PermissionsRequest(viewModel)
+    PermissionsRequest(viewModel, onPermissionsGranted)
 }
 
 @Composable

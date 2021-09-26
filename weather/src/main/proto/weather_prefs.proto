@@ -1,0 +1,12 @@
+syntax = "proto3";
+
+option java_package = "com.tustar.weather";
+option java_multiple_files = true;
+
+message WeatherPrefs {
+    // filter for showing / hiding completed tasks
+    bool list_24h = 1;
+    bool list_15d = 2;
+    string location = 3;
+    string poi = 4;
+}

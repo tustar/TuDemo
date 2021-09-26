@@ -26,19 +26,21 @@ import com.google.accompanist.permissions.ExperimentalPermissionsApi
 import com.google.accompanist.permissions.PermissionState
 import com.google.accompanist.permissions.rememberMultiplePermissionsState
 import com.tustar.demo.R
-import com.tustar.demo.ktx.actionApplicationDetailsSettings
-import com.tustar.demo.ktx.actionLocationSourceSettings
-import com.tustar.demo.ktx.isLocationEnable
+import com.tustar.ktx.actionApplicationDetailsSettings
+import com.tustar.ktx.actionLocationSourceSettings
+import com.tustar.ktx.isLocationEnable
 import com.tustar.demo.ui.MainViewModel
 import com.tustar.demo.ui.compose.ActionDialog
 import com.tustar.demo.util.Logger
 
 @OptIn(ExperimentalPermissionsApi::class)
 @Composable
-fun PermissionsRequest(viewModel: MainViewModel) {
+fun PermissionsRequest(
+    viewModel: MainViewModel,
+    onPermissionsGranted: () -> Unit = {},
+) {
 
     val doNotShow by viewModel.doNotShow.collectAsState()
-    val onUpdateLocation = viewModel::onUpdateLocation
     val onDoNotShow = viewModel::onDoNotShow
 
     val context = LocalContext.current
@@ -61,7 +63,7 @@ fun PermissionsRequest(viewModel: MainViewModel) {
             //
             else {
                 LaunchedEffect(true) {
-                    onUpdateLocation(null)
+                    onPermissionsGranted()
                 }
             }
         }

@@ -1,4 +1,4 @@
-package com.tustar.demo.ktx
+package com.tustar.ktx
 
 import android.app.Activity
 import android.app.AppOpsManager

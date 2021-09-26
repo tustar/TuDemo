@@ -5,6 +5,7 @@ plugins {
     id 'kotlin-android'
     id 'kotlin-kapt'
     id 'dagger.hilt.android.plugin'
+    id "com.google.protobuf" version "0.8.12"
 }
 
 android {
@@ -43,6 +44,9 @@ android {
 }
 
 dependencies {
+    // AndroidX
+    implementation Libs.AndroidX.datastorePreferences
+    implementation Libs.AndroidX.datastoreCore
     // Amap
     implementation Libs.Amap.location
     // Hilt
@@ -72,6 +76,29 @@ dependencies {
     implementation Libs.AndroidX.Compose.uiTest
     implementation Libs.AndroidX.Navigation.compose
     implementation Libs.AndroidX.ConstraintLayout.compose
+    // Google
+    implementation Libs.Google.material
+    implementation Libs.Google.protobuf
     //
     implementation project(':data')
+    implementation project(':ktx')
+}
+
+protobuf {
+    protoc {
+        artifact = "com.google.protobuf:protoc:3.10.0"
+    }
+
+    // Generates the java Protobuf-lite code for the Protobufs in this project. See
+    // https://github.com/google/protobuf-gradle-plugin#customizing-protobuf-compilation
+    // for more information.
+    generateProtoTasks {
+        all().each { task ->
+            task.builtins {
+                java {
+                    option 'lite'
+                }
+            }
+        }
+    }
 }

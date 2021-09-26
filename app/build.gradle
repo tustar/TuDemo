@@ -8,6 +8,7 @@ plugins {
     id 'dagger.hilt.android.plugin'
     id 'kotlin-parcelize'
 //    id 'com.google.devtools.ksp'
+    id "com.google.protobuf" version "0.8.12"
 }
 
 android {
@@ -114,6 +115,7 @@ dependencies {
     implementation Libs.AndroidX.Legacy.supportV4
     implementation Libs.AndroidX.vectordrawable
     implementation Libs.AndroidX.datastorePreferences
+    implementation Libs.AndroidX.datastoreCore
     // Lifecycle
     implementation Libs.AndroidX.Lifecycle.ViewModel.ktx
     implementation Libs.AndroidX.Lifecycle.LiveData.ktx
@@ -159,6 +161,7 @@ dependencies {
     implementation Libs.Amap.location
     // Google
     implementation Libs.Google.material
+    implementation Libs.Google.protobuf
     // Accompanist
 //    implementation Libs.Accompanist.coil
     implementation Libs.Accompanist.insets
@@ -174,6 +177,26 @@ dependencies {
     kapt project(':compiler')
     implementation project(':weather')
     implementation project(':data')
+    implementation project(':ktx')
+}
+
+protobuf {
+    protoc {
+        artifact = "com.google.protobuf:protoc:3.10.0"
+    }
+
+    // Generates the java Protobuf-lite code for the Protobufs in this project. See
+    // https://github.com/google/protobuf-gradle-plugin#customizing-protobuf-compilation
+    // for more information.
+    generateProtoTasks {
+        all().each { task ->
+            task.builtins {
+                java {
+                    option 'lite'
+                }
+            }
+        }
+    }
 }
 
 static def getVerName(String baseVerName, String autoBuildNumber) {

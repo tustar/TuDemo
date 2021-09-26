@@ -1,8 +1,10 @@
 package com.tustar.weather.ui
 
+import android.content.Context
 import androidx.compose.foundation.layout.*
+import androidx.compose.material.Switch
 import androidx.compose.material.Text
-import androidx.compose.runtime.Composable
+import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -14,15 +16,28 @@ import androidx.constraintlayout.compose.ConstraintLayout
 import com.tustar.data.source.remote.AirDaily
 import com.tustar.data.source.remote.WeatherDaily
 import com.tustar.weather.R
+import kotlin.reflect.KFunction2
 
 @Composable
-fun ItemWeather15d(daily15d: List<WeatherDaily>, air5d: List<AirDaily>) {
+fun ItemWeather15d(
+    daily15d: List<WeatherDaily>,
+    air5d: List<AirDaily>,
+    list15d: Boolean,
+    onList15d: KFunction2<Context, Boolean, Unit>,
+) {
+    val context = LocalContext.current
+    var isList by remember { mutableStateOf(list15d) }
     ConstraintLayout(
         modifier = Modifier
             .itemBackground()
             .fillMaxWidth(),
     ) {
-        val (title, content) = createRefs()
+        val (switch, title, content) = createRefs()
+
+        Switch(checked = isList, onCheckedChange = {
+            isList = it
+            onList15d(context, isList)
+        })
 
         ItemWeatherTopBar(
             modifier = Modifier
@@ -31,25 +46,50 @@ fun ItemWeather15d(daily15d: List<WeatherDaily>, air5d: List<AirDaily>) {
                     start.linkTo(parent.start)
                     end.linkTo(parent.end)
                 },
-            id = R.string.weather_15d_forecast
+            id = R.string.weather_15d_forecast,
         )
 
-        Column(
-            verticalArrangement = Arrangement.spacedBy(4.dp),
-            modifier = Modifier
-                .padding(horizontal = 4.dp)
-                .constrainAs(content) {
-                    top.linkTo(title.bottom)
-                    start.linkTo(parent.start)
-                    end.linkTo(parent.end)
-                }
-        ) {
-            daily15d.forEachIndexed { index, weatherDaily ->
-                DayInfo(weatherDaily = weatherDaily, airDaily = air5d.getOrNull(index))
-            }
+        if (isList) {
+            ItemWeather15dList(
+                modifier = Modifier
+                    .padding(horizontal = 4.dp)
+                    .constrainAs(content) {
+                        top.linkTo(title.bottom)
+                        start.linkTo(parent.start)
+                        end.linkTo(parent.end)
+                    },
+                daily15d, air5d
+            )
+        } else {
+            ItemWeather15dTrend(
+                modifier = Modifier
+                    .padding(horizontal = 4.dp)
+                    .constrainAs(content) {
+                        top.linkTo(title.bottom)
+                        start.linkTo(parent.start)
+                        end.linkTo(parent.end)
+                    },
+                daily15d, air5d
+            )
         }
     }
 }
+
+@Composable
+private fun ItemWeather15dList(
+    modifier: Modifier, daily15d: List<WeatherDaily>,
+    air5d: List<AirDaily>,
+) {
+    Column(
+        verticalArrangement = Arrangement.spacedBy(4.dp),
+        modifier = modifier,
+    ) {
+        daily15d.forEachIndexed { index, weatherDaily ->
+            DayInfo(weatherDaily = weatherDaily, airDaily = air5d.getOrNull(index))
+        }
+    }
+}
+
 
 @Composable
 private fun DayInfo(weatherDaily: WeatherDaily, airDaily: AirDaily?) {
@@ -124,4 +164,12 @@ private fun DayInfo(weatherDaily: WeatherDaily, airDaily: AirDaily?) {
             ItemWeatherAqi(airDaily = airDaily)
         }
     }
+}
+
+@Composable
+private fun ItemWeather15dTrend(
+    modifier: Modifier, daily15d: List<WeatherDaily>,
+    air5d: List<AirDaily>,
+) {
+
 }

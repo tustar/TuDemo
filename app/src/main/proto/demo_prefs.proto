@@ -1,0 +1,9 @@
+syntax = "proto3";
+
+option java_package = "com.tustar.demo";
+option java_multiple_files = true;
+
+message DemoPrefs {
+  // filter for showing / hiding completed tasks
+  bool do_not_show = 1;
+}

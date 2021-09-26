@@ -1,4 +1,4 @@
-package com.tustar.demo.ktx
+package com.tustar.demo.ui
 
 import androidx.compose.foundation.layout.height
 import androidx.compose.runtime.Composable

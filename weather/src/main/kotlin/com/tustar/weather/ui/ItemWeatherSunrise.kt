@@ -1,5 +1,6 @@
 package com.tustar.weather.ui
 
+import android.content.Context
 import android.graphics.Path
 import android.graphics.PathMeasure
 import androidx.compose.animation.core.LinearEasing
@@ -24,12 +25,12 @@ import androidx.constraintlayout.compose.ConstraintLayout
 import com.tustar.data.source.remote.WeatherDaily
 import com.tustar.weather.R
 import com.tustar.weather.compose.res.vectorResource
-import com.tustar.weather.util.StateEvent
+import kotlin.reflect.KFunction2
 
 @Composable
 fun ItemWeatherSunrise(
     today: WeatherDaily,
-    rising: StateEvent<Boolean>,
+    rising: Pair<Boolean, (Boolean) -> Unit>,
 ) {
     ConstraintLayout(
         modifier = Modifier
@@ -97,13 +98,16 @@ fun ItemWeatherSunrise(
 }
 
 @Composable
-fun DrawSunPath(modifier: Modifier, percent: Float, rising: StateEvent<Boolean>) {
+fun DrawSunPath(
+    modifier: Modifier, percent: Float,
+    rising: Pair<Boolean, (Boolean) -> Unit>
+) {
     val sun = ImageBitmap.vectorResource(id = R.drawable.ic_sun)
     val progress by animateFloatAsState(
-        targetValue = if (rising.state) percent else 0.0f,
+        targetValue = if (rising.first) percent else 0.0f,
         animationSpec = tween(durationMillis = 2000, easing = LinearEasing),
         finishedListener = {
-            rising.onEvent(it == percent)
+            rising.second(it == percent)
         }
     )
     Canvas(modifier = modifier) {

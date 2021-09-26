@@ -2,7 +2,6 @@ package com.tustar.demo.ui
 
 import android.content.Context
 import androidx.lifecycle.viewModelScope
-import com.amap.api.location.AMapLocation
 import com.tustar.data.DemoItem
 import com.tustar.data.codegen.generateDemos
 import com.tustar.data.source.WeatherRepository
@@ -27,8 +26,8 @@ class MainViewModel @Inject constructor(
     private val _demos = MutableStateFlow<Map<Int, List<DemoItem>>>(emptyMap())
     val demos: StateFlow<Map<Int, List<DemoItem>>> = _demos
 
-    private var _aMapLocation = MutableStateFlow<AMapLocation?>(null)
-    val aMapLocation: StateFlow<AMapLocation?> = _aMapLocation
+    private var _requestLocation = MutableStateFlow(false)
+    val requestLocation: StateFlow<Boolean> = _requestLocation
 
     private val _recorderInfo = MutableStateFlow(RecorderInfo())
     val recorderInfo: StateFlow<RecorderInfo> = _recorderInfo
@@ -43,11 +42,8 @@ class MainViewModel @Inject constructor(
         }
     }
 
-    fun onUpdateLocation(location: AMapLocation?) {
-        _aMapLocation.value = location
-        aMapLocation.value?.let {
-            requestWeather(it)
-        }
+    fun onRequestLocation(start: Boolean) {
+        _requestLocation.value = start
     }
 
     fun onRecorderInfoChange(info: RecorderInfo) {
