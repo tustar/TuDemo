@@ -1,5 +1,7 @@
 package com.tustar.demo.ui.home
 
+import android.text.format.DateUtils
+import android.util.TimeUtils
 import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
@@ -29,6 +31,7 @@ import com.tustar.demo.ui.SectionView
 import com.tustar.demo.ui.theme.DemoTheme
 import com.tustar.demo.ui.topAppBar
 import com.tustar.demo.util.Logger
+import java.util.concurrent.TimeUnit
 
 @Composable
 fun DemosScreen(
@@ -38,14 +41,17 @@ fun DemosScreen(
     onWeatherClick: () -> Unit,
 ) {
     val statusBarColor = DemoTheme.colors.primarySurface
+    SideEffect {
+        systemUiController.setStatusBarColor(statusBarColor)
+    }
+    //
+    val context = LocalContext.current
+    //
     val weatherPrefs by viewModel.weatherPrefs.collectAsState()
     val weather by viewModel.weather.collectAsState()
     val grouped by viewModel.demos.collectAsState(initial = mapOf())
     //
-    viewModel.weatherPrefs(LocalContext.current)
-    SideEffect {
-        systemUiController.setStatusBarColor(statusBarColor)
-    }
+    viewModel.weatherPrefs(context)
     //
     Column {
         DemosTopBar(
@@ -55,12 +61,13 @@ fun DemosScreen(
         DemosListView(grouped, onDemoClick)
     }
 
+    val isOver15Minutes = weatherPrefs.lastUpdated - System.currentTimeMillis() >= 15 * 60 * 1000
     val onPermissionsGranted = when {
-        weatherPrefs.location == null -> {
+        weatherPrefs.location.isNullOrEmpty() -> {
             { viewModel.onRequestLocation(true) }
         }
-        weather == null -> {
-            { viewModel.requestWeather(weatherPrefs.location, weatherPrefs.poi) }
+        weather == null || isOver15Minutes -> {
+            { viewModel.requestWeather(context ,weatherPrefs.location, weatherPrefs.poi) }
         }
         else -> {
             {}

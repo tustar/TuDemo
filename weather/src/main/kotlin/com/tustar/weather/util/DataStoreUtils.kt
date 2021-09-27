@@ -60,3 +60,9 @@ suspend fun updateList15D(context: Context, isList: Boolean) =
     context.weatherPrefs.updateData { prefs ->
         prefs.toBuilder().setList15D(isList).build()
     }
+
+suspend fun updateLastUpdated(context: Context, timeMills:Long) =
+    context.weatherPrefs.updateData { prefs ->
+        prefs.toBuilder().setLastUpdated(timeMills).build()
+    }
+

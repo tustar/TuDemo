@@ -26,9 +26,10 @@ open class WeatherViewModel @Inject constructor(
     private val _weatherPrefs = MutableStateFlow(WeatherPrefs.getDefaultInstance())
     val weatherPrefs: StateFlow<WeatherPrefs> = _weatherPrefs
 
-    fun requestWeather(location: String, poiName: String) {
+    fun requestWeather(context: Context, location: String, poiName: String) {
         viewModelScope.launch {
             _weather.value = weatherRepository.weather(location, poiName)
+            updateLastUpdated(context, System.currentTimeMillis())
         }
     }
 
@@ -60,6 +61,6 @@ open class WeatherViewModel @Inject constructor(
         viewModelScope.launch {
             updateLocation(context, location, poi)
         }
-        requestWeather(location, poi)
+        requestWeather(context, location, poi)
     }
 }

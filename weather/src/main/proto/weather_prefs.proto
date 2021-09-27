@@ -9,4 +9,5 @@ message WeatherPrefs {
     bool list_15d = 2;
     string location = 3;
     string poi = 4;
+    int64 last_updated = 5;
 }
