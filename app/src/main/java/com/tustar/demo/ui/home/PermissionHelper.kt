@@ -30,7 +30,9 @@ import com.tustar.ktx.actionApplicationDetailsSettings
 import com.tustar.ktx.actionLocationSourceSettings
 import com.tustar.ktx.isLocationEnable
 import com.tustar.demo.ui.MainViewModel
-import com.tustar.demo.ui.compose.ActionDialog
+import com.tustar.demo.ui.compose.dialog.ActionDialog
+import com.tustar.demo.ui.compose.dialog.DialogTheme
+import com.tustar.demo.ui.compose.dialog.DialogTextStyle
 import com.tustar.demo.util.Logger
 
 @OptIn(ExperimentalPermissionsApi::class)
@@ -228,14 +230,14 @@ private fun Rationale(
                 onCheckedChange = {
                     checked = it
                 },
-                colors = CheckboxDefaults.colors(Color(0xFF596DFF)),
-                modifier = Modifier.padding(horizontal = 4.dp)
+                colors = CheckboxDefaults.colors(DialogTheme.colors.buttonText),
+                modifier = Modifier.padding(horizontal = 8.dp)
             )
 
             Text(
                 text = stringResource(id = R.string.dlg_not_show),
-                fontSize = 13.sp,
-                color = Color(0xFF666666),
+                style = DialogTextStyle.subTitle2,
+                color = DialogTheme.colors.subTitle,
                 textAlign = TextAlign.Center
             )
         }
@@ -252,24 +254,23 @@ fun ItemPermission(info: PermissionInfo) {
         Image(
             painter = painterResource(id = info.icon), contentDescription = null,
             modifier = Modifier
-                .padding(horizontal = 4.dp)
-                .width(24.dp)
+                .padding(horizontal = 8.dp)
+                .width(28.dp)
         )
         Column(
         ) {
             Text(
                 text = stringResource(id = info.title),
-                color = Color(0xFF191919),
-                fontSize = 15.sp,
+                style = DialogTextStyle.title2,
+                color = DialogTheme.colors.title,
                 textAlign = TextAlign.Center,
                 modifier = Modifier,
             )
             Text(
                 text = stringResource(id = info.desc),
-                color = Color(0xFF666666),
-                fontSize = 13.sp,
+                style = DialogTextStyle.subTitle2,
+                color = DialogTheme.colors.subTitle,
                 textAlign = TextAlign.Center,
-                modifier = Modifier.padding(top = 2.dp),
             )
         }
     }

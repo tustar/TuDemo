@@ -34,10 +34,19 @@ fun ItemWeather15d(
     ) {
         val (switch, title, content) = createRefs()
 
-        Switch(checked = isList, onCheckedChange = {
-            isList = it
-            onList15d(context, isList)
-        })
+        WeatherSwitch(
+            checked = isList,
+            onCheckedChange = {
+                isList = it
+                onList15d(context, isList)
+            },
+            modifier = Modifier
+                .constrainAs(switch) {
+                    top.linkTo(parent.top)
+                    start.linkTo(parent.start)
+                }
+                .padding(start = 4.dp),
+        )
 
         ItemWeatherTopBar(
             modifier = Modifier
@@ -46,7 +55,7 @@ fun ItemWeather15d(
                     start.linkTo(parent.start)
                     end.linkTo(parent.end)
                 },
-            id = R.string.weather_15d_forecast,
+            id = R.string.weather_15d_forecast
         )
 
         if (isList) {

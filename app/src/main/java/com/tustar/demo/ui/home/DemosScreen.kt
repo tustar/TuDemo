@@ -61,13 +61,13 @@ fun DemosScreen(
         DemosListView(grouped, onDemoClick)
     }
 
-    val isOver15Minutes = weatherPrefs.lastUpdated - System.currentTimeMillis() >= 15 * 60 * 1000
+    val isOver15Minutes = System.currentTimeMillis() - weatherPrefs.lastUpdated >= 15 * 60 * 1000
     val onPermissionsGranted = when {
         weatherPrefs.location.isNullOrEmpty() -> {
             { viewModel.onRequestLocation(true) }
         }
         weather == null || isOver15Minutes -> {
-            { viewModel.requestWeather(context ,weatherPrefs.location, weatherPrefs.poi) }
+            { viewModel.requestWeather(context, weatherPrefs.location, weatherPrefs.poi) }
         }
         else -> {
             {}

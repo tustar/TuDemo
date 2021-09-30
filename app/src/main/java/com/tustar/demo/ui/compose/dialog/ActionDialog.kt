@@ -1,4 +1,4 @@
-package com.tustar.demo.ui.compose
+package com.tustar.demo.ui.compose.dialog
 
 import androidx.annotation.StringRes
 import androidx.compose.foundation.background
@@ -11,12 +11,9 @@ import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.stringResource
-import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
-import androidx.compose.ui.unit.sp
 import androidx.compose.ui.window.Dialog
 import androidx.compose.ui.window.DialogProperties
 import com.tustar.demo.R
@@ -26,9 +23,8 @@ private fun Title(title: String) {
     Text(
         text = title,
         textAlign = TextAlign.Center,
-        fontSize = 18.sp,
-        fontWeight = FontWeight.Black,
-        color = Color(0xFF191919),
+        style = DialogTextStyle.title,
+        color = DialogTheme.colors.title,
         modifier = Modifier
             .fillMaxWidth()
             .padding(30.dp)
@@ -43,15 +39,15 @@ private fun Buttons(
     Row(
         modifier = Modifier
             .fillMaxWidth()
-            .height(48.dp),
+            .height(IntrinsicSize.Min),
         verticalAlignment = Alignment.CenterVertically,
         horizontalArrangement = Arrangement.Center,
     ) {
         Text(
             text = stringResource(id = R.string.cancel),
             textAlign = TextAlign.Center,
-            fontSize = 18.sp,
-            color = Color(0xFF596DFF),
+            style = DialogTextStyle.button,
+            color = DialogTheme.colors.buttonText,
             modifier = Modifier
                 .weight(1f)
                 .clickable(
@@ -60,18 +56,19 @@ private fun Buttons(
                 ) {
                     cancelAction()
                 }
-                .padding(vertical = 10.dp)
+                .padding(vertical = 18.dp)
         )
 
         Divider(
-            Modifier
+            modifier = Modifier
                 .width(1.dp)
-                .fillMaxHeight()
+                .fillMaxHeight(),
+            color = DialogTheme.colors.divider,
         )
         Text(text = stringResource(id = R.string.ok),
             textAlign = TextAlign.Center,
-            fontSize = 18.sp,
-            color = Color(0xFF596DFF),
+            style = DialogTextStyle.button,
+            color = DialogTheme.colors.buttonText,
             modifier = Modifier
                 .weight(1f)
                 .clickable(
@@ -80,7 +77,7 @@ private fun Buttons(
                 ) {
                     confirmAction()
                 }
-                .padding(vertical = 10.dp)
+                .padding(vertical = 18.dp)
         )
     }
 }
@@ -113,34 +110,36 @@ fun ActionDialog(
     properties: DialogProperties = DialogProperties(),
     content: @Composable () -> Unit
 ) {
-    Dialog(
-        onDismissRequest = onDismissRequest,
-        properties = properties,
-    ) {
-        Column(
-            modifier = Modifier
-                .padding(horizontal = 16.dp)
-                .background(Color.White, RoundedCornerShape(8.dp))
+    DialogTheme {
+        Dialog(
+            onDismissRequest = onDismissRequest,
+            properties = properties,
         ) {
-            // title
-            Title(title = title)
-            // content
             Column(
                 modifier = Modifier
-                    .fillMaxWidth()
-                    .padding(horizontal = 24.dp),
-                horizontalAlignment = Alignment.CenterHorizontally,
+                    .background(DialogTheme.colors.background, RoundedCornerShape(8.dp))
             ) {
-                content()
+                // title
+                Title(title = title)
+                // content
+                Column(
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .padding(horizontal = 24.dp),
+                    horizontalAlignment = Alignment.CenterHorizontally,
+                ) {
+                    content()
+                }
+                //
+                Divider(
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .height(1.dp),
+                    color = DialogTheme.colors.divider,
+                )
+                // buttons
+                Buttons(cancelAction, confirmAction)
             }
-            //
-            Divider(
-                Modifier
-                    .fillMaxWidth()
-                    .height(1.dp)
-            )
-            // buttons
-            Buttons(cancelAction, confirmAction)
         }
     }
 }

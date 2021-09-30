@@ -36,10 +36,19 @@ fun ItemWeather24h(
     ) {
         val (switch, title, content) = createRefs()
 
-        Switch(checked = isList, onCheckedChange = {
-            isList = it
-            onList24h(context, isList)
-        })
+        WeatherSwitch(
+            checked = isList,
+            onCheckedChange = {
+                isList = it
+                onList24h(context, isList)
+            },
+            modifier = Modifier
+                .constrainAs(switch) {
+                    top.linkTo(parent.top)
+                    start.linkTo(parent.start)
+                }
+                .padding(start = 4.dp),
+        )
 
         ItemWeatherTopBar(
             modifier = Modifier

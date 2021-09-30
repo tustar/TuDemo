@@ -21,6 +21,8 @@
     <string name="weather_day_to_night">%1$s转%2$s</string>
     <string name="weather_temp_min_max">%1$d~%2$d°C</string>
     <string name="weather_wind_dir_value">%1$s %2$s级</string>
+    <string name="weather_switch_list">列表</string>
+    <string name="weather_switch_trend">趋势</string>
     <string name="weather_24h_forecast">逐时预报</string>
     <string name="weather_15d_forecast">天气预报</string>
     <string name="weather_sunrise_sunset">日出日落</string>
