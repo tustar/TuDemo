@@ -12,7 +12,7 @@
     <string name="weather_pressure">气压</string>
     <string name="weather_temp_value">%1$d°C</string>
     <string name="weather_humidity_value">%1$d%%</string>
-    <string name="weather_wind_value">%1$d级</string>
+    <string name="weather_wind_value">%1$s级</string>
     <string name="weather_pressure_value">%1$d hpa</string>
     <string name="weather_now">现在</string>
     <string name="weather_today">今天</string>

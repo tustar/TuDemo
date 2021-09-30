@@ -2,7 +2,9 @@ package com.tustar.weather.ui
 
 import android.content.Context
 import androidx.compose.foundation.layout.*
-import androidx.compose.material.Switch
+import androidx.compose.foundation.lazy.LazyRow
+import androidx.compose.foundation.lazy.items
+import androidx.compose.foundation.lazy.itemsIndexed
 import androidx.compose.material.Text
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
@@ -94,14 +96,14 @@ private fun ItemWeather15dList(
         modifier = modifier,
     ) {
         daily15d.forEachIndexed { index, weatherDaily ->
-            DayInfo(weatherDaily = weatherDaily, airDaily = air5d.getOrNull(index))
+            ListDayInfo(weatherDaily = weatherDaily, airDaily = air5d.getOrNull(index))
         }
     }
 }
 
 
 @Composable
-private fun DayInfo(weatherDaily: WeatherDaily, airDaily: AirDaily?) {
+private fun ListDayInfo(weatherDaily: WeatherDaily, airDaily: AirDaily?) {
     val (date, week, isToday) = WeatherHelper.dateWeek(LocalContext.current, weatherDaily.fxDate)
     val modifier = if (isToday) Modifier.itemSelected() else Modifier
 
@@ -121,7 +123,7 @@ private fun DayInfo(weatherDaily: WeatherDaily, airDaily: AirDaily?) {
             )
             Text(
                 text = week,
-                fontSize = 15.sp,
+                fontSize = 16.sp,
                 color = Color(0xFF000000),
             )
         }
@@ -180,5 +182,101 @@ private fun ItemWeather15dTrend(
     modifier: Modifier, daily15d: List<WeatherDaily>,
     air5d: List<AirDaily>,
 ) {
+    LazyRow(
+        horizontalArrangement = Arrangement.spacedBy(4.dp),
+        modifier = modifier,
+    ) {
+//        daily15d.forEachIndexed { index, weatherDaily ->
+//
+//        }
+        itemsIndexed(items = daily15d, itemContent = { index, weatherDaily ->
+            TrendDayInfo(weatherDaily = weatherDaily, airDaily = air5d.getOrNull(index))
+        })
+    }
+}
 
+@Composable
+private fun TrendDayInfo(weatherDaily: WeatherDaily, airDaily: AirDaily?) {
+    val (date, week, isToday) = WeatherHelper.dateWeek(
+        LocalContext.current,
+        weatherDaily.fxDate,
+        isList = false
+    )
+    val modifier = if (isToday) Modifier.itemSelected() else Modifier
+
+    Column(
+        modifier = modifier
+            .padding(horizontal = 4.dp, vertical = 4.dp),
+        horizontalAlignment = Alignment.CenterHorizontally,
+    ) {
+        TrendDayInfoTop(week, date, weatherDaily)
+        //
+
+        TrendDayInfoBottom(weatherDaily, airDaily)
+    }
+}
+
+@Composable
+private fun TrendDayInfoTop(
+    week: String,
+    date: String,
+    weatherDaily: WeatherDaily
+) {
+    Text(
+        text = week,
+        fontSize = 16.sp,
+        color = Color(0xFF000000),
+    )
+    Text(
+        text = date,
+        fontSize = 12.sp,
+        color = Color(0xFF666666),
+        modifier = Modifier
+            .padding(top = 6.dp),
+    )
+
+    Text(
+        text = weatherDaily.textDay,
+        fontSize = 15.sp,
+        color = Color(0xFF000000),
+        modifier = Modifier
+            .padding(top = 6.dp),
+    )
+
+    ItemWeatherImage(
+        modifier = Modifier.padding(vertical = 4.dp),
+        icon = weatherDaily.iconDay
+    )
+}
+
+@Composable
+private fun TrendDayInfoBottom(
+    weatherDaily: WeatherDaily,
+    airDaily: AirDaily?
+) {
+    ItemWeatherImage(
+        modifier = Modifier.padding(vertical = 4.dp),
+        icon = weatherDaily.iconNight
+    )
+
+    Text(
+        text = weatherDaily.textNight,
+        fontSize = 15.sp,
+        color = Color(0xFF000000),
+    )
+    Text(
+        text = weatherDaily.windDirDay,
+        fontSize = 13.sp,
+        color = Color(0xFF666666),
+        modifier = Modifier
+            .padding(top = 6.dp),
+    )
+    Text(
+        text = stringResource(id = R.string.weather_wind_value, weatherDaily.windScaleDay),
+        fontSize = 13.sp,
+        color = Color(0xFF666666),
+        modifier = Modifier
+            .padding(top = 6.dp, bottom = 4.dp),
+    )
+    ItemWeatherAqi(modifier = Modifier.padding(bottom = 4.dp), airDaily = airDaily)
 }

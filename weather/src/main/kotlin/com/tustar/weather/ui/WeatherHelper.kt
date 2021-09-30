@@ -89,16 +89,25 @@ object WeatherHelper {
     /**
      * 2021-09-03 =>  09/03 周五
      */
-    fun dateWeek(context: Context, fxDate: String): Triple<String, String, Boolean> {
+    fun dateWeek(
+        context: Context,
+        fxDate: String,
+        isList: Boolean = true
+    ): Triple<String, String, Boolean> {
         val format = SimpleDateFormat("yyyy-MM-dd")
         val isToday = format.format(Date()) == fxDate
         val timeInMillis = format.parse(fxDate).time
-        val date = if (isToday) {
+        val date = if (isToday && isList) {
             context.resources.getString(R.string.weather_today)
         } else {
             SimpleDateFormat("MM/dd").format(timeInMillis)
         }
-        val week = getWeek(context, timeInMillis)
+        val week = if (isToday && !isList) {
+            context.resources.getString(R.string.weather_today)
+        } else {
+            getWeek(context, timeInMillis)
+        }
+
         return Triple(date, week, isToday)
     }
 
