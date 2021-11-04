@@ -51,16 +51,14 @@ fun ItemWeatherImage(modifier: Modifier = Modifier, icon: Int) {
 
 @Composable
 fun ItemWeatherAqi(modifier: Modifier = Modifier, airDaily: AirDaily?) {
-    airDaily?.let {
-        Text(
-            text = airDaily.aqi.toString(),
-            fontSize = 14.sp,
-            textAlign = TextAlign.Center,
-            color = Color.White,
-            modifier = modifier
-                .padding(top = 2.dp)
-                .width(30.dp)
-                .background(WeatherHelper.aqiColor(airDaily.aqi), RoundedCornerShape(2.5.dp)),
-        )
-    }
+    Text(
+        text = airDaily?.aqi?.toString() ?: "N/A",
+        fontSize = 14.sp,
+        textAlign = TextAlign.Center,
+        color = Color.White,
+        modifier = modifier
+            .padding(top = 2.dp)
+            .width(30.dp)
+            .background(WeatherHelper.aqiColor(airDaily?.aqi ?: 0), RoundedCornerShape(2.5.dp)),
+    )
 }

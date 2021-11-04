@@ -250,16 +250,20 @@ private fun TrendDayInfoCenter(
 ) {
     val highTemp = stringResource(R.string.weather_temp_value, current.tempMax)
     val lowerTemp = stringResource(R.string.weather_temp_value, current.tempMin)
+    val strokeWidth = 6.0f
     val highColor = Color(0xFFFF7200)
     val lowerColor = Color(0xFF00A368)
     val prev = daily15d.getOrNull(index - 1)
     //
     Canvas(
         modifier = Modifier
+            .width(30.dp)
             .height(140.dp)
     ) {
+        Logger.d("size.width = ${size}")
         val width = size.width
         val height = size.height - 2 * textHeight
+
 
         val ratio = height / (maxTemp - minTemp)
         val cx = width / 2.0f
@@ -295,15 +299,16 @@ private fun TrendDayInfoCenter(
         }
 
         Logger.d("prev = $prev")
+        val padding = 8 * density
         prev?.let {
             val prevHighCy = calCy(maxTemp, it.tempMax, ratio, textHeight, radius)
-            val prevHighCenter = Offset(-cx, prevHighCy)
+            val prevHighCenter = Offset(-width - padding, prevHighCy)
             Logger.d("data: $prevHighCenter - $highCenter")
-            drawLine(color = highColor, prevHighCenter, highCenter, strokeWidth = 6.0f)
+            drawLine(color = highColor, prevHighCenter, highCenter, strokeWidth)
 
             val prevLowCy = calCy(maxTemp, it.tempMin, ratio, textHeight, radius)
-            val prevLowCenter = Offset(-cx, prevLowCy)
-            drawLine(color = lowerColor, prevLowCenter, lowCenter, strokeWidth = 6.0f)
+            val prevLowCenter = Offset(-width - padding, prevLowCy)
+            drawLine(color = lowerColor, prevLowCenter, lowCenter, strokeWidth)
         }
     }
 }
