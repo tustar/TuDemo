@@ -1,15 +1,20 @@
 package com.tustar.weather.ui
 
 import android.content.Context
+import androidx.compose.foundation.Canvas
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyRow
-import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.lazy.itemsIndexed
 import androidx.compose.material.Text
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.NativePaint
+import androidx.compose.ui.graphics.Paint
+import androidx.compose.ui.graphics.drawscope.drawIntoCanvas
+import androidx.compose.ui.graphics.nativeCanvas
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
@@ -18,6 +23,7 @@ import androidx.constraintlayout.compose.ConstraintLayout
 import com.tustar.data.source.remote.AirDaily
 import com.tustar.data.source.remote.WeatherDaily
 import com.tustar.weather.R
+import com.tustar.weather.util.Logger
 import kotlin.reflect.KFunction2
 
 @Composable
@@ -189,31 +195,127 @@ private fun ItemWeather15dTrend(
 //        daily15d.forEachIndexed { index, weatherDaily ->
 //
 //        }
-        itemsIndexed(items = daily15d, itemContent = { index, weatherDaily ->
-            TrendDayInfo(weatherDaily = weatherDaily, airDaily = air5d.getOrNull(index))
+        val maxTemp = daily15d.maxOf { it.tempMax }
+        val minTemp = daily15d.minOf { it.tempMin }
+
+        val textPaint = Paint().asFrameworkPaint().apply {
+            isAntiAlias = true
+            isDither = true
+            textAlign = android.graphics.Paint.Align.CENTER
+        }
+        textPaint.color = android.graphics.Color.parseColor("#FF666666")
+        textPaint.textSize = 36.0f
+        val fontMetrics = textPaint.fontMetrics
+        val top = fontMetrics.top
+        val bottom = fontMetrics.bottom
+        val textHeight = bottom - top
+        val radius = 9.0f
+
+        itemsIndexed(items = daily15d, itemContent = { index, current ->
+            val (date, week, isToday) = WeatherHelper.dateWeek(
+                LocalContext.current,
+                current.fxDate,
+                isList = false
+            )
+            val modifier = if (isToday) Modifier.itemSelected() else Modifier
+
+            Column(
+                modifier = modifier
+                    .padding(horizontal = 4.dp, vertical = 4.dp),
+                horizontalAlignment = Alignment.CenterHorizontally,
+            ) {
+                TrendDayInfoTop(week, date, current)
+
+                TrendDayInfoCenter(
+                    current, daily15d, index, textHeight,
+                    maxTemp, minTemp, radius, textPaint
+                )
+
+                TrendDayInfoBottom(current, air5d.getOrNull(index))
+            }
         })
     }
 }
 
 @Composable
-private fun TrendDayInfo(weatherDaily: WeatherDaily, airDaily: AirDaily?) {
-    val (date, week, isToday) = WeatherHelper.dateWeek(
-        LocalContext.current,
-        weatherDaily.fxDate,
-        isList = false
-    )
-    val modifier = if (isToday) Modifier.itemSelected() else Modifier
-
-    Column(
-        modifier = modifier
-            .padding(horizontal = 4.dp, vertical = 4.dp),
-        horizontalAlignment = Alignment.CenterHorizontally,
+private fun TrendDayInfoCenter(
+    current: WeatherDaily,
+    daily15d: List<WeatherDaily>,
+    index: Int,
+    textHeight: Float,
+    maxTemp: Int,
+    minTemp: Int,
+    radius: Float,
+    textPaint: NativePaint
+) {
+    val highTemp = stringResource(R.string.weather_temp_value, current.tempMax)
+    val lowerTemp = stringResource(R.string.weather_temp_value, current.tempMin)
+    val highColor = Color(0xFFFF7200)
+    val lowerColor = Color(0xFF00A368)
+    val prev = daily15d.getOrNull(index - 1)
+    //
+    Canvas(
+        modifier = Modifier
+            .height(140.dp)
     ) {
-        TrendDayInfoTop(week, date, weatherDaily)
-        //
+        val width = size.width
+        val height = size.height - 2 * textHeight
 
-        TrendDayInfoBottom(weatherDaily, airDaily)
+        val ratio = height / (maxTemp - minTemp)
+        val cx = width / 2.0f
+        val highCy = calCy(maxTemp, current.tempMax, ratio, textHeight, radius)
+        val highCenter = Offset(cx, highCy)
+        Logger.d("width:$width, highCenter: $highCenter")
+        drawIntoCanvas {
+            val nativeCanvas = it.nativeCanvas
+            nativeCanvas.drawText(
+                highTemp, cx, highCy - radius - textHeight / 2.0f,
+                textPaint
+            )
+        }
+        drawCircle(
+            color = highColor,
+            radius = radius,
+            center = highCenter,
+        )
+
+        val lowCy = calCy(maxTemp, current.tempMin, ratio, textHeight, radius)
+        val lowCenter = Offset(cx, lowCy)
+        drawCircle(
+            color = lowerColor,
+            radius = radius,
+            center = lowCenter,
+        )
+        drawIntoCanvas {
+            val nativeCanvas = it.nativeCanvas
+            nativeCanvas.drawText(
+                lowerTemp, cx, lowCy + radius + textHeight,
+                textPaint
+            )
+        }
+
+        Logger.d("prev = $prev")
+        prev?.let {
+            val prevHighCy = calCy(maxTemp, it.tempMax, ratio, textHeight, radius)
+            val prevHighCenter = Offset(-cx, prevHighCy)
+            Logger.d("data: $prevHighCenter - $highCenter")
+            drawLine(color = highColor, prevHighCenter, highCenter, strokeWidth = 6.0f)
+
+            val prevLowCy = calCy(maxTemp, it.tempMin, ratio, textHeight, radius)
+            val prevLowCenter = Offset(-cx, prevLowCy)
+            drawLine(color = lowerColor, prevLowCenter, lowCenter, strokeWidth = 6.0f)
+        }
     }
+}
+
+private fun calCy(
+    maxTemp: Int,
+    temp: Int,
+    ratio: Float,
+    textHeight: Float,
+    radius: Float
+): Float {
+    return (maxTemp - temp) * ratio + textHeight + radius
 }
 
 @Composable

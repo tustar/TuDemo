@@ -50,7 +50,6 @@ fun PermissionsRequest(
         listOf(
             Manifest.permission.ACCESS_FINE_LOCATION,
             Manifest.permission.ACCESS_COARSE_LOCATION,
-            Manifest.permission.RECORD_AUDIO
         )
     )
 
@@ -69,8 +68,7 @@ fun PermissionsRequest(
                 }
             }
         }
-        multiplePermissionsState.shouldShowRationale
-                || !multiplePermissionsState.permissionRequested -> {
+        !multiplePermissionsState.permissionRequested -> {
             Logger.d("shouldShowRationale || !permissionRequested")
             if (doNotShow) {
                 // Feature not available
