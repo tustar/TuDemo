@@ -21,7 +21,12 @@ object Versions {
 }
 
 object Libs {
-    const val androidGradlePlugin = "com.android.tools.build:gradle:7.1.0-alpha02"
+
+    const val compileSdkVersion = 31
+    const val minSdkVersion = 24
+    const val targetSdkVersion = 31
+
+    const val androidGradlePlugin = "com.android.tools.build:gradle:7.0.3"
     const val ktLint = "com.pinterest:ktlint:${Versions.ktLint}"
 
     object Amap {
@@ -29,7 +34,7 @@ object Libs {
     }
 
     object Accompanist {
-        private const val version = "0.18.0"
+        private const val version = "0.20.3"
         const val swiperefresh = "com.google.accompanist:accompanist-swiperefresh:$version"
         const val coil = "com.google.accompanist:accompanist-coil:$version"
         const val insets = "com.google.accompanist:accompanist-insets:$version"
@@ -39,17 +44,17 @@ object Libs {
     }
 
     object Coil {
-        const val coilCompose = "io.coil-kt:coil-compose:1.3.2"
+        const val coilCompose = "io.coil-kt:coil-compose:1.4.0"
     }
 
     object Kotlin {
-        private const val version = "1.5.21"
+        private const val version = "1.5.31"
         const val stdlib = "org.jetbrains.kotlin:kotlin-stdlib-jdk8:$version"
         const val gradlePlugin = "org.jetbrains.kotlin:kotlin-gradle-plugin:$version"
         const val extensions = "org.jetbrains.kotlin:kotlin-android-extensions:$version"
 
         object Coroutines {
-            private const val version = "1.5.1"
+            private const val version = "1.5.2"
             const val core = "org.jetbrains.kotlinx:kotlinx-coroutines-core:$version"
             const val android = "org.jetbrains.kotlinx:kotlinx-coroutines-android:$version"
             const val test = "org.jetbrains.kotlinx:kotlinx-coroutines-test:$version"
@@ -58,7 +63,7 @@ object Libs {
 
     object AndroidX {
 
-        const val coreKtx = "androidx.core:core-ktx:1.6.0"
+        const val coreKtx = "androidx.core:core-ktx:1.7.0"
         const val appcompat = "androidx.appcompat:appcompat:1.3.0"
         const val appcompatResources = "androidx.appcompat:appcompat-resources:1.2.0"
 
@@ -66,15 +71,16 @@ object Libs {
         const val annotation = "androidx.annotation:annotation:1.2.0"
         const val vectordrawable = "androidx.vectordrawable:vectordrawable:1.1.0"
         const val datastorePreferences = "androidx.datastore:datastore-preferences:1.0.0"
-        const val datastoreCore =  "androidx.datastore:datastore-core:1.0.0"
+        const val datastoreCore = "androidx.datastore:datastore-core:1.0.0"
 
         object Legacy {
             const val supportV4 = "androidx.legacy:legacy-support-v4:1.0.0"
         }
 
         object Activity {
-            const val compose = "androidx.activity:activity-compose:1.3.0"
-            const val ktx = "androidx.activity:activity-ktx:1.3.0-alpha08"
+            private const val version = "1.4.0"
+            const val compose = "androidx.activity:activity-compose:$version"
+            const val ktx = "androidx.activity:activity-ktx:$version"
         }
 
         object Fragment {
@@ -103,7 +109,7 @@ object Libs {
 
         object Compose {
             const val snapshot = ""
-            private const val version = "1.0.2"
+            private const val version = "1.0.5"
 
             const val runtime = "androidx.compose.runtime:runtime:$version"
             const val runtimeLivedata = "androidx.compose.runtime:runtime-livedata:$version"
@@ -121,7 +127,7 @@ object Libs {
         object Lifecycle {
             const val extensions = "androidx.lifecycle:lifecycle-extensions:2.2.0"
 
-            private const val version = "2.4.0-alpha03"
+            private const val version = "2.4.0"
 
             object ViewModel {
                 const val compose =
@@ -152,21 +158,24 @@ object Libs {
         }
 
         object Test {
-            private const val version = "1.3.0"
+            private const val version = "1.4.0"
             const val runner = "androidx.test:runner:$version"
             const val rules = "androidx.test:rules:$version"
+            const val core = "androidx.test:core:$version"
+            const val coreKtx = "androidx.test:core-ktx:$version"
+
 
             object Ext {
-                private const val version = "1.1.2"
+                private const val version = "1.1.3"
                 const val junit = "androidx.test.ext:junit-ktx:$version"
             }
 
-            const val espressoCore = "androidx.test.espresso:espresso-core:3.2.0"
+            const val espressoCore = "androidx.test.espresso:espresso-core:3.4.0"
         }
     }
 
     object Hilt {
-        private const val version = "2.37"
+        private const val version = "2.40.5"
 
         const val gradlePlugin = "com.google.dagger:hilt-android-gradle-plugin:$version"
         const val android = "com.google.dagger:hilt-android:$version"

@@ -1,4 +1,4 @@
-package com.tustar.weather.util
+package com.tustar.data.util
 
 import android.os.Build
 import android.util.Log
@@ -6,11 +6,11 @@ import android.util.Log
 /**
  * Created by tustar on 15-10-14.
  *
- * When Build.TYPE is VERSION_USER, you can use adb shell setprop log.tag.TuDemo_Weather D open log
+ * When Build.TYPE is VERSION_USER, you can use adb shell setprop log.tag.TuDemo_Data D open log
  */
 object Logger {
 
-    private const val APP_TAG = "TuDemo_Weather"
+    private const val APP_TAG = "TuDemo_Data"
 
     private val packageName = Logger::class.java.name
 

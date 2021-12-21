@@ -1,6 +1,5 @@
 package com.tustar.weather.ui
 
-import android.content.Context
 import android.graphics.Path
 import android.graphics.PathMeasure
 import androidx.compose.animation.core.LinearEasing
@@ -11,8 +10,7 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material.Text
-import androidx.compose.runtime.Composable
-import androidx.compose.runtime.getValue
+import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.geometry.center
@@ -25,13 +23,9 @@ import androidx.constraintlayout.compose.ConstraintLayout
 import com.tustar.data.source.remote.WeatherDaily
 import com.tustar.weather.R
 import com.tustar.weather.compose.res.vectorResource
-import kotlin.reflect.KFunction2
 
 @Composable
-fun ItemWeatherSunrise(
-    today: WeatherDaily,
-    rising: Pair<Boolean, (Boolean) -> Unit>,
-) {
+fun ItemWeatherSunrise(today: WeatherDaily, ) {
     ConstraintLayout(
         modifier = Modifier
             .itemBackground()
@@ -70,7 +64,6 @@ fun ItemWeatherSunrise(
                         top.linkTo(parent.top)
                     },
                 WeatherHelper.movedPercent(today.sunrise, today.sunset),
-                rising,
             )
             Text(
                 text = stringResource(R.string.weather_sunrise, today.sunrise),
@@ -100,15 +93,13 @@ fun ItemWeatherSunrise(
 @Composable
 fun DrawSunPath(
     modifier: Modifier, percent: Float,
-    rising: Pair<Boolean, (Boolean) -> Unit>
 ) {
     val sun = ImageBitmap.vectorResource(id = R.drawable.ic_sun)
+    var rising by remember { mutableStateOf(false) }
+    rising = true
     val progress by animateFloatAsState(
-        targetValue = if (rising.first) percent else 0.0f,
-        animationSpec = tween(durationMillis = 2000, easing = LinearEasing),
-        finishedListener = {
-            rising.second(it == percent)
-        }
+        targetValue = if (rising) percent else 0.0f,
+        animationSpec = tween(durationMillis = 2000, easing = LinearEasing)
     )
     Canvas(modifier = modifier) {
         val width = size.width

@@ -6,13 +6,11 @@ plugins {
 }
 
 android {
-    compileSdk 30
+    compileSdk Libs.compileSdkVersion
 
     defaultConfig {
-        minSdk 21
-        targetSdk 30
-        versionCode 1
-        versionName "1.0"
+        minSdk Libs.minSdkVersion
+        targetSdk Libs.targetSdkVersion
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         consumerProguardFiles "consumer-rules.pro"
@@ -54,6 +52,8 @@ dependencies {
     implementation Libs.Google.material
     // Test
     testImplementation Libs.JUnit.junit
+    androidTestImplementation Libs.AndroidX.Test.core
+    androidTestImplementation Libs.AndroidX.Test.coreKtx
     androidTestImplementation Libs.AndroidX.Test.Ext.junit
     androidTestImplementation Libs.AndroidX.Test.espressoCore
 }

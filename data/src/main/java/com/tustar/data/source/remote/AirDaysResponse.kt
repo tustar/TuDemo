@@ -9,7 +9,7 @@ class AirDaysResponse(
     refer: Refer,
     updateTime: String,
     val daily: List<AirDaily>,
-) : HeResponse(code, fxLink, refer, updateTime)
+) : Response(code, fxLink, refer, updateTime)
 
 @Parcelize
 data class AirDaily(

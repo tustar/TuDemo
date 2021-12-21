@@ -9,7 +9,7 @@ class IndicesResponse(
     refer: Refer,
     updateTime: String,
     val daily: List<IndicesDaily>,
-) : HeResponse(code, fxLink, refer, updateTime)
+) : Response(code, fxLink, refer, updateTime)
 
 @Parcelize
 data class IndicesDaily(

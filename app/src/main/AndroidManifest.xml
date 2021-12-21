@@ -34,6 +34,7 @@
         <activity
             android:name=".ui.MainActivity"
             android:configChanges="orientation|uiMode|locale"
+            android:exported="true"
             android:label="@string/app_name"
             android:launchMode="singleTop">
             <intent-filter>
@@ -54,18 +55,44 @@
         </activity>
         <activity
             android:name=".ui.home.DemoDetailActivity"
+            android:exported="false"
             android:theme="@style/AppTheme" />
 
         <service
             android:name=".ui.recorder.RecorderService"
             android:enabled="true"
-            android:exported="true" />
+            android:exported="false" />
 
         <meta-data
             android:name="com.amap.api.v2.apikey"
             android:value="f097123e081466d050183966fc3aff39" />
 
         <service android:name="com.amap.api.location.APSService" />
+
+        <activity
+            android:name="androidx.test.core.app.InstrumentationActivityInvoker$BootstrapActivity"
+            android:exported="true"
+            android:theme="@android:style/Theme">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name="androidx.test.core.app.InstrumentationActivityInvoker$EmptyActivity"
+            android:exported="true"
+            android:theme="@android:style/Theme">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name="androidx.test.core.app.InstrumentationActivityInvoker$EmptyFloatingActivity"
+            android:exported="true"
+            android:theme="@android:style/Theme.Dialog">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+            </intent-filter>
+        </activity>
     </application>
 
 </manifest>

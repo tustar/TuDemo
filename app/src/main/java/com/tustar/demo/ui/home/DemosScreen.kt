@@ -1,7 +1,5 @@
 package com.tustar.demo.ui.home
 
-import android.text.format.DateUtils
-import android.util.TimeUtils
 import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
@@ -31,7 +29,6 @@ import com.tustar.demo.ui.SectionView
 import com.tustar.demo.ui.theme.DemoTheme
 import com.tustar.demo.ui.topAppBar
 import com.tustar.demo.util.Logger
-import java.util.concurrent.TimeUnit
 
 @Composable
 fun DemosScreen(

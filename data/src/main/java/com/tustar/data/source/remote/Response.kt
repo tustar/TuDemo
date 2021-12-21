@@ -1,11 +1,11 @@
 package com.tustar.data.source.remote
 
 
-open class HeResponse(
+open class Response(
     val code: String,
-    val fxLink: String,
+    val fxLink: String? = null,
     val refer: Refer,
-    val updateTime: String
+    val updateTime: String? = null,
 )
 
 data class Refer(

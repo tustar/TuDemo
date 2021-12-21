@@ -1,7 +1,9 @@
 package com.tustar.data.source
 
 import com.tustar.data.Weather
+import com.tustar.data.source.remote.City
 import com.tustar.data.source.remote.HeService
+import com.tustar.data.util.Logger
 import javax.inject.Inject
 
 class WeatherRepositoryImpl @Inject constructor(
@@ -27,5 +29,11 @@ class WeatherRepositoryImpl @Inject constructor(
             daily15d = daily15d,
             indices = indices,
         )
+    }
+
+    override suspend fun cityTop(): List<City> {
+        val response = service.cityTop()
+        Logger.d("cities = ${response.topCityList}")
+        return response.topCityList
     }
 }

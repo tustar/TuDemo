@@ -12,7 +12,7 @@ plugins {
 }
 
 android {
-    compileSdkVersion 30
+    compileSdk Libs.compileSdkVersion
 
     def baseVerName = "1.0.0"
     def autoBuildNumber = System.properties['auto_build_num']
@@ -23,8 +23,8 @@ android {
 
     defaultConfig {
         applicationId "com.tustar.demo"
-        minSdkVersion 24
-        targetSdkVersion 30
+        minSdk Libs.minSdkVersion
+        targetSdk Libs.targetSdkVersion
         versionCode verCode
         versionName verName
         multiDexEnabled true
@@ -125,14 +125,14 @@ dependencies {
     implementation Libs.AndroidX.Navigation.fragmentKtx
     implementation Libs.AndroidX.Navigation.uiKtx
     implementation Libs.AndroidX.Navigation.dynamicFeaturesFragment
-    androidTestImplementation Libs.AndroidX.Navigation.testing
+
     // StartUp
     implementation Libs.AndroidX.StartUp.runtime
     // WorkManager
     implementation Libs.AndroidX.Work.runtimeKtx
     implementation Libs.AndroidX.Work.gcm
     implementation Libs.AndroidX.Work.multiprocess
-    androidTestImplementation Libs.AndroidX.Work.testing
+
     // Compose
     implementation Libs.AndroidX.Activity.compose
     implementation Libs.AndroidX.Compose.foundation
@@ -144,7 +144,6 @@ dependencies {
     implementation Libs.AndroidX.Compose.materialIconsExtended
     implementation Libs.AndroidX.Compose.tooling
     implementation Libs.AndroidX.Compose.animation
-    implementation Libs.AndroidX.Compose.uiTest
     implementation Libs.AndroidX.Navigation.compose
     implementation Libs.AndroidX.ConstraintLayout.compose
     // Hilt
@@ -168,7 +167,12 @@ dependencies {
     implementation Libs.Accompanist.permissions
     implementation Libs.Accompanist.systemuicontroller
     // Test
+    implementation Libs.AndroidX.Compose.uiTest
     testImplementation Libs.JUnit.junit
+    androidTestImplementation Libs.AndroidX.Work.testing
+    androidTestImplementation Libs.AndroidX.Navigation.testing
+    androidTestImplementation Libs.AndroidX.Test.core
+    androidTestImplementation Libs.AndroidX.Test.coreKtx
     androidTestImplementation Libs.AndroidX.Test.Ext.junit
     androidTestImplementation Libs.AndroidX.Test.espressoCore
 

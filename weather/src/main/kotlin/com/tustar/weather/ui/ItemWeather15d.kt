@@ -260,7 +260,6 @@ private fun TrendDayInfoCenter(
             .width(30.dp)
             .height(140.dp)
     ) {
-        Logger.d("size.width = ${size}")
         val width = size.width
         val height = size.height - 2 * textHeight
 
@@ -269,7 +268,6 @@ private fun TrendDayInfoCenter(
         val cx = width / 2.0f
         val highCy = calCy(maxTemp, current.tempMax, ratio, textHeight, radius)
         val highCenter = Offset(cx, highCy)
-        Logger.d("width:$width, highCenter: $highCenter")
         drawIntoCanvas {
             val nativeCanvas = it.nativeCanvas
             nativeCanvas.drawText(
@@ -298,12 +296,10 @@ private fun TrendDayInfoCenter(
             )
         }
 
-        Logger.d("prev = $prev")
         val padding = 8 * density
         prev?.let {
             val prevHighCy = calCy(maxTemp, it.tempMax, ratio, textHeight, radius)
             val prevHighCenter = Offset(-width - padding, prevHighCy)
-            Logger.d("data: $prevHighCenter - $highCenter")
             drawLine(color = highColor, prevHighCenter, highCenter, strokeWidth)
 
             val prevLowCy = calCy(maxTemp, it.tempMin, ratio, textHeight, radius)

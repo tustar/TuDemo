@@ -9,7 +9,7 @@ class WeatherNowResponse(
     refer: Refer,
     updateTime: String,
     val now: WeatherNow,
-) : HeResponse(code, fxLink, refer, updateTime)
+) : Response(code, fxLink, refer, updateTime)
 
 @Parcelize
 data class WeatherNow(

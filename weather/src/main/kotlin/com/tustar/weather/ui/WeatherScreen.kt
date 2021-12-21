@@ -2,6 +2,9 @@ package com.tustar.weather.ui
 
 import android.content.Context
 import androidx.compose.animation.core.FastOutSlowInEasing
+import androidx.compose.animation.core.LinearEasing
+import androidx.compose.animation.core.animateFloatAsState
+import androidx.compose.animation.core.tween
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
@@ -82,14 +85,12 @@ fun WeatherContent(
             },
         ) {
             val listState = rememberLazyListState()
-            var rising by remember { mutableStateOf(false) }
-            if (!rising) {
-                rising = listState.layoutInfo.visibleItemsInfo.any { it.index == 5 }
-            }
-            val risingPair = Pair<Boolean, (Boolean) -> Unit>(rising, { rising = it })
             LazyColumn(state = listState) {
                 item {
-                    ItemWeatherHeader(weather.weatherNow, weather.warning, weather.airNow)
+                    ItemWeatherHeader(
+                        weather.weatherNow, weather.warning, weather.airNow,
+                        weather.address
+                    )
                 }
                 item {
                     ItemWeatherNow(weather.weatherNow)
@@ -104,7 +105,7 @@ fun WeatherContent(
                     ItemWeather15d(weather.daily15d, weather.air5d, weatherPrefs.list15D, onList15d)
                 }
                 item {
-                    ItemWeatherSunrise(weather.daily15d[0], risingPair)
+                    ItemWeatherSunrise(weather.daily15d[0])
                 }
                 item {
                     ItemWeatherIndices(weather.indices)

@@ -11,7 +11,7 @@ class AirNowResponse(
     updateTime: String,
     val now: AirNow,
     val station: List<Station>,
-) : HeResponse(code, fxLink, refer, updateTime)
+) : Response(code, fxLink, refer, updateTime)
 
 @Parcelize
 data class AirNow(

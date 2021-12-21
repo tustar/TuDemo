@@ -30,6 +30,7 @@ open class WeatherViewModel @Inject constructor(
         viewModelScope.launch {
             _weather.value = weatherRepository.weather(location, poiName)
             updateLastUpdated(context, System.currentTimeMillis())
+            weatherRepository.cityTop()
         }
     }
 

@@ -2,6 +2,11 @@ package com.tustar.data.source.remote
 
 import retrofit2.http.GET
 import retrofit2.http.Query
+import retrofit2.http.Url
+
+import okhttp3.ResponseBody
+import retrofit2.Call
+
 
 interface HeService {
 
@@ -46,9 +51,16 @@ interface HeService {
     @GET("v7/indices/1d?key=$HE_WEATHER_KEY&type=1,2,3,5,9,15")
     suspend fun indices(@Query("location") location: String): IndicesResponse
 
+    @GET("city/top?key=$HE_WEATHER_KEY")
+    fun cityTop(
+        @Url url: String = GEO_BASE_URL,
+        @Query("number") number: Int = 20,
+        @Query("range") range: String = "cn"
+    ): CityTopResponse
 
     companion object {
         const val HE_WEATHER_KEY = "fe09e51549014a1d93e708a836596d89"
         const val BASE_URL = "https://devapi.heweather.net/"
+        const val GEO_BASE_URL = "https://geoapi.qweather.com/v2/"
     }
 }
