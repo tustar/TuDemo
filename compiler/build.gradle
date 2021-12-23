@@ -1,26 +1,18 @@
-import com.tustar.demo.buildsrc.Libs
-
 plugins {
     id 'java-library'
     id 'kotlin'
     id 'kotlin-kapt'
 }
 
-tasks.withType(org.jetbrains.kotlin.gradle.tasks.KotlinCompile).all {
-    kotlinOptions {
-        jvmTarget = "1.8"
-    }
-}
-
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
-    implementation Libs.Kotlin.stdlib
+    implementation libs.kotlin.stdlib.jdk8
 
-    implementation Libs.Squareup.kotlinpoet
-    implementation Libs.Alibaba.fastJson
+    implementation libs.squareup.kotlinpoet
+    implementation libs.alibaba.fastjson
 
-    implementation Libs.Google.autoService
-    kapt Libs.Google.autoService
+    implementation libs.google.auto.service
+    kapt libs.google.auto.service
 
     implementation project(':annotation')
 }

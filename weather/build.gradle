@@ -1,4 +1,4 @@
-import com.tustar.demo.buildsrc.Libs
+
 
 plugins {
     id 'com.android.library'
@@ -9,11 +9,11 @@ plugins {
 }
 
 android {
-    compileSdk Libs.compileSdkVersion
+    compileSdk libs.versions.compileSdk.get().toInteger()
 
     defaultConfig {
-        minSdk 24
-        targetSdk Libs.targetSdkVersion
+        minSdk libs.versions.minSdk.get().toInteger()
+        targetSdk libs.versions.targetSdk.get().toInteger()
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         consumerProguardFiles "consumer-rules.pro"
@@ -32,55 +32,44 @@ android {
     buildFeatures {
         compose true
     }
-    kotlinOptions {
-        jvmTarget = 1.8
-    }
     composeOptions {
-        kotlinCompilerExtensionVersion Libs.AndroidX.Compose.version
+        kotlinCompilerExtensionVersion "1.0.5"
     }
 
 }
 
 dependencies {
     // AndroidX
-    implementation Libs.AndroidX.datastorePreferences
-    implementation Libs.AndroidX.datastoreCore
+    implementation libs.androidx.datastore.preferences
+    implementation libs.androidx.datastore.core
     // Amap
-    implementation Libs.Amap.location
+    implementation libs.amap.location
     // Hilt
-    implementation Libs.Hilt.android
-    implementation Libs.Hilt.work
-    implementation Libs.Hilt.navigationCompose
-    kapt Libs.Hilt.daggerCompiler
-    kapt Libs.Hilt.hiltCompiler
+    implementation libs.dagger.hilt.android
+    implementation libs.hilt.work
+    implementation libs.hilt.navigation.composese
+    kapt libs.dagger.hilt.compiler
+    kapt libs.hilt.compiler
     //
-    implementation Libs.AndroidX.appcompatResources
+    implementation libs.androidx.appcompat.resources
     // Accompanist
-    implementation Libs.Accompanist.insets
-    implementation Libs.Accompanist.permissions
-    implementation Libs.Accompanist.systemuicontroller
-    implementation Libs.Accompanist.swiperefresh
+    implementation libs.accompanist.insets
+    implementation libs.accompanist.permissions
+    implementation libs.accompanist.systemuicontroller
+    implementation libs.accompanist.swiperefresh
     // Compose
-    implementation Libs.AndroidX.Activity.compose
-    implementation Libs.AndroidX.Compose.foundation
-    implementation Libs.AndroidX.Compose.layout
-    implementation Libs.AndroidX.Compose.ui
-    implementation Libs.AndroidX.Compose.runtime
-    implementation Libs.AndroidX.Compose.runtimeLivedata
-    implementation Libs.AndroidX.Compose.material
-    implementation Libs.AndroidX.Compose.materialIconsExtended
-    implementation Libs.AndroidX.Compose.tooling
-    implementation Libs.AndroidX.Compose.animation
-    implementation Libs.AndroidX.Navigation.compose
-    implementation Libs.AndroidX.ConstraintLayout.compose
+    implementation libs.bundles.compose
+    implementation libs.activity.compose
+    implementation libs.navigation.compose
+    implementation libs.constraintlayout.compose
     // Google
-    implementation Libs.Google.material
-    implementation Libs.Google.protobuf
+    implementation libs.google.material.base
+    implementation libs.protobuf.javalite
+    // Test
+    implementation libs.compose.ui.test.junit4
     //
     implementation project(':data')
     implementation project(':ktx')
-    // Test
-    implementation Libs.AndroidX.Compose.uiTest
 }
 
 protobuf {

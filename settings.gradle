@@ -6,3 +6,5 @@ include ':jstudy'
 include ':weather'
 include ':data'
 include ':ktx'
+
+enableFeaturePreview("VERSION_CATALOGS")

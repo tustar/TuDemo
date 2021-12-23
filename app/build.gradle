@@ -1,5 +1,3 @@
-import com.tustar.demo.buildsrc.Libs
-
 plugins {
     id 'com.android.application'
     id 'kotlin-android'
@@ -12,7 +10,7 @@ plugins {
 }
 
 android {
-    compileSdk Libs.compileSdkVersion
+    compileSdk libs.versions.compileSdk.get().toInteger()
 
     def baseVerName = "1.0.0"
     def autoBuildNumber = System.properties['auto_build_num']
@@ -23,8 +21,8 @@ android {
 
     defaultConfig {
         applicationId "com.tustar.demo"
-        minSdk Libs.minSdkVersion
-        targetSdk Libs.targetSdkVersion
+        minSdk libs.versions.minSdk.get().toInteger()
+        targetSdk libs.versions.targetSdk.get().toInteger()
         versionCode verCode
         versionName verName
         multiDexEnabled true
@@ -38,12 +36,12 @@ android {
         }
     }
 
-    ndkVersion '21.0.6113669'
+    ndkVersion libs.versions.ndk.get()
 
     externalNativeBuild {
         cmake {
             path file('src/main/cpp/CMakeLists.txt')
-            version '3.10.2'
+            version libs.versions.protobuf
         }
     }
     signingConfigs {
@@ -78,16 +76,13 @@ android {
         resValues false
         shaders false
     }
-    kotlinOptions {
-        jvmTarget = 1.8
-    }
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
     }
 
     composeOptions {
-        kotlinCompilerExtensionVersion Libs.AndroidX.Compose.version
+        kotlinCompilerExtensionVersion "1.0.5"
     }
 
     packagingOptions {
@@ -102,86 +97,72 @@ dependencies {
     implementation fileTree(dir: "libs", include: ["*.aar"])
     implementation fileTree(dir: "libs", include: ["*.jar"])
     // Kotlin
-    implementation Libs.Kotlin.stdlib
-    implementation Libs.Kotlin.Coroutines.core
-    implementation Libs.Kotlin.Coroutines.android
-    // AndroidX
-    implementation Libs.AndroidX.coreKtx
-    implementation Libs.AndroidX.appcompat
-    implementation Libs.AndroidX.ConstraintLayout.constraintlayout
-    implementation Libs.AndroidX.Activity.ktx
-    implementation Libs.AndroidX.Fragment.ktx
-    implementation Libs.AndroidX.recyclerview
-    implementation Libs.AndroidX.Legacy.supportV4
-    implementation Libs.AndroidX.vectordrawable
-    implementation Libs.AndroidX.datastorePreferences
-    implementation Libs.AndroidX.datastoreCore
+    implementation libs.kotlin.stdlib.jdk8
+    implementation libs.kotlinx.coroutines.core
+    implementation libs.kotlinx.coroutines.android
+    // androidx
+    implementation libs.androidx.core.ktx
+    implementation libs.androidx.appcompat
+    implementation libs.constraintlayout.base
+    implementation libs.androidx.recyclerview
+    implementation libs.androidx.legacy.support.v4
+    implementation libs.androidx.vectordrawable
+    implementation libs.androidx.datastore.preferences
+    implementation libs.androidx.datastore.core
+    implementation libs.activity.ktx
+    implementation libs.fragment.ktx
     // Lifecycle
-    implementation Libs.AndroidX.Lifecycle.ViewModel.ktx
-    implementation Libs.AndroidX.Lifecycle.LiveData.ktx
-    implementation Libs.AndroidX.Lifecycle.Runtime.ktx
-    implementation Libs.AndroidX.Lifecycle.extensions
+    implementation libs.lifecycle.viewmodel.ktx
+    implementation libs.lifecycle.livedata.ktx
+    implementation libs.lifecycle.runtime.ktx
+    implementation libs.lifecycle.extensions
     // Navigation
-    implementation Libs.AndroidX.Navigation.fragmentKtx
-    implementation Libs.AndroidX.Navigation.uiKtx
-    implementation Libs.AndroidX.Navigation.dynamicFeaturesFragment
+    implementation libs.navigation.fragment.ktx
+    implementation libs.navigation.ui.ktx
+    implementation libs.navigation.dynamic.features.fragment
 
     // StartUp
-    implementation Libs.AndroidX.StartUp.runtime
+    implementation libs.startup.runtime
     // WorkManager
-    implementation Libs.AndroidX.Work.runtimeKtx
-    implementation Libs.AndroidX.Work.gcm
-    implementation Libs.AndroidX.Work.multiprocess
-
+    implementation libs.work.runtime.ktx
+    implementation libs.work.gcm
+    implementation libs.work.multiprocess
     // Compose
-    implementation Libs.AndroidX.Activity.compose
-    implementation Libs.AndroidX.Compose.foundation
-    implementation Libs.AndroidX.Compose.layout
-    implementation Libs.AndroidX.Compose.ui
-    implementation Libs.AndroidX.Compose.runtime
-    implementation Libs.AndroidX.Compose.runtimeLivedata
-    implementation Libs.AndroidX.Compose.material
-    implementation Libs.AndroidX.Compose.materialIconsExtended
-    implementation Libs.AndroidX.Compose.tooling
-    implementation Libs.AndroidX.Compose.animation
-    implementation Libs.AndroidX.Navigation.compose
-    implementation Libs.AndroidX.ConstraintLayout.compose
+    implementation libs.bundles.compose
+    implementation libs.activity.compose
+    implementation libs.navigation.compose
+    implementation libs.constraintlayout.compose
     // Hilt
-    implementation Libs.Hilt.android
-    implementation Libs.Hilt.work
-    implementation Libs.Hilt.navigationCompose
-    kapt Libs.Hilt.daggerCompiler
-    kapt Libs.Hilt.hiltCompiler
-    // Retrofit
-    implementation Libs.Squareup.Retrofit2.retrofit
-    implementation Libs.Squareup.Retrofit2.converterJson
-    implementation Libs.Squareup.OkHttp3.loggingInterceptor
+    implementation libs.dagger.hilt.android
+    implementation libs.hilt.work
+    implementation libs.hilt.navigation.composese
+    kapt libs.dagger.hilt.compiler
+    kapt libs.hilt.compiler
     // Amap
-    implementation Libs.Amap.location
+    implementation libs.amap.location
     // Google
-    implementation Libs.Google.material
-    implementation Libs.Google.protobuf
+    implementation libs.google.material.base
+    implementation libs.protobuf.javalite
     // Accompanist
-//    implementation Libs.Accompanist.coil
-    implementation Libs.Accompanist.insets
-    implementation Libs.Accompanist.permissions
-    implementation Libs.Accompanist.systemuicontroller
+    implementation libs.bundles.accompanist
+    // Gson
+    implementation libs.google.gson
     // Test
-    implementation Libs.AndroidX.Compose.uiTest
-    testImplementation Libs.JUnit.junit
-    androidTestImplementation Libs.AndroidX.Work.testing
-    androidTestImplementation Libs.AndroidX.Navigation.testing
-    androidTestImplementation Libs.AndroidX.Test.core
-    androidTestImplementation Libs.AndroidX.Test.coreKtx
-    androidTestImplementation Libs.AndroidX.Test.Ext.junit
-    androidTestImplementation Libs.AndroidX.Test.espressoCore
-
+    implementation libs.compose.ui.test.junit4
+    testImplementation libs.junit
+    androidTestImplementation libs.work.testing
+    androidTestImplementation libs.navigation.testing
+    androidTestImplementation libs.test.core
+    androidTestImplementation libs.test.core.ktx
+    androidTestImplementation libs.test.ext.junit.ktx
+    androidTestImplementation libs.test.espresso.core
     //
     implementation project(':annotation')
-    kapt project(':compiler')
     implementation project(':weather')
     implementation project(':data')
     implementation project(':ktx')
+    //
+    kapt project(':compiler')
 }
 
 protobuf {

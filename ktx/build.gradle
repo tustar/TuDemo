@@ -1,16 +1,14 @@
-import com.tustar.demo.buildsrc.Libs
-
 plugins {
     id 'com.android.library'
     id 'kotlin-android'
 }
 
 android {
-    compileSdk Libs.compileSdkVersion
+    compileSdk libs.versions.compileSdk.get().toInteger()
 
     defaultConfig {
-        minSdk Libs.minSdkVersion
-        targetSdk Libs.targetSdkVersion
+        minSdk libs.versions.minSdk.get().toInteger()
+        targetSdk libs.versions.targetSdk.get().toInteger()
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         consumerProguardFiles "consumer-rules.pro"
@@ -29,31 +27,28 @@ android {
     buildFeatures {
         viewBinding true
     }
-    kotlinOptions {
-        jvmTarget = '1.8'
-    }
 }
 
 dependencies {
     // AndroidX
-    implementation Libs.AndroidX.coreKtx
-    implementation Libs.AndroidX.appcompat
-    implementation Libs.AndroidX.datastorePreferences
-    implementation Libs.AndroidX.datastoreCore
+    implementation libs.androidx.core.ktx
+    implementation libs.androidx.appcompat
+    implementation libs.androidx.datastore.preferences
+    implementation libs.androidx.datastore.core
     // Navigation
-    implementation Libs.AndroidX.Navigation.fragmentKtx
-    implementation Libs.AndroidX.Navigation.uiKtx
+    implementation libs.navigation.fragment.ktx
+    implementation libs.navigation.ui.ktx
     // Compose
-    implementation Libs.AndroidX.Activity.compose
-    implementation Libs.AndroidX.Compose.foundation
-    implementation Libs.AndroidX.Compose.layout
-    implementation Libs.AndroidX.Compose.ui
+    implementation libs.activity.compose
+    implementation libs.compose.foundation
+    implementation libs.compose.layout
+    implementation libs.compose.ui
     // Google
-    implementation Libs.Google.material
+    implementation libs.google.material.base
     // Test
-    testImplementation Libs.JUnit.junit
-    androidTestImplementation Libs.AndroidX.Test.core
-    androidTestImplementation Libs.AndroidX.Test.coreKtx
-    androidTestImplementation Libs.AndroidX.Test.Ext.junit
-    androidTestImplementation Libs.AndroidX.Test.espressoCore
+    testImplementation libs.junit
+    androidTestImplementation libs.test.core
+    androidTestImplementation libs.test.core.ktx
+    androidTestImplementation libs.test.ext.junit.ktx
+    androidTestImplementation libs.test.espresso.core
 }

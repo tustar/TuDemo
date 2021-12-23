@@ -1,5 +1,3 @@
-import com.tustar.demo.buildsrc.Libs
-
 plugins {
     id 'com.android.library'
     id 'kotlin-android'
@@ -9,11 +7,11 @@ plugins {
 }
 
 android {
-    compileSdk Libs.compileSdkVersion
+    compileSdk libs.versions.compileSdk.get().toInteger()
 
     defaultConfig {
-        minSdk Libs.minSdkVersion
-        targetSdk Libs.targetSdkVersion
+        minSdk libs.versions.minSdk.get().toInteger()
+        targetSdk libs.versions.targetSdk.get().toInteger()
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         consumerProguardFiles "consumer-rules.pro"
@@ -29,27 +27,23 @@ android {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
     }
-    kotlinOptions {
-        jvmTarget = '1.8'
-    }
 }
 
 dependencies {
 
     // Hilt
-    implementation Libs.Hilt.android
-    implementation Libs.Hilt.work
-    implementation Libs.Hilt.navigationCompose
-    kapt Libs.Hilt.daggerCompiler
-    kapt Libs.Hilt.hiltCompiler
+    implementation libs.dagger.hilt.android
+    implementation libs.hilt.work
+    implementation libs.hilt.navigation.composese
+    kapt libs.dagger.hilt.compiler
+    kapt libs.hilt.compiler
     // Retrofit
-    implementation Libs.Squareup.Retrofit2.retrofit
-    implementation Libs.Squareup.Retrofit2.converterJson
-    implementation Libs.Squareup.OkHttp3.loggingInterceptor
+    implementation libs.bundles.retrofit
+    implementation libs.okhttp3.logging.interceptor
     // Test
-    testImplementation Libs.JUnit.junit
-    androidTestImplementation Libs.AndroidX.Test.core
-    androidTestImplementation Libs.AndroidX.Test.coreKtx
-    androidTestImplementation Libs.AndroidX.Test.Ext.junit
-    androidTestImplementation Libs.AndroidX.Test.espressoCore
+    testImplementation libs.junit
+    androidTestImplementation libs.test.core
+    androidTestImplementation libs.test.core.ktx
+    androidTestImplementation libs.test.ext.junit.ktx
+    androidTestImplementation libs.test.espresso.core
 }
