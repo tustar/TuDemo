@@ -16,15 +16,16 @@ object WeatherDestinations {
 }
 
 fun NavGraphBuilder.weatherGraph(
+    navController: NavHostController,
     systemUiController: SystemUiController,
     viewModel: WeatherViewModel,
 ) {
     navigation(route = ROUTE_WEATHER, startDestination = ROUTE_WEATHER_HOME) {
         composable(ROUTE_WEATHER_HOME) {
-            WeatherScreen(systemUiController, viewModel)
+            WeatherScreen(navController, systemUiController, viewModel)
         }
         composable(ROUTE_WEATHER_ADD_CITY) {
-            AddCityScreen(systemUiController, viewModel)
+            AddCityScreen(navController, viewModel)
         }
     }
 }
@@ -35,5 +36,9 @@ fun NavGraphBuilder.weatherGraph(
 object WeatherActions {
     fun openWeather(navController: NavHostController) = { ->
         navController.navigate(ROUTE_WEATHER)
+    }
+
+    fun addCity(navController: NavHostController) = { ->
+        navController.navigate(ROUTE_WEATHER_ADD_CITY)
     }
 }

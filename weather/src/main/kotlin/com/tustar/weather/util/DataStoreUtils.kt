@@ -54,11 +54,18 @@ suspend fun updateLocate(context: Context, locate: Location) {
     }
 }
 
-suspend fun updateCities(context: Context, cities: List<Location>) {
+suspend fun addCity(context: Context, city: Location) {
     context.weatherPrefs.updateData { prefs ->
         prefs.toBuilder()
-            .clearCities()
-            .addAllCities(cities)
+            .putCities(city.name, city)
+            .build()
+    }
+}
+
+suspend fun removeCity(context: Context, city: Location) {
+    context.weatherPrefs.updateData { prefs ->
+        prefs.toBuilder()
+            .removeCities(city.name)
             .build()
     }
 }

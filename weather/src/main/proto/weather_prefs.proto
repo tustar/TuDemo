@@ -8,6 +8,7 @@ message Location {
     string lon = 2;
     string lat = 3;
     string name = 4;
+    bool auto = 5;
 }
 
 message WeatherPrefs {
@@ -15,5 +16,5 @@ message WeatherPrefs {
     bool list_15d = 2;
     int64 last_updated = 3;
     Location locate = 4;
-    repeated Location cities = 5; // repeated => list
+    map<string, Location> cities = 5; // repeated => list
 }

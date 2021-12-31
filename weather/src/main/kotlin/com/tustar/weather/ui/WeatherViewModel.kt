@@ -19,13 +19,15 @@ import javax.inject.Inject
 
 @HiltViewModel
 open class WeatherViewModel @Inject constructor(
-    private val weatherRepository: WeatherRepository
+    private val weatherRepository: WeatherRepository,
 ) : ViewModel() {
 
     private val _locateWeather = MutableStateFlow<LocateWeather?>(null)
     val locateWeather: StateFlow<LocateWeather?> = _locateWeather
     private val _weather = MutableStateFlow<Weather?>(null)
     val weather: StateFlow<Weather?> = _weather
+    private val _cities = MutableStateFlow<MutableMap<String, Location>>(mutableMapOf())
+    val cities: StateFlow<MutableMap<String, Location>> = _cities
     private val _topCities = MutableStateFlow<List<City>>(emptyList())
     val topCities: StateFlow<List<City>> = _topCities
 
@@ -53,8 +55,19 @@ open class WeatherViewModel @Inject constructor(
 
     fun weatherPrefs(context: Context) {
         viewModelScope.launch {
-            weatherPrefsFlow(context).collect {
-                _weatherPrefs.value = it
+            weatherPrefsFlow(context).collect { prefs ->
+                _weatherPrefs.value = prefs
+                _cities.value = mutableMapOf<String, Location>().apply {
+                    if(prefs.locate.isValid()) {
+                        put(prefs.locate.name, prefs.locate)
+                    }
+
+                    prefs.citiesMap.values.forEach { location ->
+                        if (location.isValid()) {
+                            put(location.name, location)
+                        }
+                    }
+                }
             }
         }
     }
@@ -72,23 +85,17 @@ open class WeatherViewModel @Inject constructor(
     }
 
     fun onUpdateLocate(
-        context: Context, lon: String, lat: String, poi: String
+        context: Context, lon: String, lat: String, poi: String,
     ) {
         val locate = Location.newBuilder()
             .setLat(lat)
             .setLon(lon)
             .setName(poi)
+            .setAuto(true)
             .build()
-//        val location = Location(lon = lon, lat = lat, name = poi)
         viewModelScope.launch {
             updateLocate(context, locate)
             requestLocateWeather(context, locate)
-        }
-    }
-
-    fun onUpdateCities(context: Context, cities: List<Location>) {
-        viewModelScope.launch {
-            updateCities(context, cities)
         }
     }
 
@@ -97,10 +104,28 @@ open class WeatherViewModel @Inject constructor(
             _topCities.value = weatherRepository.cityTop()
         }
     }
+
+    fun onAddCity(context: Context, city: Location) {
+        viewModelScope.launch {
+            addCity(context, city)
+            _cities.value = _cities.value.apply {
+                put(city.name, city)
+            }
+        }
+    }
+
+    fun onRemoveCity(context: Context, city: Location) {
+        viewModelScope.launch {
+            removeCity(context, city)
+            _cities.value = _cities.value.apply {
+                remove(city.name)
+            }
+        }
+    }
 }
 
 data class LocateWeather(
     val locate: Location,
     val temp: Int,
-    val text: String
+    val text: String,
 )

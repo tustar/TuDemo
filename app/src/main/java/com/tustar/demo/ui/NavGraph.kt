@@ -73,7 +73,7 @@ fun NavGraph(
         composable(route = ROUTE_ME) {
             MeScreen(systemUiController = systemUiController)
         }
-        weatherGraph(systemUiController, viewModel)
+        weatherGraph(navController, systemUiController, viewModel)
     }
 }
 

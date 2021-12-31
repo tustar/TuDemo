@@ -3,12 +3,13 @@ package com.tustar.weather.ui
 import android.content.Context
 import androidx.compose.animation.core.FastOutSlowInEasing
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.rememberLazyListState
 import androidx.compose.material.*
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.rounded.AddCircle
+import androidx.compose.material.icons.rounded.AddCircleOutline
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -22,6 +23,7 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.navigation.NavHostController
 import com.google.accompanist.insets.navigationBarsHeight
 import com.google.accompanist.pager.*
 import com.google.accompanist.swiperefresh.SwipeRefresh
@@ -38,6 +40,7 @@ import kotlin.reflect.KFunction2
 @OptIn(ExperimentalPagerApi::class)
 @Composable
 fun WeatherScreen(
+    navController: NavHostController,
     systemUiController: SystemUiController,
     viewModel: WeatherViewModel,
 ) {
@@ -47,16 +50,12 @@ fun WeatherScreen(
 
     val weather by viewModel.weather.collectAsState()
     val weatherPrefs by viewModel.weatherPrefs.collectAsState()
+    val locations by viewModel.cities.collectAsState()
     viewModel.weatherPrefs(LocalContext.current)
-    val locations = mutableListOf<Location>(weatherPrefs.locate).apply {
-        val cities = weatherPrefs.citiesList
-        if (!cities.isNullOrEmpty()) {
-            addAll(cities)
-        }
-    }
-
+    //
     val pagerState = rememberPagerState()
-    viewModel.requestWeather(LocalContext.current, locations[pagerState.currentPage])
+    val values = locations.values.toList()
+    viewModel.requestWeather(LocalContext.current, values[pagerState.currentPage])
     Box {
         Image(
             painter = painterResource(id = R.drawable.bg_0_d),
@@ -67,7 +66,7 @@ fun WeatherScreen(
         )
 
         Column {
-            TopBar(locations, pagerState)
+            TopBar(values, pagerState, WeatherActions.addCity(navController))
 
             HorizontalPager(count = locations.size, state = pagerState) { page ->
                 weather?.let {
@@ -82,7 +81,8 @@ fun WeatherScreen(
 @Composable
 private fun TopBar(
     locations: List<Location>,
-    pagerState: PagerState
+    pagerState: PagerState,
+    addCity: () -> Unit,
 ) {
     Box(
         modifier = Modifier
@@ -90,10 +90,12 @@ private fun TopBar(
             .padding(top = 32.dp, bottom = 8.dp)
     ) {
         Icon(
-            imageVector = Icons.Rounded.AddCircle,
+            imageVector = Icons.Rounded.AddCircleOutline,
             contentDescription = null,
             modifier = Modifier.align(Alignment.CenterStart)
-                .padding(start = 16.dp),
+                .padding(start = 16.dp).clickable {
+                    addCity()
+                },
             tint = Color.White,
         )
 

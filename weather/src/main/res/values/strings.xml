@@ -30,6 +30,9 @@
     <string name="weather_sunset">日落 %1$s</string>
     <string name="weather_indices">生活指数</string>
     <string name="weather_sources">天气数据由和风天气提供</string>
+    <string name="weather_add_city">添加城市</string>
+    <string name="weather_search_hint">请输入城市名称或拼音</string>
+    <string name="weather_top_cities">热门城市</string>
     <!-- Week -->
     <string name="week_day_sunday">周日</string>
     <string name="week_day_monday">周一</string>
