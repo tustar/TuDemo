@@ -57,7 +57,7 @@ fun ItemWeather3d(weather3d: List<WeatherDaily>, air3d: List<AirDaily>) {
 }
 
 @Composable
-fun ItemWeather3dColumn(
+private fun ItemWeather3dColumn(
     modifier: Modifier,
     @StringRes dateId: Int,
     weatherDaily: WeatherDaily,

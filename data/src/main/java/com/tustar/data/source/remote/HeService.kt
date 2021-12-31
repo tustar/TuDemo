@@ -1,31 +1,27 @@
 package com.tustar.data.source.remote
 
-import retrofit2.http.GET
-import retrofit2.http.Query
-import retrofit2.http.Url
-
-import okhttp3.ResponseBody
-import retrofit2.Call
+import com.tustar.data.source.remote.BaseUrlInterceptor.Companion.BASE_URL
+import retrofit2.http.*
 
 
 interface HeService {
 
-    @GET("v7/weather/now?key=$HE_WEATHER_KEY")
+    @GET("/v7/weather/now?key=$HE_WEATHER_KEY")
     suspend fun weatherNow(@Query("location") location: String): WeatherNowResponse
 
-    @GET("v7/weather/24h?key=$HE_WEATHER_KEY")
+    @GET("/v7/weather/24h?key=$HE_WEATHER_KEY")
     suspend fun weather24h(@Query("location") location: String): WeatherHoursResponse
 
-    @GET("v7/weather/15d?key=$HE_WEATHER_KEY")
+    @GET("/v7/weather/15d?key=$HE_WEATHER_KEY")
     suspend fun weather15d(@Query("location") location: String): WeatherDaysResponse
 
-    @GET("v7/air/now?key=$HE_WEATHER_KEY")
+    @GET("/v7/air/now?key=$HE_WEATHER_KEY")
     suspend fun airNow(@Query("location") location: String): AirNowResponse
 
-    @GET("v7/air/5d?key=$HE_WEATHER_KEY")
+    @GET("/v7/air/5d?key=$HE_WEATHER_KEY")
     suspend fun air5d(@Query("location") location: String): AirDaysResponse
 
-    @GET("v7/warning/now?key=$HE_WEATHER_KEY")
+    @GET("/v7/warning/now?key=$HE_WEATHER_KEY")
     suspend fun warningNow(@Query("location") location: String): WarningNowResponse
 
     /**
@@ -48,19 +44,25 @@ interface HeService {
     交通指数	15	良好(1)、较好(2)、一般(3)、较差(4)、很差(5)
     防晒指数	16	弱(1)、较弱(2)、中等(3)、强(4)、极强(5)
      */
-    @GET("v7/indices/1d?key=$HE_WEATHER_KEY&type=1,2,3,5,9,15")
+    @GET("/v7/indices/1d?key=$HE_WEATHER_KEY&type=1,2,3,5,9,15")
     suspend fun indices(@Query("location") location: String): IndicesResponse
 
-    @GET("city/top?key=$HE_WEATHER_KEY")
-    fun cityTop(
-        @Url url: String = GEO_BASE_URL,
+    @GET("/v2/city/top?key=$HE_WEATHER_KEY")
+    @Headers("$BASE_URL:$GEO_BASE_URL")
+    suspend fun cityTop(
         @Query("number") number: Int = 20,
         @Query("range") range: String = "cn"
     ): CityTopResponse
 
+    @GET("/v2/city/lookup?key=$HE_WEATHER_KEY")
+    @Headers("$BASE_URL:$GEO_BASE_URL")
+    suspend fun cityLookup(
+        @Query("location") location: String,
+    ): LookupResponse
+
     companion object {
         const val HE_WEATHER_KEY = "fe09e51549014a1d93e708a836596d89"
-        const val BASE_URL = "https://devapi.heweather.net/"
-        const val GEO_BASE_URL = "https://geoapi.qweather.com/v2/"
+        const val HE_BASE_URL = "https://devapi.heweather.net"
+        const val GEO_BASE_URL = "https://geoapi.qweather.com"
     }
 }

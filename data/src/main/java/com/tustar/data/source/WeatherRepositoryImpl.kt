@@ -3,6 +3,8 @@ package com.tustar.data.source
 import com.tustar.data.Weather
 import com.tustar.data.source.remote.City
 import com.tustar.data.source.remote.HeService
+import com.tustar.data.source.remote.Location
+import com.tustar.data.source.remote.WeatherNow
 import com.tustar.data.util.Logger
 import javax.inject.Inject
 
@@ -10,8 +12,12 @@ class WeatherRepositoryImpl @Inject constructor(
     private val service: HeService
 ) : WeatherRepository {
 
+    override suspend fun weatherNow(location: String): WeatherNow {
+        return service.weatherNow(location).now
+    }
+
     override
-    suspend fun weather(location: String, poiName: String): Weather {
+    suspend fun weather(location: String): Weather {
         val weatherNow = service.weatherNow(location).now
         val warning = service.warningNow(location).warning
         val airNow = service.airNow(location).now
@@ -20,7 +26,6 @@ class WeatherRepositoryImpl @Inject constructor(
         val daily15d = service.weather15d(location).daily
         val indices = service.indices(location).daily
         return Weather(
-            address = poiName,
             weatherNow = weatherNow,
             warning = warning,
             airNow = airNow,
@@ -32,8 +37,10 @@ class WeatherRepositoryImpl @Inject constructor(
     }
 
     override suspend fun cityTop(): List<City> {
-        val response = service.cityTop()
-        Logger.d("cities = ${response.topCityList}")
-        return response.topCityList
+        return service.cityTop().topCityList
+    }
+
+    override suspend fun cityLookup(location: String): List<Location> {
+        return service.cityLookup(location).location
     }
 }

@@ -20,14 +20,15 @@ object WeatherHelper {
     10%	        1A
     20%         33
      */
-    private val wGreen = Color(0xFF12C619)
-    private val wRed = Color(0xFFEA5623)
-    private val wBlue = Color(0xFF779CF9)
-    private val wYellow = Color(0xFFCFB003)
-    private val wOrange = Color(0xFFFE9900)
-    private val wWhite = Color(0xFFFFFFFF)
-    private val wPurple = Color(0xFFB12C9A)
-    private val wBrown = Color(0xFF582C21)
+    val W_Green = Color(0xFF12C619)
+    val W_Red = Color(0xFFEA5623)
+    val W_Blue = Color(0xFF779CF9)
+    val W_Yellow = Color(0xFFCFB003)
+    val W_Orange = Color(0xFFFE9900)
+    val W_White = Color(0xFFFFFFFF)
+    val W_Purple = Color(0xFFB12C9A)
+    val W_Brown = Color(0xFF582C21)
+    val W_Black = Color(0xFF000000)
 
     /**
     --空气质量指数等级--
@@ -41,17 +42,17 @@ object WeatherHelper {
      */
     fun aqiColor(aqi: Int) = when (aqi) {
         // 一级	优	绿色
-        in 0..50 -> wGreen
+        in 0..50 -> W_Green
         // 二级	良	黄色
-        in 51..100 -> wYellow
+        in 51..100 -> W_Yellow
         // 三级	轻度污染	橙色
-        in 101..150 -> wOrange
+        in 101..150 -> W_Orange
         // 四级	中度污染	红色
-        in 151..200 -> wRed
+        in 151..200 -> W_Red
         // 五级	重度污染	紫色
-        in 201..300 -> wPurple
+        in 201..300 -> W_Purple
         // 六级	严重污染	褐红色
-        else -> wBrown
+        else -> W_Brown
     }
 
     fun dailyText(context: Context, weatherDaily: WeatherDaily): String {

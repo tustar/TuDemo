@@ -83,6 +83,6 @@ enum class MainTabs(
     @DrawableRes val icon: Int,
     val route: String
 ) {
-    HOME(R.string.title_home, R.drawable.ic_tab_home, MainDestinations.DEMO_ROUTE),
-    Me(R.string.title_me, R.drawable.ic_tab_me, MainDestinations.ME_ROUTE),
+    HOME(R.string.title_home, R.drawable.ic_tab_home, MainDestinations.ROUTE_DEMOS),
+    Me(R.string.title_me, R.drawable.ic_tab_me, MainDestinations.ROUTE_ME),
 }

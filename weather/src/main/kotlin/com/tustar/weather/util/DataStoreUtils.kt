@@ -6,6 +6,7 @@ import androidx.datastore.core.DataStore
 import androidx.datastore.core.Serializer
 import androidx.datastore.dataStore
 import androidx.datastore.preferences.protobuf.InvalidProtocolBufferException
+import com.tustar.weather.Location
 import com.tustar.weather.WeatherPrefs
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.catch
@@ -33,7 +34,6 @@ val Context.weatherPrefs: DataStore<WeatherPrefs> by dataStore(
     serializer = WeatherPrefsSerializer
 )
 
-
 suspend fun weatherPrefsFlow(context: Context): Flow<WeatherPrefs> = context.weatherPrefs.data
     .catch { exception ->
         // dataStore.data throws an IOException when an error is encountered when reading data
@@ -46,23 +46,40 @@ suspend fun weatherPrefsFlow(context: Context): Flow<WeatherPrefs> = context.wea
     }
     .map { it }
 
-suspend fun updateLocation(context: Context, location: String, poi: String) =
+suspend fun updateLocate(context: Context, locate: Location) {
     context.weatherPrefs.updateData { prefs ->
-        prefs.toBuilder().setLocation(location).setPoi(poi).build()
+        prefs.toBuilder()
+            .setLocate(locate)
+            .build()
     }
+}
+
+suspend fun updateCities(context: Context, cities: List<Location>) {
+    context.weatherPrefs.updateData { prefs ->
+        prefs.toBuilder()
+            .clearCities()
+            .addAllCities(cities)
+            .build()
+    }
+}
 
 suspend fun updateList24H(context: Context, isList: Boolean) =
     context.weatherPrefs.updateData { prefs ->
-        prefs.toBuilder().setList24H(isList).build()
+        prefs.toBuilder()
+            .setList24H(isList)
+            .build()
     }
 
 suspend fun updateList15D(context: Context, isList: Boolean) =
     context.weatherPrefs.updateData { prefs ->
-        prefs.toBuilder().setList15D(isList).build()
+        prefs.toBuilder().setList15D(isList)
+            .build()
     }
 
-suspend fun updateLastUpdated(context: Context, timeMills:Long) =
+suspend fun updateLastUpdated(context: Context, timeMills: Long) =
     context.weatherPrefs.updateData { prefs ->
-        prefs.toBuilder().setLastUpdated(timeMills).build()
+        prefs.toBuilder()
+            .setLastUpdated(timeMills)
+            .build()
     }
 

@@ -2,16 +2,15 @@ package com.tustar.weather.ui
 
 import android.content.Context
 import androidx.compose.animation.core.FastOutSlowInEasing
-import androidx.compose.animation.core.LinearEasing
-import androidx.compose.animation.core.animateFloatAsState
-import androidx.compose.animation.core.tween
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.rememberLazyListState
-import androidx.compose.material.LinearProgressIndicator
-import androidx.compose.material.MaterialTheme
+import androidx.compose.material.*
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.rounded.AddCircle
 import androidx.compose.runtime.*
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.drawWithCache
 import androidx.compose.ui.graphics.Brush
@@ -22,17 +21,21 @@ import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import com.google.accompanist.insets.navigationBarsHeight
+import com.google.accompanist.pager.*
 import com.google.accompanist.swiperefresh.SwipeRefresh
 import com.google.accompanist.swiperefresh.SwipeRefreshState
 import com.google.accompanist.swiperefresh.rememberSwipeRefreshState
 import com.google.accompanist.systemuicontroller.SystemUiController
 import com.tustar.data.Weather
+import com.tustar.weather.Location
 import com.tustar.weather.R
 import com.tustar.weather.WeatherPrefs
 import kotlinx.coroutines.delay
 import kotlin.reflect.KFunction2
 
+@OptIn(ExperimentalPagerApi::class)
 @Composable
 fun WeatherScreen(
     systemUiController: SystemUiController,
@@ -45,13 +48,78 @@ fun WeatherScreen(
     val weather by viewModel.weather.collectAsState()
     val weatherPrefs by viewModel.weatherPrefs.collectAsState()
     viewModel.weatherPrefs(LocalContext.current)
-    weather?.let {
-        WeatherContent(it, weatherPrefs, viewModel::onList24h, viewModel::onList15d)
+    val locations = mutableListOf<Location>(weatherPrefs.locate).apply {
+        val cities = weatherPrefs.citiesList
+        if (!cities.isNullOrEmpty()) {
+            addAll(cities)
+        }
+    }
+
+    val pagerState = rememberPagerState()
+    viewModel.requestWeather(LocalContext.current, locations[pagerState.currentPage])
+    Box {
+        Image(
+            painter = painterResource(id = R.drawable.bg_0_d),
+            contentDescription = null,
+            contentScale = ContentScale.Crop,
+            modifier = Modifier
+                .fillMaxSize()
+        )
+
+        Column {
+            TopBar(locations, pagerState)
+
+            HorizontalPager(count = locations.size, state = pagerState) { page ->
+                weather?.let {
+                    weatherContent(it, weatherPrefs, viewModel::onList24h, viewModel::onList15d)
+                }
+            }
+        }
+    }
+}
+
+@OptIn(ExperimentalPagerApi::class)
+@Composable
+private fun TopBar(
+    locations: List<Location>,
+    pagerState: PagerState
+) {
+    Box(
+        modifier = Modifier
+            .fillMaxWidth()
+            .padding(top = 32.dp, bottom = 8.dp)
+    ) {
+        Icon(
+            imageVector = Icons.Rounded.AddCircle,
+            contentDescription = null,
+            modifier = Modifier.align(Alignment.CenterStart)
+                .padding(start = 16.dp),
+            tint = Color.White,
+        )
+
+        Column(
+            modifier = Modifier.align(Alignment.Center),
+            horizontalAlignment = Alignment.CenterHorizontally
+        ) {
+            Text(
+                modifier = Modifier,
+                text = locations[pagerState.currentPage].name,
+                color = Color.White,
+                fontSize = 16.sp,
+            )
+            HorizontalPagerIndicator(
+                pagerState = pagerState,
+                modifier = Modifier.padding(start = 16.dp, end = 16.dp, top = 6.dp),
+                activeColor = Color.White,
+                inactiveColor = Color(0x66FFFFFF),
+                indicatorWidth = 4.dp,
+            )
+        }
     }
 }
 
 @Composable
-fun WeatherContent(
+private fun weatherContent(
     weather: Weather,
     weatherPrefs: WeatherPrefs,
     onList24h: KFunction2<Context, Boolean, Unit>,
@@ -66,14 +134,6 @@ fun WeatherContent(
     }
 
     Box {
-        Image(
-            painter = painterResource(id = R.drawable.bg_0_d),
-            contentDescription = null,
-            contentScale = ContentScale.Crop,
-            modifier = Modifier
-                .fillMaxSize()
-        )
-
         SwipeRefresh(
             state = rememberSwipeRefreshState(isRefreshing = refreshing),
             onRefresh = { refreshing = true },
@@ -88,8 +148,7 @@ fun WeatherContent(
             LazyColumn(state = listState) {
                 item {
                     ItemWeatherHeader(
-                        weather.weatherNow, weather.warning, weather.airNow,
-                        weather.address
+                        weather.weatherNow, weather.warning, weather.airNow
                     )
                 }
                 item {

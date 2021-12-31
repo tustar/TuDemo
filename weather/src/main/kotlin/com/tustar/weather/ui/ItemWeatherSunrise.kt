@@ -16,6 +16,8 @@ import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.geometry.center
 import androidx.compose.ui.graphics.*
 import androidx.compose.ui.graphics.drawscope.Stroke
+import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
@@ -25,7 +27,7 @@ import com.tustar.weather.R
 import com.tustar.weather.compose.res.vectorResource
 
 @Composable
-fun ItemWeatherSunrise(today: WeatherDaily, ) {
+fun ItemWeatherSunrise(today: WeatherDaily) {
     ConstraintLayout(
         modifier = Modifier
             .itemBackground()
@@ -56,7 +58,7 @@ fun ItemWeatherSunrise(today: WeatherDaily, ) {
             DrawSunPath(
                 modifier = Modifier
                     .fillMaxWidth()
-                    .height(105.dp)
+                    .height(dimensionResource(R.dimen.weather_sun_path_height))
                     .padding(start = 16.dp, end = 16.dp, bottom = 5.dp)
                     .constrainAs(sunPath) {
                         start.linkTo(parent.start)
@@ -91,7 +93,7 @@ fun ItemWeatherSunrise(today: WeatherDaily, ) {
 }
 
 @Composable
-fun DrawSunPath(
+private fun DrawSunPath(
     modifier: Modifier, percent: Float,
 ) {
     val sun = ImageBitmap.vectorResource(id = R.drawable.ic_sun)

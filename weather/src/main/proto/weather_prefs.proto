@@ -3,11 +3,17 @@ syntax = "proto3";
 option java_package = "com.tustar.weather";
 option java_multiple_files = true;
 
+message Location {
+    string id = 1;
+    string lon = 2;
+    string lat = 3;
+    string name = 4;
+}
+
 message WeatherPrefs {
-    // filter for showing / hiding completed tasks
     bool list_24h = 1;
     bool list_15d = 2;
-    string location = 3;
-    string poi = 4;
-    int64 last_updated = 5;
+    int64 last_updated = 3;
+    Location locate = 4;
+    repeated Location cities = 5; // repeated => list
 }

@@ -2,6 +2,7 @@ package com.tustar.data.di
 
 import com.tustar.data.source.WeatherRepository
 import com.tustar.data.source.WeatherRepositoryImpl
+import com.tustar.data.source.remote.BaseUrlInterceptor
 import com.tustar.data.source.remote.HeService
 import dagger.Module
 import dagger.Provides
@@ -26,14 +27,22 @@ object DataModule {
 
     @Provides
     @Singleton
-    fun provideOkHttpClient(logger: HttpLoggingInterceptor) = OkHttpClient.Builder()
+    fun provideBaseUrlInterceptor() = BaseUrlInterceptor()
+
+    @Provides
+    @Singleton
+    fun provideOkHttpClient(
+        logger: HttpLoggingInterceptor,
+        baseUrl: BaseUrlInterceptor
+    ) = OkHttpClient.Builder()
         .addInterceptor(logger)
+        .addInterceptor(baseUrl)
         .build()
 
     @Provides
     @Singleton
     fun provideRetrofit(client: OkHttpClient): Retrofit = Retrofit.Builder()
-        .baseUrl(HeService.BASE_URL)
+        .baseUrl(HeService.HE_BASE_URL)
         .client(client)
         .addConverterFactory(GsonConverterFactory.create())
         .build()

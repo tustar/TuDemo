@@ -6,7 +6,7 @@ import androidx.compose.runtime.Composable
 import androidx.navigation.NavGraphBuilder
 import androidx.navigation.NavType
 import androidx.navigation.compose.composable
-import androidx.navigation.compose.navArgument
+import androidx.navigation.navArgument
 import androidx.navigation.navDeepLink
 import com.tustar.demo.R
 import com.tustar.demo.ui.DetailTopBar
@@ -33,7 +33,7 @@ fun NavGraphBuilder.detail(
         // adb shell am start -d "tustar://demos/compose/2131689632" -a android.intent.action.VIEW
         deepLinks = listOf(navDeepLink {
             uriPattern =
-                "tustar://${MainDestinations.DEMO_ROUTE}/{${MainDestinations.DEMO_ID}}"
+                "tustar://${MainDestinations.ROUTE_DEMOS}/{${MainDestinations.DEMO_ID}}"
         })
     ) {
         val arguments = requireNotNull(it.arguments)

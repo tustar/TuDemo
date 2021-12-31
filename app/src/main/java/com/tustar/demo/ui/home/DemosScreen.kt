@@ -22,13 +22,16 @@ import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import com.google.accompanist.systemuicontroller.SystemUiController
 import com.tustar.data.DemoItem
-import com.tustar.data.Weather
 import com.tustar.demo.R
 import com.tustar.demo.ui.MainViewModel
 import com.tustar.demo.ui.SectionView
 import com.tustar.demo.ui.theme.DemoTheme
 import com.tustar.demo.ui.topAppBar
 import com.tustar.demo.util.Logger
+import com.tustar.weather.ui.LocateWeather
+import com.tustar.weather.util.isNotValid
+import com.tustar.weather.util.isValid
+import com.tustar.weather.util.toParams
 
 @Composable
 fun DemosScreen(
@@ -45,39 +48,42 @@ fun DemosScreen(
     val context = LocalContext.current
     //
     val weatherPrefs by viewModel.weatherPrefs.collectAsState()
-    val weather by viewModel.weather.collectAsState()
+    val locateWeather by viewModel.locateWeather.collectAsState()
     val grouped by viewModel.demos.collectAsState(initial = mapOf())
     //
     viewModel.weatherPrefs(context)
     //
     Column {
-        DemosTopBar(
-            weather,
+        TopBar(
+            locateWeather,
             onWeatherClick
         )
-        DemosListView(grouped, onDemoClick)
+        ListView(grouped, onDemoClick)
     }
 
-    val isOver15Minutes = System.currentTimeMillis() - weatherPrefs.lastUpdated >= 15 * 60 * 1000
     val onPermissionsGranted = when {
-        weatherPrefs.location.isNullOrEmpty() -> {
+        weatherPrefs.locate.isNotValid() -> {
             { viewModel.onRequestLocation(true) }
         }
-        weather == null || isOver15Minutes -> {
-            { viewModel.requestWeather(context, weatherPrefs.location, weatherPrefs.poi) }
+        locateWeather == null -> {
+            {
+                viewModel.requestLocateWeather(
+                    context,
+                    weatherPrefs.locate
+                )
+            }
         }
         else -> {
             {}
         }
     }
-    //
     PermissionsRequest(viewModel, onPermissionsGranted)
 }
 
 @Composable
-fun DemosTopBar(
-    weather: Weather?,
-    onWeatherClick: () -> Unit
+private fun TopBar(
+    weather: LocateWeather?,
+    onWeatherClick: () -> Unit,
 ) {
     Logger.d("$weather")
     TopAppBar(
@@ -87,16 +93,16 @@ fun DemosTopBar(
         modifier = Modifier.topAppBar(),
         actions = {
             weather?.let {
-                WeatherActionItem(it, onWeatherClick)
+                WeatherAction(it, onWeatherClick)
             }
         }
     )
 }
 
 @Composable
-private fun WeatherActionItem(
-    weather: Weather,
-    onWeatherClick: () -> Unit
+private fun WeatherAction(
+    weather: LocateWeather,
+    onWeatherClick: () -> Unit,
 ) {
     Column(
         modifier = Modifier.clickable {
@@ -105,15 +111,15 @@ private fun WeatherActionItem(
         horizontalAlignment = Alignment.End
     ) {
         Text(
-            text = weather.address,
+            text = weather.locate.name,
             modifier = Modifier
                 .padding(end = 8.dp),
         )
         Text(
             text = stringResource(
                 id = R.string.weather_daily_temp,
-                weather.weatherNow.text,
-                weather.weatherNow.temp
+                weather.text,
+                weather.temp
             ),
             modifier = Modifier
                 .padding(end = 8.dp),
@@ -123,9 +129,9 @@ private fun WeatherActionItem(
 
 @OptIn(ExperimentalFoundationApi::class)
 @Composable
-fun DemosListView(
+private fun ListView(
     grouped: Map<Int, List<DemoItem>>,
-    onDemoClick: (Int) -> Unit
+    onDemoClick: (Int) -> Unit,
 ) {
     LazyColumn(verticalArrangement = Arrangement.spacedBy(4.dp)) {
         grouped.forEach { (group, demos) ->
@@ -135,16 +141,16 @@ fun DemosListView(
 
             items(count = demos.size,
                 key = { demos[it].item }) {
-                DemoItemView(demos[it], onDemoClick)
+                ItemView(demos[it], onDemoClick)
             }
         }
     }
 }
 
 @Composable
-fun DemoItemView(
+private fun ItemView(
     demoItem: DemoItem,
-    onDemoClick: (Int) -> Unit
+    onDemoClick: (Int) -> Unit,
 ) {
     Text(
         text = stringResource(id = demoItem.item),

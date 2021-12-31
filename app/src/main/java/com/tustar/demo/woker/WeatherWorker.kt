@@ -28,7 +28,7 @@ class WeatherWorker @AssistedInject constructor(
             val gson = Gson()
             val location =
                 gson.fromJson(inputData.getString(KEY_LOCATION), AMapLocation::class.java)
-            val weather = weatherRepository.weather(location.toParams(), location.poiName)
+            val weather = weatherRepository.weather(location.toParams())
             val outputData = workDataOf(KEY_WEATHER to gson.toJson(weather))
             Result.success(outputData)
         } catch (e: Exception) {

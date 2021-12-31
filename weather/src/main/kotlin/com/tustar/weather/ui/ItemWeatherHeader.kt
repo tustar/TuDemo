@@ -1,7 +1,7 @@
 package com.tustar.weather.ui
 
-import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.Icon
@@ -15,6 +15,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
@@ -32,140 +33,72 @@ fun ItemWeatherHeader(
     weatherNow: WeatherNow,
     warnings: List<Warning>,
     airNow: AirNow,
-    address: String,
 ) {
-    ConstraintLayout(
+    Box(
         modifier = Modifier
             .fillMaxWidth()
-            .padding(top = 96.dp),
+            .fillMaxHeight(0.4f),
     ) {
-        val (topbar, warning, temp, unit, daily, lunar, air) = createRefs()
 
-//        TopBar(
-//            modifier = Modifier
-//                .fillMaxWidth()
-//                .constrainAs(topbar) {
-//                    bottom.linkTo(temp.top)
-//                    start.linkTo(parent.start)
-//                    end.linkTo(parent.end)
-//                }, address
-//        )
-
-        ItemWarnings(
-            modifier = Modifier
-                .background(
+        Column(
+            modifier = Modifier.align(Alignment.TopCenter)
+                .padding(top = 48.dp, bottom = 128.dp),
+            horizontalAlignment = Alignment.CenterHorizontally
+        ) {
+            ItemWarnings(
+                modifier = Modifier.background(
                     Color(0x33000000), RoundedCornerShape(16.dp)
+                ),
+                warnings = warnings
+            )
+
+            ConstraintLayout() {
+                val (temp, unit, daily) = createRefs()
+                Text(
+                    text = weatherNow.temp.toString(),
+                    fontSize = 80.sp,
+                    fontWeight = FontWeight.Light,
+                    color = Color.White,
+                    modifier = Modifier.constrainAs(temp) {
+                        start.linkTo(parent.start)
+                        end.linkTo(parent.end)
+                        top.linkTo(parent.top)
+                        bottom.linkTo(parent.bottom)
+                    },
                 )
-                .constrainAs(warning) {
-                    bottom.linkTo(temp.top)
-                    start.linkTo(parent.start)
-                    end.linkTo(parent.end)
-                },
-            warnings = warnings
-        )
+                Text(
+                    text = stringResource(id = R.string.weather_temp_unit),
+                    fontSize = 20.sp,
+                    fontWeight = FontWeight.Normal,
+                    color = Color(0xFFF0F0ED),
+                    modifier = Modifier.constrainAs(unit) {
+                        top.linkTo(temp.top, 8.dp)
+                        start.linkTo(temp.end)
+                    }
+                )
 
-        Text(
-            text = weatherNow.temp.toString(),
-            fontSize = 80.sp,
-            fontWeight = FontWeight.Light,
-            color = Color.White,
-            modifier = Modifier
-                .constrainAs(temp) {
-                    top.linkTo(parent.top)
-                    start.linkTo(parent.start)
-                    end.linkTo(parent.end)
-
-                },
-        )
-        Text(
-            text = stringResource(id = R.string.weather_temp_unit),
-            fontSize = 20.sp,
-            fontWeight = FontWeight.Normal,
-            color = Color(0xFFF0F0ED),
-            modifier = Modifier.constrainAs(unit) {
-                top.linkTo(temp.top, 8.dp)
-                start.linkTo(temp.end)
+                Text(
+                    text = weatherNow.text,
+                    color = Color(0xCCFFFFFF),
+                    fontSize = 16.sp,
+                    fontWeight = FontWeight.Light,
+                    modifier = Modifier.constrainAs(daily) {
+                        baseline.linkTo(temp.baseline)
+                        start.linkTo(temp.end)
+                    }
+                )
             }
-        )
 
-        Text(
-            text = weatherNow.text,
-            color = Color(0xCCFFFFFF),
-            fontSize = 16.sp,
-            fontWeight = FontWeight.Light,
-            modifier = Modifier.constrainAs(daily) {
-                baseline.linkTo(temp.baseline)
-                start.linkTo(temp.end)
-            }
-        )
-
-        ItemDate(modifier = Modifier.constrainAs(lunar) {
-            top.linkTo(temp.bottom)
-            start.linkTo(parent.start)
-            end.linkTo(parent.end)
-        })
+            ItemDate()
+        }
 
         ItemAirNow(
-            modifier = Modifier
-                .padding(top = 96.dp)
-                .constrainAs(air) {
-                    top.linkTo(temp.bottom)
-                    end.linkTo(parent.end)
-                }, airNow = airNow
+            modifier = Modifier.align(Alignment.BottomEnd)
+                .clickable {
+
+                },
+            airNow = airNow
         )
-    }
-}
-
-@Composable
-private fun TopBar(modifier: Modifier, address: String) {
-    Column(modifier = modifier) {
-        Spacer(modifier = Modifier.statusBarsHeight())
-        ConstraintLayout {
-
-            val (add, location, settings) = createRefs()
-            IconButton(
-                onClick = { },
-                modifier = Modifier
-                    .constrainAs(add) {
-                        top.linkTo(parent.top)
-                        start.linkTo(parent.start)
-                        bottom.linkTo(parent.bottom)
-                    },
-            ) {
-                Icon(
-                    imageVector = Icons.Filled.Add,
-                    contentDescription = "",
-                    tint = Color.White,
-                )
-            }
-            Text(
-                text = address,
-                color = Color.White,
-                fontSize = 16.sp,
-                modifier = Modifier
-                    .constrainAs(location) {
-                        top.linkTo(parent.top)
-                        start.linkTo(add.end)
-                        bottom.linkTo(parent.bottom)
-
-                    },
-            )
-            IconButton(
-                onClick = { },
-                modifier = Modifier
-                    .constrainAs(settings) {
-                        top.linkTo(parent.top)
-                        end.linkTo(parent.end)
-                        bottom.linkTo(parent.bottom)
-                    },
-            ) {
-                Icon(
-                    imageVector = Icons.Filled.Settings,
-                    contentDescription = "",
-                    tint = Color.White,
-                )
-            }
-        }
     }
 }
 
@@ -189,14 +122,14 @@ private fun ItemWarningRow(
         modifier = modifier,
         verticalAlignment = Alignment.CenterVertically,
     ) {
-        Image(
+        Icon(
             painter = painterResource(
                 id = WeatherIcons.alertIconId(
                     context = LocalContext.current,
-                    type = warning.type,
-                    level = warning.level
+                    type = warning.type
                 )
             ),
+            tint = WeatherIcons.alertLevel(warning.level),
             contentDescription = null,
             modifier = Modifier.width(20.dp)
         )
@@ -214,8 +147,8 @@ private fun ItemWarningRow(
 }
 
 @Composable
-private fun ItemDate(modifier: Modifier) {
-    Column(modifier = modifier, horizontalAlignment = Alignment.CenterHorizontally) {
+private fun ItemDate() {
+    Column(modifier = Modifier, horizontalAlignment = Alignment.CenterHorizontally) {
         Text(
             text = WeatherHelper.gregorianAndLunar(LocalContext.current),
             color = Color(0xCCFFFFFF),

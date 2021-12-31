@@ -69,6 +69,19 @@
         <entry key="weather/src/main/res/drawable/bg_5_n.xml" value="0.25555555555555554" />
         <entry key="weather/src/main/res/drawable/bg_8_n.xml" value="0.26481481481481484" />
         <entry key="weather/src/main/res/drawable/checkbox_trend_white_new.xml" value="0.18020833333333333" />
+        <entry key="weather/src/main/res/drawable/ic_100.xml" value="0.12" />
+        <entry key="weather/src/main/res/drawable/ic_1033.xml" value="0.21614583333333334" />
+        <entry key="weather/src/main/res/drawable/ic_150.xml" value="0.16197916666666667" />
+        <entry key="weather/src/main/res/drawable/ic_150_fill.xml" value="0.16197916666666667" />
+        <entry key="weather/src/main/res/drawable/ic_152.xml" value="0.16197916666666667" />
+        <entry key="weather/src/main/res/drawable/ic_152_fill.xml" value="0.16197916666666667" />
+        <entry key="weather/src/main/res/drawable/ic_2015.xml" value="0.12916666666666668" />
+        <entry key="weather/src/main/res/drawable/ic_2017.xml" value="0.12916666666666668" />
+        <entry key="weather/src/main/res/drawable/ic_901.xml" value="0.16197916666666667" />
+        <entry key="weather/src/main/res/drawable/ic_901_fill.xml" value="0.16197916666666667" />
+        <entry key="weather/src/main/res/drawable/ic_999.xml" value="0.16197916666666667" />
+        <entry key="weather/src/main/res/drawable/ic_9999.xml" value="0.12916666666666668" />
+        <entry key="weather/src/main/res/drawable/ic_999_fill.xml" value="0.16197916666666667" />
         <entry key="weather/src/main/res/drawable/ic_leaf.xml" value="0.15677083333333333" />
         <entry key="weather/src/main/res/drawable/ic_sun.xml" value="0.2722222222222222" />
         <entry key="weather/src/main/res/layout/custom_toast.xml" value="0.17760416666666667" />

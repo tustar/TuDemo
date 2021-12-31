@@ -53,10 +53,7 @@ dependencies {
     //
     implementation libs.androidx.appcompat.resources
     // Accompanist
-    implementation libs.accompanist.insets
-    implementation libs.accompanist.permissions
-    implementation libs.accompanist.systemuicontroller
-    implementation libs.accompanist.swiperefresh
+    implementation libs.bundles.accompanist
     // Compose
     implementation libs.bundles.compose
     implementation libs.activity.compose

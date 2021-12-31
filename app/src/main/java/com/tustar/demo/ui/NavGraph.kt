@@ -15,25 +15,24 @@ import androidx.navigation.compose.rememberNavController
 import com.google.accompanist.systemuicontroller.SystemUiController
 import com.google.accompanist.systemuicontroller.rememberSystemUiController
 import com.tustar.demo.R
-import com.tustar.demo.ui.MainDestinations.DEMO_DETAIL_ANDROID_ROUTE
-import com.tustar.demo.ui.MainDestinations.DEMO_DETAIL_COMPOSE_ROUTE
 import com.tustar.demo.ui.MainDestinations.DEMO_ID
-import com.tustar.demo.ui.MainDestinations.DEMO_ROUTE
-import com.tustar.demo.ui.MainDestinations.ME_ROUTE
-import com.tustar.demo.ui.MainDestinations.WEATHER_ROUTE
+import com.tustar.demo.ui.MainDestinations.ROUTE_DEMOS
+import com.tustar.demo.ui.MainDestinations.ROUTE_DEMOS_ANDROID
+import com.tustar.demo.ui.MainDestinations.ROUTE_DEMOS_COMPOSE
+import com.tustar.demo.ui.MainDestinations.ROUTE_ME
 import com.tustar.demo.ui.home.*
 import com.tustar.demo.ui.me.MeScreen
-import com.tustar.weather.ui.WeatherScreen
+import com.tustar.weather.ui.WeatherActions
+import com.tustar.weather.ui.weatherGraph
 
 /**
  * Destinations used in the ([DemoApp]).
  */
 object MainDestinations {
-    const val DEMO_ROUTE = "demos"
-    const val DEMO_DETAIL_COMPOSE_ROUTE = "demos/compose"
-    const val DEMO_DETAIL_ANDROID_ROUTE = "demos/android"
-    const val WEATHER_ROUTE = "weather"
-    const val ME_ROUTE = "me"
+    const val ROUTE_DEMOS = "demos"
+    const val ROUTE_DEMOS_COMPOSE = "demos/compose"
+    const val ROUTE_DEMOS_ANDROID = "demos/android"
+    const val ROUTE_ME = "me"
 
     //
     const val DEMO_ID = "demoId"
@@ -44,22 +43,22 @@ fun NavGraph(
     viewModel: MainViewModel,
     navController: NavHostController = rememberNavController(),
     systemUiController: SystemUiController = rememberSystemUiController(),
-    startDestination: String = DEMO_ROUTE,
+    startDestination: String = ROUTE_DEMOS,
 ) {
     val actions = remember(navController) { MainActions(navController) }
     NavHost(
         navController = navController,
         startDestination = startDestination
     ) {
-        composable(DEMO_ROUTE) {
+        composable(ROUTE_DEMOS) {
             DemosScreen(
                 systemUiController = systemUiController,
                 viewModel = viewModel,
                 onDemoClick = actions.openDemo,
-                onWeatherClick = actions.openWeather
+                onWeatherClick = WeatherActions.openWeather(navController)
             )
         }
-        detail(route = "${DEMO_DETAIL_COMPOSE_ROUTE}/{$DEMO_ID}") {
+        detail(route = "${ROUTE_DEMOS_COMPOSE}/{$DEMO_ID}") {
             CompositionLocalProvider(
                 LocalBackPressedDispatcher provides { navController.navigateUp() },
                 LocalDemoId provides it
@@ -68,15 +67,13 @@ fun NavGraph(
             }
 
         }
-        detail(route = "${DEMO_DETAIL_ANDROID_ROUTE}/{$DEMO_ID}") {
+        detail(route = "${ROUTE_DEMOS_ANDROID}/{$DEMO_ID}") {
             actions.startDemoDetailActivity(LocalContext.current, it)
         }
-        composable(WEATHER_ROUTE) {
-            WeatherScreen(systemUiController, viewModel)
-        }
-        composable(ME_ROUTE) {
+        composable(route = ROUTE_ME) {
             MeScreen(systemUiController = systemUiController)
         }
+        weatherGraph(systemUiController, viewModel)
     }
 }
 
@@ -86,8 +83,8 @@ fun NavGraph(
 class MainActions(navController: NavHostController) {
     val openDemo = { demoId: Int ->
         val host = when (demoId) {
-            R.string.optimize_monitor -> DEMO_DETAIL_ANDROID_ROUTE
-            else -> DEMO_DETAIL_COMPOSE_ROUTE
+            R.string.optimize_monitor -> ROUTE_DEMOS_ANDROID
+            else -> ROUTE_DEMOS_COMPOSE
         }
         navController.navigate("$host/${demoId}")
     }
@@ -99,10 +96,6 @@ class MainActions(navController: NavHostController) {
             }
         )
     }
-
-    val openWeather = {
-        navController.navigate(WEATHER_ROUTE)
-    }
 }
 
 
@@ -113,5 +106,6 @@ class MainActions(navController: NavHostController) {
  */
 private fun NavBackStackEntry.lifecycleIsResumed() =
     this.lifecycle.currentState == Lifecycle.State.RESUMED
+
 
 

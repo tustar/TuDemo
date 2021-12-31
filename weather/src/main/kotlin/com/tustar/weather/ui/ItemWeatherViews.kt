@@ -19,6 +19,7 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.tustar.data.source.remote.AirDaily
+import com.tustar.weather.util.Logger
 
 @Composable
 fun ItemWeatherTopBar(modifier: Modifier, @StringRes id: Int) {
@@ -35,7 +36,8 @@ fun ItemWeatherTopBar(modifier: Modifier, @StringRes id: Int) {
 }
 
 @Composable
-fun ItemWeatherImage(modifier: Modifier = Modifier, icon: Int) {
+fun ItemWeatherImage(modifier: Modifier = Modifier, icon: String) {
+    Logger.d("icon = $icon")
     Image(
         painter = painterResource(
             id = WeatherIcons.weatherIconId(
@@ -45,7 +47,9 @@ fun ItemWeatherImage(modifier: Modifier = Modifier, icon: Int) {
         ),
         contentDescription = null,
         modifier = modifier
+            .padding(vertical = 5.dp)
             .width(40.dp)
+
     )
 }
 

@@ -35,7 +35,6 @@ import com.tustar.demo.ui.recorder.RecorderService
 import com.tustar.demo.util.LocationHelper
 import com.tustar.demo.util.Logger
 import com.tustar.demo.util.toFormatString
-import com.tustar.demo.util.toParams
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
@@ -54,8 +53,10 @@ class MainActivity : AppCompatActivity(), OnRecorderListener {
             setLocationListener { location ->
                 Logger.d("location=${location.toFormatString()}")
                 if (location.errorCode == 0) {
-                    viewModel.onUpdateLocation(
-                        this@MainActivity, location.toParams(),
+                    viewModel.onUpdateLocate(
+                        this@MainActivity,
+                        location.longitude.toString(),
+                        location.latitude.toString(),
                         location.poiName
                     )
                 }

@@ -17,7 +17,7 @@ data class Hourly(
     val dew: String,
     val fxTime: String,
     val humidity: String,
-    val icon: Int,
+    val icon: String,
     val pop: String,
     val precip: String,
     val pressure: String,

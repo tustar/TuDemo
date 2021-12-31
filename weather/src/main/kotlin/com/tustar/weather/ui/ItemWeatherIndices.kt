@@ -116,7 +116,7 @@ private fun ItemLife(modifier: Modifier, indicesDaily: IndicesDaily) {
 }
 
 @Composable
-fun LifeDialog(indicesDaily: IndicesDaily, onDismiss: (Boolean) -> Unit) {
+private fun LifeDialog(indicesDaily: IndicesDaily, onDismiss: (Boolean) -> Unit) {
 
     Dialog(
         onDismissRequest = { onDismiss(false) },
