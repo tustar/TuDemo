@@ -55,12 +55,12 @@ fun NavGraph(
                 systemUiController = systemUiController,
                 viewModel = viewModel,
                 onDemoClick = actions.openDemo,
-                onWeatherClick = WeatherActions.openWeather(navController)
+                onWeatherClick = actions.openWeather
             )
         }
         detail(route = "${ROUTE_DEMOS_COMPOSE}/{$DEMO_ID}") {
             CompositionLocalProvider(
-                LocalBackPressedDispatcher provides { navController.navigateUp() },
+                LocalBackPressedDispatcher provides { actions.upPress },
                 LocalDemoId provides it
             ) {
                 DemoDetailComposeDispatcher(viewModel)
@@ -96,6 +96,10 @@ class MainActions(navController: NavHostController) {
             }
         )
     }
+
+    val openWeather = WeatherActions.openWeather(navController)
+
+    val upPress = navController.navigateUp()
 }
 
 

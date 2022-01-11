@@ -34,6 +34,7 @@ import com.tustar.demo.ui.recorder.RecorderInfo
 import com.tustar.demo.ui.recorder.RecorderService
 import com.tustar.demo.util.LocationHelper
 import com.tustar.demo.util.Logger
+import com.tustar.demo.util.NotificationUtils
 import com.tustar.demo.util.toFormatString
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collect
@@ -115,6 +116,10 @@ class MainActivity : AppCompatActivity(), OnRecorderListener {
     override fun onNewIntent(intent: Intent?) {
         super.onNewIntent(intent)
         Logger.d("intent=$intent")
+    }
+
+    override fun onResume() {
+        super.onResume()
     }
 
     override fun onRecorderChanged(info: RecorderInfo) {

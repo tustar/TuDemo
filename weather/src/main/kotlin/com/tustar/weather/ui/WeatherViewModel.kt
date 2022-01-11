@@ -16,7 +16,6 @@ import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
-
 @HiltViewModel
 open class WeatherViewModel @Inject constructor(
     private val weatherRepository: WeatherRepository,
@@ -26,10 +25,14 @@ open class WeatherViewModel @Inject constructor(
     val locateWeather: StateFlow<LocateWeather?> = _locateWeather
     private val _weather = MutableStateFlow<Weather?>(null)
     val weather: StateFlow<Weather?> = _weather
+    private val _current = MutableStateFlow<Location>(Location.getDefaultInstance())
+    val current: StateFlow<Location> = _current
     private val _cities = MutableStateFlow<MutableMap<String, Location>>(mutableMapOf())
     val cities: StateFlow<MutableMap<String, Location>> = _cities
     private val _topCities = MutableStateFlow<List<City>>(emptyList())
     val topCities: StateFlow<List<City>> = _topCities
+    private val _searchCities = MutableStateFlow<List<City>>(emptyList())
+    val searchCities: StateFlow<List<City>> = _searchCities
 
     private val _weatherPrefs = MutableStateFlow(WeatherPrefs.getDefaultInstance())
     val weatherPrefs: StateFlow<WeatherPrefs> = _weatherPrefs
@@ -58,7 +61,7 @@ open class WeatherViewModel @Inject constructor(
             weatherPrefsFlow(context).collect { prefs ->
                 _weatherPrefs.value = prefs
                 _cities.value = mutableMapOf<String, Location>().apply {
-                    if(prefs.locate.isValid()) {
+                    if (prefs.locate.isValid()) {
                         put(prefs.locate.name, prefs.locate)
                     }
 
@@ -85,13 +88,20 @@ open class WeatherViewModel @Inject constructor(
     }
 
     fun onUpdateLocate(
-        context: Context, lon: String, lat: String, poi: String,
+        context: Context,
+        lon: String,
+        lat: String,
+        name: String,
+        adm1: String = "",
+        adm2: String = "",
     ) {
         val locate = Location.newBuilder()
             .setLat(lat)
             .setLon(lon)
-            .setName(poi)
+            .setName(name)
             .setAuto(true)
+            .setAdm1(adm1)
+            .setAdm2(adm2)
             .build()
         viewModelScope.launch {
             updateLocate(context, locate)
@@ -105,11 +115,25 @@ open class WeatherViewModel @Inject constructor(
         }
     }
 
-    fun onAddCity(context: Context, city: Location) {
+    fun onSearchCities(location: String) {
         viewModelScope.launch {
-            addCity(context, city)
+            _searchCities.value = weatherRepository.cityLookup(location)
+        }
+    }
+
+    fun onUpdateCurrent(location: Location) {
+        viewModelScope.launch {
+            _current.value = location
+        }
+    }
+
+    fun onAddCity(context: Context, city: City) {
+        viewModelScope.launch {
+            val location = city.toLocation()
+            _current.value = location
+            addCity(context, location)
             _cities.value = _cities.value.apply {
-                put(city.name, city)
+                put(city.name, city.toLocation())
             }
         }
     }

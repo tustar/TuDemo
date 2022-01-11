@@ -21,6 +21,7 @@ test = "1.4.0"
 hilt = "2.40.5"
 protobuf = "3.10.0"
 gson = "2.8.5"
+palette = "1.0.0"
 
 [libraries]
 ktlint = { module = "com.pinterest:ktlint", version = "0.41.0" }
@@ -44,6 +45,8 @@ androidx-vectordrawable = { module = "androidx.vectordrawable:vectordrawable", v
 androidx-datastore-preferences = { module = "androidx.datastore:datastore-preferences", version = "1.0.0" }
 androidx-datastore-core = { module = "androidx.datastore:datastore-core", version = "1.0.0" }
 androidx-legacy-support-v4 = { module = "androidx.legacy:legacy-support-v4", version = "1.0.0" }
+androidx-palette = { module = "androidx.palette:palette", version.ref = "palette"}
+androidx-palette-ktx = { module = "androidx.palette:palette-ktx", version.ref = "palette"}
 # retrofit
 retrofit-base = { module = "com.squareup.retrofit2:retrofit", version.ref = "retrofit" }
 retrofit-converter = { module = "com.squareup.retrofit2:converter-gson", version.ref = "retrofit" }
@@ -134,6 +137,7 @@ compose = ["compose-runtime", "compose-runtime-livedata", "compose-material",
     "compose-material-icons-extended", "compose-foundation", "compose-layout", "compose-ui-tooling",
     "compose-animation", "compose-ui", "compose-ui-test-junit4"]
 coroutines = ["kotlinx-coroutines-core", "kotlinx-coroutines-android", "kotlinx-coroutines-test"]
+palette = ["androidx-palette", "androidx-palette-ktx"]
 
 [plugins]
 

@@ -52,7 +52,7 @@ interface HeService {
     suspend fun cityTop(
         @Query("number") number: Int = 20,
         @Query("range") range: String = "cn"
-    ): CityTopResponse
+    ): CityResponse
 
     @GET("/v2/city/lookup?key=$HE_WEATHER_KEY")
     @Headers("$BASE_URL:$GEO_BASE_URL")

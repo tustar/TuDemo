@@ -9,6 +9,7 @@ import androidx.compose.material.Text
 import androidx.compose.material.TopAppBar
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.rounded.ArrowBack
+import androidx.compose.material.icons.rounded.ArrowBackIosNew
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
@@ -26,7 +27,7 @@ fun DetailTopBar() {
         navigationIcon = {
             IconButton(onClick = LocalBackPressedDispatcher.current) {
                 Icon(
-                    imageVector = Icons.Rounded.ArrowBack,
+                    imageVector = Icons.Rounded.ArrowBackIosNew,
                     contentDescription = stringResource(demoItem)
                 )
             }

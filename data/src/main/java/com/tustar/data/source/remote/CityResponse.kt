@@ -3,10 +3,16 @@ package com.tustar.data.source.remote
 import android.os.Parcelable
 import kotlinx.parcelize.Parcelize
 
-class CityTopResponse(
+class CityResponse(
     code: String,
     refer: Refer,
     val topCityList: List<City>
+) : Response(code, refer = refer)
+
+class LookupResponse(
+    code: String,
+    refer: Refer,
+    val location: List<City>
 ) : Response(code, refer = refer)
 
 @Parcelize

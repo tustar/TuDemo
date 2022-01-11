@@ -17,11 +17,16 @@ fun Location.isValid(): Boolean {
 }
 
 fun Location.isNotValid() = !isValid()
+fun Location.isSame(city: City): Boolean {
+    return adm1 == city.adm1 && adm2 == city.adm2 && name == city.name
+}
 
 fun City.toLocation() = Location.newBuilder()
     .setId(id)
     .setLat(lat)
     .setLon(lon)
     .setName(name)
-    .build()
+    .setAdm1(adm1)
+    .setAdm2(adm2)
+    .build()!!
 

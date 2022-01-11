@@ -9,6 +9,8 @@ message Location {
     string lat = 3;
     string name = 4;
     bool auto = 5;
+    string adm1 = 6;
+    string adm2 = 7;
 }
 
 message WeatherPrefs {

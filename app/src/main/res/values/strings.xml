@@ -25,7 +25,7 @@
     <string name="permission_record_audio">录音</string>
     <string name="permission_record_audio_desc">录制声音。</string>
     <string name="permission_notification">通知</string>
-    <string name="permission__notification_desc">为您推送天气和预警等信息。</string>
+    <string name="permission_notification_desc">为您推送天气和预警等信息。</string>
     <!-- Group -->
     <string name="group_custom_widget">自定义控件</string>
     <string name="group_system_widget">系统控件</string>
