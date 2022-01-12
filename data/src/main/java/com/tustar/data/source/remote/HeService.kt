@@ -10,16 +10,16 @@ interface HeService {
     suspend fun weatherNow(@Query("location") location: String): WeatherNowResponse
 
     @GET("/v7/weather/24h?key=$HE_WEATHER_KEY")
-    suspend fun weather24h(@Query("location") location: String): WeatherHoursResponse
+    suspend fun weather24H(@Query("location") location: String): WeatherHoursResponse
 
     @GET("/v7/weather/15d?key=$HE_WEATHER_KEY")
-    suspend fun weather15d(@Query("location") location: String): WeatherDaysResponse
+    suspend fun weather15D(@Query("location") location: String): WeatherDaysResponse
 
     @GET("/v7/air/now?key=$HE_WEATHER_KEY")
     suspend fun airNow(@Query("location") location: String): AirNowResponse
 
     @GET("/v7/air/5d?key=$HE_WEATHER_KEY")
-    suspend fun air5d(@Query("location") location: String): AirDaysResponse
+    suspend fun air5D(@Query("location") location: String): AirDaysResponse
 
     @GET("/v7/warning/now?key=$HE_WEATHER_KEY")
     suspend fun warningNow(@Query("location") location: String): WarningNowResponse
@@ -45,18 +45,18 @@ interface HeService {
     防晒指数	16	弱(1)、较弱(2)、中等(3)、强(4)、极强(5)
      */
     @GET("/v7/indices/1d?key=$HE_WEATHER_KEY&type=1,2,3,5,9,15")
-    suspend fun indices(@Query("location") location: String): IndicesResponse
+    suspend fun indices1D(@Query("location") location: String): IndicesResponse
 
     @GET("/v2/city/top?key=$HE_WEATHER_KEY")
     @Headers("$BASE_URL:$GEO_BASE_URL")
-    suspend fun cityTop(
+    suspend fun geoTopCity(
         @Query("number") number: Int = 20,
         @Query("range") range: String = "cn"
     ): CityResponse
 
     @GET("/v2/city/lookup?key=$HE_WEATHER_KEY")
     @Headers("$BASE_URL:$GEO_BASE_URL")
-    suspend fun cityLookup(
+    suspend fun geoCityLookup(
         @Query("location") location: String,
     ): LookupResponse
 

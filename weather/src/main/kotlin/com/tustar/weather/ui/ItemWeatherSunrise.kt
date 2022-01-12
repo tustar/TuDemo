@@ -16,45 +16,20 @@ import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.geometry.center
 import androidx.compose.ui.graphics.*
 import androidx.compose.ui.graphics.drawscope.Stroke
-import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.constraintlayout.compose.ConstraintLayout
 import com.tustar.data.source.remote.WeatherDaily
+import com.tustar.ktx.compose.res.vectorResource
 import com.tustar.weather.R
-import com.tustar.weather.compose.res.vectorResource
 
 @Composable
 fun ItemWeatherSunrise(today: WeatherDaily) {
-    ConstraintLayout(
-        modifier = Modifier
-            .itemBackground()
-            .fillMaxWidth(),
-    ) {
-        val (title, content) = createRefs()
-
-        ItemWeatherTopBar(
-            modifier = Modifier
-                .constrainAs(title) {
-                    top.linkTo(parent.top)
-                    start.linkTo(parent.start)
-                    end.linkTo(parent.end)
-                },
-            id = R.string.weather_sunrise_sunset
-        )
-
-        ConstraintLayout(modifier = Modifier
-            .padding(horizontal = 16.dp, vertical = 4.dp)
-            .fillMaxWidth()
-            .constrainAs(content) {
-                top.linkTo(title.bottom)
-                start.linkTo(parent.start)
-                end.linkTo(parent.end)
-            }) {
+    ItemWeatherSimple(R.string.weather_sunrise_sunset) { modifier ->
+        ConstraintLayout(modifier = modifier) {
             val (sunPath, sunrise, sunset) = createRefs()
-
             DrawSunPath(
                 modifier = Modifier
                     .fillMaxWidth()
@@ -65,7 +40,7 @@ fun ItemWeatherSunrise(today: WeatherDaily) {
                         end.linkTo(parent.end)
                         top.linkTo(parent.top)
                     },
-                WeatherHelper.movedPercent(today.sunrise, today.sunset),
+                WeatherUtils.movedPercent(today.sunrise, today.sunset),
             )
             Text(
                 text = stringResource(R.string.weather_sunrise, today.sunrise),

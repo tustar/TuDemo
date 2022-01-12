@@ -19,26 +19,26 @@ class WeatherRepositoryImpl @Inject constructor(
         val weatherNow = service.weatherNow(location).now
         val warning = service.warningNow(location).warning
         val airNow = service.airNow(location).now
-        val air5d = service.air5d(location).daily
-        val hourly24h = service.weather24h(location).hourly
-        val daily15d = service.weather15d(location).daily
-        val indices = service.indices(location).daily
+        val air5D = service.air5D(location).daily
+        val hourly24H = service.weather24H(location).hourly
+        val daily15D = service.weather15D(location).daily
+        val indices1D = service.indices1D(location).daily
         return Weather(
             weatherNow = weatherNow,
             warning = warning,
             airNow = airNow,
-            air5d = air5d,
-            hourly24h = hourly24h,
-            daily15d = daily15d,
-            indices = indices,
+            air5D = air5D,
+            hourly24H = hourly24H,
+            daily15D = daily15D,
+            indices1D = indices1D,
         )
     }
 
-    override suspend fun cityTop(): List<City> {
-        return service.cityTop().topCityList
+    override suspend fun geoTopCity(): List<City> {
+        return service.geoTopCity().topCityList
     }
 
-    override suspend fun cityLookup(location: String): List<City> {
-        return service.cityLookup(location).location
+    override suspend fun geoCityLookup(location: String): List<City> {
+        return service.geoCityLookup(location).location
     }
 }

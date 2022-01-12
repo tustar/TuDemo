@@ -5,24 +5,18 @@ import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.Icon
-import androidx.compose.material.IconButton
 import androidx.compose.material.Text
-import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.Add
-import androidx.compose.material.icons.filled.Settings
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
-import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.constraintlayout.compose.ConstraintLayout
-import com.google.accompanist.insets.statusBarsHeight
 import com.tustar.data.source.remote.AirNow
 import com.tustar.data.source.remote.Warning
 import com.tustar.data.source.remote.WeatherNow
@@ -124,12 +118,12 @@ private fun ItemWarningRow(
     ) {
         Icon(
             painter = painterResource(
-                id = WeatherIcons.alertIconId(
+                id = WeatherUtils.alertIconId(
                     context = LocalContext.current,
                     type = warning.type
                 )
             ),
-            tint = WeatherIcons.alertLevel(warning.level),
+            tint = WeatherUtils.alertLevel(warning.level),
             contentDescription = null,
             modifier = Modifier.width(20.dp)
         )
@@ -150,7 +144,7 @@ private fun ItemWarningRow(
 private fun ItemDate() {
     Column(modifier = Modifier, horizontalAlignment = Alignment.CenterHorizontally) {
         Text(
-            text = WeatherHelper.gregorianAndLunar(LocalContext.current),
+            text = WeatherUtils.gregorianAndLunar(LocalContext.current),
             color = Color(0xCCFFFFFF),
             fontSize = 14.sp,
         )
@@ -171,7 +165,7 @@ private fun ItemAirNow(modifier: Modifier, airNow: AirNow) {
         Icon(
             painter = painterResource(id = R.drawable.ic_leaf),
             contentDescription = null,
-            tint = WeatherHelper.aqiColor(airNow.aqi),
+            tint = WeatherUtils.aqiColor(airNow.aqi),
             modifier = Modifier
                 .width(24.dp)
                 .padding(2.dp)

@@ -17,17 +17,17 @@ import com.tustar.data.source.remote.WeatherDaily
 import com.tustar.weather.R
 
 @Composable
-fun ItemWeather3d(weather3d: List<WeatherDaily>, air3d: List<AirDaily>) {
+fun ItemWeather3D(weather3D: List<WeatherDaily>, air3D: List<AirDaily>) {
     Row(
         modifier = Modifier
             .itemBackground(),
         verticalAlignment = Alignment.CenterVertically
     ) {
-        ItemWeather3dColumn(
+        ItemWeather3DColumn(
             modifier = Modifier.weight(1f),
             dateId = R.string.weather_today,
-            weatherDaily = weather3d[0],
-            airDaily = air3d[0],
+            weatherDaily = weather3D[0],
+            airDaily = air3D[0],
         )
         Divider(
             modifier = Modifier
@@ -35,11 +35,11 @@ fun ItemWeather3d(weather3d: List<WeatherDaily>, air3d: List<AirDaily>) {
                 .height(60.dp),
             color = Color(0xCCFFFFFF),
         )
-        ItemWeather3dColumn(
+        ItemWeather3DColumn(
             modifier = Modifier.weight(1f),
             dateId = R.string.weather_tomorrow,
-            weatherDaily = weather3d[1],
-            airDaily = air3d[1],
+            weatherDaily = weather3D[1],
+            airDaily = air3D[1],
         )
         Divider(
             modifier = Modifier
@@ -47,17 +47,17 @@ fun ItemWeather3d(weather3d: List<WeatherDaily>, air3d: List<AirDaily>) {
                 .height(60.dp),
             color = Color(0xCCFFFFFF),
         )
-        ItemWeather3dColumn(
+        ItemWeather3DColumn(
             modifier = Modifier.weight(1f),
             dateId = R.string.weather_after_tomorrow,
-            weatherDaily = weather3d[2],
-            airDaily = air3d[2],
+            weatherDaily = weather3D[2],
+            airDaily = air3D[2],
         )
     }
 }
 
 @Composable
-private fun ItemWeather3dColumn(
+private fun ItemWeather3DColumn(
     modifier: Modifier,
     @StringRes dateId: Int,
     weatherDaily: WeatherDaily,
@@ -73,9 +73,9 @@ private fun ItemWeather3dColumn(
             color = Color.Black,
             modifier = Modifier.padding(bottom = 3.dp),
         )
-        ItemWeatherImage(icon = weatherDaily.iconDay)
+        WeatherImage(icon = weatherDaily.iconDay)
         Text(
-            text = WeatherHelper.dailyText(
+            text = WeatherUtils.dailyText(
                 context = LocalContext.current,
                 weatherDaily = weatherDaily
             ),
@@ -93,6 +93,6 @@ private fun ItemWeather3dColumn(
             color = Color.Black,
             modifier = Modifier.padding(top = 5.dp),
         )
-        ItemWeatherAqi(airDaily = airDaily)
+        WeatherAqi(airDaily = airDaily)
     }
 }

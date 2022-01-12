@@ -21,11 +21,13 @@ open class WeatherViewModel @Inject constructor(
     private val weatherRepository: WeatherRepository,
 ) : ViewModel() {
 
-    private val _locateWeather = MutableStateFlow<LocateWeather?>(null)
-    val locateWeather: StateFlow<LocateWeather?> = _locateWeather
-    private val _weather = MutableStateFlow<Weather?>(null)
-    val weather: StateFlow<Weather?> = _weather
+    private val _homeWeather = MutableStateFlow<HomeWeather?>(null)
+    val homeWeather: StateFlow<HomeWeather?> = _homeWeather
+    private val _weather = MutableStateFlow<CityWeather?>(null)
+    val weather: StateFlow<CityWeather?> = _weather
     private val _current = MutableStateFlow<Location>(Location.getDefaultInstance())
+
+    //
     val current: StateFlow<Location> = _current
     private val _cities = MutableStateFlow<MutableMap<String, Location>>(mutableMapOf())
     val cities: StateFlow<MutableMap<String, Location>> = _cities
@@ -37,23 +39,21 @@ open class WeatherViewModel @Inject constructor(
     private val _weatherPrefs = MutableStateFlow(WeatherPrefs.getDefaultInstance())
     val weatherPrefs: StateFlow<WeatherPrefs> = _weatherPrefs
 
-    fun requestLocateWeather(context: Context, locate: Location) {
+    fun requestLocateWeather(locate: Location) {
         viewModelScope.launch {
             val weatherNow = weatherRepository.weatherNow(locate.toParams())
-            _locateWeather.value = LocateWeather(locate, weatherNow.temp, weatherNow.text)
+            _homeWeather.value = HomeWeather(locate, weatherNow.temp, weatherNow.text)
         }
     }
 
     fun requestWeather(context: Context, location: Location) {
         viewModelScope.launch {
-            _weather.value = weatherRepository.weather(location.toParams())
+            _weather.value = CityWeather(
+                location,
+                weatherRepository.weather(location.toParams())
+            )
             updateLastUpdated(context, System.currentTimeMillis())
-            weatherRepository.cityTop()
         }
-    }
-
-    fun onWeatherChange(weather: Weather) {
-        _weather.value = weather
     }
 
     fun weatherPrefs(context: Context) {
@@ -75,19 +75,19 @@ open class WeatherViewModel @Inject constructor(
         }
     }
 
-    fun onList24h(context: Context, isList: Boolean) {
+    fun saveMode24H(context: Context, mode24H: WeatherPrefs.Mode) {
         viewModelScope.launch {
-            updateList24H(context, isList)
+            updateMode24H(context, mode24H)
         }
     }
 
-    fun onList15d(context: Context, isList: Boolean) {
+    fun saveMode15D(context: Context, mode15D: WeatherPrefs.Mode) {
         viewModelScope.launch {
-            updateList15D(context, isList)
+            updateMode15D(context, mode15D)
         }
     }
 
-    fun onUpdateLocate(
+    fun updateLocate(
         context: Context,
         lon: String,
         lat: String,
@@ -103,31 +103,42 @@ open class WeatherViewModel @Inject constructor(
             .setAdm1(adm1)
             .setAdm2(adm2)
             .build()
+        _current.value = locate
         viewModelScope.launch {
             updateLocate(context, locate)
-            requestLocateWeather(context, locate)
+            requestLocateWeather(locate)
         }
     }
 
     fun requestTopCities() {
         viewModelScope.launch {
-            _topCities.value = weatherRepository.cityTop()
+            _topCities.value = weatherRepository.geoTopCity()
         }
     }
 
-    fun onSearchCities(location: String) {
+    fun searchCities(location: String) {
         viewModelScope.launch {
-            _searchCities.value = weatherRepository.cityLookup(location)
+            if (location.isNullOrEmpty()) {
+                _searchCities.value = emptyList()
+            } else {
+                _searchCities.value = weatherRepository.geoCityLookup(location)
+            }
         }
     }
 
-    fun onUpdateCurrent(location: Location) {
+    fun clearSearch() {
+        viewModelScope.launch {
+            _searchCities.value = emptyList()
+        }
+    }
+
+    fun updateCurrent(location: Location) {
         viewModelScope.launch {
             _current.value = location
         }
     }
 
-    fun onAddCity(context: Context, city: City) {
+    fun addCity(context: Context, city: City) {
         viewModelScope.launch {
             val location = city.toLocation()
             _current.value = location
@@ -138,9 +149,9 @@ open class WeatherViewModel @Inject constructor(
         }
     }
 
-    fun onRemoveCity(context: Context, city: Location) {
+    fun removeCity(context: Context, city: Location) {
         viewModelScope.launch {
-            removeCity(context, city)
+            com.tustar.weather.util.removeCity(context, city)
             _cities.value = _cities.value.apply {
                 remove(city.name)
             }
@@ -148,8 +159,13 @@ open class WeatherViewModel @Inject constructor(
     }
 }
 
-data class LocateWeather(
+data class HomeWeather(
     val locate: Location,
     val temp: Int,
     val text: String,
+)
+
+data class CityWeather(
+    val location: Location,
+    val weather: Weather,
 )

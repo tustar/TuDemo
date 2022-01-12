@@ -1,4 +1,4 @@
-package com.tustar.demo.ui.compose.dialog
+package com.tustar.ktx.compose.dialog
 
 import androidx.compose.runtime.*
 import androidx.compose.ui.graphics.Color

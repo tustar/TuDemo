@@ -1,4 +1,4 @@
-package com.tustar.demo.ui.compose.dialog
+package com.tustar.ktx.compose.dialog
 
 import androidx.annotation.StringRes
 import androidx.compose.foundation.background
@@ -16,7 +16,6 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.window.Dialog
 import androidx.compose.ui.window.DialogProperties
-import com.tustar.demo.R
 
 @Composable
 private fun Title(title: String) {
@@ -44,7 +43,7 @@ private fun Buttons(
         horizontalArrangement = Arrangement.Center,
     ) {
         Text(
-            text = stringResource(id = R.string.cancel),
+            text = stringResource(id = android.R.string.cancel),
             textAlign = TextAlign.Center,
             style = DialogTextStyle.button,
             color = DialogTheme.colors.buttonText,
@@ -65,7 +64,7 @@ private fun Buttons(
                 .fillMaxHeight(),
             color = DialogTheme.colors.divider,
         )
-        Text(text = stringResource(id = R.string.ok),
+        Text(text = stringResource(id = android.R.string.ok),
             textAlign = TextAlign.Center,
             style = DialogTextStyle.button,
             color = DialogTheme.colors.buttonText,

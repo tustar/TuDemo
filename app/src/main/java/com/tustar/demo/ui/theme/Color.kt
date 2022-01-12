@@ -17,10 +17,3 @@ package com.tustar.demo.ui.theme
 
 import androidx.compose.ui.graphics.Color
 
-
-val blue600 = Color(0xFF039BE5)
-val blue700 = Color(0xFF0288D1)
-val blue800 = Color(0xFF0277BD)
-val blue900 = Color(0xFF01579B)
-val blueA100 = Color(0xFF80D8FF)
-val teal200 = Color(0xFF03DAC5)

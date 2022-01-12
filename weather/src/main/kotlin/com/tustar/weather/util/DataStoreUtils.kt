@@ -70,16 +70,17 @@ suspend fun removeCity(context: Context, city: Location) {
     }
 }
 
-suspend fun updateList24H(context: Context, isList: Boolean) =
+suspend fun updateMode24H(context: Context, mode24H: WeatherPrefs.Mode) =
     context.weatherPrefs.updateData { prefs ->
         prefs.toBuilder()
-            .setList24H(isList)
+            .setMode24H(mode24H)
             .build()
     }
 
-suspend fun updateList15D(context: Context, isList: Boolean) =
+suspend fun updateMode15D(context: Context, mode15D: WeatherPrefs.Mode) =
     context.weatherPrefs.updateData { prefs ->
-        prefs.toBuilder().setList15D(isList)
+        prefs.toBuilder()
+            .setMode15D(mode15D)
             .build()
     }
 

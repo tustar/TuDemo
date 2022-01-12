@@ -1,7 +1,10 @@
 package com.tustar.weather.util
 
+import android.content.Context
 import com.tustar.data.source.remote.City
 import com.tustar.weather.Location
+import com.tustar.weather.WeatherPrefs
+import kotlin.reflect.KFunction2
 
 fun Location.toParams(): String = if (id.isNullOrEmpty()) "$lon,$lat" else id
 fun Location.isValid(): Boolean {
@@ -29,4 +32,9 @@ fun City.toLocation() = Location.newBuilder()
     .setAdm1(adm1)
     .setAdm2(adm2)
     .build()!!
+
+typealias TrendSwitchMode = Pair<WeatherPrefs.Mode, KFunction2<Context, WeatherPrefs.Mode, Unit>>
+
+
+
 

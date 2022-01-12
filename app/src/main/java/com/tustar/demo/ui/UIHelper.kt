@@ -8,13 +8,13 @@ import androidx.compose.material.IconButton
 import androidx.compose.material.Text
 import androidx.compose.material.TopAppBar
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.rounded.ArrowBack
 import androidx.compose.material.icons.rounded.ArrowBackIosNew
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import com.tustar.demo.ui.theme.DemoTheme
+import com.tustar.ktx.compose.tint
 
 @Composable
 fun DetailTopBar() {
@@ -25,10 +25,15 @@ fun DetailTopBar() {
         },
         modifier = Modifier.topAppBar(),
         navigationIcon = {
-            IconButton(onClick = LocalBackPressedDispatcher.current) {
+            val (interactionSource, tint) = tint()
+            IconButton(
+                onClick = LocalBackPressedDispatcher.current,
+                interactionSource = interactionSource
+            ) {
                 Icon(
                     imageVector = Icons.Rounded.ArrowBackIosNew,
-                    contentDescription = stringResource(demoItem)
+                    contentDescription = stringResource(demoItem),
+                    tint = tint,
                 )
             }
         }

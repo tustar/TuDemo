@@ -14,9 +14,14 @@ message Location {
 }
 
 message WeatherPrefs {
-    bool list_24h = 1;
-    bool list_15d = 2;
+    Mode mode_24h = 1;
+    Mode mode_15d = 2;
     int64 last_updated = 3;
     Location locate = 4;
     map<string, Location> cities = 5; // repeated => list
+
+    enum Mode {
+        LIST = 0;
+        TREND = 1;
+    }
 }

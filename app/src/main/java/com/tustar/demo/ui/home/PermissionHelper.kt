@@ -30,9 +30,9 @@ import com.tustar.ktx.actionApplicationDetailsSettings
 import com.tustar.ktx.actionLocationSourceSettings
 import com.tustar.ktx.isLocationEnable
 import com.tustar.demo.ui.MainViewModel
-import com.tustar.demo.ui.compose.dialog.ActionDialog
-import com.tustar.demo.ui.compose.dialog.DialogTheme
-import com.tustar.demo.ui.compose.dialog.DialogTextStyle
+import com.tustar.ktx.compose.dialog.ActionDialog
+import com.tustar.ktx.compose.dialog.DialogTheme
+import com.tustar.ktx.compose.dialog.DialogTextStyle
 import com.tustar.demo.util.Logger
 
 @OptIn(ExperimentalPermissionsApi::class)

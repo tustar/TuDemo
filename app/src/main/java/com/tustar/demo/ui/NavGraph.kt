@@ -2,6 +2,9 @@ package com.tustar.demo.ui
 
 import android.content.Context
 import android.content.Intent
+import androidx.compose.animation.AnimatedContentScope
+import androidx.compose.animation.ExperimentalAnimationApi
+import androidx.compose.animation.core.tween
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.runtime.remember
@@ -9,9 +12,9 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.lifecycle.Lifecycle
 import androidx.navigation.NavBackStackEntry
 import androidx.navigation.NavHostController
-import androidx.navigation.compose.NavHost
-import androidx.navigation.compose.composable
-import androidx.navigation.compose.rememberNavController
+import com.google.accompanist.navigation.animation.AnimatedNavHost
+import com.google.accompanist.navigation.animation.composable
+import com.google.accompanist.navigation.animation.rememberAnimatedNavController
 import com.google.accompanist.systemuicontroller.SystemUiController
 import com.google.accompanist.systemuicontroller.rememberSystemUiController
 import com.tustar.demo.R
@@ -38,19 +41,20 @@ object MainDestinations {
     const val DEMO_ID = "demoId"
 }
 
+@OptIn(ExperimentalAnimationApi::class)
 @Composable
 fun NavGraph(
     viewModel: MainViewModel,
-    navController: NavHostController = rememberNavController(),
+    navController: NavHostController = rememberAnimatedNavController(),
     systemUiController: SystemUiController = rememberSystemUiController(),
     startDestination: String = ROUTE_DEMOS,
 ) {
     val actions = remember(navController) { MainActions(navController) }
-    NavHost(
+    AnimatedNavHost(
         navController = navController,
         startDestination = startDestination
     ) {
-        composable(ROUTE_DEMOS) {
+        composable(route = ROUTE_DEMOS,) {
             DemosScreen(
                 systemUiController = systemUiController,
                 viewModel = viewModel,

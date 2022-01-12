@@ -12,6 +12,7 @@ buildscript {
         classpath libs.kotlin.gp
         classpath libs.navigation.safe.args.gp
         classpath libs.dagger.hilt.android.gp
+        classpath 'org.jetbrains.kotlin:kotlin-gradle-plugin:1.6.10'
     }
 }
 
@@ -37,12 +38,6 @@ subprojects {
         task.options.encoding = 'UTF-8'
         task.sourceCompatibility = JavaVersion.VERSION_1_8
         task.targetCompatibility = JavaVersion.VERSION_1_8
-    }
-
-    tasks.withType(org.jetbrains.kotlin.gradle.tasks.KotlinCompile).all {
-        kotlinOptions {
-            jvmTarget = "1.8"
-        }
     }
 }
 

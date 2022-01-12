@@ -62,7 +62,7 @@ class WeatherWorker @AssistedInject constructor(
                         it.outputData.getString(KEY_WEATHER),
                         Weather::class.java
                     )
-                    viewModel.onWeatherChange(weather)
+//                    viewModel.onWeatherChange(weather)
                 }
             }
             workManager.enqueue(oneTimeWorkRequest)

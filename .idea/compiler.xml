@@ -10,6 +10,7 @@
       <module name="TuDemo-TuDemo-compiler" target="1.7" />
       <module name="TuDemo.buildSrc" target="11" />
       <module name="TuDemo.gameturbo" target="11" />
+      <module name="TuDemo.theme" target="11" />
       <module name="TuDemo.TuDemo-ktx" target="1.8" />
       <module name="TuDemo.weatherRes" target="11" />
     </bytecodeTargetLevel>

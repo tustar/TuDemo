@@ -8,6 +8,6 @@ import com.tustar.data.source.remote.WeatherNow
 interface WeatherRepository {
     suspend fun weatherNow(location: String): WeatherNow
     suspend fun weather(location: String): Weather
-    suspend fun cityTop():List<City>
-    suspend fun cityLookup(location: String):List<City>
+    suspend fun geoTopCity():List<City>
+    suspend fun geoCityLookup(location: String):List<City>
 }

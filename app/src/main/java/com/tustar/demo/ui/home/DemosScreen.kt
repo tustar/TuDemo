@@ -16,6 +16,7 @@ import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextOverflow
@@ -28,10 +29,9 @@ import com.tustar.demo.ui.SectionView
 import com.tustar.demo.ui.theme.DemoTheme
 import com.tustar.demo.ui.topAppBar
 import com.tustar.demo.util.Logger
-import com.tustar.weather.ui.LocateWeather
+import com.tustar.ktx.compose.selector
+import com.tustar.weather.ui.HomeWeather
 import com.tustar.weather.util.isNotValid
-import com.tustar.weather.util.isValid
-import com.tustar.weather.util.toParams
 
 @Composable
 fun DemosScreen(
@@ -48,14 +48,14 @@ fun DemosScreen(
     val context = LocalContext.current
     //
     val weatherPrefs by viewModel.weatherPrefs.collectAsState()
-    val locateWeather by viewModel.locateWeather.collectAsState()
+    val homeWeather by viewModel.homeWeather.collectAsState()
     val grouped by viewModel.demos.collectAsState(initial = mapOf())
     //
     viewModel.weatherPrefs(context)
     //
     Column {
         TopBar(
-            locateWeather,
+            homeWeather,
             onWeatherClick
         )
         ListView(grouped, onDemoClick)
@@ -65,10 +65,9 @@ fun DemosScreen(
         weatherPrefs.locate.isNotValid() -> {
             { viewModel.onRequestLocation(true) }
         }
-        locateWeather == null -> {
+        homeWeather == null -> {
             {
                 viewModel.requestLocateWeather(
-                    context,
                     weatherPrefs.locate
                 )
             }
@@ -82,7 +81,7 @@ fun DemosScreen(
 
 @Composable
 private fun TopBar(
-    weather: LocateWeather?,
+    weather: HomeWeather?,
     onWeatherClick: () -> Unit,
 ) {
     Logger.d("$weather")
@@ -101,17 +100,22 @@ private fun TopBar(
 
 @Composable
 private fun WeatherAction(
-    weather: LocateWeather,
+    weather: HomeWeather,
     onWeatherClick: () -> Unit,
 ) {
+    val (interactionSource, color) = selector(Color.White, Color(0x66FFFFFF))
     Column(
-        modifier = Modifier.clickable {
+        modifier = Modifier.clickable(
+            interactionSource = interactionSource,
+            indication = null
+        ) {
             onWeatherClick()
         },
         horizontalAlignment = Alignment.End
     ) {
         Text(
             text = weather.locate.name,
+            color = color,
             modifier = Modifier
                 .padding(end = 8.dp),
         )
@@ -121,6 +125,7 @@ private fun WeatherAction(
                 weather.text,
                 weather.temp
             ),
+            color = color,
             modifier = Modifier
                 .padding(end = 8.dp),
         )

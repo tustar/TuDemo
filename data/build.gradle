@@ -40,6 +40,8 @@ dependencies {
     // Retrofit
     implementation libs.bundles.retrofit
     implementation libs.okhttp3.logging.interceptor
+    // Paging
+    implementation libs.bundles.paging
     // Test
     testImplementation libs.junit
     androidTestImplementation libs.test.core

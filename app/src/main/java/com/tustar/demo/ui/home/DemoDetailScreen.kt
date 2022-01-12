@@ -1,11 +1,12 @@
 package com.tustar.demo.ui.home
 
+import androidx.compose.animation.ExperimentalAnimationApi
 import androidx.compose.foundation.layout.Column
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.navigation.NavGraphBuilder
 import androidx.navigation.NavType
-import androidx.navigation.compose.composable
+import com.google.accompanist.navigation.animation.composable
 import androidx.navigation.navArgument
 import androidx.navigation.navDeepLink
 import com.tustar.demo.R
@@ -21,6 +22,7 @@ import com.tustar.demo.ui.motion.MotionImageFilterScreen
 import com.tustar.demo.ui.recorder.RecorderScreen
 import com.tustar.demo.util.Logger
 
+@OptIn(ExperimentalAnimationApi::class)
 fun NavGraphBuilder.detail(
     route: String,
     content: @Composable (Int) -> Unit

@@ -24,11 +24,11 @@ import androidx.compose.ui.graphics.Color
 
 // Dark
 private val DarkColorPalette = darkColors(
-    primary = blue900,
-    primaryVariant = blue800,
-    secondary = teal200,
-    background = Color(0xFF2B2B2B),
-    surface = Color(0xFF2B2B2B),
+    primary = Color(0xFF000000),
+    primaryVariant = Color(0xFF000000),
+    secondary = Color(0xFF000000),
+    background = Color(0xFF000000),
+    surface = Color(0xFF000000),
 )
 private val DarkDemoColorPalette = darkDemoColors(
     sectionTextColor = Color(0xFF5084B8),
@@ -37,9 +37,9 @@ private val DarkDemoColorPalette = darkDemoColors(
 
 // Light
 private val LightColorPalette = lightColors(
-    primary = blue600,
-    primaryVariant = blue700,
-    secondary = blueA100,
+    primary = Color(0xFF039BE5),
+    primaryVariant = Color(0xFF039BE5),
+    secondary =  Color(0xFFFFFFFF),
     background = Color(0xFFFAFAFA),
     surface = Color(0xFFFAFAFA),
 )

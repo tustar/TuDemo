@@ -18,33 +18,16 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.compose.ui.window.Dialog
-import androidx.constraintlayout.compose.ConstraintLayout
 import com.tustar.data.source.remote.IndicesDaily
+import com.tustar.ktx.compose.shape.CupHeadRoundedCornerShape
 import com.tustar.weather.R
-import com.tustar.weather.compose.shape.CupHeadRoundedCornerShape
 import items
 
 
 @OptIn(ExperimentalFoundationApi::class)
 @Composable
-fun ItemWeatherIndices(indices: List<IndicesDaily>) {
-    ConstraintLayout(
-        modifier = Modifier
-            .itemBackground()
-            .fillMaxWidth()
-    ) {
-        val (title, content) = createRefs()
-
-        ItemWeatherTopBar(
-            modifier = Modifier
-                .constrainAs(title) {
-                    top.linkTo(parent.top)
-                    start.linkTo(parent.start)
-                    end.linkTo(parent.end)
-                },
-            id = R.string.weather_indices
-        )
-
+fun ItemWeatherIndices1D(indices1D: List<IndicesDaily>) {
+    ItemWeatherSimple(R.string.weather_indices) { modifier ->
         var openDialog by remember { mutableStateOf(false) }
         var indicesDaily by remember {
             mutableStateOf<IndicesDaily?>(null)
@@ -59,14 +42,9 @@ fun ItemWeatherIndices(indices: List<IndicesDaily>) {
         //
         LazyHorizontalGrid(
             cells = GridCells.Fixed(2),
-            modifier = Modifier
-                .constrainAs(content) {
-                    top.linkTo(title.bottom)
-                    start.linkTo(parent.start)
-                    end.linkTo(parent.end)
-                }
+            modifier = modifier,
         ) {
-            items(items = indices) {
+            items(items = indices1D) {
                 ItemLife(
                     modifier = Modifier
                         .clickable(
@@ -93,7 +71,7 @@ private fun ItemLife(modifier: Modifier, indicesDaily: IndicesDaily) {
     ) {
         Image(
             painter = painterResource(
-                id = WeatherIcons.lifeIconId(
+                id = WeatherUtils.lifeIconId(
                     context = LocalContext.current,
                     type = indicesDaily.type
                 )
@@ -130,7 +108,7 @@ private fun LifeDialog(indicesDaily: IndicesDaily, onDismiss: (Boolean) -> Unit)
 
             Image(
                 painter = painterResource(
-                    id = WeatherIcons.lifeIconId(
+                    id = WeatherUtils.lifeIconId(
                         context = LocalContext.current,
                         type = indicesDaily.type
                     )

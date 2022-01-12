@@ -1,5 +1,3 @@
-
-
 plugins {
     id 'com.android.library'
     id 'kotlin-android'
@@ -33,7 +31,7 @@ android {
         compose true
     }
     composeOptions {
-        kotlinCompilerExtensionVersion "1.0.5"
+        kotlinCompilerExtensionVersion libs.versions.compose.get()
     }
 
 }
@@ -62,6 +60,8 @@ dependencies {
     // Google
     implementation libs.google.material.base
     implementation libs.protobuf.javalite
+    // Paging
+    implementation libs.bundles.paging
     // Test
     implementation libs.compose.ui.test.junit4
     //

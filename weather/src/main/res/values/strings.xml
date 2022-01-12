@@ -33,6 +33,7 @@
     <string name="weather_manage_city">城市管理</string>
     <string name="weather_add_city">添加城市</string>
     <string name="weather_search_hint">请输入城市名称或拼音</string>
+    <string name="weather_location">定位:&#160;</string>
     <string name="weather_top_cities">热门城市</string>
     <!-- Week -->
     <string name="week_day_sunday">周日</string>

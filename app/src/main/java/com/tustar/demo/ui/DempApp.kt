@@ -2,6 +2,7 @@ package com.tustar.demo.ui
 
 import androidx.annotation.DrawableRes
 import androidx.annotation.StringRes
+import androidx.compose.animation.ExperimentalAnimationApi
 import androidx.compose.foundation.layout.size
 import androidx.compose.material.*
 import androidx.compose.runtime.Composable
@@ -13,28 +14,26 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import androidx.navigation.compose.currentBackStackEntryAsState
-import androidx.navigation.compose.rememberNavController
 import com.google.accompanist.insets.navigationBarsHeight
 import com.google.accompanist.insets.navigationBarsPadding
-import com.google.accompanist.systemuicontroller.rememberSystemUiController
+import com.google.accompanist.navigation.animation.rememberAnimatedNavController
 import com.tustar.demo.R
 import com.tustar.demo.ui.theme.DemoTheme
 import java.util.*
 
+@OptIn(ExperimentalAnimationApi::class)
 @Composable
 fun DemoApp(
     viewModel: MainViewModel
 ) {
     DemoTheme {
         val tabs = remember { MainTabs.values() }
-        val navController = rememberNavController()
-        val systemUiController = rememberSystemUiController()
+        val navController = rememberAnimatedNavController()
         //
         Scaffold(bottomBar = { DemoBottomBar(navController = navController, tabs) }) {
             NavGraph(
                 viewModel = viewModel,
                 navController = navController,
-                systemUiController = systemUiController,
             )
         }
     }

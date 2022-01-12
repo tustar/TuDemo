@@ -1,6 +1,5 @@
 package com.tustar.weather.ui
 
-import android.content.Context
 import androidx.compose.foundation.Canvas
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyRow
@@ -19,98 +18,43 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import androidx.constraintlayout.compose.ConstraintLayout
 import com.tustar.data.source.remote.AirDaily
 import com.tustar.data.source.remote.WeatherDaily
 import com.tustar.weather.R
-import com.tustar.weather.util.Logger
-import kotlin.reflect.KFunction2
+import com.tustar.weather.util.TrendSwitchMode
 
 @Composable
-fun ItemWeather15d(
-    daily15d: List<WeatherDaily>,
-    air5d: List<AirDaily>,
-    list15d: Boolean,
-    onList15d: KFunction2<Context, Boolean, Unit>,
-) {
-    val context = LocalContext.current
-    var isList by remember { mutableStateOf(list15d) }
-    ConstraintLayout(
-        modifier = Modifier
-            .itemBackground()
-            .fillMaxWidth(),
-    ) {
-        val (switch, title, content) = createRefs()
-
-        WeatherSwitch(
-            checked = isList,
-            onCheckedChange = {
-                isList = it
-                onList15d(context, isList)
-            },
-            modifier = Modifier
-                .constrainAs(switch) {
-                    top.linkTo(parent.top)
-                    start.linkTo(parent.start)
-                }
-                .padding(start = 4.dp),
-        )
-
-        ItemWeatherTopBar(
-            modifier = Modifier
-                .constrainAs(title) {
-                    top.linkTo(parent.top)
-                    start.linkTo(parent.start)
-                    end.linkTo(parent.end)
-                },
-            id = R.string.weather_15d_forecast
-        )
-
-        if (isList) {
-            ItemWeather15dList(
-                modifier = Modifier
-                    .padding(horizontal = 4.dp)
-                    .constrainAs(content) {
-                        top.linkTo(title.bottom)
-                        start.linkTo(parent.start)
-                        end.linkTo(parent.end)
-                    },
-                daily15d, air5d
-            )
-        } else {
-            ItemWeather15dTrend(
-                modifier = Modifier
-                    .padding(horizontal = 4.dp)
-                    .constrainAs(content) {
-                        top.linkTo(title.bottom)
-                        start.linkTo(parent.start)
-                        end.linkTo(parent.end)
-                    },
-                daily15d, air5d
-            )
-        }
-    }
+fun ItemWeather15D(daily15D: List<WeatherDaily>, air5D: List<AirDaily>, mode15D: TrendSwitchMode) {
+    ItemWeatherSwitch(
+        titleId = R.string.weather_15d_forecast,
+        trendMode = mode15D,
+        list = { modifier ->
+            ItemWeather15DList(modifier, daily15D, air5D)
+        },
+        trend = { modifier ->
+            ItemWeather15DTrend(modifier, daily15D, air5D)
+        },
+    )
 }
 
 @Composable
-private fun ItemWeather15dList(
-    modifier: Modifier, daily15d: List<WeatherDaily>,
-    air5d: List<AirDaily>,
+private fun ItemWeather15DList(
+    modifier: Modifier, daily15D: List<WeatherDaily>,
+    air5D: List<AirDaily>,
 ) {
     Column(
         verticalArrangement = Arrangement.spacedBy(4.dp),
         modifier = modifier,
     ) {
-        daily15d.forEachIndexed { index, weatherDaily ->
-            ListDayInfo(weatherDaily = weatherDaily, airDaily = air5d.getOrNull(index))
+        daily15D.forEachIndexed { index, weatherDaily ->
+            ListDayInfo(weatherDaily = weatherDaily, airDaily = air5D.getOrNull(index))
         }
     }
 }
 
-
 @Composable
 private fun ListDayInfo(weatherDaily: WeatherDaily, airDaily: AirDaily?) {
-    val (date, week, isToday) = WeatherHelper.dateWeek(LocalContext.current, weatherDaily.fxDate)
+    val (date, week, isToday) = WeatherUtils.dateWeek(LocalContext.current, weatherDaily.fxDate)
     val modifier = if (isToday) Modifier.itemSelected() else Modifier
 
     Row(
@@ -135,7 +79,7 @@ private fun ListDayInfo(weatherDaily: WeatherDaily, airDaily: AirDaily?) {
         }
 
         // 2 day icon
-        ItemWeatherImage(icon = weatherDaily.iconDay)
+        WeatherImage(icon = weatherDaily.iconDay)
 
         // 3 text & temp
         Column(
@@ -143,7 +87,7 @@ private fun ListDayInfo(weatherDaily: WeatherDaily, airDaily: AirDaily?) {
             horizontalAlignment = Alignment.CenterHorizontally,
         ) {
             Text(
-                text = WeatherHelper.dailyText(
+                text = WeatherUtils.dailyText(
                     context = LocalContext.current,
                     weatherDaily = weatherDaily
                 ),
@@ -162,7 +106,7 @@ private fun ListDayInfo(weatherDaily: WeatherDaily, airDaily: AirDaily?) {
         }
 
         // 4 night icon
-        ItemWeatherImage(icon = weatherDaily.iconNight)
+        WeatherImage(icon = weatherDaily.iconNight)
 
         // 5 wind & aqi
         Column(
@@ -178,25 +122,25 @@ private fun ListDayInfo(weatherDaily: WeatherDaily, airDaily: AirDaily?) {
                 fontSize = 13.sp,
                 color = Color(0xFF666666),
             )
-            ItemWeatherAqi(airDaily = airDaily)
+            WeatherAqi(airDaily = airDaily)
         }
     }
 }
 
 @Composable
-private fun ItemWeather15dTrend(
-    modifier: Modifier, daily15d: List<WeatherDaily>,
-    air5d: List<AirDaily>,
+private fun ItemWeather15DTrend(
+    modifier: Modifier, daily15D: List<WeatherDaily>,
+    air5D: List<AirDaily>,
 ) {
     LazyRow(
         horizontalArrangement = Arrangement.spacedBy(4.dp),
         modifier = modifier,
     ) {
-//        daily15d.forEachIndexed { index, weatherDaily ->
+//        daily15D.forEachIndexed { index, weatherDaily ->
 //
 //        }
-        val maxTemp = daily15d.maxOf { it.tempMax }
-        val minTemp = daily15d.minOf { it.tempMin }
+        val maxTemp = daily15D.maxOf { it.tempMax }
+        val minTemp = daily15D.minOf { it.tempMin }
 
         val textPaint = Paint().asFrameworkPaint().apply {
             isAntiAlias = true
@@ -211,8 +155,8 @@ private fun ItemWeather15dTrend(
         val textHeight = bottom - top
         val radius = 9.0f
 
-        itemsIndexed(items = daily15d, itemContent = { index, current ->
-            val (date, week, isToday) = WeatherHelper.dateWeek(
+        itemsIndexed(items = daily15D, itemContent = { index, current ->
+            val (date, week, isToday) = WeatherUtils.dateWeek(
                 LocalContext.current,
                 current.fxDate,
                 isList = false
@@ -227,11 +171,11 @@ private fun ItemWeather15dTrend(
                 TrendDayInfoTop(week, date, current)
 
                 TrendDayInfoCenter(
-                    current, daily15d, index, textHeight,
+                    current, daily15D, index, textHeight,
                     maxTemp, minTemp, radius, textPaint
                 )
 
-                TrendDayInfoBottom(current, air5d.getOrNull(index))
+                TrendDayInfoBottom(current, air5D.getOrNull(index))
             }
         })
     }
@@ -240,7 +184,7 @@ private fun ItemWeather15dTrend(
 @Composable
 private fun TrendDayInfoCenter(
     current: WeatherDaily,
-    daily15d: List<WeatherDaily>,
+    daily15D: List<WeatherDaily>,
     index: Int,
     textHeight: Float,
     maxTemp: Int,
@@ -253,7 +197,7 @@ private fun TrendDayInfoCenter(
     val strokeWidth = 6.0f
     val highColor = Color(0xFFFF7200)
     val lowerColor = Color(0xFF00A368)
-    val prev = daily15d.getOrNull(index - 1)
+    val prev = daily15D.getOrNull(index - 1)
     //
     Canvas(
         modifier = Modifier
@@ -346,7 +290,7 @@ private fun TrendDayInfoTop(
             .padding(top = 6.dp),
     )
 
-    ItemWeatherImage(
+    WeatherImage(
         modifier = Modifier.padding(vertical = 4.dp),
         icon = weatherDaily.iconDay
     )
@@ -357,7 +301,7 @@ private fun TrendDayInfoBottom(
     weatherDaily: WeatherDaily,
     airDaily: AirDaily?
 ) {
-    ItemWeatherImage(
+    WeatherImage(
         modifier = Modifier.padding(vertical = 4.dp),
         icon = weatherDaily.iconNight
     )
@@ -381,5 +325,5 @@ private fun TrendDayInfoBottom(
         modifier = Modifier
             .padding(top = 6.dp, bottom = 4.dp),
     )
-    ItemWeatherAqi(modifier = Modifier.padding(bottom = 4.dp), airDaily = airDaily)
+    WeatherAqi(modifier = Modifier.padding(bottom = 4.dp), airDaily = airDaily)
 }
