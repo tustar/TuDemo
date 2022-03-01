@@ -140,13 +140,6 @@ class RecorderService : Service() {
         recorder.release()
     }
 
-    fun addOnRecorderListener(listener: OnRecorderListener) =
-        onRecorderListeners.add(WeakReference(listener))
-
-
-    fun removeOnRecorderListener(listener: OnRecorderListener) =
-        onRecorderListeners.removeIf { it.get() == listener }
-
     private fun updateRecordState(state: State) {
         this.state = state
         for (listener in onRecorderListeners) {
@@ -165,7 +158,12 @@ class RecorderService : Service() {
         }
 
     inner class RecorderBinder : Binder() {
-        fun getService(): RecorderService = this@RecorderService
+        fun addOnRecorderListener(listener: OnRecorderListener) =
+            onRecorderListeners.add(WeakReference(listener))
+
+
+        fun removeOnRecorderListener(listener: OnRecorderListener) =
+            onRecorderListeners.removeIf { it.get() == listener }
     }
 
     companion object {

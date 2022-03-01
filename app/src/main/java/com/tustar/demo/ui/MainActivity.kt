@@ -64,13 +64,12 @@ class MainActivity : AppCompatActivity(), OnRecorderListener {
         }
     }
 
-    private var recorderService: RecorderService? = null
+    private var binder: RecorderService.RecorderBinder? = null
     private var conn: ServiceConnection = object : ServiceConnection {
         override fun onServiceConnected(name: ComponentName, service: IBinder) {
             Logger.i()
-            val binder = service as RecorderService.RecorderBinder
-            recorderService = binder.getService()
-            recorderService?.addOnRecorderListener(this@MainActivity)
+            binder = service as RecorderService.RecorderBinder
+            binder?.addOnRecorderListener(this@MainActivity)
         }
 
         override fun onServiceDisconnected(name: ComponentName) {
@@ -128,7 +127,7 @@ class MainActivity : AppCompatActivity(), OnRecorderListener {
     override fun onDestroy() {
         super.onDestroy()
         lifecycle.removeObserver(locationListener)
-        recorderService?.removeOnRecorderListener(this)
+        binder?.removeOnRecorderListener(this)
         unbindService(conn)
     }
 
