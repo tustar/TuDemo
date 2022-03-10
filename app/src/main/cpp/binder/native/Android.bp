@@ -1,0 +1,33 @@
+cc_defaults {
+    name: "tu_defaults",
+    srcs: ["ITuService.cpp"],
+    shared_libs: [
+        "libutils",
+        "libcutils",
+        "libbinder",
+        "liblog"
+    ],
+    include_dirs: [
+        "frameworks/native/include",
+        "system/core/include",
+    ],
+    cflags: [
+        "-Wall",
+        "-Wextra",
+        "-Werror",
+        "-Wno-ignored-qualifiers",
+        "-Wno-unused-parameter",
+    ],
+}
+
+cc_binary {
+    name: "tu_server",
+    defaults: ["tu_defaults"],
+    srcs: ["TuServer.cpp"],
+}
+
+cc_binary {
+    name: "tu_client",
+    defaults: ["tu_defaults"],
+    srcs: ["TuClient.cpp"],
+}
