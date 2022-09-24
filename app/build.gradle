@@ -2,15 +2,12 @@ plugins {
     id 'com.android.application'
     id 'kotlin-android'
     id 'kotlin-kapt'
-    id 'androidx.navigation.safeargs.kotlin'
     id 'dagger.hilt.android.plugin'
-    id 'kotlin-parcelize'
-//    id 'com.google.devtools.ksp'
-    id "com.google.protobuf" version "0.8.12"
 }
 
 android {
     compileSdk libs.versions.compileSdk.get().toInteger()
+    ndkVersion libs.versions.ndk.get()
 
     def baseVerName = "1.0.0"
     def autoBuildNumber = System.properties['auto_build_num']
@@ -28,22 +25,8 @@ android {
         multiDexEnabled true
 
         testInstrumentationRunner "androidx.selector_sunset2.runner.AndroidJUnitRunner"
-
-        externalNativeBuild {
-            cmake {
-                cppFlags ""
-            }
-        }
     }
 
-    ndkVersion libs.versions.ndk.get()
-
-    externalNativeBuild {
-        cmake {
-            path file('src/main/cpp/CMakeLists.txt')
-            version libs.versions.protobuf
-        }
-    }
     signingConfigs {
         // We use a bundled debug keystore, to allow debug builds from CI to be upgradable
         debug {
@@ -64,126 +47,64 @@ android {
         }
     }
 
-    buildFeatures {
-        viewBinding true
-
-        compose true
-
-        // Disable unused AGP features
-        buildConfig false
-        aidl false
-        renderScript false
-        resValues false
-        shaders false
-    }
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
     }
     kotlinOptions {
-        jvmTarget = '1.8'
-    }
-    composeOptions {
-        kotlinCompilerExtensionVersion libs.versions.compose.get()
+        jvmTarget = libs.versions.jvmTarget.get()
     }
 
-    packagingOptions {
-        // Multiple dependency bring these files in. Exclude them to enable
-        // our test APK to build (has no effect on our AARs)
-        excludes += "/META-INF/AL2.0"
-        excludes += "/META-INF/LGPL2.1"
+    buildFeatures {
+        viewBinding true
+        compose true
+    }
+    composeOptions {
+        kotlinCompilerExtensionVersion libs.versions.composeCompiler.get()
     }
 }
 
 dependencies {
+    // Libs
     implementation fileTree(dir: "libs", include: ["*.aar"])
     implementation fileTree(dir: "libs", include: ["*.jar"])
     // Kotlin
     implementation libs.kotlin.stdlib.jdk8
     implementation libs.kotlinx.coroutines.core
     implementation libs.kotlinx.coroutines.android
-    // androidx
+    // Androidx
     implementation libs.androidx.core.ktx
     implementation libs.androidx.appcompat
-    implementation libs.constraintlayout.base
-    implementation libs.androidx.recyclerview
-    implementation libs.androidx.legacy.support.v4
-    implementation libs.androidx.vectordrawable
-    implementation libs.androidx.datastore.preferences
-    implementation libs.androidx.datastore.core
-    implementation libs.activity.ktx
-    implementation libs.fragment.ktx
+    implementation libs.androidx.viewbinding
+    implementation libs.androidx.activity.ktx
+    implementation libs.androidx.fragment.ktx
+    implementation libs.androidx.constraintlayout
+    implementation libs.androidx.multidex
     // Lifecycle
-    implementation libs.lifecycle.viewmodel.ktx
     implementation libs.lifecycle.livedata.ktx
-    implementation libs.lifecycle.runtime.ktx
-    implementation libs.lifecycle.extensions
-    // Navigation
-    implementation libs.navigation.fragment.ktx
-    implementation libs.navigation.ui.ktx
-    implementation libs.navigation.dynamic.features.fragment
-
-    // StartUp
-    implementation libs.startup.runtime
-    // WorkManager
-    implementation libs.work.runtime.ktx
-    implementation libs.work.gcm
-    implementation libs.work.multiprocess
-    // Compose
-    implementation libs.bundles.compose
-    implementation libs.activity.compose
-    implementation libs.navigation.compose
-    implementation libs.constraintlayout.compose
-    // Hilt
-    implementation libs.dagger.hilt.android
-    implementation libs.hilt.work
-    implementation libs.hilt.navigation.composese
-    kapt libs.dagger.hilt.compiler
-    kapt libs.hilt.compiler
-    // Amap
-    implementation libs.amap.location
+    implementation libs.lifecycle.viewmodel.ktx
     // Google
-    implementation libs.google.material.base
-    implementation libs.protobuf.javalite
+    implementation libs.google.material
+    // Hilt
+    implementation libs.hilt.android
+    kapt libs.hilt.compiler
+    kapt libs.hilt.ext.compiler
     // Accompanist
     implementation libs.bundles.accompanist
-    // Gson
-    implementation libs.google.gson
-    // Test
+    // Compose
+    implementation libs.bundles.compose
+    implementation libs.androidx.activity.compose
+    implementation libs.navigation.compose
+    implementation libs.androidx.constraintlayout.compose
     implementation libs.compose.ui.test.junit4
+    // Test
     testImplementation libs.junit
-    androidTestImplementation libs.work.testing
-    androidTestImplementation libs.navigation.testing
-    androidTestImplementation libs.test.core
-    androidTestImplementation libs.test.core.ktx
-    androidTestImplementation libs.test.ext.junit.ktx
-    androidTestImplementation libs.test.espresso.core
+    androidTestImplementation libs.bundles.test
+    // feature
+    implementation project(':feature:sample')
+//    implementation project(':feature:weather')
     //
-    implementation project(':annotation')
-    implementation project(':weather')
-    implementation project(':data')
-    implementation project(':ktx')
-    //
-    kapt project(':compiler')
-}
-
-protobuf {
-    protoc {
-        artifact = "com.google.protobuf:protoc:3.10.0"
-    }
-
-    // Generates the java Protobuf-lite code for the Protobufs in this project. See
-    // https://github.com/google/protobuf-gradle-plugin#customizing-protobuf-compilation
-    // for more information.
-    generateProtoTasks {
-        all().each { task ->
-            task.builtins {
-                java {
-                    option 'lite'
-                }
-            }
-        }
-    }
+    implementation project(':core:ui')
 }
 
 static def getVerName(String baseVerName, String autoBuildNumber) {

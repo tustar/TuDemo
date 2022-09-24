@@ -1,0 +1,17 @@
+plugins {
+    id 'java-library'
+    id 'kotlin'
+}
+
+dependencies {
+    // Libs
+    implementation fileTree(dir: "libs", include: ["*.jar"])
+    // Kotlin
+    implementation libs.kotlin.stdlib.jdk8
+    implementation libs.kotlinx.coroutines.core
+    implementation libs.kotlinx.coroutines.android
+}
+java {
+    sourceCompatibility = JavaVersion.VERSION_1_8
+    targetCompatibility = JavaVersion.VERSION_1_8
+}

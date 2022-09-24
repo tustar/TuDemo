@@ -2,17 +2,12 @@
 <project version="4">
   <component name="CompilerConfiguration">
     <bytecodeTargetLevel target="1.8">
-      <module name="TuDemo-annotation" target="1.7" />
-      <module name="TuDemo-compiler" target="1.7" />
-      <module name="TuDemo-jstudy" target="1.7" />
-      <module name="TuDemo-ktstudy" target="1.7" />
-      <module name="TuDemo-TuDemo-annotation" target="1.7" />
-      <module name="TuDemo-TuDemo-compiler" target="1.7" />
-      <module name="TuDemo.buildSrc" target="11" />
-      <module name="TuDemo.gameturbo" target="11" />
-      <module name="TuDemo.theme" target="11" />
-      <module name="TuDemo.TuDemo-ktx" target="1.8" />
-      <module name="TuDemo.weatherRes" target="11" />
+      <module name="TuDemo.app" target="11" />
+      <module name="TuDemo.core.common" target="11" />
+      <module name="TuDemo.core.data" target="11" />
+      <module name="TuDemo.core.ui" target="11" />
+      <module name="TuDemo.core.utils" target="11" />
+      <module name="TuDemo.feature.sample" target="11" />
     </bytecodeTargetLevel>
   </component>
 </project>

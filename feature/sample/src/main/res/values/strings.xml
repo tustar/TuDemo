@@ -1,0 +1,21 @@
+<resources>
+    <string name="app_name">码农世界</string>
+    <string name="back">返回</string>
+    <string name="ok">确定</string>
+    <string name="cancel">取消</string>
+    <!-- Title -->
+    <string name="title_home">范例</string>
+    <!-- Group -->
+    <string name="group_custom_widget">自定义控件</string>
+    <string name="group_system_widget">系统控件</string>
+    <string name="group_jetpack">Jetpack</string>
+    <string name="group_optimize">性能优化</string>
+    <!-- group_custom_widget -->
+    <string name="custom_svg_china">Svg中国地图</string>
+    <string name="custom_path_measure">自定义PathMeasureView</string>
+    <string name="custom_composes_example">Composes示例</string>
+    <!--group_system_widget-->
+    <!--group_jetpack-->
+    <!--group_optimize  -->
+
+</resources>

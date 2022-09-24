@@ -1,65 +1,36 @@
+/*
+ * Copyright 2021 The Android Open Source Project
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     https://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
 buildscript {
     repositories {
-//        maven { url 'http://maven.aliyun.com/nexus/content/groups/public/' }
-//        maven { url 'http://maven.aliyun.com/nexus/content/repositories/jcenter' }
-//        maven { url 'http://maven.aliyun.com/nexus/content/repositories/google' }
-//        maven { url 'http://maven.aliyun.com/nexus/content/repositories/gradle-plugin' }
         google()
         mavenCentral()
     }
+
     dependencies {
-        classpath libs.android.gp
-        classpath libs.kotlin.gp
-        classpath libs.navigation.safe.args.gp
-        classpath libs.dagger.hilt.android.gp
-        classpath 'org.jetbrains.kotlin:kotlin-gradle-plugin:1.6.10'
+        classpath 'app.cash.molecule:molecule-gradle-plugin:0.4.0'
     }
 }
 
-allprojects {
-    repositories {
-        google()
-        mavenCentral()
-    }
+plugins {
+    alias(libs.plugins.android.application) apply false
+    alias(libs.plugins.android.library) apply false
+    alias(libs.plugins.kotlin.jvm) apply false
+    alias(libs.plugins.hilt) apply false
+    alias(libs.plugins.protobuf) apply false
+    alias(libs.plugins.secrets) apply false
+    alias(libs.plugins.spotless) apply false
 }
-
-task clean(type: Delete) {
-    delete rootProject.buildDir
-}
-
-subprojects {
-    repositories {
-        mavenCentral()
-        google()
-        jcenter()
-    }
-
-    tasks.withType(JavaCompile).configureEach { task ->
-        task.options.encoding = 'UTF-8'
-        task.sourceCompatibility = JavaVersion.VERSION_1_8
-        task.targetCompatibility = JavaVersion.VERSION_1_8
-    }
-}
-
-//plugins {
-//    id 'com.diffplug.spotless' plugin '5.7.0'
-//}
-//
-//subprojects {
-//    repositories {
-//        google()
-//        jcenter()
-//    }
-//
-//    apply plugin: 'com.diffplug.spotless'
-//    spotless {
-//        kotlin {
-//            target '**/*.kt'
-//            targetExclude("$buildDir/**/*.kt")
-//            targetExclude('bin/**/*.kt')
-//
-//            ktlint("0.40.0")
-//            licenseHeaderFile rootProject.file('spotless/copyright.kt')
-//        }
-//    }
-//}

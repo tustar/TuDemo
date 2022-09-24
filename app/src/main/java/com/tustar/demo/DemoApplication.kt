@@ -1,21 +1,16 @@
 package com.tustar.demo
 
 import android.app.Application
-import android.util.Log
-import androidx.hilt.work.HiltWorkerFactory
-import androidx.work.Configuration
 import dagger.hilt.android.HiltAndroidApp
-import javax.inject.Inject
 
 @HiltAndroidApp
-class DemoApplication : Application(), Configuration.Provider {
+class DemoApplication : Application() {
 
-    @Inject
-    lateinit var workerFactory: HiltWorkerFactory
+    override fun onCreate() {
+        super.onCreate()
+    }
 
-    override fun getWorkManagerConfiguration(): Configuration =
-        Configuration.Builder()
-            .setWorkerFactory(workerFactory)
-            .setMinimumLoggingLevel(Log.VERBOSE)
-            .build()
+    override fun onTerminate() {
+        super.onTerminate()
+    }
 }

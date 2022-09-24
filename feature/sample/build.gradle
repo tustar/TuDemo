@@ -1,0 +1,80 @@
+plugins {
+    id 'com.android.library'
+    id 'kotlin-android'
+    id 'kotlin-kapt'
+    id 'dagger.hilt.android.plugin'
+    id: 'app.cash.molecule'
+}
+
+android {
+    compileSdk libs.versions.compileSdk.get().toInteger()
+    ndkVersion libs.versions.ndk.get()
+
+    defaultConfig {
+        minSdk libs.versions.minSdk.get().toInteger()
+        targetSdk libs.versions.targetSdk.get().toInteger()
+
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        consumerProguardFiles "consumer-rules.pro"
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+    kotlinOptions {
+        jvmTarget = libs.versions.jvmTarget.get()
+    }
+    buildFeatures {
+        viewBinding true
+        compose true
+    }
+    composeOptions {
+        kotlinCompilerExtensionVersion libs.versions.composeCompiler.get()
+    }
+}
+
+dependencies {
+    // Libs
+    implementation fileTree(dir: "libs", include: ["*.aar"])
+    implementation fileTree(dir: "libs", include: ["*.jar"])
+    // Kotlin
+    implementation libs.kotlin.stdlib.jdk8
+    implementation libs.kotlinx.coroutines.core
+    implementation libs.kotlinx.coroutines.android
+    // androidx
+    implementation libs.androidx.core.ktx
+    implementation libs.androidx.appcompat
+    implementation libs.androidx.activity.ktx
+    implementation libs.androidx.fragment.ktx
+    // Google
+    implementation libs.google.material
+    // Hilt
+    implementation libs.hilt.android
+    kapt libs.hilt.compiler
+    kapt libs.hilt.ext.compiler
+    // Accompanist
+    implementation libs.bundles.accompanist
+    // Compose
+    implementation libs.bundles.compose
+    implementation libs.androidx.activity.compose
+    implementation libs.navigation.compose
+    implementation libs.androidx.constraintlayout.compose
+    implementation libs.compose.ui.test.junit4
+    // Test
+    testImplementation libs.junit
+    androidTestImplementation libs.bundles.test
+    // core
+    implementation project(':core:ui')
+    implementation project(':core:data')
+    implementation project(':core:utils')
+    // annotations
+    implementation project(':annotations:annotation')
+    kapt project(':annotations:compiler')
+}

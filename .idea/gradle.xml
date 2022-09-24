@@ -7,21 +7,26 @@
         <option name="testRunner" value="GRADLE" />
         <option name="distributionType" value="DEFAULT_WRAPPED" />
         <option name="externalProjectPath" value="$PROJECT_DIR$" />
-        <option name="gradleJvm" value="Embedded JDK" />
         <option name="modules">
           <set>
             <option value="$PROJECT_DIR$" />
-            <option value="$PROJECT_DIR$/annotation" />
+            <option value="$PROJECT_DIR$/annotations" />
+            <option value="$PROJECT_DIR$/annotations/annotation" />
+            <option value="$PROJECT_DIR$/annotations/compiler" />
             <option value="$PROJECT_DIR$/app" />
-            <option value="$PROJECT_DIR$/compiler" />
-            <option value="$PROJECT_DIR$/data" />
-            <option value="$PROJECT_DIR$/jstudy" />
-            <option value="$PROJECT_DIR$/ktstudy" />
-            <option value="$PROJECT_DIR$/ktx" />
-            <option value="$PROJECT_DIR$/weather" />
+            <option value="$PROJECT_DIR$/core" />
+            <option value="$PROJECT_DIR$/core/common" />
+            <option value="$PROJECT_DIR$/core/data" />
+            <option value="$PROJECT_DIR$/core/ui" />
+            <option value="$PROJECT_DIR$/core/utils" />
+            <option value="$PROJECT_DIR$/feature" />
+            <option value="$PROJECT_DIR$/feature/sample" />
+            <option value="$PROJECT_DIR$/feature/weather" />
+            <option value="$PROJECT_DIR$/study" />
+            <option value="$PROJECT_DIR$/study/java" />
+            <option value="$PROJECT_DIR$/study/kotlin" />
           </set>
         </option>
-        <option name="resolveModulePerSourceSet" value="false" />
       </GradleProjectSettings>
     </option>
   </component>
