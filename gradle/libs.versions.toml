@@ -14,6 +14,8 @@ kotlinxSerializationJson = "1.4.0"
 ksp = "1.7.10-1.0.6"
 ktlint = "0.43.0"
 #
+autoService = "1.0.1"
+#
 lint = "30.2.2"
 #
 dagger = "2.44"
@@ -42,6 +44,7 @@ protobuf = "3.21.5"
 protobufPlugin = "0.8.19"
 secrets = "2.0.1"
 spotless = "6.7.2"
+molecule = "0.4.0"
 
 [libraries]
 # Kotlin
@@ -65,9 +68,13 @@ hilt-work = { group = "androidx.hilt", name = "hilt-work", version.ref = "hilt" 
 amap-location = { group = "com.amap.api", name = "location", version = "5.1.0" }
 coil-compose = { group = "io.coil-kt", name = "coil-compose", version = "2.2.1" }
 squareup-kotlinpoet = { group = "com.squareup", name = "kotlinpoet", version = "1.12.0" }
+squareup-javapoet = { group = "com.squareup", name = "javapoet", version = "1.13.0" }
 alibaba-fastjson = { group = "com.alibaba", name = "fastjson", version = "1.2.83" }
+symbol-processing-api = { group = "com.google.devtools.ksp", name = "symbol-processing-api", version.ref = "ksp" }
 # Google
-google-auto-service = { group = "com.google.auto.service", name = "auto-service", version = "1.0" }
+google-auto-service = { group = "com.google.auto.service", name = "auto-service", version.ref = "autoService" }
+google-auto-service-annotations = { group = "com.google.auto.service", name = "auto-service-annotations", version.ref = "autoService" }
+auto-service-ksp = { group = "dev.zacsweers.autoservice", name = "auto-service-ksp", version = "1.0.0" }
 google-material = { group = "com.google.android.material", name = "material", version = "1.4.0" }
 google-maps = { group = "com.google.android.libraries.maps", name = "maps", version = "3.1.0-beta" }
 google-maps-v3-ktx = { group = "com.google.maps.android", name = "maps-v3-ktx", version = "2.2.0" }
@@ -165,6 +172,8 @@ paging-runtime = { group = "androidx.paging", name = "paging-runtime", version.r
 paging-runtime-ktx = { group = "androidx.paging", name = "paging-runtime-ktx", version.ref = "paging" }
 paging-common = { group = "androidx.paging", name = "paging-common", version.ref = "paging" }
 paging-compose = { group = "androidx.paging", name = "paging-compose", version = "1.0.0-alpha14" }
+#
+molecule = { group = "app.cash.molecule", name = "molecule-gradle-plugin", version.ref = "molecule" }
 
 [bundles]
 retrofit2 = ["retrofit2", "retrofit2-converter-json"]
@@ -192,3 +201,4 @@ kotlin-serialization = { id = "org.jetbrains.kotlin.plugin.serialization", versi
 protobuf = { id = "com.google.protobuf", version.ref = "protobufPlugin" }
 secrets = { id = "com.google.android.libraries.mapsplatform.secrets-gradle-plugin", version.ref = "secrets" }
 spotless = { id = "com.diffplug.spotless", version.ref = "spotless" }
+molecule = { id = "app.cash.molecule", version.ref = "molecule" }

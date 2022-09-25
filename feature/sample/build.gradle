@@ -3,7 +3,8 @@ plugins {
     id 'kotlin-android'
     id 'kotlin-kapt'
     id 'dagger.hilt.android.plugin'
-    id: 'app.cash.molecule'
+    id 'app.cash.molecule'
+    id 'com.google.devtools.ksp'
 }
 
 android {
@@ -76,5 +77,6 @@ dependencies {
     implementation project(':core:utils')
     // annotations
     implementation project(':annotations:annotation')
-    kapt project(':annotations:compiler')
+//    kapt project(':annotations:compiler')
+    ksp project(':annotations:ksp')
 }

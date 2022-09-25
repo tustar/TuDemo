@@ -33,11 +33,12 @@ rootProject.name = 'TuDemo'
 //
 include ':app'
 //
-include ':study:java'
-include ':study:kotlin'
+//include ':study:java'
+//include ':study:kotlin'
 //
 include ':annotations:annotation'
 include ':annotations:compiler'
+include ':annotations:ksp'
 //
 include ':core:ui'
 include ':core:common'
@@ -46,3 +47,4 @@ include ':core:utils'
 //
 include ':feature:sample'
 include ':feature:weather'
+

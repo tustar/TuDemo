@@ -13,6 +13,7 @@
             <option value="$PROJECT_DIR$/annotations" />
             <option value="$PROJECT_DIR$/annotations/annotation" />
             <option value="$PROJECT_DIR$/annotations/compiler" />
+            <option value="$PROJECT_DIR$/annotations/ksp" />
             <option value="$PROJECT_DIR$/app" />
             <option value="$PROJECT_DIR$/core" />
             <option value="$PROJECT_DIR$/core/common" />
@@ -22,9 +23,6 @@
             <option value="$PROJECT_DIR$/feature" />
             <option value="$PROJECT_DIR$/feature/sample" />
             <option value="$PROJECT_DIR$/feature/weather" />
-            <option value="$PROJECT_DIR$/study" />
-            <option value="$PROJECT_DIR$/study/java" />
-            <option value="$PROJECT_DIR$/study/kotlin" />
           </set>
         </option>
       </GradleProjectSettings>

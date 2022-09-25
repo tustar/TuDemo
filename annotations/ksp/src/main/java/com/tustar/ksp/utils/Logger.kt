@@ -1,23 +1,27 @@
-package com.tustar.compiler.utils
+package com.tustar.ksp.utils
 
+import com.google.devtools.ksp.processing.SymbolProcessorEnvironment
 import javax.annotation.processing.Messager
 import javax.tools.Diagnostic
 
-class Logger(private val messager: Messager) {
+class Logger(private val environment: SymbolProcessorEnvironment) {
+
+    private val logger = environment.logger
+
+    fun logging(logging: String) {
+        logger.logging(Consts.PREFIX_OF_LOGGER + logging)
+    }
 
     fun info(info: String) {
-        messager.printMessage(Diagnostic.Kind.NOTE, Consts.PREFIX_OF_LOGGER + info)
+        logger.info(Consts.PREFIX_OF_LOGGER + info)
     }
 
     fun error(error: String) {
-        messager.printMessage(
-            Diagnostic.Kind.ERROR,
-            "${Consts.PREFIX_OF_LOGGER}An exception is encountered, [$error]"
-        )
+        logger.error(Consts.PREFIX_OF_LOGGER + error)
     }
 
     fun warning(warning: String) {
-        messager.printMessage(Diagnostic.Kind.WARNING, Consts.PREFIX_OF_LOGGER + warning)
+        logger.warn(Consts.PREFIX_OF_LOGGER + warning)
     }
 
     fun error(error: Throwable?) {
@@ -25,8 +29,7 @@ class Logger(private val messager: Messager) {
             return
         }
 
-        messager.printMessage(
-            Diagnostic.Kind.ERROR,
+        logger.error(
             "${Consts.PREFIX_OF_LOGGER}An exception is encountered, [${error.message}]\n" + formatStackTrace(
                 error.stackTrace
             )

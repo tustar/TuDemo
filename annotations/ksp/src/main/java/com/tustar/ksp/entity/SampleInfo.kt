@@ -1,7 +1,7 @@
-package com.tustar.compiler.entity
+package com.tustar.ksp.entity
 
+import com.google.devtools.ksp.symbol.KSAnnotation
 import com.tustar.annotation.Sample
-import javax.lang.model.element.Element
 
 
 data class SampleInfo(
@@ -21,13 +21,17 @@ data class SampleInfo(
         const val FILE_NAME = "Sample"
         const val CLASS_NAME = "Sample"
 
-        fun Element.toSampleInfo(): SampleInfo {
-            val annotation = getAnnotation(Sample::class.java)
-            val group = annotation.group
-            val item = annotation.item
-            val createdAt = annotation.createdAt
-            val updatedAt = annotation.updatedAt
+        fun KSAnnotation.toSampleInfo(): SampleInfo {
+            val group = find("group")!!
+            val item = find("item")!!
+            val createdAt = find("createdAt")!!
+            val updatedAt = find("updatedAt")!!
             return SampleInfo(group, item, createdAt, updatedAt)
         }
+
+        private fun KSAnnotation.find(key: String) =
+            arguments.find {
+                it.name?.getShortName() == key
+            }?.value?.toString()
     }
 }

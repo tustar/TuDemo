@@ -3,6 +3,7 @@ plugins {
     id 'kotlin-android'
     id 'kotlin-kapt'
     id 'dagger.hilt.android.plugin'
+    id 'com.google.devtools.ksp'
 }
 
 android {
@@ -105,6 +106,10 @@ dependencies {
 //    implementation project(':feature:weather')
     //
     implementation project(':core:ui')
+    // annotations
+    implementation project(':annotations:annotation')
+//    kapt project(':annotations:compiler')
+    ksp project(':annotations:ksp')
 }
 
 static def getVerName(String baseVerName, String autoBuildNumber) {

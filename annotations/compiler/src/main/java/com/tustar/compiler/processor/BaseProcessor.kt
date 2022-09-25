@@ -16,7 +16,6 @@ abstract class BaseProcessor : AbstractProcessor() {
     private lateinit var elementUtils: Elements
     lateinit var filer: Filer
     lateinit var messager: Messager
-
     lateinit var logger: Logger
 
 
@@ -37,6 +36,6 @@ abstract class BaseProcessor : AbstractProcessor() {
     }
 
     override fun getSupportedSourceVersion(): SourceVersion {
-         return SourceVersion.latest()
+         return SourceVersion.latestSupported()
     }
 }
