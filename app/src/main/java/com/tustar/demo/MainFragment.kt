@@ -8,6 +8,7 @@ import com.tustar.annotation.Sample
 import com.tustar.demo.databinding.FragmentMainBinding
 import com.tustar.sample.ui.SamplesActivity
 import com.tustar.ui.BaseFragment
+import com.tustar.weather.ui.WeatherActivity
 
 @Sample(
     group = "group_custom_widget",
@@ -35,7 +36,10 @@ class MainFragment : BaseFragment<FragmentMainBinding>() {
                 startActivity(intent)
             }
             mainWeather.setOnClickListener {
-
+                val intent = Intent().apply {
+                    setClass(requireContext(), WeatherActivity::class.java)
+                }
+                startActivity(intent)
             }
         }
     }

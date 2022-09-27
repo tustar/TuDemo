@@ -1,10 +1,11 @@
 package com.tustar.weather.ui
 
-import LazyHorizontalGrid
 import androidx.compose.foundation.*
 import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.foundation.layout.*
-import androidx.compose.foundation.lazy.GridCells
+import androidx.compose.foundation.lazy.grid.GridCells
+import androidx.compose.foundation.lazy.grid.LazyHorizontalGrid
+import androidx.compose.foundation.lazy.grid.items
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material.Text
 import androidx.compose.runtime.*
@@ -21,7 +22,6 @@ import androidx.compose.ui.window.Dialog
 import com.tustar.data.source.remote.IndicesDaily
 import com.tustar.utils.compose.shape.CupHeadRoundedCornerShape
 import com.tustar.weather.R
-import items
 
 
 @OptIn(ExperimentalFoundationApi::class)
@@ -41,7 +41,7 @@ fun ItemWeatherIndices1D(indices1D: List<IndicesDaily>) {
         }
         //
         LazyHorizontalGrid(
-            cells = GridCells.Fixed(2),
+            rows = GridCells.Fixed(2),
             modifier = modifier,
         ) {
             items(items = indices1D) {
@@ -54,7 +54,7 @@ fun ItemWeatherIndices1D(indices1D: List<IndicesDaily>) {
                             openDialog = true
                             indicesDaily = it
                         }
-                        .fillParentMaxWidth(0.33f)
+                        .fillMaxWidth(0.33f)
                         .padding(vertical = 10.dp),
                     indicesDaily = it
                 )

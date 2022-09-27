@@ -1,5 +1,6 @@
 package com.tustar.weather.ui
 
+import android.annotation.SuppressLint
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
@@ -30,6 +31,7 @@ import com.tustar.weather.theme.WeatherTheme
 import com.tustar.weather.util.TrendSwitchMode
 
 
+@SuppressLint("UnusedMaterialScaffoldPaddingParameter")
 @OptIn(ExperimentalPagerApi::class)
 @Composable
 fun WeatherScreen(

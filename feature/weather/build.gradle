@@ -32,6 +32,7 @@ android {
         jvmTarget = libs.versions.jvmTarget.get()
     }
     buildFeatures {
+        viewBinding true
         compose true
     }
     composeOptions {

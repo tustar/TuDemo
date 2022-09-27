@@ -17,19 +17,11 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
 
-
         <activity
             android:name=".ui.SamplesActivity"
             android:exported="false"
             android:theme="@style/AppTheme"/>
-        <activity
-            android:name=".ui.home.DemoDetailActivity"
-            android:exported="false"
-            android:theme="@style/AppTheme" />
 
-        <service
-            android:name=".ui.recorder.RecorderService"
-            android:enabled="true" />
     </application>
 
 </manifest>

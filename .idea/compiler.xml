@@ -8,6 +8,7 @@
       <module name="TuDemo.core.ui" target="11" />
       <module name="TuDemo.core.utils" target="11" />
       <module name="TuDemo.feature.sample" target="11" />
+      <module name="TuDemo.feature.weather" target="11" />
     </bytecodeTargetLevel>
   </component>
 </project>
