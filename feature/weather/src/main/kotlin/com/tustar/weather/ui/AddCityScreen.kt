@@ -13,11 +13,11 @@ import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.KeyboardActions
 import androidx.compose.foundation.text.KeyboardOptions
-import androidx.compose.material.*
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Close
 import androidx.compose.material.icons.filled.Search
-import androidx.compose.material.icons.rounded.ArrowBackIosNew
+import androidx.compose.material.icons.rounded.ArrowBack
+import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -31,13 +31,12 @@ import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.google.accompanist.insets.statusBarsHeight
 import com.tustar.data.source.remote.City
+import com.tustar.ui.theme.AppTheme
 import com.tustar.utils.compose.selector
 import com.tustar.utils.compose.tint
 import com.tustar.weather.Location
 import com.tustar.weather.R
-import com.tustar.weather.theme.WeatherTheme
 import com.tustar.weather.util.isSame
 
 @Composable
@@ -57,7 +56,7 @@ fun AddCityScreen(
     viewModel.clearSearch()
     viewModel.requestTopCities()
     //
-    WeatherTheme {
+    AppTheme {
         AddCityContent(
             cities.values.toList(), searchCities, onSearchCities, topCities,
             onBackPressed, onBackHome,
@@ -80,8 +79,8 @@ private fun AddCityContent(
     onCityClick: (City) -> Unit,
 ) {
     Column {
-        Spacer(modifier = Modifier.statusBarsHeight())
-        TopAppBar(
+        Spacer(modifier = Modifier.statusBarsPadding())
+        MediumTopAppBar(
             title = {
                 Text(text = stringResource(R.string.weather_add_city))
             },
@@ -92,7 +91,7 @@ private fun AddCityContent(
                     interactionSource = interactionSource
                 ) {
                     Icon(
-                        imageVector = Icons.Rounded.ArrowBackIosNew,
+                        imageVector = Icons.Rounded.ArrowBack,
                         contentDescription = null,
                         tint = tint,
                     )
@@ -111,7 +110,6 @@ private fun AddCityContent(
     }
 }
 
-@OptIn(ExperimentalMaterialApi::class)
 @Composable
 fun SearchView(
     onSearchCities: (String) -> Unit,
@@ -155,7 +153,7 @@ fun SearchView(
                 }
             },
             colors = TextFieldDefaults.textFieldColors(
-                backgroundColor = Color(0xFFEDEDED),
+                containerColor = Color(0xFFEDEDED),
                 focusedIndicatorColor = Color.Transparent,
                 unfocusedIndicatorColor = Color.Transparent,
                 disabledIndicatorColor = Color.Transparent
@@ -185,7 +183,8 @@ fun SearchView(
         Text(text = stringResource(android.R.string.cancel),
             color = Color(0xFF333333),
             fontSize = 18.sp,
-            modifier = Modifier.padding(start = 16.dp)
+            modifier = Modifier
+                .padding(start = 16.dp)
                 .clickable(interactionSource = MutableInteractionSource(), indication = null) {
                     onBackHome()
                 })
@@ -196,8 +195,8 @@ fun SearchView(
     }
 }
 
+@OptIn(ExperimentalMaterial3Api::class)
 @ExperimentalFoundationApi
-@OptIn(ExperimentalMaterialApi::class)
 @Composable
 private fun SearchDropdown(
     searchCities: List<City>?,
@@ -275,7 +274,8 @@ private fun TopCityView(
         )
         LazyVerticalGrid(
             columns = GridCells.Fixed(3),
-            modifier = Modifier.fillMaxWidth()
+            modifier = Modifier
+                .fillMaxWidth()
                 .wrapContentHeight()
         ) {
             items(items = topCities) { city ->
@@ -288,7 +288,8 @@ private fun TopCityView(
                             Color(0xFF191919)
                         },
                         fontSize = 18.sp,
-                        modifier = Modifier.padding(vertical = 12.dp)
+                        modifier = Modifier
+                            .padding(vertical = 12.dp)
                             .clickable(
                                 interactionSource = MutableInteractionSource(),
                                 indication = null

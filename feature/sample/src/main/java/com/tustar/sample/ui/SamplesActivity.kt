@@ -21,7 +21,7 @@ import androidx.activity.compose.setContent
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.WindowCompat
-import com.tustar.sample.ui.theme.SamplesTheme
+import com.tustar.ui.theme.AppTheme
 import dagger.hilt.android.AndroidEntryPoint
 
 
@@ -37,7 +37,7 @@ class SamplesActivity : AppCompatActivity() {
         // This app draws behind the system bars, so we want to handle fitting system windows
         WindowCompat.setDecorFitsSystemWindows(window, false)
         setContent {
-            SamplesTheme {
+            AppTheme {
                 SamplesScreen(viewModel)
             }
         }

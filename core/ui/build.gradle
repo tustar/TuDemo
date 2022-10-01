@@ -1,5 +1,6 @@
 plugins {
     id 'tustar.android.library'
+    id 'tustar.android.library.compose'
 }
 
 android {
@@ -32,10 +33,6 @@ dependencies {
     //
     implementation fileTree(dir: "libs", include: ["*.aar"])
     implementation fileTree(dir: "libs", include: ["*.jar"])
-    // Kotlin
-    implementation libs.kotlin.stdlib.jdk8
-    implementation libs.kotlinx.coroutines.core
-    implementation libs.kotlinx.coroutines.android
     // AndroidX
     implementation libs.androidx.core.ktx
     implementation libs.androidx.appcompat
@@ -43,6 +40,9 @@ dependencies {
     implementation libs.androidx.datastore.core
     // Google
     implementation libs.google.material
+    // Compose
+    implementation libs.bundles.compose
+    implementation libs.androidx.compose.ui.test
     // Test
     androidTestImplementation libs.bundles.test
 }

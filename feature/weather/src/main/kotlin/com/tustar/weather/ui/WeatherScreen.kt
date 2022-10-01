@@ -6,9 +6,9 @@ import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.rememberLazyListState
-import androidx.compose.material.*
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.FormatListBulleted
+import androidx.compose.material.icons.filled.List
+import androidx.compose.material3.*
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
@@ -20,19 +20,17 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.google.accompanist.insets.navigationBarsHeight
-import com.google.accompanist.insets.statusBarsHeight
 import com.google.accompanist.pager.*
 import com.google.accompanist.systemuicontroller.SystemUiController
 import com.tustar.data.Weather
+import com.tustar.ui.theme.AppTheme
 import com.tustar.utils.compose.tint
 import com.tustar.weather.R
-import com.tustar.weather.theme.WeatherTheme
 import com.tustar.weather.util.TrendSwitchMode
 
 
-@SuppressLint("UnusedMaterialScaffoldPaddingParameter")
-@OptIn(ExperimentalPagerApi::class)
+@SuppressLint("UnusedMaterialScaffoldPaddingParameter", "UnusedMaterial3ScaffoldPaddingParameter")
+@OptIn(ExperimentalPagerApi::class, ExperimentalMaterial3Api::class)
 @Composable
 fun WeatherScreen(
     systemUiController: SystemUiController,
@@ -51,7 +49,7 @@ fun WeatherScreen(
     //
     val bg = R.drawable.bg_0_d
     systemUiController.setStatusBarColor(color = Color.Transparent)
-    WeatherTheme {
+    AppTheme {
         Box {
             Image(
                 painter = painterResource(id = bg),
@@ -62,7 +60,6 @@ fun WeatherScreen(
             )
 
             Scaffold(
-                backgroundColor = Color.Transparent,
                 topBar = {
                     TopBar(current.name, pagerState, onManageCity)
                 },
@@ -93,8 +90,8 @@ private fun TopBar(
     onManageCity: () -> Unit,
 ) {
     Column(modifier = Modifier.background(Color.Transparent)) {
-        Spacer(modifier = Modifier.statusBarsHeight())
-        TopAppBar(
+        Spacer(modifier = Modifier.statusBarsPadding())
+        MediumTopAppBar(
             title = {
                 Column(
                     horizontalAlignment = Alignment.Start,
@@ -122,14 +119,12 @@ private fun TopBar(
                     interactionSource = interactionSource
                 ) {
                     Icon(
-                        imageVector = Icons.Filled.FormatListBulleted,
+                        imageVector = Icons.Filled.List,
                         contentDescription = null,
                         tint = tint,
                     )
                 }
             },
-            elevation = 0.dp,
-            backgroundColor = Color.Transparent
         )
     }
 }
@@ -165,7 +160,7 @@ private fun weatherContent(weather: Weather, mode24H: TrendSwitchMode, mode15D: 
             ItemWeatherSources()
         }
         item {
-            Spacer(modifier = Modifier.navigationBarsHeight())
+            Spacer(modifier = Modifier.navigationBarsPadding())
         }
     }
 }

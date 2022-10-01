@@ -8,13 +8,13 @@ import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material.Icon
-import androidx.compose.material.IconButton
-import androidx.compose.material.Text
-import androidx.compose.material.TopAppBar
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.*
-import androidx.compose.material.icons.rounded.ArrowBackIosNew
+import androidx.compose.material.icons.rounded.ArrowBack
+import androidx.compose.material3.Icon
+import androidx.compose.material3.IconButton
+import androidx.compose.material3.MediumTopAppBar
+import androidx.compose.material3.Text
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -25,15 +25,14 @@ import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.google.accompanist.insets.statusBarsHeight
 import com.google.accompanist.placeholder.PlaceholderHighlight
 import com.google.accompanist.placeholder.placeholder
 import com.google.accompanist.placeholder.shimmer
 import com.google.accompanist.systemuicontroller.SystemUiController
+import com.tustar.ui.theme.AppTheme
 import com.tustar.utils.compose.tint
 import com.tustar.weather.Location
 import com.tustar.weather.R
-import com.tustar.weather.theme.WeatherTheme
 
 const val MAX_CITY_COUNT = 6
 
@@ -62,10 +61,9 @@ fun ManageCityScreen(
         inEditMode = true
     }
 
-    WeatherTheme {
-        systemUiController.setStatusBarColor(WeatherTheme.colors.primary)
+    AppTheme() {
         Column {
-            Spacer(modifier = Modifier.statusBarsHeight())
+            Spacer(modifier = Modifier.statusBarsPadding())
             TopBar(inEditMode, onEditModeChanged, showAdd, onAddCity, onBackPressed)
             LazyColumn(
                 contentPadding = PaddingValues(24.dp),
@@ -87,7 +85,7 @@ private fun TopBar(
     onAddCity: () -> Unit,
     onBackPressed: () -> Boolean,
 ) {
-    TopAppBar(
+    MediumTopAppBar(
         title = {
             Text(text = stringResource(R.string.weather_manage_city))
         },
@@ -98,7 +96,7 @@ private fun TopBar(
                 interactionSource = interactionSource,
             ) {
                 Icon(
-                    imageVector = Icons.Rounded.ArrowBackIosNew,
+                    imageVector = Icons.Rounded.ArrowBack,
                     contentDescription = null,
                     tint = tint,
                 )
@@ -148,7 +146,8 @@ private fun ItemCity(
 //    235CB3
 //            4CA8DB
     Box(
-        modifier = Modifier.fillMaxWidth()
+        modifier = Modifier
+            .fillMaxWidth()
             .height(dimensionResource(R.dimen.weather_manage_city_item_height))
             .combinedClickable(
                 onClick = {
@@ -190,13 +189,14 @@ private fun ItemCity(
                 contentDescription = null,
                 modifier = Modifier
                     .padding(top = 16.dp, end = 16.dp)
-                    .align(Alignment.TopEnd).clickable {
+                    .align(Alignment.TopEnd)
+                    .clickable {
                         onDelete(location)
                     },
                 tint = Color.White,
             )
             Icon(
-                imageVector = Icons.Filled.SwapVert,
+                imageVector = Icons.Filled.MoreVert,
                 contentDescription = null,
                 modifier = Modifier
                     .padding(bottom = 16.dp, end = 16.dp)

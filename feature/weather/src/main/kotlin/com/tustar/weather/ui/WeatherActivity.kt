@@ -18,7 +18,6 @@ class WeatherActivity : AppCompatActivity() {
         setContent {
             val systemUiController = rememberSystemUiController()
             WeatherScreen(systemUiController, viewModel) {
-
             }
         }
     }

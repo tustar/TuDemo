@@ -43,13 +43,12 @@ dependencies {
     // Libs
     implementation fileTree(dir: "libs", include: ["*.aar"])
     implementation fileTree(dir: "libs", include: ["*.jar"])
-    // Kotlin
-    implementation libs.kotlin.stdlib.jdk8
-    implementation libs.kotlinx.coroutines.core
-    implementation libs.kotlinx.coroutines.android
-    // androidx
+    // Androidx
     implementation libs.androidx.core.ktx
     implementation libs.androidx.appcompat
+    implementation libs.androidx.activity.ktx
+    implementation libs.androidx.fragment.ktx
+    implementation libs.androidx.constraintlayout
     // Google
     implementation libs.google.material
     // AndroidX
