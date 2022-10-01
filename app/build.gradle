@@ -1,6 +1,6 @@
 plugins {
-    id 'com.android.application'
-    id 'kotlin-android'
+    id 'tustar.android.application'
+    id 'tustar.android.application.compose'
     id 'kotlin-kapt'
     id 'dagger.hilt.android.plugin'
     id 'com.google.devtools.ksp'
@@ -52,16 +52,11 @@ android {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
     }
-    kotlinOptions {
-        jvmTarget = libs.versions.jvmTarget.get()
-    }
-
     buildFeatures {
-        viewBinding true
         compose true
     }
     composeOptions {
-        kotlinCompilerExtensionVersion libs.versions.composeCompiler.get()
+        kotlinCompilerExtensionVersion libs.versions.androidxComposeCompiler.get()
     }
 }
 
@@ -69,21 +64,15 @@ dependencies {
     // Libs
     implementation fileTree(dir: "libs", include: ["*.aar"])
     implementation fileTree(dir: "libs", include: ["*.jar"])
-    // Kotlin
-    implementation libs.kotlin.stdlib.jdk8
-    implementation libs.kotlinx.coroutines.core
-    implementation libs.kotlinx.coroutines.android
     // Androidx
     implementation libs.androidx.core.ktx
     implementation libs.androidx.appcompat
-    implementation libs.androidx.viewbinding
     implementation libs.androidx.activity.ktx
     implementation libs.androidx.fragment.ktx
     implementation libs.androidx.constraintlayout
-    implementation libs.androidx.multidex
     // Lifecycle
-    implementation libs.lifecycle.livedata.ktx
-    implementation libs.lifecycle.viewmodel.ktx
+    implementation libs.androidx.lifecycle.livedata.ktx
+    implementation libs.androidx.lifecycle.viewmodel.ktx
     // Google
     implementation libs.google.material
     // Hilt
@@ -94,12 +83,10 @@ dependencies {
     implementation libs.bundles.accompanist
     // Compose
     implementation libs.bundles.compose
-    implementation libs.androidx.activity.compose
-    implementation libs.navigation.compose
-    implementation libs.androidx.constraintlayout.compose
-    implementation libs.compose.ui.test.junit4
+    //
+    implementation libs.coil.kt
+    implementation libs.coil.kt.svg
     // Test
-    testImplementation libs.junit
     androidTestImplementation libs.bundles.test
     // feature
     implementation project(':feature:sample')

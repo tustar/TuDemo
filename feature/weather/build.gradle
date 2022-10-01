@@ -1,6 +1,6 @@
 plugins {
-    id 'com.android.library'
-    id 'kotlin-android'
+    id("tustar.android.feature")
+    id("tustar.android.library.compose")
     id 'kotlin-kapt'
     id 'dagger.hilt.android.plugin'
     id "com.google.protobuf"
@@ -32,11 +32,10 @@ android {
         jvmTarget = libs.versions.jvmTarget.get()
     }
     buildFeatures {
-        viewBinding true
         compose true
     }
     composeOptions {
-        kotlinCompilerExtensionVersion libs.versions.composeCompiler.get()
+        kotlinCompilerExtensionVersion libs.versions.androidxComposeCompiler.get()
     }
 }
 
@@ -56,8 +55,6 @@ dependencies {
     // AndroidX
     implementation libs.androidx.datastore.preferences
     implementation libs.androidx.datastore.core
-    // Amap
-    implementation libs.amap.location
     // Hilt
     implementation libs.hilt.android
     kapt libs.hilt.compiler
@@ -68,10 +65,7 @@ dependencies {
     implementation libs.bundles.accompanist
     // Compose
     implementation libs.bundles.compose
-    implementation libs.androidx.activity.compose
-    implementation libs.navigation.compose
-    implementation libs.androidx.constraintlayout.compose
-    implementation libs.compose.ui.test.junit4
+    implementation libs.androidx.compose.ui.test
     // Google
     implementation libs.google.material
     implementation libs.protobuf.javalite
@@ -79,7 +73,6 @@ dependencies {
     // Paging
     implementation libs.bundles.paging
     // Test
-    testImplementation libs.junit
     androidTestImplementation libs.bundles.test
     //
     implementation project(':core:ui')

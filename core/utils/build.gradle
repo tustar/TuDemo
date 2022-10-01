@@ -1,6 +1,5 @@
 plugins {
-    id 'com.android.library'
-    id 'kotlin-android'
+    id 'tustar.android.library'
 }
 
 android {
@@ -32,7 +31,7 @@ android {
         compose true
     }
     composeOptions {
-        kotlinCompilerExtensionVersion libs.versions.composeCompiler.get()
+        kotlinCompilerExtensionVersion libs.versions.androidxComposeCompiler.get()
     }
 }
 
@@ -49,15 +48,13 @@ dependencies {
     implementation libs.androidx.appcompat
     implementation libs.androidx.datastore.preferences
     implementation libs.androidx.datastore.core
-    implementation libs.androidx.viewbinding
     // Navigation
-    implementation libs.navigation.fragment.ktx
-    implementation libs.navigation.ui.ktx
+    implementation libs.androidx.navigation.fragment.ktx
+    implementation libs.androidx.navigation.ui.ktx
     // Compose
     implementation libs.bundles.compose
     // Google
     implementation libs.google.material
     // Test
-    testImplementation libs.junit
     androidTestImplementation libs.bundles.test
 }

@@ -1,6 +1,5 @@
 plugins {
-    id 'com.android.library'
-    id 'kotlin-android'
+    id 'tustar.android.library'
     id 'kotlin-kapt'
     id 'dagger.hilt.android.plugin'
     id 'kotlin-parcelize'
@@ -46,16 +45,15 @@ dependencies {
     implementation libs.androidx.appcompat
     // Google
     implementation libs.google.material
-    // Test
-    testImplementation libs.junit
-    androidTestImplementation libs.bundles.test
     // Hilt
     implementation libs.hilt.android
     kapt libs.hilt.compiler
     kapt libs.hilt.ext.compiler
     // Retrofit
-    implementation libs.bundles.retrofit2
-    implementation libs.okhttp3.logging.interceptor
+    implementation libs.bundles.retrofit
+    implementation libs.okhttp.logging.interceptor
     // Paging
     implementation libs.bundles.paging
+    // Test
+    androidTestImplementation libs.bundles.test
 }

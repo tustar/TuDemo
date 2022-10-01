@@ -1,6 +1,5 @@
 plugins {
-    id 'com.android.library'
-    id 'org.jetbrains.kotlin.android'
+    id 'tustar.android.library'
 }
 
 android {
@@ -42,10 +41,8 @@ dependencies {
     implementation libs.androidx.appcompat
     implementation libs.androidx.datastore.preferences
     implementation libs.androidx.datastore.core
-    implementation libs.androidx.viewbinding
     // Google
     implementation libs.google.material
     // Test
-    testImplementation libs.junit
     androidTestImplementation libs.bundles.test
 }
