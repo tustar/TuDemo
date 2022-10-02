@@ -14,35 +14,30 @@
  * limitations under the License.
  */
 
-package com.tustar.sample.navigation
+package com.tustar.dynamic.navigation
 
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
-import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavGraphBuilder
 import androidx.navigation.compose.composable
 import com.tustar.common.navigation.AppNavigationDestination
-import com.tustar.sample.ui.SamplesScreen
-import com.tustar.sample.ui.SamplesViewModel
+import com.tustar.dynamic.ui.DynamicScreen
 
-object SamplesDestination : AppNavigationDestination {
-    override val route = "sample_route"
-    override val destination = "sample_destination"
+
+object DynamicDestination : AppNavigationDestination {
+    override val route = "dynamic_route"
+    override val destination = "dynamic_destination"
 }
 
-fun NavGraphBuilder.samplesGraph(onBackClick: () -> Unit) {
-    composable(route = SamplesDestination.route) {
-        SamplesRoute()
+fun NavGraphBuilder.dynamicGraph() {
+    composable(route = DynamicDestination.route) {
+        DynamicRoute()
     }
 }
 
 @Composable
-fun SamplesRoute(
-    modifier: Modifier = Modifier,
-    viewModel: SamplesViewModel = hiltViewModel()
+fun DynamicRoute(
+    modifier: Modifier = Modifier
 ) {
-    SamplesScreen(viewModel = viewModel,
-        navigateToSample = {
-
-        })
+    DynamicScreen()
 }

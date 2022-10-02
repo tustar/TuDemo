@@ -4,10 +4,10 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
-import com.google.accompanist.systemuicontroller.rememberSystemUiController
 import com.tustar.common.navigation.AppNavigationDestination
+import com.tustar.dynamic.navigation.dynamicGraph
 import com.tustar.sample.navigation.SamplesDestination
-import com.tustar.sample.navigation.sampleGraph
+import com.tustar.sample.navigation.samplesGraph
 import com.tustar.weather.ui.weatherGraph
 
 @Composable
@@ -18,13 +18,13 @@ fun DemoNavHost(
     modifier: Modifier = Modifier,
     startDestination: String = SamplesDestination.route
 ) {
-    val systemUiController = rememberSystemUiController()
     NavHost(
         navController = navController,
         startDestination = startDestination,
         modifier = modifier,
     ) {
-        sampleGraph(onBackClick)
+        samplesGraph(onBackClick)
         weatherGraph()
+        dynamicGraph()
     }
 }

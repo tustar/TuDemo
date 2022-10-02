@@ -37,6 +37,7 @@
             <option value="$PROJECT_DIR$/core/ui" />
             <option value="$PROJECT_DIR$/core/utils" />
             <option value="$PROJECT_DIR$/feature" />
+            <option value="$PROJECT_DIR$/feature/dynamic" />
             <option value="$PROJECT_DIR$/feature/sample" />
             <option value="$PROJECT_DIR$/feature/weather" />
           </set>

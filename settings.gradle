@@ -62,4 +62,4 @@ include ':core:utils'
 //
 include ':feature:sample'
 include ':feature:weather'
-
+include ':feature:dynamic'

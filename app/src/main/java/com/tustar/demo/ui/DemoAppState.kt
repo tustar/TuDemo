@@ -15,6 +15,7 @@ import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
 import com.tustar.common.navigation.AppNavigationDestination
 import com.tustar.demo.navigation.TopLevelDestination
+import com.tustar.dynamic.navigation.DynamicDestination
 import com.tustar.sample.navigation.SamplesDestination
 import com.tustar.ui.JankMetricDisposableEffect
 import com.tustar.ui.design.icon.DemoIcons
@@ -66,6 +67,13 @@ class DemoAppState(
             destination = WeatherDestination.destination,
             selectedIcon = DrawableResourceIcon(DemoIcons.Bookmarks),
             unselectedIcon = DrawableResourceIcon(DemoIcons.BookmarksBorder),
+            iconTextId = weatherR.string.feature_weather
+        ),
+        TopLevelDestination(
+            route = DynamicDestination.route,
+            destination = DynamicDestination.destination,
+            selectedIcon = DrawableResourceIcon(DemoIcons.MenuBook),
+            unselectedIcon = DrawableResourceIcon(DemoIcons.MenuBookBorder),
             iconTextId = weatherR.string.feature_weather
         ),
     )
