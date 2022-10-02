@@ -28,6 +28,11 @@ fun Context.getStringByName(name: String): String {
     return getString(resId)
 }
 
+fun Context.getStringId(name: String):Int {
+   return resources.getIdentifier(name, "string", packageName)
+}
+
+
 fun Context.getDrawableByName(name: String): Drawable? {
     val resId = resources.getIdentifier(name, "drawable", packageName)
     return ContextCompat.getDrawable(this, resId)

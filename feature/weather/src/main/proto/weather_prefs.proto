@@ -3,7 +3,7 @@ syntax = "proto3";
 option java_package = "com.tustar.weather";
 option java_multiple_files = true;
 
-message Location {
+message WLocation {
     string id = 1;
     string lon = 2;
     string lat = 3;
@@ -17,8 +17,8 @@ message WeatherPrefs {
     Mode mode_24h = 1;
     Mode mode_15d = 2;
     int64 last_updated = 3;
-    Location locate = 4;
-    map<string, Location> cities = 5; // repeated => list
+    WLocation locate = 4;
+    map<string, WLocation> cities = 5; // repeated => list
 
     enum Mode {
         LIST = 0;

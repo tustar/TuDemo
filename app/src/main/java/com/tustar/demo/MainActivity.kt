@@ -1,24 +1,45 @@
 package com.tustar.demo
 
 import android.os.Bundle
-import com.tustar.annotation.Sample
+import androidx.activity.compose.setContent
+import androidx.compose.material3.windowsizeclass.ExperimentalMaterial3WindowSizeClassApi
+import androidx.compose.material3.windowsizeclass.calculateWindowSizeClass
+import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
+import androidx.core.view.WindowCompat
+import androidx.metrics.performance.JankStats
+import com.tustar.demo.ui.DemoApp
 import com.tustar.ui.BaseActivity
+import dagger.hilt.android.AndroidEntryPoint
+import javax.inject.Inject
 
-@Sample(
-    group = "group_custom_widget",
-    item = "custom_composes_example",
-    createdAt = "2022-08-25 10:15:00",
-    updatedAt = "2021-08-25 15:24:00",
-)
+
+@OptIn(ExperimentalMaterial3WindowSizeClassApi::class)
+@AndroidEntryPoint
 class MainActivity : BaseActivity() {
 
+    @Inject
+    lateinit var lazyStats: dagger.Lazy<JankStats>
+
     override fun onCreate(savedInstanceState: Bundle?) {
+        installSplashScreen()
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
-        if (savedInstanceState == null) {
-            supportFragmentManager.beginTransaction()
-                .replace(R.id.main_container, MainFragment.newInstance())
-                .commitNow()
+
+        // Turn off the decor fitting system windows, which allows us to handle insets,
+        // including IME animations
+        WindowCompat.setDecorFitsSystemWindows(window, false)
+
+        setContent {
+            DemoApp(calculateWindowSizeClass(this))
         }
+    }
+
+    override fun onResume() {
+        super.onResume()
+        lazyStats.get().isTrackingEnabled = true
+    }
+
+    override fun onPause() {
+        super.onPause()
+        lazyStats.get().isTrackingEnabled = false
     }
 }

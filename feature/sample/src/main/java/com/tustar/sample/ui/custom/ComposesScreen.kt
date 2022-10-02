@@ -1,6 +1,5 @@
 package com.tustar.sample.ui.custom
 
-import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -11,27 +10,13 @@ import androidx.compose.ui.layout.layout
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
-import com.tustar.annotation.Sample
-import com.tustar.ui.theme.AppTheme
+import com.tustar.ui.design.theme.DemoTheme
 
-
-@Sample(
-    group = "group_custom_widget",
-    item = "custom_composes_example",
-    createdAt = "2021-07-25 10:15:00",
-    updatedAt = "2021-08-02 15:24:00",
-)
-@Composable
-fun ComposesScreens() {
-    Column {
-
-    }
-}
 
 @Preview
 @Composable
 fun TextWithPaddingToBaselinePreview() {
-    AppTheme {
+    DemoTheme() {
         Text("Hi there!", Modifier.firstBaselineToTop(32.dp))
     }
 }
@@ -39,7 +24,7 @@ fun TextWithPaddingToBaselinePreview() {
 @Preview
 @Composable
 fun TextWithNormalPaddingPreview() {
-    AppTheme {
+    DemoTheme {
         Text("Hi there!", Modifier.padding(top = 32.dp))
     }
 }

@@ -43,6 +43,10 @@ dependencies {
     // Compose
     implementation libs.bundles.compose
     implementation libs.androidx.compose.ui.test
+    implementation libs.androidx.compose.material.iconsExtended
+    //
+    api libs.androidx.metrics
+    api libs.androidx.tracing.ktx
     // Test
     androidTestImplementation libs.bundles.test
 }

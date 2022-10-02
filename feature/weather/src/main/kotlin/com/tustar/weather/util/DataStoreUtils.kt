@@ -6,7 +6,8 @@ import androidx.datastore.core.DataStore
 import androidx.datastore.core.Serializer
 import androidx.datastore.dataStore
 import androidx.datastore.preferences.protobuf.InvalidProtocolBufferException
-import com.tustar.weather.Location
+import com.tustar.utils.Logger
+import com.tustar.weather.WLocation
 import com.tustar.weather.WeatherPrefs
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.catch
@@ -34,7 +35,7 @@ val Context.weatherPrefs: DataStore<WeatherPrefs> by dataStore(
     serializer = WeatherPrefsSerializer
 )
 
-suspend fun weatherPrefsFlow(context: Context): Flow<WeatherPrefs> = context.weatherPrefs.data
+fun weatherPrefsFlow(context: Context): Flow<WeatherPrefs> = context.weatherPrefs.data
     .catch { exception ->
         // dataStore.data throws an IOException when an error is encountered when reading data
         if (exception is IOException) {
@@ -46,7 +47,7 @@ suspend fun weatherPrefsFlow(context: Context): Flow<WeatherPrefs> = context.wea
     }
     .map { it }
 
-suspend fun updateLocate(context: Context, locate: Location) {
+suspend fun updateLocate(context: Context, locate: WLocation) {
     context.weatherPrefs.updateData { prefs ->
         prefs.toBuilder()
             .setLocate(locate)
@@ -54,7 +55,7 @@ suspend fun updateLocate(context: Context, locate: Location) {
     }
 }
 
-suspend fun addCity(context: Context, city: Location) {
+suspend fun addCity(context: Context, city: WLocation) {
     context.weatherPrefs.updateData { prefs ->
         prefs.toBuilder()
             .putCities(city.name, city)
@@ -62,7 +63,7 @@ suspend fun addCity(context: Context, city: Location) {
     }
 }
 
-suspend fun removeCity(context: Context, city: Location) {
+suspend fun removeCity(context: Context, city: WLocation) {
     context.weatherPrefs.updateData { prefs ->
         prefs.toBuilder()
             .removeCities(city.name)

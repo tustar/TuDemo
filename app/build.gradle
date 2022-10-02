@@ -73,10 +73,13 @@ dependencies {
     // Lifecycle
     implementation libs.androidx.lifecycle.livedata.ktx
     implementation libs.androidx.lifecycle.viewmodel.ktx
+    implementation libs.androidx.core.splashscreen
     // Google
     implementation libs.google.material
     // Hilt
     implementation libs.hilt.android
+    implementation 'androidx.metrics:metrics-performance:1.0.0-alpha01'
+    implementation project(path: ':core:common')
     kapt libs.hilt.compiler
     kapt libs.hilt.ext.compiler
     // Accompanist

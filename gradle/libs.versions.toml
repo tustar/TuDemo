@@ -77,6 +77,7 @@ turbine = "0.8.0"
 
 
 [libraries]
+accompanist-permissions = { module = "com.google.accompanist:accompanist-permissions", version.ref = "accompanist" }
 accompanist-navigation-animation = { module = "com.google.accompanist:accompanist-navigation-animation", version.ref = "accompanist" }
 accompanist-placeholder = { module = "com.google.accompanist:accompanist-placeholder", version.ref = "accompanist" }
 accompanist-pager = { module = "com.google.accompanist:accompanist-pager", version.ref = "accompanist" }
@@ -216,19 +217,23 @@ google-gson = { module = "com.google.code.gson:gson", version.ref = "gson" }
 google-material = { module = "com.google.android.material:material", version = "1.4.0" }
 
 [bundles]
-retrofit = ["retrofit-core", "retrofit-converter-json", "retrofit-kotlin-serialization"]
-accompanist = ["accompanist-flowlayout", "accompanist-pager", "accompanist-pager-indicators",
+retrofit = ["retrofit-core", "retrofit-converter-json",
+    "retrofit-kotlin-serialization"]
+accompanist = [
+    "accompanist-permissions", "accompanist-flowlayout",
+    "accompanist-pager", "accompanist-pager-indicators",
     "accompanist-swiperefresh", "accompanist-systemuicontroller",
     "accompanist-placeholder", "accompanist-navigation-animation", ]
 compose = ["androidx-compose-runtime", "androidx-compose-runtime-livedata",
-    "androidx-compose-runtime-tracing",
-    "androidx-compose-material3", "androidx-compose-material3-windowSizeClass",
-    "androidx-activity-compose", "androidx-navigation-compose",
-    "androidx-constraintlayout-compose", "androidx-compose-ui-tooling",
-    "androidx-compose-ui-tooling-preview", ]
-coroutines = ["kotlinx-coroutines-core", "kotlinx-coroutines-android", "kotlinx-coroutines-test"]
+    "androidx-compose-runtime-tracing", "androidx-compose-material3",
+    "androidx-compose-material3-windowSizeClass", "androidx-activity-compose",
+    "androidx-navigation-compose", "androidx-constraintlayout-compose",
+    "androidx-compose-ui-tooling", "androidx-compose-ui-tooling-preview", ]
+coroutines = ["kotlinx-coroutines-core", "kotlinx-coroutines-android",
+    "kotlinx-coroutines-test"]
 paging = ["paging-runtime", "paging-runtime-ktx", "paging-compose"]
-test = ["androidx-test-core", "androidx-test-runner", "androidx-test-ext", "androidx-test-espresso-core", ]
+test = ["androidx-test-core", "androidx-test-runner",
+    "androidx-test-ext", "androidx-test-espresso-core", ]
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "androidGradlePlugin" }

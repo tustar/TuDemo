@@ -62,10 +62,6 @@ dependencies {
     implementation libs.androidx.compose.ui.test
     // Test
     androidTestImplementation libs.bundles.test
-    // core
-    implementation project(':core:ui')
-    implementation project(':core:data')
-    implementation project(':core:utils')
     // annotations
     implementation project(':annotations:annotation')
     kapt project(':annotations:compiler')

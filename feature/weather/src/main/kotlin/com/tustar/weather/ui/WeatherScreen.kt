@@ -1,55 +1,146 @@
 package com.tustar.weather.ui
 
+import android.Manifest
 import android.annotation.SuppressLint
+import android.content.Context
+import android.location.Criteria
+import android.location.LocationListener
+import android.location.LocationManager
+import android.os.Build
 import androidx.compose.foundation.Image
-import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.LazyListScope
 import androidx.compose.foundation.lazy.rememberLazyListState
-import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.List
-import androidx.compose.material3.*
+import androidx.compose.material3.Button
+import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
-import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.platform.LocalLifecycleOwner
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
-import androidx.compose.ui.unit.sp
-import com.google.accompanist.pager.*
+import androidx.hilt.navigation.compose.hiltViewModel
+import androidx.lifecycle.Lifecycle
+import androidx.lifecycle.compose.ExperimentalLifecycleComposeApi
+import androidx.lifecycle.compose.collectAsStateWithLifecycle
+import com.google.accompanist.permissions.ExperimentalPermissionsApi
+import com.google.accompanist.permissions.rememberMultiplePermissionsState
 import com.google.accompanist.systemuicontroller.SystemUiController
+import com.google.accompanist.systemuicontroller.rememberSystemUiController
 import com.tustar.data.Weather
-import com.tustar.ui.theme.AppTheme
-import com.tustar.utils.compose.tint
+import com.tustar.ui.design.component.DemoLoadingWheel
+import com.tustar.ui.design.theme.DemoTheme
+import com.tustar.utils.actionLocationSourceSettings
+import com.tustar.utils.compose.dialog.ActionDialog
+import com.tustar.utils.isLocationEnable
+import com.tustar.utils.observeAsState
 import com.tustar.weather.R
+import com.tustar.weather.WeatherPrefs
 import com.tustar.weather.util.TrendSwitchMode
 
-
-@SuppressLint("UnusedMaterialScaffoldPaddingParameter", "UnusedMaterial3ScaffoldPaddingParameter")
-@OptIn(ExperimentalPagerApi::class, ExperimentalMaterial3Api::class)
+@OptIn(ExperimentalPermissionsApi::class)
 @Composable
 fun WeatherScreen(
     systemUiController: SystemUiController,
-    viewModel: WeatherViewModel,
-    onManageCity: () -> Unit,
+    viewModel: WeatherViewModel = hiltViewModel(),
 ) {
-    val weatherPrefs by viewModel.weatherPrefs.collectAsState()
+    val permissions = mutableListOf(
+        Manifest.permission.ACCESS_FINE_LOCATION,
+        Manifest.permission.ACCESS_COARSE_LOCATION
+    )
+    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
+        permissions.add(Manifest.permission.ACCESS_BACKGROUND_LOCATION)
+    }
+    val locationPermissionsState = rememberMultiplePermissionsState(permissions)
+    if (locationPermissionsState.allPermissionsGranted) {
+        AllPermissionsGranted(systemUiController, viewModel)
+    } else {
+        Column {
+            val allPermissionsRevoked =
+                locationPermissionsState.permissions.size ==
+                        locationPermissionsState.revokedPermissions.size
+
+            val textToShow = if (!allPermissionsRevoked) {
+                // If not all the permissions are revoked, it's because the user accepted the COARSE
+                // location permission, but not the FINE one.
+                "Yay! Thanks for letting me access your approximate location. " +
+                        "But you know what would be great? If you allow me to know where you " +
+                        "exactly are. Thank you!"
+            } else if (locationPermissionsState.shouldShowRationale) {
+                // Both location permissions have been denied
+                "Getting your exact location is important for this app. " +
+                        "Please grant us fine location. Thank you :D"
+            } else {
+                // First time the user sees this feature or the user doesn't want to be asked again
+                "This feature requires location permission"
+            }
+
+            val buttonText = if (!allPermissionsRevoked) {
+                "Allow precise location"
+            } else {
+                "Request permissions"
+            }
+
+            Text(text = textToShow)
+            Spacer(modifier = Modifier.height(8.dp))
+            Button(onClick = { locationPermissionsState.launchMultiplePermissionRequest() }) {
+                Text(buttonText)
+            }
+        }
+    }
+}
+
+@Composable
+private fun AllPermissionsGranted(
+    systemUiController: SystemUiController,
+    viewModel: WeatherViewModel
+) {
+    val context = LocalContext.current
+    val lifecycleState by LocalLifecycleOwner.current.lifecycle.observeAsState()
+    if (lifecycleState == Lifecycle.Event.ON_RESUME) {
+        if (!context.isLocationEnable()) {
+            ActionDialog(title = R.string.weather_location_disable,
+                cancelAction = {
+                },
+                confirmAction = {
+                    context.actionLocationSourceSettings()
+                }) {
+            }
+        } else {
+            //
+            LocationEnable(systemUiController, viewModel)
+        }
+    }
+}
+
+@Composable
+private fun LocationEnable(
+    systemUiController: SystemUiController,
+    viewModel: WeatherViewModel
+) {
+    viewModel.getLocation(LocalContext.current)
+    WeatherContent(
+        systemUiController = systemUiController,
+        viewModel = viewModel
+    )
+}
+
+@OptIn(ExperimentalLifecycleComposeApi::class)
+@Composable
+fun WeatherContent(
+    systemUiController: SystemUiController,
+    viewModel: WeatherViewModel
+) {
     //
-    val cities by viewModel.cities.collectAsState()
-    val weather by viewModel.weather.collectAsState()
-    //
-    val locations = cities.values.toList()
-    val pagerState = rememberPagerState()
-    val current = locations[pagerState.currentPage]
-    viewModel.requestWeather(LocalContext.current, current)
-    //
+    val weatherUiState: WeatherUiState by viewModel.weatherUiState.collectAsStateWithLifecycle()
     val bg = R.drawable.bg_0_d
     systemUiController.setStatusBarColor(color = Color.Transparent)
-    AppTheme {
+    DemoTheme {
         Box {
             Image(
                 painter = painterResource(id = bg),
@@ -58,110 +149,80 @@ fun WeatherScreen(
                 modifier = Modifier
                     .fillMaxSize()
             )
-
-            Scaffold(
-                topBar = {
-                    TopBar(current.name, pagerState, onManageCity)
-                },
-            ) {
-                HorizontalPager(
-                    count = locations.size,
-                    state = pagerState,
-                    modifier = Modifier,
-                ) {
-                    weather?.let {
-                        weatherContent(
-                            it.weather,
-                            Pair(weatherPrefs.mode24H, viewModel::saveMode24H),
-                            Pair(weatherPrefs.mode24H, viewModel::saveMode15D),
-                        )
-                    }
-                }
-            }
+            WeatherContent(
+                weatherUiState = weatherUiState,
+                saveMode24H = viewModel::saveMode24H,
+                saveMode15D = viewModel::saveMode24H
+            )
         }
     }
 }
 
-@OptIn(ExperimentalPagerApi::class)
 @Composable
-private fun TopBar(
-    city: String,
-    pagerState: PagerState,
-    onManageCity: () -> Unit,
+private fun WeatherContent(
+    weatherUiState: WeatherUiState,
+    saveMode24H: (Context, WeatherPrefs.Mode) -> Unit,
+    saveMode15D: (Context, WeatherPrefs.Mode) -> Unit,
+    modifier: Modifier = Modifier,
 ) {
-    Column(modifier = Modifier.background(Color.Transparent)) {
-        Spacer(modifier = Modifier.statusBarsPadding())
-        MediumTopAppBar(
-            title = {
-                Column(
-                    horizontalAlignment = Alignment.Start,
-                    modifier = Modifier
-                ) {
-                    Text(
-                        modifier = Modifier,
-                        text = city,
-                        color = Color.White,
-                        fontSize = 20.sp,
-                    )
-                    HorizontalPagerIndicator(
-                        pagerState = pagerState,
-                        modifier = Modifier.padding(top = 6.dp),
-                        activeColor = Color.White,
-                        inactiveColor = Color(0x66FFFFFF),
-                        indicatorWidth = 4.dp,
-                    )
-                }
-            },
-            actions = {
-                val (interactionSource, tint) = tint()
-                IconButton(
-                    onClick = { onManageCity() },
-                    interactionSource = interactionSource
-                ) {
-                    Icon(
-                        imageVector = Icons.Filled.List,
-                        contentDescription = null,
-                        tint = tint,
-                    )
-                }
-            },
-        )
-    }
-}
-
-@Composable
-private fun weatherContent(weather: Weather, mode24H: TrendSwitchMode, mode15D: TrendSwitchMode) {
     val listState = rememberLazyListState()
     LazyColumn(state = listState) {
         item {
-            ItemWeatherHeader(
-                weather.weatherNow, weather.warning, weather.airNow
-            )
+            Spacer(Modifier.windowInsetsTopHeight(WindowInsets.safeDrawing))
+        }
+        when (weatherUiState) {
+            WeatherUiState.Loading -> item {
+                DemoLoadingWheel(
+                    modifier = modifier,
+                    contentDesc = stringResource(id = R.string.weather_loading),
+                )
+            }
+            is WeatherUiState.Success -> {
+                val weather = weatherUiState.weather
+                val mode24H = TrendSwitchMode(weatherUiState.prefs.mode24H, saveMode24H)
+                val mode15D = TrendSwitchMode(weatherUiState.prefs.mode24H, saveMode15D)
+                WeatherBody(weather, mode24H, mode15D)
+            }
+            WeatherUiState.Error -> {
+
+            }
         }
         item {
-            ItemWeatherNow(weather.weatherNow)
+            Spacer(Modifier.windowInsetsBottomHeight(WindowInsets.safeDrawing))
         }
-        item {
-            ItemWeather3D(weather.daily15D.subList(0, 3), weather.air5D.subList(0, 3))
-        }
-        item {
-            ItemWeather24H(weather.hourly24H, mode24H)
-        }
-        item {
-            ItemWeather15D(weather.daily15D, weather.air5D, mode15D)
-        }
-        item {
-            ItemWeatherSunrise(weather.daily15D[0])
-        }
-        item {
-            ItemWeatherIndices1D(weather.indices1D)
-        }
-        item {
-            ItemWeatherSources()
-        }
-        item {
-            Spacer(modifier = Modifier.navigationBarsPadding())
-        }
+    }
+}
+
+private fun LazyListScope.WeatherBody(
+    weather: Weather,
+    mode24H: TrendSwitchMode,
+    mode15D: TrendSwitchMode
+) {
+    item {
+        ItemWeatherHeader(
+            weather.weatherNow, weather.warning, weather.airNow
+        )
+    }
+    item {
+        ItemWeatherNow(weather.weatherNow)
+    }
+    item {
+        ItemWeather3D(weather.daily15D.subList(0, 3), weather.air5D.subList(0, 3))
+    }
+    item {
+        ItemWeather24H(weather.hourly24H, mode24H)
+    }
+    item {
+        ItemWeather15D(weather.daily15D, weather.air5D, mode15D)
+    }
+    item {
+        ItemWeatherSunrise(weather.daily15D[0])
+    }
+    item {
+        ItemWeatherIndices1D(weather.indices1D)
+    }
+    item {
+        ItemWeatherSources()
     }
 }
 

@@ -33,7 +33,7 @@ class AndroidFeatureConventionPlugin : Plugin<Project> {
             extensions.configure<LibraryExtension> {
                 defaultConfig {
 //                    testInstrumentationRunner =
-//                        "com.tustar.core.testing.NiaTestRunner"
+//                        "com.tustar.core.testing.AppTestRunner"
                 }
             }
 
@@ -44,6 +44,7 @@ class AndroidFeatureConventionPlugin : Plugin<Project> {
                 add("implementation", project(":core:ui"))
                 add("implementation", project(":core:data"))
                 add("implementation", project(":core:utils"))
+                add("implementation", project(":core:common"))
 
                 // Kotlin
                 add("implementation", libs.findLibrary("kotlin.stdlib.jdk8").get())

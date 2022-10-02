@@ -1,18 +1,22 @@
 package com.tustar.weather.ui
 
+import android.annotation.SuppressLint
 import android.content.Context
+import android.location.Criteria
+import android.location.Location
+import android.location.LocationListener
+import android.location.LocationManager
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.tustar.common.Result
+import com.tustar.common.asResult
 import com.tustar.data.Weather
 import com.tustar.data.source.WeatherRepository
-import com.tustar.data.source.remote.City
-import com.tustar.weather.Location
+import com.tustar.utils.Logger
 import com.tustar.weather.WeatherPrefs
 import com.tustar.weather.util.*
 import dagger.hilt.android.lifecycle.HiltViewModel
-import kotlinx.coroutines.flow.MutableStateFlow
-import kotlinx.coroutines.flow.StateFlow
-import kotlinx.coroutines.flow.collect
+import kotlinx.coroutines.flow.*
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
@@ -21,58 +25,52 @@ open class WeatherViewModel @Inject constructor(
     private val weatherRepository: WeatherRepository,
 ) : ViewModel() {
 
-    private val _homeWeather = MutableStateFlow<HomeWeather?>(null)
-    val homeWeather: StateFlow<HomeWeather?> = _homeWeather
-    private val _weather = MutableStateFlow<CityWeather?>(null)
-    val weather: StateFlow<CityWeather?> = _weather
-    private val _current = MutableStateFlow<Location>(Location.getDefaultInstance())
+    var weatherUiState: StateFlow<WeatherUiState> = MutableStateFlow(WeatherUiState.Loading)
 
-    //
-    val current: StateFlow<Location> = _current
-    private val _cities = MutableStateFlow<MutableMap<String, Location>>(mutableMapOf())
-    val cities: StateFlow<MutableMap<String, Location>> = _cities
-    private val _topCities = MutableStateFlow<List<City>>(emptyList())
-    val topCities: StateFlow<List<City>> = _topCities
-    private val _searchCities = MutableStateFlow<List<City>>(emptyList())
-    val searchCities: StateFlow<List<City>> = _searchCities
-
-    private val _weatherPrefs = MutableStateFlow(WeatherPrefs.getDefaultInstance())
-    val weatherPrefs: StateFlow<WeatherPrefs> = _weatherPrefs
-
-    fun requestLocateWeather(locate: Location) {
-        viewModelScope.launch {
-            val weatherNow = weatherRepository.weatherNow(locate.toParams())
-            _homeWeather.value = HomeWeather(locate, weatherNow.temp, weatherNow.text)
+    @SuppressLint("MissingPermission")
+    fun getLocation(context: Context) {
+        val locationManager = context.getSystemService(Context.LOCATION_SERVICE) as LocationManager
+        val criteria = Criteria().apply {
+            accuracy = Criteria.ACCURACY_FINE// 高精度
+            isAltitudeRequired = false// 不要求海拔
+            isBearingRequired = false// 不要求方位
+            isCostAllowed = true// 允许有花费
+            powerRequirement = Criteria.POWER_LOW// 低功耗
         }
+        // 从可用的位置提供器中，匹配以上标准的最佳提供器
+        val provider = locationManager.getBestProvider(criteria, true)
+            ?: LocationManager.GPS_PROVIDER
+        Logger.d("provider:$provider")
+        var location = locationManager.getLastKnownLocation(provider)
+        requestWeather(context, location)
+        val listener = LocationListener {
+            location = it
+            requestWeather(context, location)
+        }
+        locationManager.requestLocationUpdates(provider, 2000, 10.0F, listener)
     }
 
-    fun requestWeather(context: Context, location: Location) {
-        viewModelScope.launch {
-            _weather.value = CityWeather(
-                location,
-                weatherRepository.weather(location.toParams())
-            )
-            updateLastUpdated(context, System.currentTimeMillis())
-        }
-    }
+    /**
+     * adb -s emulator-5554 emu geo fix 20.49612 20.24010
+     *
+     * adb -s emulator-5554 emu geo fix 39.90874 116.39744
+     */
 
-    fun weatherPrefs(context: Context) {
-        viewModelScope.launch {
-            weatherPrefsFlow(context).collect { prefs ->
-                _weatherPrefs.value = prefs
-                _cities.value = mutableMapOf<String, Location>().apply {
-                    if (prefs.locate.isValid()) {
-                        put(prefs.locate.name, prefs.locate)
-                    }
-
-                    prefs.citiesMap.values.forEach { location ->
-                        if (location.isValid()) {
-                            put(location.name, location)
-                        }
-                    }
-                }
-            }
+    private fun requestWeather(context: Context, location: Location?) {
+        Logger.d("location: $location")
+        if (location == null) {
+            Logger.w("No location!")
+            return
         }
+        weatherUiState = weatherUiStateStream(
+            context = context,
+            location = location,
+            weatherRepository = weatherRepository
+        ).stateIn(
+            scope = viewModelScope,
+            started = SharingStarted.WhileSubscribed(5_000),
+            initialValue = WeatherUiState.Loading
+        )
     }
 
     fun saveMode24H(context: Context, mode24H: WeatherPrefs.Mode) {
@@ -87,85 +85,43 @@ open class WeatherViewModel @Inject constructor(
         }
     }
 
-    fun updateLocate(
+    private fun weatherUiStateStream(
         context: Context,
-        lon: String,
-        lat: String,
-        name: String,
-        adm1: String = "",
-        adm2: String = "",
-    ) {
-        val locate = Location.newBuilder()
-            .setLat(lat)
-            .setLon(lon)
-            .setName(name)
-            .setAuto(true)
-            .setAdm1(adm1)
-            .setAdm2(adm2)
-            .build()
-        _current.value = locate
-        viewModelScope.launch {
-            updateLocate(context, locate)
-            requestLocateWeather(locate)
-        }
-    }
-
-    fun requestTopCities() {
-        viewModelScope.launch {
-            _topCities.value = weatherRepository.geoTopCity()
-        }
-    }
-
-    fun searchCities(location: String) {
-        viewModelScope.launch {
-            if (location.isNullOrEmpty()) {
-                _searchCities.value = emptyList()
-            } else {
-                _searchCities.value = weatherRepository.geoCityLookup(location)
+        location: Location,
+        weatherRepository: WeatherRepository,
+    ): Flow<WeatherUiState> {
+        val prefsStream = weatherPrefsFlow(context)
+        // Observe the followed topics, as they could change over time.
+        val weatherStream: Flow<Weather> =
+            flow {
+                weatherRepository.weather(location.toParams())
             }
-        }
-    }
-
-    fun clearSearch() {
-        viewModelScope.launch {
-            _searchCities.value = emptyList()
-        }
-    }
-
-    fun updateCurrent(location: Location) {
-        viewModelScope.launch {
-            _current.value = location
-        }
-    }
-
-    fun addCity(context: Context, city: City) {
-        viewModelScope.launch {
-            val location = city.toLocation()
-            _current.value = location
-            addCity(context, location)
-            _cities.value = _cities.value.apply {
-                put(city.name, city.toLocation())
+        return combine(prefsStream, weatherStream, ::Pair)
+            .asResult()
+            .map { result ->
+                when (result) {
+                    is Result.Success -> {
+                        val (prefs, weather) = result.data
+                        WeatherUiState.Success(prefs, weather)
+                    }
+                    is Result.Loading -> {
+                        WeatherUiState.Loading
+                    }
+                    is Result.Error -> {
+                        WeatherUiState.Error
+                    }
+                }
             }
-        }
     }
 
-    fun removeCity(context: Context, city: Location) {
-        viewModelScope.launch {
-            com.tustar.weather.util.removeCity(context, city)
-            _cities.value = _cities.value.apply {
-                remove(city.name)
-            }
-        }
-    }
 }
 
-data class HomeWeather(
-    val locate: Location,
-    val temp: Int,
-    val text: String,
-)
+sealed interface WeatherUiState {
+    data class Success(
+        val prefs: WeatherPrefs,
+        val weather: Weather,
+    ) : WeatherUiState
 
-data class CityWeather(
-    val location: Location,
-    val weather: Weather,
-)
+    object Error : WeatherUiState
+    object Loading : WeatherUiState
+}

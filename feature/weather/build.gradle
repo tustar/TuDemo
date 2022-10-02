@@ -43,40 +43,31 @@ dependencies {
     // Libs
     implementation fileTree(dir: "libs", include: ["*.aar"])
     implementation fileTree(dir: "libs", include: ["*.jar"])
-    // Androidx
+    // androidx
     implementation libs.androidx.core.ktx
     implementation libs.androidx.appcompat
     implementation libs.androidx.activity.ktx
     implementation libs.androidx.fragment.ktx
-    implementation libs.androidx.constraintlayout
-    // Google
-    implementation libs.google.material
-    // AndroidX
     implementation libs.androidx.datastore.preferences
     implementation libs.androidx.datastore.core
+    implementation libs.androidx.appcompat.resources
+    // Google
+    implementation libs.google.material
+    implementation libs.protobuf.javalite
+    implementation libs.protobuf.kotlin.lite
     // Hilt
     implementation libs.hilt.android
     kapt libs.hilt.compiler
     kapt libs.hilt.ext.compiler
-    //
-    implementation libs.androidx.appcompat.resources
     // Accompanist
     implementation libs.bundles.accompanist
     // Compose
     implementation libs.bundles.compose
     implementation libs.androidx.compose.ui.test
-    // Google
-    implementation libs.google.material
-    implementation libs.protobuf.javalite
-    implementation libs.protobuf.kotlin.lite
     // Paging
     implementation libs.bundles.paging
     // Test
     androidTestImplementation libs.bundles.test
-    //
-    implementation project(':core:ui')
-    implementation project(':core:data')
-    implementation project(':core:utils')
 }
 
 protobuf {
