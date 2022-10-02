@@ -1,11 +1,7 @@
 package com.tustar.weather.ui
 
 import android.Manifest
-import android.annotation.SuppressLint
 import android.content.Context
-import android.location.Criteria
-import android.location.LocationListener
-import android.location.LocationManager
 import android.os.Build
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.*
@@ -31,7 +27,6 @@ import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.google.accompanist.permissions.ExperimentalPermissionsApi
 import com.google.accompanist.permissions.rememberMultiplePermissionsState
 import com.google.accompanist.systemuicontroller.SystemUiController
-import com.google.accompanist.systemuicontroller.rememberSystemUiController
 import com.tustar.data.Weather
 import com.tustar.ui.design.component.DemoLoadingWheel
 import com.tustar.ui.design.theme.DemoTheme
@@ -137,7 +132,7 @@ fun WeatherContent(
     viewModel: WeatherViewModel
 ) {
     //
-    val weatherUiState: WeatherUiState by viewModel.weatherUiState.collectAsStateWithLifecycle()
+    val weatherUiState by viewModel.uiState.collectAsStateWithLifecycle()
     val bg = R.drawable.bg_0_d
     systemUiController.setStatusBarColor(color = Color.Transparent)
     DemoTheme {

@@ -35,7 +35,7 @@ val Context.weatherPrefs: DataStore<WeatherPrefs> by dataStore(
     serializer = WeatherPrefsSerializer
 )
 
-fun weatherPrefsFlow(context: Context): Flow<WeatherPrefs> = context.weatherPrefs.data
+suspend fun weatherPrefsFlow(context: Context): Flow<WeatherPrefs> = context.weatherPrefs.data
     .catch { exception ->
         // dataStore.data throws an IOException when an error is encountered when reading data
         if (exception is IOException) {
