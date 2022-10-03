@@ -15,8 +15,10 @@ import androidx.navigation.NavDestination
 import androidx.navigation.NavDestination.Companion.hierarchy
 import com.tustar.demo.navigation.DemoNavHost
 import com.tustar.demo.navigation.TopLevelDestination
-import com.tustar.sample.navigation.SamplesDestination
-import com.tustar.ui.design.component.*
+import com.tustar.ui.design.component.DemoNavigationBar
+import com.tustar.ui.design.component.DemoNavigationBarItem
+import com.tustar.ui.design.component.DemoNavigationRail
+import com.tustar.ui.design.component.DemoNavigationRailItem
 import com.tustar.ui.design.icon.Icon.DrawableResourceIcon
 import com.tustar.ui.design.icon.Icon.ImageVectorIcon
 import com.tustar.ui.design.theme.DemoTheme
@@ -32,56 +34,49 @@ fun DemoApp(
     appState: DemoAppState = rememberDemoAppState(windowSizeClass)
 ) {
     DemoTheme {
-        val background: @Composable (@Composable () -> Unit) -> Unit =
-            when (appState.currentDestination?.route) {
-                SamplesDestination.route -> { content -> DemoGradientBackground(content = content) }
-                else -> { content -> DemoBackground(content = content) }
-            }
 
-        background {
-            Scaffold(
-                modifier = Modifier.semantics {
-                    testTagsAsResourceId = true
-                },
-                containerColor = Color.Transparent,
-                contentColor = MaterialTheme.colorScheme.onBackground,
-                bottomBar = {
-                    if (appState.shouldShowBottomBar) {
-                        DemoBottomBar(
-                            destinations = appState.topLevelDestinations,
-                            onNavigateToDestination = appState::navigate,
-                            currentDestination = appState.currentDestination
-                        )
-                    }
-                }
-            ) { padding ->
-                Row(
-                    Modifier
-                        .fillMaxSize()
-                        .windowInsetsPadding(
-                            WindowInsets.safeDrawing.only(
-                                WindowInsetsSides.Horizontal
-                            )
-                        )
-                ) {
-                    if (appState.shouldShowNavRail) {
-                        DemoNavRail(
-                            destinations = appState.topLevelDestinations,
-                            onNavigateToDestination = appState::navigate,
-                            currentDestination = appState.currentDestination,
-                            modifier = Modifier.safeDrawingPadding()
-                        )
-                    }
-
-                    DemoNavHost(
-                        navController = appState.navController,
-                        onBackClick = appState::onBackClick,
+        Scaffold(
+            modifier = Modifier.semantics {
+                testTagsAsResourceId = true
+            },
+            containerColor = Color.Transparent,
+            contentColor = MaterialTheme.colorScheme.onBackground,
+            bottomBar = {
+                if (appState.shouldShowBottomBar) {
+                    DemoBottomBar(
+                        destinations = appState.topLevelDestinations,
                         onNavigateToDestination = appState::navigate,
-                        modifier = Modifier
-                            .padding(padding)
-                            .consumedWindowInsets(padding)
+                        currentDestination = appState.currentDestination
                     )
                 }
+            }
+        ) { padding ->
+            Row(
+                Modifier
+                    .fillMaxSize()
+                    .windowInsetsPadding(
+                        WindowInsets.safeDrawing.only(
+                            WindowInsetsSides.Horizontal
+                        )
+                    )
+            ) {
+                if (appState.shouldShowNavRail) {
+                    DemoNavRail(
+                        destinations = appState.topLevelDestinations,
+                        onNavigateToDestination = appState::navigate,
+                        currentDestination = appState.currentDestination,
+                        modifier = Modifier.safeDrawingPadding()
+                    )
+                }
+
+                DemoNavHost(
+                    navController = appState.navController,
+                    onBackClick = appState::onBackClick,
+                    onNavigateToDestination = appState::navigate,
+                    modifier = Modifier
+                        .padding(padding)
+                        .consumedWindowInsets(padding)
+                )
             }
         }
     }

@@ -1,4 +1,4 @@
-package com.tustar.ui
+package com.tustar.ui.base
 
 import androidx.fragment.app.Fragment
 

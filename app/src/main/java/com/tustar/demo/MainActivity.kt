@@ -8,7 +8,7 @@ import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import androidx.core.view.WindowCompat
 import androidx.metrics.performance.JankStats
 import com.tustar.demo.ui.DemoApp
-import com.tustar.ui.BaseActivity
+import com.tustar.ui.base.BaseActivity
 import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
 

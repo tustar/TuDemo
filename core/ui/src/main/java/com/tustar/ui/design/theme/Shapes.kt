@@ -16,22 +16,14 @@
 
 package com.tustar.ui.design.theme
 
-import androidx.compose.runtime.Immutable
-import androidx.compose.runtime.staticCompositionLocalOf
-import androidx.compose.ui.graphics.Color
+import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material3.Shapes
+import androidx.compose.ui.unit.dp
 
-/**
- * A class to model gradient color values for Now in Android.
- */
-@Immutable
-data class GradientColors(
-    val primary: Color = Color.Unspecified,
-    val secondary: Color = Color.Unspecified,
-    val tertiary: Color = Color.Unspecified,
-    val neutral: Color = Color.Unspecified
+val shapes = Shapes(
+    extraSmall = RoundedCornerShape(4.dp),
+    small = RoundedCornerShape(8.dp),
+    medium = RoundedCornerShape(16.dp),
+    large = RoundedCornerShape(24.dp),
+    extraLarge = RoundedCornerShape(32.dp)
 )
-
-/**
- * A composition local for [GradientColors].
- */
-val LocalGradientColors = staticCompositionLocalOf { GradientColors() }
