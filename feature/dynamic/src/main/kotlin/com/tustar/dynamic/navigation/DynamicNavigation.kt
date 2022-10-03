@@ -16,10 +16,11 @@
 
 package com.tustar.dynamic.navigation
 
+import androidx.compose.animation.ExperimentalAnimationApi
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.navigation.NavGraphBuilder
-import androidx.navigation.compose.composable
+import com.google.accompanist.navigation.animation.composable
 import com.tustar.common.navigation.AppNavigationDestination
 import com.tustar.dynamic.ui.DynamicScreen
 
@@ -29,6 +30,7 @@ object DynamicDestination : AppNavigationDestination {
     override val destination = "dynamic_destination"
 }
 
+@OptIn(ExperimentalAnimationApi::class)
 fun NavGraphBuilder.dynamicGraph() {
     composable(route = DynamicDestination.route) {
         DynamicRoute()

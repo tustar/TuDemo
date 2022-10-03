@@ -1,16 +1,17 @@
 package com.tustar.demo.navigation
 
+import androidx.compose.animation.ExperimentalAnimationApi
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.navigation.NavHostController
-import androidx.navigation.compose.NavHost
+import com.google.accompanist.navigation.animation.AnimatedNavHost
 import com.tustar.common.navigation.AppNavigationDestination
 import com.tustar.dynamic.navigation.dynamicGraph
-import com.tustar.sample.navigation.SamplesDestination
 import com.tustar.sample.navigation.samplesGraph
-import com.tustar.weather.ui.WeatherDestination
-import com.tustar.weather.ui.weatherGraph
+import com.tustar.weather.navigation.WeatherDestination
+import com.tustar.weather.navigation.weatherGraph
 
+@OptIn(ExperimentalAnimationApi::class)
 @Composable
 fun DemoNavHost(
     navController: NavHostController,
@@ -19,7 +20,7 @@ fun DemoNavHost(
     modifier: Modifier = Modifier,
     startDestination: String = WeatherDestination.route
 ) {
-    NavHost(
+    AnimatedNavHost(
         navController = navController,
         startDestination = startDestination,
         modifier = modifier,

@@ -11,21 +11,24 @@ data class SampleInfo(
     val group: String,
     val name: String,
     val desc: String,
+    val image: String,
     val createdAt: String,
     val updatedAt: String,
 ) {
     fun toFunSpec(): String {
-        return "result += %T(group = \"$group\"" +
-                ", name = \"$name\"" +
-                ", desc = \"$desc\"" +
-                ", createdAt = \"$createdAt\"" +
-                ", updatedAt = \"$updatedAt\")"
+        return "result += %T(group = \"$group\", " +
+                "\nname = \"$name\", " +
+                "\ndesc = \"$desc\", " +
+                "\nimage = \"$image\", " +
+                "\ncreatedAt = \"$createdAt\", " +
+                "\nupdatedAt = \"$updatedAt\")"
     }
 
     object Columns {
         const val GROUP = "group"
         const val NAME = "name"
         const val DESC = "desc"
+        const val IMAGE = "image"
         const val CREATED_AT = "createdAt"
         const val UPDATED_AT = "updatedAt"
     }
@@ -41,18 +44,20 @@ data class SampleInfo(
             val group = annotation.group
             val name = annotation.name
             val desc = annotation.desc
+            val image = annotation.image
             val createdAt = annotation.createdAt
             val updatedAt = annotation.updatedAt
-            return SampleInfo(group, name, desc, createdAt, updatedAt)
+            return SampleInfo(group, name, desc, image, createdAt, updatedAt)
         }
 
         fun KSAnnotation.toSampleInfo(): SampleInfo {
             val group = find(Columns.GROUP)!!
-            val sample = find(Columns.NAME)!!
-            val sampleDesc = find(Columns.DESC)!!
+            val name = find(Columns.NAME)!!
+            val desc = find(Columns.DESC)!!
+            val image = find(Columns.IMAGE)!!
             val createdAt = find(Columns.CREATED_AT)!!
             val updatedAt = find(Columns.UPDATED_AT)!!
-            return SampleInfo(group, sample, sampleDesc, createdAt, updatedAt)
+            return SampleInfo(group, name, desc, image, createdAt, updatedAt)
         }
 
         private fun KSAnnotation.find(key: String) =
@@ -67,6 +72,7 @@ data class SampleInfo(
                         .addParameter(Columns.GROUP, String::class)
                         .addParameter(Columns.NAME, String::class)
                         .addParameter(Columns.DESC, String::class)
+                        .addParameter(Columns.IMAGE, String::class)
                         .addParameter(Columns.CREATED_AT, String::class)
                         .addParameter(Columns.UPDATED_AT, String::class)
                         .build()
@@ -84,6 +90,11 @@ data class SampleInfo(
                 .addProperty(
                     PropertySpec.builder(Columns.DESC, String::class)
                         .initializer(Columns.DESC)
+                        .build()
+                )
+                .addProperty(
+                    PropertySpec.builder(Columns.IMAGE, String::class)
+                        .initializer(Columns.IMAGE)
                         .build()
                 )
                 .addProperty(

@@ -8,9 +8,7 @@ import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.LazyListScope
 import androidx.compose.foundation.lazy.rememberLazyListState
-import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material3.Button
-import androidx.compose.material3.Text
+import androidx.compose.material3.*
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
@@ -19,7 +17,6 @@ import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.LocalLifecycleOwner
 import androidx.compose.ui.res.painterResource
-import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.Lifecycle
@@ -27,12 +24,8 @@ import androidx.lifecycle.compose.ExperimentalLifecycleComposeApi
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.google.accompanist.permissions.ExperimentalPermissionsApi
 import com.google.accompanist.permissions.rememberMultiplePermissionsState
-import com.google.accompanist.placeholder.PlaceholderHighlight
-import com.google.accompanist.placeholder.shimmer
-import com.google.accompanist.systemuicontroller.SystemUiController
 import com.tustar.data.Weather
-import com.tustar.ui.design.component.DemoLoadingWheel
-import com.tustar.ui.design.theme.DemoTheme
+import com.tustar.ui.design.component.DemoTopAppBar
 import com.tustar.utils.actionLocationSourceSettings
 import com.tustar.utils.compose.dialog.ActionDialog
 import com.tustar.utils.isLocationEnable
@@ -44,7 +37,6 @@ import com.tustar.weather.util.TrendSwitchMode
 @OptIn(ExperimentalPermissionsApi::class)
 @Composable
 fun WeatherScreen(
-    systemUiController: SystemUiController,
     viewModel: WeatherViewModel = hiltViewModel(),
 ) {
     val permissions = mutableListOf(
@@ -56,7 +48,7 @@ fun WeatherScreen(
     }
     val locationPermissionsState = rememberMultiplePermissionsState(permissions)
     if (locationPermissionsState.allPermissionsGranted) {
-        AllPermissionsGranted(systemUiController, viewModel)
+        AllPermissionsGranted(viewModel)
     } else {
         Column {
             val allPermissionsRevoked =
@@ -95,7 +87,6 @@ fun WeatherScreen(
 
 @Composable
 private fun AllPermissionsGranted(
-    systemUiController: SystemUiController,
     viewModel: WeatherViewModel
 ) {
     val context = LocalContext.current
@@ -111,19 +102,17 @@ private fun AllPermissionsGranted(
             }
         } else {
             //
-            LocationEnable(systemUiController, viewModel)
+            LocationEnable(viewModel)
         }
     }
 }
 
 @Composable
 private fun LocationEnable(
-    systemUiController: SystemUiController,
     viewModel: WeatherViewModel
 ) {
     viewModel.getLocation(LocalContext.current)
     WeatherContent(
-        systemUiController = systemUiController,
         viewModel = viewModel
     )
 }
@@ -131,28 +120,24 @@ private fun LocationEnable(
 @OptIn(ExperimentalLifecycleComposeApi::class)
 @Composable
 fun WeatherContent(
-    systemUiController: SystemUiController,
     viewModel: WeatherViewModel
 ) {
     //
     val weatherUiState by viewModel.uiState.collectAsStateWithLifecycle()
     val bg = R.drawable.bg_0_d
-    systemUiController.setStatusBarColor(color = Color.Transparent)
-    DemoTheme {
-        Box {
-            Image(
-                painter = painterResource(id = bg),
-                contentDescription = null,
-                contentScale = ContentScale.Crop,
-                modifier = Modifier
-                    .fillMaxSize()
-            )
-            WeatherContent(
-                weatherUiState = weatherUiState,
-                saveMode24H = viewModel::saveMode24H,
-                saveMode15D = viewModel::saveMode24H
-            )
-        }
+    Box {
+        Image(
+            painter = painterResource(id = bg),
+            contentDescription = null,
+            contentScale = ContentScale.Crop,
+            modifier = Modifier
+                .fillMaxSize()
+        )
+        WeatherContent(
+            weatherUiState = weatherUiState,
+            saveMode24H = viewModel::saveMode24H,
+            saveMode15D = viewModel::saveMode24H
+        )
     }
 }
 

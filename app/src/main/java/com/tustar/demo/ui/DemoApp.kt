@@ -1,5 +1,6 @@
 package com.tustar.demo.ui
 
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
 import androidx.compose.material3.*
 import androidx.compose.material3.windowsizeclass.WindowSizeClass
@@ -34,12 +35,10 @@ fun DemoApp(
     appState: DemoAppState = rememberDemoAppState(windowSizeClass)
 ) {
     DemoTheme {
-
         Scaffold(
             modifier = Modifier.semantics {
                 testTagsAsResourceId = true
             },
-            containerColor = Color.Transparent,
             contentColor = MaterialTheme.colorScheme.onBackground,
             bottomBar = {
                 if (appState.shouldShowBottomBar) {
@@ -149,7 +148,11 @@ private fun DemoBottomBar(
                         )
                     }
                 },
-                label = { Text(stringResource(destination.iconTextId)) }
+                label = {
+                    Text(
+                        stringResource(destination.iconTextId),
+                    )
+                }
             )
         }
     }

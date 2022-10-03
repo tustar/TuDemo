@@ -10,9 +10,18 @@ import androidx.compose.ui.layout.layout
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
+import com.tustar.annotation.Sample
 import com.tustar.ui.design.theme.DemoTheme
 
 
+@Sample(
+    group = "sample_group_custom_widget",
+    name = "sample_custom_composes_example",
+    desc = "sample_custom_composes_example_desc",
+    image = "avatar_express",
+    createdAt = "2021-03-12 17:00:00",
+    updatedAt = "2021-07-02 10:56:00",
+)
 @Preview
 @Composable
 fun TextWithPaddingToBaselinePreview() {
@@ -24,9 +33,7 @@ fun TextWithPaddingToBaselinePreview() {
 @Preview
 @Composable
 fun TextWithNormalPaddingPreview() {
-    DemoTheme {
-        Text("Hi there!", Modifier.padding(top = 32.dp))
-    }
+    Text("Hi there!", Modifier.padding(top = 32.dp))
 }
 
 fun Modifier.firstBaselineToTop(firstBaselineToTop: Dp) = layout { measurable, constraints ->

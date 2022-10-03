@@ -1,6 +1,7 @@
 package com.tustar.demo.ui
 
 import android.os.Trace
+import androidx.compose.animation.ExperimentalAnimationApi
 import androidx.compose.material3.windowsizeclass.WindowHeightSizeClass
 import androidx.compose.material3.windowsizeclass.WindowSizeClass
 import androidx.compose.material3.windowsizeclass.WindowWidthSizeClass
@@ -12,7 +13,7 @@ import androidx.navigation.NavDestination
 import androidx.navigation.NavGraph.Companion.findStartDestination
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.currentBackStackEntryAsState
-import androidx.navigation.compose.rememberNavController
+import com.google.accompanist.navigation.animation.rememberAnimatedNavController
 import com.tustar.common.navigation.AppNavigationDestination
 import com.tustar.demo.navigation.TopLevelDestination
 import com.tustar.dynamic.navigation.DynamicDestination
@@ -20,15 +21,16 @@ import com.tustar.sample.navigation.SamplesDestination
 import com.tustar.ui.JankMetricDisposableEffect
 import com.tustar.ui.design.icon.DemoIcons
 import com.tustar.ui.design.icon.Icon.DrawableResourceIcon
-import com.tustar.weather.ui.WeatherDestination
+import com.tustar.weather.navigation.WeatherDestination
 import com.tustar.sample.R as sampleR
 import com.tustar.weather.R as weatherR
 import com.tustar.dynamic.R as dynamicR
 
+@OptIn(ExperimentalAnimationApi::class)
 @Composable
 fun rememberDemoAppState(
     windowSizeClass: WindowSizeClass,
-    navController: NavHostController = rememberNavController()
+    navController: NavHostController = rememberAnimatedNavController()
 ): DemoAppState {
     NavigationTrackingSideEffect(navController)
     return remember(navController, windowSizeClass) {

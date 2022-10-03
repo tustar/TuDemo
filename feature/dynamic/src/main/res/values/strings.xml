@@ -1,3 +1,7 @@
 <resources>
     <string name="dynamic_feature">动态技术</string>
+    <string name="dynamic_hook">Hook技术</string>
+    <string name="dynamic_hot_fix">热修复</string>
+    <string name="dynamic_re_plugin">插件化</string>
+    <string name="dynamic_component">组件化</string>
 </resources>

@@ -15,6 +15,7 @@ import com.tustar.sample.widget.SvgMapView
     group = "sample_group_custom_widget",
     name = "sample_custom_svg_china",
     desc = "sample_custom_svg_china_desc",
+    image = "avatar_1",
     createdAt = "2021-03-12 17:00:00",
     updatedAt = "2021-07-02 10:56:00",
 )
