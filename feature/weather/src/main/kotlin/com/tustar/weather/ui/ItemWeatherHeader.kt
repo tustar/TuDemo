@@ -18,12 +18,14 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.constraintlayout.compose.ConstraintLayout
 import com.tustar.data.source.remote.AirNow
+import com.tustar.data.source.remote.City
 import com.tustar.data.source.remote.Warning
 import com.tustar.data.source.remote.WeatherNow
 import com.tustar.weather.R
 
 @Composable
 fun ItemWeatherHeader(
+    city: City,
     weatherNow: WeatherNow,
     warnings: List<Warning>,
     airNow: AirNow,
@@ -85,6 +87,19 @@ fun ItemWeatherHeader(
 
             ItemDate()
         }
+
+        Text(
+            text = "${city.name}(${city.adm1})",
+            fontSize = 14.sp,
+            color = Color.White,
+            modifier = Modifier
+                .align(Alignment.BottomStart)
+                .padding(5.dp)
+                .background(
+                    Color(0x33000000), RoundedCornerShape(16.dp)
+                )
+                .padding(horizontal = 8.dp, vertical = 2.dp)
+        )
 
         ItemAirNow(
             modifier = Modifier.align(Alignment.BottomEnd)

@@ -8,6 +8,7 @@ import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.LazyListScope
 import androidx.compose.foundation.lazy.rememberLazyListState
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Button
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -26,6 +27,8 @@ import androidx.lifecycle.compose.ExperimentalLifecycleComposeApi
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.google.accompanist.permissions.ExperimentalPermissionsApi
 import com.google.accompanist.permissions.rememberMultiplePermissionsState
+import com.google.accompanist.placeholder.PlaceholderHighlight
+import com.google.accompanist.placeholder.shimmer
 import com.google.accompanist.systemuicontroller.SystemUiController
 import com.tustar.data.Weather
 import com.tustar.ui.design.component.DemoLoadingWheel
@@ -167,10 +170,7 @@ private fun WeatherContent(
         }
         when (weatherUiState) {
             WeatherUiState.Loading -> item {
-                DemoLoadingWheel(
-                    modifier = modifier,
-                    contentDesc = stringResource(id = R.string.weather_loading),
-                )
+
             }
             is WeatherUiState.Success -> {
                 val weather = weatherUiState.weather
@@ -195,7 +195,10 @@ private fun LazyListScope.WeatherBody(
 ) {
     item {
         ItemWeatherHeader(
-            weather.weatherNow, weather.warning, weather.airNow
+            weather.city,
+            weather.weatherNow,
+            weather.warning,
+            weather.airNow
         )
     }
     item {

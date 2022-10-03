@@ -58,7 +58,7 @@ interface HeService {
     @Headers("$BASE_URL:$GEO_BASE_URL")
     suspend fun geoCityLookup(
         @Query("location") location: String,
-    ): LookupResponse
+    ): CityLookupResponse
 
     companion object {
         const val HE_WEATHER_KEY = "fe09e51549014a1d93e708a836596d89"

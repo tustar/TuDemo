@@ -8,6 +8,7 @@ import com.tustar.common.navigation.AppNavigationDestination
 import com.tustar.dynamic.navigation.dynamicGraph
 import com.tustar.sample.navigation.SamplesDestination
 import com.tustar.sample.navigation.samplesGraph
+import com.tustar.weather.ui.WeatherDestination
 import com.tustar.weather.ui.weatherGraph
 
 @Composable
@@ -16,7 +17,7 @@ fun DemoNavHost(
     onNavigateToDestination: (AppNavigationDestination, String) -> Unit,
     onBackClick: () -> Unit,
     modifier: Modifier = Modifier,
-    startDestination: String = SamplesDestination.route
+    startDestination: String = WeatherDestination.route
 ) {
     NavHost(
         navController = navController,

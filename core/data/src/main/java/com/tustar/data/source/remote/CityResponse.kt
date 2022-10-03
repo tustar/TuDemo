@@ -9,7 +9,7 @@ class CityResponse(
     val topCityList: List<City>
 ) : Response(code, refer = refer)
 
-class LookupResponse(
+class CityLookupResponse(
     code: String,
     refer: Refer,
     val location: List<City>

@@ -16,6 +16,7 @@ class WeatherRepositoryImpl @Inject constructor(
 
     override
     suspend fun weather(location: String): Weather {
+        val city = service.geoCityLookup(location).location.first()
         val weatherNow = service.weatherNow(location).now
         val warning = service.warningNow(location).warning
         val airNow = service.airNow(location).now
@@ -24,6 +25,7 @@ class WeatherRepositoryImpl @Inject constructor(
         val daily15D = service.weather15D(location).daily
         val indices1D = service.indices1D(location).daily
         return Weather(
+            city = city,
             weatherNow = weatherNow,
             warning = warning,
             airNow = airNow,
