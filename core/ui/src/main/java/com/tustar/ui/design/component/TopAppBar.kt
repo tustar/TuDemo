@@ -81,8 +81,8 @@ fun DemoTopAppBar(
 @Composable
 fun DemoTopAppBar(
     @StringRes titleRes: Int,
-    actionIcon: ImageVector,
-    actionIconContentDescription: String?,
+    actionIcon: ImageVector? = null,
+    actionIconContentDescription: String? = null,
     modifier: Modifier = Modifier,
     colors: TopAppBarColors = TopAppBarDefaults.centerAlignedTopAppBarColors(),
     onActionClick: () -> Unit = {}
@@ -90,12 +90,14 @@ fun DemoTopAppBar(
     CenterAlignedTopAppBar(
         title = { Text(text = stringResource(id = titleRes)) },
         actions = {
-            IconButton(onClick = onActionClick) {
-                Icon(
-                    imageVector = actionIcon,
-                    contentDescription = actionIconContentDescription,
-                    tint = MaterialTheme.colorScheme.onSurface
-                )
+            if (actionIcon != null) {
+                IconButton(onClick = onActionClick) {
+                    Icon(
+                        imageVector = actionIcon,
+                        contentDescription = actionIconContentDescription,
+                        tint = MaterialTheme.colorScheme.onSurface
+                    )
+                }
             }
         },
         colors = colors,

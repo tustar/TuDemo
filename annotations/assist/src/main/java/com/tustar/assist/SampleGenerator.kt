@@ -1,8 +1,7 @@
-package com.tustar.ksp.processor
+package com.tustar.assist
 
 import com.squareup.kotlinpoet.*
 import com.squareup.kotlinpoet.ParameterizedTypeName.Companion.parameterizedBy
-import com.tustar.ksp.entity.SampleInfo
 
 object SampleGenerator {
 
@@ -30,42 +29,11 @@ object SampleGenerator {
         val companion = TypeSpec.companionObjectBuilder()
             .addFunction(buildFunSpec(packageName, items))
             .build()
-
-        return TypeSpec.classBuilder("Sample")
-            .primaryConstructor(
-                FunSpec.constructorBuilder()
-                    .addParameter("group", String::class)
-                    .addParameter("item", String::class)
-                    .addParameter("createdAt", String::class)
-                    .addParameter("updatedAt", String::class)
-                    .build()
-            )
-            .addProperty(
-                PropertySpec.builder("group", String::class)
-                    .initializer("group")
-                    .build()
-            )
-            .addProperty(
-                PropertySpec.builder("item", String::class)
-                    .initializer("item")
-                    .build()
-            )
-            .addProperty(
-                PropertySpec.builder("createdAt", String::class)
-                    .initializer("createdAt")
-                    .build()
-            )
-            .addProperty(
-                PropertySpec.builder("updatedAt", String::class)
-                    .initializer("updatedAt")
-                    .build()
-            )
-            .addType(companion)
-            .build()
+        return SampleInfo.sampleSpec(companion)
     }
 
     private fun <T> buildFun(
-        infos: MutableList<T>,
+        items: MutableList<T>,
         packageName: String,
         className: String,
         funName: String,
@@ -79,11 +47,10 @@ object SampleGenerator {
         val builder = FunSpec.builder(funName)
             .returns(ktListOfT)
             .addStatement("val result = %T()", ktArrayListOfT)
-        infos.forEach {
+        items.forEach {
             builder.addStatement(block.invoke(it), tClazz)
         }
         builder.addStatement("return result.sortedByDescending(${SampleInfo.CLASS_NAME}::updatedAt)")
         return builder.build()
     }
-
 }

@@ -23,6 +23,7 @@ import com.tustar.ui.design.icon.Icon.DrawableResourceIcon
 import com.tustar.weather.ui.WeatherDestination
 import com.tustar.sample.R as sampleR
 import com.tustar.weather.R as weatherR
+import com.tustar.dynamic.R as dynamicR
 
 @Composable
 fun rememberDemoAppState(
@@ -58,23 +59,23 @@ class DemoAppState(
         TopLevelDestination(
             route = SamplesDestination.route,
             destination = SamplesDestination.destination,
-            selectedIcon = DrawableResourceIcon(DemoIcons.Upcoming),
-            unselectedIcon = DrawableResourceIcon(DemoIcons.UpcomingBorder),
-            iconTextId = sampleR.string.feature_sample
+            selectedIcon = DrawableResourceIcon(DemoIcons.Home),
+            unselectedIcon = DrawableResourceIcon(DemoIcons.HomeBorder),
+            iconTextId = sampleR.string.sample_feature
         ),
         TopLevelDestination(
             route = WeatherDestination.route,
             destination = WeatherDestination.destination,
-            selectedIcon = DrawableResourceIcon(DemoIcons.Bookmarks),
-            unselectedIcon = DrawableResourceIcon(DemoIcons.BookmarksBorder),
-            iconTextId = weatherR.string.feature_weather
+            selectedIcon = DrawableResourceIcon(DemoIcons.Weather),
+            unselectedIcon = DrawableResourceIcon(DemoIcons.WeatherBorder),
+            iconTextId = weatherR.string.weather_feature
         ),
         TopLevelDestination(
             route = DynamicDestination.route,
             destination = DynamicDestination.destination,
-            selectedIcon = DrawableResourceIcon(DemoIcons.MenuBook),
-            unselectedIcon = DrawableResourceIcon(DemoIcons.MenuBookBorder),
-            iconTextId = weatherR.string.feature_weather
+            selectedIcon = DrawableResourceIcon(DemoIcons.Dynamic),
+            unselectedIcon = DrawableResourceIcon(DemoIcons.DynamicBorder),
+            iconTextId = dynamicR.string.dynamic_feature
         ),
     )
 

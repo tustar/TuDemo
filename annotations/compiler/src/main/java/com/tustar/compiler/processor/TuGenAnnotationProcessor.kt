@@ -1,12 +1,13 @@
 package com.tustar.compiler.processor
 
 import com.google.auto.service.AutoService
-import com.squareup.kotlinpoet.*
-import com.squareup.kotlinpoet.ParameterizedTypeName.Companion.parameterizedBy
 import com.tustar.annotation.Sample
-import com.tustar.compiler.entity.SampleInfo
-import com.tustar.compiler.entity.SampleInfo.Companion.toSampleInfo
-import javax.annotation.processing.*
+import com.tustar.assist.SampleGenerator
+import com.tustar.assist.SampleInfo
+import com.tustar.assist.SampleInfo.Companion.toSampleInfo
+import javax.annotation.processing.ProcessingEnvironment
+import javax.annotation.processing.Processor
+import javax.annotation.processing.RoundEnvironment
 import javax.lang.model.element.TypeElement
 
 @AutoService(Processor::class)
@@ -17,13 +18,11 @@ class TuGenAnnotationProcessor : BaseProcessor() {
         logger.info(">>> TuGenAnnotationProcessor init. <<<")
     }
 
-
     override fun getSupportedAnnotationTypes(): MutableSet<String> {
         val types: MutableSet<String> = LinkedHashSet()
         types.add(Sample::class.java.name)
         return types
     }
-
 
     override fun process(annotations: MutableSet<out TypeElement>, roundEnv: RoundEnvironment):
             Boolean {
@@ -36,7 +35,7 @@ class TuGenAnnotationProcessor : BaseProcessor() {
             logger.info(">>> ${element}, ${element.kind} <<<")
             items += element.toSampleInfo()
         }
-        val fileSpec = SampleGenerator().buildFileSpec(items)
+        val fileSpec = SampleGenerator.buildFileSpec(items)
         try {
             fileSpec.writeTo(filer)
             logger.info(">>> ${fileSpec.name} has been generated. <<<")

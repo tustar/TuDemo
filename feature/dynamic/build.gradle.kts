@@ -47,7 +47,6 @@ dependencies {
     implementation(libs.google.material)
     // Hilt
     implementation(libs.hilt.android)
-    implementation(project(mapOf("path" to ":core:common")))
     kapt(libs.hilt.compiler)
     kapt(libs.hilt.ext.compiler)
     // Accompanist

@@ -26,6 +26,7 @@
             <option value="$PROJECT_DIR$" />
             <option value="$PROJECT_DIR$/annotations" />
             <option value="$PROJECT_DIR$/annotations/annotation" />
+            <option value="$PROJECT_DIR$/annotations/assist" />
             <option value="$PROJECT_DIR$/annotations/compiler" />
             <option value="$PROJECT_DIR$/annotations/ksp" />
             <option value="$PROJECT_DIR$/app" />

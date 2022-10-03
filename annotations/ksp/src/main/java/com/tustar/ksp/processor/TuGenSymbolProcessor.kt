@@ -5,12 +5,12 @@ import com.google.devtools.ksp.processing.Resolver
 import com.google.devtools.ksp.processing.SymbolProcessor
 import com.google.devtools.ksp.processing.SymbolProcessorEnvironment
 import com.google.devtools.ksp.symbol.KSAnnotated
-import com.google.devtools.ksp.symbol.KSAnnotation
 import com.google.devtools.ksp.validate
 import com.squareup.kotlinpoet.FileSpec
 import com.tustar.annotation.Sample
-import com.tustar.ksp.entity.SampleInfo
-import com.tustar.ksp.entity.SampleInfo.Companion.toSampleInfo
+import com.tustar.assist.SampleGenerator
+import com.tustar.assist.SampleInfo
+import com.tustar.assist.SampleInfo.Companion.toSampleInfo
 import com.tustar.ksp.utils.Logger
 
 class TuGenSymbolProcessor(private val environment: SymbolProcessorEnvironment) : SymbolProcessor {

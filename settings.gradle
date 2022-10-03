@@ -52,6 +52,7 @@ include ':app'
 //include ':study:kotlin'
 //
 include ':annotations:annotation'
+include ':annotations:assist'
 include ':annotations:compiler'
 include ':annotations:ksp'
 //
@@ -63,3 +64,4 @@ include ':core:utils'
 include ':feature:sample'
 include ':feature:weather'
 include ':feature:dynamic'
+

@@ -1,6 +1,6 @@
 <resources>
     <!-- Weather-->
-    <string name="feature_weather">天气中心</string>
+    <string name="weather_feature">天气中心</string>
     <string name="weather_location_disable">请打开位置开关</string>
     <string name="weather_loading">加载中…</string>
     <!--    -->

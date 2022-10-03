@@ -8,7 +8,6 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.stringResource
 import com.tustar.dynamic.R
 import com.tustar.ui.design.component.DemoTopAppBar
-import com.tustar.ui.design.icon.DemoIcons
 
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -17,10 +16,7 @@ fun DynamicScreen() {
     Scaffold(
         topBar = {
             DemoTopAppBar(
-                titleRes = R.string.feature_dynamic,
-                actionIconContentDescription = stringResource(
-                    id = R.string.feature_dynamic_desc
-                ),
+                titleRes = R.string.dynamic_feature,
                 colors = TopAppBarDefaults.centerAlignedTopAppBarColors(
                     containerColor = Color.Transparent
                 )
@@ -29,7 +25,7 @@ fun DynamicScreen() {
         containerColor = Color.Transparent,
     ) { innerPadding ->
         Text(
-            text = stringResource(id = R.string.feature_dynamic_desc),
+            text = stringResource(id = R.string.dynamic_feature),
             modifier = Modifier.padding(innerPadding)
         )
     }

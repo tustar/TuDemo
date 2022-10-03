@@ -8,7 +8,8 @@ import kotlin.annotation.AnnotationTarget.*
 @Retention(RUNTIME)
 annotation class Sample(
     val group: String,
-    val item: String,
-    val createdAt : String = "2021-03-28 21:00:00",
-    val updatedAt : String = "2021-03-30 21:00:00",
+    val name: String,
+    val desc: String,
+    val createdAt: String = "2021-03-28 21:00:00",
+    val updatedAt: String = "2021-03-30 21:00:00",
 )

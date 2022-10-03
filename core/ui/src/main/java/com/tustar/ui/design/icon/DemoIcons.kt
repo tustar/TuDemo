@@ -33,28 +33,28 @@ object DemoIcons {
     val ArrowBack = Icons.Rounded.ArrowBack
     val ArrowDropDown = Icons.Rounded.ArrowDropDown
     val ArrowDropUp = Icons.Rounded.ArrowDropUp
-    val Bookmark = R.drawable.ic_bookmark
-    val BookmarkBorder = R.drawable.ic_bookmark_border
-    val Bookmarks = R.drawable.ic_bookmarks
-    val BookmarksBorder = R.drawable.ic_bookmarks_border
     val Check = Icons.Rounded.Check
     val Close = Icons.Rounded.Close
     val ExpandLess = Icons.Rounded.ExpandLess
     val Fullscreen = Icons.Rounded.Fullscreen
     val Grid3x3 = Icons.Rounded.Grid3x3
-    val MenuBook = R.drawable.ic_menu_book
-    val MenuBookBorder = R.drawable.ic_menu_book_border
     val MoreVert = Icons.Default.MoreVert
     val Person = Icons.Rounded.Person
     val PlayArrow = Icons.Rounded.PlayArrow
     val Search = Icons.Rounded.Search
     val ShortText = Icons.Rounded.ShortText
     val Tag = Icons.Rounded.Tag
-    val Upcoming = R.drawable.ic_upcoming
-    val UpcomingBorder = R.drawable.ic_upcoming_border
     val ViewDay = Icons.Rounded.ViewDay
     val VolumeOff = Icons.Rounded.VolumeOff
     val VolumeUp = Icons.Rounded.VolumeUp
+    val Home = R.drawable.ic_home
+    val HomeBorder = R.drawable.ic_home_border
+    val Weather = R.drawable.ic_weather
+    val WeatherBorder = R.drawable.ic_weather_border
+    val Article = R.drawable.ic_article
+    val ArticleBorder = R.drawable.ic_article_border
+    val Dynamic = R.drawable.ic_dynamic
+    val DynamicBorder = R.drawable.ic_dynamic_border
 }
 
 /**

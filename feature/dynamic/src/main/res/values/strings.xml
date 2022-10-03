@@ -1,4 +1,3 @@
 <resources>
-    <string name="feature_dynamic">动态技术</string>
-    <string name="feature_dynamic_desc">热修复和插件化</string>
+    <string name="dynamic_feature">动态技术</string>
 </resources>

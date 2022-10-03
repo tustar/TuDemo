@@ -1,6 +1,3 @@
 <resources>
     <string name="app_name">码农世界</string>
-    <string name="main_tips">导航</string>
-    <string name="main_samples">范例大全</string>
-    <string name="main_weather">天气中心</string>
 </resources>

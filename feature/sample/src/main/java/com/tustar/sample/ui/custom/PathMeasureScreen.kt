@@ -9,8 +9,9 @@ import com.tustar.annotation.Sample
 import com.tustar.sample.widget.PathMeasureView
 
 @Sample(
-    group = "group_custom_widget",
-    item = "custom_path_measure",
+    group = "sample_group_custom_widget",
+    name = "sample_custom_path_measure",
+    desc = "sample_custom_path_measure_desc",
     createdAt = "2021-01-01 10:15:00",
     updatedAt = "2021-07-02 14:48:00",
 )

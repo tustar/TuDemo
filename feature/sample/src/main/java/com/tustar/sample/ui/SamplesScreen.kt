@@ -36,11 +36,7 @@ fun SamplesScreen(
     Scaffold(
         topBar = {
             DemoTopAppBar(
-                titleRes = R.string.feature_sample,
-                actionIcon = DemoIcons.AccountCircle,
-                actionIconContentDescription = stringResource(
-                    id = R.string.feature_sample_desc
-                ),
+                titleRes = R.string.sample_feature,
                 colors = TopAppBarDefaults.centerAlignedTopAppBarColors(
                     containerColor = Color.Transparent
                 )
@@ -96,16 +92,16 @@ fun SampleRow(
                 }
                 .padding(vertical = itemSeparation)
         ) {
-            val group = LocalContext.current.getStringId(sample.group)
-            val item = LocalContext.current.getStringId(sample.item)
+            val nameId = LocalContext.current.getStringId(sample.name)
+            val descId = LocalContext.current.getStringId(sample.desc)
             Column(modifier) {
                 Text(
-                    text = stringResource(id = group),
+                    text = stringResource(id = nameId),
                     style = MaterialTheme.typography.headlineSmall,
                     modifier = Modifier.padding(vertical = 4.dp)
                 )
                 Text(
-                    text = stringResource(id = item),
+                    text = stringResource(id = descId),
                     style = MaterialTheme.typography.bodyMedium
                 )
             }
