@@ -17,14 +17,13 @@
 package com.tustar.sample.navigation
 
 import androidx.compose.animation.ExperimentalAnimationApi
-import androidx.compose.runtime.Composable
-import androidx.compose.ui.Modifier
-import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavGraphBuilder
-import com.google.accompanist.navigation.animation.composable
+import androidx.navigation.NavHostController
+import androidx.navigation.compose.composable
 import com.tustar.common.navigation.AppNavigationDestination
-import com.tustar.sample.ui.SamplesScreen
-import com.tustar.sample.ui.SamplesViewModel
+import com.tustar.sample.ui.SampleScreen
+import com.tustar.ui.ContentType
+import com.tustar.ui.NavigationType
 
 object SamplesDestination : AppNavigationDestination {
     override val route = "sample_route"
@@ -32,19 +31,16 @@ object SamplesDestination : AppNavigationDestination {
 }
 
 @OptIn(ExperimentalAnimationApi::class)
-fun NavGraphBuilder.samplesGraph(onBackClick: () -> Unit) {
+fun NavGraphBuilder.samplesGraph(
+    navController: NavHostController,
+    contentType: ContentType,
+    navigationType: NavigationType,
+) {
     composable(route = SamplesDestination.route) {
-        SamplesRoute()
+        SampleScreen(
+            contentType = contentType,
+            navigationType = navigationType,
+        )
     }
 }
 
-@Composable
-fun SamplesRoute(
-    modifier: Modifier = Modifier,
-    viewModel: SamplesViewModel = hiltViewModel()
-) {
-    SamplesScreen(viewModel = viewModel,
-        navigateToSample = {
-
-        })
-}

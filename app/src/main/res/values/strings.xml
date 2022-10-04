@@ -1,3 +1,8 @@
 <resources>
     <string name="app_name">码农世界</string>
+    <string name="navigation_drawer">Navigation Drawer</string>
+    <string name="edit">Edit</string>
+    <string name="compose">Compose</string>
+    <string name="empty_screen_title">Screen under construction</string>
+    <string name="empty_screen_subtitle">This screen is still under construction. This sample will help you learn about adaptive layouts in Jetpack Compose</string>
 </resources>

@@ -72,6 +72,7 @@ dependencies {
     implementation libs.androidx.constraintlayout
     implementation libs.androidx.metrics
     implementation libs.androidx.core.splashscreen
+    implementation libs.androidx.window
     // Lifecycle
     implementation libs.androidx.lifecycle.livedata.ktx
     implementation libs.androidx.lifecycle.viewmodel.ktx
@@ -84,6 +85,7 @@ dependencies {
     // Accompanist
     implementation libs.bundles.accompanist
     // Compose
+    implementation(libs.androidx.compose.material.iconsExtended)
     implementation libs.bundles.compose
     //
     implementation libs.coil.kt

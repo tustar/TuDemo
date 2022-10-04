@@ -24,9 +24,6 @@ import com.tustar.dynamic.R
 fun DynamicScreen() {
     LazyColumn(modifier = Modifier.padding(vertical = 4.dp)) {
         item {
-            Spacer(modifier = Modifier.statusBarsPadding())
-        }
-        item {
             DynamicItem(
                 modifier = Modifier.clickable {
 

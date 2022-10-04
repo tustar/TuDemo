@@ -1,19 +1,17 @@
 package com.tustar.weather.navigation
 
 import androidx.compose.animation.ExperimentalAnimationApi
-import androidx.compose.runtime.Composable
-import androidx.compose.ui.Modifier
-import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavGraphBuilder
 import androidx.navigation.NavHostController
-import com.google.accompanist.navigation.animation.composable
+import androidx.navigation.compose.composable
 import com.tustar.common.navigation.AppNavigationDestination
+import com.tustar.ui.ContentType
+import com.tustar.ui.NavigationType
 import com.tustar.weather.navigation.WeatherDestinations.ROUTE_WEATHER
 import com.tustar.weather.navigation.WeatherDestinations.ROUTE_WEATHER_ADD
 import com.tustar.weather.navigation.WeatherDestinations.ROUTE_WEATHER_HOME
 import com.tustar.weather.navigation.WeatherDestinations.ROUTE_WEATHER_MANAGE
 import com.tustar.weather.ui.WeatherScreen
-import com.tustar.weather.ui.WeatherViewModel
 
 object WeatherDestinations {
     const val ROUTE_WEATHER = "weather"
@@ -29,21 +27,12 @@ object WeatherDestination : AppNavigationDestination {
 
 @OptIn(ExperimentalAnimationApi::class)
 fun NavGraphBuilder.weatherGraph(
+    contentType: ContentType,
+    navigationType: NavigationType,
 ) {
     composable(route = WeatherDestination.route) {
-        WeatherRoute()
+        WeatherScreen()
     }
-}
-
-@Composable
-fun WeatherRoute(
-    modifier: Modifier = Modifier,
-    viewModel: WeatherViewModel = hiltViewModel()
-) {
-
-    WeatherScreen(
-        viewModel = viewModel
-    )
 }
 
 /**

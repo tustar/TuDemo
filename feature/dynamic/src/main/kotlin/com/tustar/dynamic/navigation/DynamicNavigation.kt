@@ -17,12 +17,12 @@
 package com.tustar.dynamic.navigation
 
 import androidx.compose.animation.ExperimentalAnimationApi
-import androidx.compose.runtime.Composable
-import androidx.compose.ui.Modifier
 import androidx.navigation.NavGraphBuilder
-import com.google.accompanist.navigation.animation.composable
+import androidx.navigation.compose.composable
 import com.tustar.common.navigation.AppNavigationDestination
 import com.tustar.dynamic.ui.DynamicScreen
+import com.tustar.ui.ContentType
+import com.tustar.ui.NavigationType
 
 
 object DynamicDestination : AppNavigationDestination {
@@ -31,15 +31,11 @@ object DynamicDestination : AppNavigationDestination {
 }
 
 @OptIn(ExperimentalAnimationApi::class)
-fun NavGraphBuilder.dynamicGraph() {
-    composable(route = DynamicDestination.route) {
-        DynamicRoute()
-    }
-}
-
-@Composable
-fun DynamicRoute(
-    modifier: Modifier = Modifier
+fun NavGraphBuilder.dynamicGraph(
+    contentType: ContentType,
+    navigationType: NavigationType,
 ) {
-    DynamicScreen()
+    composable(route = DynamicDestination.route) {
+        DynamicScreen()
+    }
 }

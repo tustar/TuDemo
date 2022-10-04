@@ -42,6 +42,7 @@ androidxTestRunner = "1.4.0"
 androidxTestRules = "1.4.0"
 androidxTracing = "1.1.0"
 androidxUiAutomator = "2.2.0"
+androidxWindow = "1.0.0"
 androidxWork = "2.7.1"
 androidxVectordrawable = "1.1.0"
 #
@@ -154,6 +155,8 @@ androidx-test-runner = { module = "androidx.test:runner", version.ref = "android
 androidx-test-rules = { module = "androidx.test:rules", version.ref = "androidxTestRules" }
 androidx-test-uiautomator = { module = "androidx.test.uiautomator:uiautomator", version.ref = "androidxUiAutomator" }
 androidx-tracing-ktx = { module = "androidx.tracing:tracing-ktx", version.ref = "androidxTracing" }
+#
+androidx-window = { module = "androidx.window:window", version.ref = "androidxWindow" }
 #
 androidx-work-ktx = { module = "androidx.work:work-runtime-ktx", version.ref = "androidxWork" }
 androidx-work-testing = { module = "androidx.work:work-testing", version.ref = "androidxWork" }
