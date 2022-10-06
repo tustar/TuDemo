@@ -20,7 +20,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.compose.ui.window.Dialog
 import com.tustar.data.source.remote.IndicesDaily
-import com.tustar.utils.compose.shape.CupHeadRoundedCornerShape
+import com.tustar.ui.design.shape.CupHeadRoundedCornerShape
 import com.tustar.weather.R
 
 

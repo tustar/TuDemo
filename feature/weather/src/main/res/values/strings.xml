@@ -1,7 +1,9 @@
 <resources>
     <!-- Weather-->
     <string name="weather_feature">天气中心</string>
-    <string name="weather_location_disable">请打开位置开关</string>
+    <string name="weather_location_title">位置信息</string>
+    <string name="weather_location_content">获取天气信息，需要打开定位服务</string>
+    <string name="weather_go_settings">去设置</string>
     <string name="weather_loading">加载中…</string>
     <!--    -->
     <string name="weather_channel_name">每日天气</string>

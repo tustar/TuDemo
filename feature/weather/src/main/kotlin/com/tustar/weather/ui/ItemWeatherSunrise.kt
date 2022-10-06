@@ -22,7 +22,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.constraintlayout.compose.ConstraintLayout
 import com.tustar.data.source.remote.WeatherDaily
-import com.tustar.utils.compose.res.vectorResource
+import com.tustar.utils.vectorResource
 import com.tustar.weather.R
 
 @Composable

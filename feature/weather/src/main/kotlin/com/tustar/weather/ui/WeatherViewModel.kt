@@ -12,7 +12,6 @@ import com.tustar.common.asResult
 import com.tustar.data.Weather
 import com.tustar.data.source.WeatherRepository
 import com.tustar.utils.Logger
-import com.tustar.utils.flow
 import com.tustar.weather.WeatherPrefs
 import com.tustar.weather.util.*
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -27,6 +26,9 @@ open class WeatherViewModel @Inject constructor(
 
     private var _uiState = MutableStateFlow<WeatherUiState>(WeatherUiState.Loading)
     val uiState: StateFlow<WeatherUiState> = _uiState.asStateFlow()
+
+    private var _dialogState = MutableStateFlow(true)
+    val dialogState: StateFlow<Boolean> = _dialogState.asStateFlow()
 
     @SuppressLint("MissingPermission")
     fun getLocation(context: Context) {
@@ -93,6 +95,10 @@ open class WeatherViewModel @Inject constructor(
         viewModelScope.launch {
             updateMode15D(context, mode15D)
         }
+    }
+
+    fun setDialogVisible(visible: Boolean) {
+        _dialogState.value = visible
     }
 }
 

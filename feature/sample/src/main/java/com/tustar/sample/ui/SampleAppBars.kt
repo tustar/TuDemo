@@ -16,7 +16,6 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import com.tustar.codegen.Sample
 import com.tustar.sample.R
-import com.tustar.ui.design.theme.FlagShape
 import com.tustar.utils.getStringId
 
 @Composable

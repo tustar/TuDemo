@@ -30,6 +30,7 @@ import androidx.compose.ui.graphics.toArgb
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.LocalView
 import androidx.core.view.WindowCompat
+import com.tustar.ui.design.shape.shapes
 
 // Material 3 color schemes
 private val demoDarkColorScheme = darkColorScheme(

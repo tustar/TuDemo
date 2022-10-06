@@ -1,4 +1,4 @@
-package com.tustar.utils.compose.shape
+package com.tustar.ui.design.shape
 
 import androidx.compose.foundation.shape.CornerSize
 import androidx.compose.ui.geometry.*

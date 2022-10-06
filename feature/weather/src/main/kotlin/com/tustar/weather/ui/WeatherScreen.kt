@@ -4,19 +4,27 @@ import android.Manifest
 import android.content.Context
 import android.os.Build
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.LazyListScope
 import androidx.compose.foundation.lazy.rememberLazyListState
+import androidx.compose.foundation.text.ClickableText
 import androidx.compose.material3.*
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.LocalLifecycleOwner
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.text.SpanStyle
+import androidx.compose.ui.text.buildAnnotatedString
+import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.withStyle
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.Lifecycle
@@ -25,9 +33,9 @@ import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.google.accompanist.permissions.ExperimentalPermissionsApi
 import com.google.accompanist.permissions.rememberMultiplePermissionsState
 import com.tustar.data.Weather
-import com.tustar.ui.design.component.DemoTopAppBar
+import com.tustar.ui.design.dialog.ActionDialog
+import com.tustar.utils.Logger
 import com.tustar.utils.actionLocationSourceSettings
-import com.tustar.utils.compose.dialog.ActionDialog
 import com.tustar.utils.isLocationEnable
 import com.tustar.utils.observeAsState
 import com.tustar.weather.R
@@ -85,20 +93,72 @@ fun WeatherScreen(
     }
 }
 
+@OptIn(ExperimentalLifecycleComposeApi::class)
 @Composable
 private fun AllPermissionsGranted(
     viewModel: WeatherViewModel
 ) {
     val context = LocalContext.current
     val lifecycleState by LocalLifecycleOwner.current.lifecycle.observeAsState()
+    val visible by viewModel.dialogState.collectAsStateWithLifecycle()
+    val setDialogVisible = viewModel::setDialogVisible
     if (lifecycleState == Lifecycle.Event.ON_RESUME) {
         if (!context.isLocationEnable()) {
-            ActionDialog(title = R.string.weather_location_disable,
-                cancelAction = {
-                },
-                confirmAction = {
-                    context.actionLocationSourceSettings()
-                }) {
+            if (visible) {
+                ActionDialog(
+                    onDismissRequest = {
+                        setDialogVisible(false)
+                    },
+                    title = R.string.weather_location_title,
+                    message = R.string.weather_location_content,
+                    cancelAction = {
+                        setDialogVisible(false)
+                    },
+                    confirmAction = {
+                        setDialogVisible(false)
+                        context.actionLocationSourceSettings()
+                    })
+            } else {
+                Box(
+                    modifier = Modifier
+                        .fillMaxSize()
+                        .background(color = MaterialTheme.colorScheme.surfaceVariant),
+                    contentAlignment = Alignment.Center,
+                ) {
+                    val annotatedText = buildAnnotatedString {
+                        append(stringResource(id = R.string.weather_location_content))
+                        append("，")
+                        pushStringAnnotation(
+                            tag = "Action",
+                            annotation = stringResource(id = R.string.weather_go_settings)
+                        )
+                        withStyle(
+                            style = SpanStyle(
+                                color = MaterialTheme.colorScheme.primary,
+                                fontWeight = FontWeight.Bold
+                            )
+                        ) {
+                            append(stringResource(id = R.string.weather_go_settings))
+                        }
+                        pop()
+                    }
+
+                    ClickableText(
+                        text = annotatedText,
+                        onClick = { offset ->
+                            // We check if there is an *URL* annotation attached to the text
+                            // at the clicked position
+                            annotatedText.getStringAnnotations(
+                                tag = "Action", start = offset,
+                                end = offset
+                            )
+                                .firstOrNull()?.let { _ ->
+                                    context.actionLocationSourceSettings()
+                                }
+                        },
+                        style = MaterialTheme.typography.bodyLarge
+                    )
+                }
             }
         } else {
             //

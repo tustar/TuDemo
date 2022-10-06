@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.tustar.ui.design.theme
+package com.tustar.ui.design.shape
 
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Shapes

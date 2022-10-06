@@ -29,7 +29,7 @@ import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.tustar.codegen.Sample
 import com.tustar.ui.ContentType
 import com.tustar.ui.NavigationType
-import com.tustar.ui.design.theme.FlagShape
+import com.tustar.ui.design.shape.FlagShape
 import com.tustar.utils.getStringId
 
 @OptIn(

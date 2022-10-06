@@ -1,4 +1,4 @@
-package com.tustar.utils.compose.res
+package com.tustar.utils
 
 import androidx.annotation.DrawableRes
 import androidx.appcompat.content.res.AppCompatResources

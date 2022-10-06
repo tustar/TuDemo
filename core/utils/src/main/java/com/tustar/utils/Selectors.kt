@@ -1,4 +1,4 @@
-package com.tustar.utils.compose
+package com.tustar.utils
 
 import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.foundation.interaction.collectIsFocusedAsState
