@@ -137,14 +137,21 @@ fun NavigationIcon(
     } else {
         destination.unselectedIcon
     }
+    val tint = if (selected) {
+        MaterialTheme.colorScheme.primary
+    } else {
+        MaterialTheme.colorScheme.secondary
+    }
     when (icon) {
         is Icon.ImageVectorIcon -> Icon(
             imageVector = icon.imageVector,
-            contentDescription = stringResource(destination.iconTextId)
+            contentDescription = stringResource(destination.iconTextId),
+            tint = tint,
         )
         is Icon.DrawableResourceIcon -> Icon(
             painter = painterResource(id = icon.id),
-            contentDescription = stringResource(destination.iconTextId)
+            contentDescription = stringResource(destination.iconTextId),
+            tint = tint,
         )
     }
 }
