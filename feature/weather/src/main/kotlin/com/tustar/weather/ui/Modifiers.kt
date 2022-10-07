@@ -15,5 +15,5 @@ fun Modifier.itemBackground(marginBottom: Dp = 0.dp, vertical: Dp = 10.dp) = thi
     .padding(horizontal = 5.dp, vertical = vertical)
 
 fun Modifier.itemSelected() = this
-    .border(1.dp, Color(0x1A000000), RoundedCornerShape(5.dp))
-    .background(Color(0x99FFFFFF), RoundedCornerShape(5.dp))
+    .border(1.dp, Color(0x33FFFFFF), RoundedCornerShape(5.dp))
+    .background(Color(0x33000000), RoundedCornerShape(5.dp))

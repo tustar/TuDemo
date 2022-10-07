@@ -25,7 +25,7 @@ open class WeatherViewModel @Inject constructor(
     private val weatherRepository: WeatherRepository,
 ) : ViewModel() {
 
-    private var _uiState = MutableStateFlow<WeatherUiState>(WeatherUiState.Loading)
+    private var _uiState = MutableStateFlow<WeatherUiState>(WeatherUiState.Idle)
     val uiState: StateFlow<WeatherUiState> = _uiState.asStateFlow()
 
     @SuppressLint("MissingPermission")
@@ -56,13 +56,14 @@ open class WeatherViewModel @Inject constructor(
 
     private fun requestWeather(context: Context, location: Location?) {
         Logger.d("location:$location")
-        if (location == null) {
-            return
-        }
+//        if (location == null) {
+//            return
+//        }
         viewModelScope.launch {
             val prefsStream = weatherPrefsFlow(context)
             val weatherStream = flow {
-                emit(weatherRepository.weather(location.toParams()))
+//                emit(weatherRepository.weather(location.toParams()))
+                emit(weatherRepository.weather("115.43,27.32"))
             }
             combine(prefsStream, weatherStream, ::Pair)
                 .asResult()
@@ -107,4 +108,5 @@ sealed interface WeatherUiState {
 
     object Error : WeatherUiState
     object Loading : WeatherUiState
+    object Idle : WeatherUiState
 }

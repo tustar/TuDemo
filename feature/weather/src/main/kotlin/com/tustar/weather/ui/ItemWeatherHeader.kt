@@ -1,10 +1,10 @@
 package com.tustar.weather.ui
 
 import androidx.compose.foundation.background
-import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Icon
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
@@ -13,6 +13,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
@@ -30,91 +31,141 @@ fun ItemWeatherHeader(
     warnings: List<Warning>,
     airNow: AirNow,
 ) {
-    Box(
+    ConstraintLayout(
         modifier = Modifier
             .fillMaxWidth()
-            .fillMaxHeight(0.4f),
+            .aspectRatio(1.33f)
     ) {
-
-        Column(
-            modifier = Modifier.align(Alignment.TopCenter)
-                .padding(top = 48.dp, bottom = 128.dp),
-            horizontalAlignment = Alignment.CenterHorizontally
-        ) {
-            ItemWarnings(
-                modifier = Modifier.background(
-                    Color(0x33000000), RoundedCornerShape(16.dp)
-                ),
-                warnings = warnings
-            )
-
-            ConstraintLayout() {
-                val (temp, unit, daily) = createRefs()
-                Text(
-                    text = weatherNow.temp.toString(),
-                    fontSize = 80.sp,
-                    fontWeight = FontWeight.Light,
-                    color = Color.White,
-                    modifier = Modifier.constrainAs(temp) {
-                        start.linkTo(parent.start)
-                        end.linkTo(parent.end)
-                        top.linkTo(parent.top)
-                        bottom.linkTo(parent.bottom)
-                    },
-                )
-                Text(
-                    text = stringResource(id = R.string.weather_temp_unit),
-                    fontSize = 20.sp,
-                    fontWeight = FontWeight.Normal,
-                    color = Color(0xFFF0F0ED),
-                    modifier = Modifier.constrainAs(unit) {
-                        top.linkTo(temp.top, 8.dp)
-                        start.linkTo(temp.end)
-                    }
-                )
-
-                Text(
-                    text = weatherNow.text,
-                    color = Color(0xCCFFFFFF),
-                    fontSize = 16.sp,
-                    fontWeight = FontWeight.Light,
-                    modifier = Modifier.constrainAs(daily) {
-                        baseline.linkTo(temp.baseline)
-                        start.linkTo(temp.end)
-                    }
-                )
-            }
-
-            ItemDate()
-        }
-
-        Text(
-            text = "${city.name}(${city.adm1})",
-            fontSize = 14.sp,
-            color = Color.White,
+        val (cityList, warningList, major, date, feelsLike, aqi) = createRefs()
+        // cityList
+        CityList(
             modifier = Modifier
-                .align(Alignment.BottomStart)
-                .padding(5.dp)
+                .constrainAs(cityList) {
+                    start.linkTo(parent.start)
+                    end.linkTo(parent.end)
+                    top.linkTo(parent.top)
+                },
+            city = city
+        )
+        // warningList
+        WarningList(
+            modifier = Modifier
+                .constrainAs(warningList) {
+                    start.linkTo(parent.start)
+                    end.linkTo(parent.end)
+                    bottom.linkTo(major.top)
+                }
                 .background(
                     Color(0x33000000), RoundedCornerShape(16.dp)
-                )
-                .padding(horizontal = 8.dp, vertical = 2.dp)
+                ),
+            warnings = warnings,
         )
-
-        ItemAirNow(
-            modifier = Modifier.align(Alignment.BottomEnd)
-                .clickable {
-
-                },
+        // Major
+        Major(
+            modifier = Modifier.constrainAs(major) {
+                start.linkTo(parent.start)
+                end.linkTo(parent.end)
+                top.linkTo(parent.top)
+                bottom.linkTo(parent.bottom)
+            },
+            weatherNow = weatherNow
+        )
+        // Date
+        Text(
+            text = WeatherUtils.gregorianAndLunar(LocalContext.current),
+            style = MaterialTheme.typography.bodyLarge,
+            color = Color.White,
+            modifier = Modifier
+                .constrainAs(date) {
+                    start.linkTo(parent.start)
+                    end.linkTo(parent.end)
+                    top.linkTo(major.bottom)
+                }
+        )
+        //
+        Text(
+            text = stringResource(
+                id = R.string.weather_feelsLike,
+                formatArgs = arrayOf(
+                    weatherNow.feelsLike,
+                    weatherNow.humidity,
+                    weatherNow.windScale,
+                )
+            ),
+            modifier = Modifier
+                .constrainAs(feelsLike) {
+                    start.linkTo(parent.start)
+                    bottom.linkTo(parent.bottom)
+                }
+                .padding(start = 24.dp, bottom = 13.dp),
+            style = MaterialTheme.typography.bodyLarge,
+            color = Color.White,
+        )
+        // Aqi
+        Aqi(
+            modifier = Modifier.constrainAs(aqi) {
+                end.linkTo(parent.end)
+                bottom.linkTo(parent.bottom)
+            },
             airNow = airNow
         )
     }
 }
 
 @Composable
-private fun ItemWarnings(modifier: Modifier, warnings: List<Warning>) {
+private fun Major(modifier: Modifier, weatherNow: WeatherNow) {
+    ConstraintLayout(modifier = modifier) {
+        val (temp, unit, daily) = createRefs()
+        Text(
+            text = weatherNow.temp.toString(),
+            style = MaterialTheme.typography.displayLarge,
+            fontSize = 100.sp,
+            fontFamily = FontFamily.SansSerif,
+            fontWeight = FontWeight.Thin,
+            color = Color.White,
+            modifier = Modifier.constrainAs(temp) {
+                start.linkTo(parent.start)
+                end.linkTo(parent.end)
+                top.linkTo(parent.top)
+                bottom.linkTo(parent.bottom)
+            },
+        )
+        Text(
+            text = stringResource(id = R.string.weather_temp_unit),
+            style = MaterialTheme.typography.bodyLarge,
+            color = Color(0xFFF0F0ED),
+            modifier = Modifier.constrainAs(unit) {
+                top.linkTo(temp.top, 12.dp)
+                start.linkTo(temp.end)
+            }
+        )
+        Text(
+            text = weatherNow.text,
+            style = MaterialTheme.typography.bodyLarge,
+            color = Color(0xFFF0F0ED),
+            modifier = Modifier.constrainAs(daily) {
+                baseline.linkTo(temp.baseline)
+                start.linkTo(temp.end, 2.dp)
+            }
+        )
+    }
+}
+
+@Composable
+private fun CityList(modifier: Modifier, city: City) {
+    Text(
+        text = city.name,
+        style = MaterialTheme.typography.titleLarge,
+        color = Color.White,
+        modifier = modifier
+            .padding(5.dp)
+    )
+}
+
+@Composable
+private fun WarningList(modifier: Modifier, warnings: List<Warning>) {
     if (warnings.isNotEmpty()) {
-        ItemWarningRow(
+        WarningItem(
             modifier = modifier
                 .padding(horizontal = 8.dp, vertical = 2.dp),
             warning = warnings[0]
@@ -123,7 +174,7 @@ private fun ItemWarnings(modifier: Modifier, warnings: List<Warning>) {
 }
 
 @Composable
-private fun ItemWarningRow(
+private fun WarningItem(
     modifier: Modifier = Modifier,
     warning: Warning
 ) {
@@ -148,30 +199,20 @@ private fun ItemWarningRow(
                 warning.level,
                 warning.typeName
             ),
+            style = MaterialTheme.typography.bodyLarge,
             color = Color.White,
-            fontSize = 14.sp,
             modifier = Modifier.padding(5.dp)
         )
     }
 }
 
-@Composable
-private fun ItemDate() {
-    Column(modifier = Modifier, horizontalAlignment = Alignment.CenterHorizontally) {
-        Text(
-            text = WeatherUtils.gregorianAndLunar(LocalContext.current),
-            color = Color(0xCCFFFFFF),
-            fontSize = 14.sp,
-        )
-    }
-}
 
 @Composable
-private fun ItemAirNow(modifier: Modifier, airNow: AirNow) {
+private fun Aqi(modifier: Modifier, airNow: AirNow) {
     Row(
         verticalAlignment = Alignment.CenterVertically,
         modifier = modifier
-            .padding(5.dp)
+            .padding(horizontal = 24.dp, vertical = 5.dp)
             .background(
                 Color(0x33000000), RoundedCornerShape(16.dp)
             )
@@ -187,14 +228,14 @@ private fun ItemAirNow(modifier: Modifier, airNow: AirNow) {
         )
         Text(
             text = airNow.aqi.toString(),
-            fontSize = 14.sp,
+            style = MaterialTheme.typography.bodyMedium,
             color = Color.White,
             modifier = Modifier
                 .padding(start = 2.dp)
         )
         Text(
             text = airNow.category,
-            fontSize = 13.sp,
+            style = MaterialTheme.typography.bodyMedium,
             color = Color.White,
             modifier = Modifier
                 .padding(start = 2.dp)

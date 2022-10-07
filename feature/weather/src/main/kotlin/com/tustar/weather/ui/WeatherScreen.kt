@@ -2,7 +2,6 @@ package com.tustar.weather.ui
 
 import android.Manifest
 import android.content.Context
-import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
@@ -17,13 +16,12 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.LocalLifecycleOwner
-import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.compose.ExperimentalLifecycleComposeApi
@@ -32,6 +30,9 @@ import com.google.accompanist.permissions.ExperimentalPermissionsApi
 import com.google.accompanist.permissions.MultiplePermissionsState
 import com.google.accompanist.permissions.rememberMultiplePermissionsState
 import com.tustar.data.Weather
+import com.tustar.ui.ContentType
+import com.tustar.ui.NavigationType
+import com.tustar.utils.Logger
 import com.tustar.utils.actionLocationSourceSettings
 import com.tustar.utils.isLocationEnable
 import com.tustar.utils.observeAsState
@@ -42,8 +43,11 @@ import com.tustar.weather.util.TrendSwitchMode
 @OptIn(ExperimentalPermissionsApi::class)
 @Composable
 fun WeatherScreen(
+    contentType: ContentType,
+    navigationType: NavigationType,
     viewModel: WeatherViewModel = hiltViewModel(),
 ) {
+    Logger.d("contentType:$contentType, navigationType=$navigationType")
     val permissions = mutableListOf(
         Manifest.permission.ACCESS_FINE_LOCATION,
         Manifest.permission.ACCESS_COARSE_LOCATION
@@ -138,14 +142,19 @@ private fun AllPermissionsGranted(
     }
 }
 
+@OptIn(ExperimentalLifecycleComposeApi::class)
 @Composable
 private fun LocationEnable(
     viewModel: WeatherViewModel
 ) {
-    viewModel.getLocation(LocalContext.current)
-    WeatherContent(
-        viewModel = viewModel
-    )
+    val weatherUiState by viewModel.uiState.collectAsStateWithLifecycle()
+    if (weatherUiState is WeatherUiState.Idle) {
+        viewModel.getLocation(LocalContext.current)
+    } else {
+        WeatherContent(
+            viewModel = viewModel
+        )
+    }
 }
 
 @OptIn(ExperimentalLifecycleComposeApi::class)
@@ -186,18 +195,22 @@ private fun WeatherContent(
             Spacer(Modifier.windowInsetsTopHeight(WindowInsets.safeDrawing))
         }
         when (weatherUiState) {
-            WeatherUiState.Loading -> item {
+            is WeatherUiState.Idle -> {
+
+            }
+            is WeatherUiState.Loading -> {
 
             }
             is WeatherUiState.Success -> {
                 val weather = weatherUiState.weather
                 val mode24H = TrendSwitchMode(weatherUiState.prefs.mode24H, saveMode24H)
                 val mode15D = TrendSwitchMode(weatherUiState.prefs.mode24H, saveMode15D)
-                WeatherBody(weather, mode24H, mode15D)
+                weatherBody(weather, mode24H, mode15D)
             }
-            WeatherUiState.Error -> {
+            is WeatherUiState.Error -> {
 
             }
+
         }
         item {
             Spacer(Modifier.windowInsetsBottomHeight(WindowInsets.safeDrawing))
@@ -205,7 +218,7 @@ private fun WeatherContent(
     }
 }
 
-private fun LazyListScope.WeatherBody(
+private fun LazyListScope.weatherBody(
     weather: Weather,
     mode24H: TrendSwitchMode,
     mode15D: TrendSwitchMode
@@ -218,26 +231,29 @@ private fun LazyListScope.WeatherBody(
             weather.airNow
         )
     }
+
     item {
-        ItemWeatherNow(weather.weatherNow)
+        ItemWeather24H(weather.hourly24H)
     }
     item {
-        ItemWeather3D(weather.daily15D.subList(0, 3), weather.air5D.subList(0, 3))
+        ItemWeather15D(weather.daily15D, weather.air5D)
     }
+//    item {
+//        ItemWeatherSunrise(weather.daily15D[0])
+//    }
+//    item {
+//        ItemWeatherIndices1D(weather.indices1D)
+//    }
     item {
-        ItemWeather24H(weather.hourly24H, mode24H)
-    }
-    item {
-        ItemWeather15D(weather.daily15D, weather.air5D, mode15D)
-    }
-    item {
-        ItemWeatherSunrise(weather.daily15D[0])
-    }
-    item {
-        ItemWeatherIndices1D(weather.indices1D)
-    }
-    item {
-        ItemWeatherSources()
+        Text(
+            text = stringResource(id = R.string.weather_sources),
+            textAlign = TextAlign.Center,
+            style = MaterialTheme.typography.bodyMedium,
+            color = Color(0xFFF0F0ED),
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(bottom = 16.dp),
+        )
     }
 }
 

@@ -15,14 +15,10 @@
     <string name="weather_daily_temp">%1$s %2$d°</string>
     <string name="weather_temp_unit">°C</string>
     <string name="weather_lunar">农历%1$s</string>
-    <string name="weather_feelsLike">体感</string>
-    <string name="weather_humidity">湿度</string>
+    <string name="weather_feelsLike">体感%1$d°C 湿度%2$d%% 风力%3$s级</string>
     <string name="weather_windScale">风力</string>
-    <string name="weather_pressure">气压</string>
     <string name="weather_temp_value">%1$d°C</string>
-    <string name="weather_humidity_value">%1$d%%</string>
     <string name="weather_wind_value">%1$s级</string>
-    <string name="weather_pressure_value">%1$d hpa</string>
     <string name="weather_now">现在</string>
     <string name="weather_today">今天</string>
     <string name="weather_tomorrow">明天</string>
@@ -38,7 +34,7 @@
     <string name="weather_sunrise">日出 %1$s</string>
     <string name="weather_sunset">日落 %1$s</string>
     <string name="weather_indices">生活指数</string>
-    <string name="weather_sources">天气数据由和风天气提供</string>
+    <string name="weather_sources">天气数据来自中国天气网</string>
     <string name="weather_manage_city">城市管理</string>
     <string name="weather_add_city">添加城市</string>
     <string name="weather_search_hint">请输入城市名称或拼音</string>

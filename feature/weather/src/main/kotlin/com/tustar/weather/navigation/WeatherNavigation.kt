@@ -25,13 +25,12 @@ object WeatherDestination : AppNavigationDestination {
     override val destination = "weather_destination"
 }
 
-@OptIn(ExperimentalAnimationApi::class)
 fun NavGraphBuilder.weatherGraph(
     contentType: ContentType,
     navigationType: NavigationType,
 ) {
     composable(route = WeatherDestination.route) {
-        WeatherScreen()
+        WeatherScreen(contentType, navigationType)
     }
 }
 
