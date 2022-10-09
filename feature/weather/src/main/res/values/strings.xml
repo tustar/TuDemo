@@ -2,6 +2,7 @@
     <!-- Weather-->
     <string name="weather_feature">天气中心</string>
     <string name="weather_location_content">定位服务未开启，请去设置中开启</string>
+    <string name="weather_no_network">网络没有开启，请去设置中开启</string>
     <string name="weather_go_settings">去设置</string>
     <string name="weather_loading">加载中…</string>
     <string name="weather_request_locations_content">获取天气数据需要定位权限</string>

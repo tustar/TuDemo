@@ -97,6 +97,10 @@ fun Context.actionLocationSourceSettings() {
     startActivity(Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS))
 }
 
+fun Context.actionWirelessSettings() {
+    startActivity(Intent(Settings.ACTION_WIRELESS_SETTINGS))
+}
+
 fun Context.actionApplicationDetailsSettings() {
     startActivity(
         Intent(

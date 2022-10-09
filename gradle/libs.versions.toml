@@ -202,6 +202,8 @@ room-ktx = { module = "androidx.room:room-ktx", version.ref = "room" }
 room-compiler = { module = "androidx.room:room-compiler", version.ref = "room" }
 #
 turbine = { module = "app.cash.turbine:turbine", version.ref = "turbine" }
+#
+baidu-location = { module = "com.baidu.lbsyun:BaiduMapSDK_Location_All", version = "9.1.8" }
 
 # Dependencies of the included build-logic
 android-gradle-plugin = { module = "com.android.tools.build:gradle", version.ref = "androidGradlePlugin" }

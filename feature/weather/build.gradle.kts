@@ -70,6 +70,8 @@ dependencies {
     implementation(libs.androidx.compose.ui.test)
     // Paging
     implementation(libs.bundles.paging)
+    // Baidu Location
+    implementation(libs.baidu.location)
     // Test
     androidTestImplementation(libs.bundles.test)
 }

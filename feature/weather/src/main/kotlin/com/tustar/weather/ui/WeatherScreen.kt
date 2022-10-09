@@ -32,10 +32,7 @@ import com.google.accompanist.permissions.rememberMultiplePermissionsState
 import com.tustar.data.Weather
 import com.tustar.ui.ContentType
 import com.tustar.ui.NavigationType
-import com.tustar.utils.Logger
-import com.tustar.utils.actionLocationSourceSettings
-import com.tustar.utils.isLocationEnable
-import com.tustar.utils.observeAsState
+import com.tustar.utils.*
 import com.tustar.weather.R
 import com.tustar.weather.WeatherPrefs
 import com.tustar.weather.util.TrendSwitchMode
@@ -147,13 +144,36 @@ private fun AllPermissionsGranted(
 private fun LocationEnable(
     viewModel: WeatherViewModel
 ) {
-    val weatherUiState by viewModel.uiState.collectAsStateWithLifecycle()
-    if (weatherUiState is WeatherUiState.Idle) {
-        viewModel.getLocation(LocalContext.current)
+    val context = LocalContext.current
+    if (NetworkUtils.isNetworkConnected(context)) {
+        val weatherUiState by viewModel.uiState.collectAsStateWithLifecycle()
+        if (weatherUiState is WeatherUiState.Idle) {
+            viewModel.getLocation(LocalContext.current)
+        } else {
+            WeatherContent(
+                viewModel = viewModel
+            )
+        }
     } else {
-        WeatherContent(
-            viewModel = viewModel
-        )
+        Box(
+            modifier = Modifier
+                .fillMaxSize()
+                .background(color = MaterialTheme.colorScheme.surfaceVariant),
+            contentAlignment = Alignment.Center,
+        ) {
+            Column(horizontalAlignment = Alignment.CenterHorizontally) {
+                Text(
+                    text = stringResource(id = R.string.weather_no_network),
+                    textAlign = TextAlign.Center
+                )
+                Spacer(modifier = Modifier.height(8.dp))
+                Button(onClick = {
+                    context.actionWirelessSettings()
+                }) {
+                    Text(text = stringResource(id = R.string.weather_go_settings))
+                }
+            }
+        }
     }
 }
 
