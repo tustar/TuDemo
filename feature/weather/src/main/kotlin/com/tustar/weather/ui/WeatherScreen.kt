@@ -1,13 +1,13 @@
 package com.tustar.weather.ui
 
 import android.Manifest
-import android.content.Context
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.LazyListScope
 import androidx.compose.foundation.lazy.rememberLazyListState
 import androidx.compose.material3.Button
+import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -21,11 +21,8 @@ import androidx.compose.ui.platform.LocalLifecycleOwner
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
-import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.Lifecycle
-import androidx.lifecycle.compose.ExperimentalLifecycleComposeApi
-import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.google.accompanist.permissions.ExperimentalPermissionsApi
 import com.google.accompanist.permissions.MultiplePermissionsState
 import com.google.accompanist.permissions.rememberMultiplePermissionsState
@@ -34,8 +31,6 @@ import com.tustar.ui.ContentType
 import com.tustar.ui.NavigationType
 import com.tustar.utils.*
 import com.tustar.weather.R
-import com.tustar.weather.WeatherPrefs
-import com.tustar.weather.util.TrendSwitchMode
 
 @OptIn(ExperimentalPermissionsApi::class)
 @Composable
@@ -139,21 +134,15 @@ private fun AllPermissionsGranted(
     }
 }
 
-@OptIn(ExperimentalLifecycleComposeApi::class)
 @Composable
 private fun LocationEnable(
     viewModel: WeatherViewModel
 ) {
     val context = LocalContext.current
     if (NetworkUtils.isNetworkConnected(context)) {
-        val weatherUiState by viewModel.uiState.collectAsStateWithLifecycle()
-        if (weatherUiState is WeatherUiState.Idle) {
-            viewModel.getLocation(LocalContext.current)
-        } else {
-            WeatherContent(
-                viewModel = viewModel
-            )
-        }
+        val state = viewModel.state
+        viewModel.getLocation(LocalContext.current)
+        WeatherContent(state = state)
     } else {
         Box(
             modifier = Modifier
@@ -177,71 +166,42 @@ private fun LocationEnable(
     }
 }
 
-@OptIn(ExperimentalLifecycleComposeApi::class)
 @Composable
-fun WeatherContent(
-    viewModel: WeatherViewModel
-) {
-    //
-    val weatherUiState by viewModel.uiState.collectAsStateWithLifecycle()
-    WeatherContent(
-        weatherUiState = weatherUiState,
-        saveMode24H = viewModel::saveMode24H,
-        saveMode15D = viewModel::saveMode24H
-    )
-}
-
-@Composable
-private fun WeatherContent(
-    weatherUiState: WeatherUiState,
-    saveMode24H: (Context, WeatherPrefs.Mode) -> Unit,
-    saveMode15D: (Context, WeatherPrefs.Mode) -> Unit,
-) {
+fun WeatherContent(state: WeatherContact.State) {
     val listState = rememberLazyListState()
-    LazyColumn(
-        state = listState,
-        modifier = Modifier
-            .fillMaxSize()
-            .background(
-                Brush.verticalGradient(
-                    listOf(
-                        MaterialTheme.colorScheme.primary,
-                        MaterialTheme.colorScheme.secondary,
+    Box {
+        state.weather?.let { weather ->
+            LazyColumn(
+                state = listState,
+                modifier = Modifier
+                    .fillMaxSize()
+                    .background(
+                        Brush.verticalGradient(
+                            listOf(
+                                MaterialTheme.colorScheme.primary,
+                                MaterialTheme.colorScheme.secondary,
+                            )
+                        )
                     )
-                )
-            )
-    ) {
-        item {
-            Spacer(Modifier.windowInsetsTopHeight(WindowInsets.safeDrawing))
+            ) {
+                item {
+                    Spacer(Modifier.windowInsetsTopHeight(WindowInsets.safeDrawing))
+                }
+                weatherBody(weather)
+                item {
+                    Spacer(Modifier.windowInsetsBottomHeight(WindowInsets.safeDrawing))
+                }
+            }
         }
-        when (weatherUiState) {
-            is WeatherUiState.Idle -> {
 
-            }
-            is WeatherUiState.Loading -> {
-
-            }
-            is WeatherUiState.Success -> {
-                val weather = weatherUiState.weather
-                val mode24H = TrendSwitchMode(weatherUiState.prefs.mode24H, saveMode24H)
-                val mode15D = TrendSwitchMode(weatherUiState.prefs.mode24H, saveMode15D)
-                weatherBody(weather, mode24H, mode15D)
-            }
-            is WeatherUiState.Error -> {
-
-            }
-
-        }
-        item {
-            Spacer(Modifier.windowInsetsBottomHeight(WindowInsets.safeDrawing))
+        if (state.loading) {
+            LoadingBar()
         }
     }
 }
 
 private fun LazyListScope.weatherBody(
-    weather: Weather,
-    mode24H: TrendSwitchMode,
-    mode15D: TrendSwitchMode
+    weather: Weather
 ) {
     item {
         ItemWeatherHeader(
@@ -258,9 +218,9 @@ private fun LazyListScope.weatherBody(
     item {
         ItemWeather15D(weather.daily15D, weather.air5D)
     }
-//    item {
-//        ItemWeatherSunrise(weather.daily15D[0])
-//    }
+    item {
+        ItemWeatherSunrise(weather.daily15D[0])
+    }
 //    item {
 //        ItemWeatherIndices1D(weather.indices1D)
 //    }
@@ -274,6 +234,16 @@ private fun LazyListScope.weatherBody(
                 .fillMaxWidth()
                 .padding(bottom = 16.dp),
         )
+    }
+}
+
+@Composable
+fun LoadingBar() {
+    Box(
+        contentAlignment = Alignment.Center,
+        modifier = Modifier.fillMaxSize()
+    ) {
+        CircularProgressIndicator()
     }
 }
 

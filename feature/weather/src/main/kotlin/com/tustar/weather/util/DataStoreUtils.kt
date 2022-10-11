@@ -71,20 +71,6 @@ suspend fun removeCity(context: Context, city: WLocation) {
     }
 }
 
-suspend fun updateMode24H(context: Context, mode24H: WeatherPrefs.Mode) =
-    context.weatherPrefs.updateData { prefs ->
-        prefs.toBuilder()
-            .setMode24H(mode24H)
-            .build()
-    }
-
-suspend fun updateMode15D(context: Context, mode15D: WeatherPrefs.Mode) =
-    context.weatherPrefs.updateData { prefs ->
-        prefs.toBuilder()
-            .setMode15D(mode15D)
-            .build()
-    }
-
 suspend fun updateLastUpdated(context: Context, timeMills: Long) =
     context.weatherPrefs.updateData { prefs ->
         prefs.toBuilder()

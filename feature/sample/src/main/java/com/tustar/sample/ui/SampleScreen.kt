@@ -8,15 +8,13 @@ import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.LazyListState
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.lazy.rememberLazyListState
+import androidx.compose.material.SnackbarDuration
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Edit
-import androidx.compose.material3.Icon
-import androidx.compose.material3.LargeFloatingActionButton
-import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.Text
+import androidx.compose.material.rememberScaffoldState
+import androidx.compose.material3.*
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
-import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
@@ -24,17 +22,15 @@ import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
-import androidx.lifecycle.compose.ExperimentalLifecycleComposeApi
-import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.tustar.codegen.Sample
 import com.tustar.ui.ContentType
 import com.tustar.ui.NavigationType
 import com.tustar.ui.design.shape.FlagShape
 import com.tustar.utils.getStringId
+import kotlinx.coroutines.flow.collect
+import kotlinx.coroutines.flow.onEach
+import kotlinx.coroutines.flow.receiveAsFlow
 
-@OptIn(
-    ExperimentalLifecycleComposeApi::class,
-)
 @Composable
 fun SampleScreen(
     contentType: ContentType,
@@ -42,11 +38,13 @@ fun SampleScreen(
     modifier: Modifier = Modifier,
     viewModel: SamplesViewModel = hiltViewModel()
 ) {
-    val uiState by viewModel.uiState.collectAsStateWithLifecycle()
+    val state = viewModel.state
+    val effectFlow = viewModel.effects.receiveAsFlow()
+
     val closeDetailScreen = {
         viewModel.closeDetailScreen()
     }
-    val navigateToDetail: (Sample, ContentType) -> Unit = { sample, pane ->
+    val onItemClicked: (Sample, ContentType) -> Unit = { sample, pane ->
         viewModel.setSelectedSample(sample, pane)
     }
 
@@ -54,28 +52,39 @@ fun SampleScreen(
      * When moving from LIST_AND_DETAIL page to LIST page clear the selection and user should see LIST screen.
      */
     LaunchedEffect(key1 = contentType) {
-        if (contentType == ContentType.SINGLE_PANE && !uiState.isDetailOnlyOpen) {
+        if (contentType == ContentType.SINGLE_PANE && !state.isDetailOnlyOpen) {
             closeDetailScreen()
         }
+    }
+    val scaffoldState = rememberScaffoldState()
+    // Listen for side effects from the VM
+    LaunchedEffect(effectFlow) {
+        effectFlow.onEach { effect ->
+            if (effect is SampleContract.Effect.DataWasLoaded)
+                scaffoldState.snackbarHostState.showSnackbar(
+                    message = "Samples are loaded.",
+                    duration = SnackbarDuration.Short
+                )
+        }.collect()
     }
 
     val lazyListState = rememberLazyListState()
 
     if (contentType == ContentType.DUAL_PANE) {
         SampleDualPaneContent(
-            uiState = uiState,
+            state = state,
             lazyListState = lazyListState,
             modifier = modifier.fillMaxSize(),
-            navigateToDetail = navigateToDetail
+            onItemClicked = onItemClicked
         )
     } else {
         Box(modifier = modifier.fillMaxSize()) {
             SampleSinglePaneContent(
-                uiState = uiState,
+                state = state,
                 lazyListState = lazyListState,
                 modifier = Modifier.fillMaxSize(),
                 closeDetailScreen = closeDetailScreen,
-                navigateToDetail = navigateToDetail
+                onItemClicked = onItemClicked
             )
             // When we have bottom navigation we show FAB at the bottom end.
             if (navigationType == NavigationType.BOTTOM_NAVIGATION) {
@@ -94,55 +103,69 @@ fun SampleScreen(
                     )
                 }
             }
-        }
+
+            if (state.loading) {
+                LoadingBar()
+            }
+        } // End Box
     }
 }
 
 @Composable
 fun SampleSinglePaneContent(
-    uiState: SampleUIState,
+    state: SampleContract.State,
     lazyListState: LazyListState,
     modifier: Modifier = Modifier,
     closeDetailScreen: () -> Unit,
-    navigateToDetail: (Sample, ContentType) -> Unit
+    onItemClicked: (Sample, ContentType) -> Unit
 ) {
-    if (uiState.selectedSample != null && uiState.isDetailOnlyOpen) {
+    if (state.selectedSample != null && state.isDetailOnlyOpen) {
         BackHandler {
             closeDetailScreen()
         }
-        SampleDetail(sample = uiState.selectedSample) {
+        SampleDetail(sample = state.selectedSample) {
             closeDetailScreen()
         }
     } else {
-        SampleList(
-            modifier = modifier,
-            uiState = uiState,
-            lazyListState = lazyListState,
-            contentType = ContentType.SINGLE_PANE,
-            navigateToDetail = navigateToDetail,
-        )
+        Box {
+            SampleList(
+                modifier = modifier,
+                state = state,
+                lazyListState = lazyListState,
+                contentType = ContentType.SINGLE_PANE,
+                onItemClicked = onItemClicked,
+            )
+            if (state.loading) {
+                LoadingBar()
+            }
+        }
     }
 }
 
 @Composable
 fun SampleDualPaneContent(
     modifier: Modifier = Modifier,
-    uiState: SampleUIState,
+    state: SampleContract.State,
     lazyListState: LazyListState,
-    navigateToDetail: (Sample, ContentType) -> Unit
+    onItemClicked: (Sample, ContentType) -> Unit
 ) {
     Row(modifier = modifier) {
-        SampleList(
-            uiState = uiState,
-            lazyListState = lazyListState,
-            contentType = ContentType.DUAL_PANE,
-            navigateToDetail = navigateToDetail
-        )
+        Box {
+            SampleList(
+                state = state,
+                lazyListState = lazyListState,
+                contentType = ContentType.DUAL_PANE,
+                onItemClicked = onItemClicked
+            )
+            if (state.loading) {
+                LoadingBar()
+            }
+        }
 
         SampleDetail(
             modifier = Modifier.weight(1f),
             isFullScreen = false,
-            sample = uiState.selectedSample ?: uiState.group.values.flatten().first()
+            sample = state.selectedSample ?: state.group.values.flatten().first()
         )
     }
 }
@@ -152,12 +175,12 @@ fun SampleDualPaneContent(
 @Composable
 fun SampleList(
     modifier: Modifier = Modifier,
-    uiState: SampleUIState,
+    state: SampleContract.State,
     lazyListState: LazyListState,
     contentType: ContentType,
-    navigateToDetail: (Sample, ContentType) -> Unit
+    onItemClicked: (Sample, ContentType) -> Unit
 ) {
-    val grouped = uiState.group
+    val grouped = state.group
     Column {
         SearchBar(modifier = Modifier.fillMaxWidth())
 
@@ -172,8 +195,8 @@ fun SampleList(
                     SampleHeader(group)
                 }
                 items(samples) { sample ->
-                    SampleListItem(sample = sample) { sample ->
-                        navigateToDetail(sample, contentType)
+                    SampleRow(sample = sample) { sample ->
+                        onItemClicked(sample, contentType)
                     }
                 }
             }
@@ -196,4 +219,15 @@ fun SampleHeader(group: String) {
         style = MaterialTheme.typography.bodyMedium,
         color = MaterialTheme.colorScheme.primary
     )
+}
+
+
+@Composable
+fun LoadingBar() {
+    Box(
+        contentAlignment = Alignment.Center,
+        modifier = Modifier.fillMaxSize()
+    ) {
+        CircularProgressIndicator()
+    }
 }

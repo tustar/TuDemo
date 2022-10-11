@@ -22,12 +22,12 @@ import com.tustar.utils.getStringId
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun SampleListItem(
+fun SampleRow(
     modifier: Modifier = Modifier,
     isSelectable: Boolean = false,
     isSelected: Boolean = false,
     sample: Sample,
-    navigateToDetail: (Sample) -> Unit,
+    onItemClicked: (Sample) -> Unit,
 ) {
     val semanticsModifier = if (isSelectable)
         modifier
@@ -37,7 +37,7 @@ fun SampleListItem(
         vertical = 4.dp
     )
     Card(
-        modifier = semanticsModifier.clickable { navigateToDetail(sample) },
+        modifier = semanticsModifier.clickable { onItemClicked(sample) },
         colors = CardDefaults.cardColors(
             containerColor = if (isSelected) MaterialTheme.colorScheme.primaryContainer else MaterialTheme.colorScheme.surfaceVariant
         )

@@ -2,23 +2,22 @@ package com.tustar.weather.ui
 
 import android.annotation.SuppressLint
 import android.content.Context
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.setValue
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.baidu.location.BDAbstractLocationListener
 import com.baidu.location.BDLocation
 import com.baidu.location.LocationClient
 import com.baidu.location.LocationClientOption
-import com.tustar.common.Result
-import com.tustar.common.asResult
-import com.tustar.data.Weather
 import com.tustar.data.source.WeatherRepository
 import com.tustar.utils.Logger
 import com.tustar.weather.WeatherPrefs
-import com.tustar.weather.util.updateMode15D
-import com.tustar.weather.util.updateMode24H
 import com.tustar.weather.util.weatherPrefsFlow
 import dagger.hilt.android.lifecycle.HiltViewModel
-import kotlinx.coroutines.flow.*
+import kotlinx.coroutines.channels.Channel
+import kotlinx.coroutines.channels.Channel.Factory.UNLIMITED
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
@@ -27,8 +26,17 @@ open class WeatherViewModel @Inject constructor(
     private val weatherRepository: WeatherRepository,
 ) : ViewModel() {
 
-    private var _uiState = MutableStateFlow<WeatherUiState>(WeatherUiState.Idle)
-    val uiState: StateFlow<WeatherUiState> = _uiState.asStateFlow()
+    var state by mutableStateOf(
+        WeatherContact.State(
+            weather = null,
+            prefs = WeatherPrefs.getDefaultInstance(),
+            loading = true,
+        )
+    )
+        private set
+
+    var effects = Channel<WeatherContact.Effect>(UNLIMITED)
+        private set
 
     @SuppressLint("MissingPermission")
     fun getLocation(context: Context) {
@@ -124,52 +132,14 @@ open class WeatherViewModel @Inject constructor(
 
     private fun requestWeather(context: Context, location: String) {
         viewModelScope.launch {
-            val prefsStream = weatherPrefsFlow(context)
-            val weatherStream = flow {
-                emit(weatherRepository.weather(location))
+            val weather = weatherRepository.weather(location)
+            weatherPrefsFlow(context).collect { prefs ->
+                state = state.copy(
+                    weather = weather,
+                    prefs = prefs,
+                    loading = false
+                )
             }
-            combine(prefsStream, weatherStream, ::Pair)
-                .asResult()
-                .map { result ->
-                    when (result) {
-                        is Result.Success -> {
-                            val (prefs, weather) = result.data
-                            WeatherUiState.Success(prefs, weather)
-                        }
-                        is Result.Loading -> {
-                            WeatherUiState.Loading
-                        }
-                        is Result.Error -> {
-                            WeatherUiState.Error
-                        }
-                    }
-                }
-                .collect {
-                    _uiState.value = it
-                }
         }
     }
-
-    fun saveMode24H(context: Context, mode24H: WeatherPrefs.Mode) {
-        viewModelScope.launch {
-            updateMode24H(context, mode24H)
-        }
-    }
-
-    fun saveMode15D(context: Context, mode15D: WeatherPrefs.Mode) {
-        viewModelScope.launch {
-            updateMode15D(context, mode15D)
-        }
-    }
-}
-
-sealed interface WeatherUiState {
-    data class Success(
-        val prefs: WeatherPrefs,
-        val weather: Weather,
-    ) : WeatherUiState
-
-    object Error : WeatherUiState
-    object Loading : WeatherUiState
-    object Idle : WeatherUiState
 }

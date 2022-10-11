@@ -14,14 +14,7 @@ message WLocation {
 }
 
 message WeatherPrefs {
-    Mode mode_24h = 1;
-    Mode mode_15d = 2;
-    int64 last_updated = 3;
-    WLocation locate = 4;
-    map<string, WLocation> cities = 5; // repeated => list
-
-    enum Mode {
-        LIST = 0;
-        TREND = 1;
-    }
+    int64 last_updated = 1;
+    WLocation locate = 2;
+    map<string, WLocation> cities = 3; // repeated => list
 }

@@ -34,7 +34,6 @@ fun City.toWLocation() = WLocation.newBuilder()
     .setAdm2(adm2)
     .build()!!
 
-typealias TrendSwitchMode = Pair<WeatherPrefs.Mode, (Context, WeatherPrefs.Mode) -> Unit>
 
 
 

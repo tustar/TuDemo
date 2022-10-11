@@ -11,7 +11,9 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import com.tustar.data.source.remote.AirDaily
 import com.tustar.data.source.remote.WeatherDaily
 import com.tustar.weather.R
@@ -102,4 +104,19 @@ private fun DayRow(weatherDaily: WeatherDaily, airDaily: AirDaily?) {
             WeatherAqi(airDaily = airDaily)
         }
     }
+}
+
+
+@Composable
+fun WeatherAqi(modifier: Modifier = Modifier, airDaily: AirDaily?) {
+    Text(
+        text = airDaily?.aqi?.toString() ?: "N/A",
+        fontSize = 14.sp,
+        textAlign = TextAlign.Center,
+        color = Color.White,
+        modifier = modifier
+            .padding(top = 2.dp)
+            .width(30.dp)
+            .background(WeatherUtils.aqiColor(airDaily?.aqi ?: 0), RoundedCornerShape(2.5.dp)),
+    )
 }
