@@ -31,10 +31,9 @@ fun ItemWeather24H(hourly24: List<Hourly>) {
 @Composable
 private fun HourColumn(hourly: Hourly) {
     val (isNow, formatFxTime) = WeatherUtils.hourlyTime(LocalContext.current, hourly.fxTime)
-    val modifier = if (isNow) Modifier.itemSelected() else Modifier
 
     Column(
-        modifier = modifier
+        modifier = Modifier
             .padding(horizontal = 24.dp, vertical = 8.dp),
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
@@ -51,7 +50,7 @@ private fun HourColumn(hourly: Hourly) {
                 )
             ),
             contentDescription = null,
-            modifier = modifier
+            modifier = Modifier
                 .padding(vertical = 15.dp)
         )
         Text(

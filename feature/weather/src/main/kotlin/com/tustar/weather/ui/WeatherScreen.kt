@@ -221,9 +221,9 @@ private fun LazyListScope.weatherBody(
     item {
         ItemWeatherSunrise(weather.daily15D[0])
     }
-//    item {
-//        ItemWeatherIndices1D(weather.indices1D)
-//    }
+    item {
+        ItemWeatherIndices1D(weather.indices1D)
+    }
     item {
         Text(
             text = stringResource(id = R.string.weather_sources),

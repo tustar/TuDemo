@@ -35,9 +35,9 @@ fun ItemWeatherTitle(
         Text(
             text = stringResource(id = titleId),
             style = MaterialTheme.typography.titleMedium,
-            fontSize = 20.sp,
+            fontSize = 18.sp,
             color = Color.White,
-            modifier = Modifier.padding(24.dp)
+            modifier = Modifier.padding(start = 24.dp, top = 24.dp, bottom = 12.dp)
         )
         content()
     }

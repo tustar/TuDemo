@@ -10,10 +10,12 @@ import androidx.compose.foundation.lazy.grid.GridCells
 import androidx.compose.foundation.lazy.grid.LazyHorizontalGrid
 import androidx.compose.foundation.lazy.grid.items
 import androidx.compose.foundation.shape.CircleShape
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
@@ -22,6 +24,7 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.compose.ui.window.Dialog
+import com.google.accompanist.flowlayout.FlowRow
 import com.tustar.data.source.remote.IndicesDaily
 import com.tustar.ui.design.shape.CupHeadRoundedCornerShape
 import com.tustar.weather.R
@@ -42,10 +45,8 @@ fun ItemWeatherIndices1D(indices1D: List<IndicesDaily>) {
             }
         }
 
-        LazyHorizontalGrid(
-            rows = GridCells.Fixed(2),
-        ) {
-            items(items = indices1D) {
+        FlowRow() {
+            indices1D.forEach {
                 ItemLife(
                     modifier = Modifier
                         .clickable(
@@ -56,41 +57,49 @@ fun ItemWeatherIndices1D(indices1D: List<IndicesDaily>) {
                             indicesDaily = it
                         }
                         .fillMaxWidth(0.33f)
-                        .padding(vertical = 10.dp),
+                        .aspectRatio(1.8f),
                     indicesDaily = it
                 )
             }
+
         }
     }
 }
 
 @Composable
 private fun ItemLife(modifier: Modifier, indicesDaily: IndicesDaily) {
-    Column(
-        modifier = modifier,
-        horizontalAlignment = Alignment.CenterHorizontally
+    Box(
+        contentAlignment = Alignment.Center,
+        modifier = modifier
     ) {
-        Image(
-            painter = painterResource(
-                id = WeatherUtils.lifeIconId(
-                    context = LocalContext.current,
-                    type = indicesDaily.type
+        Row(
+            verticalAlignment = Alignment.CenterVertically
+        ) {
+            Image(
+                painter = painterResource(
+                    id = WeatherUtils.lifeIconId(
+                        context = LocalContext.current,
+                        type = indicesDaily.type
+                    )
+                ),
+                contentDescription = null,
+                modifier = Modifier
+                    .width(64.dp)
+            )
+            Column(modifier = Modifier.padding(start = 8.dp)) {
+                Text(
+                    text = indicesDaily.name,
+                    style = MaterialTheme.typography.bodyMedium,
+                    color = Color.White,
                 )
-            ),
-            contentDescription = null,
-            modifier = Modifier
-                .width(40.dp)
-        )
-        Text(
-            text = indicesDaily.category,
-            fontSize = 16.sp,
-            color = Color(0xFF333333),
-        )
-        Text(
-            text = indicesDaily.name,
-            fontSize = 12.sp,
-            color = Color(0xFF999999),
-        )
+                Text(
+                    text = indicesDaily.category,
+                    style = MaterialTheme.typography.titleMedium,
+                    color = Color.White,
+                    modifier = Modifier.padding(top = 4.dp)
+                )
+            }
+        }
     }
 }
 
@@ -103,7 +112,14 @@ private fun LifeDialog(indicesDaily: IndicesDaily, onDismiss: (Boolean) -> Unit)
         Column(
             modifier = Modifier
                 .padding(horizontal = 16.dp)
-                .background(Color.White, CupHeadRoundedCornerShape(8.dp, 54.dp)),
+                .background(
+                    Brush.verticalGradient(
+                        listOf(
+                            MaterialTheme.colorScheme.primary,
+                            MaterialTheme.colorScheme.secondary,
+                        )
+                    ), CupHeadRoundedCornerShape(8.dp, 54.dp)
+                ),
             horizontalAlignment = Alignment.CenterHorizontally,
         ) {
 
@@ -120,7 +136,7 @@ private fun LifeDialog(indicesDaily: IndicesDaily, onDismiss: (Boolean) -> Unit)
                     .size(96.dp, 96.dp)
                     .border(
                         width = 0.5.dp,
-                        color = Color(0XFFDBDBDB),
+                        color = MaterialTheme.colorScheme.inversePrimary,
                         shape = CircleShape
                     )
                     .padding(12.dp)
@@ -128,29 +144,25 @@ private fun LifeDialog(indicesDaily: IndicesDaily, onDismiss: (Boolean) -> Unit)
             )
             Text(
                 text = indicesDaily.name,
-                fontSize = 16.sp,
-                fontWeight = FontWeight.Bold,
-                color = Color(0xFF333333),
-                modifier = Modifier
-                    .padding(start = 24.dp, end = 24.dp, top = 8.dp),
+                style = MaterialTheme.typography.bodyLarge,
+                color = Color.White,
+                modifier = Modifier.padding(top = 12.dp)
             )
             Text(
                 text = indicesDaily.category,
-                fontSize = 18.sp,
-                fontWeight = FontWeight.Bold,
-                color = Color(0xFF43abff),
-                modifier = Modifier
-                    .padding(start = 24.dp, end = 24.dp, top = 2.dp),
+                style = MaterialTheme.typography.titleLarge,
+                color = Color.White,
+                modifier = Modifier.padding(top = 4.dp)
             )
             Text(
                 text = indicesDaily.text,
-                fontSize = 15.sp,
                 textAlign = TextAlign.Start,
-                color = Color(0xFF333333),
+                style = MaterialTheme.typography.bodyLarge,
+                color = Color(0xFFF0F0ED),
                 modifier = Modifier
                     .fillMaxWidth()
-                    .height(150.dp)
-                    .padding(start = 24.dp, end = 24.dp, top = 12.dp, bottom = 32.dp),
+                    .aspectRatio(3.0f)
+                    .padding(horizontal = 30.dp, vertical = 24.dp),
             )
         }
     }
