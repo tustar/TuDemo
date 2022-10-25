@@ -15,7 +15,7 @@ class AirNowResponse(
 
 @Parcelize
 data class AirNow(
-    val aqi: Int,
+    val aqi: String,
     val category: String,
     val co: String,
     val level: String,

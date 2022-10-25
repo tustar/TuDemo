@@ -241,7 +241,7 @@ fun LoadingBar() {
         contentAlignment = Alignment.Center,
         modifier = Modifier.fillMaxSize()
     ) {
-        CircularProgressIndicator()
+        CircularProgressIndicator(color = MaterialTheme.colorScheme.inversePrimary)
     }
 }
 

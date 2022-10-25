@@ -218,16 +218,21 @@ private fun Aqi(modifier: Modifier, airNow: AirNow) {
             )
             .padding(horizontal = 8.dp, vertical = 2.dp),
     ) {
+        val aqi = try {
+            airNow.aqi.toInt()
+        } catch (e: NumberFormatException) {
+            0
+        }
         Icon(
             painter = painterResource(id = R.drawable.ic_leaf),
             contentDescription = null,
-            tint = WeatherUtils.aqiColor(airNow.aqi),
+            tint = WeatherUtils.aqiColor(aqi),
             modifier = Modifier
                 .width(24.dp)
                 .padding(2.dp)
         )
         Text(
-            text = airNow.aqi.toString(),
+            text = airNow.aqi,
             style = MaterialTheme.typography.bodyMedium,
             color = Color.White,
             modifier = Modifier

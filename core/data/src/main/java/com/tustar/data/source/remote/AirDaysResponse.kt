@@ -13,7 +13,7 @@ class AirDaysResponse(
 
 @Parcelize
 data class AirDaily(
-    val aqi: Int,
+    val aqi: String,
     val category: String,
     val fxDate: String,
     val level: String,

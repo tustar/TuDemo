@@ -16,6 +16,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.tustar.data.source.remote.AirDaily
 import com.tustar.data.source.remote.WeatherDaily
+import com.tustar.utils.Logger
 import com.tustar.weather.R
 
 @Composable
@@ -110,13 +111,13 @@ private fun DayRow(weatherDaily: WeatherDaily, airDaily: AirDaily?) {
 @Composable
 fun WeatherAqi(modifier: Modifier = Modifier, airDaily: AirDaily?) {
     Text(
-        text = airDaily?.aqi?.toString() ?: "N/A",
+        text = airDaily?.aqi ?: "NA",
         fontSize = 14.sp,
         textAlign = TextAlign.Center,
         color = Color.White,
         modifier = modifier
             .padding(top = 2.dp)
             .width(30.dp)
-            .background(WeatherUtils.aqiColor(airDaily?.aqi ?: 0), RoundedCornerShape(2.5.dp)),
+            .background(WeatherUtils.aqiColor(airDaily?.aqi?.toInt() ?: 0), RoundedCornerShape(2.5.dp)),
     )
 }

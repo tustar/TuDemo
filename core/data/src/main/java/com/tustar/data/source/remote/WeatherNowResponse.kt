@@ -13,19 +13,19 @@ class WeatherNowResponse(
 
 @Parcelize
 data class WeatherNow(
-    val cloud: Int,
+    val cloud: String,
     val dew: String,
-    val feelsLike: Int,
-    val humidity: Int,
+    val feelsLike: String,
+    val humidity: String,
     val icon: String,
     val obsTime: String,
     val precip: String,
-    val pressure: Int,
-    val temp: Int,
+    val pressure: String,
+    val temp: String,
     val text: String,
     val vis: String,
-    val wind360: Int,
+    val wind360: String,
     val windDir: String,
-    val windScale: Int,
-    val windSpeed: Float
+    val windScale: String,
+    val windSpeed: String
 ) : Parcelable

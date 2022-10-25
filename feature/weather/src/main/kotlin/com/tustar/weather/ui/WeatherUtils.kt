@@ -85,7 +85,7 @@ object WeatherUtils {
     }
 
     fun dailyText(context: Context, weatherDaily: WeatherDaily): String {
-        if (weatherDaily.textDay == weatherDaily.textNight) {
+        if (weatherDaily.textDay != "--" && weatherDaily.textDay == weatherDaily.textNight) {
             return weatherDaily.textDay
         }
 

@@ -21,7 +21,7 @@ data class Hourly(
     val pop: String,
     val precip: String,
     val pressure: String,
-    val temp: Int,
+    val temp: String,
     val text: String,
     val wind360: String,
     val windDir: String,
