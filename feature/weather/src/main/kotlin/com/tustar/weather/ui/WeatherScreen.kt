@@ -170,7 +170,6 @@ private fun LocationEnable(
 fun WeatherContent(state: WeatherContact.State) {
     val listState = rememberLazyListState()
     Box {
-        state.weather?.let { weather ->
             LazyColumn(
                 state = listState,
                 modifier = Modifier
@@ -187,12 +186,11 @@ fun WeatherContent(state: WeatherContact.State) {
                 item {
                     Spacer(Modifier.windowInsetsTopHeight(WindowInsets.safeDrawing))
                 }
-                weatherBody(weather)
+                weatherBody(state.weather)
                 item {
                     Spacer(Modifier.windowInsetsBottomHeight(WindowInsets.safeDrawing))
                 }
             }
-        }
 
         if (state.loading) {
             LoadingBar()

@@ -20,6 +20,7 @@ data class WeatherDaily(
     val iconDay: String,
     val iconNight: String,
     val moonPhase: String,
+    val moonPhaseIcon:String,
     val moonrise: String,
     val moonset: String,
     val precip: String,

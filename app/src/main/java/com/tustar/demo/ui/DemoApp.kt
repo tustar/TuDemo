@@ -28,6 +28,7 @@ import com.tustar.ui.NavigationContentPosition
 import com.tustar.ui.NavigationType
 import com.tustar.weather.navigation.weatherGraph
 import kotlinx.coroutines.launch
+import java.util.logging.Logger
 
 @Composable
 fun DemoApp(

@@ -1,9 +1,9 @@
 plugins {
     id 'tustar.android.application'
     id 'tustar.android.application.compose'
-    id 'kotlin-kapt'
     id 'dagger.hilt.android.plugin'
     id 'com.google.devtools.ksp'
+    id 'kotlin-kapt'
 }
 
 android {
