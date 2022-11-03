@@ -24,19 +24,19 @@ object WeatherUtils {
 
     fun alertIconId(context: Context, type: String): Int {
         return context.resources.getIdentifier(
-            "ic_${type}", "drawable", context.packageName
+            "weather_ic_${type}", "drawable", context.packageName
         )
     }
 
     fun weatherIconId(context: Context, icon: String): Int {
         return context.resources.getIdentifier(
-            "ic_${icon}", "drawable", context.packageName
+            "weather_ic_${icon}", "drawable", context.packageName
         )
     }
 
     fun lifeIconId(context: Context, type: Int): Int {
         return context.resources.getIdentifier(
-            "ic_life_${type}", "drawable", context.packageName
+            "weather_ic_life_${type}", "drawable", context.packageName
         )
     }
     /**
@@ -156,13 +156,13 @@ object WeatherUtils {
 
     fun getWeek(context: Context, calendar: Calendar = Calendar.getInstance()): String {
         return when (calendar[Calendar.DAY_OF_WEEK]) {
-            Calendar.SUNDAY -> context.resources.getString(R.string.week_day_sunday)
-            Calendar.MONDAY -> context.resources.getString(R.string.week_day_monday)
-            Calendar.TUESDAY -> context.resources.getString(R.string.week_day_tuesday)
-            Calendar.WEDNESDAY -> context.resources.getString(R.string.week_day_wednesday)
-            Calendar.THURSDAY -> context.resources.getString(R.string.week_day_thursday)
-            Calendar.FRIDAY -> context.resources.getString(R.string.week_day_friday)
-            Calendar.SATURDAY -> context.resources.getString(R.string.week_day_saturday)
+            Calendar.SUNDAY -> context.resources.getString(R.string.weather_sunday)
+            Calendar.MONDAY -> context.resources.getString(R.string.weather_monday)
+            Calendar.TUESDAY -> context.resources.getString(R.string.weather_tuesday)
+            Calendar.WEDNESDAY -> context.resources.getString(R.string.weather_wednesday)
+            Calendar.THURSDAY -> context.resources.getString(R.string.weather_thursday)
+            Calendar.FRIDAY -> context.resources.getString(R.string.weather_friday)
+            Calendar.SATURDAY -> context.resources.getString(R.string.weather_saturday)
             else -> ""
         }
     }

@@ -13,7 +13,7 @@ import com.tustar.sample.widget.PathMeasureView
     group = "sample_group_custom_widget",
     name = "sample_custom_path_measure",
     desc = "sample_custom_path_measure_desc",
-    image = "avatar_4",
+    image = "sample_avatar_4",
     createdAt = "2021-01-01 10:15:00",
     updatedAt = "2021-07-02 14:48:00",
 )

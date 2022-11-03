@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 <!--    <color name="ic_weather_color">#F6C43A</color>-->
-    <color name="ic_weather_color">#FAFAFA</color>
+    <color name="weather_bg_color">@android:color/system_accent1_10</color>
 </resources>

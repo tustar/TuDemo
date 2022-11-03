@@ -18,7 +18,7 @@ import com.tustar.ui.design.theme.DemoTheme
     group = "sample_group_custom_widget",
     name = "sample_custom_composes_example",
     desc = "sample_custom_composes_example_desc",
-    image = "avatar_express",
+    image = "sample_avatar_express",
     createdAt = "2021-03-12 17:00:00",
     updatedAt = "2021-07-02 10:56:00",
 )

@@ -44,6 +44,7 @@ android {
     composeOptions {
         kotlinCompilerExtensionVersion = libs.versions.androidxComposeCompiler.get()
     }
+    resourcePrefix = "weather_"
 }
 
 dependencies {

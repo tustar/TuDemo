@@ -29,12 +29,12 @@ fun SearchBar(modifier: Modifier = Modifier) {
     ) {
         Icon(
             imageVector = Icons.Default.Search,
-            contentDescription = stringResource(id = com.tustar.sample.R.string.search),
+            contentDescription = stringResource(id = com.tustar.sample.R.string.sample_search),
             modifier = Modifier.padding(start = 16.dp),
             tint = MaterialTheme.colorScheme.outline
         )
         Text(
-            text = stringResource(id = com.tustar.sample.R.string.sample_search),
+            text = stringResource(id = com.tustar.sample.R.string.sample_search_demo),
             modifier = Modifier
                 .weight(1f)
                 .padding(16.dp),
@@ -42,7 +42,7 @@ fun SearchBar(modifier: Modifier = Modifier) {
             color = MaterialTheme.colorScheme.outline
         )
         SampleProfileImage(
-            drawableResource = com.tustar.sample.R.drawable.avatar_6,
+            drawableResource = R.drawable.sample_avatar_6,
             description = "",
             modifier = Modifier
                 .padding(12.dp)
@@ -77,7 +77,7 @@ fun SampleDetailAppBar(
             ) {
                 Icon(
                     imageVector = Icons.Default.ArrowBack,
-                    contentDescription = stringResource(id = R.string.back),
+                    contentDescription = stringResource(id = R.string.sample_back),
                     modifier = Modifier.size(14.dp)
                 )
             }
@@ -99,7 +99,7 @@ fun SampleDetailAppBar(
         ) {
             Icon(
                 imageVector = Icons.Default.MoreVert,
-                contentDescription = stringResource(id = R.string.more),
+                contentDescription = stringResource(id = R.string.sample_more),
                 tint = MaterialTheme.colorScheme.onSurfaceVariant
             )
         }

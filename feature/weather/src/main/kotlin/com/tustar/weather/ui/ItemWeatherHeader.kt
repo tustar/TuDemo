@@ -224,7 +224,7 @@ private fun Aqi(modifier: Modifier, airNow: AirNow) {
             0
         }
         Icon(
-            painter = painterResource(id = R.drawable.ic_leaf),
+            painter = painterResource(id = R.drawable.weather_ic_leaf),
             contentDescription = null,
             tint = WeatherUtils.aqiColor(aqi),
             modifier = Modifier

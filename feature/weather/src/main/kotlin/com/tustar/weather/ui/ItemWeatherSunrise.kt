@@ -75,7 +75,7 @@ fun ItemWeatherSunrise(today: WeatherDaily) {
 private fun DrawSunPath(
     modifier: Modifier, percent: Float,
 ) {
-    val sun = ImageBitmap.vectorResource(id = R.drawable.ic_sun)
+    val sun = ImageBitmap.vectorResource(id = R.drawable.weather_ic_sun)
     var rising by remember { mutableStateOf(false) }
     rising = true
     val progress by animateFloatAsState(

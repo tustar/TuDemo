@@ -28,7 +28,7 @@ fun DynamicScreen() {
                 modifier = Modifier.clickable {
 
                 },
-                drawableResource = R.drawable.paris_1,
+                drawableResource = R.drawable.dynamic_paris_1,
                 name = R.string.dynamic_hook
             )
         }
@@ -37,7 +37,7 @@ fun DynamicScreen() {
                 modifier = Modifier.clickable {
 
                 },
-                drawableResource = R.drawable.paris_2,
+                drawableResource = R.drawable.dynamic_paris_2,
                 name = R.string.dynamic_hot_fix
             )
         }
@@ -46,7 +46,7 @@ fun DynamicScreen() {
                 modifier = Modifier.clickable {
 
                 },
-                drawableResource = R.drawable.paris_3,
+                drawableResource = R.drawable.dynamic_paris_3,
                 name = R.string.dynamic_re_plugin
             )
         }
@@ -55,7 +55,7 @@ fun DynamicScreen() {
                 modifier = Modifier.clickable {
 
                 },
-                drawableResource = R.drawable.paris_4,
+                drawableResource = R.drawable.dynamic_paris_4,
                 name = R.string.dynamic_component
             )
         }

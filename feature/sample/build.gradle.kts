@@ -41,6 +41,7 @@ android {
     composeOptions {
         kotlinCompilerExtensionVersion = libs.versions.androidxComposeCompiler.get()
     }
+    resourcePrefix = "sample_"
 }
 
 dependencies {

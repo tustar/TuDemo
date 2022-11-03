@@ -10,7 +10,7 @@ annotation class Sample(
     val group: String,
     val name: String,
     val desc: String,
-    val image: String = "avatar_express",
+    val image: String = "sample_avatar_express",
     val createdAt: String = "2021-03-28 21:00:00",
     val updatedAt: String = "2021-03-30 21:00:00",
 )

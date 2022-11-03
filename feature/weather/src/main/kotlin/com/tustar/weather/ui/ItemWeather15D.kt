@@ -21,7 +21,7 @@ import com.tustar.weather.R
 
 @Composable
 fun ItemWeather15D(daily15D: List<WeatherDaily>, air5D: List<AirDaily>) {
-    ItemWeatherTitle(titleId = R.string.weather_15d_forecast) {
+    ItemWeatherTitle(titleId = R.string.weather_forecast_15d) {
         Column(
             verticalArrangement = Arrangement.spacedBy(4.dp),
             modifier = Modifier,
