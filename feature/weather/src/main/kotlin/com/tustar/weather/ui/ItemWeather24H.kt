@@ -1,11 +1,11 @@
 package com.tustar.weather.ui
 
 import androidx.compose.foundation.Image
-import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.background
+import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.lazy.items
-import androidx.compose.material3.MaterialTheme
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
@@ -21,7 +21,13 @@ import com.tustar.weather.R
 
 @Composable
 fun ItemWeather24H(hourly24: List<Hourly>) {
-    LazyRow(modifier = Modifier.padding(top = 24.dp)) {
+    LazyRow(
+        modifier = Modifier
+            .padding(LocalWeatherSize.current.margin.dp)
+            .background(Color(0x1A000000), RoundedCornerShape(5.dp))
+            .padding(LocalWeatherSize.current.margin.dp),
+        horizontalArrangement = Arrangement.spacedBy(LocalWeatherSize.current.margin.dp)
+    ) {
         items(items = hourly24, itemContent = { hourly ->
             HourColumn(hourly = hourly)
         })
@@ -34,13 +40,12 @@ private fun HourColumn(hourly: Hourly) {
 
     Column(
         modifier = Modifier
-            .padding(horizontal = 24.dp, vertical = 8.dp),
+            .padding(vertical = 8.dp),
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
         Text(
             text = formatFxTime,
-            style = MaterialTheme.typography.bodyLarge,
-            color = Color.White,
+            style = LocalWeatherSize.current.body1,
         )
         Image(
             painter = painterResource(
@@ -51,12 +56,12 @@ private fun HourColumn(hourly: Hourly) {
             ),
             contentDescription = null,
             modifier = Modifier
+                .width(LocalWeatherSize.current.imgWidth.dp)
                 .padding(vertical = 15.dp)
         )
         Text(
             text = stringResource(R.string.weather_temp_value, hourly.temp),
-            style = MaterialTheme.typography.bodyLarge,
-            color = Color.White
+            style = LocalWeatherSize.current.body1,
         )
     }
 }

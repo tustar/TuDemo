@@ -7,7 +7,6 @@ import androidx.compose.animation.core.animateFloatAsState
 import androidx.compose.animation.core.tween
 import androidx.compose.foundation.Canvas
 import androidx.compose.foundation.layout.*
-import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
@@ -15,7 +14,6 @@ import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.geometry.center
 import androidx.compose.ui.graphics.*
 import androidx.compose.ui.graphics.drawscope.Stroke
-import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.constraintlayout.compose.ConstraintLayout
@@ -30,7 +28,7 @@ fun ItemWeatherSunrise(today: WeatherDaily) {
             modifier = Modifier
                 .fillMaxWidth()
                 .aspectRatio(2.5f)
-                .padding(horizontal = 24.dp, vertical = 16.dp)
+                .padding(horizontal = LocalWeatherSize.current.margin.dp, vertical = 16.dp)
         ) {
             val (sunPath, sunrise, sunset) = createRefs()
             DrawSunPath(
@@ -48,8 +46,7 @@ fun ItemWeatherSunrise(today: WeatherDaily) {
             )
             Text(
                 text = stringResource(R.string.weather_sunrise, today.sunrise),
-                style = MaterialTheme.typography.bodyLarge,
-                color = Color.White,
+                style = LocalWeatherSize.current.body1,
                 modifier = Modifier
                     .constrainAs(sunrise) {
                         start.linkTo(parent.start)
@@ -59,8 +56,7 @@ fun ItemWeatherSunrise(today: WeatherDaily) {
 
             Text(
                 text = stringResource(R.string.weather_sunset, today.sunset),
-                style = MaterialTheme.typography.bodyLarge,
-                color = Color.White,
+                style = LocalWeatherSize.current.body1,
                 modifier = Modifier
                     .constrainAs(sunset) {
                         end.linkTo(parent.end)

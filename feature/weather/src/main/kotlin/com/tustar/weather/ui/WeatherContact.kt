@@ -1,7 +1,5 @@
 package com.tustar.weather.ui
 
-import android.os.Build
-import androidx.annotation.RequiresApi
 import com.tustar.data.Weather
 import com.tustar.data.source.remote.*
 import com.tustar.weather.WeatherPrefs

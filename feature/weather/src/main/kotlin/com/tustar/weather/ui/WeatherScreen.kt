@@ -11,6 +11,8 @@ import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.CompositionLocalProvider
+import androidx.compose.runtime.compositionLocalOf
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -19,8 +21,13 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.LocalLifecycleOwner
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.text.TextStyle
+import androidx.compose.ui.text.font.FontFamily
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.Lifecycle
 import com.google.accompanist.permissions.ExperimentalPermissionsApi
@@ -29,8 +36,29 @@ import com.google.accompanist.permissions.rememberMultiplePermissionsState
 import com.tustar.data.Weather
 import com.tustar.ui.ContentType
 import com.tustar.ui.NavigationType
+import com.tustar.ui.design.theme.DemoTheme
 import com.tustar.utils.*
 import com.tustar.weather.R
+import com.tustar.weather.WeatherPrefs
+
+data class WeatherSize(
+    val aspectRatio: Float = 1.0f, // 1.33
+    val margin: Int = 8, // 24
+    val titleMargin: Int = 12, //24
+    val imgWidth: Int = 24, // 40
+    val title1: TextStyle = TextStyle.Default
+        .copy(color = Color.White), // MaterialTheme.typography.displayLarge
+    val title2:TextStyle = TextStyle.Default
+        .copy(color = Color.White), // MaterialTheme.typography.titleLarge
+    val title3: TextStyle = TextStyle.Default
+        .copy(color = Color.White), // MaterialTheme.typography.titleLarge
+    val body1: TextStyle = TextStyle.Default
+        .copy(color = Color.White), // MaterialTheme.typography.bodyLarge
+    val body2: TextStyle = TextStyle.Default
+        .copy(color = Color(0xFFF0F0ED)), // MaterialTheme.typography.bodyMedium
+)
+
+val LocalWeatherSize = compositionLocalOf { WeatherSize() }
 
 @OptIn(ExperimentalPermissionsApi::class)
 @Composable
@@ -39,19 +67,51 @@ fun WeatherScreen(
     navigationType: NavigationType,
     viewModel: WeatherViewModel = hiltViewModel(),
 ) {
-    Logger.d("contentType:$contentType, navigationType=$navigationType")
-    val permissions = mutableListOf(
-        Manifest.permission.ACCESS_FINE_LOCATION,
-        Manifest.permission.ACCESS_COARSE_LOCATION
-    )
+    CompositionLocalProvider(
+        LocalWeatherSize provides WeatherSize(
+            aspectRatio = 1.0f,
+            margin = 8,
+            titleMargin = 12,
+            imgWidth = 24,
+            title1 = MaterialTheme.typography.displayLarge.copy(
+                fontSize = 80.sp,
+                fontFamily = FontFamily.SansSerif,
+                fontWeight = FontWeight.Thin,
+                color = Color.White,
+            ),
+            title2 = MaterialTheme.typography.titleLarge.copy(
+                fontSize = 16.sp,
+                color = Color.White,
+            ),
+            title3 = MaterialTheme.typography.titleLarge.copy(
+                fontSize = 15.sp,
+                color = Color.White,
+            ),
+            body1 = MaterialTheme.typography.bodyLarge.copy(
+                fontSize = 14.sp,
+                color = Color.White
+            ),
+            body2 = MaterialTheme.typography.bodyMedium.copy(
+                fontSize = 13.sp,
+                color = Color(0xFFF0F0ED)
+            ),
+        )
+    ) {
+
+        Logger.d("contentType:$contentType, navigationType=$navigationType")
+        val permissions = mutableListOf(
+            Manifest.permission.ACCESS_FINE_LOCATION,
+            Manifest.permission.ACCESS_COARSE_LOCATION
+        )
 //    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
 //        permissions.add(Manifest.permission.ACCESS_BACKGROUND_LOCATION)
 //    }
-    val locationPermissionsState = rememberMultiplePermissionsState(permissions)
-    if (locationPermissionsState.allPermissionsGranted) {
-        AllPermissionsGranted(viewModel)
-    } else {
-        RequestLocations(locationPermissionsState)
+        val locationPermissionsState = rememberMultiplePermissionsState(permissions)
+        if (locationPermissionsState.allPermissionsGranted) {
+            AllPermissionsGranted(viewModel)
+        } else {
+            RequestLocations(locationPermissionsState)
+        }
     }
 }
 
@@ -170,27 +230,27 @@ private fun LocationEnable(
 fun WeatherContent(state: WeatherContact.State) {
     val listState = rememberLazyListState()
     Box {
-            LazyColumn(
-                state = listState,
-                modifier = Modifier
-                    .fillMaxSize()
-                    .background(
-                        Brush.verticalGradient(
-                            listOf(
-                                MaterialTheme.colorScheme.primary,
-                                MaterialTheme.colorScheme.secondary,
-                            )
+        LazyColumn(
+            state = listState,
+            modifier = Modifier
+                .fillMaxSize()
+                .background(
+                    Brush.verticalGradient(
+                        listOf(
+                            MaterialTheme.colorScheme.primary,
+                            MaterialTheme.colorScheme.secondary,
                         )
                     )
-            ) {
-                item {
-                    Spacer(Modifier.windowInsetsTopHeight(WindowInsets.safeDrawing))
-                }
-                weatherBody(state.weather)
-                item {
-                    Spacer(Modifier.windowInsetsBottomHeight(WindowInsets.safeDrawing))
-                }
+                )
+        ) {
+            item {
+                Spacer(Modifier.windowInsetsTopHeight(WindowInsets.safeDrawing))
             }
+            weatherBody(state.weather)
+            item {
+                Spacer(Modifier.windowInsetsBottomHeight(WindowInsets.safeDrawing))
+            }
+        }
 
         if (state.loading) {
             LoadingBar()
@@ -226,8 +286,7 @@ private fun LazyListScope.weatherBody(
         Text(
             text = stringResource(id = R.string.weather_sources),
             textAlign = TextAlign.Center,
-            style = MaterialTheme.typography.bodyMedium,
-            color = Color(0xFFF0F0ED),
+            style = LocalWeatherSize.current.body2,
             modifier = Modifier
                 .fillMaxWidth()
                 .padding(bottom = 16.dp),
@@ -245,3 +304,16 @@ fun LoadingBar() {
     }
 }
 
+@Preview(showBackground = true)
+@Composable
+fun WeatherScreenPreview() {
+    DemoTheme {
+        WeatherContent(
+            WeatherContact.State(
+                weather = WeatherContact.State.Empty,
+                prefs = WeatherPrefs.getDefaultInstance(),
+                loading = false,
+            )
+        )
+    }
+}

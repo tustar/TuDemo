@@ -4,7 +4,6 @@ import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Icon
-import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
@@ -13,10 +12,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
-import androidx.compose.ui.text.font.FontFamily
-import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
-import androidx.compose.ui.unit.sp
 import androidx.constraintlayout.compose.ConstraintLayout
 import com.tustar.data.source.remote.AirNow
 import com.tustar.data.source.remote.City
@@ -34,7 +30,7 @@ fun ItemWeatherHeader(
     ConstraintLayout(
         modifier = Modifier
             .fillMaxWidth()
-            .aspectRatio(1.33f)
+            .aspectRatio(LocalWeatherSize.current.aspectRatio)
     ) {
         val (cityList, warningList, major, date, feelsLike, aqi) = createRefs()
         // cityList
@@ -73,8 +69,7 @@ fun ItemWeatherHeader(
         // Date
         Text(
             text = WeatherUtils.gregorianAndLunar(LocalContext.current),
-            style = MaterialTheme.typography.bodyLarge,
-            color = Color.White,
+            style = LocalWeatherSize.current.body1,
             modifier = Modifier
                 .constrainAs(date) {
                     start.linkTo(parent.start)
@@ -97,9 +92,8 @@ fun ItemWeatherHeader(
                     start.linkTo(parent.start)
                     bottom.linkTo(parent.bottom)
                 }
-                .padding(start = 24.dp, bottom = 13.dp),
-            style = MaterialTheme.typography.bodyLarge,
-            color = Color.White,
+                .padding(start = LocalWeatherSize.current.margin.dp, bottom = 13.dp),
+            style = LocalWeatherSize.current.body1,
         )
         // Aqi
         Aqi(
@@ -117,12 +111,8 @@ private fun Major(modifier: Modifier, weatherNow: WeatherNow) {
     ConstraintLayout(modifier = modifier) {
         val (temp, unit, daily) = createRefs()
         Text(
-            text = weatherNow.temp.toString(),
-            style = MaterialTheme.typography.displayLarge,
-            fontSize = 100.sp,
-            fontFamily = FontFamily.SansSerif,
-            fontWeight = FontWeight.Thin,
-            color = Color.White,
+            text = weatherNow.temp,
+            style = LocalWeatherSize.current.title1,
             modifier = Modifier.constrainAs(temp) {
                 start.linkTo(parent.start)
                 end.linkTo(parent.end)
@@ -132,8 +122,7 @@ private fun Major(modifier: Modifier, weatherNow: WeatherNow) {
         )
         Text(
             text = stringResource(id = R.string.weather_temp_unit),
-            style = MaterialTheme.typography.bodyLarge,
-            color = Color(0xFFF0F0ED),
+            style = LocalWeatherSize.current.body1,
             modifier = Modifier.constrainAs(unit) {
                 top.linkTo(temp.top, 12.dp)
                 start.linkTo(temp.end)
@@ -141,8 +130,7 @@ private fun Major(modifier: Modifier, weatherNow: WeatherNow) {
         )
         Text(
             text = weatherNow.text,
-            style = MaterialTheme.typography.bodyLarge,
-            color = Color(0xFFF0F0ED),
+            style = LocalWeatherSize.current.body1,
             modifier = Modifier.constrainAs(daily) {
                 baseline.linkTo(temp.baseline)
                 start.linkTo(temp.end, 2.dp)
@@ -155,8 +143,7 @@ private fun Major(modifier: Modifier, weatherNow: WeatherNow) {
 private fun CityList(modifier: Modifier, city: City) {
     Text(
         text = city.name,
-        style = MaterialTheme.typography.titleLarge,
-        color = Color.White,
+        style = LocalWeatherSize.current.title2,
         modifier = modifier
             .padding(5.dp)
     )
@@ -199,8 +186,7 @@ private fun WarningItem(
                 warning.level,
                 warning.typeName
             ),
-            style = MaterialTheme.typography.bodyLarge,
-            color = Color.White,
+            style = LocalWeatherSize.current.body1,
             modifier = Modifier.padding(5.dp)
         )
     }
@@ -212,7 +198,7 @@ private fun Aqi(modifier: Modifier, airNow: AirNow) {
     Row(
         verticalAlignment = Alignment.CenterVertically,
         modifier = modifier
-            .padding(horizontal = 24.dp, vertical = 5.dp)
+            .padding(horizontal = LocalWeatherSize.current.margin.dp, vertical = 5.dp)
             .background(
                 Color(0x33000000), RoundedCornerShape(16.dp)
             )
@@ -233,15 +219,13 @@ private fun Aqi(modifier: Modifier, airNow: AirNow) {
         )
         Text(
             text = airNow.aqi,
-            style = MaterialTheme.typography.bodyMedium,
-            color = Color.White,
+            style = LocalWeatherSize.current.body2,
             modifier = Modifier
                 .padding(start = 2.dp)
         )
         Text(
             text = airNow.category,
-            style = MaterialTheme.typography.bodyMedium,
-            color = Color.White,
+            style = LocalWeatherSize.current.body2,
             modifier = Modifier
                 .padding(start = 2.dp)
         )

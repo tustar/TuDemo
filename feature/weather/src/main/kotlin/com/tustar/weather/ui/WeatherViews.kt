@@ -8,7 +8,6 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
@@ -16,10 +15,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
-import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
-import androidx.compose.ui.unit.sp
-import com.tustar.data.source.remote.AirDaily
 
 @Composable
 fun ItemWeatherTitle(
@@ -29,15 +25,13 @@ fun ItemWeatherTitle(
     Column(
         modifier = Modifier
             .fillMaxWidth()
-            .padding(24.dp)
+            .padding(LocalWeatherSize.current.titleMargin.dp)
             .background(Color(0x1A000000), RoundedCornerShape(5.dp))
     ) {
         Text(
             text = stringResource(id = titleId),
-            style = MaterialTheme.typography.titleMedium,
-            fontSize = 18.sp,
-            color = Color.White,
-            modifier = Modifier.padding(start = 24.dp, top = 24.dp, bottom = 12.dp)
+            style = LocalWeatherSize.current.title3,
+            modifier = Modifier.padding(start = LocalWeatherSize.current.titleMargin.dp, top = LocalWeatherSize.current.titleMargin.dp, bottom = 12.dp)
         )
         content()
     }
@@ -55,7 +49,7 @@ fun WeatherImage(modifier: Modifier = Modifier, icon: String) {
         contentDescription = null,
         modifier = modifier
             .padding(vertical = 5.dp)
-            .width(40.dp)
+            .width(LocalWeatherSize.current.imgWidth.dp)
 
     )
 }

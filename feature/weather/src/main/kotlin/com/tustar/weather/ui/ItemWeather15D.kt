@@ -3,20 +3,16 @@ package com.tustar.weather.ui
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
-import androidx.compose.ui.unit.sp
 import com.tustar.data.source.remote.AirDaily
 import com.tustar.data.source.remote.WeatherDaily
-import com.tustar.utils.Logger
 import com.tustar.weather.R
 
 @Composable
@@ -39,22 +35,20 @@ private fun DayRow(weatherDaily: WeatherDaily, airDaily: AirDaily?) {
 
     Row(
         modifier = Modifier
-            .padding(horizontal = 4.dp, vertical = 16.dp)
+            .padding(horizontal = 4.dp, vertical = 12.dp)
     ) {
         // 1 date & week
         Column(
             horizontalAlignment = Alignment.CenterHorizontally,
-            modifier = Modifier.weight(1f),
+            modifier = Modifier.weight(1.0f),
         ) {
             Text(
                 text = date,
-                style = MaterialTheme.typography.bodyMedium,
-                color = Color(0xFFF0F0ED),
+                style = LocalWeatherSize.current.body2,
             )
             Text(
                 text = week,
-                style = MaterialTheme.typography.bodyLarge,
-                color = Color.White,
+                style = LocalWeatherSize.current.body1,
             )
         }
 
@@ -71,8 +65,7 @@ private fun DayRow(weatherDaily: WeatherDaily, airDaily: AirDaily?) {
                     context = LocalContext.current,
                     weatherDaily = weatherDaily
                 ),
-                style = MaterialTheme.typography.bodyMedium,
-                color = Color(0xFFF0F0ED),
+                style = LocalWeatherSize.current.body2,
             )
             Text(
                 text = stringResource(
@@ -80,8 +73,7 @@ private fun DayRow(weatherDaily: WeatherDaily, airDaily: AirDaily?) {
                     weatherDaily.tempMin,
                     weatherDaily.tempMax
                 ),
-                style = MaterialTheme.typography.bodyLarge,
-                color = Color.White,
+                style = LocalWeatherSize.current.body1,
             )
         }
 
@@ -99,8 +91,7 @@ private fun DayRow(weatherDaily: WeatherDaily, airDaily: AirDaily?) {
                     weatherDaily.windDirDay,
                     weatherDaily.windScaleDay
                 ),
-                style = MaterialTheme.typography.bodyMedium,
-                color = Color(0xFFF0F0ED),
+                style = LocalWeatherSize.current.body2,
             )
             WeatherAqi(airDaily = airDaily)
         }
@@ -112,9 +103,8 @@ private fun DayRow(weatherDaily: WeatherDaily, airDaily: AirDaily?) {
 fun WeatherAqi(modifier: Modifier = Modifier, airDaily: AirDaily?) {
     Text(
         text = airDaily?.aqi ?: "NA",
-        fontSize = 14.sp,
+        style = LocalWeatherSize.current.body1,
         textAlign = TextAlign.Center,
-        color = Color.White,
         modifier = modifier
             .padding(top = 2.dp)
             .width(30.dp)

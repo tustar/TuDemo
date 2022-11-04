@@ -6,9 +6,6 @@ import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.foundation.layout.*
-import androidx.compose.foundation.lazy.grid.GridCells
-import androidx.compose.foundation.lazy.grid.LazyHorizontalGrid
-import androidx.compose.foundation.lazy.grid.items
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
@@ -16,13 +13,10 @@ import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Brush
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
-import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
-import androidx.compose.ui.unit.sp
 import androidx.compose.ui.window.Dialog
 import com.google.accompanist.flowlayout.FlowRow
 import com.tustar.data.source.remote.IndicesDaily
@@ -57,7 +51,7 @@ fun ItemWeatherIndices1D(indices1D: List<IndicesDaily>) {
                             indicesDaily = it
                         }
                         .fillMaxWidth(0.33f)
-                        .aspectRatio(1.8f),
+                        .aspectRatio(1.0f),
                     indicesDaily = it
                 )
             }
@@ -72,8 +66,9 @@ private fun ItemLife(modifier: Modifier, indicesDaily: IndicesDaily) {
         contentAlignment = Alignment.Center,
         modifier = modifier
     ) {
-        Row(
-            verticalAlignment = Alignment.CenterVertically
+        Column(
+            horizontalAlignment = Alignment.CenterHorizontally,
+            modifier = Modifier.padding(start = 8.dp),
         ) {
             Image(
                 painter = painterResource(
@@ -86,19 +81,15 @@ private fun ItemLife(modifier: Modifier, indicesDaily: IndicesDaily) {
                 modifier = Modifier
                     .width(64.dp)
             )
-            Column(modifier = Modifier.padding(start = 8.dp)) {
-                Text(
-                    text = indicesDaily.name,
-                    style = MaterialTheme.typography.bodyMedium,
-                    color = Color.White,
-                )
-                Text(
-                    text = indicesDaily.category,
-                    style = MaterialTheme.typography.titleMedium,
-                    color = Color.White,
-                    modifier = Modifier.padding(top = 4.dp)
-                )
-            }
+            Text(
+                text = indicesDaily.name,
+                style = LocalWeatherSize.current.body2,
+            )
+            Text(
+                text = indicesDaily.category,
+                style = LocalWeatherSize.current.title3,
+                modifier = Modifier.padding(top = 4.dp)
+            )
         }
     }
 }
@@ -144,25 +135,22 @@ private fun LifeDialog(indicesDaily: IndicesDaily, onDismiss: (Boolean) -> Unit)
             )
             Text(
                 text = indicesDaily.name,
-                style = MaterialTheme.typography.bodyLarge,
-                color = Color.White,
+                style = LocalWeatherSize.current.body1,
                 modifier = Modifier.padding(top = 12.dp)
             )
             Text(
                 text = indicesDaily.category,
-                style = MaterialTheme.typography.titleLarge,
-                color = Color.White,
+                style = LocalWeatherSize.current.title2,
                 modifier = Modifier.padding(top = 4.dp)
             )
             Text(
                 text = indicesDaily.text,
                 textAlign = TextAlign.Start,
-                style = MaterialTheme.typography.bodyLarge,
-                color = Color(0xFFF0F0ED),
+                style = LocalWeatherSize.current.body1,
                 modifier = Modifier
                     .fillMaxWidth()
                     .aspectRatio(3.0f)
-                    .padding(horizontal = 30.dp, vertical = 24.dp),
+                    .padding(horizontal = 30.dp, vertical = LocalWeatherSize.current.margin.dp),
             )
         }
     }
