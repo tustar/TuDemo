@@ -14,6 +14,7 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.currentBackStackEntryAsState
@@ -226,4 +227,13 @@ private fun DemoNavHost(
         weatherGraph(contentType, navigationType)
         dynamicGraph(contentType, navigationType)
     }
+}
+
+@Preview
+@Composable
+fun PreviewPhone() {
+    DemoNavigationWrapper(
+        navigationType = NavigationType.BOTTOM_NAVIGATION,
+        contentType = ContentType.SINGLE_PANE,
+        navigationContentPosition = NavigationContentPosition.CENTER)
 }

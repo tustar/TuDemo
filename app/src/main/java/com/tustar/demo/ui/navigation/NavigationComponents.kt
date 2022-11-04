@@ -163,7 +163,7 @@ fun DemoBottomNavigationBar(
 ) {
     NavigationBar(modifier = Modifier.fillMaxWidth()) {
         TOP_LEVEL_DESTINATIONS.forEach { destination ->
-            NavigationRailItem(
+            NavigationBarItem(
                 selected = selectedDestination == destination.route,
                 onClick = { navigateToTopLevelDestination(destination) },
                 icon = {
