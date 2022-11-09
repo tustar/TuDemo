@@ -2,9 +2,7 @@ package com.tustar.weather.ui
 
 import android.graphics.Path
 import android.graphics.PathMeasure
-import androidx.compose.animation.core.LinearEasing
-import androidx.compose.animation.core.animateFloatAsState
-import androidx.compose.animation.core.tween
+import androidx.compose.animation.core.*
 import androidx.compose.foundation.Canvas
 import androidx.compose.foundation.layout.*
 import androidx.compose.material3.Text
@@ -22,7 +20,7 @@ import com.tustar.utils.vectorResource
 import com.tustar.weather.R
 
 @Composable
-fun ItemWeatherSunrise(today: WeatherDaily) {
+fun ItemWeatherSunrise(today: WeatherDaily, rising: Boolean) {
     ItemWeatherTitle(R.string.weather_sunrise_sunset) {
         ConstraintLayout(
             modifier = Modifier
@@ -42,7 +40,8 @@ fun ItemWeatherSunrise(today: WeatherDaily) {
                         top.linkTo(parent.top)
                         bottom.linkTo(parent.bottom)
                     },
-                WeatherUtils.movedPercent(today.sunrise, today.sunset),
+                percent = WeatherUtils.calculatePercent(today.sunrise, today.sunset),
+                rising = rising
             )
             Text(
                 text = stringResource(R.string.weather_sunrise, today.sunrise),
@@ -68,12 +67,8 @@ fun ItemWeatherSunrise(today: WeatherDaily) {
 }
 
 @Composable
-private fun DrawSunPath(
-    modifier: Modifier, percent: Float,
-) {
+private fun DrawSunPath(modifier: Modifier, percent: Float, rising: Boolean) {
     val sun = ImageBitmap.vectorResource(id = R.drawable.weather_ic_sun)
-    var rising by remember { mutableStateOf(false) }
-    rising = true
     val progress by animateFloatAsState(
         targetValue = if (rising) percent else 0.0f,
         animationSpec = tween(durationMillis = 2000, easing = LinearEasing)

@@ -167,7 +167,7 @@ object WeatherUtils {
         }
     }
 
-    fun movedPercent(startTime: String, endTime: String): Float {
+    fun calculatePercent(startTime: String, endTime: String): Float {
         val (startH, startM) = parseHHMM(startTime)
         val start = Calendar.getInstance().apply {
             set(Calendar.HOUR_OF_DAY, startH)

@@ -1,6 +1,7 @@
 package com.tustar.weather.ui
 
 import android.Manifest
+import android.content.Context
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
@@ -10,10 +11,7 @@ import androidx.compose.material3.Button
 import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
-import androidx.compose.runtime.Composable
-import androidx.compose.runtime.CompositionLocalProvider
-import androidx.compose.runtime.compositionLocalOf
-import androidx.compose.runtime.getValue
+import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Brush
@@ -33,6 +31,9 @@ import androidx.lifecycle.Lifecycle
 import com.google.accompanist.permissions.ExperimentalPermissionsApi
 import com.google.accompanist.permissions.MultiplePermissionsState
 import com.google.accompanist.permissions.rememberMultiplePermissionsState
+import com.google.accompanist.swiperefresh.SwipeRefresh
+import com.google.accompanist.swiperefresh.SwipeRefreshIndicator
+import com.google.accompanist.swiperefresh.rememberSwipeRefreshState
 import com.tustar.data.Weather
 import com.tustar.ui.ContentType
 import com.tustar.ui.NavigationType
@@ -48,7 +49,7 @@ data class WeatherSize(
     val imgWidth: Int = 24, // 40
     val title1: TextStyle = TextStyle.Default
         .copy(color = Color.White), // MaterialTheme.typography.displayLarge
-    val title2:TextStyle = TextStyle.Default
+    val title2: TextStyle = TextStyle.Default
         .copy(color = Color.White), // MaterialTheme.typography.titleLarge
     val title3: TextStyle = TextStyle.Default
         .copy(color = Color.White), // MaterialTheme.typography.titleLarge
@@ -108,7 +109,9 @@ fun WeatherScreen(
 //    }
         val locationPermissionsState = rememberMultiplePermissionsState(permissions)
         if (locationPermissionsState.allPermissionsGranted) {
-            AllPermissionsGranted(viewModel)
+            AllPermissionsGranted(viewModel.state, viewModel::getLocation) {
+                viewModel.requestWeather(viewModel.state.weather.city)
+            }
         } else {
             RequestLocations(locationPermissionsState)
         }
@@ -162,7 +165,9 @@ private fun RequestLocations(state: MultiplePermissionsState) {
 
 @Composable
 private fun AllPermissionsGranted(
-    viewModel: WeatherViewModel
+    state: WeatherContact.State,
+    getLocation: (Context) -> Unit,
+    refresh: () -> Unit,
 ) {
     val context = LocalContext.current
     val lifecycleState by LocalLifecycleOwner.current.lifecycle.observeAsState()
@@ -189,20 +194,21 @@ private fun AllPermissionsGranted(
             }
         } else {
             //
-            LocationEnable(viewModel)
+            LocationEnable(state, getLocation, refresh)
         }
     }
 }
 
 @Composable
 private fun LocationEnable(
-    viewModel: WeatherViewModel
+    state: WeatherContact.State,
+    getLocation: (Context) -> Unit,
+    refresh: () -> Unit
 ) {
     val context = LocalContext.current
     if (NetworkUtils.isNetworkConnected(context)) {
-        val state = viewModel.state
-        viewModel.getLocation(LocalContext.current)
-        WeatherContent(state = state)
+        getLocation(context)
+        WeatherContent(state = state, refresh = refresh)
     } else {
         Box(
             modifier = Modifier
@@ -227,41 +233,60 @@ private fun LocationEnable(
 }
 
 @Composable
-fun WeatherContent(state: WeatherContact.State) {
+fun WeatherContent(state: WeatherContact.State, refresh: () -> Unit) {
     val listState = rememberLazyListState()
-    Box {
-        LazyColumn(
-            state = listState,
-            modifier = Modifier
-                .fillMaxSize()
-                .background(
-                    Brush.verticalGradient(
-                        listOf(
-                            MaterialTheme.colorScheme.primary,
-                            MaterialTheme.colorScheme.secondary,
-                        )
-                    )
-                )
-        ) {
-            item {
-                Spacer(Modifier.windowInsetsTopHeight(WindowInsets.safeDrawing))
-            }
-            weatherBody(state.weather)
-            item {
-                Spacer(Modifier.windowInsetsBottomHeight(WindowInsets.safeDrawing))
+    val rising by remember {
+        derivedStateOf {
+            listState.layoutInfo.visibleItemsInfo.any {
+                it.key == "indices1D"
             }
         }
+    }
 
-        if (state.loading) {
-            LoadingBar()
+    val swipeRefreshState = rememberSwipeRefreshState(isRefreshing = state.loading)
+    Box {
+        SwipeRefresh(
+            state = swipeRefreshState,
+            onRefresh = { refresh() },
+            indicator = { state, trigger ->
+                SwipeRefreshIndicator(
+                    // Pass the SwipeRefreshState + trigger through
+                    state = state,
+                    refreshTriggerDistance = trigger,
+                    // Enable the scale animation
+                    scale = true,
+                    // Change the color and shape
+                    backgroundColor = MaterialTheme.colorScheme.inversePrimary,
+                    shape = MaterialTheme.shapes.small,
+                )
+            }) {
+            swipeRefreshState.isRefreshing = state.loading
+            Spacer(Modifier.windowInsetsTopHeight(WindowInsets.safeDrawing))
+            LazyColumn(
+                state = listState,
+                modifier = Modifier
+                    .fillMaxSize()
+                    .background(
+                        Brush.verticalGradient(
+                            listOf(
+                                MaterialTheme.colorScheme.primary,
+                                MaterialTheme.colorScheme.secondary,
+                            )
+                        )
+                    )
+            ) {
+                weatherBody(state.weather, rising)
+            }
+            Spacer(Modifier.windowInsetsBottomHeight(WindowInsets.safeDrawing))
         }
     }
 }
 
 private fun LazyListScope.weatherBody(
-    weather: Weather
+    weather: Weather,
+    rising: Boolean
 ) {
-    item {
+    item(key = "header") {
         ItemWeatherHeader(
             weather.city,
             weather.weatherNow,
@@ -270,19 +295,19 @@ private fun LazyListScope.weatherBody(
         )
     }
 
-    item {
+    item(key = "24H") {
         ItemWeather24H(weather.hourly24H)
     }
-    item {
+    item(key = "15D") {
         ItemWeather15D(weather.daily15D, weather.air5D)
     }
-    item {
-        ItemWeatherSunrise(weather.daily15D[0])
+    item(key = "sunrise") {
+        ItemWeatherSunrise(weather.daily15D[0], rising)
     }
-    item {
+    item(key = "indices1D") {
         ItemWeatherIndices1D(weather.indices1D)
     }
-    item {
+    item(key = "footer") {
         Text(
             text = stringResource(id = R.string.weather_sources),
             textAlign = TextAlign.Center,
@@ -294,13 +319,19 @@ private fun LazyListScope.weatherBody(
     }
 }
 
+@Preview(showBackground = true)
 @Composable
-fun LoadingBar() {
-    Box(
-        contentAlignment = Alignment.Center,
-        modifier = Modifier.fillMaxSize()
-    ) {
-        CircularProgressIndicator(color = MaterialTheme.colorScheme.inversePrimary)
+fun AllPermissionsGrantedPreview() {
+    DemoTheme {
+        AllPermissionsGranted(state = WeatherContact.State(
+            weather = WeatherContact.State.Empty,
+            prefs = WeatherPrefs.getDefaultInstance(),
+            loading = false,
+        ), getLocation = {
+
+        }, refresh = {
+
+        })
     }
 }
 
@@ -309,11 +340,12 @@ fun LoadingBar() {
 fun WeatherScreenPreview() {
     DemoTheme {
         WeatherContent(
-            WeatherContact.State(
+            state = WeatherContact.State(
                 weather = WeatherContact.State.Empty,
                 prefs = WeatherPrefs.getDefaultInstance(),
                 loading = false,
-            )
+            ),
+            refresh = {}
         )
     }
 }

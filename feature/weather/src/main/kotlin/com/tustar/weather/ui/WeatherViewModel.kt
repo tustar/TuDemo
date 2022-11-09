@@ -12,6 +12,7 @@ import com.baidu.location.BDLocation
 import com.baidu.location.LocationClient
 import com.baidu.location.LocationClientOption
 import com.tustar.data.source.WeatherRepository
+import com.tustar.data.source.remote.City
 import com.tustar.utils.Logger
 import com.tustar.weather.WeatherPrefs
 import com.tustar.weather.util.weatherPrefsFlow
@@ -68,8 +69,10 @@ open class WeatherViewModel @Inject constructor(
                 val street = location.street // 获取街道信息
                 val adcode = location.adCode // 获取adcode
                 val town = location.town // 获取乡镇信息
-                Logger.d("addr:$addr, country:$country, province:$province, city:$city, " +
-                        "district:$district, street:$street, adcode:$adcode, town:$town")
+                Logger.d(
+                    "addr:$addr, country:$country, province:$province, city:$city, " +
+                            "district:$district, street:$street, adcode:$adcode, town:$town"
+                )
 
 
                 requestWeather(context, "$longitude,$latitude")
@@ -133,7 +136,7 @@ open class WeatherViewModel @Inject constructor(
         locationClient.start()
     }
 
-    private fun requestWeather(context: Context, location: String) {
+    fun requestWeather(context: Context, location: String) {
         viewModelScope.launch {
             val weather = weatherRepository.weather(location)
             weatherPrefsFlow(context).collect { prefs ->
@@ -143,6 +146,15 @@ open class WeatherViewModel @Inject constructor(
                     loading = false
                 )
             }
+        }
+    }
+
+    fun requestWeather(city: City) {
+        viewModelScope.launch {
+            val weather = weatherRepository.weather("${city.lon},${city.lat}")
+            state = state.copy(
+                weather = weather,
+            )
         }
     }
 }
